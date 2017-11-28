@@ -15,8 +15,8 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String EliSrc = request.getParameter("EliSrc");
 %>
-<select id="EliTy" name="selectbasic" class="form-control">
-    <option value="-">-</option>
+
+    <!--<option value="-">-</option>-->
      <%
         String eliType = "select  Detail_Reference_Code, Description from adm_lookup_detail where master_reference_code = '0034' and  Detail_Reference_Code like '" + EliSrc + "%' and hfc_cd ='" + hfc + "' ";
         ArrayList<ArrayList<String>> dataEliType;
@@ -31,5 +31,5 @@
     <%
         }
     %>
-</select>
+
 

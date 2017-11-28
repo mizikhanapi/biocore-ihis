@@ -99,9 +99,9 @@
                
                
                //create charge, deposit, discount for sosco-pensioner
-               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
-               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
-               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '002', '"+wpensionerrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '001', '"+wpensionerdeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '004', '"+wpensionerdiscount+"', now(), '"+createdBy+"' );";
                
                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
@@ -119,9 +119,9 @@
                
                
                //create charge, deposit, discount for private-nonCitizen
-               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
-               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
-               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '002', '"+wnoncitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '001', '"+wnoncitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '004', '"+wnoncitizendiscount+"', now(), '"+createdBy+"' );";
                
                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
@@ -149,9 +149,9 @@
                
                
                //create charge, deposit, discount for government-pensioner
-               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
-               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
-               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '002', '"+wpensionerrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '001', '"+wpensionerdeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '004', '"+wpensionerdiscount+"', now(), '"+createdBy+"' );";
                
                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);

@@ -86,7 +86,19 @@
     if (alreadyRegis.size() > 0) {
         out.print("already");
 //out.print(queue_now);
-    } else {
+    } 
+    else {
+        
+        //check whether the bed is still available or taken by others...
+        String sqlBedCheck = "Select bed_id FROM wis_bed_id "
+                + "where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' AND ward_id='"+wname+"' AND bed_status='Available';";
+        ArrayList<ArrayList<String>> arrBedCheck = conn.getData(sqlBedCheck);
+        if(arrBedCheck.size()<1){
+            //... the bed has been taken. Abort process....
+            out.print("taken");
+            return;
+        }
+        
         insertEpisode = "INSERT INTO wis_inpatient_episode(hfc_cd, pmi_no, episode_date, discipline_cd, subdiscipline_cd, "
                 + "ward_class_code, ward_id, bed_id, patient_category_cd, visit_type_cd,"
                 + "emergency_type_cd, eligibility_type_cd, eligibility_category_cd, referred_from_hfc, referred_from_discipline, referred_reference_no, order_by,"
@@ -99,7 +111,7 @@
                 + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
                 + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "');";
 
-        updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' ";
+        updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' AND ward_id='"+wname+"' ;";
         updateMaster = "UPDATE wis_order_master SET order_status = '1' where pmi_no ='" + pmino + "' and order_no ='" + orderNo + "'  ";
         updateDetail = "UPDATE  wis_order_detail SET order_status = '1' where  order_no ='" + orderNo + "'  ";
 

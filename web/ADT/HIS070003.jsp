@@ -112,6 +112,7 @@
        
         <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(function(){
                 $('#FacilityTypeMain').load('facility-type.jsp');

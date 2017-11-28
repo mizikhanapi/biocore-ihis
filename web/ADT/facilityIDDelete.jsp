@@ -45,6 +45,7 @@
         
         //delete hospital_charge
         query="DELETE FROM wis_hospital_charges WHERE hfc_cd='"+hfc+"' AND discipline_cd='"+wdis+"' AND ward_id='"+wid+"';";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, query);
         
         //delete queue_name...
         query="DELETE FROM pms_queue_name where queue_type='FY' AND queue_name='"+wname+"' AND hfc_cd='"+hfc+"' AND discipline_code='"+wdis+"';";

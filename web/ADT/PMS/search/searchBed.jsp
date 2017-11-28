@@ -36,7 +36,9 @@
         </span>
     </div>
 
-
+</div>
+<br/>
+<div class="row">
     <div class="col-md-6">
         <!-- Select Basic -->
         <!-- Select Basic -->
@@ -87,12 +89,16 @@
     <div class="col-md-6">  
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Deposit (RM)</label>
-            <div class="col-md-6" id="depositResult">
-                <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">
+            <label class="col-md-4 control-label" for="appendedtext">Deposit (RM)</label>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="Deposit" class="form-control" placeholder="Click button on the right to get deposit" type="text" readonly>
+                    <div class="input-group-btn">
+                        <button style="margin-bottom: 15px; margin-left: 3px;" class="btn btn-default btn-sm" title="Get Deposit" id="SB_btnGetDepo"><i class="fa fa-dollar"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
-
 
         <!-- Select Basic -->
         <div class="form-group">
@@ -177,7 +183,7 @@
 </div>
 <!-- Add Modal End -->  
 
-<script>
+<script type="text/javascript">
 
     $(function () {
         SB_initFlexSearch("#assD_doctor", "<%=baseURL + "general/search/user.jsp"%>", "");
@@ -383,21 +389,28 @@
 
         if (wardClass === "" || wardClass == null || wardName === "" || wardName == null) {
 
-            wnamecode = $('#wname').val();
+            wnamecode = $('#wname').val()==null? "|": $('#wname').val();
             var array_dis = wnamecode.split("|");
             wnamecode = array_dis[0];
             WardType = $('#WardType').val();
 
-            if (wnamecode === "" || wnamecode == null || WardType === "" || WardType == null) {
-                console.log("Incomlete data to get deposit");
-                canProceed = false;
-            }
         } else {
             wnamecode = wardName;
             WardType = wardClass;
         }
 
+        if (wnamecode === "" || wnamecode == null || WardType === "" || WardType == null) {
+            console.log("Incomplete ward data to get deposit");
+            //bootbox.alert("Please choose ward class and ward name to get the deposit.");
+            canProceed = false;
+        } else if (EliSource == null || EliSource === "" || EliTy == null || EliTy === "") {
+            console.log("Incomplete eligibility data to get deposit");
+            //bootbox.alert("Please choose eligibility source and eligibilty type to get the deposit.");
+            canProceed = false;
+        }
+
         if (!canProceed) {
+            $('#Deposit').val('');
             return false;
         }
         console.log("Ajax to get deposit");
@@ -416,6 +429,31 @@
             }
         });
     }
+    
+    $('#SB_btnGetDepo').on('click', function(){
+        var wnameCode, wclassCode, eliSource, eliType;
+        var canProceed = true;
+        wnameCode = $('#wname').val();
+        wclassCode = $('#WardType').val();
+        eliSource = $('#EliSource').val();
+        eliType = $('#EliTy').val();
+        
+        if(wnameCode==null || wnameCode==="" || wclassCode==null || wclassCode===""){
+            bootbox.alert("Please choose ward class and ward name first!");
+            canProceed=false;
+        }
+        else if(eliSource==null || eliSource==="" || eliType==null || eliType===""){
+            bootbox.alert("Please choose eligibility source and eligibility type first!");
+            canProceed=false;
+        }
+        
+        if(!canProceed){
+            $('#Deposit').val('');
+            return false;
+        }
+        
+        IR_getDepositPrice();
+    });
 
 
     //-------------- choose available bed ----------------------
@@ -488,22 +526,21 @@
 
     $('#assD_btnAssign').on('click', function () {
         var user_id = $('#assD_doctor').val();
-        if(user_id==="" || user_id==null){
+        if (user_id === "" || user_id == null) {
             bootbox.alert("Please choose existing doctor!");
-        }
-        else{
+        } else {
             var qname = $('#assD_qname').val();
             var dis = $('#assD_dis').val();
             var sub = $('#assD_sub').val();
             var createdBy = $("#Rid").val();
             var nowDate = new Date();
             var hfc = $("#Rhfc").val();
-            
-            var data={
+
+            var data = {
                 staff: user_id,
                 ty: "FY",
                 nm: qname,
-                startDate: "01/01/"+nowDate.getFullYear(),
+                startDate: "01/01/" + nowDate.getFullYear(),
                 endDate: "31/12/9999",
                 createdBy: createdBy,
                 hfc: hfc,
@@ -518,19 +555,18 @@
                 data: data,
                 timeout: 60000,
                 success: function (data, textStatus, jqXHR) {
-                        if(data.trim()==="true"){
-                            bootbox.alert("Doctor is assigned to ward.");
-                            $('#modal_assignDoctor').modal('hide');
-                        }
-                        else{
-                            bootbox.alert("Failed to assigned doctor. Try again later!");
-                        }
-                    },
+                    if (data.trim() === "true") {
+                        bootbox.alert("Doctor is assigned to ward.");
+                        $('#modal_assignDoctor').modal('hide');
+                    } else {
+                        bootbox.alert("Failed to assigned doctor. Try again later!");
+                    }
+                },
                 error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Oops! "+errorThrown);
-                    },
-                complete: function (jqXHR, textStatus ) {
-                        destroyScreenLoading();
+                    alert("Oops! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    destroyScreenLoading();
                 }
             });
         }

@@ -18,23 +18,29 @@
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
-    String disb = request.getParameter("Dis");
+    //String disb = request.getParameter("Dis");->null
     String wnamecode = request.getParameter("wnamecode");
     String WardTypeb = request.getParameter("WardType");
     String EliSource = request.getParameter("EliSource");
     String EliTy = request.getParameter("EliTy");
-    String total = "";
-//eligibility_source_cd ='" + EliSource + "'
+    
+/* 
+    charge type:
+    001 -> Deposit
+    */
 
   
-        String resultEliSrc = "select  charges_fees from wis_hospital_charges  where charges_type = '001' and  ward_class_code ='" + WardTypeb + "' and  hfc_cd ='" + hfc + "' AND ward_id='"+wnamecode+"' ";
+        String resultEliSrc = "select  charges_fees from wis_hospital_charges  "
+                + "where charges_type = '001' and  ward_class_code ='" + WardTypeb + "' and  hfc_cd ='" + hfc + "' AND ward_id='"+wnamecode+"' AND eligibility_sources_cd='"+EliSource+"' AND eligibility_type_cd='"+EliTy+"';";
         ArrayList<ArrayList<String>> dataEliSrc = conn.getData(resultEliSrc);
         
-        for (int E = 0; E < dataEliSrc.size(); E++) {
-            String t = dataEliSrc.get(E).get(0);
-            total = t;
+        if(dataEliSrc.size()>0){
+            out.print(dataEliSrc.get(0).get(0));
         }
-        out.print(total);
+        else{
+            out.print("0.00");
+        }
+        
 %>
 
 

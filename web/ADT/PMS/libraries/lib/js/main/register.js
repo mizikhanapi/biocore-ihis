@@ -231,7 +231,7 @@ $('#registerBed').click(function () {
         };
         //console.log(datas);
         bootbox.confirm({
-            message: "Are you sure want to REGISTER PATIENT?",
+            message: "Are you sure want to ADMIT PATIENT?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -254,7 +254,7 @@ $('#registerBed').click(function () {
                         timeout: 60000,
                         success: function (l) {
                             console.log(l);
-                            $body.removeClass("loading");
+                            //$body.removeClass("loading");
                             if ($.trim(l) === "Success") {
                                 //bootbox.alert("The queue is exists. you can register the patient");
                                 $.ajax({
@@ -265,7 +265,7 @@ $('#registerBed').click(function () {
                                     success: function (list) {
                                         console.log(list);
 
-                                        $body.removeClass("loading");
+                                        //$body.removeClass("loading");
                                         if ($.trim(list) === "Success") {
                                             $.ajax({
                                                 type: "POST",
@@ -275,10 +275,12 @@ $('#registerBed').click(function () {
                                                 timeout: 60000,
                                                 success: function (l2) {
                                                     console.log(l2);
-                                                    $body.removeClass("loading");
+                                                    //$body.removeClass("loading");
                                                     if ($.trim(l2) === "Success") {
                                                         bootbox.alert("Patient has been added to ward and queue successfully.", function () {
                                                             IR_assignDoctor(wnamequeue, Dis, sub);
+                                                            $('#btnClear').click();
+                                                            $('#clearSearch').click();
                                                         });
                                                     } else if ($.trim(l2) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");
@@ -295,15 +297,19 @@ $('#registerBed').click(function () {
 
                                         } else if ($.trim(list) === "false") {
                                             bootbox.alert("There something error with the query of register the inpatient");
-                                        } else {
+                                        }
+                                        else if($.trim(list) === "taken"){
+                                            bootbox.alert("The bed "+BedID+" is already taken. Please choose other bed.");
+                                        }
+                                        else {
                                             bootbox.alert(list);
                                         }
 
-                                        var wname = $('#wname').val();
-                                        var hfc = $("#Rhfc").val();
-                                        var createdBy = $("#Rid").val();
-                                        var sub = $("#Rsub").val();
-                                        var Dis = $('#DisWard').val();
+//                                        var wname = $('#wname').val();
+//                                        var hfc = $("#Rhfc").val();
+//                                        var createdBy = $("#Rid").val();
+//                                        var sub = $("#Rsub").val();
+//                                        var Dis = $('#DisWard').val();
 
                                     }, error: function () {
                                         bootbox.alert("There is an error!");
@@ -321,6 +327,9 @@ $('#registerBed').click(function () {
 
                         }, error: function () {
                             bootbox.alert("There is an error!");
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            $body.removeClass("loading");
                         }
                     });
                 }
@@ -334,6 +343,9 @@ $('#registerBed').click(function () {
 $('#btnclear').click(function () {
     $('#myForm2')[0].reset();
     $('#bedtest').html('');
+    $('#BedIDReg').val('');
+    $('#Deposit').val('');
+    $('#DisWard').val('');
 });
 
 

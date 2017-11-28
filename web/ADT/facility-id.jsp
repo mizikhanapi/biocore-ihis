@@ -515,7 +515,7 @@
             };
 
             console.log(data);
-
+            createScreenLoading();
             $.ajax({
                 url: "facilityIDInsert.jsp",
                 type: "post",
@@ -563,6 +563,9 @@
                     }
                 }, error: function (err) {
                     console.log("Ajax Is Not Success " + err);
+                },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
                 }
 
             });

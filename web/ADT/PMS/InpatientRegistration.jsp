@@ -133,7 +133,7 @@
                         <label class="col-md-4 control-label" for="selectbasic">Eligibility Source*</label>
                         <div class="col-md-6">
                             <select id="EliSource" name="EliSource" class="form-control">
-                                <option value="-">-</option>
+                                <!--<option value="-">-</option>-->
                                 <%                                   for (int i = 0; i < dataEliCat.size(); i++) {
                                 %>
                                 <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
@@ -146,8 +146,8 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Eligibility Type*</label>
-                        <div class="col-md-6" id="EligibilityTypeDropdown">
-                            <select id="EliTy" name="selectbasic" class="form-control" disabled="">
+                        <div class="col-md-6">
+                            <select id="EliTy" name="selectbasic" class="form-control" >
 
 
                             </select>
@@ -181,7 +181,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Admission reason* </label>
                         <div class="col-md-6">
-                            <textarea id="AdmissionReason" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
+                            <textarea id="AdmissionReason" name="textinput" placeholder="" class="form-control input-md"></textarea>
                         </div>
                     </div>
 
@@ -342,6 +342,9 @@
 
 
 <script>
+    $(function(){
+        $('#EliSource').change();
+    });
 
     $("#HFCFROM").on('keyup', function () { // everytime keyup event
         var input = $(this).val(); // We take the input value
@@ -447,7 +450,8 @@
                 //remove the loading 
                 //$body.removeClass("loading");
                 console.log(list);
-                $('#EligibilityTypeDropdown').html(list);
+                $('#EliTy').html(list);
+                $('#EliTy').change();
 
             },
             error: function (xhr, status, error) {
@@ -455,6 +459,10 @@
                 //bootbox.alert(err.Message);
             }
         });
+    });
+    
+    $('#EliTy').on('change', function(){
+        IR_getDepositPrice();
     });
 
 

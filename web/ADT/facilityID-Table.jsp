@@ -476,6 +476,7 @@
                     sub: sub
                 };
                 console.log(data);
+                createScreenLoading();
                 $.ajax({
                     url: "facilityIDUpdate.jsp",
                     type: "post",
@@ -512,6 +513,9 @@
                     },
                     error: function (err) {
                         alert("Error update!");
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
                     }
                 });
             }
@@ -553,6 +557,7 @@
                         wdis: wdis
 
                     };
+                    createScreenLoading();
                     $.ajax({
                         type: "post",
                         url: "facilityIDDelete.jsp",
@@ -570,6 +575,9 @@
                                     backdrop: true
                                 });
                                 FI_loadWardNameOption();
+                                $('#AssignBedTable').html('');
+                                $('#AssignBedTable').load('assign-bed-to-ward-table.jsp');
+                                
                             } else if (result.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",
@@ -590,6 +598,9 @@
 
                         }, error: function (err) {
                             alert("Error! Deletion Ajax failed!!");
+                        },
+                        complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
                         }
 
                     });
