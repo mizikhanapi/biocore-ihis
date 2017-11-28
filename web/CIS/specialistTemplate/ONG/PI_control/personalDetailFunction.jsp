@@ -12,7 +12,7 @@
     String methodName = request.getParameter("methodName");
     String data = request.getParameter("datas");
     Boolean result;
-    //String result;
+    String resulta;
 
     if (methodName.equalsIgnoreCase("add")) {
         result = pd.insertPersonalDetail(data);

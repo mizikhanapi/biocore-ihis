@@ -89,7 +89,7 @@
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Scan EDD *</label>
+                                <label class="col-md-12 control-label" for="textinput">Scan EDD </label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="PIscanedd"> 
                                 </div>
@@ -334,9 +334,10 @@
         var B = (283.75 - A);
         var x = new Date();
         x.setDate(x.getDate()+B);
-        console.log("A "+ A);
-        console.log("B "+ B);
-        console.log("x "+ x);
+//        console.log("A "+ A);
+//        console.log("B "+ B);
+//        console.log("x "+ x);
+        $('#PIedd').val(("0" + x.getDate()).slice(-2)+"/"+("0" + (x.getMonth() + 1)).slice(-2)+"/"+x.getFullYear());
         
     });
     
@@ -416,7 +417,7 @@
 
     // button add item for personal detail
     $('#btnPIadd').on('click', function () {
-        var gravida, parity, lmp, edd, scanEdd, periodCycle, pgh, pmh, psh;
+        var gravida, parity, lmp, edd, scanEdd, periodCycle, pgh, pmh, psh,cpw;
         gravida = $('#PIgravida').val();
         parity = $('#PIparity').val();
         lmp = $('#PIlmp').val();
@@ -426,9 +427,12 @@
         pgh = $('#PIgynaecologicalHistory').val();
         pmh = $('#PIpastMedHis').val();
         psh = $('#PIsurHis').val();
-        
+        cpw = $('#PIcpw').val();
+        var harini = new Date();
+        var hariniyangtelahconvert = harini.getFullYear()+"-"+("0" + (harini.getMonth() + 1)).slice(-2)+"-"+("0"+ harini.getDate()).slice(-2);
+        console.log(hariniyangtelahconvert);
 
-        if (gravida === "" || parity === "" || edd === "" || periodCycle === "") {
+        if (gravida === "" || parity === "" || edd === "" || periodCycle === "" || cpw ==="") {
             bootbox.alert("please insert the compulsory item to proceed");
         } else {
             var pmi_no = pmiNo;
@@ -443,14 +447,26 @@
             var ss = enDate.getSeconds();
             var ms = enDate.getMilliseconds();
             var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
-
-            var Clmp = convertDate(lmp);
+            var Clmp;
+            if(lmp===""){
+                Clmp = "";
+            }else{
+                Clmp = convertDate(lmp);
+            }
+            
+            var Csedd;
+            if(scanEdd===""){
+                Csedd="";
+            }else{
+                Csedd = convertDate(scanEdd);
+            }
+            
             var Cedd = convertDate(edd);
-            var Csedd = convertDate(scanEdd);
+            
 
             var datas2 = pmi_no + "|" + hfc_cd1;
-            var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + gravida + "|" + parity + "|" + Clmp + "|" + Cedd + "|" + Csedd + "|" + periodCycle + "|" + pgh + "|" + pmh + "|" + psh;
-
+            var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + gravida + "|" + parity + "|" + Clmp + "|" + Cedd + "|" + Csedd + "|" + periodCycle + "|" + pgh + "|" + pmh + "|" + psh + "|" + cpw + "|" + hariniyangtelahconvert;
+            console.log(datas);
             $.ajax({
                 type: "post",
                 url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
@@ -458,7 +474,9 @@
                 success: function (databack) {
                     getPI(datas2);
                     getPIpreg(datas2);
+                    console.log(databack);
                     if (databack) {
+                        console.log(databack);
                         bootbox.alert("succes inserting");
                         $('#ong-pDetails1').modal('hide');
                     } else {

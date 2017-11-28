@@ -23,6 +23,7 @@
     String prestlie4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0120' AND hfc_cd = '" + hfc + "' and status ='0'";
     String a4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0121' AND hfc_cd = '" + hfc + "' and status ='0'";
     String s4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0122' AND hfc_cd = '" + hfc + "' and status ='0'";
+    
     ArrayList<ArrayList<String>> dataBloodty4, dataRhesus4,datarubela4,datacdrl4,dataantibody4,dataantigen4,dataprestlie4,dataa4,datas4;
     dataBloodty4 = conn.getData(bloodty4);
     dataRhesus4 = conn.getData(rhesus4);
@@ -241,7 +242,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Gestation Weeks *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="anteGestation">
+                                    <input type="text" class="form-control input-md" id="anteGestation" readonly="">
                                 </div>
                             </div>
                         </div>
@@ -421,6 +422,27 @@
             data: {datas: data, methodName: "getBP"},
             success: function (databack) {
                 $('#divAntenatal').html(databack);
+            }
+        });
+    }
+    
+    function getWeek(data){
+        $.ajax({
+            type: "post",
+            url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+            data: {datas: data, methodName: "getWeek"},
+            success: function (databack) {
+                console.log(databack);
+                var arraydata = databack.split("|");
+                var week = arraydata[0];
+                var createddate = arraydata[1];
+                var araay = createddate.split("-");
+                var newdate = new Date(araay[0],araay[1]-1,araay[2]);
+                var today = new Date();
+                var $weekDiff = Math.floor((today - newdate + 1) / (1000 * 60 * 60 * 24) / 7);
+                var nweek = parseInt(week) + parseInt($weekDiff);
+                $('#anteGestation').val(nweek);
+                
             }
         });
     }
