@@ -140,7 +140,7 @@ public class YearEndProcessing {
 
                 // Set Autocomit To False
                 String sqlSetAutoComFalse = "SET autocommit = 0";
-                conn.setData(sqlSetAutoComFalse);
+                boolean boolFalse = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlSetAutoComFalse);
 
                 // Get The Credit And Debit A For That HFC According To Patient
                 String sqlGetCreditDebit = "SELECT pb.pmi_no, "
