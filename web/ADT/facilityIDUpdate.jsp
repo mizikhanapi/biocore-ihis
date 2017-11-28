@@ -86,7 +86,13 @@
         if(qProceed){
             String sqlUpdateQL="update pms_queue_list set queue_name='"+wwardname+"' ,sub_discipline_cd ='" + sub + "',status = '" + qStatus + "',created_by ='" + createdBy + "',created_date=NOW() "
                     + "where queue_type = 'FY' and queue_name='" + oriWardName + "' and hfc_cd='" + hfc + "' and discipline_cd='" + dis + "'";
-            rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateQL);
+            qProceed=rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateQL);
+        }
+        
+        //update pms_patient_queue for the queue_name where status not discharge...
+        if(qProceed){
+            String sqlUpdatePQ="UPDATE pms_patient_queue set queue_name='"+wwardname+"' WHERE hfc_cd='"+hfc+"' AND queue_name='"+oriWardName+"' AND discipline_cd='"+dis+"' AND queue_type='FY' AND patient_category='003' AND status NOT IN('1', '6');";
+            qProceed=rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdatePQ);
         }
         
         

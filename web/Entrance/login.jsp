@@ -39,6 +39,7 @@
         <title>iHIS | Login</title>
 
         <!-- header -->
+        <script src="../assets/js/jquery.min.js"></script>
         <%@include file = "../assets/header.html" %>
         <link href="../assets/css/login.css" rel="stylesheet">
         <link href="libraries/loading_sham.css" rel="stylesheet">

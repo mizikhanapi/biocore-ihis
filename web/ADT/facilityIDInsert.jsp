@@ -83,6 +83,81 @@
                 rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCreateQueue);
             }
             
+//            create base hospital charge, deposit, discount...
+               String sqlCharge="", sqlDeposit="", sqlDiscount="", sqlHead="";
+               
+               sqlHead="INSERT INTO wis_hospital_charges(hfc_cd, discipline_cd, subdiscipline_cd, ward_class_code, ward_id, eligibility_sources_cd, eligibility_type_cd, charges_type, charges_fees, created_date, created_by) ";
+               
+                //create charge, deposit, discount for sosco-sosco
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-001', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-001', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-001', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+               
+               //create charge, deposit, discount for sosco-pensioner
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '004', '004-002', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+               
+               //create charge, deposit, discount for private-citizen
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-002', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-002', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-002', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+               
+               //create charge, deposit, discount for private-nonCitizen
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '002', '002-001', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+               
+               //create charge, deposit, discount for government-staff
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-002', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-002', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-002', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+               
+               //create charge, deposit, discount for government-student
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-001', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-001', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-001', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+               
+               //create charge, deposit, discount for government-pensioner
+               sqlCharge= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '002', '"+wcitizenrates+"', now(), '"+createdBy+"' );";
+               sqlDeposit= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '001', '"+wcitizendeposit+"', now(), '"+createdBy+"' );";
+               sqlDiscount= sqlHead+"VALUES('"+hfc+"', '"+wdiscipline+"', '"+sub+"', '"+wclass+"', '"+wid+"', '003', '003-003', '004', '"+wcitizendiscount+"', now(), '"+createdBy+"' );";
+               
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCharge);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDeposit);
+               rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDiscount);
+               
+            
         } else {
             out.print("Failed");
         }

@@ -526,7 +526,7 @@
         var arrayData = rowData.split("|");
 
         //assign into seprated val
-        var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
+        var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19], wname=arrayData[1], wdis = arrayData[20];
         console.log(arrayData);
         bootbox.confirm({
             message: "Are you sure to delete facility ID information?",
@@ -548,7 +548,9 @@
                     var datas = {
                         wcd: wcd,
                         wid: wid,
-                        hfc: hfc
+                        hfc: hfc,
+                        wname: wname,
+                        wdis: wdis
 
                     };
                     $.ajax({
@@ -571,6 +573,14 @@
                             } else if (result.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",
+                                    title: "Process Result",
+                                    backdrop: true
+
+                                });
+                            }
+                            else if (result.trim() === 'no') {
+                                bootbox.alert({
+                                    message: "You cannot delete this ward because there are patients inside it.",
                                     title: "Process Result",
                                     backdrop: true
 
