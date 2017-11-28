@@ -4,13 +4,16 @@
     Author     : Shammugam
 --%>
 
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
+
     String ic = request.getParameter("ic");
 
     Conn conn = new Conn();
+
     String userId = session.getAttribute("USER_ID").toString();
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis_cd = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -23,7 +26,7 @@
             + " WHERE pb.new_ic_no = '" + ic + "' "
             + " AND cl.hfc_cd = '" + hfc_cd + "' ";
 
-    ArrayList<ArrayList<String>> dataPatient = Conn.getData(sqlValidateIC);
+    ArrayList<ArrayList<String>> dataPatient = conn.getData(sqlValidateIC);
 
     if (dataPatient.isEmpty()) {
 
