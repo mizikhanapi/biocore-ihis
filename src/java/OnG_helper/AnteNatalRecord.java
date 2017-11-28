@@ -36,6 +36,19 @@ public class AnteNatalRecord {
         return data;
 
     }
+    public ArrayList<ArrayList<String>> getWeek(String datas){
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        String splittedData[] = datas.split("\\|", -1);
+        String pmino, hfc;
+        String sql = "";
+        pmino = splittedData[0];
+        hfc = splittedData[1];
+        
+        sql = "SELECT week,date_created FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"' order by status limit 1";
+
+        data = conn.getData(sql);
+        return data;
+    }
     
     public ArrayList<ArrayList<String>> getAnteNatal(String datas){
         

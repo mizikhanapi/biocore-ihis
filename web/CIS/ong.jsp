@@ -173,7 +173,6 @@
         return newDate;
     }
     function getGra(){
-        console.log("test");
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var x = pmi_no + "|" + hfc_cd1;
@@ -218,19 +217,24 @@
         }
     });
     
-    $('#btnnewpreviouspregnancy').on('click',function(){
-       $('#btnPIpregUpdate').hide(); 
-       $('#btnPIpreg').show();
+    $('#ONG_1').on('click','#btnnewpreviouspregnancy',function(){
+       $('#ong #ong-pDetails3 #btnPIpregUpdate').hide(); 
+       $('#ong #ong-pDetails3 #btnPIpreg').show();
     });
     
-    $('#anteBPnew').on('click',function(){
-       $('#btnBPUpdateItem').hide();
-       $('#btnBPAddItem').show();
+    $('#ONG_2').on('click','#anteBPnew',function(){
+       $('#ong #ong-anteNatal1 #btnBPUpdateItem').hide();
+       $('#ong #ong-anteNatal1 #btnBPAddItem').show();
     });
     
-    $('#anteRecordNew').on('click',function(){
-       $('#btnAnteUpdateItem').hide();
-       $('#btnAnteAddItem').show();
+    $('#ONG_2').on('click','#anteRecordNew',function(){
+       $('#ong #ong-anteNatal2 #btnAnteUpdateItem').hide();
+       $('#ong #ong-anteNatal2 #btnAnteAddItem').show();
+        var pmi_no = pmiNo;
+        var hfc_cd1 = hfc_cd;
+        var x = pmi_no + "|" + hfc_cd1;
+        console.log(x);
+       getWeek(x);
     });
 
 </script>

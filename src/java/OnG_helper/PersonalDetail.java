@@ -27,7 +27,7 @@ public class PersonalDetail {
         pmino = splittedData[0];
         hfc = splittedData[1];
 
-        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,DATE_FORMAT(DATE(pregnancy_lmp),'%d/%m/%Y'),DATE_FORMAT(DATE(pregnancy_edd),'%d/%m/%Y'),DATE_FORMAT(DATE(pregnancy_scan_edd),'%d/%m/%Y'),period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"' limit 1";
+        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,DATE_FORMAT(DATE(pregnancy_lmp),'%d/%m/%Y'),DATE_FORMAT(DATE(pregnancy_edd),'%d/%m/%Y'),DATE_FORMAT(DATE(pregnancy_scan_edd),'%d/%m/%Y'),period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history,week,date_created FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"' order by status limit 1";
 
         data = conn.getData(sql);
         return data;
@@ -53,7 +53,7 @@ public class PersonalDetail {
         Boolean ins = false;
         String sql = "";
         String splittedData[] = datas.split("\\|", -1);
-        String pmino,hfc,episode,encounter,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history;
+        String pmino,hfc,episode,encounter,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history,week,createddate;
         pmino = splittedData[0];
         hfc = splittedData[1];
         episode = splittedData[2];
@@ -67,13 +67,15 @@ public class PersonalDetail {
         past_gynaecological_history = splittedData[10];
         past_medical_history = splittedData[11];
         past_surgical_history = splittedData[12];
+        week = splittedData[13];
+        createddate = splittedData[14];
         
         ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         String selSql = "Select pmi_no from lhr_ong_personal_info where pmi_no='"+pmino+"' and hfc_cd='"+hfc+"' and status='0'";
         data = conn.getData(selSql);
         
         if(data.size() < 1){
-           sql = "INSERT into lhr_ong_personal_info(pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history)values('"+pmino+"','"+hfc+"','"+episode+"','"+encounter+"','"+gravida+"','"+parity+"','"+pregnancy_lmp+"','"+pregnancy_edd+"','"+pregnancy_scan_edd+"','"+period_cycle+"','"+past_gynaecological_history+"','"+past_medical_history+"','"+past_surgical_history+"')";
+           sql = "INSERT into lhr_ong_personal_info(pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history,week,date_created)values('"+pmino+"','"+hfc+"','"+episode+"','"+encounter+"','"+gravida+"','"+parity+"','"+pregnancy_lmp+"','"+pregnancy_edd+"','"+pregnancy_scan_edd+"','"+period_cycle+"','"+past_gynaecological_history+"','"+past_medical_history+"','"+past_surgical_history+"','"+week+"','"+createddate+"')";
 
         }else if(data.size() > 0){
             sql = "UPDATE lhr_ong_personal_info set gravida='"+gravida+"',parity='"+parity+"',pregnancy_lmp='"+pregnancy_lmp+"',pregnancy_edd='"+pregnancy_edd+"',pregnancy_scan_edd='"+pregnancy_scan_edd+"',period_cycle='"+period_cycle+"',past_gynaecological_history='"+past_gynaecological_history+"',past_medical_history='"+past_medical_history+"',past_surgical_history='"+past_surgical_history+"' where pmi_no = '"+pmino+"' and hfc_cd='"+hfc+"' and status='0'";

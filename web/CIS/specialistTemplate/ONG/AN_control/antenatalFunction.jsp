@@ -10,6 +10,7 @@
 <%
     AnteNatalRecord an = new AnteNatalRecord();
     String methodName = request.getParameter("methodName");
+    //String methodName = "getWeek";
     String data = request.getParameter("datas");
     Boolean result;
     //String result;
@@ -93,5 +94,11 @@
     }else if(methodName.equalsIgnoreCase("updateBP")){
         result = an.updateBloodProfile(data);
         out.print(result);
+    }else if(methodName.equalsIgnoreCase("getWeek")){
+        String x = "B0315200272|04010101";
+        ArrayList<ArrayList<String>> setering = an.getWeek(data);
+        String week = setering.get(0).get(0);
+        String date = setering.get(0).get(1);
+        out.print(week + "|" + date);
     }
 %>
