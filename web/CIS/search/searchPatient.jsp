@@ -46,7 +46,7 @@
     }
 
     //Convert Code to Description
-    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
+    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,picture from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
     String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmiNo + "'";
@@ -148,7 +148,7 @@
     }
 
 //out.print(check);
-    String patientBio = dataQueue.get(0).get(0) + "|" + dataQueue.get(0).get(1) + "|" + dataQueue.get(0).get(2) + "|" + bloodType + "|" + sex + "|" + IdType + "|" + ageS + "|" + race + "|" + allergy + "|" + patientCategory + "|" + dataFull;
+    String patientBio = dataQueue.get(0).get(0) + "|" + dataQueue.get(0).get(1) + "|" + dataQueue.get(0).get(2) + "|" + bloodType + "|" + sex + "|" + IdType + "|" + ageS + "|" + race + "|" + allergy + "|" + patientCategory + "|" + dataFull+ "|" + dataQueue.get(0).get(9);
 
     session.setAttribute("patientCategory", patientCategory);
     session.setAttribute("patientPMINo", dataQueue.get(0).get(0));

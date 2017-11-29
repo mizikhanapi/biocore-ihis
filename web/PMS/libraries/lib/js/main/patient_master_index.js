@@ -55,8 +55,7 @@ $(document).ready(function () {
                 pemail = $("#PMIemail").val(),
                 ppayer = $("#PMIpg").val(),
                 ppty = $("#PMIperty").val(),
-                picture = gambarURI2;
-        //console.log("title code: "+ptitle);
+                picture = $('#dym2 #myImage2').attr('src');
 
 
         if (pminotemp === "") {
@@ -498,7 +497,7 @@ function loadImageFileAsURL2()
                 
 
 
-                document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300">';
+                document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300"/>';
 
                 document.getElementById("myImage2").src = gambarURI2;
             };

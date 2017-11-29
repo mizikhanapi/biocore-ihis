@@ -344,6 +344,7 @@ $('#btnclear').click(function () {
     $('#select-0').hide();
     $('#select-1').hide();
     $('select[id=select-2]').hide();
+    document.getElementById("dym2").innerHTML = "";
 });
 
 //appointment edit button
