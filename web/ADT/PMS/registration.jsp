@@ -3,6 +3,8 @@
     Created on : Jan 13, 2017, 10:53:48 AM
     Author     : shay
 --%>
+<%@page import="ADT_helper.ADT_EHRMessenger"%>
+<%@page import="ADT_helper.OrderMaster"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="org.json.JSONArray"%>
@@ -19,7 +21,7 @@
     Conn conn = new Conn();
     String now = request.getParameter("now");
     String pmino = request.getParameter("pmino");
-    String epiDate = request.getParameter("epiDate");
+    String epiDate =""; //request.getParameter("epiDate"); xxx don't use dateTime from client PC. Use server time instead.
     String poic = request.getParameter("poic");
     String pid = request.getParameter("pid");
     String MRN = request.getParameter("MRN");
@@ -48,6 +50,7 @@
     String epiTime = request.getParameter("epiTime");
     String stat = request.getParameter("stat"); // stat default is 0. It is fixed. I don't understand Lynn
     String hfc = request.getParameter("hfc"); // current user's hfc. It is actually session. I don't know why lynn did this.
+    String qname = request.getParameter("wnamequeue");
 
     String order = request.getParameter("order");
 
@@ -123,6 +126,15 @@
 //
         if (regis == true && updBed == true && upMaster == true && upDetail == true) {
             out.print("Success");
+            if(orderNo.equalsIgnoreCase("") || orderNo==null){
+                OrderMaster om = new OrderMaster();
+                orderNo = om.getDepositOrderNo();
+            }
+            
+            ADT_EHRMessenger ehr = new ADT_EHRMessenger(createdBy, hfc, Dis, sub, pmino, orderNo, epiDate, epiDate, epiDate);
+            //send deposit to bill as negative value...
+            ehr.sendWardDeposit(WardType+":"+wname, qname, "-"+Deposit);
+            
         } else {
             out.print("false");
             //out.print(insertEpisode);

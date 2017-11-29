@@ -127,15 +127,13 @@
                 bootbox.alert('Please select ID Type first.');
             } else {
                 //if the select box is choosen and the input in key-in.
-
-                //show loading icon
-                $body.addClass("loading");
-
+              
                 //get value from text box and select box
                 var idType = $('#idType').find(":selected").val();
                 var idInput = $('#idInput').val();
 
                 //run the MAIN ajax function
+                createScreenLoading();
                 $.ajax({
                     type: "POST",
                     url: "resultWard.jsp",
@@ -147,6 +145,9 @@
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
                         //bootbox.alert(err.Message);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
                     }
                 });
             }

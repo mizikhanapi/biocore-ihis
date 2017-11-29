@@ -92,7 +92,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Name</label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="pnamef" name="pnamef" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Admission Date </label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="AdmissionDatef" name="AdmissionDate" type="text" readonly placeholder="AdmissionDate" class="form-control input-md">
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Treating Consultant</label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="Consultant" name="Consultant" type="text" readonly placeholder="Consultant" class="form-control input-md">
                                 </div>
                             </div>
@@ -118,15 +118,15 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward Name </label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="WardNamef" name="WardName" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Rate </label>
-                                <div class="col-md-4">
+                                <label class="col-md-4 control-label" for="textinput">Deposit</label>
+                                <div class="col-md-6">
                                     <input id="Ratef" name="Rate" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
                             </div>
@@ -181,8 +181,8 @@
         </div>
 
 
-        <input  type="hidden" id="wardName_CD"     class="form-control input-md">
-        <input  type="hidden" id="wardClass_CD"     class="form-control input-md">
+        <input  type="hidden" id="wardName_CD">
+        <input  type="hidden" id="wardClass_CD">
 
 
 

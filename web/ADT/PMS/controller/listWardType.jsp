@@ -18,7 +18,7 @@
                     <option value="" selected disabled>Select Ward Type </option>
 
                     <%
-                        String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='" + hfc + "' and discipline_cd = '"+disipline+"'";
+                        String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='" + hfc + "';";
                         ArrayList<ArrayList<String>> dataWardType = conn.getData(wtype);
 
                         int size2 = dataWardType.size();

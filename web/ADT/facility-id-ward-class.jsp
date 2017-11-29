@@ -16,8 +16,8 @@
     
      
 
-  String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' AND discipline_cd='"+dis+"' AND concat(ward_class_code, ' | ', ward_class_name) like '%"+key+"%'; ";
-//  String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' AND concat(ward_class_code, ' | ', ward_class_name) like '%"+key+"%'; ";
+//  String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' AND discipline_cd='"+dis+"' AND concat(ward_class_code, ' | ', ward_class_name) like '%"+key+"%'; ";
+  String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' AND concat(ward_class_code, ' | ', ward_class_name) like '%"+key+"%'; ";
     
    
 

@@ -30,7 +30,7 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY ID
     <span class="pull-right">
-        <button class="btn btn-success" id="FI_btnModalAdd" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD FACILITY ID</button>
+        <button class="btn btn-success" id="FI_btnModalAdd" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Ward</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -42,7 +42,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineIDLabel">Add New Facility ID</h3>
+                <h3 class="modal-title" id="lineIDLabel">Add New Ward</h3>
             </div>
             <div class="modal-body" >
 
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="selectbasic">Ward Class *</label>
                                 <div class="col-md-7" id="selectID">
-                                    <input id="WardClass1" name="WardClass1" placeholder="Insert Ward Class Code" maxlength="30" type="text"  class="form-control input-md">
+                                    <input id="WardClass1" name="WardClass1" placeholder="Search Ward Class. Press SPACE to list all." maxlength="30" type="text"  class="form-control input-md">
                                     <div id="WardClassList" class="search-drop"></div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward Name *</label>
                                 <div class="col-md-6">
-                                    <input id="WardName" name="WardName" type="text" placeholder="" class="form-control input-md">
+                                    <input id="WardName" name="WardName" type="text" placeholder="Enter ward name" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward ID *</label>
                                 <div class="col-md-6">
-                                    <input id="WardID" name="WardID" type="text" placeholder="" class="form-control input-md">
+                                    <input id="WardID" name="WardID" type="text" placeholder="Enter ward ID" class="form-control input-md">
                                 </div>
                             </div>
                         </div>

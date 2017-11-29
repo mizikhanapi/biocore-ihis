@@ -98,21 +98,21 @@ $('#registerBed').click(function () {
         bootbox.alert('Please choose Eligibility Source');
     } else if ($('#AdmissionType').val() === null) {
         bootbox.alert('Please choose the admission type');
-    } else if ($('#AdmissionReason').val() === " ") {
+    } else if ($('#AdmissionReason').val() === "") {
         bootbox.alert('Please insert Admission Reason');
 
     } else if ($('#DocType').val() === null) {
         bootbox.alert('Please choose Document Type');
-    } else if ($('#DocNo').val() === " ") {
+    } else if ($('#DocNo').val() === "") {
         bootbox.alert('Please insert Document No');
 
 
-    } else if ($('#RefDR').val() === " ") {
+    } else if ($('#RefDR').val() === "") {
         bootbox.alert('Please choose the Reffering By');
-    } else if ($('#HF_cd').val() === " ") {
+    } else if ($('#HF_cd').val() === "") {
         bootbox.alert('Please choose the Reffering From');
 
-    } else if ($('#GL').val() === null) {
+    } else if ($('#GL').val() === null || $('#GL').val()==="") {
         bootbox.alert('Please choose GL Expiry Date');
     } else if ($('#payer').val() === null) {
         bootbox.alert('Please choose Payer Group');
@@ -166,7 +166,7 @@ $('#registerBed').click(function () {
         var array_dis = wnamequeue.split("|");
         var wnamequeue = array_dis[1];
 
-        order = $('#HFCBY').val();
+        order = $('#HB_cd').val();
 
 
         var wname = $('#wname').val();
@@ -206,15 +206,15 @@ $('#registerBed').click(function () {
             'PoliceCase': PoliceCase,
             'DocNo': DocNo,
             'payer': payer,
-            'Dis': Dis,
+            'Dis': Dis.trim(),
             'wname': wname,
             'Deposit': Deposit,
             'WardType': WardType,
             'BedID': BedID,
             'guardInd': guardInd,
             'referNo': referNo,
-            'referHfc': referHfc,
-            'referDis': referDis,
+            'referHfc': referHfc.trim(),
+            'referDis': referDis.trim(),
             'gruGuard': gruGuard,
             'epiTime': epiTime,
             'stat': stat,
@@ -222,7 +222,7 @@ $('#registerBed').click(function () {
             'now': yyyyMMdd,
             'createdBy': createdBy,
             'RefDR': RefDR,
-            'sub': sub,
+            'sub': sub.trim(),
             'orderNo': orderNo,
             'OrderStatus': OrderStatus,
             'order': order,

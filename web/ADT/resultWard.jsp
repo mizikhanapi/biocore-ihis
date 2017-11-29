@@ -12,7 +12,7 @@
 
 
 <hr class="pemisah" />
-<table id="OccuTableTT"  class="table table-striped table-bordered margin-top-30px" cellspacing="0" width="100%">
+<table id="OccuTableTT"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
 
     <thead>
@@ -49,86 +49,41 @@
         int year = now.get(Calendar.YEAR);
         int month = now.get(Calendar.MONTH);
 
+        String whereCon = "";
+
         //1 --- search by patient
         //0 --- search by ward list
         if (methodSearching.equalsIgnoreCase("1")) {
             if (idType.equals("pmino") || idType.equals("001")) {
-                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
-                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
-                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
-                        //   21                     22       23              24                    25             26            27            28               29          30
-                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
-                        // 31                          32         33             34                 35       36             37               
-                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
-                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
-                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
-                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code "
-                        + " left join adm_lookup_detail e on e.hfc_cd = a.hfc_cd  "
-                        + " where e.Master_Reference_code = '0041' and a.inpatient_status='" + status + "' and a.pmi_no='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
-            
+                whereCon=" AND a.pmi_no='"+idInput+"'";
+                
             } else if (idType.equals("icnew") || idType.equals("002")) {
-                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
-                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
-                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
-                        //   21                     22       23              24                    25             26            27            28               29          30
-                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
-                        // 31                          32         33             34                 35       36             37               
-                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
-                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
-                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
-                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                        + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                        + " where a.NEW_IC_NO='" + idInput + "' and a.inpatient_status='" + status + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
-             
+                whereCon=" AND a.`NEW_IC_NO`='"+idInput+"'";
 
             } else if (idType.equals("icold") || idType.equals("003")) {
-                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
-                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
-                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
-                        //   21                     22       23              24                    25             26            27            28               29          30
-                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
-                        // 31                          32         33             34                 35       36             37               
-                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
-                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
-                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
-                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                        + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                        + " where a.OLD_IC_NO='" + idInput + "' and a.inpatient_status='" + status + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
-             
+                whereCon=" AND a.`OLD_IC_NO`='"+idInput+"'";
+                
             } else {
-                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
-                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
-                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
-                        //   21                     22       23              24                    25             26            27            28               29          30
-                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
-                        // 31                          32         33             34                 35       36             37               
-                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
-                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
-                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
-                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                        + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                        + " where a.ID_NO='" + idInput + "' and a.inpatient_status='" + status + "' AND a.ID_TYPE='" + idType + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
-             
+               whereCon=" AND a.`ID_NO`='"+idInput+"'";
             }
 
         } else if (methodSearching.equalsIgnoreCase("0")) {
-            searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
-                    //    11       12        13           14                    15              16                    17                    18                       19                       20        
-                    + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
-                    //   21                     22       23              24                    25             26            27            28               29          30
-                    + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
-                    // 31                          32         33             34                 35       36             37               
-                    + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE,  e.Description, c.BIRTH_DATE"
-                    + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
-                    + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
-                    + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                    + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                    + " where e.Master_Reference_code = '0041' and a.inpatient_status='" + status + "' and a.ward_id ='" + idWard + "' and e.hfc_cd='" + hfc + "'  and a.hfc_cd='" + hfc + "' group by a.pmi_no";
-    
-
+            whereCon=" AND a.ward_id='"+idWard+"'";
         }
-
-      
+        //                     0            1           2       3          4            5       6           7               8               9                   10                                  
+        searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.created_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+                //    11       12        13           14                    15              16                    17                    18                       19                       20        
+                + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
+                //   21                     22       23              24                    25             26            27            28               29          30
+                + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
+                // 31                          32         33             34                 35       36                 37               38
+                + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, e.`Description`, TIMESTAMPDIFF(YEAR, c.BIRTH_DATE, CURDATE()) "
+                + " from wis_inpatient_episode a  "
+                + " left join wis_ward_name b on a.ward_id = b.ward_id AND b.hfc_cd=a.hfc_cd "
+                + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO "
+                + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code AND d.hfc_cd=a.hfc_cd "
+                + "left join adm_lookup_detail e on e.hfc_cd = a.hfc_cd  AND e.Master_Reference_code = '0041' AND e.`Detail_Reference_code`=c.`SEX_CODE` "
+                + " where a.inpatient_status!='1' and a.hfc_cd='"+hfc+"' "+whereCon;
 
         ArrayList<ArrayList<String>> dataList = conn.getData(searching);
         // Get Age from Date of Birth
@@ -159,9 +114,9 @@
 
 //        String patientBio = ageS;
 //        session.setAttribute("patientCategory", patientBio);
-        //  out.print(patientBio);
+//          out.print(patientBio);
         int size1141 = dataList.size();
-        //out.print(searching);
+//        out.print(searching);
         if (size1141 > 0) {
 
             for (int i = 0; i < size1141; i++) {
@@ -190,22 +145,20 @@
 <%
     }
 } else if (size1141 < 1) { %>
-<td colspan="7"> No row selected! </td>
+<td colspan="7"> No patient found. </td>
 <% }
 %>
 
 </tbody>
 </table>
-                               <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
-
 
 <script>
-    $("#WardOccuTable").on('click', "#OccuTableTT #Occu_transfer", function () {
+    $("#WardOccuTable").off('click').on('click', "#OccuTableTT #Occu_transfer", function () {
         //get the row value
         var row = $(this).closest("tr");
         var rowData = row.find("#dataWardhidden").val();
         var arrayData = rowData.split("|");
-        //console.log("hai");
+        console.log(arrayData);
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
         var pmi = arrayData[6];
@@ -219,9 +172,10 @@
         var admissionDate = arrayData[7];
         var inStat = arrayData[28];
         var oldDis = arrayData[8];
-        var SEX_CODE = arrayData[38];
+        var SEX_CODE = arrayData[37];
         var wardClass_CD = arrayData[10];
         var wardName_CD = arrayData[11];
+        var age = arrayData[38];
 
 
         $("#pmino").val(pmi);
@@ -237,7 +191,7 @@
         $("#gender").val(SEX_CODE);
         $("#wardClass_CD").val(wardClass_CD);
         $("#wardName_CD").val(wardName_CD);
-
+        $('#age').val(age);
 
 
 

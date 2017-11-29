@@ -34,7 +34,7 @@
                         //      8           9               10          11              12                      13
                         + "a.hfc_cd,b.ward_class_code, c.ward_id, d.discipline_cd, sd.subdiscipline_cd, sd.subdiscipline_name "
                         + "FROM wis_bed_id a "
-                        + "LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code AND b.hfc_cd=a.hfc_cd AND b.discipline_cd=a.discipline_cd "
+                        + "LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code AND b.hfc_cd=a.hfc_cd "
                         + "LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id  AND c.hfc_cd=a.hfc_cd AND c.discipline_cd=a.discipline_cd "
                         + "LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd AND d.discipline_hfc_cd=a.hfc_cd "
                         + "LEFT JOIN adm_subdiscipline sd ON sd.subdiscipline_hfc_cd = d.discipline_hfc_cd AND sd.discipline_cd = d.discipline_cd AND sd.subdiscipline_cd = a.subdiscipline_cd "

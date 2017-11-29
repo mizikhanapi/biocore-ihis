@@ -18,25 +18,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-        <script src="old/assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery-ui.js"></script>
         <link rel="stylesheet" href="old/assets/css/loading.css">
         <link rel="stylesheet" href="../assets/css/mystyles.css">
-        <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
-        <script src="old/assets/js/form-validator.min.js"></script>
-        <script src="old/assets/js/bootstrap.min.js"></script> 
-        <script src="old/assets/js/bootbox.min.js"></script>
-        <script src="old/assets/datepicker/jquery-ui.js"></script>
-        <script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
-        <script src="old/assets/js/WardMain.js" type="text/javascript"></script>
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>-->
-        <!--        <script type="text/javascript" src="../javascript.js"></script>-->
-        <script src="old/assets/js/OccuPatient.js" type="text/javascript"></script>
-        <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-        <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
-        <script src="../assets/js/create_destroy_loading.js"></script>
-        
+
+
         <!-- header -->
         <%@include file = "../assets/header.html" %>
 
@@ -125,6 +112,20 @@
             <!-- main -->		
 
         </div>
+        <script src="old/assets/js/form-validator.min.js"></script>
+        <script src="old/assets/js/bootstrap.min.js"></script> 
+        <script src="old/assets/js/bootbox.min.js"></script>
+        
+       
+        <script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
+        <script src="../PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
+        <script src="old/assets/js/WardMain.js" type="text/javascript"></script>
+        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>-->
+        <!--        <script type="text/javascript" src="../javascript.js"></script>-->
+        <script src="old/assets/js/OccuPatient.js" type="text/javascript"></script>
+        <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
         <!--<script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>-->
         <!--<script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>-->
         <!--<script src="../assets/js/jquery-ui.js" type="text/javascript"></script>-->
@@ -132,6 +133,8 @@
         <!--<script src="ReportLibraries/js/bootbox.min.js" type="text/javascript"></script>-->
         <script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
         <script src="ReportLibraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/js/create_destroy_loading.js"></script>
+        <script src="../assets/js/jquery.flexdatalist.min.js"></script>
         <!--<script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>-->
         <!--<script src="ReportLibraries/js/buttons.flash.min.js" type="text/javascript"></script>-->
         <!--<script src="ReportLibraries/js/jszip.min.js" type="text/javascript"></script>-->
