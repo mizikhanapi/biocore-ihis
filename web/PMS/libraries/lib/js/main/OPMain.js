@@ -286,7 +286,7 @@ function Main(array_data) {
                             // set value in MEDICAL page
                             $('input[id=MEDpmino]').val($.trim(list));
 
-                            console.log(ddMMyyyyDua);
+//                            console.log(ddMMyyyyDua);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -354,7 +354,7 @@ function Main(array_data) {
                             // set value in MEDICAL page
                             $('input[id=MEDpmino]').val($.trim(list));
 
-                            console.log(ddMMyyyyDua);
+                            //console.log(ddMMyyyyDua);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -414,7 +414,8 @@ function Main(array_data) {
                 pnationalityname= array_data[47],
                 pidtypename = array_data[48],
                 ppayer = array_data[49],
-                pperty = array_data[50];
+                pperty = array_data[50],
+                gambarPesakit = array_data[51];
         var splitBday = String(pbday).split("-");
         var daysplitted = splitBday[2];
         var monthsplitted = splitBday[1];
@@ -492,6 +493,8 @@ function Main(array_data) {
         $("#PMIpcountryCODE").val($.trim(ppostalcountry));
         $("#PMIperty").val($.trim(pperty));
         $("#PMIpg").val($.trim(ppayer));
+        document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300">';
+        document.getElementById("myImage2").src = gambarPesakit;
         
         // set value in employment page
         $('input[id=EMPpmino]').val($.trim(pmino));

@@ -95,7 +95,7 @@ $(function () {
                 success: function (list) {
                     //remove the loading 
                     $body.removeClass("loading");
-                    console.log(list);
+                    //console.log(list);
                     //show console the returned data
 
 

@@ -30,7 +30,7 @@
             + "a.allergy_ind,"
             + "a.chronic_disease_ind,a.organ_donor_ind,a.home_address,a.home_district_code,a.home_town_code,a.home_postcode,a.home_state_code,a.home_country_code,a.home_phone,"
             + "a.postal_address,a.postal_district_code,a.postal_town_code,a.postal_postcode,a.postal_state_code,a.postal_country_code,a.mobile_phone,a.email_address,"
-            + "b.description,c.description,d.description,e.description,f.description,g.description,h.description,i.description,j.description,k.description,l.description,m.description,n.description,a.payer_group,a.person_type"
+            + "b.description,c.description,d.description,e.description,f.description,g.description,h.description,i.description,j.description,k.description,l.description,m.description,n.description,a.payer_group,a.person_type,a.picture"
             + " from pms_patient_biodata a"
             + " left join adm_lookup_detail b on b.detail_reference_code=a.home_district_code and b.master_reference_code='0078' AND b.hfc_cd = '" + hfc + "' and b.status='0'"
             + " left join adm_lookup_detail c on c.detail_reference_code=a.home_town_code and c.master_reference_code='0003' AND c.hfc_cd = '" + hfc + "' and c.status='0'"

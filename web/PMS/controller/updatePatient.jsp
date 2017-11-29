@@ -59,6 +59,8 @@
      
      ppayer = request.getParameter("ppayer");
      pperty = request.getParameter("ppty");
+     
+     String gambar = request.getParameter("gambar");
     
     
 //    ArrayList<String> addressDescr = new ArrayList(), addressCode= new ArrayList();
@@ -110,7 +112,7 @@
     Boolean SQL=false;
     Boolean SQL2 =false;
     if (patientRow.size() > 0) {
-         sql1 = "UPDATE PMS_PATIENT_BIODATA SET PMI_NO = '"+pmino+"',PMI_NO_TEMP = '"+pminotemp+"',PATIENT_NAME ='"+pname+"',TITLE_CODE = '"+ptitle+"',NEW_IC_NO = '" +pnic+ "',OLD_IC_NO = '" + poic + "',ID_TYPE = '" + pit + "',ID_NO = '" + pino + "',ELIGIBILITY_CATEGORY_CODE = '" + pelicat + "',ELIGIBILITY_TYPE_CODE = '" + pelity + "',BIRTH_DATE = '" + pbday + "',SEX_CODE = '" + psex + "',MARITAL_STATUS_CODE = '" + pmarital + "',RACE_CODE = '" + prace + "',NATIONALITY = '" + pnational + "',RELIGION_CODE = '" + preligional + "',BLOOD_TYPE = '" + pbloodty + "',BLOOD_RHESUS_CODE = '" + prhesus + "',ALLERGY_IND = '" + pallergy + "',CHRONIC_DISEASE_IND = '" + pchronic + "',ORGAN_DONOR_IND = '" + porgandonor + "',HOME_ADDRESS = '" + phomeadd + "',HOME_DISTRICT_CODE = '" + phomedistrict + "',HOME_TOWN_CODE = '" + phometown + "',HOME_POSTCODE = '" + ppostcode + "',HOME_STATE_CODE = '" + pstate + "',HOME_COUNTRY_CODE = '" + pcountry + "',HOME_PHONE = '" + phomephone + "',POSTAL_ADDRESS = '" + ppostaladd + "',POSTAL_DISTRICT_CODE = '" + ppostaldistrict + "',POSTAL_TOWN_CODE = '" + ppostaltown + "',POSTAL_POSTCODE = '" + ppostalpostcode + "',POSTAL_STATE_CODE = '" + ppostalstate + "',POSTAL_COUNTRY_CODE = '" + ppostalcountry + "',MOBILE_PHONE = '" + pmobilephone + "',EMAIL_ADDRESS='"+email+"',payer_group='"+ppayer+"',person_type='"+pperty+"' WHERE PMI_NO = '"+pmino+"'";
+         sql1 = "UPDATE PMS_PATIENT_BIODATA SET PMI_NO = '"+pmino+"',PMI_NO_TEMP = '"+pminotemp+"',PATIENT_NAME ='"+pname+"',TITLE_CODE = '"+ptitle+"',NEW_IC_NO = '" +pnic+ "',OLD_IC_NO = '" + poic + "',ID_TYPE = '" + pit + "',ID_NO = '" + pino + "',ELIGIBILITY_CATEGORY_CODE = '" + pelicat + "',ELIGIBILITY_TYPE_CODE = '" + pelity + "',BIRTH_DATE = '" + pbday + "',SEX_CODE = '" + psex + "',MARITAL_STATUS_CODE = '" + pmarital + "',RACE_CODE = '" + prace + "',NATIONALITY = '" + pnational + "',RELIGION_CODE = '" + preligional + "',BLOOD_TYPE = '" + pbloodty + "',BLOOD_RHESUS_CODE = '" + prhesus + "',ALLERGY_IND = '" + pallergy + "',CHRONIC_DISEASE_IND = '" + pchronic + "',ORGAN_DONOR_IND = '" + porgandonor + "',HOME_ADDRESS = '" + phomeadd + "',HOME_DISTRICT_CODE = '" + phomedistrict + "',HOME_TOWN_CODE = '" + phometown + "',HOME_POSTCODE = '" + ppostcode + "',HOME_STATE_CODE = '" + pstate + "',HOME_COUNTRY_CODE = '" + pcountry + "',HOME_PHONE = '" + phomephone + "',POSTAL_ADDRESS = '" + ppostaladd + "',POSTAL_DISTRICT_CODE = '" + ppostaldistrict + "',POSTAL_TOWN_CODE = '" + ppostaltown + "',POSTAL_POSTCODE = '" + ppostalpostcode + "',POSTAL_STATE_CODE = '" + ppostalstate + "',POSTAL_COUNTRY_CODE = '" + ppostalcountry + "',MOBILE_PHONE = '" + pmobilephone + "',EMAIL_ADDRESS='"+email+"',payer_group='"+ppayer+"',person_type='"+pperty+"',picture='"+gambar+"' WHERE PMI_NO = '"+pmino+"'";
          
     } else{
         
@@ -124,7 +126,7 @@
                 + "HOME_POSTCODE,HOME_STATE_CODE,HOME_COUNTRY_CODE,"
                 + "HOME_PHONE,POSTAL_ADDRESS,POSTAL_DISTRICT_CODE,"
                 + "POSTAL_TOWN_CODE,POSTAL_POSTCODE,POSTAL_STATE_CODE,"
-                + "POSTAL_COUNTRY_CODE,MOBILE_PHONE,EMAIL_ADDRESS,payer_group,person_type,created_by,created_date)values('" + pmino + "', '" + pminotemp + "', '" + pname + "', '" + ptitle + "', '" + pnic + "', '" + poic + "', '" + pit + "', '" + pino + "', '" + pelicat + "', '" + pelity + "', '" + pbday + "', '" + psex + "', '" + pmarital + "', '" + prace + "', '" + pnational + "', '" + preligional + "', '" + pbloodty + "', '" + prhesus + "', '" + pallergy + "', '" + pchronic + "', '" + porgandonor + "', '" + phomeadd + "', '" + phomedistrict + "', '" + phometown + "', '" + ppostcode + "', '" + pstate + "', '" + pcountry + "', '" + phomephone + "', '" + ppostaladd + "', '" + ppostaldistrict + "', '" + ppostaltown + "', '" + ppostalpostcode + "', '" + ppostalstate + "', '" + ppostalcountry + "', '" + pmobilephone + "','"+email+"','"+ppayer+"','"+pperty+"','"+createdBy+"',now())";
+                + "POSTAL_COUNTRY_CODE,MOBILE_PHONE,EMAIL_ADDRESS,payer_group,person_type,created_by,created_date,picture)values('" + pmino + "', '" + pminotemp + "', '" + pname + "', '" + ptitle + "', '" + pnic + "', '" + poic + "', '" + pit + "', '" + pino + "', '" + pelicat + "', '" + pelity + "', '" + pbday + "', '" + psex + "', '" + pmarital + "', '" + prace + "', '" + pnational + "', '" + preligional + "', '" + pbloodty + "', '" + prhesus + "', '" + pallergy + "', '" + pchronic + "', '" + porgandonor + "', '" + phomeadd + "', '" + phomedistrict + "', '" + phometown + "', '" + ppostcode + "', '" + pstate + "', '" + pcountry + "', '" + phomephone + "', '" + ppostaladd + "', '" + ppostaldistrict + "', '" + ppostaltown + "', '" + ppostalpostcode + "', '" + ppostalstate + "', '" + ppostalcountry + "', '" + pmobilephone + "','"+email+"','"+ppayer+"','"+pperty+"','"+createdBy+"',now(),'"+gambar+"')";
          sql2 ="insert into autogenerate_pmi(pmi_no) values('"+pmino+"')";
 }
     SQL = rmic.setQuerySQL(conn.HOST, conn.PORT, sql1);

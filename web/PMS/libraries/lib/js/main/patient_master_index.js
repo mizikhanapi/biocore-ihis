@@ -1,4 +1,7 @@
+var gambarURI2 = "";
+var ext = "";
 $(document).ready(function () {
+    
     $(function () {
 
         $('#PMIbday').datepicker({
@@ -51,11 +54,11 @@ $(document).ready(function () {
                 pmobilephone = $("#PMIhandphone").val(),
                 pemail = $("#PMIemail").val(),
                 ppayer = $("#PMIpg").val(),
-                ppty = $("#PMIperty").val();
+                ppty = $("#PMIperty").val(),
+                picture = gambarURI2;
         //console.log("title code: "+ptitle);
 
-        
-        
+
         if (pminotemp === "") {
             pminotemp = "-";
         } else {
@@ -211,7 +214,7 @@ $(document).ready(function () {
         //pbday = $("#PMIbday").val();
         //var splitBday = String(pbday).split("-");
         //var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
-        
+
         var array_date = pbday.split("/");
         var new_date = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
 
@@ -252,7 +255,8 @@ $(document).ready(function () {
             'pmobilephone': pmobilephone,
             'pemail': pemail,
             'ppayer': ppayer,
-            'ppty':ppty};
+            'ppty': ppty,
+            'gambar':picture};
         console.log(data);
         //console.log(convertedBday);
         //convertedBday
@@ -336,7 +340,7 @@ $(document).ready(function () {
                 phomeadd = $("#PMIhadd").val(),
                 ppayergroup = $("#PMIpg").val(),
                 pperty = $("#PMIperty").val();
-                
+
 
         if (pname === "") {
             bootbox.alert("Please key in patient's name..");
@@ -360,13 +364,13 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's nationality..");
         } else if (phomeadd === "") {
             bootbox.alert("Please key in patient's home address..");
-        }else if(pit === null){
+        } else if (pit === null) {
             bootbox.alert("Please key in patient's Id Type..");
-        }else if(ppayergroup===null){
+        } else if (ppayergroup === null) {
             bootbox.alert("Please key in patient's Payer Group..");
-        }else if(pperty===null){
+        } else if (pperty === null) {
             bootbox.alert("Please key in patient's Person Type..");
-        }else {
+        } else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",
                 buttons: {
@@ -395,10 +399,118 @@ $(document).ready(function () {
         $('input[id=PMIpmino]').prop('readonly', false);
         $('#PMInic').prop('readonly', false);
     });
-    
+
     $('.numbersOnly').keyup(function () {
         if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
             this.value = this.value.replace(/[^0-9\.]/g, '');
         }
     });
 });
+
+(function ($) {
+    $.fn.checkFileType = function (options) {
+        var defaults = {
+            allowedExtensions: [],
+            success: function () {},
+            error: function () {}
+        };
+        options = $.extend(defaults, options);
+
+        return this.each(function () {
+
+            $(this).on('change', function () {
+                var value = $(this).val(),
+                        file = value.toLowerCase(),
+                        extension = file.substring(file.lastIndexOf('.') + 1);
+
+                if ($.inArray(extension, options.allowedExtensions) === -1) {
+                    options.error();
+                    $(this).focus();
+                } else {
+                    options.success();
+
+                }
+
+            });
+
+        });
+    };
+
+})(jQuery);
+
+
+
+$('#inputFileToLoad2').checkFileType({
+    allowedExtensions: ['jpg', 'jpeg', 'png', 'mp4', 'mkv', 'pdf', 'docx'],
+    success: function () {
+        loadImageFileAsURL2();
+    },
+    error: function () {
+        alert('Incompatible file type');
+        $('#inputFileToLoad2').val("");
+        $('#dym2').html("");
+        gambarURI2 = "";
+    }
+});
+
+
+
+
+function loadImageFileAsURL2()
+{
+
+    var iSize = 0;
+
+    iSize = ($("#inputFileToLoad2")[0].files[0].size / 1024);
+    console.log("iSize: " + iSize);
+    console.log("iSize/1024: " + (iSize / 1024));
+    var file = $("#inputFileToLoad2").val();
+    ext = file.split('.').pop();
+//        getBase64(file);
+    var sizeSmall = false;
+
+    if (iSize / 1024 > 1) {
+        sizeSmall = false;
+
+    } else {
+
+        iSize = (Math.round(iSize * 100) / 100);
+
+        sizeSmall = iSize <= 1000;
+
+    }
+
+
+
+    if (sizeSmall) {
+        document.getElementById("dym2").innerHTML = '<div class="loader"></div>';
+        var filesSelected = document.getElementById("inputFileToLoad2").files;
+        if (filesSelected.length > 0)
+        {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent)
+            {
+
+                gambarURI2 = fileLoadedEvent.target.result;
+                
+
+
+                document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300">';
+
+                document.getElementById("myImage2").src = gambarURI2;
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+        }
+
+    } else {
+
+        alert("File size must not exceed 100kb");
+        $('#inputFileToLoad2').val("");
+        gambarURI2 = "";
+        $('#dym2').html("");
+    }
+}
