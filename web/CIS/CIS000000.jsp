@@ -124,6 +124,9 @@
                                             BloodGroup/G6PD:
                                             <span class="p-label" id="pBloodType">-</span>
                                         </td>
+                                        <td rowspan="2">
+                                            <span class="p-label" id="gambarpesakitdisini"></span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
