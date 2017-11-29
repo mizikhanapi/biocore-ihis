@@ -27,8 +27,9 @@ public class All_Seq_no {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     DateFormat ordID = new SimpleDateFormat("yyMMddhhmmss");
     DateFormat ordID2 = new SimpleDateFormat("yyMMdd");
+    DateFormat newfuckinglatestcurrentdateformatever =  new SimpleDateFormat("yyyyMMddhhmmssSSS");
     String dateForID = dateFormatID.format(date);
-    String ordNum = ordID.format(date);
+    String ordNum = newfuckinglatestcurrentdateformatever.format(date);
 
     public void genSeq(String hfc, String discipline, String subDiscipline,String module){
         String sql2 = "SELECT module_name,last_seq_no,year_seq,hfc_cd FROM oms_last_seq_no where module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"' FOR UPDATE;";
@@ -41,7 +42,7 @@ public class All_Seq_no {
                 int currSeq = seq + 1;
                 String currentSeq = Integer.toString(currSeq);
                 
-                //Generate RIS ORDER no
+                //Generate ALL ORDER no
                 int length = (int) Math.log10(currSeq) + 1;
                 zero = "0";
                 num = currentSeq;
@@ -49,7 +50,7 @@ public class All_Seq_no {
                 for (count = length; count < 10; count++) {
                     num = zero + num;
                 }
-                OMSNo = seqId + ordNum + num;
+                OMSNo = seqId + ordNum;
                 //UPDATE SEQUENCE NUMBER
                 String updateRISNoSequence = "UPDATE oms_last_seq_no SET last_seq_no = '" + currentSeq + "' WHERE module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"'; ";
 
@@ -70,7 +71,7 @@ public class All_Seq_no {
                 for (count = length; count < 10; count++) {
                     num = zero + num;
                 }
-                OMSNo = seqId + ordNum + num;
+                OMSNo = seqId + ordNum;
             }
         }
     }

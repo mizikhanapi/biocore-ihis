@@ -35,10 +35,12 @@ public class MainView {
                 try {
                     if (Line[0] == "hostserver" || Line[0].equals("hostserver")) {
                         host = Line[1];
+                        Config.ipAddressServer = host;
                         //System.out.println(host);
                     } else if (Line[0] == "hostport" || Line[0].equals("hostport")) {
                         port = Integer.parseInt(Line[1]);
                         //System.out.println(port);
+                        Config.portServer = port;
                     }
 
                 } catch (Exception e) {
