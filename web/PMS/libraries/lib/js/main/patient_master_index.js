@@ -55,8 +55,7 @@ $(document).ready(function () {
                 pemail = $("#PMIemail").val(),
                 ppayer = $("#PMIpg").val(),
                 ppty = $("#PMIperty").val(),
-                picture = gambarURI2;
-        //console.log("title code: "+ptitle);
+                picture = $('#dym2 #myImage2').attr('src');
 
 
         if (pminotemp === "") {

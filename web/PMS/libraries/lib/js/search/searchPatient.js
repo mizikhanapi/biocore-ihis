@@ -59,7 +59,7 @@ $(function () {
         var disMyform2 = $('#myForm2 #Dis').val();
         $('#myForm2')[0].reset();
         
-
+        document.getElementById("dym2").innerHTML = "";
         $('#formPMI')[0].reset();
         $('#kinform')[0].reset();
         $('#empform')[0].reset();
@@ -148,6 +148,7 @@ $(function () {
         $('#famForm')[0].reset();
         $('#formMed')[0].reset();
         $("table tbody").remove();
+        document.getElementById("dym2").innerHTML = "";
     });
 
 });
