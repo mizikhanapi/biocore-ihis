@@ -498,7 +498,7 @@ function loadImageFileAsURL2()
                 
 
 
-                document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300">';
+                document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300"/>';
 
                 document.getElementById("myImage2").src = gambarURI2;
             };
