@@ -25,8 +25,8 @@
         dateTo = FormatTarikh.formatDate(dateTo, "dd/MM/yyyy", "yyyy-MM-dd");
         whenCondition = " and (date(discharge_dateTime) between date('" + dateFrom + "') and date('" + dateTo + "')) ";
     }
-    //                                          0                                           1                           2               3           4               5               6                       7
-    String query="SELECT date_format(`discharge_dateTime`, '%d/%m/%Y'), date_format(`discharge_dateTime`, '%H:%i'), infant_tag_no, new_ic_no, guardian_name, home_address, relationship_with_infant, staff_id_on_duty "
+    //                                          0                                           1                           2               3           4               5               6                       7          8                 9
+    String query="SELECT date_format(`discharge_dateTime`, '%d/%m/%Y'), date_format(`discharge_dateTime`, '%H:%i'), infant_tag_no, new_ic_no, guardian_name, home_address, relationship_with_infant, staff_id_on_duty,picture_baby,picture_with_mother "
             + "FROM lhr_ong_discharge_baby "
             + "where pmi_no='"+pmiNo+"' "+whenCondition
             + " ORDER BY `discharge_dateTime` desc;";
@@ -47,7 +47,7 @@
         }
         
         for(int i=0; i<dataDB.size(); i++){
-            String name="", ic_no="", tag_no="", address="", disDate="", disTime="", relationship="", staff_id="", staff_name="";
+            String name="", ic_no="", tag_no="", address="", disDate="", disTime="", relationship="", staff_id="", staff_name="",picture,picturewithmom;
             
             name=dataDB.get(i).get(4);
             ic_no=dataDB.get(i).get(3);
@@ -57,6 +57,8 @@
             relationship=dataDB.get(i).get(6);
             address=dataDB.get(i).get(5);
             staff_id=dataDB.get(i).get(7);
+            picture = dataDB.get(i).get(8);
+            picturewithmom = dataDB.get(i).get(9);
             
             String queryStaffName = "Select ifnull(user_name, '-') from adm_users where user_id='"+staff_id.trim()+"' limit 1; ";
             ArrayList<ArrayList<String>> dataStaffName = con.getData(queryStaffName);
@@ -64,8 +66,8 @@
                 staff_name=dataStaffName.get(0).get(0);
             }
             
-            //                                    0        1        2     3      4       5           6          7          8
-            String strLong = String.join("|", disDate, disTime, tag_no, name, ic_no, address, relationship, staff_id, staff_name);
+            //                                    0        1        2     3      4       5           6          7          8        9       10
+            String strLong = String.join("|", disDate, disTime, tag_no, name, ic_no, address, relationship, staff_id, staff_name,picture,picturewithmom);
 %>
 <div class="panel panel-info" id="DB_viewGroup">
     <div class="panel-heading">

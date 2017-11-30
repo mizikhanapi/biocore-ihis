@@ -50,7 +50,7 @@
 </div>
 
 <script type="text/javascript">
-    
+    var nextVal="";
     $(function(){
         var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
         
@@ -784,8 +784,30 @@
         $('#LS_infantBirthDate').val(birthDate);
         $('#LS_infantBirthTime').val(birthTime);
         $('#LS_infantModalID').val(summaryDate);
+        check();
         
     });
+    
+    function getdataForTag(){
+        var arayDate = $("#LS_infantBirthDate").val().split("/");
+        var icmakdie = pmiNo.substr(pmiNo.length - 4);
+        var tag = icmakdie +"|"+ arayDate[2] + arayDate[1] + arayDate[0];
+        return tag;
+    }
+    
+    function check(){
+        var datas = getdataForTag();
+        console.log(datas);
+           $.ajax({
+               type:"post",
+               url:"specialistTemplate/ONG/DB_control/checkTag.jsp",
+               data:{datas : datas },
+               success:function(databack){
+                   console.log(databack);
+                   $('#LS_infantTag').val(databack.trim());
+               }
+            }); 
+    }
     
     function LS_infantCheckField(){
         var isComplete=true;
