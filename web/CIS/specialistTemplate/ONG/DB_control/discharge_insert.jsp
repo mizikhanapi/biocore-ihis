@@ -25,6 +25,8 @@
     String disDate= request.getParameter("disDate");
     String disTime= request.getParameter("disTime");
     String staff_id= request.getParameter("staff_id");
+    String pictureBaby= request.getParameter("pictureBaby");
+    String pictureBabyMother= request.getParameter("pictureBabyMother");
     
     Conn con = new Conn();
     
@@ -38,10 +40,13 @@
         RMIConnector rmi = new RMIConnector();
         disDate = FormatTarikh.formatDate(disDate+" "+disTime, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
         
-        String query="INSERT INTO lhr_ong_discharge_baby(pmi_no, hfc_cd, episode_date, encounter_date, infant_tag_no, new_ic_no, guardian_name, home_address, relationship_with_infant, `discharge_dateTime`, staff_id_on_duty, created_by, created_date) "
-                + "VALUES('"+pmiNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+tagNo+"', '"+ic_no+"', '"+name+"', '"+address+"', '"+relation+"', '"+disDate+"', '"+staff_id+"', '"+creator+"', now() );";
+        String query="INSERT INTO lhr_ong_discharge_baby(pmi_no, hfc_cd, episode_date, encounter_date, infant_tag_no, new_ic_no, guardian_name, home_address, relationship_with_infant, `discharge_dateTime`, staff_id_on_duty, created_by, created_date,picture_baby,picture_with_mother) "
+                + "VALUES('"+pmiNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+tagNo+"', '"+ic_no+"', '"+name+"', '"+address+"', '"+relation+"', '"+disDate+"', '"+staff_id+"', '"+creator+"', now(),'"+pictureBaby+"','"+pictureBabyMother+"' );";
         
         boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, query);
+        
+        String queryDua = "Update lhr_ong_personal_info set status = '1' where pmi_no = '"+pmiNo+"' and hfc_cd='"+hfc_cd+"' and status = '0'";
+        boolean isSuccessDua = rmi.setQuerySQL(con.HOST, con.PORT, queryDua);
         
         if(isSuccess)
             out.print("success");

@@ -467,7 +467,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Tag no:</label>
                                 <div class="col-md-8">
-                                    <input id="LS_infantTag" class="form-control input-md" type="text" maxlength="200" placeholder="Insert tag no...">
+                                    <input id="LS_infantTag" class="form-control input-md" type="text" maxlength="200" placeholder="" readonly="">
                                 </div>
                             </div>
                         </div>

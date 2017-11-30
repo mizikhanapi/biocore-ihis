@@ -25,13 +25,15 @@
     String disDate= request.getParameter("disDate");
     String disTime= request.getParameter("disTime");
     String staff_id= request.getParameter("staff_id");
+    String pictureBaby= request.getParameter("pictureBaby");
+    String pictureBabyMother= request.getParameter("pictureBabyMother");
     
     Conn con = new Conn();
     RMIConnector rmi = new RMIConnector();
     
     disDate = FormatTarikh.formatDate(disDate+" "+disTime, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
     
-    String query="UPDATE lhr_ong_discharge_baby set new_ic_no='"+ic_no+"', guardian_name='"+name+"', home_address='"+address+"', relationship_with_infant='"+relation+"', `discharge_dateTime`='"+disDate+"', staff_id_on_duty='"+staff_id+"' "
+    String query="UPDATE lhr_ong_discharge_baby set new_ic_no='"+ic_no+"', guardian_name='"+name+"', home_address='"+address+"', relationship_with_infant='"+relation+"', `discharge_dateTime`='"+disDate+"', staff_id_on_duty='"+staff_id+"', picture_baby='"+pictureBaby+"',picture_with_mother='"+pictureBabyMother+"' "
             + "WHERE pmi_no='"+pmiNo+"' and hfc_cd='"+hfc_cd+"' and infant_tag_no='"+tagNo+"'; ";
     boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, query);
     
