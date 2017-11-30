@@ -39,82 +39,77 @@
 </div>
 <br/>
 <div class="row">
-    <div class="col-md-6">
-        <!-- Select Basic -->
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
-            <div class="col-md-6">
-                <input id="DisWard" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
-                <input type="hidden" id="dis_cd">
-                <input  type="hidden" id="sub_cd">
+    <form id="SB_Form">
+        <div class="col-md-6">
+            <!-- Select Basic -->
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                <div class="col-md-6">
+                    <input id="DisWard" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
+                    <input type="hidden" id="dis_cd">
+                    <input  type="hidden" id="sub_cd">
 
 
-                <div id="disListWard" class="search-drop"></div>
+                    <div id="disListWard" class="search-drop"></div>
+                </div>
+
             </div>
 
-        </div>
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
+                <div class="col-md-6" id="wardTypeList">
+                    <select id="WardType" name="WardType" class="form-control" disabled="">
 
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
-            <div class="col-md-6" id="wardTypeList">
-                <select id="WardType" name="WardType" class="form-control" disabled="">
-
-                </select>
-            </div>
-        </div>
-
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
-            <div class="col-md-6" id="wardNameDropdown">
-                <select id="wname" name="selectbasic" class="form-control" disabled="">
-
-
-                </select>
+                    </select>
+                </div>
             </div>
 
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic"></label>
-            <div class="col-md-6" >                
-                <button class="btn btn-info" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
+                <div class="col-md-6" id="wardNameDropdown">
+                    <select id="wname" name="selectbasic" class="form-control" disabled="">
+
+
+                    </select>
+                </div>
+
             </div>
-        </div>
-    </div>
-
-
-
-    <div class="col-md-6">  
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="appendedtext">Deposit (RM)</label>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <input id="Deposit" class="form-control" placeholder="Click button on the right to get deposit" type="text" readonly>
-                    <div class="input-group-btn">
-                        <button style="margin-bottom: 15px; margin-left: 3px;" class="btn btn-default btn-sm" title="Get Deposit" id="SB_btnGetDepo"><i class="fa fa-dollar"></i></button>
-                    </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic"></label>
+                <div class="col-md-6" >                
+                    <button class="btn btn-info" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
                 </div>
             </div>
         </div>
 
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
-            <div class="col-md-6">
-                <input id="BedIDReg" readonly name="textinput" type="text" placeholder="Bed ID" class="form-control input-md">
-                </br>
+        <div class="col-md-6">  
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="appendedtext">Deposit (RM)</label>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input id="Deposit" class="form-control" placeholder="Click button on the right to get deposit" type="text" readonly>
+                        <div class="input-group-btn">
+                            <button style="margin-bottom: 15px; margin-left: 3px;" class="btn btn-default btn-sm" title="Get Deposit" id="SB_btnGetDepo"><i class="fa fa-dollar"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
+                <div class="col-md-6">
+                    <input id="BedIDReg" readonly name="textinput" type="text" placeholder="Bed ID" class="form-control input-md">
+                    </br>
+                </div>
+            </div>
+
         </div>
-
-
-
-
-
-
-    </div>
+    </form>
 </div>
 
 <!-- Add Modal Start -->
@@ -389,7 +384,7 @@
 
         if (wardClass === "" || wardClass == null || wardName === "" || wardName == null) {
 
-            wnamecode = $('#wname').val()==null? "|": $('#wname').val();
+            wnamecode = $('#wname').val() == null ? "|" : $('#wname').val();
             var array_dis = wnamecode.split("|");
             wnamecode = array_dis[0];
             WardType = $('#WardType').val();
@@ -429,29 +424,28 @@
             }
         });
     }
-    
-    $('#SB_btnGetDepo').on('click', function(){
+
+    $('#SB_btnGetDepo').on('click', function () {
         var wnameCode, wclassCode, eliSource, eliType;
         var canProceed = true;
         wnameCode = $('#wname').val();
         wclassCode = $('#WardType').val();
         eliSource = $('#EliSource').val();
         eliType = $('#EliTy').val();
-        
-        if(wnameCode==null || wnameCode==="" || wclassCode==null || wclassCode===""){
+
+        if (wnameCode == null || wnameCode === "" || wclassCode == null || wclassCode === "") {
             bootbox.alert("Please choose ward class and ward name first!");
-            canProceed=false;
-        }
-        else if(eliSource==null || eliSource==="" || eliType==null || eliType===""){
+            canProceed = false;
+        } else if (eliSource == null || eliSource === "" || eliType == null || eliType === "") {
             bootbox.alert("Please choose eligibility source and eligibility type first!");
-            canProceed=false;
+            canProceed = false;
         }
-        
-        if(!canProceed){
+
+        if (!canProceed) {
             $('#Deposit').val('');
             return false;
         }
-        
+
         IR_getDepositPrice();
     });
 

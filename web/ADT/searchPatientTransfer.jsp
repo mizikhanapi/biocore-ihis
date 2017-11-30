@@ -21,7 +21,7 @@
     //out.print(dataSystemStatus2);
 %>
 
-<form class="form-horizontal" name="myForm" id="myForm">
+<form class="form-horizontal" name="myForm" id="searchByIdForm">
     <!-- Select Basic -->
     <div class="form-group">
         <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
@@ -56,7 +56,7 @@
     <div class="text-center">
         <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
 
-        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+        <button id="clearSearchByID" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
     </div>
 </form>
 
@@ -174,9 +174,9 @@
         });
 
         //event on click clear buton
-        $('#clearSearch').click(function () {
+        $('#clearSearchByID').click(function () {
 
-            $('#myForm')[0].reset();
+            $('#searchByIdForm')[0].reset();
            
         });
 

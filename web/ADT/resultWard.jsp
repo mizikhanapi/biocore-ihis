@@ -71,13 +71,13 @@
             whereCon=" AND a.ward_id='"+idWard+"'";
         }
         //                     0            1           2       3          4            5       6           7               8               9                   10                                  
-        searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.created_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+        searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
                 //    11       12        13           14                    15              16                    17                    18                       19                       20        
                 + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
                 //   21                     22       23              24                    25             26            27            28               29          30
                 + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
-                // 31                          32         33             34                 35       36                 37               38
-                + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, e.`Description`, TIMESTAMPDIFF(YEAR, c.BIRTH_DATE, CURDATE()) "
+                // 31                          32         33             34                 35       36                 37               38                                                     39   
+                + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, e.`Description`, TIMESTAMPDIFF(YEAR, c.BIRTH_DATE, CURDATE()), date_format(a.episode_date, '%Y-%m-%d %H:%i:%s')  "
                 + " from wis_inpatient_episode a  "
                 + " left join wis_ward_name b on a.ward_id = b.ward_id AND b.hfc_cd=a.hfc_cd "
                 + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO "
@@ -169,13 +169,16 @@
         var wardName = arrayData[35];
         var bedId = arrayData[12];
         var rate = arrayData[31];
-        var admissionDate = arrayData[7];
+        var admissionDate = arrayData[39];
         var inStat = arrayData[28];
         var oldDis = arrayData[8];
         var SEX_CODE = arrayData[37];
         var wardClass_CD = arrayData[10];
         var wardName_CD = arrayData[11];
         var age = arrayData[38];
+        var eliSource = arrayData[18];
+        var eliTy = arrayData[17];
+        
 
 
         $("#pmino").val(pmi);
@@ -192,6 +195,8 @@
         $("#wardClass_CD").val(wardClass_CD);
         $("#wardName_CD").val(wardName_CD);
         $('#age').val(age);
+        $('#EliSource').val(eliSource);
+        $('#EliTy').val(eliTy);
 
 
 

@@ -39,7 +39,7 @@
                                 <label class="col-md-4 control-label" for="textinput">PMI No. </label>
                                 <div class="col-md-4">
 
-                                    <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md" readonly="">                        </div>
+                                    <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md" readonly>                        </div>
                             </div>
 
 
@@ -140,7 +140,7 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="textinput">Transfer Reason *</label>
                         <div class="col-md-6">
-                            <textarea id="TransferReason" name="TransferReason" placeholder="" class="form-control input-md"></textarea>
+                            <textarea id="TransferReason" name="TransferReason" placeholder="" class="form-control input-md" maxlength="230"></textarea>
                         </div>
                     </div>
                 </div>
@@ -183,105 +183,24 @@
 
         <input  type="hidden" id="wardName_CD">
         <input  type="hidden" id="wardClass_CD">
+        <input  type="hidden" id="EliSource">
+        <input  type="hidden" id="EliTy">
+        
 
 
 
         <script>
 
-            $("#GL").datepicker({
-                changeMonth: true,
-                changeYear: true,
-                dateFormat: 'dd/mm/yy'
-            });
-
-            var $body = $('body');
-            var yyyyMMddHHmmss;
-            var HHmmss;
-            var yyyyMMdd;
-            var ddMMyyyy;
-            var tahun, bulan, hari, ICbday;
-            //function get birth date
-
-            function getBday(x) {
-                if (x.length === 12) {
-                    tahun = x.substr(0, 2);
-                    bulan = x.substr(2, 2);
-                    hari = x.substr(4, 2);
-                    if (tahun >= 00 && tahun < 50)
-                    {
-
-                        //                    ICbday = "20" + tahun + "-" + bulan + "-" + hari;
-                        ICbday = hari + "-" + bulan + "-" + "20" + tahun;
-                    } else
-                    {
-                        //                    ICbday = "19" + tahun + "-" + bulan + "-" + hari;
-                        ICbday = hari + "-" + bulan + "-" + "19" + tahun;
-                    }
-                }
-
-            }
-
-            //function to get date 
-            function getDateNow() {
-                //yyyy-MM-dd HH:mm:ss
-                var nowDate = new Date();
-                var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
-                //months
-                var month = (nowDate.getMonth() + 1);
-                if (month < 10) {
-                    ZeroMonth = "0" + month;
-                } else {
-                    ZeroMonth = month;
-                }
-
-                //days
-                var day = (nowDate.getDate());
-                if (day < 10) {
-                    ZeroDay = "0" + day;
-                } else {
-                    ZeroDay = day;
-                }
-
-                //years
-                var year = (nowDate.getFullYear());
-                //hours
-                var hours = nowDate.getHours();
-                //minutes
-                var minutes = nowDate.getMinutes();
-                if (minutes < 10) {
-                    ZeroMinutes = "0" + minutes;
-                } else {
-                    ZeroMinutes = minutes;
-                }
-                //seconds
-                var seconds = nowDate.getSeconds();
-                if (seconds < 10) {
-                    ZeroSeconds = "0" + seconds;
-                } else {
-                    ZeroSeconds = seconds;
-                }
-                //complete day
-                yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
-                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
-                yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
-                ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
-            }
-
             $(document).ready(function () {
                 //register patient
                 $("#transferBtn").on('click', function () {
                     var pmino = $('#pmino').val();
-                    //var pino = $('#pino').val();
-                    //var gender = $('#gender').val();
-                    //var age = $('#age').val();
-                    var Bed = $('#bednew').val();
-                    //var pname = $('#pname').val();
-                    //var MRN = $('#MRN').val();
-                    //var AdmissionType = $('#AdmissionType').val();
-                    //var Consultant = $('#Consultant').val();
-                    var WardClass = $('#classnew').val();
-                    var WardName = $('#wardnew').val();
+                    
+                    var Bed = $('#BedIDReg').val();          //$('#bednew').val();
+                    var WardClass = $('#WardType').val();    //$('#classnew').val();
+                    var WardName = $('#wname').val().split("|")[0];      //$('#wardnew').val();
                     //var Rate = $('#Rate').val();
+                    
                     var BedO = $('#Bedf').val();
                     var WardNameO = $('#wardName_CD').val();
                     var WardClassO = $('#wardClass_CD').val();
@@ -316,7 +235,8 @@
                         bootbox.alert("Select Bed first");
 
                     } else {
-
+                        
+                        TransferReason = TransferReason.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
                         var data = {
                             pmino: pmino,
                             WardNameO: WardNameO,
@@ -335,6 +255,8 @@
                             subO: subO
                         };
                         console.log(data);
+                        
+                        createScreenLoading();
 
                         $.ajax({
                             type: "post",
@@ -345,77 +267,29 @@
                                 console.log(databack);
                                 if (databack.trim() === "success") {
                                     bootbox.alert("Patient successfully transferred");
+                                    $('#btnClear').click();
+                                    $('#SB_Form')[0].reset();
+                                    $('#WardOccuTable').html('');
+                                    $('#TransferReason').val('');
 
                                 } else if (databack.trim() === "fail") {
                                     bootbox.alert("Fail to transfer the patient");
                                 }
+                                else if(databack.trim()=== "taken"){
+                                    bootbox.alert("Sorry, the bed is already taken by other. Please choose different bed.");
+                                }
+                                else{
+                                    console.log(databack);
+                                }
                                 $('#TransferForm')[0].reset();
                             }, error: function () {
-
+                                bootbox.alert("");
+                            },
+                            complete: function (jqXHR, textStatus ) {
+                                destroyScreenLoading();
                             }
                         });
-                        //                
-                        //                
-                        //                
-                        //                
-                        //                
-                        //                $.ajax({
-                        //                    url: "patientTransferSQL.jsp",
-                        //                    type: "post",
-                        //                    data: data,
-                        //                    timeout: 10000,
-                        //                    success: function (datas) {
-                        //
-                        //                        if (datas.trim() === 'Success') {
-                        //
-                        //
-                        //                            bootbox.alert({
-                        //                                message: "Successfully update new patient information",
-                        //                                title: "Process Result",
-                        //                                backdrop: true
-                        //                            });
-                        //                        } else if (datas.trim() === 'Failed') {
-                        //                            bootbox.alert({
-                        //                                message: "Update Failed",
-                        //                                title: "Process Result",
-                        //                                backdrop: true
-                        //                            });
-                        //                        }
-                        //
-                        //                    },
-                        //                    error: function (err) {
-                        //                        bootbox.alert("Error update!");
-                        //                    }
-                        //                });
-                        //
-                        //                $.ajax({
-                        //                    url: "patientTransferSQLHistory.jsp",
-                        //                    type: "post",
-                        //                    data: data,
-                        //                    timeout: 10000,
-                        //                    success: function (datas) {
-                        //
-                        //                        if (datas.trim() === 'Success') {
-                        //
-                        //
-                        //                            bootbox.alert({
-                        //                                message: "Successfully transfer patient",
-                        //                                title: "Process Result",
-                        //                                backdrop: true
-                        //                            });
-                        //                        } else if (datas.trim() === 'Failed') {
-                        //                            bootbox.alert({
-                        //                                message: "Update Failed",
-                        //                                title: "Process Result",
-                        //                                backdrop: true
-                        //                            });
-                        //                        }
-                        //
-                        //                    },
-                        //                    error: function (err) {
-                        //                        bootbox.alert("Error update!");
-                        //                    }
-                        //                });
+                        
                     }
                 });
 

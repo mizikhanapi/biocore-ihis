@@ -281,6 +281,7 @@ $('#registerBed').click(function () {
                                                             IR_assignDoctor(wnamequeue, Dis, sub);
                                                             $('#btnClear').click();
                                                             $('#clearSearch').click();
+                                                            $('#SB_Form')[0].reset();
                                                         });
                                                     } else if ($.trim(l2) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");

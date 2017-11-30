@@ -72,10 +72,9 @@
     String sub = request.getParameter("sub");
 
     String createdBy = request.getParameter("createdBy");
-
-    DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-    Date dateobj = new Date();
-    df.format(dateobj);
+    
+    epiDate= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    
     Boolean regis, updBed, upMaster, upDetail;
     int queue_now = 0;
     int newQueueNo = 0;
@@ -132,8 +131,8 @@
             }
             
             ADT_EHRMessenger ehr = new ADT_EHRMessenger(createdBy, hfc, Dis, sub, pmino, orderNo, epiDate, epiDate, epiDate);
-            //send deposit to bill as negative value...
-            ehr.sendWardDeposit(WardType+":"+wname, qname, "-"+Deposit);
+            //send deposit to bill 
+            ehr.sendWardDeposit(WardType+":"+wname, qname, Deposit);
             
         } else {
             out.print("false");
