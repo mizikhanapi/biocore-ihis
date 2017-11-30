@@ -34,6 +34,8 @@
     String transfer_reason = request.getParameter("TransferReason");
     String status = "0"; //request.getParameter("status");
     String deposit = request.getParameter("Deposit");
+    String qName = request.getParameter("qName");
+    String preStartDate = request.getParameter("preStartDate");
 
     //check whether the selected bed is still Available or not.
     String sqlBedCheck = "Select bed_id FROM wis_bed_id "
@@ -49,10 +51,10 @@
 
     String updateBedNew = "update wis_bed_id set bed_status ='Occupied' where hfc_cd='" + hfc + "' and discipline_cd ='" + NewDiscipline + "' and ward_class_code='" + NewClass + "' and ward_id='" + NewName + "' and bed_id='" + NewBed + "';";
 
-    String insertHistory = "insert into wis_inpatient_episode_history(pmi_no,episode_date,encounter_date,hfc_cd,ward_class_code,ward_id,bed_id,transfer_reason,inpatient_status,created_by,created_date, subdiscipline_cd, discipline_cd) "
-            + "values('" + pmino + "','" + episode_date + "',NOW(),'" + hfc + "','" + OldClass + "','" + OldName + "','" + OldBed + "','" + transfer_reason + "','" + status + "','" + id + "',NOW(),'" + subO + "', '" + OldDiscipline + "');";
+    String insertHistory = "insert into wis_inpatient_episode_history(pmi_no,episode_date,encounter_date,hfc_cd,ward_class_code,ward_id,bed_id,transfer_reason,inpatient_status,created_by,created_date, subdiscipline_cd, discipline_cd, startDate, endDate) "
+            + "values('" + pmino + "','" + episode_date + "',NOW(),'" + hfc + "','" + OldClass + "','" + OldName + "','" + OldBed + "','" + transfer_reason + "','" + status + "','" + id + "',NOW(),'" + subO + "', '" + OldDiscipline + "', '"+preStartDate+"', now());";
 
-    String updateEpisode = "update wis_inpatient_episode set ward_class_code='" + NewClass + "',ward_id='" + NewName + "',bed_id='" + NewBed + "',deposit_inpatient='" + deposit + "' where hfc_cd='" + hfc + "' and pmi_no='" + pmino + "' and episode_date='" + episode_date + "';";
+    String updateEpisode = "update wis_inpatient_episode set ward_class_code='" + NewClass + "',ward_id='" + NewName + "',bed_id='" + NewBed + "',deposit_inpatient='" + deposit + "', startDate=now() where hfc_cd='" + hfc + "' and pmi_no='" + pmino + "' and episode_date='" + episode_date + "';";
 
     String combine = updateBedOld + updateBedNew + insertHistory + updateEpisode;
 
@@ -62,6 +64,14 @@
     Boolean sql3 = rmic.setQuerySQL(conn.HOST, conn.PORT, updateEpisode);
     if (sql == true && sql1 == true && sql2 == true && sql3 == true) {
         out.print("success");
+        //update pms_patient_queue if different ward...
+        if (!NewName.equals(OldName)) {
+            String sqlQue ="UPDATE pms_patient_queue set queue_name='"+qName+"', discipline_cd='"+NewDiscipline+"', subdiscipline_cd='"+subO+"' "
+                    + "WHERE hfc_cd='"+hfc+"' AND discipline_cd='"+OldDiscipline+"' AND subdiscipline_cd='"+subO+"' AND pmi_no='"+pmino+"' "
+                    + "AND queue_type='FY' AND patient_category='003' AND status NOT IN ('1', '6');";
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sqlQue);
+        }
+
         //bill the deposit
         //check if the patient is transfer within same ward or not.
         //if different ward then we bill the deposit

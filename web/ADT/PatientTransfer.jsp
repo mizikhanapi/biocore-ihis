@@ -185,9 +185,8 @@
         <input  type="hidden" id="wardClass_CD">
         <input  type="hidden" id="EliSource">
         <input  type="hidden" id="EliTy">
+        <input  type="hidden" id="preStartDate">
         
-
-
 
         <script>
 
@@ -199,6 +198,7 @@
                     var Bed = $('#BedIDReg').val();          //$('#bednew').val();
                     var WardClass = $('#WardType').val();    //$('#classnew').val();
                     var WardName = $('#wname').val().split("|")[0];      //$('#wardnew').val();
+                    var queueName = $('#wname').val().split("|")[1];
                     //var Rate = $('#Rate').val();
                     
                     var BedO = $('#Bedf').val();
@@ -214,6 +214,8 @@
                     var oldDis = $("#oldDis").val();
                     var episode_date = $("#AdmissionDatef").val();
                     var subO = $("#sub_cd").val();
+                    
+                    var preStartDate = $('#preStartDate').val();
 
 
 
@@ -243,7 +245,7 @@
                             BedO: BedO,
                             WardClassO: WardClassO,
                             BedN: Bed,
-                            WardNameN: WardName,
+                            WardNameN: WardName.trim(),
                             WardClassN: WardClass,
                             Dis: Dis,
                             TransferReason: TransferReason,
@@ -252,7 +254,9 @@
                             status: status,
                             oldDis: oldDis,
                             episode_date: episode_date,
-                            subO: subO
+                            subO: subO,
+                            qName: queueName.trim(),
+                            preStartDate: preStartDate
                         };
                         console.log(data);
                         

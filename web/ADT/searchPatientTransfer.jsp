@@ -152,8 +152,7 @@
                 });
             }
 
-        }
-        ;
+        }        
 
         //event on click search button
         $('#searchPatient').on('click', function () {

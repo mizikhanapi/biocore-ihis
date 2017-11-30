@@ -91,6 +91,9 @@
                     + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
                     + "where a.inpatient_status ='" + status + "' and a.ward_id ='" + idWard + "' and b.txn_type ='" + txntype + "' and b.hfc_cd='" + hfc + "' group by  a.pmi_no ";
         }
+        
+         
+       
 
         ArrayList<ArrayList<String>> dataList = conn.getData(searching);
         //out.print(searching);
@@ -138,7 +141,7 @@
 <%
     }
 } else if (size1141 < 1) { %>
-<td colspan="7"> No row selected! </td>
+<td colspan="7"> No patient found! </td>
 <% }
 %>
 <div id="resultPatientDischarge">

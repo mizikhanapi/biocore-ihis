@@ -20,6 +20,7 @@
 
         <script src="old/assets/js/jquery.min.js"></script>
         <link rel="stylesheet" href="old/assets/css/loading.css">
+        <link rel="stylesheet" href="../assets/css/mystyles.css">
         <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
         <script src="old/assets/js/form-validator.min.js"></script>
         <script src="old/assets/js/bootstrap.min.js"></script> 
@@ -35,7 +36,7 @@
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-    
+
 
         <!-- header -->
         <%@include file = "../assets/header.html" %>
@@ -47,8 +48,6 @@
         <div class="loading"></div>
 
         <%
-            Config.getFile_url(session);
-            Config.getBase_url(request);
             Conn conn = new Conn();
         %>
 
@@ -103,7 +102,8 @@
                                             <div class="tab-pane" id="tab_default_2">
                                                 <div>
                                                     <div  id="DischargePatient"> 
-                                                        <%@include file = "DischargePatient.jsp" %>
+                                                        <%--  <%@include file = "DischargePatient.jsp" %> --%>
+                                                        <%@include file="discharge/dischargeTab.jsp" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,27 +125,11 @@
             <!-- main -->		
 
         </div>
-      
-            <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
-                    <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
 
-
-
-        <script>
-
-            $(document).ready(function () {
-                //$("#WardOccupancy").load("WardOccupancy.jsp");
-                //$("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
-                //            
-                //            
-                //            $("#headerindex").load("libraries/header.html");
-                //            $("#topmenuindex").load("libraries/topMenus.html");
-                //            $("#sidemenus").load("libraries/sideMenus.jsp");
-                //$("#PatientTransfer").load("PatientTransfer.jsp");
-
-            });
-
-        </script>
+        <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
+  
 
     </body>
 </html>

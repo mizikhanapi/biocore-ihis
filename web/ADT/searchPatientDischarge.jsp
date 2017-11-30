@@ -133,19 +133,22 @@
                 var idInput = $('#idInput').val();
 
                 //run the MAIN ajax function
+                createScreenLoading();
                 $.ajax({
                     async: true,
                     type: "POST",
-                    url: "resultWardDischarge.jsp",
+                    url: "discharge/searchPatientToDischarge.jsp",
                     data: {'idType': idType, 'idInput': idInput, 'methodSearch': methodSearch},
                     timeout: 10000,
                     success: function (databack) {
                         $("#WardOccuTable").html(databack);
-                         bootbox.alert('SUCCESS');
                     },
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
                         //bootbox.alert(err.Message);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
                     }
                 });
             }
@@ -175,7 +178,7 @@
         $('#clearSearch').click(function () {
 
             $('#myForm')[0].reset();
-            $
+            $('#WardOccuTable').html('');
         });
 
     });

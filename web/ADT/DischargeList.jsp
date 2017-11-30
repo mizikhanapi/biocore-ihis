@@ -22,15 +22,34 @@
             <%@include file = "searchWardDischarge.jsp" %>
         </div>
     </div>
-<!--
-    <div class="row ">
-        <div class="col-md-12">
-            <div class="text-center margin-top-30px">
-                <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                <button id="button2id" name="button2id" type="button" class="btn btn-success "><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>
-            </div> 
-        </div>
-    </div>-->
 
 </div>
-<div id="WardOccuTable" class="form-group"></div>
+<div id="WardOccuTable" class="table-guling"></div>
+
+<script>
+    $('#WardOccuTable').on('click', '#btnMoveDischarge', function(){
+        var arrData = $(this).closest('tr').find('#hidDischarge').val().split("|");
+        var data={
+            pmiNo : arrData[6].trim(),
+            epiDate : arrData[7].trim()            
+        };
+        createScreenLoading();
+        $.ajax({
+            type: 'POST',
+            url:"",
+            timeout: 60000,
+            data: data,
+            success: function (html, textStatus, jqXHR) {
+                        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                        $('#patientInfoDiv').html(html);
+                        $('#noPatDIv').hide();
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+        });
+    });
+</script>

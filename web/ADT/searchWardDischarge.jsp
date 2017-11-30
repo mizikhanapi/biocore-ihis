@@ -42,16 +42,19 @@
     function searchPatientInWardS() {
         var idWard = $('#idWard').val();
         var methodSearch = "0";
-
+        createScreenLoading();
         $.ajax({
             type: "post",
-            url: "resultWardDischarge.jsp",
+            url: "discharge/searchPatientToDischarge.jsp",
             data: {idWard: idWard, methodSearch: methodSearch},
             timeout: 10000,
             success: function (databack) {
                 $("#WardOccuTable").html(databack);
             }, error: function () {
 
+            },
+            complete: function (jqXHR, textStatus) {
+                destroyScreenLoading();
             }
         });
     }
@@ -62,6 +65,6 @@
     //event on click clear buton
     $('#clearSearch').click(function () {
         $('#myForm2')[0].reset();
-        $("table tbody").remove();
+        $('#WardOccuTable').html('');
     });
 </script>
