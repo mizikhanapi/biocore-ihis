@@ -63,16 +63,18 @@
             } else if (methodSearching.equalsIgnoreCase("0")) {
                 whereCon=" AND ep.ward_id='"+idWard+"'";
             }
-            
-            //                      0                   1                   2          3            4           5                  6            7
-            searching="SELECT ep.discipline_cd, dis.discipline_name, wn.ward_id, wn.ward_name, bd.bed_id, bio.`PATIENT_NAME`, ep.pmi_no, date_format(ep.episode_date, '%Y-%m-%d %H:%i:%s') "
+                
+            //                      0                   1                   2          3            4           5                  6            7                                                 8                  
+            searching="SELECT ep.discipline_cd, dis.discipline_name, wn.ward_id, wn.ward_name, bd.bed_id, bio.`PATIENT_NAME`, ep.pmi_no, date_format(ep.episode_date, '%Y-%m-%d %H:%i:%s'), om.order_no, "
+                    //9
+                    + "date_format(om.order_date, '%Y-%m-%d %H:%i:%s') "
                     + "FROM wis_inpatient_episode ep "
                     + "JOIN wis_order_master om on ep.pmi_no=om.pmi_no AND om.txn_type='T12115' AND om.order_status='0' "
                     + "JOIN wis_ward_name wn ON wn.ward_id=ep.ward_id AND wn.hfc_cd=ep.hfc_cd "
                     + "JOIN wis_bed_id bd ON bd.bed_id=ep.bed_id AND bd.ward_id=ep.ward_id AND bd.hfc_cd=ep.hfc_cd "
                     + "JOIN pms_patient_biodata bio ON bio.`PMI_NO`=ep.pmi_no "
                     + "JOIN adm_discipline dis ON dis.discipline_cd=ep.discipline_cd AND dis.discipline_hfc_cd=ep.hfc_cd "
-                    + "WHERE ep.hfc_cd='"+hfc+"' "+whereCon;
+                    + "WHERE ep.hfc_cd='"+hfc+"' AND ep.inpatient_status='0' "+whereCon;
             
             ArrayList<ArrayList<String>> dataList = conn.getData(searching);
             //out.print(searching);

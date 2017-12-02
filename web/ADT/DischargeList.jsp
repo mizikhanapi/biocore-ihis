@@ -31,12 +31,14 @@
         var arrData = $(this).closest('tr').find('#hidDischarge').val().split("|");
         var data={
             pmiNo : arrData[6].trim(),
-            epiDate : arrData[7].trim()            
+            epiDate : arrData[7].trim(),
+            orderNo : arrData[8].trim(),
+            orderDate : arrData[9].trim()
         };
         createScreenLoading();
         $.ajax({
             type: 'POST',
-            url:"",
+            url:"discharge/getWardTrack.jsp",
             timeout: 60000,
             data: data,
             success: function (html, textStatus, jqXHR) {
@@ -45,7 +47,7 @@
                         $('#noPatDIv').hide();
                     },
             error: function (jqXHR, textStatus, errorThrown) {
-                        
+                        console.log("Oops "+errorThrown);
                     },
             complete: function (jqXHR, textStatus ) {
                         destroyScreenLoading();
