@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bed ID</label>
                             <div class="col-md-6">
-                                <input id="BedID" class="form-control" rows="3" maxlength="200" placeholder="Generic Name">
+                                <input id="BedID" class="form-control" maxlength="200" placeholder="Generic Name">
                                 </br>
 
                                 <!--
@@ -130,7 +130,7 @@
                             <label class="col-md-4 control-label" for="textinput">Bed Status</label>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" id="status1" value="Available">
+                                    <input type="radio" name="status" id="status1" value="Available" checked>
                                     Available 
                                 </label>
                                

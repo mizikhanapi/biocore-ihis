@@ -36,6 +36,8 @@
     String deposit = request.getParameter("Deposit");
     String qName = request.getParameter("qName");
     String preStartDate = request.getParameter("preStartDate");
+    
+    preStartDate = (preStartDate.equalsIgnoreCase("null") || preStartDate==null || preStartDate.isEmpty())? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) : preStartDate;
 
     //check whether the selected bed is still Available or not.
     String sqlBedCheck = "Select bed_id FROM wis_bed_id "

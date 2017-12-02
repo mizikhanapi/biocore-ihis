@@ -192,7 +192,7 @@
 
             $(document).ready(function () {
                 //register patient
-                $("#transferBtn").on('click', function () {
+                $("#transferBtn").off('click').on('click', function () {
                     var pmino = $('#pmino').val();
                     
                     var Bed = $('#BedIDReg').val();          //$('#bednew').val();
@@ -275,6 +275,7 @@
                                     $('#SB_Form')[0].reset();
                                     $('#WardOccuTable').html('');
                                     $('#TransferReason').val('');
+                                    $('#TransferForm')[0].reset();
 
                                 } else if (databack.trim() === "fail") {
                                     bootbox.alert("Fail to transfer the patient");
@@ -285,7 +286,7 @@
                                 else{
                                     console.log(databack);
                                 }
-                                $('#TransferForm')[0].reset();
+                                
                             }, error: function () {
                                 bootbox.alert("");
                             },
@@ -298,7 +299,7 @@
                 });
 
                 //event on click clear buton
-                $('#btnclear').click(function () {
+                $('#btnclear').off('click').on('click',function () {
                     $('#TransferForm')[0].reset();
                 });
 
