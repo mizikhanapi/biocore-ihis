@@ -203,6 +203,10 @@
         var msg="";
         var isComplete = true;
         
+        var kini = new Date();
+        var tarikh = kini.getDate()+"/"+(kini.getMonth()+1)+"/"+kini.getFullYear();
+        var masa = kini.getHours()+":"+kini.getMinutes();
+        
         var deliveryDate = $('#LS_labourDeliveryDate').val();
         var deliveryTime = $('#LS_labourDeliveryTime').val();
         var labourOnset = $('#LS_labourOnset').val();
@@ -216,14 +220,13 @@
         var repair = $('#LS_labourRepair').val();
         
         if(deliveryDate===""){
-            isComplete=false;
-            msg="Please choose delivery date";
+            $('#LS_labourDeliveryDate').val(tarikh);
         }
-        else if(deliveryTime===""){
-            isComplete=false;
-            msg="Please choose delivery time";
+        if(deliveryTime===""){
+            $('#LS_labourDeliveryTime').val(masa);
         }
-        else if(labourOnset==="" || labourOnset==null){
+        
+        if(labourOnset==="" || labourOnset==null){
             isComplete=false;
             msg="Please choose labour onset.";
         }
@@ -1466,13 +1469,17 @@
         var summaryDate = $('#LS_perNoteModalID').val();
         var theDate = summaryDate.split("|")[0];
         
+        var kini = new Date();
+        var tarikh = kini.getDate()+"/"+(kini.getMonth()+1)+"/"+kini.getFullYear();
+        
         var isComplete = true;
         var message="";
+        
         if(perDate===""){
-            isComplete=false;
-            message="Please choose date";
+            $('#LS_perNoteDate').val(tarikh);
         }
-        else if(perNote===""){
+        
+        if(perNote===""){
             isComplete=false;
             message="Please fill in the notes";
         }

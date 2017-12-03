@@ -171,7 +171,7 @@
         <script src="../PMS/libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
         
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-        <script src="PMS/libraries/lib/js/main/register.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/main/register.js?v=041217v2" type="text/javascript"></script>
         <script src="PMS/libraries/lib/js/main/addQueue.js" type="text/javascript"></script>
 
         <script src="libraries/js/queue.js" type="text/javascript"></script>

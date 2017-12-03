@@ -103,7 +103,7 @@ $('#registerBed').click(function () {
 
     } else if ($('#DocType').val() === null) {
         bootbox.alert('Please choose Document Type');
-    } else if ($('#DocNo').val() === "") {
+    } else if ($('#DocNo').val() === "" && $('#DocType').val() !=="N/A") {
         bootbox.alert('Please insert Document No');
 
 
@@ -112,7 +112,7 @@ $('#registerBed').click(function () {
     } else if ($('#HF_cd').val() === "") {
         bootbox.alert('Please choose the Reffering From');
 
-    } else if ($('#GL').val() === null || $('#GL').val()==="") {
+    } else if (($('#GL').val() === null || $('#GL').val()==="") && $('#DocType').val() ==="GRL" ) {
         bootbox.alert('Please choose GL Expiry Date');
     } else if ($('#payer').val() === null) {
         bootbox.alert('Please choose Payer Group');
@@ -141,7 +141,7 @@ $('#registerBed').click(function () {
         OrderStatus = $('#OrderStatus').val();
         Refer = $('#Refer').val();
         DocType = $('#DocType').val();
-        GL = $('#GL').val();
+        GL = $('#GL').val().trim()===""? "0000-00-00" : $('#GL').val().trim();
         if ($('#EliTy').val() === null) {
             EliTy = "-";
         } else {

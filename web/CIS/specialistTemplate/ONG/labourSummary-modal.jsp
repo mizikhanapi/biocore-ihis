@@ -68,6 +68,7 @@
                                         <option selected disabled value="">Select vaginal delivery</option>
                                         <option value="SVD">SVD</option>
                                         <option value="Vacuum delivery">Vacuum delivery</option>
+                                        <option value="None">None</option>
                                     </select>
                                 </div>
                             </div>
@@ -131,6 +132,7 @@
                                         <option value="" selected disabled>-- Select cord tightness --</option>
                                         <option value="Tight">Tight</option>
                                         <option value="Loose">Loose</option>
+                                        <option value="None">None</option>
                                     </select>
                                 </div>
                             </div>
@@ -145,6 +147,7 @@
                                         <option selected disabled value="">Select tear condition</option>
                                         <option value="Episiotomy">Episiotomy</option>
                                         <option value="Tear">Tear</option>
+                                        <option value="Tear">None</option>
                                     </select>
                                 </div>
                             </div>

@@ -197,10 +197,6 @@
                         <label class="col-md-4 control-label" for="selectbasic">Document type *</label>
                         <div class="col-md-6">
                             <select id="DocType" name="DocType" class="form-control">
-                                <option value="-">-</option>
-
-                                <option value="" selected="" disabled="">Select Document type </option>                               
-
                                 <%
                                     for (int i = 0; i < dataDocumentType.size(); i++) {%>
                                 <option value="<%=dataDocumentType.get(i).get(1)%>"><%=dataDocumentType.get(i).get(2)%></option>

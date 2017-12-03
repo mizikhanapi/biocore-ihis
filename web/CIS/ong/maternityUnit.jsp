@@ -250,6 +250,10 @@
         var isComplete=true;
         var msg="";
         
+        var kini = new Date();
+        var tarikh = kini.getDate()+"/"+(kini.getMonth()+1)+"/"+kini.getFullYear();
+        var masa = kini.getHours()+":"+kini.getMinutes();
+                
         var leDate=$('#MU_therapyOrderDate').val();
         var leTime=$('#MU_therapyOrderTime').val();
         var therapy=$('#MU_txtTherapy').val();
@@ -257,31 +261,33 @@
         var offDate=$('#MU_therapyOffDate').val();
         var offTime=$('#MU_therapyOffTime').val();
         
-        if(leDate===""){
-            isComplete=false;
-            msg="Please fill in the order date.";
-        }
-        else if(leTime===""){
-            isComplete=false;
-            msg="Please fill in the order time.";
-        }
-        else if(therapy===""){
+        if(therapy===""){
             isComplete=false;
             msg="Please fill in the therapy.";
         }
-        else if(offTime==="" && offDate!==""){
-            isComplete=false;
-            msg="Please fill in the off time.";
-        }
-        else if(offTime!=="" && offDate===""){
-            isComplete=false;
-            msg="Please fill in the off date.";
-        }
+        
         
         if(!isComplete){
             bootbox.alert(msg);
             $('#ong-maternityUnit1').css('overflow', 'auto');
         }
+        
+         if(leDate===""){
+            $('#MU_therapyOrderDate').val(tarikh);
+        }
+        
+        if(leTime===""){
+            $('#MU_therapyOrderTime').val(masa);
+        }
+        
+        if(offTime==="" && offDate!==""){
+            $('#MU_therapyOffTime').val(masa);
+        }
+        
+        if(offTime!=="" && offDate===""){
+            $('#MU_therapyOffDate').val(tarikh);
+        }
+        
         
         return isComplete;
     }
@@ -514,6 +520,10 @@
         var isComplete=true;
         var msg="";
         
+        var kini = new Date();
+        var tarikh = kini.getDate()+"/"+(kini.getMonth()+1)+"/"+kini.getFullYear();
+        var masa = kini.getHours()+":"+kini.getMinutes();
+        
         var leDate=$('#MU_investigationOrderDate').val();
         var leTime=$('#MU_investigationOrderTime').val();
         var investigation=$('#MU_txtInvestigation').val();
@@ -521,25 +531,23 @@
         var offDate=$('#MU_investigationOffDate').val();
         var offTime=$('#MU_investigationOffTime').val();
         
-        if(leDate===""){
-            isComplete=false;
-            msg="Please fill in the order date.";
-        }
-        else if(leTime===""){
-            isComplete=false;
-            msg="Please fill in the order time.";
-        }
-        else if(investigation===""){
+        if(investigation===""){
             isComplete=false;
             msg="Please fill in the investigation.";
         }
-        else if(offTime==="" && offDate!==""){
-            isComplete=false;
-            msg="Please fill in the off time.";
+        
+        if(leDate===""){
+            $('#MU_investigationOrderDate').val(tarikh);
         }
-        else if(offTime!=="" && offDate===""){
-            isComplete=false;
-            msg="Please fill in the off date.";
+        if(leTime===""){
+            $('#MU_investigationOrderTime').val(masa);
+        }        
+        
+        if(offTime==="" && offDate!==""){
+            $('#MU_investigationOffTime').val(masa);
+        }
+        if(offTime!=="" && offDate===""){
+            $('#MU_investigationOffDate').val(tarikh);
         }
         
         if(!isComplete){
