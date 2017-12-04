@@ -63,11 +63,7 @@ $(document).ready(function () {
         } else {
             pminotemp = $("#PMIpminotemp").val();
         }
-
-
-
-
-
+        
         if (poic === "") {
             poic = "-";
         } else {
@@ -369,6 +365,8 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's Payer Group..");
         } else if (pperty === null) {
             bootbox.alert("Please key in patient's Person Type..");
+        } else if (pmino === "") {
+            bootbox.alert("Pleace use the search function to generate the pmino before registering/saving patient biodata..");
         } else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",
