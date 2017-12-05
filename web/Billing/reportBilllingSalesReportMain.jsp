@@ -23,7 +23,7 @@
             <label class="col-md-4 control-label">Day</label>
             <div class="col-md-4" style="margin-bottom: 10px">
                 <select id="billingReportAccountSalesReportDay" class="form-control">
-                    <option value="0" selected="true">-- Select A Day --</option>
+                    <option value="-" selected="true">-- Select A Day --</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -63,16 +63,16 @@
             <label class="col-md-4 control-label">Month</label>
             <div class="col-md-4" style="margin-bottom: 10px">
                 <select id="billingReportAccountSalesReportMonth" class="form-control">
-                    <option value="0" selected="true">-- Select A Month --</option>
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
+                    <option value="-" selected="true">-- Select A Month --</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
                     <option value="10">October</option>
                     <option value="11">November</option>
                     <option value="12">December</option>
@@ -84,7 +84,7 @@
             <label class="col-md-4 control-label">Year</label>
             <div class="col-md-4" style="margin-bottom: 10px">
                 <select id="billingReportAccountSalesReportYear" class="form-control">
-                    <option value="0" selected="true">-- Select A Year --</option>
+                    <option value="-" selected="true">-- Select A Year --</option>
                     <%                        int size3 = rangeList.size();
                         for (int i = 0; i < size3; i++) {
                     %>
@@ -104,11 +104,288 @@
     </div>
 </div>
 
+
+<div id="billingReportSalesReportGenerateReportForPrint" class="hidden">
+
+</div>
+
 <script type="text/javascript" charset="utf-8">
+
 
     $(document).ready(function () {
 
-      
+
+        $('.decimalNumbersOnly').keyup(function () {
+            if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            }
+        });
+
+
+        $('.singleNumbersOnly').keyup(function () {
+            if (this.value !== this.value.replace(/[^0-9]/g, '')) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+        });
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+        // Function Daily Statement Start
+        $('#reportBilllingSalesReportMainDIV').off('click', '#billingReportAccountSalesReportDailySalesBtn').on('click', '#billingReportAccountSalesReportDailySalesBtn', function (e) {
+
+            var day = document.getElementById('billingReportAccountSalesReportDay').value;
+            var month = document.getElementById('billingReportAccountSalesReportMonth').value;
+            var year = document.getElementById('billingReportAccountSalesReportYear').value;
+            var monthString = $("#billingReportAccountSalesReportMonth option:selected").text();
+
+            console.log(day);
+            console.log(year);
+            console.log(month);
+            console.log(monthString);
+
+
+            if (day === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement day !!!";
+                $("#alertMessage").modal();
+
+            } else if (month === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Month !!!";
+                $("#alertMessage").modal();
+
+            } else if (year === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                $("#alertMessage").modal();
+
+            } else {
+
+
+                var data = {
+                    day: day,
+                    month: month,
+                    monthString: monthString,
+                    year: year
+                };
+
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                $.ajax({
+                    url: "controllerProcessReport/reportBillingSalesReportGetDailySalesReport.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
+
+
+                        $('#billingReportSalesReportGenerateReportForPrint').html(datas);
+
+                        setTimeout(function () {
+
+
+                            var printDiv = $("#billingReportSalesReportGenerateReportForPrint").html().trim();
+
+                            var printWindow = window.open('', 'Daily Sales Report');
+
+                            printWindow.document.write('<html><head><title>Daily Sales Report</title>');
+                            printWindow.document.write('</head><body >');
+                            printWindow.document.write(printDiv);
+                            printWindow.document.write('</body></html>');
+                            printWindow.document.close();
+                            printWindow.focus();
+                            printWindow.print();
+                            printWindow.close();
+
+                            $('.loading').hide();
+
+
+                        }, 1500);
+
+
+
+
+                    },
+                    error: function (err) {
+
+                    }
+                });
+
+
+            }
+        });
+        // Function Daily Statement End
+
+
+
+        // Function Monthly Statement Start
+        $('#reportBilllingSalesReportMainDIV').off('click', '#billingReportAccountSalesReportMonthlySalesBtn').on('click', '#billingReportAccountSalesReportMonthlySalesBtn', function (e) {
+
+            var day = document.getElementById('billingReportAccountSalesReportDay').value;
+            var month = document.getElementById('billingReportAccountSalesReportMonth').value;
+            var year = document.getElementById('billingReportAccountSalesReportYear').value;
+            var monthString = $("#billingReportAccountSalesReportMonth option:selected").text();
+
+            console.log(day);
+            console.log(year);
+            console.log(month);
+            console.log(monthString);
+
+
+            if (month === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Month !!!";
+                $("#alertMessage").modal();
+
+            } else if (year === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                $("#alertMessage").modal();
+
+            } else {
+
+
+
+                var data = {
+                    day: day,
+                    month: month,
+                    monthString: monthString,
+                    year: year
+                };
+
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                $.ajax({
+                    url: "controllerProcessReport/reportBillingSalesReportGetMonthlySalesReport.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
+
+
+                        $('#billingReportSalesReportGenerateReportForPrint').html(datas);
+
+                        setTimeout(function () {
+
+
+                            var printDiv = $("#billingReportSalesReportGenerateReportForPrint").html().trim();
+
+                            var printWindow = window.open('', 'Monthly Sales Report');
+
+                            printWindow.document.write('<html><head><title>Monthly Sales Report</title>');
+                            printWindow.document.write('</head><body >');
+                            printWindow.document.write(printDiv);
+                            printWindow.document.write('</body></html>');
+                            printWindow.document.close();
+                            printWindow.focus();
+                            printWindow.print();
+                            printWindow.close();
+
+                            $('.loading').hide();
+
+
+                        }, 1500);
+
+
+
+
+                    },
+                    error: function (err) {
+
+                    }
+                });
+
+            }
+        });
+        // Function Monthly Statement End
+
+
+
+        // Function Yearly Statement Start
+        $('#reportBilllingSalesReportMainDIV').off('click', '#billingReportAccountSalesReportYearlySalesBtn').on('click', '#billingReportAccountSalesReportYearlySalesBtn', function (e) {
+
+
+            var day = document.getElementById('billingReportAccountSalesReportDay').value;
+            var month = document.getElementById('billingReportAccountSalesReportMonth').value;
+            var year = document.getElementById('billingReportAccountSalesReportYear').value;
+            var monthString = $("#billingReportAccountSalesReportMonth option:selected").text();
+
+            console.log(day);
+            console.log(year);
+            console.log(month);
+            console.log(monthString);
+
+            if (year === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                $("#alertMessage").modal();
+
+            } else {
+
+                var data = {
+                    day: day,
+                    month: month,
+                    monthString: monthString,
+                    year: year
+                };
+
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                $.ajax({
+                    url: "controllerProcessReport/reportBillingSalesReportGetYearlySalesReport.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
+
+
+                        $('#billingReportSalesReportGenerateReportForPrint').html(datas);
+
+                        setTimeout(function () {
+
+
+                            var printDiv = $("#billingReportSalesReportGenerateReportForPrint").html().trim();
+
+                            var printWindow = window.open('', 'Yearly Sales Report');
+
+                            printWindow.document.write('<html><head><title>Yearly Sales Report</title>');
+                            printWindow.document.write('</head><body >');
+                            printWindow.document.write(printDiv);
+                            printWindow.document.write('</body></html>');
+                            printWindow.document.close();
+                            printWindow.focus();
+                            printWindow.print();
+                            printWindow.close();
+
+                            $('.loading').hide();
+
+
+                        }, 1500);
+
+
+
+
+                    },
+                    error: function (err) {
+
+                    }
+                });
+
+            }
+
+        });
+        // Function Yearly Statement End
+
+
     });
 
 </script>
