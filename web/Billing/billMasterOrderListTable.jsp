@@ -113,7 +113,7 @@
         ArrayList<ArrayList<String>> dataBillMasterOrderList = conn.getData(sql);
 
         int size = dataBillMasterOrderList.size();
-        
+
         for (int i = 0; i < size; i++) {
     %>
 
@@ -139,6 +139,8 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
+
+        $('#billMasterOrderListTable').DataTable().destroy();
 
         $('#billMasterOrderListTable').DataTable({
             "language": {

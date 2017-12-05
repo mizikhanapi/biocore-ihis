@@ -258,9 +258,9 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataBillMasterOrderListhidden").val();
         var arrayData = rowData.split("|");
-        
+
         console.log(arrayData);
-        
+
         var longString = $('#billMasterOrderListRecordFilterHidden').val();
 
         //Assign Array into seprated val
@@ -271,10 +271,10 @@
         var data = {
             patientnic: patientnic,
             patientpmino: patientpmino,
-           longString: longString
+            longString: longString
         };
-        
-        
+
+
         $.ajax({
             url: "billDetailOrderListTable.jsp",
             type: "post",
@@ -283,7 +283,7 @@
             success: function (returnDataBillDetailList) {
 
                 $('#billDetailOrderDetailContent').html(returnDataBillDetailList);
-                
+
                 $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
             }
@@ -343,12 +343,12 @@
                     $('<div class="loading">Loading</div>').appendTo('body');
 
                     $.ajax({
-                        url: "billGenerateBillDetailGetSeqNo.jsp",
+                        url: "controllerProcessBill/billGenerateBillDetailGetSeqNo.jsp",
                         type: "post",
                         timeout: 10000,
                         success: function (datas) {
 
-
+                            console.log(datas);
                             console.log("Get Seq Success (S)");
 
                             var data = {
@@ -364,7 +364,7 @@
                             };
 
                             $.ajax({
-                                url: "billGenerateBillDetailSingle.jsp",
+                                url: "controllerProcessBill/billGenerateBillDetailSingle.jsp",
                                 type: "post",
                                 data: data,
                                 timeout: 10000,
@@ -373,7 +373,7 @@
                                     console.log("Generate Success (S)");
 
                                     $('#billDetailOrderDetailContent').html(dataBill);
-                                    
+
                                     $('.loading').hide();
 
                                 },
@@ -480,11 +480,13 @@
                     $('<div class="loading">Loading</div>').appendTo('body');
 
                     $.ajax({
-                        url: "billGenerateBilManageCustomerTables.jsp",
+                        url: "controllerProcessBill/billGenerateBilManageCustomerTables.jsp",
                         type: "post",
                         data: data,
                         timeout: 10000,
                         success: function (data) {
+
+                            console.log(data);
 
                             var d = data.split("|");
 
@@ -652,7 +654,7 @@
 
 
                         $.ajax({
-                            url: "billGenerateBillDetailGetSeqNo.jsp",
+                            url: "controllerProcessBill/billGenerateBillDetailGetSeqNo.jsp",
                             type: "post",
                             timeout: 10000,
                             success: function (datas) {
@@ -670,7 +672,7 @@
 
 
                                 $.ajax({
-                                    url: "billGenerateBillDetailGroup.jsp",
+                                    url: "controllerProcessBill/billGenerateBillDetailGroup.jsp",
                                     type: "post",
                                     data: data,
                                     timeout: 10000,
@@ -815,7 +817,7 @@
                     $('<div class="loading">Loading</div>').appendTo('body');
 
                     $.ajax({
-                        url: "billGenerateBilManageCustomerTablesGroup.jsp",
+                        url: "controllerProcessBill/billGenerateBilManageCustomerTablesGroup.jsp",
                         type: "post",
                         data: data,
                         timeout: 10000,

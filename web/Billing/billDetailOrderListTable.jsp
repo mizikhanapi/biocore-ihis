@@ -91,7 +91,7 @@
 
         } else if (filter.equalsIgnoreCase("60day")) {
 
-            dateClause = " DATE(fm.txn_date) BETWEEN SUBDATE('" + dateTime + "',60) AND '" + dateTime + "' ";
+            dateClause = " AND DATE(fm.txn_date) BETWEEN SUBDATE('" + dateTime + "',60) AND '" + dateTime + "' ";
 
         } else if (filter.equalsIgnoreCase("custom")) {
 
@@ -100,7 +100,7 @@
             startDate = dateSplit[0];
             endDate = dateSplit[1];
 
-            dateClause = " DATE(fm.txn_date) between '" + startDate + "' and '" + endDate + "' ";
+            dateClause = " AND DATE(fm.txn_date) between '" + startDate + "' and '" + endDate + "' ";
 
         } else if (filter.equalsIgnoreCase("all")) {
 
@@ -155,6 +155,8 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
+        
+        $('#billDetailOrderListTable').DataTable().destroy();
 
         $('#billDetailOrderListTable').DataTable({
             "language": {
