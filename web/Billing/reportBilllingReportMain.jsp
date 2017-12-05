@@ -34,7 +34,7 @@
             <label class="col-md-4 control-label">Month</label>
             <div class="col-md-4" style="margin-bottom: 10px">
                 <select id="billingReportAccountReportMonth" class="form-control" style="text-align:center;">
-                    <option value="00" selected="true">All Month</option>
+                    <option value="-" selected="true">-- Select A Month --</option>
                     <option value="01">January</option>
                     <option value="02">February</option>
                     <option value="03">March</option>
@@ -55,7 +55,7 @@
             <label class="col-md-4 control-label">Year</label>
             <div class="col-md-4" style="margin-bottom: 10px">
                 <select id="billingReportAccountReportYear" class="form-control">
-                    <option value="0" selected="true">- Select a year -</option>
+                    <option value="-" selected="true">- Select a year -</option>
                     <%                        int size3 = rangeList.size();
                         for (int i = 0; i < size3; i++) {
                     %>
@@ -77,12 +77,15 @@
 </div>
 
 
+<div id="billingReportAccountReportGenerateReportForPrint" class="hidden">
+
+</div>
+
+
 <script type="text/javascript" charset="utf-8">
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-
-    var contextPath = '<%=request.getContextPath()%>';
 
     $(document).ready(function () {
 
@@ -104,12 +107,12 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
-        // Function yearly Statement Start
+        // Function Customer Statement Start
         $('#reportBilllingReportMainDIV').off('click', '#billingReportAccountReportYearlyStatementBtn').on('click', '#billingReportAccountReportYearlyStatementBtn', function (e) {
 
             var ic = document.getElementById('billingReportAccountReportIC').value;
-            var year = document.getElementById('billingReportAccountReportMonth').value;
-            var month = document.getElementById('billingReportAccountReportYear').value;
+            var year = document.getElementById('billingReportAccountReportYear').value;
+            var month = document.getElementById('billingReportAccountReportMonth').value;
 
             console.log(ic);
             console.log(year);
@@ -133,20 +136,164 @@
                     type: "post",
                     data: data,
                     timeout: 10000,
-                    success: function (data) {
+                    success: function (datas) {
 
-                        var d = data.split("|");
+                        var d = datas.split("|");
 
                         if (d[1] === '1') {
 
-                            var url = contextPath + "/PdfServlet?";
-                            url += "&action=" + "yearlyStatement";
-                            url += "&ic=" + ic;
-                            url += "&year=" + year;
-                            url += "&month=" + month;
+                            $('<div class="loading">Loading</div>').appendTo('body');
 
-                            var win = window.open(url, '_blank');
-                            win.focus();
+                            $.ajax({
+                                url: "controllerProcessReport/reportBillingAccountReportGetCustomerYearlyStatement.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 10000,
+                                success: function (datas) {
+
+
+                                    $('#billingReportAccountReportGenerateReportForPrint').html(datas);
+
+                                    setTimeout(function () {
+
+
+                                        var printDiv = $("#billingReportAccountReportGenerateReportForPrint").html().trim();
+
+                                        var printWindow = window.open('', 'Customer Yearly Account Statement');
+
+                                        printWindow.document.write('<html><head><title>Customer Yearly Account Statement</title>');
+                                        printWindow.document.write('</head><body >');
+                                        printWindow.document.write(printDiv);
+                                        printWindow.document.write('</body></html>');
+                                        printWindow.document.close();
+                                        printWindow.focus();
+                                        printWindow.print();
+                                        printWindow.close();
+
+                                        $('.loading').hide();
+
+
+                                    }, 1500);
+
+
+                                },
+                                error: function (err) {
+
+                                }
+                            });
+
+                        } else {
+
+                            document.getElementById('messageHeader').innerHTML = "Failed!";
+                            document.getElementById('messageContent').innerHTML = d[2];
+                            $("#alertMessage").modal();
+
+                        }
+
+                    },
+                    error: function (err) {
+
+                        document.getElementById('messageHeader').innerHTML = "Error!";
+                        document.getElementById('messageContent').innerHTML = "An error occur.\nPlease try again later.";
+                        $("#alertMessage").modal();
+
+                    }
+                });
+            }
+        });
+        // Function Customer Statement End
+
+
+
+        // Function Customer Detail Statement Start
+        $('#reportBilllingReportMainDIV').off('click', '#billingReportAccountReportDetailsStatementBtn').on('click', '#billingReportAccountReportDetailsStatementBtn', function (e) {
+
+            var ic = document.getElementById('billingReportAccountReportIC').value;
+            var year = document.getElementById('billingReportAccountReportYear').value;
+            var month = document.getElementById('billingReportAccountReportMonth').value;
+            var monthString = $("#billingReportAccountReportMonth option:selected").text();
+
+            console.log(ic);
+            console.log(year);
+            console.log(month);
+            console.log(monthString);
+
+
+            if (ic === "") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please fill in patient IC No. !!!";
+                $("#alertMessage").modal();
+
+            } else if (month === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Month !!!";
+                $("#alertMessage").modal();
+
+            } else if (year === "-") {
+
+                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                $("#alertMessage").modal();
+
+            } else {
+
+                var data = {
+                    ic: ic,
+                    month: month,
+                    monthString: monthString,
+                    year: year
+                };
+
+                $.ajax({
+                    url: "controllerProcessReport/reportBillingValidateCustomerIC.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
+
+                        var d = datas.split("|");
+
+                        if (d[1] === '1') {
+
+                            $('<div class="loading">Loading</div>').appendTo('body');
+
+                            $.ajax({
+                                url: "controllerProcessReport/reportBillingAccountReportGetCustomerDetailAccountStatement.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 10000,
+                                success: function (datas) {
+
+
+                                    $('#billingReportAccountReportGenerateReportForPrint').html(datas);
+
+                                    setTimeout(function () {
+
+                                        var printDiv = $("#billingReportAccountReportGenerateReportForPrint").html().trim();
+
+                                        var printWindow = window.open('', 'Customer Detail Account Statement');
+
+                                        printWindow.document.write('<html><head><title>Customer Detail Account Statemen</title>');
+                                        printWindow.document.write('</head><body >');
+                                        printWindow.document.write(printDiv);
+                                        printWindow.document.write('</body></html>');
+                                        printWindow.document.close();
+                                        printWindow.focus();
+                                        printWindow.print();
+                                        printWindow.close();
+
+                                        $('.loading').hide();
+
+
+                                    }, 1500);
+
+                                },
+                                error: function (err) {
+
+                                }
+                            });
 
                         } else {
 
@@ -166,7 +313,83 @@
                 });
             }
         });
-        // Function yearly Statement End
+        // Function Customer Statement End
+
+
+
+        // Function YER Statement Start
+        $('#reportBilllingReportMainDIV').off('click', '#billingReportAccountReportYearEndReportBtn').on('click', '#billingReportAccountReportYearEndReportBtn', function (e) {
+
+
+            $.ajax({
+                url: "controllerProcessReport/reportBillingAccountReportGetYearEndProcessing.jsp",
+                type: "post",
+                timeout: 10000,
+                success: function (data) {
+
+                    var d = data.split("|");
+
+                    if (d[1] === '1') {
+
+                        $('<div class="loading">Loading</div>').appendTo('body');
+
+                        $.ajax({
+                            url: "controllerProcessReport/reportBillingAccountGetYearEndProcessingReport.jsp",
+                            type: "post",
+                            data: data,
+                            timeout: 10000,
+                            success: function (datas) {
+
+
+                                $('#billingReportAccountReportGenerateReportForPrint').html(datas);
+
+
+                                setTimeout(function () {
+
+
+                                    var printDiv = $("#billingReportAccountReportGenerateReportForPrint").html().trim();
+
+                                    var printWindow = window.open('', 'Year End Processing Report');
+
+                                    printWindow.document.write('<html><head><title>Year End Processing Report</title>');
+                                    printWindow.document.write('</head><body >');
+                                    printWindow.document.write(printDiv);
+                                    printWindow.document.write('</body></html>');
+                                    printWindow.document.close();
+                                    printWindow.focus();
+                                    printWindow.print();
+                                    printWindow.close();
+
+                                    $('.loading').hide();
+
+
+                                }, 1500);
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+
+                    } else {
+
+                        document.getElementById('messageHeader').innerHTML = "Failed!";
+                        document.getElementById('messageContent').innerHTML = d[2];
+                        $("#alertMessage").modal();
+
+                    }
+                },
+                error: function (err) {
+
+                    document.getElementById('messageHeader').innerHTML = "Error!";
+                    document.getElementById('messageContent').innerHTML = "An error occur.\nPlease try again later.";
+                    $("#alertMessage").modal();
+
+                }
+            });
+
+        });
+        // Function YER Statement End
 
 
     });
