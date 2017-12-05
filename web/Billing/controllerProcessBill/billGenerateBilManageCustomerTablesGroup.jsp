@@ -4,10 +4,10 @@
     Author     : Shammugam
 --%>
 
+<%@page import="BILLING_helper.Month"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Class.Month"%>
 <%@page import="org.json.JSONArray"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="org.json.JSONObject"%>
@@ -123,8 +123,8 @@
         if (data.isEmpty()) {
 
             //When no customer exist, insert far_customer_ledger
-            String sql4 = "INSERT into far_customer_ledger(customer_id, bill_no, txn_date, bill_desc, bill_amt, " + debitMonth + " )"
-                    + "VALUES('" + pmiNo + "', '" + billNo + "', '" + txnDate + "', '" + "" + "', '" + grandTotal + "', '" + grandTotal + "' )";
+            String sql4 = "INSERT into far_customer_ledger(customer_id, hfc_cd, bill_no, txn_date, bill_desc, bill_amt, location, pay_method, " + debitMonth + " )"
+                    + "VALUES('" + pmiNo + "', '" + hfc_cd + "', '" + billNo + "', '" + txnDate + "', '" + "" + "', '" + grandTotal + "','-','csh', '" + grandTotal + "' )";
 
             isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql4);
             
@@ -140,7 +140,7 @@
 
                 String sql5 = "UPDATE far_customer_ledger "
                         + "SET " + debitMonth + " = '" + grandTotal + "', bill_amt = '" + grandTotal + "', txn_date = '" + txnDate + "' "
-                        + "WHERE customer_id = '" + pmiNo + "' ";
+                        + "WHERE customer_id = '" + pmiNo + "' AND hfc_cd = '" + hfc_cd + "' ";
 
                 isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql5);
                 
@@ -157,7 +157,7 @@
 
                 String sql5 = "UPDATE far_customer_ledger "
                         + "SET " + debitMonth + " = '" + debit + "', bill_amt = '" + grandTotal + "', txn_date = '" + txnDate + "' "
-                        + "WHERE customer_id = '" + pmiNo + "' ";
+                        + "WHERE customer_id = '" + pmiNo + "' AND hfc_cd = '" + hfc_cd + "' ";
 
                 isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql5);
                 
