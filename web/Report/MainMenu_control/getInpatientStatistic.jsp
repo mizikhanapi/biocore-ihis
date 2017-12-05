@@ -11,11 +11,31 @@
     
     Conn con = new Conn();
     
+    String how = request.getParameter("how");
+    String leDate = request.getParameter("leDate");
+    String dateFrom = request.getParameter("dateFrom");
+    String dateTo = request.getParameter("dateTo");
+    
+    String when = "";
+    
+    if(how.equalsIgnoreCase("d")){
+        when="and date_format(ip.episode_date, '%Y-%m-%d')=date_format('"+leDate+"', '%Y-%m-%d')";
+    }
+    else if(how.equalsIgnoreCase("m")){
+        when="and date_format(ip.episode_date, '%Y-%m')=date_format('"+leDate+"', '%Y-%m')";
+    }
+    else if(how.equalsIgnoreCase("y")){
+        when="and date_format(ip.episode_date, '%Y')=date_format('"+leDate+"', '%Y')";
+    }
+    else{
+        when="and date(ip.episode_date) between date('"+dateFrom+"') AND date('"+dateTo+"') ";
+    }
+    
     String query="SELECT ld.`Detail_Reference_code`,ld.`Description`, count(distinct(concat(ip.pmi_no, ip.episode_date))) "
             + "FROM adm_lookup_detail ld "
             + "left join pms_patient_biodata pb on pb.`SEX_CODE`=ld.`Detail_Reference_code` "
             + "left join wis_inpatient_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.hfc_cd=ld.hfc_cd "
-            + "where ld.`Master_Reference_code`='0041' and ld.hfc_cd='"+hfc_cd+"' and date_format(ip.episode_date, '%Y')=date_format(now(), '%Y') "
+            + "where ld.`Master_Reference_code`='0041' and ld.hfc_cd='"+hfc_cd+"' "+when
             + "group by ld.`Description`;";
     ArrayList<ArrayList<String>> dataStat = con.getData(query);
     
@@ -23,7 +43,7 @@
             + "FROM adm_lookup_detail ld "
             + "left join pms_patient_biodata pb on pb.`ID_TYPE`=ld.`Detail_Reference_code` "
             + "left join wis_inpatient_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.hfc_cd=ld.hfc_cd "
-            + "where ld.`Master_Reference_code`='0012' and ld.hfc_cd='"+hfc_cd+"' and date_format(ip.episode_date, '%Y')=date_format(now(), '%Y') "
+            + "where ld.`Master_Reference_code`='0012' and ld.hfc_cd='"+hfc_cd+"' "+when
             + "group by ld.`Description`;";
     ArrayList<ArrayList<String>> dataStatID = con.getData(queryID);
     

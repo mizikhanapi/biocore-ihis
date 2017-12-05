@@ -52,10 +52,10 @@
                                                 <div id="tCISOEDTODrugNameLoading" ></div>
                                                 <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
                                                 <!--                                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4" data-search-by-word="true">-->
-                                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="tCIS_DTODrugCode" placeholder="Drug Code..." tabindex="4" readonly="">
-                                                <input class="form-control input-lg" type="hidden"  id="hfcDTO" placeholder="">
-                                                <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
-                                                <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO" placeholder="">
+                                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="tCIS_DTODrugCode"  tabindex="4" >
+                                                <input class="form-control input-lg" type="hidden"  id="hfcDTO" >
+                                                <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" >
+                                                <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcIdDTO">
                                                 <div id="matchDTO" style="width: 100%"></div>
                                             </div>

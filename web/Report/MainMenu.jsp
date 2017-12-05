@@ -16,7 +16,7 @@
 <%
 
     Conn conn = new Conn();
-    String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");    
+    String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
     String dis_names = "";
     String dis_name_query1 = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'"
@@ -29,7 +29,7 @@
         }
     }
 
-    
+
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,12 +39,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--header -->
+        <script src="../assets/js/jquery.min.js"></script>
+
         <%@include file = "../assets/header.html" %>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="../assets/css/mystyles.css" rel="stylesheet">
+        <link href="../assets/css/jquery-ui.css" rel="stylesheet">
         <script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
         <!--<script src="https://code.highcharts.com/highcharts.src.js"></script>-->
-        
+
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
         <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
 
@@ -61,7 +63,36 @@
                     <%@ include file ="libraries/reportTopMenus-dashboard.html" %>
                     <!-- menu top -->
 
+                    <div class="row">
+                        <div class="col-md-12">
 
+                            <div class="thumbnail">
+                                <div id="ALGraph"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="thumbnail" style="margin-bottom: 5px;">
+                                <div class="text-center h3" style="margin: 0;">
+                                    Statistic of <span id="REP_statTitle"></span> 
+                                    <span class="pull-right" >
+                                        <a id="REP_btnRefresh" title="Refresh the statistic.">
+                                            <i class="fa fa-refresh"></i>  
+                                        </a>
+                                        <a id="REP_btnSetModal" title="Set statistic period.">
+                                            <i class="fa fa-cog"></i>  
+                                        </a>                                       
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12 text-center">
@@ -99,37 +130,28 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
 
-                            <div class="thumbnail">
-                                <div id="ALGraph"></div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <div class="thumbnail" id="MM_stat_icd10">
                                     <img src="img/ajax-loader.gif">
                                 </div>
-                                
+
                             </div>
-                                
+
                             <div class="col-md-4">
                                 <div class="thumbnail" id="MM_stat_complaint">
                                     <img src="img/ajax-loader.gif">
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-4">
                                 <div class="thumbnail" id="MM_stat_drug">
                                     <img src="img/ajax-loader.gif">
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
 
@@ -189,67 +211,6 @@
                                                 <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
                                             </ul>
                                         </div>
-                                        <!-- Default panel contents -->
-
-                                        <!-- Default panel contents -->
-                                        <!--                                        <div class="panel-heading">
-                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#LABORATORY">LABORATORY INFO SYSTEM</a>
-                                                                                    <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#LABORATORY">
-                                                                                        <i class="glyphicon glyphicon-chevron-down"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                                 List group 
-                                                                                <div id="LABORATORY" class="panel-collapse panel-collapse collapse">
-                                                                                    <ul class="list-group">
-                                                                                        <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                        <!-- Default panel contents -->
-
-                                        <!-- Default panel contents -->
-                                        <!--                                        <div class="panel-heading">
-                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#INPATIENT">INPATIENT MANAGEMENT</a>
-                                                                                    <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#INPATIENT">
-                                                                                        <i class="glyphicon glyphicon-chevron-down"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                                 List group 
-                                                                                <div id="INPATIENT" class="panel-collapse panel-collapse collapse">
-                                                                                    <ul class="list-group">
-                                                                                        <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                        <!-- Default panel contents -->
-
-                                        <!-- Default panel contents -->
-                                        <!--                                        <div class="panel-heading">
-                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#BILLING">BILLING SYSTEM</a>
-                                                                                    <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#BILLING">
-                                                                                        <i class="glyphicon glyphicon-chevron-down"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                                 List group 
-                                                                                <div id="BILLING" class="panel-collapse panel-collapse collapse">
-                                                                                    <ul class="list-group">
-                                                                                        <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                        <!-- Default panel contents -->
-
-                                        <!-- Default panel contents -->
-                                        <!--                                        <div class="panel-heading">
-                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#APPOINTMENT">PATIENT APPOINTMENT</a>
-                                                                                    <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#APPOINTMENT">
-                                                                                        <i class="glyphicon glyphicon-chevron-down"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                                 List group 
-                                                                                <div id="APPOINTMENT" class="panel-collapse panel-collapse collapse">
-                                                                                    <ul class="list-group">
-                                                                                        <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                        <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
@@ -268,37 +229,7 @@
 
                                             </ul>
                                         </div>
-                                        <!-- Default panel contents -->
 
-                                        <!-- Default panel contents -->
-                                        <!--                                        <div class="panel-heading">
-                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#KIOSK">KIOSK</a>
-                                                                                    <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#KIOSK">
-                                                                                        <i class="glyphicon glyphicon-chevron-down"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                                 List group 
-                                                                                <div id="KIOSK" class="panel-collapse panel-collapse collapse">
-                                                                                    <ul class="list-group">
-                                                                                        <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                        <!-- Default panel contents -->
-
-                                        <!-- Default panel contents -->
-                                        <!--                                        <div class="panel-heading">
-                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#RADIOLOGY">RADIOLOGY INFO SYSTEM</a>
-                                                                                    <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#RADIOLOGY">
-                                                                                        <i class="glyphicon glyphicon-chevron-down"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                                 List group 
-                                                                                <div id="RADIOLOGY" class="panel-collapse panel-collapse collapse">
-                                                                                    <ul class="list-group">
-                                                                                        <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                                                    </ul>
-                                                                                </div>-->
-                                        <!-- Default panel contents -->
                                     </div>
                                 </div>
                             </div>
@@ -307,108 +238,282 @@
                 </div>
             </div>
         </div>
+        <!-- Add Modal Start -->
+        <div class="modal fade" id="REP_setModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                        <h3 class="modal-title"> Set Statistic Time Frame</h3>
+                    </div>
+                    <div class="modal-body">
 
+                        <!-- content goes here -->
+                        <form class="form-horizontal" id="REP_setForm" autocomplete="off">
 
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">View statistic by </label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="REP_viewBy">
+                                        <option value="d">Day</option>
+                                        <option value="m">Month</option>
+                                        <option value="y">Year</option>
+                                        <option value="x">Select date</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group rep_div_hs" id="REP_dateDiv">
+                                <label class="col-md-4 control-label" for="textinput">Date </label>
+                                <div class="col-md-8">
+                                    <input readonly id="REP_date" class="form-control" placeholder="Pick a date.">
+                                </div>
+                            </div>
+
+                            <div class="rep_div_hs" id="REP_dateRangeDiv" style="display: none;">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">From </label>
+                                    <div class="col-md-8">
+                                        <input readonly id="REP_dateFrom" class="form-control" placeholder="Pick a start date">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label" for="textinput">To</label>
+                                    <div class="col-md-8">
+                                        <input readonly id="REP_dateTo" class="form-control" placeholder="Pick an end date. Please pick start date first.">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <!-- content goes here -->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="REP_btnSet">Set</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="reset" id="REP_btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Modal End -->  
+
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery-ui.js"></script>
+        <script src="../assets/js/create_destroy_loading.js"></script>
         <script>
-            $(function(){
-                MM_getInpatientStatistic();
+            $(function () {
+
                 //MM_getOutpatientStatistic();
                 //MM_getDiagnosisStatistic();
                 //MM_getChiefComolaintStatistic();
                 //MM_getDrugStatistic();
+                $('#REP_date').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                    yearRange: '1990:+0',
+                    maxDate: '+0d'
+                });
+
+                $('#REP_date').datepicker('setDate', '+0');
+                $('#REP_viewBy').val("d");
+                $('#REP_btnSet').click();
+                //MM_getInpatientStatistic();
             });
-            
-            function MM_getInpatientStatistic(){
-                
+
+            $('#REP_date').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                yearRange: '1990:+0',
+                maxDate: '+0d'
+            });
+
+            //--- initialise datepicker for from ----
+            $('#REP_dateFrom').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                yearRange: '1990:+0',
+                maxDate: '+0d'
+            });
+
+            //--- initialise datepicker for to after changes on from ------------
+            $('#REP_dateFrom').on('change', function () {
+
+                $("#REP_dateTo").datepicker("destroy");
+                $('#REP_dateTo').val('');
+                var fromDate = $("#REP_dateTo").datepicker("getDate");
+
+                $('#REP_dateTo').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                    yearRange: '1990:+0',
+                    minDate: fromDate,
+                    maxDate: '+0d'
+                });
+
+            });
+
+            $('#REP_viewBy').on('change', function () {
+                var x = $(this).val();
+                $('.rep_div_hs').hide();
+
+                if (x === "x") {
+                    $('#REP_dateRangeDiv').show();
+                } else {
+                    $('#REP_dateDiv').show();
+                }
+            });
+
+            function MM_getInpatientStatistic() {
+
+                var data = {
+                    how: $('#REP_viewBy').val(),
+                    leDate: $('#REP_date').val(),
+                    dateFrom: $('#REP_dateFrom').val(),
+                    dateTo: $('#REP_dateTo').val()
+                };
+
+                createScreenLoading();
                 $.ajax({
                     timeout: 60000,
+                    data: data,
                     type: 'POST',
                     url: "MainMenu_control/getInpatientStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
                         $('#MM_stat_inpatient').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                         $('#MM_stat_inpatient').html("Oopps! "+errorThrown);
+                        $('#MM_stat_inpatient').html("Oopps! " + errorThrown);
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         MM_getOutpatientStatistic();
                     }
-                    
+
                 });
             }
-            
-            function MM_getOutpatientStatistic(){
+
+            function MM_getOutpatientStatistic() {
+
+                var data = {
+                    how: $('#REP_viewBy').val(),
+                    leDate: $('#REP_date').val(),
+                    dateFrom: $('#REP_dateFrom').val(),
+                    dateTo: $('#REP_dateTo').val()
+                };
+                
                 $.ajax({
                     timeout: 60000,
                     type: 'POST',
+                    data: data,
                     url: "MainMenu_control/getOutpatientStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
                         $('#MM_stat_outpatient').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                         $('#MM_stat_outpatient').html("Oopps! "+errorThrown);
+                        $('#MM_stat_outpatient').html("Oopps! " + errorThrown);
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         MM_getDiagnosisStatistic();
                     }
-                    
+
                 });
-                
+
             }
-            
-            function MM_getDiagnosisStatistic(){
-                 $.ajax({
+
+            function MM_getDiagnosisStatistic() {
+                
+                 var data = {
+                        how: $('#REP_viewBy').val(),
+                        leDate: $('#REP_date').val(),
+                        dateFrom: $('#REP_dateFrom').val(),
+                        dateTo: $('#REP_dateTo').val()
+                    };
+                
+                $.ajax({
                     timeout: 120000,
+                    data: data,
                     type: 'POST',
                     url: "MainMenu_control/getDiagnosisStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
                         $('#MM_stat_icd10').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                         $('#MM_stat_icd10').html("Oopps! "+errorThrown);
+                        $('#MM_stat_icd10').html("Oopps! " + errorThrown);
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         MM_getChiefComolaintStatistic();
                     }
-                    
-                });               
+
+                });
             }
-            
-            function MM_getChiefComolaintStatistic(){
+
+            function MM_getChiefComolaintStatistic() {
+                
+                var data = {
+                        how: $('#REP_viewBy').val(),
+                        leDate: $('#REP_date').val(),
+                        dateFrom: $('#REP_dateFrom').val(),
+                        dateTo: $('#REP_dateTo').val()
+                    };
+                    
                 $.ajax({
                     timeout: 60000,
+                    data:data,
                     type: 'POST',
                     url: "MainMenu_control/getCheifComplaintStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
                         $('#MM_stat_complaint').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                         $('#MM_stat_complaint').html("Oopps! "+errorThrown);
+                        $('#MM_stat_complaint').html("Oopps! " + errorThrown);
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         MM_getDrugStatistic();
                     }
-                    
-                });      
-                
+
+                });
+
             }
-            
-            function MM_getDrugStatistic(){
+
+            function MM_getDrugStatistic() {
+                
+                 var data = {
+                        how: $('#REP_viewBy').val(),
+                        leDate: $('#REP_date').val(),
+                        dateFrom: $('#REP_dateFrom').val(),
+                        dateTo: $('#REP_dateTo').val()
+                    };
+                    
                 $.ajax({
                     timeout: 60000,
+                    data: data,
                     type: 'POST',
                     url: "MainMenu_control/getDrugStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
                         $('#MM_stat_drug').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                         $('#MM_stat_drug').html("Oopps! "+errorThrown);
+                        $('#MM_stat_drug').html("Oopps! " + errorThrown);
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         viewPAGraph();
                     }
-                    
-                });     
+
+                });
             }
 
             //    $("#test").load("libraries/reportSideMenus.jsp");
@@ -429,7 +534,7 @@
                         code: splitTemp[0]
                     };
 
-                   console.log(newObj);
+                    console.log(newObj);
                     disciplineData.push(newObj);
                 }
             }
@@ -492,7 +597,7 @@
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
 
-            
+
             function viewPAGraph() {
 
                 getDateNow();
@@ -510,7 +615,7 @@
 //                        console.log((obj.name.toLowerCase().search(discipline.toLowerCase())) > -1);
                         return (obj.name.toLowerCase().search(discipline.toLowerCase())) > -1;
                     });
-                   console.log(result);
+                    console.log(result);
                 }
                 //dis = result[0].code;
 
@@ -519,7 +624,7 @@
                     endDate: endDate,
                     hfc: hfc
                 };
-                 console.log(data);
+                console.log(data);
                 $.ajax({
                     type: "POST",
                     url: 'MainMenuInpatientGraph.jsp',
@@ -530,11 +635,53 @@
                     },
                     error: function (err) {
                         console.log("ERROR: " + err);
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        destroyScreenLoading();
                     }
 
                 });
 
             }
+
+            $('#REP_btnSetModal').on('click', function () {
+                $('#REP_setModal').modal('show');
+            });
+
+            $('#REP_btnSet').on('click', function () {
+                var how = $('#REP_viewBy').val();
+                var leDate = $('#REP_date').val();
+                var dateFrom = $('#REP_dateFrom').val();
+                var dateTo = $('#REP_dateTo').val();
+
+                if (how === "x" && (dateFrom === "" || dateTo === "")) {
+                    bootbox.alert("Please pick date from and date to!");
+                } else if (leDate === "") {
+                    bootbox.alert("Please pick the date!");
+                } else {
+                    $('#REP_setModal').modal('hide');
+                    MM_getInpatientStatistic();
+                    var monthNames = $('#REP_date').datepicker("option", "monthNames");
+                    var tarikh = $('#REP_date').datepicker('getDate');
+                    var title = "";
+
+                    if (how === "d") {
+                        title = "Date " + $('#REP_date').val();
+                    } else if (how === "m") {
+                        title = "Month " + monthNames[tarikh.getMonth()] + " " + tarikh.getFullYear();
+                    } else if (how === "y") {
+                        title = "Year " + tarikh.getFullYear();
+                    } else {
+                        title = $('#REP_dateFrom').val() + " until " + $('#REP_dateTo').val();
+                    }
+
+                    $('#REP_statTitle').text(title);
+                }
+            });
+
+            $('#REP_btnRefresh').on('click', function () {
+                $('#REP_btnSet').click();
+            });
 
 
         </script>

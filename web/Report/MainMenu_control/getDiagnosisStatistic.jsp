@@ -21,9 +21,29 @@
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     Conn con = new Conn();
     
+    String how = request.getParameter("how");
+    String leDate = request.getParameter("leDate");
+    String dateFrom = request.getParameter("dateFrom");
+    String dateTo = request.getParameter("dateTo");
+    
+    String when = "";
+    
+    if(how.equalsIgnoreCase("d")){
+        when="and date_format(ld.episode_date, '%Y-%m-%d')=date_format('"+leDate+"', '%Y-%m-%d')";
+    }
+    else if(how.equalsIgnoreCase("m")){
+        when="and date_format(ld.episode_date, '%Y-%m')=date_format('"+leDate+"', '%Y-%m')";
+    }
+    else if(how.equalsIgnoreCase("y")){
+        when="and date_format(ld.episode_date, '%Y')=date_format('"+leDate+"', '%Y')";
+    }
+    else{
+        when="and date(ld.episode_date) between date('"+dateFrom+"') AND date('"+dateTo+"') ";
+    }
+    
     String query ="select ld.`Diagnosis_Cd`, ld.icd10_description, count(ld.`Episode_Date`) as jumlah "
             + "from lhr_diagnosis ld "
-            + "where ld.hfc_cd='"+hfc_cd+"' and ld.`Episode_Date` between '"+startOfYear+"' and '"+curDate+"' "
+            + "where ld.hfc_cd='"+hfc_cd+"' "+when //"where ld.hfc_cd='"+hfc_cd+"' and ld.`Episode_Date` between '"+startOfYear+"' and '"+curDate+"' "
             + "group by ld.`Diagnosis_Cd` "
             + "order by jumlah desc limit 10;";
     ArrayList<ArrayList<String>> dataStat = con.getData(query);

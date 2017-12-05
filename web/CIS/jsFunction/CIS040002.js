@@ -132,6 +132,7 @@ $(document).ready(function(){
     
     $("#btnCIS_OE_DTO_ADD").click(function(e){
         
+        $('#CIS040002').css('overflow', 'auto');
         e.preventDefault();
         var drugName = $('#tCISOEDTODrugName').val();
         var drugCode = $('#tCIS_DTODrugCode').val();
@@ -435,7 +436,7 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
                 //$('#tCIS_DTODrugFrequency').text(array_data[9].trim());
                 $("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
-                $('#tCIS_DTODrugStrength').val(array_data[4].trim())
+                $('#tCIS_DTODrugStrength').val(array_data[4].trim());
                 $('#tCIS_DTODrugStrengthUnit').val("");
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
                 $('#tCIS_DTODrugUnit').val(array_data[12].trim());
