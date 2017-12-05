@@ -75,6 +75,8 @@
     
     epiDate= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     
+    GL = GL.equalsIgnoreCase("0000-00-00")?"NULL":"'"+GL+"'";
+    
     Boolean regis, updBed, upMaster, upDetail;
     int queue_now = 0;
     int newQueueNo = 0;
@@ -111,7 +113,7 @@
                 + "'" + emTy + "','" + EliTy + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
                 + "'" + AdmissionType + "','" + AdmissionReason + "',"
                 + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
-                + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "', now());";
+                + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "'," + GL + ",'" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "', now());";
 
         updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' AND ward_id='"+wname+"' ;";
         updateMaster = "UPDATE wis_order_master SET order_status = '1' where pmi_no ='" + pmino + "' and order_no ='" + orderNo + "'  ";

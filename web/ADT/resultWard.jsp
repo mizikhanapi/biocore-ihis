@@ -74,7 +74,7 @@
         searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
                 //    11       12        13           14                    15              16                    17                    18                       19                       20        
                 + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
-                //   21                     22       23              24                    25             26            27            28               29          30
+                //   21                         22          23                  24                    25             26             27              28                      29          30
                 + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
                 // 31                          32         33             34                 35       36                 37               38                                                     39                                      40
                 + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, e.`Description`, TIMESTAMPDIFF(YEAR, c.BIRTH_DATE, CURDATE()), date_format(a.episode_date, '%Y-%m-%d %H:%i:%s'), a.startDate  "
@@ -117,6 +117,16 @@
 //          out.print(patientBio);
         int size1141 = dataList.size();
 //        out.print(searching);
+//        for(ArrayList<String> arr1: dataList){
+//            String s="";
+//            for(String arr: arr1){
+//               
+//                s+=arr+" |";
+//            }
+//            
+//            out.print(s);
+//            out.print("<br/>");
+//        }
         if (size1141 > 0) {
 
             for (int i = 0; i < size1141; i++) {
