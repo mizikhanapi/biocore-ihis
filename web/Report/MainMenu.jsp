@@ -134,20 +134,20 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_icd10">
+                                <div class="thumbnail" id="MM_stat_icd10" >
                                     <img src="img/ajax-loader.gif">
                                 </div>
 
                             </div>
 
                             <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_complaint">
+                                <div class="thumbnail" id="MM_stat_complaint" >
                                     <img src="img/ajax-loader.gif">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_drug">
+                                <div class="thumbnail" id="MM_stat_drug" >
                                     <img src="img/ajax-loader.gif">
                                 </div>
                             </div>
