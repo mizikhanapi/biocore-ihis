@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="BILLING_helper.BillingParameterCalculator"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.Date"%>
@@ -53,7 +54,8 @@
         ArrayList<ArrayList<String>> billingParameters = Conn.getData(sql1);
 
         // Calculating Amount For Futher Process
-        double[] amount = calculateAmount(billingParameters, totalPrice);
+        BillingParameterCalculator calculateAmt = new BillingParameterCalculator();
+        double[] amount = calculateAmt.calculateAmount(billingParameters, totalPrice);
         totalPrice = amount[0];
 
         // Get bill's month debit and add the item price
@@ -87,7 +89,8 @@
         Conn.setData(sql4);
 
         // Update Bill Parameter
-        updateCustomerBillParameter(billingParameters, billNo, amount);
+        BillingParameterCalculator updateBillPar = new BillingParameterCalculator();
+        updateBillPar.updateCustomerBillParameter(billingParameters, billNo, amount);
 
         //Get current bill_amt and add item price;
         String sql5 = "SELECT item_amt, quantity "
@@ -110,7 +113,7 @@
         Conn.setData(sql6);
 
         String infoMessage = "Selected item added to bill successfully.";
-        out.print("-|1|" + infoMessage + "|" + totalPrice);
+        out.print("-|1|" + infoMessage);
 
     } else if (itemType.equalsIgnoreCase("D")) {
 
@@ -128,7 +131,8 @@
         ArrayList<ArrayList<String>> billingParameters = Conn.getData(sql1);
 
         // Calculating Amount For Futher Process
-        double[] amount = calculateAmount(billingParameters, totalPrice);
+        BillingParameterCalculator calculateAmt = new BillingParameterCalculator();
+        double[] amount = calculateAmt.calculateAmount(billingParameters, totalPrice);
         totalPrice = amount[0];
 
         // Get bill's month debit and add the item price
@@ -168,10 +172,10 @@
                 + " '" + priceBeforeTax + "','" + quantity + "','" + hfc + "','" + custId + "','0','" + userId + "','" + created_date + "')";
         Conn.setData(sql4);
 
-        // Update Bill Parameter
-        updateCustomerBillParameter(billingParameters, billNo, amount);
+        BillingParameterCalculator updateBillPar = new BillingParameterCalculator();
+        updateBillPar.updateCustomerBillParameter(billingParameters, billNo, amount);
 
-        //Get current bill_amt and add item price;
+        // Get current bill_amt and add item price;
         String sql5 = "SELECT item_amt, quantity "
                 + "FROM far_customer_hdr "
                 + "WHERE customer_id = '" + custId + "' "
@@ -184,7 +188,7 @@
         itemAmt = String.valueOf(Double.parseDouble(itemAmt) + totalPrice);
         qty = String.valueOf(Integer.parseInt(qty) + quantity);
 
-        //Update customer hdr
+        // Update customer hdr
         String sql6 = "UPDATE far_customer_hdr "
                 + "SET item_amt = '" + itemAmt + "', quantity = '" + qty + "', payment = 'Unpaid' "
                 + "WHERE bill_no = '" + billNo + "' "
@@ -192,10 +196,10 @@
         Conn.setData(sql6);
 
         String infoMessage = "Selected item added to bill successfully.";
-        out.print("-|1|" + infoMessage + "|" + totalPrice);
+        out.print("-|1|" + infoMessage);
     }
 %>
-<%!
+<%--<%!
     public double[] calculateAmount(ArrayList<ArrayList<String>> billingParameters, double totalPrice) {
 
         // Library Object Creation
@@ -288,4 +292,4 @@
             }
         }
     }
-%>
+%>--%>

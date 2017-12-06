@@ -109,6 +109,7 @@
     double grandTotal = 0;
     double billGSTPrice = 0;
     double billServicePrice = 0;
+    double billDiscountPrice = 0;
     double billRoundingPrice = 0;
     double billGivenAMTPrice = 0;
     double billChangeAMTPrice = 0;
@@ -130,6 +131,8 @@
                 billGSTPrice = Double.parseDouble(data1.get(i).get(2));
             } else if (data1.get(i).get(0).contains("BP002") == true) {
                 billServicePrice = Double.parseDouble(data1.get(i).get(2));
+            } else if (data1.get(i).get(0).contains("BP003") == true) {
+                billDiscountPrice = Double.parseDouble(data1.get(i).get(2));
             }
 
         } else {
@@ -138,7 +141,7 @@
         }
     }
 
-    billRoundingPrice = subtotal + billServicePrice + billGSTPrice;
+    billRoundingPrice = subtotal + billServicePrice + billGSTPrice - billDiscountPrice;
 
     String query4 = "SELECT item_amt, amt_paid, IFNULL(amt_given,'0'), IFNULL(amt_change,'0') "
             + "FROM far_customer_hdr "
@@ -213,6 +216,8 @@
 
                                 } else if (dataBill.get(i).get(1).contains("BP002") == true) {
 
+                                } else if (dataBill.get(i).get(1).contains("BP003") == true) {
+
                                 } else {
                         %>
                         <tr>
@@ -234,6 +239,12 @@
                             <td colspan="2" style="border-top: 1px solid #000;"></td>
                             <td colspan="3" style="text-align: right;font-weight: bold;border-top: 1px solid #000;">Sub-Total (RM) :</td>
                             <td colspan="1" style="text-align: center;font-weight: bold;border-top: 1px solid #000;"><%=df.format(subtotal)%></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" ></td>
+                            <td colspan="3" style="text-align: right;font-weight: bold;">Discount (RM) :</td>
+                            <td colspan="1" style="text-align: center;font-weight: bold;"><%=df.format(billDiscountPrice)%></td>
                         </tr>
 
                         <tr>

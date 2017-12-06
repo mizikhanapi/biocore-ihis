@@ -4,18 +4,23 @@
     Author     : Shammugam
 --%>
 
+<%@page import="dBConn.Conn"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="dbConn1.Conn"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="main.RMIConnector"%>
 
 <%
+
+    Conn conn = new Conn();
+    RMIConnector rmic = new RMIConnector();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = (String) session.getAttribute("DISCIPLINE_CODE");
 
     // Generate Decimal Format
     DecimalFormat df = new DecimalFormat("0.00");
@@ -98,7 +103,7 @@
                             = "SELECT txn_date, item_cd, item_desc, quantity, item_amt/quantity, item_amt, bill_no, ref_order_no "
                             + "FROM far_customer_dtl "
                             + "WHERE bill_no = '" + billNo + "' ";
-                    ArrayList<ArrayList<String>> dataBill = Conn.getData(query2);
+                    ArrayList<ArrayList<String>> dataBill = conn.getData(query2);
 
                     for (int i = 0; i < dataBill.size(); i++) {
                 %>
@@ -132,32 +137,42 @@
     double subtotal = 0;
     double amtPaid = 0;
 
-    String query3 = "SELECT item_cd, item_desc, item_amt, quantity "
+    String querySelectItem = "SELECT item_cd, item_desc, item_amt, quantity "
             + "FROM far_customer_dtl "
             + "WHERE bill_no = '" + billNo + "' ";
-    ArrayList<ArrayList<String>> data1 = Conn.getData(query3);
 
-    for (int i = 0; i < data1.size(); i++) {
-        grandTotal += Double.parseDouble(data1.get(i).get(2));
-        grandQuantity += Double.parseDouble(data1.get(i).get(3));
-        if (data1.get(i).get(0).contains("BP") == true) {
+    ArrayList<ArrayList<String>> dataItem = conn.getData(querySelectItem);
+
+    for (int i = 0; i < dataItem.size(); i++) {
+
+        grandTotal += Double.parseDouble(dataItem.get(i).get(2));
+        grandQuantity += Double.parseDouble(dataItem.get(i).get(3));
+
+        if (dataItem.get(i).get(0).contains("BP") == true) {
+
         } else {
-            subtotal += Double.parseDouble(data1.get(i).get(2));
+
+            subtotal += Double.parseDouble(dataItem.get(i).get(2));
+
         }
     }
 
-    String query4 = "SELECT item_amt, amt_paid "
+    String querySelectMaster = "SELECT item_amt, amt_paid "
             + "FROM far_customer_hdr "
             + "WHERE bill_no = '" + billNo + "'";
-    ArrayList<ArrayList<String>> data2 = Conn.getData(query4);
-    grandTotal = Double.parseDouble(data2.get(0).get(0));
-    amtPaid = Double.parseDouble(data2.get(0).get(1));
+
+    ArrayList<ArrayList<String>> dataMaster = conn.getData(querySelectMaster);
+
+    grandTotal = Double.parseDouble(dataMaster.get(0).get(0));
+    amtPaid = Double.parseDouble(dataMaster.get(0).get(1));
 
     double outstandingBalance = grandTotal - amtPaid;
 
     if ((outstandingBalance != 0) && (amtPaid != 0)) {
+
         subtotal = outstandingBalance;
         grandTotal = outstandingBalance;
+
     }
 
     grandTotal = Math.round(grandTotal * 20) / 20.0;
@@ -224,65 +239,65 @@
 </div>
 
 <%
-    Conn con = new Conn();
-
-    String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-
-    String queryLogo = "SELECT logo, hfc_name, CONCAT(address1,' ',address2,' ',address3) FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "';";
-    ArrayList<ArrayList<String>> dataLogo = con.getData(queryLogo);
-
-    LocalDate localDate = LocalDate.now();
-    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-    DateFormat dateFormat1 = new SimpleDateFormat("MMyyyy");
-    Date date = new Date();
-    String date1 = dateFormat1.format(date);
-
-    String logoHFC = "";
-    String nameHFC = "";
-    String addressHFC = "";
-    String receiptNo = "";
-    int num = 1;
-
-    if (dataLogo.size()
-            > 0) {
-        if (dataLogo.get(0).get(0) != null) {
-            logoHFC = dataLogo.get(0).get(0);
-            nameHFC = dataLogo.get(0).get(1);
-            addressHFC = dataLogo.get(0).get(2);
-        }
-    }
-
-    //Get the last sequence no of receipt
-    String sqlLastSql = "SELECT last_seq_no "
-            + "FROM far_last_seq_no "
-            + "WHERE module_name = 'R' "
-            + "FOR UPDATE";
-    ArrayList<ArrayList<String>> dataLastSql = Conn.getData(sqlLastSql);
-
-    String seqNo = dataLastSql.get(0).get(0);
-    int seq = Integer.parseInt(seqNo);
-    int currSeq = seq + 1;
-    String currentSeq = Integer.toString(currSeq);
-
-    //Update last sequance number of receipt
-    String sqlUpdateLastSeq = "UPDATE far_last_seq_no "
-            + "SET last_seq_no = '" + currentSeq + "' "
-            + "WHERE module_name = 'R'";
-
-    Conn.setData(sqlUpdateLastSeq);
-
-    //Generate receipt no
-    int length = (int) Math.log10(currSeq) + 1;
-    String zero = "0";
-    String tmpNum = currentSeq;
-
-    int count;
-    for (count = length;
-            count < 10; count++) {
-        tmpNum = zero + tmpNum;
-    }
-
-    receiptNo = tmpNum + date1;
+//    Conn con = new Conn();
+//
+//    String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+//
+//    String queryLogo = "SELECT logo, hfc_name, CONCAT(address1,' ',address2,' ',address3) FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "';";
+//    ArrayList<ArrayList<String>> dataLogo = con.getData(queryLogo);
+//
+//    LocalDate localDate = LocalDate.now();
+//    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+//    DateFormat dateFormat1 = new SimpleDateFormat("MMyyyy");
+//    Date date = new Date();
+//    String date1 = dateFormat1.format(date);
+//
+//    String logoHFC = "";
+//    String nameHFC = "";
+//    String addressHFC = "";
+//    String receiptNo = "";
+//    int num = 1;
+//
+//    if (dataLogo.size()
+//            > 0) {
+//        if (dataLogo.get(0).get(0) != null) {
+//            logoHFC = dataLogo.get(0).get(0);
+//            nameHFC = dataLogo.get(0).get(1);
+//            addressHFC = dataLogo.get(0).get(2);
+//        }
+//    }
+//
+//    //Get the last sequence no of receipt
+//    String sqlLastSql = "SELECT last_seq_no "
+//            + "FROM far_last_seq_no "
+//            + "WHERE module_name = 'R' "
+//            + "FOR UPDATE";
+//    ArrayList<ArrayList<String>> dataLastSql = conn.getData(sqlLastSql);
+//
+//    String seqNo = dataLastSql.get(0).get(0);
+//    int seq = Integer.parseInt(seqNo);
+//    int currSeq = seq + 1;
+//    String currentSeq = Integer.toString(currSeq);
+//
+//    //Update last sequance number of receipt
+//    String sqlUpdateLastSeq = "UPDATE far_last_seq_no "
+//            + "SET last_seq_no = '" + currentSeq + "' "
+//            + "WHERE module_name = 'R'";
+//
+//    Conn.setData(sqlUpdateLastSeq);
+//
+//    //Generate receipt no
+//    int length = (int) Math.log10(currSeq) + 1;
+//    String zero = "0";
+//    String tmpNum = currentSeq;
+//
+//    int count;
+//    for (count = length;
+//            count < 10; count++) {
+//        tmpNum = zero + tmpNum;
+//    }
+//
+//    receiptNo = tmpNum + date1;
 
 %>
 
@@ -469,13 +484,18 @@
             if (td) {
 
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
                     tr[i].style.display = "";
+
                 } else {
+
                     tr[i].style.display = "none";
+
                 }
 
             }
         }
+
     }
     // Search Misc Function End
 
@@ -499,9 +519,13 @@
             if (td) {
 
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
                     tr[i].style.display = "";
+
                 } else {
+
                     tr[i].style.display = "none";
+
                 }
 
             }
@@ -529,9 +553,13 @@
             if (td) {
 
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
                     tr[i].style.display = "";
+
                 } else {
+
                     tr[i].style.display = "none";
+
                 }
 
             }
@@ -559,9 +587,13 @@
             if (td) {
 
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
                     tr[i].style.display = "";
+
                 } else {
+
                     tr[i].style.display = "none";
+
                 }
 
             }
@@ -582,6 +614,7 @@
         $('#method li a').click(function () {
 
             $('#paymentMethod').text($(this).text());
+
         });
         // Payment Method Selection Function End
 
@@ -598,6 +631,7 @@
         // Key Up Event For Change Calculation Start
         $('#amtReceived').keyup(function () {
 
+
             var amtReceived = $(this).val();
             var amtReceivedValid = document.getElementById('amtReceived').checkValidity();
 
@@ -612,6 +646,7 @@
             } else if (amtReceivedValid === false) {
 
                 bootbox.alert("Please Insert Amount That Is Between 0.01 To 9999999.99 !!!");
+
                 $('#amtReceived').val('');
 
             }
@@ -619,6 +654,7 @@
             change = amtReceived - grandTotal;
 
             $('#change').val(change.toFixed(2));
+
 
         });
         // Key Up Event For Change Calculation End
@@ -635,6 +671,7 @@
 
         // Key Up Event For Change Calculation Start
         $('#payment').click(function () {
+
 
             var subTotal = document.getElementById('subtotal').value;
             var grandTotal = document.getElementById('grandTotal').value;
@@ -682,7 +719,7 @@
 
                         if (result === true) {
 
-                            // $('<div class="loading">Loading</div>').appendTo('body');
+                            $('<div class="loading">Loading</div>').appendTo('body');
 
                             $.ajax({
                                 url: "manageBillGenerateBillDetailUnpaidPaidMakePayment.jsp",
@@ -702,6 +739,14 @@
 
                                         $("#alertMessage").modal();
 
+                                        dissableButtonForPage();
+
+                                        $('.loading').hide();
+
+                                        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                                        generateRecieptForBillTransaction();
+
 
                                     } else {
 
@@ -709,6 +754,8 @@
                                         document.getElementById('messageContent').innerHTML = d[2];
 
                                         $("#alertMessage").modal();
+
+                                        $('.loading').hide();
 
                                     }
 
@@ -719,6 +766,8 @@
                                     document.getElementById('messageContent').innerHTML = "Failed to make payment.\nPlease try again.";
 
                                     $("#alertMessage").modal();
+
+                                    $('.loading').hide();
 
                                 }
                             });
@@ -751,6 +800,7 @@
 
             e.preventDefault();
 
+
             $('#miscItem').load('manageBillGenerateBillDetailUnpaidPaidMiscList.jsp');
 
             $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableMisc');
@@ -764,14 +814,18 @@
 
             e.preventDefault();
 
+
             console.log("Load Misc");
 
             $('#miscItem').load('manageBillGenerateBillDetailUnpaidPaidMiscList.jsp');
+
             $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableMisc');
+
             $('#searchMiscItem').val('');
             $('#drugsItem').html('');
             $('#RISProcItem').html('');
             $('#POSProcItem').html('');
+
 
         });
         // Add Function Initialize Misc End
@@ -782,14 +836,18 @@
 
             e.preventDefault();
 
+
             console.log("Load Drug");
 
             $('#miscItem').html('');
             $('#RISProcItem').html('');
             $('#POSProcItem').html('');
             $('#searchDrugsItem').val('');
+
             $('#drugsItem').load('manageBillGenerateBillDetailUnpaidPaidDrugList.jsp');
+
             $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableDrugsItem');
+
 
         });
         // Add Function Initialize Drug End
@@ -800,14 +858,18 @@
 
             e.preventDefault();
 
+
             console.log("Load RIS Proc");
 
             $('#miscItem').html('');
             $('#drugsItem').html('');
             $('#POSProcItem').html('');
             $('#searchRISProcItem').val('');
+
             $('#RISProcItem').load('manageBillGenerateBillDetailUnpaidPaidRadioProList.jsp');
+
             $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableRISProc');
+
 
         });
         // Add Function Initialize RIS Proc End
@@ -818,14 +880,18 @@
 
             e.preventDefault();
 
+
             console.log("Load POS Proc");
 
             $('#miscItem').html('');
             $('#drugsItem').html('');
             $('#RISProcItem').html('');
             $('#searchRISProcItem').val('');
+
             $('#POSProcItem').load('manageBillGenerateBillDetailUnpaidPaidPOSProList.jsp');
+
             $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tablePOSProc');
+
 
         });
         // Add Function Initialize POS Proc End
@@ -834,9 +900,13 @@
         // Add Item To Detail M Category Start
         $('#addItemList').off('click', '#addMiscItem').on('click', '#addMiscItem', function (e) {
 
+            e.preventDefault();
+
+
             var selected = $('.modal-body').find('.row_selected').text();
             var activeTab = $('ul#tabs').find('li.active').text();
             var activeTabName = $('#manageBillViewBillDetailsTabIDHiddenForUse').val();
+
 
             if (selected === '') {
 
@@ -863,6 +933,7 @@
                 var phoneNo = $('#phone').val();
                 var status = $('#dataManageBillMasterOrderListhiddenStatus').val();
 
+
                 var dataRefresh = {
                     billNo: billNo,
                     txtDate: txtDate,
@@ -875,7 +946,9 @@
                     status: status
                 };
 
+
                 if (activeTab === 'Miscellaneous Item' || activeTab === 'RIS Procedure' || activeTab === 'POS Procedure') {
+
 
                     var dataAdd = {
                         itemCode: itemCode,
@@ -888,8 +961,10 @@
                         itemType: 'M'
                     };
 
+
                     console.log(dataAdd);
                     console.log(dataRefresh);
+
 
                     $.ajax({
                         url: "manageBillGenerateBillDetailUnpaidPaidInsert.jsp",
@@ -899,12 +974,16 @@
                         success: function (data) {
 
                             console.log(data);
+
                             var d = data.split("|");
+
 
                             if (d[1] === '1') {
 
+
                                 document.getElementById('messageHeader').innerHTML = "Success!";
                                 document.getElementById('messageContent').innerHTML = d[2];
+
 
                                 $.ajax({
                                     url: "manageBillGenerateBillDetailUnpaidPaid.jsp",
@@ -914,6 +993,7 @@
                                     success: function (data) {
 
                                         $('#manageBillDetailOrderDetailContent').html(data);
+
                                         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
                                         $('.loading').hide();
@@ -934,6 +1014,7 @@
 
                             }
 
+
                         },
                         error: function (err) {
 
@@ -947,7 +1028,9 @@
                 } else if (activeTab === 'Drugs Item') {
 
                     $('.loading').hide();
+
                     $('#addQuantityModal').modal('show');
+
                 }
             }
 
@@ -958,14 +1041,18 @@
         // Add Item To Detail D Category Start
         $('#addQuantityModal').off('click', '#addDrugsItem').on('click', '#addDrugsItem', function (e) {
 
+            e.preventDefault();
+
 
             var quantity = document.getElementById('quantity').value;
+
 
             if (quantity === '' || quantity === '0') {
 
                 bootbox.alert("Please enter a quantity.");
 
             } else {
+
 
                 $('#addQuantityModal').modal('hide');
 
@@ -989,6 +1076,7 @@
                 var phoneNo = $('#phone').val();
                 var status = $('#dataManageBillMasterOrderListhiddenStatus').val();
 
+
                 var dataRefresh = {
                     billNo: billNo,
                     txtDate: txtDate,
@@ -1000,6 +1088,7 @@
                     phoneNo: phoneNo,
                     status: status
                 };
+
 
                 var dataAdd = {
                     itemCode: itemCode,
@@ -1013,8 +1102,10 @@
                     itemType: 'D'
                 };
 
+
                 console.log(dataAdd);
                 console.log(dataRefresh);
+
 
                 $.ajax({
                     url: "manageBillGenerateBillDetailUnpaidPaidInsert.jsp",
@@ -1024,11 +1115,15 @@
                     success: function (data) {
 
                         console.log(data);
+
                         var d = data.split("|");
+
+
                         if (d[1] === '1') {
 
                             document.getElementById('messageHeader').innerHTML = "Success!";
                             document.getElementById('messageContent').innerHTML = d[2];
+
 
                             $.ajax({
                                 url: "manageBillGenerateBillDetailUnpaidPaid.jsp",
@@ -1038,7 +1133,9 @@
                                 success: function (data) {
 
                                     $('#manageBillDetailOrderDetailContent').html(data);
+
                                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+
                                     $('.loading').hide();
 
                                     $("#alertMessage").modal();
@@ -1082,9 +1179,13 @@
 
 
 
+
+
         // --------------------------------------------------------------- View Bill Generate Reciept Function --------------------------------------------------------------- //
 
 
+
+        // Print DIV Button Start
         $('#manageBillViewBillDetailsButtonRightDiv').on('click', '#manageBillViewBillDetailsPrintBtn', function () {
 
 
@@ -1094,12 +1195,17 @@
 
 
         });
+        // Print DIV Button End
 
 
+        // Print DIV Function Start
         function generateRecieptForBillTransaction() {
 
 
             console.log("Printing Reciept");
+
+
+            $('<div class="loading">Loading</div>').appendTo('body');
 
 
             var billNo = $('#billNo').val();
@@ -1133,20 +1239,34 @@
                 timeout: 10000,
                 success: function (data) {
 
+
                     $('#manageBillViewBillDetailsGenerateRecieptForPrint').html(data);
 
-                    var printDiv = $("#manageBillViewBillDetailsGenerateRecieptForPrint").html().trim();
 
-                    var printWindow = window.open('', 'Print Discahrge Letter');
+                    setTimeout(function () {
 
-                    printWindow.document.write('<html><head><title>Reciept</title>');
-                    printWindow.document.write('</head><body >');
-                    printWindow.document.write(printDiv);
-                    printWindow.document.write('</body></html>');
-                    printWindow.document.close();
-                    printWindow.focus();
-                    printWindow.print();
-                    printWindow.close();
+
+                        var printDiv = $("#manageBillViewBillDetailsGenerateRecieptForPrint").html().trim();
+
+                        var printWindow = window.open('', 'Print Discahrge Letter');
+
+                        printWindow.document.write('<html><head><title>Reciept</title>');
+                        printWindow.document.write('</head><body >');
+                        printWindow.document.write(printDiv);
+                        printWindow.document.write('</body></html>');
+                        printWindow.document.close();
+                        printWindow.focus();
+                        printWindow.print();
+                        printWindow.close();
+
+
+                        resetTableBillMasterOrderList();
+
+                        $('.loading').hide();
+
+                    }, 1500);
+
+
 
 
                 },
@@ -1157,9 +1277,74 @@
 
 
         }
+        // Print DIV Function End
+
 
 
         // --------------------------------------------------------------- View Bill Generate Reciept Function --------------------------------------------------------------- //
+
+
+
+
+
+
+        // --------------------------------------------------------------- View Bill Reset Table Function --------------------------------------------------------------- //
+
+
+
+        // Reset Function for Table Start
+        function resetTableBillMasterOrderList() {
+
+            $("#manageBillMasterOrderListContent").html('<table class="table table-bordered" id="manageBillMasterOrderListTable" style="width: 100%">\n\
+                        <thead>\n\
+                             <th>Transaction Date</th>\n\
+                            <th>Bill No.</th>\n\
+                            <th>Customer ID</th>\n\
+                            <th>Name</th>\n\
+                            <th>IC No.</th>\n\
+                            <th>Other ID</th>\n\
+                            <th>Phone No.</th>\n\
+                            <th>Outstanding (RM)</th>\n\
+                            <th>Action</th>\n\
+                        </thead>\n\
+                        <tbody>\n\
+                            <tr>\n\
+                                <td colspan="9" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>\n\
+                            </tr>\n\
+                        </tbody>\n\
+                </table>');
+
+            $('#freqObservationChartSelectAssessment').prop('selectedIndex', 0);
+
+        }
+        // Reset Function for Table End
+
+
+
+        // --------------------------------------------------------------- View Bill Reset Table Function --------------------------------------------------------------- //
+
+
+
+
+        // --------------------------------------------------------------- Disable Button Function --------------------------------------------------------------- //
+
+
+
+        // Reset Button Function Start
+        function dissableButtonForPage() {
+
+            $('#manageBillViewBillDetailsCancelBtn').prop('disabled', true);
+            $('#manageBillViewBillDetailsAddBtn').prop('disabled', true);
+            $('#manageBillViewBillDetailsPrintBtn').prop('disabled', true);
+            $('#manageBillViewBillDetailsPaymentBtn').prop('disabled', true);
+            $("#tableItems").find("button").attr("disabled", "disabled");
+
+        }
+        // Reset Button Function End
+
+
+        // --------------------------------------------------------------- Disable Button Function --------------------------------------------------------------- //
+
 
 
 

@@ -244,7 +244,7 @@
                     }
 
                     String sqlBillGenerateDetailsMisceItem = "SELECT item_code, hfc_cd, item_desc, buying_price ,selling_price "
-                            + " FROM far_miscellaneous_item WHERE item_code = '" + type + "' ";
+                            + " FROM far_miscellaneous_item WHERE hfc_cd = '" + hfc + "' AND item_code = '" + type + "' ";
                     ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = conn.getData(sqlBillGenerateDetailsMisceItem);
                     subtotal = subtotal + Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4));
                     subQuantity += 1;
