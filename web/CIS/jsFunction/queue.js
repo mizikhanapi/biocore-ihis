@@ -902,9 +902,10 @@ function convertEHR(ehr) {
             displayPOS(objPOS.Problem18, objPOS.proType, objPOS.procedure_cd);
         } else if (header === "MEC") {
             MEC = EHRArry[i];
-            var MECData1 = MEC.split("^ICD10");
+            console.log(MEC);
+            var MECData1 = MEC.split("ICD10");
             var MECData = MECData1[2].split("^");
-
+            
             var objMEC = {
                 Acode: "MEC",
                 DateFromMEC: MECData[5],

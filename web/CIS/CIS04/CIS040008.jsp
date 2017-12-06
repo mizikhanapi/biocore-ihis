@@ -131,14 +131,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+<!--                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary btn-block btn-lg" id="btnMC">Generate MC</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary btn-block btn-lg" id="btnTimeSlip">Generate Time Slip</button>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">

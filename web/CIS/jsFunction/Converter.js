@@ -126,6 +126,20 @@ function getObjectDAB(msg) {
     return objDAB;
 }
 
+function getObjectMEC(msg){
+    var MECData1 = msg.split("^ICD10");
+    var MECData = MECData1[2].split("^");
+    var objMEC = {
+        Acode: "MEC",
+        DateFromMEC: MECData[5],
+        DateToMEC: MECData[6],
+        num1MEC: MECData[3],
+        num2MEC: MECData[4]
+    };
+
+    return objMEC;
+}
+
 
 function getObjectVTS(msg) {
     VTS = disSumNote;

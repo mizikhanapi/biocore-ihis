@@ -485,33 +485,38 @@ $(document).ready(function () {
     //js add for MC & Time Slip
     $('#acceptMCTS').click(function (e) {
         e.preventDefault();
-        var DateFrom = $('#DateFromMEC').val();
-        var DateTo = $('#DateToMEC').val();
-        var num1 = $('#num1MEC').val();
-        var num2 = $('#num2MEC').val();
+        var stat = checkCCNnDGS(_data);
+        
+        if(stat.ccnV === true && stat.dgsV === true){
+            var DateFrom = $('#DateFromMEC').val();
+            var DateTo = $('#DateToMEC').val();
+            var num1 = $('#num1MEC').val();
+            var num2 = $('#num2MEC').val();
 
 
-        var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC');
-        var obj1 = {
-            Acode: "MEC"
-        };
+            var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC');
+            var obj1 = {
+                Acode: "MEC"
+            };
 
-        $items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
+            $items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
 
-        _data.push(obj1);
+            _data.push(obj1);
+            displayMCTS(DateFrom, DateTo, num1, num2);
+            $("#DateFromMEC").val("");
+            $("#DateToMEC").val("");
+            $("#num1MEC").val("");
+            $("#num2MEC").val("");
 
-
-        displayMCTS(DateFrom, DateTo, num1, num2);
-
-        $("#DateFromMEC").val("");
-        $("#DateToMEC").val("");
-        $("#num1MEC").val("");
-        $("#num2MEC").val("");
-
-        $("#CIS040008").modal('toggle');
-        // $(".modal-backdrop").hide();
+            $("#CIS040008").modal('toggle');
+            // $(".modal-backdrop").hide();
+        }else {
+            bootbox.alert("You need to enter at least one Chief Complain and one diagnosis before add the Medical Certification (MC) and Time Slip");
+        }
+        
+        
 
     });
 
@@ -1654,6 +1659,23 @@ function getObjectORCHFCDetailMON(OrderingHFC, ProviderHFC, obj1) {
         }
     });
 
+}
 
-
+function checkCCNnDGS(data){
+    var ccnV = false;
+    var dgsV = false;
+    for (var key in data){
+        if(data[key].Acode === "CCN"){
+            ccnV = true
+        }else{
+            if(data[key].Acode === "DGS"){
+                dgsV = true;
+            }
+        }
+    }
+   var objReturn = {
+       ccnV:ccnV,
+       dgsV:dgsV
+   }
+   return objReturn;
 }
