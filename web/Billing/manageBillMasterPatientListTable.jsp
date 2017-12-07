@@ -150,6 +150,8 @@
 // --------------------------------------------------------------- Datatable --------------------------------------------------------------- //
 
 
+        $('#manageBillMasterPatientListTable').DataTable().destroy();
+
         $('#manageBillMasterPatientListTable').DataTable({
             "language": {
                 "emptyTable": "No Bill Record Available To Display"

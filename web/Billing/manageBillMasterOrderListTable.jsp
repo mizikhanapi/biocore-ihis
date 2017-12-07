@@ -66,6 +66,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+
+        $('#manageBillMasterOrderListTable').DataTable().destroy();
+
         $('#manageBillMasterOrderListTable').DataTable({
             "language": {
                 "emptyTable": "No Bill Record Available To Display"
@@ -73,6 +76,7 @@
                 $('.loading').hide();
             }
         });
+
 
     });
 </script>

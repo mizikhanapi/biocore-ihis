@@ -415,7 +415,7 @@
 
 
         $.ajax({
-            url: "manageBillGenerateBillDetailUnpaidPaid.jsp",
+            url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaid.jsp",
             type: "post",
             data: data,
             timeout: 10000,
@@ -498,6 +498,9 @@
         var phoneNo = $('#phone').val();
         var status = $('#dataManageBillMasterOrderListhiddenStatus').val();
 
+        var overallItmAmnt = $('#manageBillDetailOrderDetailGrandTotal').val();
+        var overallQtyTtl = $('#manageBillDetailOrderDetailTotalQuantity').val();
+
 
         var dataDelete = {
             custID: custID,
@@ -506,7 +509,9 @@
             orderNoDel: orderNoDel,
             itemQtyDel: itemQtyDel,
             itemAmtDel: parseFloat(itemAmtDel).toFixed(2),
-            itemCDDel: itemCDDel
+            itemCDDel: itemCDDel,
+            overallItmAmnt: overallItmAmnt,
+            overallQtyTtl: overallQtyTtl
         };
 
 
@@ -521,6 +526,8 @@
             phoneNo: phoneNo,
             status: status
         };
+
+        console.log(dataDelete);
 
 
         bootbox.confirm({
@@ -544,7 +551,7 @@
 
 
                     $.ajax({
-                        url: "manageBillGenerateBillDetailUnpaidPaidDelete.jsp",
+                        url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidDelete.jsp",
                         type: "post",
                         data: dataDelete,
                         timeout: 10000,
@@ -559,7 +566,7 @@
                                 document.getElementById('messageContent').innerHTML = "Item Deleted.";
 
                                 $.ajax({
-                                    url: "manageBillGenerateBillDetailUnpaidPaid.jsp",
+                                    url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaid.jsp",
                                     type: "post",
                                     data: dataRefresh,
                                     timeout: 10000,
