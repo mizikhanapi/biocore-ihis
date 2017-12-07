@@ -14,6 +14,8 @@
     DecimalFormat df = new DecimalFormat("0.00");
     Conn conn = new Conn();
     String userID = session.getAttribute("USER_ID").toString();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = (String) session.getAttribute("DISCIPLINE_CODE");
 
     //                        0               1                  2                  3           4             5
     String query = "SELECT ch.bill_no, ch.customer_id, UPPER(pb.patient_name), pb.new_ic_no, pb.id_no, pb.home_address, "
@@ -24,7 +26,7 @@
             // JOIN CONDITION
             + " LEFT JOIN pms_patient_biodata pb ON (ch.customer_id = pb.PMI_NO) "
             // WHERE CONDITION
-            + " WHERE ch.payment = '" + status + "' AND pb.new_ic_no = '" + ic + "' ";
+            + " WHERE ch.payment = '" + status + "' AND pb.new_ic_no = '" + ic + "' AND ch.hfc_cd = '" + hfc + "'";
 
     ArrayList<ArrayList<String>> dataManageBillMasterOrderList = conn.getData(query);
 

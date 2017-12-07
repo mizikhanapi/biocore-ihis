@@ -229,13 +229,14 @@
         <button id="manageBillViewBillDetailsCancelBtn" class="btn btn-warning" style="float: left;"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp; Cancel</button>
     </div>
     <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
-        <label class="col-lg-8"></label>
-        <div class="col-lg-4 pull-right" style="margin-bottom: 10px; ">
+        <label class="col-lg-4"></label>
+        <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
             <%
                 if (status.equalsIgnoreCase("unpaid")) {
             %>
             <button class="btn btn-success" data-toggle="modal" data-target="#makePayment" style="float: right;" id="manageBillViewBillDetailsPaymentBtn" ><i class="fa fa-money fa-lg" aria-hidden="true"></i>&nbsp; Payment</button>
             <button id="manageBillViewBillDetailsAddBtn" class="btn btn-success modal-toggle" data-toggle="modal" data-target="#addItemList" style="float: right; margin-right: 10px;"><i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Add Item</button>
+            <button id="manageBillViewBillDetailsInvoicePrintBtn" class="btn btn-success" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Invoice</button>
             <%} else {%>
             <button id="manageBillViewBillDetailsPrintBtn" class="btn btn-info" style="float: right;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Receipt</button>
             <%}%>
@@ -246,6 +247,10 @@
 
 
 <div id="manageBillViewBillDetailsGenerateRecieptForPrint" class="hidden">
+
+</div>
+
+<div id="manageBillViewBillDetailsGenerateInvoiceForPrint" class="hidden">
 
 </div>
 
@@ -374,7 +379,7 @@
                 </div>
                 <label class="col-lg-4">Service Charge (RM):</label>
                 <div class="col-lg-8" style="margin-bottom: 10px">
-                    <input type="text" class="form-control" id="servicetotal" value="<%=df.format(grandTotal - subtotal)%>" readonly="true" style="text-align: center;">
+                    <input type="text" class="form-control" id="servicetotal" value="<%=df.format(subtotal - grandTotal)%>" readonly="true" style="text-align: center;">
                 </div>
                 <label class="col-lg-4">Grand Total (RM):</label>
                 <div class="col-lg-8" style="margin-bottom: 10px">
@@ -1138,20 +1143,129 @@
 
 
 
-        // Print DIV Button Start
+
+        // Print DIV Invoice Button Start
+        $('#manageBillViewBillDetailsButtonRightDiv').on('click', '#manageBillViewBillDetailsInvoicePrintBtn', function () {
+
+
+            console.log("Printing Invoice Button");
+
+            generateInvoiceForBillTransaction();
+
+
+        });
+        // Print DIV Invoice Button End
+
+
+        // Print DIV Reciept Function Start
+        function generateInvoiceForBillTransaction() {
+
+            console.log("Printing Invoice");
+
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
+
+            var billNo = $('#billNo').val();
+            var txtDate = $('#txnDate').val();
+            var custID = $('#custID').val();
+            var pName = $('#patientName').val();
+            var address = $('#address').val();
+            var icNo = $('#ic').val();
+            var otherID = $('#otherID').val();
+            var phoneNo = $('#phone').val();
+            var status = $('#dataManageBillMasterOrderListhiddenStatus').val();
+
+            $.ajax({
+                url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNo.jsp",
+                type: "post",
+                timeout: 10000,
+                success: function (dataInvoiceNo) {
+
+                    var dataRefresh = {
+                        billNo: billNo,
+                        txtDate: txtDate,
+                        custID: custID,
+                        pName: pName,
+                        address: address,
+                        icNo: icNo,
+                        otherID: otherID,
+                        phoneNo: phoneNo,
+                        status: status,
+                        invoive: dataInvoiceNo.trim()
+                    };
+
+
+                    $.ajax({
+                        url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceForItem.jsp",
+                        type: "post",
+                        data: dataRefresh,
+                        timeout: 10000,
+                        success: function (data) {
+
+
+                            $('#manageBillViewBillDetailsGenerateInvoiceForPrint').html(data);
+
+
+                            setTimeout(function () {
+
+
+                                var printDiv = $("#manageBillViewBillDetailsGenerateInvoiceForPrint").html().trim();
+
+                                var printWindow = window.open('', 'Print Reciept');
+
+                                printWindow.document.write('<html><head><title>Reciept</title>');
+                                printWindow.document.write('</head><body >');
+                                printWindow.document.write(printDiv);
+                                printWindow.document.write('</body></html>');
+                                printWindow.document.close();
+                                printWindow.focus();
+                                printWindow.print();
+                                printWindow.close();
+
+
+                                resetTableBillMasterOrderList();
+
+                                $('.loading').hide();
+
+                            }, 1500);
+
+
+
+
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+
+
+                },
+                error: function (err) {
+
+                }
+            });
+
+        }
+        // Print DIV Invoice Function End
+
+
+
+        // Print DIV Reciept Button Start
         $('#manageBillViewBillDetailsButtonRightDiv').on('click', '#manageBillViewBillDetailsPrintBtn', function () {
 
 
-            console.log("Printing Button");
+            console.log("Printing Reciept Button");
 
             generateRecieptForBillTransaction();
 
 
         });
-        // Print DIV Button End
+        // Print DIV Reciept Button End
 
 
-        // Print DIV Function Start
+
+        // Print DIV Reciept Function Start
         function generateRecieptForBillTransaction() {
 
 
@@ -1244,7 +1358,8 @@
 
 
         }
-        // Print DIV Function End
+        // Print DIV Reciept Function End
+
 
 
 
