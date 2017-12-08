@@ -138,6 +138,7 @@ $(document).ready(function(){
                 status: "1"
             }
             sendOrder(data, "tableOrderPOS");
+            _dataPOS = [];
         } else {
             return false;
         }

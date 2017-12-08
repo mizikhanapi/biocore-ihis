@@ -408,7 +408,7 @@ $(document).ready(function(){
         $('#tCIS_DTODrugDoseUnit').val('');
         $('#tCIS_DTODrugDuration').val('');
         $('#tCIS_DTODrugUnit').val('');
-        $('#tCIS_DTODrugFrequency').val('');
+        $('#tCIS_DTODrugFrequency').val('0.00');
         $("#tCIS_DTOQuantity").val('');
         $('#tCIS_DTORemark').val('');
         $('#tCIS_DTOCommentArea').val('');
@@ -434,8 +434,9 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugRoute').val(array_data[6].trim());
                 $('#tCIS_DTODrugCaution').val(array_data[8].trim());
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-                //$('#tCIS_DTODrugFrequency').text(array_data[9].trim());
                 $("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
+
+                
                 $('#tCIS_DTODrugStrength').val(array_data[4].trim());
                 $('#tCIS_DTODrugStrengthUnit').val("");
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
