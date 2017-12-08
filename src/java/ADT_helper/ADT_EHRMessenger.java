@@ -49,7 +49,7 @@ public class ADT_EHRMessenger extends EHRMessageSender {
                     + "|T^" + format.format(now) // when to charge
                     + "|CH" //charge type
                     + "|" + pmiNo // account
-                    + "|" + arrCode[i] //item code
+                    + "|CHG:" + arrCode[i] //item code
                     + "|Charge for Ward: " + arrName[i] //item name
                     + "|" + arrAmount[i] //selling price
                     + "|" + arrDay[i] // amount
@@ -102,7 +102,7 @@ public class ADT_EHRMessenger extends EHRMessageSender {
                 + "|T^" + format.format(now) // when to charge
                 + "|CH" //charge type
                 + "|" + pmiNo // account
-                + "|" + itemCode //item code
+                + "|DEP:" + itemCode //item code
                 + "|Deposit for Ward: " + itemName //item name
                 + "|" + itemPrice //selling price
                 + "|1" // amount

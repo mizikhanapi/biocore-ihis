@@ -18,32 +18,19 @@
         <title>iHIS | Settings</title>
         <!-- header -->
         <!--    <div w3-include-html="libraries/header.html"></div>-->
-<!--        <script src="bootstrap-3.3.6-dist/js/jquery.min.js"></script>-->
-<%@include file="libraries/headLibrary.jsp" %>
+        <!--        <script src="bootstrap-3.3.6-dist/js/jquery.min.js"></script>-->
+        <%@include file="libraries/headLibrary.jsp" %>
         <%@include file="../assets/header.html"%>
-<!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
+        <!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
         <link rel="stylesheet" href="css/table.css">
-        <link rel="stylesheet" href="css/loading_sham.css">
+        <!--<link rel="stylesheet" href="../assets/css/mystyles.css">-->
 
         <!-- Bootstrap core JavaScript
       ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- Bootstrap core JavaScript
         ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        
-        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-<!--        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/bootbox.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
-        
-
-
-
 
 
         <!-- header -->
@@ -72,7 +59,7 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#HM_tab1" data-toggle="tab">
-                                                     CIS Setting </a>
+                                                    CIS Setting </a>
                                             </li>
 
                                             <li>
@@ -84,7 +71,7 @@
                                                     Calling System Setting </a>
                                             </li>
 
-                                           
+
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
@@ -94,7 +81,7 @@
 
                                                     <div id="CISMain">
                                                     </div>
-                                                    
+
 
                                                 </div>
 
@@ -105,17 +92,17 @@
                                                 <div id="PMS">
                                                     <div id="PMSMain">
                                                     </div>
-                                                    
+
                                                 </div>
 
                                             </div>
-                                            
+
                                             <div class="tab-pane" id="HM_tab3">
 
                                                 <div id="CS">
                                                     <div id="CSMain">
                                                     </div>
-                                                    
+
                                                 </div>
 
                                             </div>
@@ -138,9 +125,7 @@
 
         </div>
 
-                    <%@include file="libraries/footLibrary.jsp" %>
-<script src="js/jquery.check-file.js" type="text/javascript"></script>
-
+        <%@include file="libraries/footLibrary.jsp" %>
 
 
 
@@ -150,14 +135,14 @@
 
             $(document).ready(function () {
 
-                $("#CISMain").load("setting_CIS.jsp");
-              
+                $("#CISMain").load("setting/setting_CIS.jsp");
 
-                $("#PMSMain").load("setting_PMS.jsp");
-                $("#CSMain").load("setting_CS.jsp");
-                
 
-                
+                $("#PMSMain").load("setting/setting_PMS.jsp");
+                $("#CSMain").load("setting/setting_CS.jsp");
+
+
+
 
             });
 

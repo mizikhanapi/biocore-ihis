@@ -52,7 +52,7 @@
     if (status.equals("1")) {
 
         if (idType.equals("001")) {
-            searchPatient = fullQuery + " where a.PMI_NO='" + idInput + "'";
+            searchPatient = fullQuery + " where a.PMI_NO='" + idInput + "'";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         } else if (idType.equals("002")) {
             searchPatient = fullQuery + " where a.NEW_IC_NO='" + idInput + "'";
         } else if (idType.equals("003")) {
