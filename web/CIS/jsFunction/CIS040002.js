@@ -162,6 +162,10 @@ $(document).ready(function(){
             drugStrengthUnit = " ";
         }
         
+        if($('#tCIS_DTODrugFrequency').val() === '0'){
+            drugFrequency = drugFrequencyDetail;
+        }
+        
         var obj1 = {
 
             Acode: 'DTO',
@@ -408,7 +412,7 @@ $(document).ready(function(){
         $('#tCIS_DTODrugDoseUnit').val('');
         $('#tCIS_DTODrugDuration').val('');
         $('#tCIS_DTODrugUnit').val('');
-        $('#tCIS_DTODrugFrequency').val('0.00');
+        $('#tCIS_DTODrugFrequency').val('0');
         $("#tCIS_DTOQuantity").val('');
         $('#tCIS_DTORemark').val('');
         $('#tCIS_DTOCommentArea').val('');
@@ -434,18 +438,18 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugRoute').val(array_data[6].trim());
                 $('#tCIS_DTODrugCaution').val(array_data[8].trim());
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-                $("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
-
+                //$("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
+                $("#tCIS_DTODrugFrequency").val('0');
                 
                 $('#tCIS_DTODrugStrength').val(array_data[4].trim());
                 $('#tCIS_DTODrugStrengthUnit').val("");
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
                 $('#tCIS_DTODrugUnit').val(array_data[12].trim());
-                
+                $("#tCIS_DTODrugFrequencyValue").val(array_data[13].trim());
                 $('#tCIS_DTODrugDose').val(array_data[5].trim());
                 $('#tCIS_DTODrugDoseType').val(array_data[10].trim());
                 var dur = parseFloat(array_data[11].trim());
-                var fre = parseFloat($('#tCIS_DTODrugFrequency').val());
+                var fre = parseFloat(array_data[13].trim());
                 var quantity = dur*fre;
                 $("#tCIS_DTOQuantity").val(quantity);
 
@@ -468,17 +472,19 @@ $(document).ready(function(){
     function calculateQuantity(){
         var drugDTOUnit = $("#tCIS_DTODrugUnit").val();
         var times = 1;
+
         if(drugDTOUnit === "Week"){
             times = 7;
         } else if(drugDTOUnit === "Month"){
             var now = new Date();
             var num_days = numberOfDays(now.getFullYear(), now.getMonth()+1);
             times = num_days;
-            
         }
         var fre_value = $("#tCIS_DTODrugFrequency").val();
         var dur =    $('#tCIS_DTODrugDuration').val();
-        
+        if (fre_value === '0') {
+            fre_value = $("#tCIS_DTODrugFrequencyValue").val();
+        }
         var dur = parseFloat(dur);
         var time_dur = parseFloat(times);
         var fre = parseFloat(fre_value);

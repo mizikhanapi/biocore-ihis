@@ -112,6 +112,7 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugFrequencyDetail" placeholder="" readonly="">
+                                            <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugFrequencyValue" placeholder="" readonly="" hidden="">
                                         </div>
                                     </div>
 
@@ -204,7 +205,7 @@
 
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
-                                            <h4 class="modal-title modalTextLabel">Drug Frequency</h4>
+                                            <h4 class="modal-title modalTextLabel"> Drug Frequency</h4>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
