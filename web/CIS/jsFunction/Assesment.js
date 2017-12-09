@@ -61,7 +61,7 @@ $(document).ready(function(){
         var Site1 = $('#SiteDGS').val();
         var Laterality1 = $('#LateralityDGS').val();
         var comment8 = $('#commentDGS').val();
-       // var code10 = $('#codeDGS').val();
+        var code10 = $('#dgsCode').val();
         //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
         var $items = $('#dgsCode, #TypeDGS, #dateDGS, #SeverityDGS, #SiteDGS, #LateralityDGS, #commentDGS');
         var obj1 = {
@@ -72,7 +72,7 @@ $(document).ready(function(){
             obj1[this.id] = $(this).val();
           
         });
-         if(validationField(Problem8,"Please enter the correct Diagnosis")){
+         if(validationField(code10,"Please enter the correct Diagnosis")){
               if (checkDGS(_data, obj1)) {
                 bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
             } else {

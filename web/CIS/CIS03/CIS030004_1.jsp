@@ -23,51 +23,21 @@
     sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date order by w.episode_date desc;";
     sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` desc;";
     //   q                             0      1            2              3               4               5                6            7          8               9           10          11             12              13   
-    String sqlActivDrug = "Select distinct m.pmi_no,m.hfc_cd,m.episode_date,m.encounter_date,m.discipline_cd,m.subdiscipline_cd,m.onset_date,m.drug_cd,m.created_by,m.created_date,p.d_trade_name,m.drug_dosage,m.drug_strength,duration from lhr_active_medication m join pis_mdc2 p on m.drug_cd = p.ud_mdc_code and m.hfc_cd = p.hfc_cd where pmi_no = '" + pmiNo + "' order by m.onset_date desc;";
+  
     ArrayList<ArrayList<String>> searchInpatient;
     searchInpatient = conn.getData(sql);
 
     ArrayList<ArrayList<String>> searchOutpatient;
     searchOutpatient = conn.getData(sql2);
 
-    ArrayList<ArrayList<String>> searchActivDrug;
-    searchActivDrug = conn.getData(sqlActivDrug);
+
 
 %>
 <div class="row">
     <div class="col-md-12">
         <h4 style="padding: 0px;"><strong>ACTIVE DRUG LIST</strong></h4><br/>
-        <div>
-            <table class="table table-striped table-bordered" id="tableActiveDrugList" cellspacing="0" width="100%">
-                <thead>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Onset Date</th>
-                <th>Dosage</th>
-                <th>Strength</th>
-                <th>Duration</th>
-                </thead>
-                <tbody>
-                    <%                      if (searchActivDrug.size() > 0) {
-                            for (int i = 0; i < searchActivDrug.size(); i++) {
-                    %>
-                    <tr>
-                        <td><%=i+1%>
-                            <input type="hidden" id="pmidrug" value="<%=searchActivDrug.get(i).get(0)%>">
-                            <input type="hidden" id="episodedrug" value="<%=searchActivDrug.get(i).get(2)%>">
-                            <input type="hidden" id="disciplinedrug" value="<%=searchActivDrug.get(i).get(5)%>">
-                            <input type="hidden" id="drugcodedrug" value="<%=searchActivDrug.get(i).get(7)%>">
-                        </td>
-                        <td><%=searchActivDrug.get(i).get(10)%></td>
-                        <td><%=searchActivDrug.get(i).get(6)%></td>
-                        <td><%=searchActivDrug.get(i).get(11)%></td>
-                        <td><%=searchActivDrug.get(i).get(12)%></td>
-                        <td><%=searchActivDrug.get(i).get(13)%></td>
-                    </tr>
-                    <%}
-                    }%>
-                </tbody>
-            </table>
+        <div id="table_active_drug">
+
         </div>
     </div>
 </div>
@@ -169,6 +139,7 @@
 
 </div>
 <script type="text/javascript">
+    $("#table_active_drug").load("CIS03/CIS030004_drugTable.jsp");
 
     $('#inpatientdrug').on('click', '#inBtndrug', function () {
         var row = $(this).closest("tr");
@@ -191,6 +162,52 @@
             }});
 
     });
+    
+    $("#table_active_drug").on('click','#tableActiveDrugList #btnDeleteActivDrug',function(){
+        var row = $(this).closest("tr");
+        var pmi_no = row.find("#pmidrug").val();
+        var drug_code = row.find("#drugcodedrug").val();
+        var drug_onset = row.find("#drugonsetDate").text();
+        var data = {
+            pmi_no:pmi_no,
+            drug_code:drug_code,
+            drug_onset:drug_onset
+        }
+      
+        bootbox.confirm("This is the default confirm!", function(result)
+        { 
+            console.log('This was logged in the callback: ' + result); 
+            if(result === true){
+                deleteActiveDrug(data);
+             
+            }else{
+               return false;
+            }
+        });
+
+    })
+    
+    function deleteActiveDrug(data){
+        $.ajax({
+            type:'post',
+            data:data,
+            url:'search/ResultDeleteActiveDrugOutPatient.jsp',
+            timeout: 10000,
+            success:function(r){
+                if(r.trim() === "|-SUCCESS-|"){
+                    
+                    $("#table_active_drug").load("CIS03/CIS030004_drugTable.jsp");
+                    
+                    bootbox.alert("Delete Success");
+                }else{
+                   bootbox.alert("Delete Fail");
+                   
+                   
+                }
+            }
+            
+        })
+    }
 </script>
 <script type="text/javascript">
     $('#outpatientdrug').on('click', '#outBtndrug', function () {
@@ -243,8 +260,10 @@
                console.log(databack);
                if($.trim(databack)==="already"){
                    alert("This drug already Active");
+                   
                }else if($.trim(databack)==="success"){
                    alert("Success activating the drug");
+                   $("#table_active_drug").load("CIS03/CIS030004_drugTable.jsp");
                }else if($.trim(databack)==="fail"){
                    alert("Fail activating the drug");
                }
