@@ -141,8 +141,9 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
+      
         
-        if(validationField(obj1.problem,"Please enter the correct symptoms")){
+        if(validationField(obj1.ccnCode,"Please enter the correct symptoms")){
             if (checkCCN(_data, obj1)) {
                 bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
             } else {
@@ -214,7 +215,7 @@ $(document).ready(function () {
         var tempccnObj = {
             ccnCode:_uccnCode
         }
-        if(validationField(_uproblem,"Please enter the correct symptoms")){
+        if(validationField(_uccnCode,"Please enter the correct symptoms")){
                     if(upObject.ccnCode === _uccnCode){
             
             upObject.problem = _uproblem;
@@ -332,7 +333,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if(validationField(obj1.Problem1,"Please enter the correct Past Medical History")){
+        if(validationField(obj1.codePMH,"Please enter the correct Past Medical History")){
             if (checkPMH(_data, obj1)) {
                 bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
             } else {
@@ -385,7 +386,7 @@ $(document).ready(function () {
          var tempccnObj = {
             codePMH:_Pcode
         }
-        if(validationField(_PProblem2,"Please enter the correct Past Medical History")){
+        if(validationField(_Pcode,"Please enter the correct Past Medical History")){
             if (upObject.codePMH === _Pcode) {
 
                 upObject.Problem1 = _PProblem2;
@@ -443,7 +444,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if(validationField(Problem3,"Please enter the correct Family Medical History")){
+        if(validationField(code4,"Please enter the correct Family Medical History")){
             if (checkFMH(_data, obj1)) {
                 bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
             } else {
@@ -497,7 +498,7 @@ $(document).ready(function () {
             codeFMH:codeFMH
         }
         
-        if(validationField(_PProblem3,"Please enter the correct Family Medical History")){
+        if(validationField(codeFMH,"Please enter the correct Family Medical History")){
             if (upObject.codeFMH === codeFMH) {
                 upObject.Problem3 = _PProblem3;
                 upObject.f_relationship = _ff_relationship;
@@ -552,7 +553,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if(validationField(Problem4,"Please enter the correct Social History")){
+        if(validationField(code5,"Please enter the correct Social History")){
             if (checkSOH(_data, obj1)) {
                 bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
             } else {
@@ -611,7 +612,7 @@ $(document).ready(function () {
             codeSOH:_codeSOH
         }
         
-        if(validationField(_PProblem4,"Please enter the correct Social History")){
+        if(validationField(_codeSOH,"Please enter the correct Social History")){
             if (upObject.codeSOH === _codeSOH) {
 
                 upObject.Problem4 = _PProblem4;
@@ -765,7 +766,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-          if(validationField(Problem5,"Please enter the correct Allergy")){
+          if(validationField(code7,"Please enter the correct Allergy")){
            if (checkALG(_data, obj1)) {
                 bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
             } else {
@@ -781,8 +782,6 @@ $(document).ready(function () {
                 $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
             }
           }
-        
-
 
     });
 
@@ -817,12 +816,11 @@ $(document).ready(function () {
             _PProblem5 = $('#tCISSubALGSearch_update').val();
         }
         
-        
         var tempccnObj = {
             codeALG:_algCode
         }
         
-         if(validationField(_PProblem5,"Please enter the correct Allergy")){
+         if(validationField(_algCode,"Please enter the correct Allergy")){
             if (upObject.codeALG === _algCode) {
                 upObject.Problem5 = _PProblem5;
                 upObject.date1 = _ddate1;
@@ -870,7 +868,6 @@ $(document).ready(function () {
         } else {
             Problem6 = $('#tCISSubIMUSearch').val();
         }
-        
         var obj1 = {
             Acode:"IMU",
             Problem6:Problem6
@@ -878,7 +875,7 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        if(validationField(Problem6,"Please enter the correct Immunization")){
+        if(validationField(code8,"Please enter the correct Immunization")){
             if (checkIMU(_data, obj1)) {
                 bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
             } else {
@@ -894,8 +891,6 @@ $(document).ready(function () {
                 $('#tCISSubIMUSearchPersonalised-flexdatalist').hide();
             }
         }
-
-
     });
 
     //js UPDATE for Immunization
@@ -909,7 +904,7 @@ $(document).ready(function () {
         $('#Pcomment6').val(updateObj.comment6);
         $('#uIMU_cd').val(updateObj.codeIMU);
         $('#jsonId').val(id[1]);
-          $("#update_CIS01000008").modal('show');
+        $("#update_CIS01000008").modal('show');
     });
 
     $('#updateBtnIMU').click(function () {
@@ -989,7 +984,7 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        if(validationField(Problem32,"Please enter the correct Disability")){
+        if(validationField(code9,"Please enter the correct Disability")){
             if (checkDAB(_data, obj1)) {
                 bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
             } else {
@@ -1043,7 +1038,7 @@ $(document).ready(function () {
                 var tempccnObj = {
             codeDAB:_codeDAB
         }
-        if(validationField(_PProblem32,"Please enter the correct Disability")){
+        if(validationField(_codeDAB,"Please enter the correct Disability")){
             if (upObject.codeDAB === _codeDAB) {
                 upObject.Problem32 = _PProblem32;
                 upObject.date3 = _ddate3;

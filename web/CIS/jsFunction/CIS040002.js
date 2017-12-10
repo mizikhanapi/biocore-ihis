@@ -5,31 +5,31 @@
  */
 
 
-$(document).ready(function () {
+$(document).ready(function(){
     var _dataDTO = [];
     var indexDTO;
     var updateDTOIndex;
     var updateDTOObj;
     var rowDTOId;
     var rowDTODataTR;
-
+    
     $("#btnCIS_OE_DTO_UPDATE").hide();
     $("#btnCIS_OE_DTO_CANCEL").hide();
-
+    
     $("#btnCIS_OE_DTO_SEARCH_CLEAR").click(function (e) {
         $("#divCIS_OE_DTO_OrderSearchResult").html('');
     });
-
-    $("#CIS040002").on('show.bs.modal', function () {
+    
+    $("#CIS040002").on('show.bs.modal',function(){
         searchInitialize("DTO", "I");
     });
-
+    
     $("#CIS040002").on('hide.bs.modal', function () {
         searchInitialize("DTO", "D");
     });
-
-    $("#divCIS_OE_DTO_OrderSearchResult").on("click", "#tblODTO #btnCIS_OE_DTO_SEARCH_ADD", function (e) {
-        e.preventDefault();
+    
+    $("#divCIS_OE_DTO_OrderSearchResult").on("click","#tblODTO #btnCIS_OE_DTO_SEARCH_ADD",function(e){
+         e.preventDefault();
         var rowOrder = $(this).closest("tr");
         var orderId = rowOrder.find("#orderId").html();
         var drug_cd = rowOrder.find("#drug_cd").html();
@@ -41,15 +41,15 @@ $(document).ready(function () {
             type: "POST",
             data: {
                 orderId: orderId,
-                drug_cd: drug_cd,
-                hfc_to: hfc_to
+                drug_cd:drug_cd,
+                hfc_to:hfc_to
             },
             success: function (e) {
-
+           
 
                 var orderDetailArray = e.trim();
                 orderDetailArray = e.split("|");
-
+              
                 searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", orderDetailArray[4]);
                 searchDTOInfo(orderDetailArray[4]);
 
@@ -60,9 +60,9 @@ $(document).ready(function () {
 
             }
         })
-    })
-
-
+     })
+    
+    
     $("#btnCIS_OE_DTO_SEARCH_ORDER").click(function (e) {
         e.preventDefault();
         var order_id = $("#tCIS_OE_DTO_SEARCH_ORDER_ID").val();
@@ -95,9 +95,9 @@ $(document).ready(function () {
         })
 
     });
-
-    $("#btnCIS_OE_DTO_SUBMIT").click(function (e) {
-
+    
+    $("#btnCIS_OE_DTO_SUBMIT").click(function(e){
+        
         e.preventDefault();
 
         var submitConfirm = confirm('Confirm All Order');
@@ -105,16 +105,16 @@ $(document).ready(function () {
             var msg = '';
             var fullmsg;
             var providerDetail = _dataDTO[0].hfcProviderDetail.split("|");
-
-            var msh = getMSH("04", providerDetail[0]);
+            
+            var msh = getMSH("04",providerDetail[0]);
             var pdi = PDIInfo;
-            var orc = convertORC(_dataDTO[0], "02", "04", "T12100");
+            var orc = convertORC(_dataDTO[0], "02", "04","T12100");
             for (var i in _dataDTO) {
                 msg += convertDTO(_dataDTO[i]);
                 //displayDTO( _dataDTO[i].drugName, _dataDTO[i].drugStrength, _dataDTO[i].drugDose, _dataDTO[i].drugFrequency, _dataDTO[i].drugDuration, _dataDTO[i].uomCode,  _dataDTO[i].drugCaution, _dataDTO[i].comment);
             }
             fullmsg = msh + pdi + orc + msg;
-
+       
             var data = {
                 msg: fullmsg,
                 pmino: pmiNo,
@@ -126,12 +126,12 @@ $(document).ready(function () {
         } else {
             return false;
         }
-
+        
     });
-
-
-    $("#btnCIS_OE_DTO_ADD").click(function (e) {
-
+    
+    
+    $("#btnCIS_OE_DTO_ADD").click(function(e){
+        
         $('#CIS040002').css('overflow', 'auto');
         e.preventDefault();
         var drugName = $('#tCISOEDTODrugName').val();
@@ -157,12 +157,17 @@ $(document).ready(function () {
         var problemCode = $("#problemCodeDTO").val();
         var problemName = $("#tCISOEDTOProblemName").val();
         var drugFrequencyValue = $('#tCIS_DTODrugFrequency option:selected').val();
-
-        if (drugStrengthUnit === null) {
+        
+        if(drugStrengthUnit === null){
             drugStrengthUnit = " ";
         }
-
+        
+        if($('#tCIS_DTODrugFrequency').val() === '0'){
+            drugFrequency = drugFrequencyDetail;
+        }
+        
         var obj1 = {
+
             Acode: 'DTO',
             hfcOrderDetail: hfcOrderDetail,
             hfcProviderDetail: hfcProviderDetail,
@@ -174,7 +179,7 @@ $(document).ready(function () {
             drugFrequencyDetail: drugFrequencyDetail,
             drugStrength: drugStrength,
             drugStrengthUnit: drugStrengthUnit,
-            drugDose: drugDose + " " + drugDoseType,
+            drugDose: drugDose+" "+drugDoseType,
             drugDoseUnit: drugDoseUnit,
             drugDuration: drugDuration,
             drugDurationUnit: drugDurationUnit,
@@ -183,105 +188,85 @@ $(document).ready(function () {
             remark: remark,
             comment: comment,
             drugQuantity: drugQuantity,
-            problemName: problemName,
-            problemCode: problemCode,
-            priority: "Normal",
-            drugFrequencyValue: drugFrequencyValue
+            problemName:problemName,
+            problemCode:problemCode,
+            priority:"Normal",
+            drugFrequencyValue:drugFrequencyValue
 
         };
-        if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === '' && drugQuantity === '') {
+        if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength, drug duration and drug quantity</div>");
         } else if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === '') {
             bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength and drug duration</div>");
         } else if (drugName === '' && drugStrength === '' && drugDose === '' && drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength and drug quantity</div>");
-        } else if (drugName === '' && drugStrength === '' && drugDuration === '' && drugQuantity === '') {
+        } else if (drugName === '' && drugStrength === '' && drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength, drug duration and drug quantity</div>");
-        } else if (drugName === '' && drugDose === '' && drugDuration === '' && drugQuantity === '') {
+        } else if (drugName === ''  && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength, drug duration and drug quantity</div>");
-        } else if (drugStrength === '' && drugDose === '' && drugDuration === '' && drugQuantity === '') {
+        } else if ( drugStrength === '' && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug strength, drug duration, drug dose and drug quantity</div>");
-        } else if (drugName === '' && drugStrength === '' && drugDose === '') {
+        } else if (drugName === '' && drugStrength === '' && drugDose === '' ) {
             bootbox.alert("<div id='buttbox'>Please enter drug name, drug strength and durg dose</div>");
-        } else if (drugName === '' && drugDuration === '' && drugQuantity === '') {
+        }else if (drugName === ''  && drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug name, drug duration and drug quantity</div>");
-        } else if (drugDose === '' && drugDuration === '' && drugQuantity === '') {
+        }else if (  drugDose === '' && drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug dose, durg duration and drug quantity</div>");
-        } else if (drugName === '' && drugStrength === '') {
+        }else if (drugName === '' && drugStrength === '' ) {
             bootbox.alert("<div id='buttbox'>Please enter drug name and drug strength</div>");
-        } else if (drugName === '' && drugQuantity === '') {
+        }else if (drugName === '' && drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug name and drug quantity</div>");
-        } else if (drugDuration === '' && drugQuantity === '') {
+        } else if (drugDuration === ''&& drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter duration</div>");
-        } else if (drugName === '') {
+        }else if (drugName === '' ) {
             bootbox.alert("<div id='buttbox'>Please enter drug name</div>");
-        } else if (drugQuantity === '') {
+        }else if (drugQuantity === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug quantity</div>");
-        } else if (drugDose === '') {
+        }else if ( drugDose === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug dose");
-        } else if (drugDuration === '') {
+        }else if (drugDuration === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug duration");
-        } else if (drugStrength === '') {
+        }else if (drugStrength === '') {
             bootbox.alert("<div id='buttbox'>Please enter drug strength");
-        } else {
-
+        }else{
+            
             if (checkOrderCode(_dataDTO, obj1.drugCode)) {
                 alert("This order already been added");
-            } else {
-
-                // check first whether the drug quantity is valid for order
-                createScreenLoading();
-                $.ajax({
-                    type: 'POST',
-                    url: "CIS04/control/checkDrugQuantity.jsp",
-                    timeout: 60000,
-                    data: {code: obj1.drugCode},
-                    success: function (json, textStatus, jqXHR) {
-                        //if valid, insert into the table
-                        if (json.valid) {
-                            _dataDTO.push(obj1);
-                            indexDTO = _dataDTO.lastIndexOf(obj1);
-                            appendOrderDTO(obj1, indexDTO);
-                            clearFieldDTO();
-                        }
-                        else{
-                            alert(json.msg);
-                        }
-                    },
-                    complete: function (jqXHR, textStatus) {
-                        destroyScreenLoading();
-                    }
-                });
-
+            } else{
+                
+                _dataDTO.push(obj1);
+                indexDTO = _dataDTO.lastIndexOf(obj1);
+                appendOrderDTO(obj1, indexDTO);
+                clearFieldDTO();
             }
 
-
+        
         }
 
-
+  
 
     });
-
-    $("#tableOrderDTO").on("click", ".btnUpdate", function (e) {
-
+    
+    $("#tableOrderDTO").on("click",".btnUpdate",function(e){
+       
         e.preventDefault();
         $("#btnCIS_OE_DTO_UPDATE").show();
         $("#btnCIS_OE_DTO_CANCEL").show();
         $("#btnCIS_OE_DTO_ADD").hide();
-
+        
         rowDTODataTR = $(this).closest("tr");
         rowDTOId = $(this).get(0).id;
         var index = rowDTOId.split("|");
         index = parseInt(index[1]);
         updateDTOIndex = indexDTO;
         updateDTOObj = _dataDTO[index];
-
-        searchingRetrieve("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp", updateDTOObj.problemName);
+        
+        searchingRetrieve("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp",updateDTOObj.problemName);
         searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", updateDTOObj.drugName);
-
+        
         var dosesplit = updateDTOObj.drugDose.split(" ");
-
-
+        
+        
         $('#tCIS_DTODrugCode').val(updateDTOObj.drugCode);
         $('#tCIS_DTODrugForm').val(updateDTOObj.drugForm);
         $('#tCIS_DTODrugRoute').val(updateDTOObj.drugRoute);
@@ -295,25 +280,25 @@ $(document).ready(function () {
         $('#tCIS_DTODrugDoseUnit').val(updateDTOObj.drugDoseUnit);
         $('#tCIS_DTODrugDuration').val(updateDTOObj.drugDuration);
         $('#tCIS_DTODrugUnit').val(updateDTOObj.drugDurationUnit);
-
+       
         $("#tCIS_DTOQuantity").val(updateDTOObj.drugQuantity);
         $('#tCIS_DTORemark').val(updateDTOObj.remark);
         $('#tCIS_DTOCommentArea').val(updateDTOObj.comment);
         $('#hfcOrderDetailDTO').val(updateDTOObj.hfcOrderDetail);
         $('#hfcProviderDetailDTO').val(updateDTOObj.hfcProviderDetail);
         $("#problemCodeDTO").val(updateDTOObj.problemCode);
-
+        
 //        $("#tCIS_DTODrugFrequency option").each(function () {
 //            if ($(this).text() == updateDTOObj.drugFrequency) {
 //                $(this).attr('selected', 'selected');
 //            }
 //        });
-
-
+       
+        
     });
-
-    $("#btnCIS_OE_DTO_UPDATE").click(function (e) {
-
+    
+    $("#btnCIS_OE_DTO_UPDATE").click(function(e){
+        
         e.preventDefault();
         updateDTOObj.hfcOrderDetail = $("#hfcOrderDetailDTO").val();
         updateDTOObj.hfcProviderDetail = $("#hfcProviderDetailDTO").val();
@@ -325,7 +310,7 @@ $(document).ready(function () {
         updateDTOObj.drugFrequencyDetail = $("#tCIS_DTODrugFrequencyDetail").val();
         updateDTOObj.drugStrength = $("#tCIS_DTODrugStrength").val();
         updateDTOObj.drugStrengthUnit = $("#tCIS_DTODrugStrengthUnit").val();
-        updateDTOObj.drugDose = $("#tCIS_DTODrugDose").val() + " " + $("#tCIS_DTODrugDoseType").val();
+        updateDTOObj.drugDose = $("#tCIS_DTODrugDose").val()+" "+$("#tCIS_DTODrugDoseType").val();
         updateDTOObj.drugDoseUnit = $("#tCIS_DTODrugDoseUnit").val();
         updateDTOObj.drugDuration = $("#tCIS_DTODrugDuration").val();
         updateDTOObj.drugDurationUnit = $("#tCIS_DTODrugUnit").val();
@@ -337,27 +322,27 @@ $(document).ready(function () {
         updateDTOObj.problemName = $("#problemCodeDTO").val();
         updateDTOObj.problemCode = $("#tCISOEDTOProblemName").val();
         updateDTOObj.drugFrequencyValue = $('#tCIS_DTODrugFrequency option:selected').val();
-        updateOrderDTOTable(updateDTOObj, updateDTOIndex);
+        updateOrderDTOTable(updateDTOObj,updateDTOIndex);
         $("#btnCIS_OE_DTO_UPDATE").hide();
         $("#btnCIS_OE_DTO_CANCEL").hide();
         $("#btnCIS_OE_DTO_ADD").show();
         clearFieldDTO();
-
-
+  
+       
     });
-
-    $("#btnCIS_OE_DTO_CANCEL").click(function (e) {
-
+    
+    $("#btnCIS_OE_DTO_CANCEL").click(function(e){
+        
         e.preventDefault();
         $("#btnCIS_OE_DTO_UPDATE").hide();
         $("#btnCIS_OE_DTO_CANCEL").hide();
         $("#btnCIS_OE_DTO_ADD").show();
         clearFieldDTO();
-
+        
     });
-
+    
     $("#tableOrderDTO").on("click", ".btnDelete", function (e) {
-
+        
         e.preventDefault();
         rowDTODataTR = $(this).closest("tr");
         var delId = $(this).get(0).id;
@@ -367,51 +352,51 @@ $(document).ready(function () {
         if (delConfirm === true) {
             delete _dataDTO[delIndex];
             $(this).closest('tr').remove();
-
+          
         } else {
             return false;
         }
-
+        
     });
-
-
+    
+    
     $('#tCISOEDTODrugName').on('change:flexdatalist', function (value) {
-
+        
         value = $(this).val();
         $('#codeLOS').val(value);
 
     });
     $("#tCISOEDTODrugName").on('before:flexdatalist.data', function (response) {
-
+        
         $('#tCISOEDTODrugNameLoading').html('<img src="img/LoaderIcon.gif" />');
-
+        
     });
     $("#tCISOEDTODrugName").on('after:flexdatalist.data', function (response) {
-
+        
         $('#tCISOEDTODrugNameLoading').html('');
-
+        
     });
     $("#tCISOEDTODrugName").on('select:flexdatalist', function (response) {
-
+        
         var drugName = $("#codeLOS").val();
         searchDTOInfo(drugName);
 
     });
-
+    
     function appendOrderDTO(obj, index) {
 
-        var _tr = '<tr id="trDTO_row|' + index + '" ><td>' + obj.drugName + '</td><td>' + obj.drugStrength + ' ' + obj.drugStrengthUnit + '</td><td>' + obj.drugFrequency + '</td><td>' + obj.drugDuration + ' ' + obj.drugDurationUnit + '</td><td>' + obj.drugQuantity + '</td><td>' + obj.remark + '</td><td>' + obj.comment + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+        var _tr = '<tr id="trDTO_row|' + index + '" ><td>'+obj.drugName+'</td><td>'+ obj.drugStrength+' '+ obj.drugStrengthUnit+'</td><td>'+ obj.drugFrequency+'</td><td>'+ obj.drugDuration+' '+ obj.drugDurationUnit+ '</td><td>'+obj.drugQuantity+'</td><td>'+obj.remark+'</td><td>'+obj.comment+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         $("#tableOrderDTO").append(_tr);
-
+        
     }
     function updateOrderDTOTable(obj, index) {
 
-        var _tr = '<td>' + obj.drugName + '</td><td>' + obj.drugStrength + ' ' + obj.drugStrengthUnit + '</td><td>' + obj.drugFrequency + '</td><td>' + obj.drugDuration + ' ' + obj.drugDurationUnit + '</td><td>' + obj.drugQuantity + '</td><td>' + obj.remark + '</td><td>' + obj.comment + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
-        $(rowDTODataTR).html(_tr);
+         var _tr = '<td>'+obj.drugName+'</td><td>'+ obj.drugStrength+' '+ obj.drugStrengthUnit+'</td><td>'+ obj.drugFrequency+'</td><td>'+ obj.drugDuration+' '+ obj.drugDurationUnit+ '</td><td>'+obj.drugQuantity+'</td><td>'+obj.remark+'</td><td>'+obj.comment+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+       $(rowDTODataTR).html(_tr);
     }
-
-    function clearFieldDTO() {
-
+    
+    function clearFieldDTO(){
+        
         searchingRetrieve("tCISOEDTOProblemName", "tCISOEDTOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeDTO", "search/ResultCCNSearchCode.jsp", "");
         searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", "");
         $('#tCIS_DTODrugCode').val('');
@@ -427,18 +412,18 @@ $(document).ready(function () {
         $('#tCIS_DTODrugDoseUnit').val('');
         $('#tCIS_DTODrugDuration').val('');
         $('#tCIS_DTODrugUnit').val('');
-        $('#tCIS_DTODrugFrequency').val('');
+        $('#tCIS_DTODrugFrequency').val('0');
         $("#tCIS_DTOQuantity").val('');
         $('#tCIS_DTORemark').val('');
         $('#tCIS_DTOCommentArea').val('');
 //        $('#hfcOrderDetailDTO').val('');
 //        $('#hfcProviderDetailDTO').val('');
         $("#problemCodeDTO").val('');
-
+        
     }
-
-    function searchDTOInfo(drugName) {
-        $.ajax({
+    
+    function searchDTOInfo(drugName){
+                $.ajax({
             type: "post",
             url: "search/ResultDTOSearchCode.jsp",
             timeout: 3000,
@@ -453,24 +438,25 @@ $(document).ready(function () {
                 $('#tCIS_DTODrugRoute').val(array_data[6].trim());
                 $('#tCIS_DTODrugCaution').val(array_data[8].trim());
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-                //$('#tCIS_DTODrugFrequency').text(array_data[9].trim());
-                $("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
+                //$("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
+                $("#tCIS_DTODrugFrequency").val('0');
+                
                 $('#tCIS_DTODrugStrength').val(array_data[4].trim());
                 $('#tCIS_DTODrugStrengthUnit').val("");
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
                 $('#tCIS_DTODrugUnit').val(array_data[12].trim());
-
+                $("#tCIS_DTODrugFrequencyValue").val(array_data[13].trim());
                 $('#tCIS_DTODrugDose').val(array_data[5].trim());
                 $('#tCIS_DTODrugDoseType').val(array_data[10].trim());
                 var dur = parseFloat(array_data[11].trim());
-                var fre = parseFloat($('#tCIS_DTODrugFrequency').val());
-                var quantity = dur * fre;
+                var fre = parseFloat(array_data[13].trim());
+                var quantity = dur*fre;
                 $("#tCIS_DTOQuantity").val(quantity);
 
             }
         });
     }
-
+    
     function checkOrderCode(data, code) {
         var already = false;
         for (var i in data) {
@@ -480,35 +466,37 @@ $(document).ready(function () {
         }
         return already;
     }
-
+    
 
 });
-function calculateQuantity() {
-    var drugDTOUnit = $("#tCIS_DTODrugUnit").val();
-    var times = 1;
-    if (drugDTOUnit === "Week") {
-        times = 7;
-    } else if (drugDTOUnit === "Month") {
-        var now = new Date();
-        var num_days = numberOfDays(now.getFullYear(), now.getMonth() + 1);
-        times = num_days;
+    function calculateQuantity(){
+        var drugDTOUnit = $("#tCIS_DTODrugUnit").val();
+        var times = 1;
 
+        if(drugDTOUnit === "Week"){
+            times = 7;
+        } else if(drugDTOUnit === "Month"){
+            var now = new Date();
+            var num_days = numberOfDays(now.getFullYear(), now.getMonth()+1);
+            times = num_days;
+        }
+        var fre_value = $("#tCIS_DTODrugFrequency").val();
+        var dur =    $('#tCIS_DTODrugDuration').val();
+        if (fre_value === '0') {
+            fre_value = $("#tCIS_DTODrugFrequencyValue").val();
+        }
+        var dur = parseFloat(dur);
+        var time_dur = parseFloat(times);
+        var fre = parseFloat(fre_value);
+        var quantity = time_dur * dur * fre;   
+        $("#tCIS_DTOQuantity").val(quantity);
+    
+
+        
+        
     }
-    var fre_value = $("#tCIS_DTODrugFrequency").val();
-    var dur = $('#tCIS_DTODrugDuration').val();
-
-    var dur = parseFloat(dur);
-    var time_dur = parseFloat(times);
-    var fre = parseFloat(fre_value);
-    var quantity = time_dur * dur * fre;
-    $("#tCIS_DTOQuantity").val(quantity);
-
-
-
-
-}
-
-function numberOfDays(year, month) {
+    
+    function numberOfDays(year, month) {
     var d = new Date(year, month, 0);
     return d.getDate();
 }

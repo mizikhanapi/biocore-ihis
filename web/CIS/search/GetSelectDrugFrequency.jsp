@@ -21,7 +21,7 @@
                 %>
 
                 <select class="form-control input-lg" id="tCIS_DTODrugFrequency" name="tCIS_DTODrugFrequency" required onchange="calculateQuantity()">
-    <option></option>
+                    <option value="0">Default (Click here to change) </option>
     <%
         String sqlDoc = "select frequency_desc,frequency_value from pis_drug_frequency WHERE hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+discipline_cd+"' AND subdiscipline_cd = '"+subdiscipline_cd+"';";
         ArrayList<ArrayList<String>> dataDoctor = Conn.getData(sqlDoc);

@@ -5,7 +5,7 @@
 --%>
 
 <!-- Modal -->
-<div class="modal fade" id="CIS030004" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="CIS030004" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="overflow: auto">
     <div class="modal-dialog" style="width: 65%">
         <div class="modal-content">
             <div class="modal-header">
