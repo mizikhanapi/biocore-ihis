@@ -7,7 +7,7 @@
     Conn Conn = new Conn();
     String key = request.getParameter("keyword");
     //String key ="fever";
-     String searchProblem = "SELECT ra_desc FROM readcode_allergy where CONCAT(UPPER(ra_desc),LOWER(ra_desc)) like '%" +  key + "%'";
+     String searchProblem = "SELECT ra_desc FROM readcode_allergy where CONCAT(UPPER(ra_desc),LOWER(ra_desc)) like '%" +  key + "%' order by CHAR_LENGTH(ra_desc), ra_desc  ASC;";
      ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
      String data = "[";
       if (search.size() > 0) 

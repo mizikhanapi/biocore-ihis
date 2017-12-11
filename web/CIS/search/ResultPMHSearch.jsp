@@ -7,7 +7,7 @@
     Conn Conn = new Conn();
                                String key = request.getParameter("keyword");
                                //String key ="fever";
-                               String searchProblem = "SELECT rpmh_desc FROM readcode_past_medical_history where CONCAT(UPPER(rpmh_desc),LOWER(rpmh_desc)) like '%" +  key + "%'";
+                               String searchProblem = "SELECT rpmh_desc FROM readcode_past_medical_history where CONCAT(UPPER(rpmh_desc),LOWER(rpmh_desc)) like '%" +  key + "%' order by CHAR_LENGTH(rpmh_desc), rpmh_desc  ASC;";
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
                                     JSONArray jsonArray = new JSONArray();
 
