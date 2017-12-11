@@ -11,7 +11,7 @@
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
     //String key ="fever";
-    String searchProblem = "select `D_TRADE_NAME`,`D_GNR_NAME` from pis_mdc2 WHERE hfc_cd = '" + hfc_cd + "' AND discipline_cd = '" + discipline + "'  ";
+    String searchProblem = "select `D_TRADE_NAME`,`D_GNR_NAME` from pis_mdc2 WHERE hfc_cd = '" + hfc_cd + "' AND discipline_cd = '" + discipline + "'  order by CHAR_LENGTH(D_TRADE_NAME), D_TRADE_NAME  ASC; ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
 
     JSONArray jsonArray = new JSONArray();

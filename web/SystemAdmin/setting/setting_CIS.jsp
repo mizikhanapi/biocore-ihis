@@ -95,12 +95,12 @@
         <div class="form-group">
             <p>
                 <input type="radio" name="DRG_ord" value="2" <%=drg_2%>>
-                <label>Allow drug order if quantity is above reorder level</label>
+                <label>Allow drug order if quantity is above or equal to reorder level</label>
             </p>
 
             <p>
                 <input type="radio" name="DRG_ord" value="1" <%=drg_1%>>
-                <label>Allow drug order if quantity is above minimum level</label>
+                <label>Allow drug order if quantity is above or equal to minimum level</label>
             </p>
             
             <p>

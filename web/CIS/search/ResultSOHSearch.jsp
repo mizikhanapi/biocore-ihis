@@ -7,7 +7,7 @@
     Conn Conn = new Conn();
                                String key = request.getParameter("keyword");
                                //String key ="fever";
-                                String searchProblem = "SELECT rsh_desc FROM readcode_social_history where CONCAT(UPPER(rsh_desc),LOWER(rsh_desc)) like '%" + key + "%' union select socialhistory_name from socialhistory_type where CONCAT(UPPER(socialhistory_name ),LOWER(socialhistory_name )) like '%" + key + "%'";
+                                String searchProblem = "SELECT rsh_desc FROM readcode_social_history where CONCAT(UPPER(rsh_desc),LOWER(rsh_desc)) like '%" + key + "%' union select socialhistory_name from socialhistory_type where CONCAT(UPPER(socialhistory_name ),LOWER(socialhistory_name )) like '%" + key + "%' order by CHAR_LENGTH(rsh_desc), rsh_desc  ASC;";
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
                                 String data = "[";
                                  if (search.size() > 0) 
