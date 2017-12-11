@@ -78,6 +78,7 @@
 
     //
     function datatableTable() {
+        
         $("#deliveryOrderDetailTable").DataTable().destroy();
 
         $('#deliveryOrderDetailTable').DataTable({

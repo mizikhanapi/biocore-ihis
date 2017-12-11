@@ -39,7 +39,8 @@
         String sql = "SELECT vh.vendor_id,vh.invoice_no,vh.txt_date,vh.hfc_cd,vh.discipline,vh.sub_discipline,vh.location,vh.total_amt,vh.quantity,"
                 + " vh.order_no,vh.subledger_type,vh.do_number,v.vendor_name "
                 + " FROM fap_vendor_header vh INNER JOIN fap_vendor v "
-                + " WHERE vh.hfc_cd = '" + hfc + "' AND vh.discipline = '" + dis + "' AND vh.vendor_id = v.vendor_id ";
+                + " WHERE vh.hfc_cd = '" + hfc + "' AND vh.discipline = '" + dis + "' "
+                + " AND vh.vendor_id = v.vendor_id AND vh.subledger_type = 'Pharmacy' ";
 
         ArrayList<ArrayList<String>> dataInvoiceList = conn.getData(sql);
 
