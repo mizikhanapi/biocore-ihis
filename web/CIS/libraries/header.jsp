@@ -29,13 +29,13 @@
 <script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
 <script src="../assets/js/bootbox.min.js"></script>
 <script src="jsFunction/MainFunction.js"></script>
-<script src="jsFunction/MainConfig.js"></script>
+<script src="jsFunction/MainConfig.js?v=1"></script>
 <script src="jsFunction/Objective.js"></script>
-<script src="jsFunction/Subjective.js"></script>
+<script src="jsFunction/Subjective.js?v=1"></script>
 <script src="jsFunction/Assesment.js"></script>
-<script src="jsFunction/Plan.js"></script>
-<script src="jsFunction/queue.js"></script>
-<script src="jsFunction/Converter.js" type="text/javascript"></script>
+<script src="jsFunction/Plan.js?v=1"></script>
+<script src="jsFunction/queue.js?v=1"></script>
+<script src="jsFunction/Converter.js?v=1" type="text/javascript"></script>
 
 <script src="jsFunction/TopMenuFunction.js"></script>
 <script src="jsFunction/searchTopMenu.js"></script>
