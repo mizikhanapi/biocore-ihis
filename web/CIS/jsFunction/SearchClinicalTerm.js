@@ -12,7 +12,7 @@
             //searchDelay:3000,
 
             url:urlData,
-            cache:true,
+//            cache:true,
             params:{
                 timeout:3000,
                 success:function(result){
