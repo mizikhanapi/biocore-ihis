@@ -64,6 +64,7 @@
                                 </div>
 
                                 <hr/>
+                                
 
                                 <div class="row">
                                     <h4 class="modal-title" style="font-weight: bold">Drug Details</h4>
@@ -112,7 +113,7 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugFrequencyDetail" placeholder="" readonly="">
-                                            <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugFrequencyValue" placeholder="" readonly="" hidden="">
+                                            <input class="form-control input-lg hidden" type="text" name="d_strength" id="tCIS_DTODrugFrequencyValue" placeholder="" readonly="" hidden="">
                                         </div>
                                     </div>
 
@@ -128,12 +129,12 @@
                                             <h4 class="modal-title modalTextLabel">Drug Strength</h4>
                                         </div>
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugStrength" placeholder="" disabled="">
                                         </div>
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
+<!--                                    <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
                                             <select name="site" id="tCIS_DTODrugStrengthUnit" class="form-control input-lg">
                                                 <option disabled="">Unit</option>
@@ -143,27 +144,30 @@
 
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
                                             <h4 class="modal-title modalTextLabel">Dosage</h4>
                                         </div>
                                     </div>
-                                    <div class="col-xs-1 col-sm-1 col-md-1 " style="padding: 0px;">
+                                    <div class="col-xs-2 col-sm-2 col-md-2 " style="padding: 0px;">
                                         <div class="form-group">
                                             <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTODrugDose" step="0.01" placeholder="" >
                                             
                                         </div>
                                     </div>
-                                    <div class="col-xs-1 col-sm-1 col-md-1"  style="padding: 0px;">
+                                    <div class="col-xs-2 col-sm-2 col-md-2"  style="padding: 0px;">
                                         <div class="form-group">
                                             
                                             <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDoseType" placeholder="" disabled="">
                                         </div>
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
+<!--                                    <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
+                                            <div id="divSelectDrugForm">
+
+                                            </div>
                                             <select name="site" id="tCIS_DTODrugDoseUnit" class="form-control input-lg">
                                                 <option disabled="">Unit</option>
                                                 <option value="" >-</option>
@@ -172,7 +176,7 @@
 
                                             </select>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                 </div>
 
