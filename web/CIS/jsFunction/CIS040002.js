@@ -145,7 +145,7 @@ $(document).ready(function () {
         var uomCode = $('#tCIS_DTODrugStrengthUnit option:selected').text();
         var drugDose = $('#tCIS_DTODrugDose').val();
         var drugDoseType = $('#tCIS_DTODrugDoseType').val();
-        var drugDoseUnit = $('#tCIS_DTODrugDoseUnit').val();
+        var drugDoseUnit = "";//$('#tCIS_DTODrugDoseUnit').val();
         var drugDuration = $('#tCIS_DTODrugDuration').val();
         var drugDurationUnit = $('#tCIS_DTODrugUnit').val();
         var drugFrequency = $('#tCIS_DTODrugFrequency option:selected').text();

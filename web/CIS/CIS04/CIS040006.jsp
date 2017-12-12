@@ -20,7 +20,7 @@
                         </li>
                         <li id="POS_History" >
                             <a href="#procedureOrder2" data-toggle="tab">
-                                Drug Procedure History</a>
+                                Procedure Order History</a>
                         </li>
                     </ul>
                 </div>
