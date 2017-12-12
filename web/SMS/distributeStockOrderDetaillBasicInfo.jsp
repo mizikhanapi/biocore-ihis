@@ -560,6 +560,7 @@
 
         //JS Search in Add Stock Item Start
         $(function () {
+            
             $("#orderStockDetailsSearchItemInput").on('keyup', function () { // everytime keyup event
 
                 var input = $(this).val(); // We take the input value

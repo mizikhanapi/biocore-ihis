@@ -31,7 +31,7 @@
     String total_amt = request.getParameter("total_amt");
     String quantity = request.getParameter("quantity");
     String order_no = request.getParameter("order_no");
-    String subledger_type = "-";
+    String subledger_type = "Pharmacy";
     String do_number = "-";
     String created_by = session.getAttribute("USER_ID").toString();
     String created_date = format.format(now);
