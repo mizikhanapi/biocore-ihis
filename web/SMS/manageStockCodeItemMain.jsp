@@ -11,7 +11,7 @@
     <span class="pull-right">
         <button id="addNewStockItemButton" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK ITEM</button>
         <button id="STOCKITEMClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK ITEM</button>
-    </span>
+        <button id="STOCKITEM_btnSummary" class="btn btn-danger" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>STOCK ITEM INVENTORY SUMMARY</button>    </span>
 </h4>
 
 <script>
@@ -101,6 +101,30 @@
             stockItemStdLaborCost = newLabCostPrice;
             stockItemStdExpenses = newExpensesPrice;
 
+            if (stockItemFloatStock === "") {
+                stockItemFloatStock = '0';
+            }
+
+            if (isNaN(stockItemWholesalePrice) === true) {
+                stockItemWholesalePrice = '0.00';
+            }
+
+            if (isNaN(stockItemTax) === true) {
+                stockItemTax = '0.00';
+            }
+
+            if (isNaN(stockItemStdMaterialCost) === true) {
+                stockItemStdMaterialCost = '0.00';
+            }
+
+            if (isNaN(stockItemStdLaborCost) === true) {
+                stockItemStdLaborCost = '0.00';
+            }
+
+            if (isNaN(stockItemStdExpenses) === true) {
+                stockItemStdExpenses = '0.00';
+            }
+
 
             if (stockItemCatCode === "" || stockItemCatCode === null) {
 
@@ -114,57 +138,21 @@
 
                 bootbox.alert("Please Insert The Item Name");
 
-            } else if (stockItemBarcode === "" || stockItemBarcode === null) {
-
-                bootbox.alert("Please Insert The Item Barcode");
-
             } else if (stockItemOUM === "" || stockItemOUM === null) {
 
-                bootbox.alert("Please Insert The Item OUM");
+                bootbox.alert("Please Select The Item OUM");
 
-            } else if (stockItemsSupplierCD === "" || stockItemsSupplierCD === null) {
-
-                bootbox.alert("Please Insert The Item Supplier");
-
-            } else if (stockItemSerialNo === "" || stockItemSerialNo === null) {
-
-                bootbox.alert("Please Insert The Item Serial No.");
-
-            } else if (stockItemBrand === "" || stockItemBrand === null) {
-
-                bootbox.alert("Please Insert The Item Brand");
-
-            } else if (stockItemLocation === "" || stockItemLocation === null) {
-
-                bootbox.alert("Please Insert The Item Location");
-
-            } else if (stockItemCurrency === "" || stockItemCurrency === null) {
-
-                bootbox.alert("Please Insert The Item Currency");
-
-            } else if (stockItemSellingPrice === "" || stockItemSellingPrice === null) {
+            } else if (stockItemSellingPrice === "" || stockItemSellingPrice === null || isNaN(stockItemSellingPrice) === true) {
 
                 bootbox.alert("Please Insert The Item Selling Price");
 
-            } else if (stockItemPurchasePrice === "" || stockItemPurchasePrice === null) {
+            } else if (stockItemPurchasePrice === "" || stockItemPurchasePrice === null || isNaN(stockItemPurchasePrice) === true) {
 
                 bootbox.alert("Please Insert The Item Purchase Price");
-
-            } else if (stockItemWholesalePrice === "" || stockItemWholesalePrice === null) {
-
-                bootbox.alert("Please Insert The Item WholeSale Price");
-
-            } else if (stockItemTax === "" || stockItemTax === null) {
-
-                bootbox.alert("Please Insert The Item Tax");
 
             } else if (stockItemMinStock === "" || stockItemMinStock === null) {
 
                 bootbox.alert("Please Insert The Item Min Stock");
-
-            } else if (stockItemFloatStock === "" || stockItemFloatStock === null) {
-
-                bootbox.alert("Please Insert The Item Float Stock");
 
             } else if (stockItemPhysicalStock === "" || stockItemPhysicalStock === null) {
 
@@ -173,30 +161,6 @@
             } else if (stockItemReorderLevel === "" || stockItemReorderLevel === null) {
 
                 bootbox.alert("Please Insert The Item Reorder Level");
-
-            } else if (stockItemStdMaterialCost === "" || stockItemStdMaterialCost === null) {
-
-                bootbox.alert("Please Insert The Item STD Material Cost");
-
-            } else if (stockItemStdLaborCost === "" || stockItemStdLaborCost === null) {
-
-                bootbox.alert("Please Insert The Item STD Labor Cost");
-
-            } else if (stockItemStdExpenses === "" || stockItemStdExpenses === null) {
-
-                bootbox.alert("Please Insert The Item STD Expenses");
-
-            } else if (stockItemCondition === "" || stockItemCondition === null) {
-
-                bootbox.alert("Please Insert The Item Condition");
-
-            } else if (stockItemGrade === "" || stockItemGrade === null) {
-
-                bootbox.alert("Please Insert The Item Grade");
-
-            } else if (stockItemStatus === "" || stockItemStatus === null) {
-
-                bootbox.alert("Please Select A Status");
 
             } else {
 
@@ -239,6 +203,7 @@
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
+                        console.log(datas);
 
                         if (datas.trim() === 'Success') {
 
@@ -392,6 +357,31 @@
             stockItemStdExpenses = newExpensesPrice;
 
 
+            if (stockItemFloatStock === "") {
+                stockItemFloatStock = '0';
+            }
+
+            if (isNaN(stockItemWholesalePrice) === true) {
+                stockItemWholesalePrice = '0.00';
+            }
+
+            if (isNaN(stockItemTax) === true) {
+                stockItemTax = '0.00';
+            }
+
+            if (isNaN(stockItemStdMaterialCost) === true) {
+                stockItemStdMaterialCost = '0.00';
+            }
+
+            if (isNaN(stockItemStdLaborCost) === true) {
+                stockItemStdLaborCost = '0.00';
+            }
+
+            if (isNaN(stockItemStdExpenses) === true) {
+                stockItemStdExpenses = '0.00';
+            }
+
+
             if (stockItemCatCode === "" || stockItemCatCode === null) {
 
                 bootbox.alert("Please Search The Category Code");
@@ -404,57 +394,21 @@
 
                 bootbox.alert("Please Insert The Item Name");
 
-            } else if (stockItemBarcode === "" || stockItemBarcode === null) {
-
-                bootbox.alert("Please Insert The Item Barcode");
-
             } else if (stockItemOUM === "" || stockItemOUM === null) {
 
-                bootbox.alert("Please Insert The Item OUM");
+                bootbox.alert("Please Select The Item OUM");
 
-            } else if (stockItemsSupplierCD === "" || stockItemsSupplierCD === null) {
-
-                bootbox.alert("Please Insert The Item Supplier");
-
-            } else if (stockItemSerialNo === "" || stockItemSerialNo === null) {
-
-                bootbox.alert("Please Insert The Item Serial No.");
-
-            } else if (stockItemBrand === "" || stockItemBrand === null) {
-
-                bootbox.alert("Please Insert The Item Brand");
-
-            } else if (stockItemLocation === "" || stockItemLocation === null) {
-
-                bootbox.alert("Please Insert The Item Location");
-
-            } else if (stockItemCurrency === "" || stockItemCurrency === null) {
-
-                bootbox.alert("Please Insert The Item Currency");
-
-            } else if (stockItemSellingPrice === "" || stockItemSellingPrice === null) {
+            } else if (stockItemSellingPrice === "" || stockItemSellingPrice === null || isNaN(stockItemSellingPrice) === true) {
 
                 bootbox.alert("Please Insert The Item Selling Price");
 
-            } else if (stockItemPurchasePrice === "" || stockItemPurchasePrice === null) {
+            } else if (stockItemPurchasePrice === "" || stockItemPurchasePrice === null || isNaN(stockItemPurchasePrice) === true) {
 
                 bootbox.alert("Please Insert The Item Purchase Price");
-
-            } else if (stockItemWholesalePrice === "" || stockItemWholesalePrice === null) {
-
-                bootbox.alert("Please Insert The Item WholeSale Price");
-
-            } else if (stockItemTax === "" || stockItemTax === null) {
-
-                bootbox.alert("Please Insert The Item Tax");
 
             } else if (stockItemMinStock === "" || stockItemMinStock === null) {
 
                 bootbox.alert("Please Insert The Item Min Stock");
-
-            } else if (stockItemFloatStock === "" || stockItemFloatStock === null) {
-
-                bootbox.alert("Please Insert The Item Float Stock");
 
             } else if (stockItemPhysicalStock === "" || stockItemPhysicalStock === null) {
 
@@ -463,30 +417,6 @@
             } else if (stockItemReorderLevel === "" || stockItemReorderLevel === null) {
 
                 bootbox.alert("Please Insert The Item Reorder Level");
-
-            } else if (stockItemStdMaterialCost === "" || stockItemStdMaterialCost === null) {
-
-                bootbox.alert("Please Insert The Item STD Material Cost");
-
-            } else if (stockItemStdLaborCost === "" || stockItemStdLaborCost === null) {
-
-                bootbox.alert("Please Insert The Item STD Labor Cost");
-
-            } else if (stockItemStdExpenses === "" || stockItemStdExpenses === null) {
-
-                bootbox.alert("Please Insert The Item STD Expenses");
-
-            } else if (stockItemCondition === "" || stockItemCondition === null) {
-
-                bootbox.alert("Please Insert The Item Condition");
-
-            } else if (stockItemGrade === "" || stockItemGrade === null) {
-
-                bootbox.alert("Please Insert The Item Grade");
-
-            } else if (stockItemStatus === "" || stockItemStatus === null) {
-
-                bootbox.alert("Please Select A Status");
 
             } else {
 
@@ -838,6 +768,41 @@
         // Clone Item Un-Select All Function End
 
         // Clone Item Function End
+
+
+
+        // Summary MDC Function Start
+
+        // Summary MDC Button Function Start
+        $('#STOCKITEM_btnSummary').on('click', function () {
+            createSTOCKITEMSummaryStock();
+        });
+        // Summary MDC Button Function End
+
+
+
+        // Summary MDC Stock Function Start
+        function createSTOCKITEMSummaryStock() {
+
+            $.ajax({
+                type: 'POST',
+                url: "controllerProcessStockItem/stockItemSummaryItemStock.jsp",
+                success: function (data, textStatus, jqXHR) {
+                    
+                    $('#stockItemStockSummary').html(data);
+                    
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
+                }
+            });
+
+        }
+        // Summary MDC Stock Function Start
+
 
 
     });

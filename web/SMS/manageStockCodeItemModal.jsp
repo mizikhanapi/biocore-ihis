@@ -65,43 +65,92 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Barcode *</label>
+                                <label class="col-md-5 control-label" for="textinput">Barcode</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemBarcode" name="freqCode" type="text" placeholder="Insert Stock Item Barcode" class="form-control input-md" maxlength="30" required>
+                                    <input id="stockItemBarcode" name="freqCode" type="text" placeholder="Insert Stock Item Barcode" class="form-control input-md" maxlength="30">
+                                </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-5 control-label" for="selectbasic">OUM *</label>
+                                <div class="col-md-7">
+                                    <select id="stockItemOUM" name="addD_QTYT" class="form-control">
+                                        <option value="">Please Select OUM</option>
+                                        <%
+                                            String sql1 = "SELECT Master_Reference_code,Detail_Reference_code, Description "
+                                                    + "FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql1);
+
+                                            int size1 = listOfDUOM.size();
+
+                                            for (int i = 0;
+                                                    i < size1;
+                                                    i++) {
+                                        %>
+                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(2)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item OUM *</label>
+                                <label class="col-md-5 control-label" for="textinput">Supplier</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemOUM" name="freqCode" type="text" placeholder="Insert Stock Item OUM" class="form-control input-md" maxlength="30" required>
+                                    <select id="stockItemsSupplierCD" name="supplierDetails" class="form-control" >
+                                        <option value="">Please Select Supplier</option>
+                                        <%
+                                            String sqlSupp = "SELECT vendor_id,vendor_name FROM fap_vendor where hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfDClass = conn.getData(sqlSupp);
+
+                                            int size8 = listOfDClass.size();
+
+                                            for (int i = 0; i < size8; i++) {
+                                        %>
+                                        <option value="<%= listOfDClass.get(i).get(0)%>"><%= listOfDClass.get(i).get(1)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Supplier *</label>
+                                <label class="col-md-5 control-label" for="textinput">Serial No.</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemsSupplierCD" name="freqCode" type="text" placeholder="Search Stock Item Supplier" class="form-control input-md" maxlength="30" required>
+                                    <input id="stockItemSerialNo" name="freqCode" type="text" placeholder="Insert Stock Item Serial No." class="form-control input-md" maxlength="30">
                                 </div>
                             </div>
 
-                            <!-- Text input-->
+                            <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Serial No. *</label>
+                                <label class="col-md-5 control-label" for="selectbasic">Brand</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemSerialNo" name="freqCode" type="text" placeholder="Insert Stock Item Serial No." class="form-control input-md" maxlength="30" required>
+                                    <select id="stockItemBrand" name="addD_QTYT" class="form-control">
+                                        <option value="">Please Select Brand</option>
+                                        <%
+                                            String sql2 = "SELECT Master_Reference_code,Detail_Reference_code, Description "
+                                                    + "FROM adm_lookup_detail where Master_Reference_code = '0126' AND hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfBrand = conn.getData(sql2);
+
+                                            int size2 = listOfBrand.size();
+
+                                            for (int i = 0;
+                                                    i < size2;
+                                                    i++) {
+                                        %>
+                                        <option value="<%= listOfBrand.get(i).get(2)%>"><%= listOfBrand.get(i).get(2)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Item Brand *</label>
-                                <div class="col-md-7">
-                                    <input id="stockItemBrand" name="freqCode" type="text" placeholder="Insert Stock Item Brand" class="form-control input-md" maxlength="10" required>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -110,23 +159,40 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Location *</label>
+                                <label class="col-md-5 control-label" for="textinput">Location</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemLocation" name="freqCode" type="text" placeholder="Insert Stock Item Location" class="form-control input-md" maxlength="10" required>
+                                    <input id="stockItemLocation" name="freqCode" type="text" placeholder="Insert Stock Item Location" class="form-control input-md" maxlength="10">
+                                </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-5 control-label" for="selectbasic">Currency</label>
+                                <div class="col-md-7">
+                                    <select id="stockItemCurrency" name="addD_QTYT" class="form-control">
+                                        <option value="">Please Select Currency</option>
+                                        <%
+                                            String sql3 = "SELECT Master_Reference_code,Detail_Reference_code, Description "
+                                                    + "FROM adm_lookup_detail where Master_Reference_code = '0099' AND hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfCur = conn.getData(sql3);
+
+                                            int size3 = listOfCur.size();
+
+                                            for (int i = 0;
+                                                    i < size3;
+                                                    i++) {
+                                        %>
+                                        <option value="<%= listOfCur.get(i).get(2)%>"><%= listOfCur.get(i).get(2)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Currency *</label>
-                                <div class="col-md-7">
-                                    <input id="stockItemCurrency" name="freqCode" type="text" placeholder="Insert Stock Item Currency" class="form-control input-md" maxlength="10" required>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Selling Price *</label>
+                                <label class="col-md-5 control-label" for="textinput">Selling Price *</label>
                                 <div class="col-md-7">
                                     <input id="stockItemSellingPrice" name="freqCode" type="text" placeholder="Insert Stock Item Selling Price" class="form-control input-md decimalNumbersOnly" maxlength="10" required>
                                 </div>
@@ -134,7 +200,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Purchase Price *</label>
+                                <label class="col-md-5 control-label" for="textinput">Purchase Price *</label>
                                 <div class="col-md-7">
                                     <input id="stockItemPurchasePrice" name="freqCode" type="text" placeholder="Insert Stock Item Purchase Price" class="form-control input-md decimalNumbersOnly" maxlength="10" required>
                                 </div>
@@ -142,17 +208,17 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Wholesale Price *</label>
+                                <label class="col-md-5 control-label" for="textinput">Item Wholesale Price</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemWholesalePrice" name="freqCode" type="text" placeholder="Insert Stock Item  Wholesale Price" class="form-control input-md decimalNumbersOnly" maxlength="10" required>
+                                    <input id="stockItemWholesalePrice" name="freqCode" type="text" placeholder="Insert Stock Item  Wholesale Price" class="form-control input-md decimalNumbersOnly" maxlength="10" >
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Tax *</label>
+                                <label class="col-md-5 control-label" for="textinput">Item Tax</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemTax" name="freqCode" type="text" placeholder="Insert Stock Item Tax" class="form-control input-md decimalNumbersOnly" maxlength="5" required>
+                                    <input id="stockItemTax" name="freqCode" type="text" placeholder="Insert Stock Item Tax" class="form-control input-md decimalNumbersOnly" maxlength="5" >
                                 </div>
                             </div>
 
@@ -166,9 +232,9 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Float Stock *</label>
+                                <label class="col-md-5 control-label" for="textinput">Item Float Stock</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemFloatStock" name="freqCode" type="text" placeholder="Insert Stock Item Float Stock" class="form-control input-md singleNumbersOnly" maxlength="7" required>
+                                    <input id="stockItemFloatStock" name="freqCode" type="text" placeholder="Insert Stock Item Float Stock" class="form-control input-md singleNumbersOnly" maxlength="7">
                                 </div>
                             </div>
 
@@ -195,41 +261,75 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Std Material Cost *</label>
+                                <label class="col-md-5 control-label" for="textinput">Item Std Material Cost</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemStdMaterialCost" name="freqCode" type="text" placeholder="Insert Stock Item Std Material Cost" class="form-control input-md decimalNumbersOnly" maxlength="10" required>
+                                    <input id="stockItemStdMaterialCost" name="freqCode" type="text" placeholder="Insert Stock Item Std Material Cost" class="form-control input-md decimalNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Std Labor Cost *</label>
+                                <label class="col-md-5 control-label" for="textinput">Item Std Labor Cost</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemStdLaborCost" name="freqCode" type="text" placeholder="Insert Stock Item Std Labor Cost" class="form-control input-md decimalNumbersOnly" maxlength="10" required>
+                                    <input id="stockItemStdLaborCost" name="freqCode" type="text" placeholder="Insert Stock Item Std Labor Cost" class="form-control input-md decimalNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Std Expenses *</label>
+                                <label class="col-md-5 control-label" for="textinput">Item Std Expenses</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemStdExpenses" name="freqCode" type="text" placeholder="Insert Stock Item Std Expenses" class="form-control input-md decimalNumbersOnly" maxlength="10" required>
+                                    <input id="stockItemStdExpenses" name="freqCode" type="text" placeholder="Insert Stock Item Std Expenses" class="form-control input-md decimalNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
-                            <!-- Text input-->
+                            <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Condition *</label>
+                                <label class="col-md-5 control-label" for="selectbasic">Condition</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemCondition" name="freqCode" type="text" placeholder="Insert Stock Item Condition" class="form-control input-md" maxlength="30" required>
+                                    <select id="stockItemCondition" name="addD_QTYT" class="form-control">
+                                        <option value="">Please Select Condition</option>
+                                        <%
+                                            String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description "
+                                                    + "FROM adm_lookup_detail where Master_Reference_code = '0128' AND hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfCon = conn.getData(sql4);
+
+                                            int size4 = listOfCon.size();
+
+                                            for (int i = 0;
+                                                    i < size4;
+                                                    i++) {
+                                        %>
+                                        <option value="<%= listOfCon.get(i).get(2)%>"><%= listOfCon.get(i).get(2)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
 
-                            <!-- Text input-->
+                            <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-5 control-label" for="textinput">Item Grade *</label>
+                                <label class="col-md-5 control-label" for="selectbasic">Grade</label>
                                 <div class="col-md-7">
-                                    <input id="stockItemGrade" name="freqCode" type="text" placeholder="Insert Stock Item Grade" class="form-control input-md" maxlength="10" required>
+                                    <select id="stockItemGrade" name="addD_QTYT" class="form-control">
+                                        <option value="">Please Select Grade</option>
+                                        <%
+                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description "
+                                                    + "FROM adm_lookup_detail where Master_Reference_code = '0127' AND hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfGra = conn.getData(sql5);
+
+                                            int size5 = listOfGra.size();
+
+                                            for (int i = 0;
+                                                    i < size5;
+                                                    i++) {
+                                        %>
+                                        <option value="<%= listOfGra.get(i).get(2)%>"><%= listOfGra.get(i).get(2)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
 
@@ -268,3 +368,37 @@
 </div>
 <!-- Modal Add Supplier End -->
 <!-- Add Part End -->
+
+
+<!-- Summary Modal Start -->
+<div class="modal fade" id="stockItemSummaryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 60%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Inventory Summary</h2>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form class="form-horizontal" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <div id="stockItemStockSummary">
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" type="button" id="stockItem_btnSummaryClose" data-dismiss="modal"><i class=" fa fa-close"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Summary Modal End -->   
