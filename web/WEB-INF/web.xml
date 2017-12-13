@@ -425,38 +425,48 @@
     
     <!-- mapping for SMS HIS220001 -->
     <servlet>
-        <servlet-name>Distribution_Stock_Order</servlet-name>
+        <servlet-name>Order_Stock</servlet-name>
         <jsp-file>/SMS/HIS220001.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Order_Stock</servlet-name>
+        <url-pattern>/SMS/Order_Stock</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220001 -->
+
+    <!-- mapping for SMS HIS220002 -->
+    <servlet>
+        <servlet-name>Distribution_Stock_Order</servlet-name>
+        <jsp-file>/SMS/HIS220002.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Distribution_Stock_Order</servlet-name>
         <url-pattern>/SMS/Distribution_Stock_Order</url-pattern>
     </servlet-mapping>
-    <!-- mapping for SMS HIS220001 -->
-
-
     <!-- mapping for SMS HIS220002 -->
+    
+    <!-- mapping for SMS HIS220003 -->
     <servlet>
         <servlet-name>Manage_Stock_Code</servlet-name>
-        <jsp-file>/SMS/HIS220002.jsp</jsp-file>
+        <jsp-file>/SMS/HIS220003.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Manage_Stock_Code</servlet-name>
         <url-pattern>/SMS/Manage_Stock_Code</url-pattern>
     </servlet-mapping>
-    <!-- mapping for SMS HIS220002 -->
-    
-    
     <!-- mapping for SMS HIS220003 -->
+    
+    
+<!--     mapping for SMS HIS220003 
     <servlet>
         <servlet-name>Manage_Stock_Quantity</servlet-name>
-        <jsp-file>/SMS/HIS220003.jsp</jsp-file>
+        <jsp-file>/SMS/HIS22000.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Manage_Stock_Quantity</servlet-name>
         <url-pattern>/SMS/Manage_Stock_Quantity</url-pattern>
     </servlet-mapping>
-    <!-- mapping for SMS HIS220003 -->
+     mapping for SMS HIS220003 -->
     
     
     <!-- mapping for SMS HIS220006 -->
