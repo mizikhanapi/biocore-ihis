@@ -1189,9 +1189,9 @@
 </div>
 <!--End Update Disability-->
 
-<script src="jsFunction/SearchClinicalTerm.js?v=1"></script>
+<script src="jsFunction/SearchClinicalTerm.js?v=1.1"></script>
 
-<script src="jsFunction/CIS0101.js"></script>
+<script src="jsFunction/CIS0101.js?v=1.2"></script>
 
 
 
