@@ -457,7 +457,55 @@
         <url-pattern>/SMS/Manage_Stock_Quantity</url-pattern>
     </servlet-mapping>
     <!-- mapping for SMS HIS220003 -->
+    
+    
+    <!-- mapping for SMS HIS220006 -->
+    <servlet>
+        <servlet-name>List_Of_Category</servlet-name>
+        <jsp-file>/SMS/HIS220006.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>List_Of_Category</servlet-name>
+        <url-pattern>/SMS/List_Of_Category</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220006 -->
         
+        
+    <!-- mapping for SMS HIS220007 -->
+    <servlet>
+        <servlet-name>List_Of_Items</servlet-name>
+        <jsp-file>/SMS/HIS220007.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>List_Of_Items</servlet-name>
+        <url-pattern>/SMS/List_Of_Items</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220007 -->
+    
+    
+    <!-- mapping for SMS HIS220008 -->
+    <servlet>
+        <servlet-name>List_Of_Vendor</servlet-name>
+        <jsp-file>/SMS/HIS220008.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>List_Of_Vendor</servlet-name>
+        <url-pattern>/SMS/List_Of_Vendor</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220008 -->
+    
+    
+    <!-- mapping for SMS HIS220009 -->
+    <servlet>
+        <servlet-name>Sales_For_Stock</servlet-name>
+        <jsp-file>/SMS/HIS220009.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sales_For_Stock</servlet-name>
+        <url-pattern>/SMS/Sales_For_Stock</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220009 -->
+    
         
     <!-- Mapping For SMS Hidding URL End -->
 

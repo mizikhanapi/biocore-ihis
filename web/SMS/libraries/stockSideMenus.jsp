@@ -20,7 +20,17 @@
         <li><a href="Manage_Stock_Code"><i class="fa fa-table fa-lg" aria-hidden="true" ></i>Manage Stock Code</a></li>
         <li><a href="Manage_Stock_Quantity"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Stock Quantity</a></li>
         <!-- Menu without dropdown -->
-
+        <!-- Menu with dropdown 2 -->
+        <li  data-toggle="collapse" data-target="#Report" class="collapsed active">
+            <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="Report">
+            <li><a data-toggle="modal" data-target="#" href="List_Of_Category">List Of Category</a></li>
+            <li><a data-toggle="modal" data-target="#" href="List_Of_Items">List Of Item</a></li>
+            <li><a data-toggle="modal" data-target="#" href="List_Of_Vendor">List Of Vendor</a></li>
+            <li><a data-toggle="modal" data-target="#" href="Sales_For_Stock">Sales For Stock</a></li>
+        </ul> 
+        <!-- Menu with dropdown 2 -->
     </ul>  
 
 </div>
