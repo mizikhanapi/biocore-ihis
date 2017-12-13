@@ -32,7 +32,7 @@
 <script src="jsFunction/MainConfig.js?v=1"></script>
 <script src="jsFunction/Objective.js"></script>
 <script src="jsFunction/Subjective.js?v=1"></script>
-<script src="jsFunction/Assesment.js"></script>
+<script src="jsFunction/Assesment.js?v=1"></script>
 <script src="jsFunction/Plan.js?v=1"></script>
 <script src="jsFunction/queue.js?v=1"></script>
 <script src="jsFunction/Converter.js?v=1" type="text/javascript"></script>
