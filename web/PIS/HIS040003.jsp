@@ -31,7 +31,7 @@
     </head>
 
     <body>
-
+        <input value="<%=leModuleCode%>" id="mainModuleCodeForGeberalPagesUsage" type="hidden">
         <div class="container-fluid">
             <div class="row">       
 
@@ -46,61 +46,7 @@
                     <%@include file = "libraries/pharmacyTopMenus.jsp" %>
                     <!-- menu top -->
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="thumbnail">
-
-
-                                <!-- Tab Menu -->
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    LIST OF INVOICE</a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_default_2" data-toggle="tab">
-                                                    NEW INVOICE ORDER </a>
-                                            </li>
-                                        </ul>
-
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-
-                                            <div class="tab-pane active" id="tab_default_1">
-
-                                                <div id="invoiceContentMaster">
-                                                </div>
-
-                                            </div>
-
-                                            <div class="tab-pane" id="tab_default_2">
-
-                                                <div id="invoiceContentAddMaster">
-                                                </div>
-
-                                                <hr class="pemisah" />
-
-                                                <div id="invoiceContentAddDetail">
-                                                </div>
-
-                                            </div>
-
-                                            <%@include file="manageStockQuantityModal.jsp" %>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Tab Menu -->
-
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- End Panel -->
-
+                    <%@include file = "../GNL/manageStockQuantity/manageStockQuantityMainPage.jsp" %>
 
                 </div>
                 <!-- main -->		
@@ -115,20 +61,6 @@
         <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
 
-        <script>
-
-            $('<div class="loading">Loading</div>').appendTo('body');
-
-            $(document).ready(function () {
-
-                $("#invoiceContentMaster").load("manageStockQuantityMasterTable.jsp");
-                $("#invoiceContentAddMaster").load("manageStockQuantityBasicInfo.jsp");
-                $("#invoiceContentAddDetail").load("manageStockQuantityInvoiceTable.jsp");
-
-            });
-
-
-        </script>
 
     </body>
 
