@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageStockQuantitySearchItem
-    Created on : Dec 11, 2017, 12:22:02 PM
+    Document   : manageStockQuantitySearchCommon
+    Created on : Dec 14, 2017, 5:05:50 PM
     Author     : Shammugam
 --%>
 
@@ -15,10 +15,23 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
     String key = request.getParameter("input");
+    String moduleCode = request.getParameter("moduleCode");
 
-    String searchProblem = "SELECT ud_mdc_code,d_trade_name FROM pis_mdc2 "
-            + " WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' "
-            + " AND (ud_mdc_code like '%" + key + "%' OR d_trade_name like '%" + key + "%') ";
+    String searchProblem = "";
+
+    if (moduleCode.equalsIgnoreCase("04")) {
+
+        searchProblem = "SELECT ud_mdc_code,d_trade_name FROM pis_mdc2 "
+                + " WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' "
+                + " AND (ud_mdc_code like '%" + key + "%' OR d_trade_name like '%" + key + "%') ";
+
+    } else if (moduleCode.equalsIgnoreCase("22")) {
+
+        searchProblem = "SELECT item_cd,item_name FROM stk_stock_item "
+                + " WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' "
+                + " AND (item_cd like '%" + key + "%' OR item_name like '%" + key + "%') ";
+
+    }
 
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
 

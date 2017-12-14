@@ -11,6 +11,7 @@
 
 <%
     Conn conn = new Conn();
+    String moduleCode = request.getParameter("moduleCode");
 %>
 <h4 style="padding-top: 2%;padding-bottom: 1%;">Invoice List</h4>
 
@@ -38,23 +39,25 @@
         //                      0               1           2           3           4               5               6           7           8
         String sql = "SELECT vh.vendor_id,vh.invoice_no,vh.txt_date,vh.hfc_cd,vh.discipline,vh.sub_discipline,vh.location,vh.total_amt,vh.quantity,"
                 //       9            10               11           12
-                + " vh.order_no,vh.subledger_type,vh.do_number,v.vendor_name "
+                + " vh.order_no,vh.subledger_type,vh.do_number,v.vendor_name,adm.module_code,adm.module_name "
                 // FROM TABLE
                 + " FROM fap_vendor_header vh "
                 // JOIN SQL
-                + " INNER JOIN fap_vendor v "
+                + " LEFT JOIN fap_vendor v ON (v.vendor_id = vh.vendor_id) "
+                // JOIN SQL
+                + " LEFT JOIN adm_module adm ON (adm.module_code = vh.subledger_type) "
                 // WHERE CONDITION
                 + " WHERE vh.hfc_cd = '" + hfc + "' AND vh.discipline = '" + dis + "' "
-                + " AND vh.vendor_id = v.vendor_id AND vh.subledger_type = 'Pharmacy' ";
+                + " AND v.hfc_cd = '" + hfc + "' AND vh.subledger_type = '" + moduleCode + "' ";
 
         ArrayList<ArrayList<String>> dataInvoiceList = conn.getData(sql);
 
         int size = dataInvoiceList.size();
         for (int i = 0; i < size; i++) {
     %>
-
     <tr id="moveToInvoiceDetailsTButton" style="text-align: left;">
 <input id="dataInvoiceListhidden" type="hidden" value="<%=String.join("|", dataInvoiceList.get(i))%>">
+
 <td><%= dataInvoiceList.get(i).get(1)%></td> <!-- Invoice No -->
 <td><%= dataInvoiceList.get(i).get(12)%></td> <!-- Vendor Name -->
 <td><%= dataInvoiceList.get(i).get(2)%></td> <!-- Date -->
@@ -109,7 +112,24 @@
 
             e.preventDefault();
 
-            $("#invoiceContentMaster").load("manageStockQuantityMasterTable.jsp");
+            var data = {
+                moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "../GNL/manageStockQuantity/manageStockQuantityMasterTable.jsp", // call the jsp file ajax/auto-autocomplete.php
+                data: data, // 
+                timeout: 3000,
+                success: function (dataBack) { // If success
+
+                    $("#invoiceContentMaster").html(dataBack);
+
+                },
+                error: function () { // if error
+
+                }
+            });
 
         });
         // Refresh Button Function End

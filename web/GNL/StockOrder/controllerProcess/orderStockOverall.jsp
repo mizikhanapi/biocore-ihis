@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageStockQuantityUpdateItemStock
-    Created on : Dec 11, 2017, 4:13:48 PM
+    Document   : orderStockOverall
+    Created on : Dec 13, 2017, 8:11:09 PM
     Author     : Shammugam
 --%>
 
@@ -37,22 +37,16 @@
     int falseCount = 0;
 
     // PARAMATER FOR MASTER
-    String invoice_no = request.getParameter("invoice_no");
-    String vendor_id = request.getParameter("vendor_id");
     String order_no = request.getParameter("order_no");
-    String invoice_date = request.getParameter("invoice_date");
-    String delivery_date = request.getParameter("delivery_date");
-    String description = request.getParameter("description");
     String total_amt = request.getParameter("total_amt");
     String quantity = request.getParameter("quantity");
 
     boolean isInsertMaster = true;
 
-    String sqlInsertMaster = "INSERT INTO fap_vendor_header (vendor_id,invoice_no,txt_date,hfc_cd,discipline,sub_discipline,location,"
-            + "total_amt,quantity,order_no,subledger_type,invoice_date,delivery_date,description,do_number,created_by,created_date)"
-            + " VALUES ('" + vendor_id + "','" + invoice_no + "','" + created_date + "','" + hfc + "','" + dis + "',"
-            + "'" + sub + "','" + hfc + "','" + total_amt + "','" + quantity + "','" + order_no + "','Pharmacy','" + invoice_date + "',"
-            + "'" + delivery_date + "','" + description + "','-','" + created_by + "','" + created_date + "' )";
+    String sqlInsertMaster = "INSERT INTO stk_order_master (customer_id,order_no,txt_date,item_amt,quantity,location,hfc_cd,"
+            + "discipline_cd,subdiscipline_cd,ordering_hfc_cd,ordering_discipline_cd,ordering_subdiscipline_cd,status,created_by,created_date)"
+            + " VALUES ('" + created_by + "','" + order_no + "','" + created_date + "','" + total_amt + "','" + quantity + "','" + hfc + "'"
+            + " ,'" + hfc + "','" + dis + "' ,'" + sub + "','" + hfc + "' ,'" + dis + "','" + sub + "','0','" + created_by + "','" + created_date + "' )";
 
     isInsertMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertMaster);
 
@@ -69,40 +63,26 @@
     for (int i = 0; i < stockDetailD.length; i++) {
 
         boolean isInsertStockDetail = true;
-        boolean isUpdateStockDetail = true;
 
         String smallData = stockDetailD[i];
         String detailsStockS[] = smallData.split("\\^");
 
         String item_cd = detailsStockS[0];
         String item_desc = detailsStockS[1];
+        String item_price = detailsStockS[2];
         String item_amt = detailsStockS[3];
         String item_quantity = detailsStockS[4];
-        String quantityStockNew = detailsStockS[5];
+        String item_comment = detailsStockS[5];
 
         // Details
-        String sqlInsertStockDetail = "INSERT INTO fap_vendor_detail (invoice_no,txt_date,item_cd,item_desc,item_amt,quantity,location,"
-                + "reference_id,created_by,created_date)"
-                + " VALUES ('" + invoice_no + "','" + created_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "','" + item_quantity + "',"
-                + "'" + hfc + "','SMS','" + created_by + "','" + created_date + "' )";
+        String sqlInsertStockDetail = "INSERT INTO stk_order_detail (order_no,txn_date,item_cd,item_desc,item_amt,ordered_quantity,released_quantity,location,"
+                + "customer_id,order_by,comment,order_status,created_by,created_date)"
+                + " VALUES ('" + order_no + "','" + created_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "','" + item_quantity + "',"
+                + "'0','" + hfc + "','" + created_by + "','" + created_by + "','" + item_comment + "','0','" + created_by + "','" + created_date + "' )";
 
         isInsertStockDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertStockDetail);
 
         if (isInsertStockDetail == false) {
-
-            falseCount = falseCount + 1;
-
-        }
-
-        // Update Item Detail Table
-        String sqlUpdateStockDetail = "UPDATE pis_mdc2 "
-                + " SET d_stock_qty = '" + quantityStockNew + "'"
-                + " WHERE ud_mdc_code = '" + item_cd + "' "
-                + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
-
-        isUpdateStockDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateStockDetail);
-
-        if (isUpdateStockDetail == false) {
 
             falseCount = falseCount + 1;
 

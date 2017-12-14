@@ -11,7 +11,7 @@
 
 <br><br><br><br><br><br><br><br>
 
-<table class="table table-filter table-striped table-bordered" id="invoiceAddOrderDetailTable">
+<table class="table table-filter table-striped table-bordered" id="invoiceAddOrderDetailTable" style="width: 100%;">
     <thead>
     <th>Item code</th>
     <th>Item name</th>
@@ -76,15 +76,24 @@
     $(document).ready(function () {
 
 
+        datatableTableDestroy();
+        datatableTableCreate();
+
 
 //-------------------------------------------------------------------------------  DataTable Start  --------------------------------------------------------------------------------//
 
         // Datatable Function Start
-        function datatableTable() {
+        function datatableTableDestroy() {
 
-            $("#deliveryOrderDetailTable").DataTable().destroy();
+            $("#invoiceAddOrderDetailTable").DataTable().destroy();
 
-            $('#deliveryOrderDetailTable').DataTable({
+        }
+        // Datatable Function End
+
+        // Datatable Function Start
+        function datatableTableCreate() {
+
+            $('#invoiceAddOrderDetailTable').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "pageLength": 5,
@@ -92,8 +101,10 @@
                     "emptyTable": "No Data Available To Display"
                 }
             });
+
         }
         // Datatable Function End
+
 
 //-------------------------------------------------------------------------------  DataTable End  --------------------------------------------------------------------------------//
 
@@ -147,7 +158,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "controllerProcessManageStockQuantity/manageStockQuantityInvoiceNoCheck.jsp", // call the jsp file ajax/auto-autocomplete.php
+                    url: "../GNL/manageStockQuantity/controllerProcess/manageStockQuantityInvoiceNoCheck.jsp", // call the jsp file ajax/auto-autocomplete.php
                     data: data, // 
                     timeout: 3000,
                     success: function (dataBack) { // If success
@@ -216,13 +227,15 @@
 
                     $('#invoiceAddItemSearchResult').html('<img src="libraries/LoaderIcon.gif"/>');
 
-                    var dataFields = {'input': input}; // We pass input argument in Ajax
+                    var dataFields = {
+                        input: input,
+                        moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                    }; // We pass input argument in Ajax
 
-                    console.log(dataFields);
 
                     $.ajax({
                         type: "POST",
-                        url: "controllerProcessManageStockQuantity/manageStockQuantitySearchItem.jsp", // call the jsp file ajax/auto-autocomplete.php
+                        url: "../GNL/manageStockQuantity/controllerProcess/manageStockQuantitySearchCommon.jsp", // call the jsp file ajax/auto-autocomplete.php
                         data: dataFields, // Send dataFields var
                         timeout: 3000,
                         success: function (dataBack) { // If success
@@ -244,6 +257,8 @@
 
                         }
                     });
+
+
 
                 } else {
 
@@ -267,13 +282,14 @@
             id = arrayData[0];
 
             var data = {
-                id: id
+                id: id,
+                moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
             };
 
 
             $.ajax({
                 type: 'post',
-                url: 'controllerProcessManageStockQuantity/manageStockQuantitySearchItemResult.jsp',
+                url: '../GNL/manageStockQuantity/controllerProcess/manageStockQuantitySearchCommonResult.jsp',
                 data: data,
                 success: function (reply_data) {
 
@@ -297,6 +313,10 @@
 
                 }
             });
+
+
+
+
         });
         //JS Get Add Item End
         // Search Item Code Function End
@@ -307,8 +327,7 @@
         $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').on('click', '#invoiceAddOrderAddNewItemBtn', function () {
 
 
-            $("#invoiceAddOrderDetailTable").DataTable().destroy();
-
+            datatableTableDestroy();
 
             var table = $("#invoiceAddOrderDetailTable tbody");
 
@@ -357,14 +376,7 @@
                         <td>' + newQuantity + '</td>\n\
                     </tr>');
 
-                    $('#invoiceAddOrderDetailTable').DataTable({
-                        "paging": true,
-                        "lengthChange": false,
-                        "pageLength": 5,
-                        "language": {
-                            "emptyTable": "No Data Available To Display"
-                        }
-                    });
+                    datatableTableCreate();
 
                     $('#invoiceAddOrderModal').modal('hide');
 
@@ -449,7 +461,7 @@
         // Delivery Update Function Start
         $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').on('click', '#invoiceAddOrderDetailUpdateItemBtn', function (e) {
 
-            $("#invoiceAddOrderDetailTable").DataTable().destroy();
+            datatableTableDestroy();
 
             var itemCode = $('#invoiceAddCode').val();
             var itemName = $('#invoiceAddName').val();
@@ -467,14 +479,7 @@
 
             $('#invoiceAddOrderModal').modal('hide');
 
-            $('#invoiceAddOrderDetailTable').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "pageLength": 5,
-                "language": {
-                    "emptyTable": "No Data Available To Display"
-                }
-            });
+            datatableTableCreate();
 
             bootbox.alert({
                 message: "Item is Updated Successfully",
@@ -489,20 +494,13 @@
         // Delivery Delete Function Start
         $('#invoiceAddOrderDetail_btnClear_or_btnDelete_div').on('click', '#invoiceAddOrderDetailDeleteItemBtn', function (e) {
 
-            $("#invoiceAddOrderDetailTable").DataTable().destroy();
+            datatableTableDestroy();
 
             row.remove();
 
             $('#invoiceAddOrderModal').modal('hide');
 
-            $('#invoiceAddOrderDetailTable').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "pageLength": 5,
-                "language": {
-                    "emptyTable": "No Data Available To Display"
-                }
-            });
+            datatableTableCreate();
 
             bootbox.alert({
                 message: "Item is Deleted Successfully",
@@ -600,6 +598,7 @@
 
                         if (result === true) {
 
+                            var invoiceOrderFor = $('#invoiceOrderFor').val();
                             var invoice_no = $('#invoiceNumber').val();
                             var order_no = $('#orderNumber').val();
                             var vendor_id = $('#supplierDetails').val();
@@ -610,6 +609,7 @@
                             var quantity = $('#invoiceAddOrderTotalOrder').val();
 
                             var data = {
+                                invoiceOrderFor: invoiceOrderFor,
                                 invoice_no: invoice_no,
                                 order_no: order_no,
                                 vendor_id: vendor_id,
@@ -624,7 +624,7 @@
                             console.log(data);
 
                             $.ajax({
-                                url: "controllerProcessManageStockQuantity/manageStockQuantityUpdateItemStock.jsp",
+                                url: "../GNL/manageStockQuantity/controllerProcess/manageStockQuantityUpdateItemStock.jsp",
                                 type: "post",
                                 data: data,
                                 timeout: 3000,
@@ -632,17 +632,35 @@
 
                                     if (returnDate.trim() === 'Success') {
 
-                                        bootbox.alert({
-                                            message: "Item Stock Is Updated Successfully",
-                                            title: "Process Result",
-                                            backdrop: true
+                                        var data = {
+                                            moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                                        };
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "../GNL/manageStockQuantity/manageStockQuantityMasterTable.jsp", // call the jsp file ajax/auto-autocomplete.php
+                                            data: data, // 
+                                            timeout: 3000,
+                                            success: function (dataBack) { // If success
+
+                                                $("#invoiceContentMaster").html(dataBack);
+                                                $("#invoiceContentAddMaster").load("../GNL/manageStockQuantity/manageStockQuantityBasicInfo.jsp");
+                                                $("#invoiceContentAddDetail").load("../GNL/manageStockQuantity/manageStockQuantityInvoiceTable.jsp");
+
+                                                bootbox.alert({
+                                                    message: "Item Stock Is Updated Successfully",
+                                                    title: "Process Result",
+                                                    backdrop: true
+                                                });
+
+                                                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                                            },
+                                            error: function () { // if error
+
+                                            }
                                         });
 
-                                        $("#invoiceContentMaster").load("manageStockQuantityMasterTable.jsp");
-                                        $("#invoiceContentAddMaster").load("manageStockQuantityBasicInfo.jsp");
-                                        $("#invoiceContentAddDetail").load("manageStockQuantityInvoiceTable.jsp");
-
-                                        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
                                     } else if (returnDate.trim() === 'Failed') {
 
@@ -736,8 +754,10 @@
 
         // Cancel Button Function Start
         $('#invoiceContentAddDetail').off('click', '#invoiceAddOrderCancelBtn').on('click', '#invoiceAddOrderCancelBtn', function (e) {
-            $("#invoiceContentAddMaster").load("manageStockQuantityBasicInfo.jsp");
-            $("#invoiceContentAddDetail").load("manageStockQuantityInvoiceTable.jsp");
+
+            $("#invoiceContentAddMaster").load("../GNL/manageStockQuantity/manageStockQuantityBasicInfo.jsp");
+            $("#invoiceContentAddDetail").load("../GNL/manageStockQuantity/manageStockQuantityInvoiceTable.jsp");
+
         });
         // Cancel Button Function End
 

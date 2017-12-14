@@ -16,17 +16,19 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+
 %>
 
 
-<form class="form-horizontal" name="myForm" id="invoiceForm">
+<form class="form-horizontal" name="myForm" id="invoiceForm"  autocomplete="off">
 
     <!-- Select Basic -->
     <div class="form-group">
         <label class="col-md-4 control-label" for="selectbasic">Deliver order for : </label>
         <div class="col-md-5">
-            <select id="invoiceOrderFor" name="" class="form-control" required="">
-                <option value="Stock">Stock</option>
+            <select id="invoiceOrderFor" name="" class="form-control" required="" disabled>
+                <option value="04">Pharmacy</option>
+                <option value="22">Stock</option>
             </select>
         </div>
     </div>
@@ -79,8 +81,7 @@
             <div class="col-md-6">
                 <select id="supplierDetails" name="supplierDetails" class="form-control" >
                     <option value="">Please Select Supplier</option>
-                    <%
-                        String sqlSupp = "SELECT vendor_id,vendor_name FROM fap_vendor where hfc_cd = '" + hfc + "' ";
+                    <%                        String sqlSupp = "SELECT vendor_id,vendor_name FROM fap_vendor where hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> listOfDClass = conn.getData(sqlSupp);
 
                         int size8 = listOfDClass.size();
@@ -118,6 +119,8 @@
 
     $(document).ready(function () {
 
+        $("#invoiceOrderFor").val($("#mainModuleCodeForGeberalPagesUsage").val());
+
 
 //-------------------------------------------------------------------------------  Date Start  --------------------------------------------------------------------------------//
 
@@ -148,7 +151,7 @@
         // Move to Order Details Fetch Details Start
         $('#invoiceContentMaster').off('click', '#invoiceListTable #moveToInvoiceDetailsTButton').on('click', '#invoiceListTable #moveToInvoiceDetailsTButton', function (e) {
 
-            // $('<div class="loading">Loading</div>').appendTo('body');
+            $('<div class="loading">Loading</div>').appendTo('body');
 
             e.preventDefault();
 
@@ -170,7 +173,7 @@
             };
 
             $.ajax({
-                url: "manageStockQuantityDetailsTable.jsp",
+                url: "../GNL/manageStockQuantity/manageStockQuantityDetailsTable.jsp",
                 type: "post",
                 data: data,
                 timeout: 3000,
@@ -191,6 +194,8 @@
                     $('#invoiceViewOrderSupplierName').val(invoiceSupplierName);
                     $('#invoiceViewOrderDate').val(invoiceDate);
                     $('#invoiceViewOrderTotalAmount').val(invoiceTotalAmount);
+
+                    $('.loading').hide();
 
                     $('#invoiceViewOrderModal').modal('show');
 

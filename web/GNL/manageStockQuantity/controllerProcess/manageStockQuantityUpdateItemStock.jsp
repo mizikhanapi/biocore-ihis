@@ -37,6 +37,7 @@
     int falseCount = 0;
 
     // PARAMATER FOR MASTER
+    String invoiceOrderFor = request.getParameter("invoiceOrderFor");
     String invoice_no = request.getParameter("invoice_no");
     String vendor_id = request.getParameter("vendor_id");
     String order_no = request.getParameter("order_no");
@@ -51,7 +52,7 @@
     String sqlInsertMaster = "INSERT INTO fap_vendor_header (vendor_id,invoice_no,txt_date,hfc_cd,discipline,sub_discipline,location,"
             + "total_amt,quantity,order_no,subledger_type,invoice_date,delivery_date,description,do_number,created_by,created_date)"
             + " VALUES ('" + vendor_id + "','" + invoice_no + "','" + created_date + "','" + hfc + "','" + dis + "',"
-            + "'" + sub + "','" + hfc + "','" + total_amt + "','" + quantity + "','" + order_no + "','Stock','" + invoice_date + "',"
+            + "'" + sub + "','" + hfc + "','" + total_amt + "','" + quantity + "','" + order_no + "','" + invoiceOrderFor + "','" + invoice_date + "',"
             + "'" + delivery_date + "','" + description + "','-','" + created_by + "','" + created_date + "' )";
 
     isInsertMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertMaster);
@@ -84,7 +85,7 @@
         String sqlInsertStockDetail = "INSERT INTO fap_vendor_detail (invoice_no,txt_date,item_cd,item_desc,item_amt,quantity,location,"
                 + "reference_id,created_by,created_date)"
                 + " VALUES ('" + invoice_no + "','" + created_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "','" + item_quantity + "',"
-                + "'" + hfc + "','SMS','" + created_by + "','" + created_date + "' )";
+                + "'" + hfc + "','" + invoiceOrderFor + "','" + created_by + "','" + created_date + "' )";
 
         isInsertStockDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertStockDetail);
 
@@ -94,11 +95,25 @@
 
         }
 
-        // Update Item Detail Table
-        String sqlUpdateStockDetail = "UPDATE stk_stock_item "
-                + " SET physical_stock = '" + quantityStockNew + "'"
-                + " WHERE item_cd = '" + item_cd + "' "
-                + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
+        String sqlUpdateStockDetail = "";
+
+        if (invoiceOrderFor.equalsIgnoreCase("04")) {
+
+            // Update Item Detail Table (Pharmacy)
+            sqlUpdateStockDetail = "UPDATE pis_mdc2 "
+                    + " SET d_stock_qty = '" + quantityStockNew + "'"
+                    + " WHERE ud_mdc_code = '" + item_cd + "' "
+                    + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
+
+        } else if (invoiceOrderFor.equalsIgnoreCase("22")) {
+
+            // Update Item Detail Table (Stock)
+            sqlUpdateStockDetail = "UPDATE stk_stock_item "
+                    + " SET physical_stock = '" + quantityStockNew + "'"
+                    + " WHERE item_cd = '" + item_cd + "' "
+                    + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
+
+        }
 
         isUpdateStockDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateStockDetail);
 

@@ -26,9 +26,10 @@
     //                                      0            1            2         3            4           5           6        
     String invoiceDetailList = "SELECT vd.invoice_no,vd.txt_date,vd.item_cd,vd.item_desc,vd.item_amt,vd.quantity,vd.created_by "
             + " FROM fap_vendor_detail vd  "
-            + " INNER JOIN fap_vendor_header vh ON (vh.invoice_no = vd.invoice_no) "
+            + " LEFT JOIN fap_vendor_header vh ON (vh.invoice_no = vd.invoice_no) "
             + " WHERE  vd.invoice_no = '" + invoiceNo + "' "
-            + " AND vh.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND vh.discipline = '" + DISCIPLINE_CODE + "'  ";
+            + " AND vh.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
+            + " AND vh.discipline = '" + DISCIPLINE_CODE + "'  ";
 
     ArrayList<ArrayList<String>> dataInvoiceDetailList;
 
