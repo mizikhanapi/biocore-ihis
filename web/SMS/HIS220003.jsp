@@ -16,11 +16,6 @@
 <%    Config.getFile_url(session);
     Config.getBase_url(request);
 
-    Conn conn = new Conn();
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
-    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-
 %>
 
 
@@ -36,7 +31,6 @@
     </head>
 
     <body>
-
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->	
@@ -49,60 +43,54 @@
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div  class="thumbnail">
-
-
+                            <div class="thumbnail">
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    LIST OF INVOICE</a>
+                                                    MANAGE STOCK CATEGORY
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    NEW INVOICE ORDER </a>
+                                                    MANAGE STOCK ITEM
+                                                </a>
                                             </li>
                                         </ul>
-
                                         <!-- tab content -->
                                         <div class="tab-content">
-
                                             <div class="tab-pane active" id="tab_default_1">
-
-                                                <div id="invoiceContentMaster">
+                                                <div id="contentATC">
+                                                    <div id="contentStockCategoryMain">
+                                                    </div>
+                                                    <div id="contentStockCategoryTable">
+                                                    </div>
+                                                    <%@include file="manageStockCodeCateCloneModal.jsp" %>
+                                                    <%@include file="manageStockCodeCateModal.jsp" %>
                                                 </div>
-
                                             </div>
-
                                             <div class="tab-pane" id="tab_default_2">
-
-                                                <div id="invoiceContentAddMaster">
+                                                <div id="contentMDC">
+                                                    <div id="contentStockItemMain">
+                                                    </div>
+                                                    <div id="contentStockItemTable">
+                                                    </div>
+                                                    <%@include file="manageStockCodeItemCloneModal.jsp" %>
+                                                    <%@include file="manageStockCodeItemModal.jsp" %>
                                                 </div>
-
-                                                <hr class="pemisah" />
-
-                                                <div id="invoiceContentAddDetail">
-                                                </div>
-
                                             </div>
-
-                                            <%@include file="manageStockQuantityModal.jsp" %>
-
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Tab Menu -->
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- main -->		
-
         </div>
 
 
@@ -112,15 +100,21 @@
 
         <script>
 
-            $('<div class="loading">Loading</div>').appendTo('body');
-
             $(document).ready(function () {
 
-                $("#invoiceContentMaster").load("manageStockQuantityMasterTable.jsp");
-                $("#invoiceContentAddMaster").load("manageStockQuantityBasicInfo.jsp");
-                $("#invoiceContentAddDetail").load("manageStockQuantityInvoiceTable.jsp");
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                // Load Stock Category
+                $("#contentStockCategoryMain").load("manageStockCodeCateMain.jsp");
+                $("#contentStockCategoryTable").load("manageStockCodeCateTable.jsp");
+
+                // Load Stock Item
+                $("#contentStockItemMain").load("manageStockCodeItemMain.jsp");
+                $("#contentStockItemTable").load("manageStockCodeItemTable.jsp");
+
 
             });
+
 
         </script>
 

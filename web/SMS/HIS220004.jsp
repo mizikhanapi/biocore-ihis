@@ -1,6 +1,6 @@
 <%-- 
-    Document   : HIS220001
-    Created on : Nov 13, 2017, 6:05:42 PM
+    Document   : HIS220004
+    Created on : Dec 13, 2017, 3:30:12 PM
     Author     : Shammugam
 --%>
 
@@ -36,7 +36,7 @@
     </head>
 
     <body>
-
+        <input value="<%=leModuleCode%>" id="mainModuleCodeForGeberalPagesUsage" type="hidden">
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->	
@@ -47,7 +47,7 @@
                     <!-- menu top -->
                     <%@include file = "libraries/stockTopMenus.jsp" %>
                     
-                     <%@include file = "../GNL/StockOrder/orderStockMainPage.jsp" %>
+                     <%@include file = "../GNL/manageStockQuantity/manageStockQuantityMainPage.jsp" %>
                      
                 </div>
             </div>
@@ -59,6 +59,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/stockFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
+
 
     </body>
 
