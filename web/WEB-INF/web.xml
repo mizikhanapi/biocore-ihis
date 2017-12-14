@@ -457,16 +457,16 @@
     <!-- mapping for SMS HIS220003 -->
     
     
-<!--     mapping for SMS HIS220003 
+    <!-- mapping for SMS HIS220004 -->
     <servlet>
         <servlet-name>Manage_Stock_Quantity</servlet-name>
-        <jsp-file>/SMS/HIS22000.jsp</jsp-file>
+        <jsp-file>/SMS/HIS220004.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Manage_Stock_Quantity</servlet-name>
         <url-pattern>/SMS/Manage_Stock_Quantity</url-pattern>
     </servlet-mapping>
-     mapping for SMS HIS220003 -->
+    <!-- mapping for SMS HIS220004 -->
     
     
     <!-- mapping for SMS HIS220006 -->
