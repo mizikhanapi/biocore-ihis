@@ -26,7 +26,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" id="addForm">
+                <form class="form-horizontal" id="addForm2">
 
                     <!-- Text input-->
                     <div class="form-group">

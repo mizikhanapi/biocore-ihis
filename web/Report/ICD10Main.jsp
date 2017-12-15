@@ -18,6 +18,7 @@
         <%@include file = "../assets/header.html" %>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/mystyles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <!-- side bar -->
@@ -36,22 +37,6 @@
 
                             <hr class="pemisah" />
 
-                            <!--                        <div class="form-group">
-                                                        <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline:</label>
-                            
-                            
-                                                        <div class="form-group">
-                                                            <div class="col-md-6">
-                                                                <select class="form-control" name="disiplinType" id="disiplinType">
-                                                                    <option value="0" id="0" >Please Select</option>
-                                                                    <option value="inpatient" id="allergy" >Inpatient</option>
-                                                                    <option value="outpatient" id="complaint" >Outpatient</option>
-                                                                </select>
-                            
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    </br></br></br>-->
                             <div class="form-inline" style="text-align: center;">
                                 <div class="form-group">
                                     <label for="exampleInputName2">Start Date</label>
@@ -102,6 +87,7 @@
             </div>
         </div>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -111,6 +97,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+        <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
 
         <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 
@@ -119,12 +106,12 @@
                 $("#startDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'yy-mm-dd'
                 });
                 $("#endDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'yy-mm-dd'
                 });
                 $('#printICD10').on('click', function () {
                     if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
@@ -135,18 +122,20 @@
                         var endDate = document.getElementById("endDate").value;
                         var disp = document.getElementById("disp").value;
                         //alert(disc+" / "+startDate+" / "+startDate);
+                        createScreenLoading();
                         $.ajax({
-                            async: true,
                             type: "POST",
                             url: "ICD10Report.jsp",
                             data: {'startDate': startDate, 'endDate': endDate, 'disp': disp},
-                            timeout: 10000,
+                            timeout: 60000,
                             success: function (list) {
                                 $('#ICD10').html(list);
                             },
                             error: function (xhr, status, error) {
-                                var err = eval("(" + xhr.responseText + ")");
-                                bootbox.alert(err.Message);
+                                bootbox.alert("Oops! "+error);
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                destroyScreenLoading();
                             }
                         });
                         //            var disiplinType = document.getElementByID("disiplinType").value;

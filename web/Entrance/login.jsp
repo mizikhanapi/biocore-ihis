@@ -76,7 +76,10 @@
                 <a href="Forgot_Password" class="forgot-password">
                     Forgot the password?
                 </a>
+                
+                <p class="text-center" style="margin-top: 25px;">Version 3.1</p>
             </div><!-- /card-container -->
+            
         </div><!-- /container -->
 
 
