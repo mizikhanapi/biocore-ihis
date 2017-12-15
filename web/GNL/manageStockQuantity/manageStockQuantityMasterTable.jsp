@@ -38,7 +38,7 @@
 
         //                      0               1           2           3           4               5               6           7           8
         String sql = "SELECT vh.vendor_id,vh.invoice_no,vh.txt_date,vh.hfc_cd,vh.discipline,vh.sub_discipline,vh.location,vh.total_amt,vh.quantity,"
-                //       9            10               11           12
+                //       9            10               11           12          13              14
                 + " vh.order_no,vh.subledger_type,vh.do_number,v.vendor_name,adm.module_code,adm.module_name "
                 // FROM TABLE
                 + " FROM fap_vendor_header vh "
@@ -68,7 +68,7 @@
 <td><%= dataInvoiceList.get(i).get(7)%></td> <!-- TOTAL -->
 <td><%= dataInvoiceList.get(i).get(8)%></td> <!-- QUANTITY -->
 <td style="display: none"><%= dataInvoiceList.get(i).get(9)%></td> <!-- ORDER NO -->
-<td><%= dataInvoiceList.get(i).get(10)%></td> <!-- SUBLEG -->
+<td><%= dataInvoiceList.get(i).get(14)%></td> <!-- SUBLEG -->
 <td style="display: none"><%= dataInvoiceList.get(i).get(11)%></td> <!-- DO NO -->
 </tr>
 <%
