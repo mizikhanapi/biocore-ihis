@@ -13,8 +13,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
 %>
@@ -42,22 +41,8 @@
                 <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
                     <%@include file = "libraries/pharmacyTopMenus.jsp" %>
-                    <!-- menu top -->
-                    <div class="row">
-                        <div class="col-md-12" style="height: 100%;">
-                            <div class="thumbnail">
 
-                                <div id="contentSup">
-                                    <div id="contentSupplierMain">
-                                    </div>
-                                    <div id="contentSupplierTable">
-                                    </div>
-                                    <%@include file="supplierModal.jsp" %>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    <%@include file = "../GNL/manageVendor/manageVendorMainPage.jsp" %>
 
                 </div>
 
@@ -69,18 +54,6 @@
         <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
 
-        <script>
-
-            $('<div class="loading">Loading</div>').appendTo('body');
-
-            $(document).ready(function () {
-                // Load Supplier Data
-                $("#contentSupplierMain").load("supplierMain.jsp");
-                $("#contentSupplierTable").load("supplierTableLoop.jsp");
-
-            });
-
-        </script>
 
     </body>
 
