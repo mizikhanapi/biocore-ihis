@@ -469,6 +469,19 @@
     <!-- mapping for SMS HIS220004 -->
     
     
+    <!-- mapping for SMS HIS220005 -->
+    <servlet>
+        <servlet-name>Manage_VendorS</servlet-name>
+        <jsp-file>/SMS/HIS220005.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Manage_VendorS</servlet-name>
+        <url-pattern>/SMS/Manage_VendorS</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220005 -->
+    
+    
+    
     <!-- mapping for SMS HIS220006 -->
     <servlet>
         <servlet-name>List_Of_Category</servlet-name>
