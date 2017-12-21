@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Bean.ERRCOUNT;
 import Config_Pack.Config;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -38,7 +39,7 @@ public class Thread1 implements Runnable {
                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 System.out.println("["+sdf1.format(date1)+"] Extracting ...");
                 
-                
+                ERRCOUNT.setLog();
                 MainExtractor me = new MainExtractor();
                 me.extract();
                 
