@@ -95,14 +95,14 @@ function initialiseRadioPersonalised(code,field){
         e.preventDefault();
         var search_by = $('input[name="rCISSub'+code+'SearchType"]').val();
         var term_name = term_name = $("#tCISSub"+field+"Search").val();
-        ;
+        
         var term_code = getDate();
         var code_type = $("#tCISSUB"+code+"CodeType").val();
         var dataPersonalised = {
             term_name: term_name,
             term_code: term_code,
             code_type: code_type
-        }
+        };
         addPersonalisedTerm(dataPersonalised);
     });
 }

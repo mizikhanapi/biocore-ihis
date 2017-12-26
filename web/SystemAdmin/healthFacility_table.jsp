@@ -582,7 +582,7 @@
                 url: "healthFacility_update.jsp",
                 type: "post",
                 data: data,
-                timeout: 10000,
+                timeout: 60000,
                 success: function (datas) {
                     //console.log(datas.trim());
                     if (datas.trim() === 'Success') {
@@ -650,7 +650,7 @@
                         url: "healthFacility_delete.jsp",
                         type: "post",
                         data: data,
-                        timeout: 10000, // 10 seconds
+                        timeout: 60000, // 60 seconds
                         success: function (datas) {
 
                             if (datas.trim() === 'Success') {
