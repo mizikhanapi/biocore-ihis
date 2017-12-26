@@ -21,7 +21,7 @@
 <input type="hidden" value="<%=subID%>" id="Rsub">
 
 
-<div id="tablefacilityIDTable">
+<div id="tablefacilityIDTable" class="table-guling">
 
 
     <table id="facilityIDTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">

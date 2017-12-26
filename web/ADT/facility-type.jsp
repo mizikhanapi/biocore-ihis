@@ -50,7 +50,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Ward Class *</label>
+                        <label class="col-md-4 control-label" for="textinput">Ward Class Name*</label>
                         <div class="col-md-6">
                             <input id="MWClass" name="MWClass" type="text" placeholder="Ward Class" maxlength="100" class="form-control input-md">
                         </div>
@@ -130,9 +130,9 @@
             //var subDicipline = $('#subDicipline').val();
 
             if (MWClass === "") {
-                bootbox.alert("Complete The Fields of Ward Class");
+                bootbox.alert("Fill in ward class name!");
             } else if (MWID === "") {
-                bootbox.alert("Complete The Fields of Ward ID");
+                bootbox.alert("Fill in ward class ID!");
             } else if (status !== "1" && status !== "0") {
                 bootbox.alert("Select Any Status");
             } else {

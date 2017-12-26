@@ -224,7 +224,7 @@
                             
                              <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
+                                <label class="col-md-4 control-label" for="textinput">Postcode*</label>
                                 <div class="col-md-8">
                                     <input id="HFT_postcode" maxlength="30"  type="text" placeholder="Search postcode" class="form-control input-md">
                                     <input id="HFT_postcode_hidden" type="hidden">
