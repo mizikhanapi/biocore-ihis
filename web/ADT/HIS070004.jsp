@@ -21,9 +21,13 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--        <meta http-equiv="refresh" content="20; URL=HIS070004.jsp">-->
-
+        
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../assets/css/jquery-ui.css"/>
         <!-- header -->
-        <script src="old/assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery-ui.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
         <%@include file = "../assets/header.html" %>
         <!-- header -->
     </head>
@@ -55,7 +59,7 @@
 
                                     <div class="pull-right">
                                         <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;Available</span> 
-                                        
+
                                         <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;Occupied</span>
                                     </div>
                                 </div>
@@ -75,68 +79,68 @@
             </div>
             <!-- main -->		
         </div>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //        var auto_refresh = setInterval(
+                //                function ()
+                //                {
+                //                    $('#load_tweets').load('HIS070004.jsp').fadeIn("slow");
+                //                }, 10000); // refresh every 10000 milliseconds
+                //
+                //      $.ajax({
+                //            url: "BedRemarks.jsp",
+                //            type: 'GET',
+                //            timeout: 60000,
+                //            success: function (data) {
+                //                $('#wardTable').html($(data).find('#wardTable').html());
+                //            }
+                //        });
+                //
+                //        $.ajax({
+                //            url: "bedsummary.jsp",
+                //            type: 'GET',
+                //            timeout: 60000,
+                //            success: function (data) {
+                //                $('#wardTable').html($(data).find('#wardTable').html());
+                //            }
+                //        });
+
+                //    setTimeout(function () { 
+                //      location.reload();
+                //    }, 60 * 1000);
+//                $('#BedRemarks').load('BedRemarks.jsp');
+//                $('#bedsummary').load('bedsummary.jsp');
+
+
+
+                function loadlink() {
+                    $('#BedRemarks').load('BedRemarks.jsp', function () {
+                        //$(this).unwrap();
+                    });
+                }
+
+                loadlink(); // This will run on page load
+                setInterval(function () {
+                    loadlink(); // this will run after every 15 seconds
+                }, 15000);
+
+                function loadlink2() {
+                    $('#bedsummary').load('bedsummary.jsp', function () {
+                        //$(this).unwrap();
+                    });
+                }
+
+                loadlink2(); // This will run on page load
+                setInterval(function () {
+                    loadlink2(); // this will run after every 15 seconds
+                }, 15000);
+
+
+
+            });
+        </script>
     </body>
 </html>
 
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-//        var auto_refresh = setInterval(
-//                function ()
-//                {
-//                    $('#load_tweets').load('HIS070004.jsp').fadeIn("slow");
-//                }, 10000); // refresh every 10000 milliseconds
-//
-        //      $.ajax({
-//            url: "BedRemarks.jsp",
-//            type: 'GET',
-//            timeout: 60000,
-//            success: function (data) {
-//                $('#wardTable').html($(data).find('#wardTable').html());
-//            }
-//        });
-//
-//        $.ajax({
-//            url: "bedsummary.jsp",
-//            type: 'GET',
-//            timeout: 60000,
-//            success: function (data) {
-//                $('#wardTable').html($(data).find('#wardTable').html());
-//            }
-//        });
-
-//    setTimeout(function () { 
-//      location.reload();
-//    }, 60 * 1000);
-$('#BedRemarks').load('BedRemarks.jsp');
-$('#bedsummary').load('bedsummary.jsp');
-
-
-
-        function loadlink() {
-            $('#wardTable').load('BedRemarks.jsp', function () {
-                //$(this).unwrap();
-            });
-        }
-
-        loadlink(); // This will run on page load
-        setInterval(function () {
-            loadlink() // this will run after every 5 seconds
-        }, 5000);
-
-        function loadlink2() {
-            $('#wardTable2').load('bedsummary.jsp', function () {
-                //$(this).unwrap();
-            });
-        }
-
-        loadlink2(); // This will run on page load
-        setInterval(function () {
-            loadlink2() // this will run after every 5 seconds
-        }, 5000);
-
-
-
-    });
-</script>

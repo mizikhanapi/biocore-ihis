@@ -70,7 +70,7 @@
 
         <input id="dataFacilityIDhidden" type="hidden" value="<%=String.join("|", dataFacilityID.get(i))%>">
         <td><%= dataFacilityID.get(i).get(0)%></td>
-        <td><%= dataFacilityID.get(i).get(1)%></td>
+        <td>(<%= dataFacilityID.get(i).get(2)%>) <%= dataFacilityID.get(i).get(1)%></td>
         <td><%= dataFacilityID.get(i).get(4)%></td>
         <td><%= dataFacilityID.get(i).get(3)%> - <%= dataFacilityID.get(i).get(24)%></td>
         <td><%= dataFacilityID.get(i).get(5)%></td>
@@ -339,7 +339,7 @@
             var row = $(this).closest("tr");
             var rowData = row.find("#dataFacilityIDhidden").val();
             var arrayData = rowData.split("|");
-            console.log(arrayData);
+            //console.log(arrayData);
             //assign into seprated val
             var WardClassCode = arrayData[22];
             var WardClass = arrayData[0];
@@ -386,10 +386,16 @@
             $('#updatePensionerRates').val(PensionerRates);
             $('#updatePensionerDeposit').val(PensionerDeposit);
             $('#updatePensionerDiscount').val(PensionerDiscount);
-            $('#updatetoilet').val(toilet);
-            $('#updatetelevison').val(televison);
-            $('#updatebathroom').val(bathroom);
-            $('#updatetelephone').val(telephone);
+            
+            var toiletCheck = (toilet === "Yes")? true:false;
+            var televisionCheck = (televison === "Yes")? true:false;
+            var bathroomCheck = (bathroom === "Yes")? true:false;
+            var telephoneCheck = (telephone === "Yes")? true:false;
+            
+            $('#updatetoilet').prop("checked", toiletCheck);
+            $('#updatetelevision').prop("checked", televisionCheck);
+            $('#updatebathroom').prop("checked", bathroomCheck);
+            $('#updatetelephone').prop("checked", telephoneCheck);
             if (status === '1')
                 $('#updatestatus').val(1);
             else
@@ -413,10 +419,10 @@
             var PensionerRates = $('#updatePensionerRates').val();
             var PensionerDeposit = $('#updatePensionerDeposit').val();
             var PensionerDiscount = $('#updatePensionerDiscount').val();
-            var toilet = $('#updatetoilet').val();
-            var televison = $('#updatetelevison').val();
-            var bathroom = $('#updatebathroom').val();
-            var telephone = $('#updatetelephone').val();
+            var toilet = $('#updatetoilet').prop("checked")? "Yes":"No";
+            var televison = $('#updatetelevision').prop("checked")? "Yes":"No";
+            var bathroom = $('#updatebathroom').prop("checked")? "Yes":"No";
+            var telephone = $('#updatetelephone').prop("checked")? "Yes":"No";
             var status = $('#updatestatus').val();
             var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
