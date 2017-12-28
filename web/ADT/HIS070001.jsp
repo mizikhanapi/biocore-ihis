@@ -152,26 +152,26 @@
             var $body = $('body');
         </script>
         
-        <script src="../PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/main/appointment.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/main/appointment.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
+        <!--<script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
         <script src="../PMS/libraries/lib/js/main/OPMain.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/main/nextOfKin.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchState.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchPostcode.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchTown.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchDistrict.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchTitle.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchNationality.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchHFC.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchOccu.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/main/nextOfKin.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchState.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchPostcode.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchTown.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchDistrict.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchTitle.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchNationality.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchHFC.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchOccu.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
         
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-        <script src="PMS/libraries/lib/js/main/register.js?v=041217v2" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/main/register.js?v=28122017" type="text/javascript"></script>
         <script src="PMS/libraries/lib/js/main/addQueue.js" type="text/javascript"></script>
 
         <script src="libraries/js/queue.js" type="text/javascript"></script>

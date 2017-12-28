@@ -14,7 +14,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Admission List</h3>
             </div>
             <div class="modal-body" >
-                    <div class="row"id="modalBodyQueue" >
+                    <div class="row" id="modalBodyQueue" >
                         <!-- content goes here -->
                         <form role="form" id="formQueueSaya">
                             <table class="table table-filter table-striped table-responsive" style="background: #fff;" id="listQueue">
@@ -39,7 +39,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
 
                 </div>
-                </form>
+                
             </div>
         </div>
     </div>

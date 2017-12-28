@@ -246,7 +246,7 @@ $('#registerBed').click(function () {
 
                 //if true go to PMI page
                 if (result === true) {
-                    $body.addClass("loading");
+                    createScreenLoading();
                     $.ajax({
                         type: "POST",
                         url: "PMS/checkQueue.jsp",
@@ -330,7 +330,7 @@ $('#registerBed').click(function () {
                             bootbox.alert("There is an error!");
                         },
                         complete: function (jqXHR, textStatus) {
-                            $body.removeClass("loading");
+                            destroyScreenLoading();
                         }
                     });
                 }
