@@ -69,7 +69,7 @@
             <tr>
 
         <input id="dataFacilityIDhidden" type="hidden" value="<%=String.join("|", dataFacilityID.get(i))%>">
-        <td><%= dataFacilityID.get(i).get(0)%></td>
+        <td>(<%= dataFacilityID.get(i).get(22)%>) <%= dataFacilityID.get(i).get(0)%></td>
         <td>(<%= dataFacilityID.get(i).get(2)%>) <%= dataFacilityID.get(i).get(1)%></td>
         <td><%= dataFacilityID.get(i).get(4)%></td>
         <td><%= dataFacilityID.get(i).get(3)%> - <%= dataFacilityID.get(i).get(24)%></td>

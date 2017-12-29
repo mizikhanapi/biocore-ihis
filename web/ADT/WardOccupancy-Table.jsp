@@ -1,4 +1,4 @@
-dis<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
@@ -16,7 +16,7 @@ dis<%@page import="java.util.ArrayList"%>
 
 %>
 
-<div id="tableOccuTable" class="form-group">
+<div id="tableOccuTable" class="table-guling">
         <table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
 
