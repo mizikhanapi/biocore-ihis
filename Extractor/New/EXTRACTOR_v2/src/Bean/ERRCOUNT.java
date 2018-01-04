@@ -15,6 +15,15 @@
  */
 package Bean;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author shay
@@ -47,6 +56,18 @@ public class ERRCOUNT {
     public static String msgErr(String msj){
         errMsg += msj;
         return errMsg;
+    }
+    public static void setLog() throws FileNotFoundException, IOException{
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+        File tmpDir = new File(dateFormat.format(date)+".txt");
+        boolean b = false;
+        if(!tmpDir.exists()){
+            tmpDir.createNewFile();
+        }
+        PrintStream o = new PrintStream(new FileOutputStream(tmpDir, true));
+        System.setOut(o);
+          
     }
     
 }

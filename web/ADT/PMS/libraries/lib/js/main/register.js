@@ -246,7 +246,7 @@ $('#registerBed').click(function () {
 
                 //if true go to PMI page
                 if (result === true) {
-                    $body.addClass("loading");
+                    createScreenLoading();
                     $.ajax({
                         type: "POST",
                         url: "PMS/checkQueue.jsp",
@@ -280,6 +280,7 @@ $('#registerBed').click(function () {
                                                         bootbox.alert("Patient has been added to ward and queue successfully.", function () {
                                                             IR_assignDoctor(wnamequeue, Dis, sub);
                                                             $('#btnClear').click();
+                                                            $('#btnclear').click();
                                                             $('#clearSearch').click();
                                                             $('#SB_Form')[0].reset();
                                                         });
@@ -294,7 +295,9 @@ $('#registerBed').click(function () {
                                             });
 
                                         } else if ($.trim(list) === "already") {
-                                            bootbox.alert("Patient is already registered. Duplicate registration.");
+                                            bootbox.alert("Patient is already registered. <b style='color:red;'>Duplicate registration.</b>");
+                                            $('#clearSearch').click();
+                                            $('#btnclear').click();
 
                                         } else if ($.trim(list) === "false") {
                                             bootbox.alert("There something error with the query of register the inpatient");
@@ -330,7 +333,7 @@ $('#registerBed').click(function () {
                             bootbox.alert("There is an error!");
                         },
                         complete: function (jqXHR, textStatus) {
-                            $body.removeClass("loading");
+                            destroyScreenLoading();
                         }
                     });
                 }

@@ -131,7 +131,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Non Citizen Rates (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Non-citizen Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenRates" name="NonCitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Non Citizen Deposit (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Non-citizen Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDeposit" name="NonCitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Non Citizen Discount (%)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Non-citizen Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDiscount" name="NonCitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
@@ -577,7 +577,7 @@
         function reset() {
             document.getElementById("WardClass1").value = "";
             document.getElementById("WardID").value = "";
-            document.getElementById("Dis").value = "";
+            document.getElementById("Dis").value = "<%=dis%> | <%=disName%>";
             document.getElementById("WardName").value = "";
             document.getElementById("CitizenRates").value = "";
             document.getElementById("CitizenDeposit").value = "";

@@ -5,7 +5,7 @@
 <%@page import="main.RMIConnector"%>
 <%@page session="true" %>
 
-<div id="tableassignBedTable">
+<div id="tableassignBedTable" class="table-guling">
 
 
 

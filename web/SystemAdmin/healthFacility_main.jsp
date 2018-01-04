@@ -578,7 +578,7 @@
                     url: "healthFacility_insert.jsp",
                     type: "post",
                     data: data,
-                    timeout: 5000,
+                    timeout: 60000,
                     success: function (datas) {
 
                         if (datas.trim() === 'Success') {
@@ -612,8 +612,8 @@
                         }
 
                     },
-                    error: function (err) {
-                        console.log("Ajax Is Not Success: ");
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Error: "+errorThrown);
                     },
                     complete: function (jqXHR, textStatus) {
                         $('.loading').hide();

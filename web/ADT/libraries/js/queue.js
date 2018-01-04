@@ -14,8 +14,8 @@
                 $('#modalBodyQueue').html(list);
             },
             error: function (xhr, status, error) {
-                var err = eval("(" + xhr.responseText + ")");
-                bootbox.alert(err.Message);
+               // var err = eval("(" + xhr.responseText + ")");
+                bootbox.alert(error);
             }
         });
     });

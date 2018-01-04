@@ -328,7 +328,7 @@
                     <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubPMHAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg"tabindex="4">
+                    <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg" tabindex="4">
                 </div>
                 <label>Medical History</label>
                 <div class="form-group">
@@ -399,7 +399,7 @@
                                                 <div id="match3"></div>-->
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="pmh" id="ucodePMH" class="form-control input-lg"tabindex="4">
+                    <input type="hidden" name="pmh" id="ucodePMH" class="form-control input-lg" tabindex="4">
                 </div>
                 <label>Status</label>
                 <div class="form-group">
@@ -1191,7 +1191,7 @@
 
 <script src="jsFunction/SearchClinicalTerm.js?v=1.1"></script>
 
-<script src="jsFunction/CIS0101.js?v=1.2"></script>
+<script src="jsFunction/CIS0101.js?v=1.4"></script>
 
 
 

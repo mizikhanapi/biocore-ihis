@@ -8,6 +8,8 @@ package views;
 import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PDI;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import lhr_tables.*;
 import lhr_tables.update_ehr_central;
 import separatorv2.SeparatorV2;
@@ -22,12 +24,15 @@ public class MainExtractor {
     get_ehr_central_data t = new get_ehr_central_data();
     boolean query = t.getQuery();
     
-    public boolean extract() {
-
+    public boolean extract() throws FileNotFoundException, IOException {
+        
+        ERRCOUNT.setCounterError(0);
+        ERRCOUNT.setErrMsg("");
+        
         
         System.out.println("central code: "+t.getCentral_Code());
         if (query == true) {
-
+            
             spv2.startProcess(t.getTxndata());
             
             lhr_PDI lhr_pde = new lhr_PDI();
@@ -111,9 +116,10 @@ public class MainExtractor {
             update_ehr_central u = new update_ehr_central();
             if(nums <= 0 ){
                 u.update_status(t.getCentral_Code());
-            }else if(nums > 1){
+            }else if(nums > 0){
                 u.update_status(t.getCentral_Code());
                 u.update_status_5(t.getCentral_Code());
+                System.out.println("error " + ERRCOUNT.getErrMsg());
             }
             
         } else {

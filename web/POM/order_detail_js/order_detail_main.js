@@ -424,7 +424,7 @@ $('#PR_btnSubmit').on('click', function () {
             outcome: outcome
         };
         
-        $('#modal_prepareResult').modal('hide');
+        //$('#modal_prepareResult').modal('hide');
         createScreenLoading();
         
         $.ajax({
@@ -434,6 +434,8 @@ $('#PR_btnSubmit').on('click', function () {
             success: function (data, textStatus, jqXHR) {
                 if(data.trim() === 'success'){
                     bootbox.alert('Report is submitted.');
+                    $('#modal_prepareResult').modal('hide');
+                    $('#PR_form')[0].reset();
                     loadOrderDetailList(orderNo);
                     
                 }else if(data.trim() === 'fail'){

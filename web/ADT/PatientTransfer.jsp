@@ -228,7 +228,7 @@
                     } else if (WardClass === "" || WardClass === null) {
                         bootbox.alert("Complete The Fields of Ward ID");
                     } else if (TransferReason === "" || TransferReason === null) {
-                        bootbox.alert("Complete The Fields of TransferReason");
+                        bootbox.alert("Complete The Fields of Transfer Reason");
                     } else if (WardName === "" || WardName === null) {
                         bootbox.alert("Complete The Fields of Ward Name");
                     } else if (Deposit === "" || Deposit === null) {

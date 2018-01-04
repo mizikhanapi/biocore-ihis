@@ -10,13 +10,13 @@
 <%@page import="java.sql.*"%>
 
 <%
-            //Conn conn = new Conn();
+    //Conn conn = new Conn();
     String hfcAS = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String idAS = session.getAttribute("USER_ID").toString();
     String disAS = session.getAttribute("DISCIPLINE_CODE").toString();
     String subAS = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String disNameAS = (String) session.getAttribute(MySessionKey.DISCIPLINE_NAME);
-    
+
     Conn conn = new Conn();
 
 %>
@@ -71,8 +71,8 @@
                                 <select id="Ward_Class" name="selectbasic" class="form-control">
                                     <option value="Ward Class" >Ward Class</option>
 
-                                    <%                                       
-                                  //       String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' AND discipline_cd='"+disAS+"';";
+                                    <%
+                                        //       String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' AND discipline_cd='"+disAS+"';";
                                         String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' ;";
                                         ArrayList<ArrayList<String>> dataClass = conn.getData(sql124);
 
@@ -95,7 +95,7 @@
                                 <select id="Ward_ID" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                     <%
-                                        String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "' AND discipline_cd='"+disAS+"' ;";
+                                        String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "' AND discipline_cd='" + disAS + "' ;";
                                         //String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "'";
                                         ArrayList<ArrayList<String>> dataID = conn.getData(sql312);
 
@@ -127,17 +127,13 @@
                         </div>
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Bed Status</label>
-                            <div class="col-md-8">
-                                <label class="radio-inline">
-                                    <input type="radio" name="status" id="status1" value="Available" checked>
-                                    Available 
-                                </label>
-                               
-                                <label class="radio-inline">
-                                    <input type="radio" name="status" id="status3" value="Occupied">
-                                    Occupied
-                                </label>
+                            <label class="col-md-4 control-label" for="textinput">Bed Status *</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="BedStatus">
+                                    <option value="Available">Available</option>
+
+                                    <option value="Occupied">Occupied</option>
+                                </select>
                             </div>
                         </div>
                     </form>
@@ -175,7 +171,7 @@
 //        $('#Discipline').on('change',function(){
 //           console.log(this.val());
 //        });
-     $('#BED_btnModalAdd').on('click', function(){
+        $('#BED_btnModalAdd').on('click', function () {
             $('#beddetail').modal('show');
         });
 
@@ -268,7 +264,7 @@
             var Ward_Class = $('#Ward_Class').val();
             var Ward_ID = $('#Ward_ID').val();
             var BedID = $('#BedID').val();
-            var status = $('input[name="status"]:checked').val();
+            var status = $('#BedStatus').val();
             var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
             var dis = $("#Rdis").val();
