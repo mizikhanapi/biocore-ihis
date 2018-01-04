@@ -4,15 +4,18 @@
     Author     : Shammugam
 --%>
 
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String ic = request.getParameter("ic");
     String status = request.getParameter("status");
+    
     DecimalFormat df = new DecimalFormat("0.00");
+    
     Conn conn = new Conn();
+    
     String userID = session.getAttribute("USER_ID").toString();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
