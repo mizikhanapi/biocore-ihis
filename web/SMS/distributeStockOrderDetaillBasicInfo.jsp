@@ -18,62 +18,57 @@
     String locationcode = hfc + "|" + dis + "|" + subdis;
 %>
 
-<h4>Basic Info</h4>
+<h4>Requester Info</h4>
 <form class="form-horizontal" name="distributeStockOrderDetaillBasicInfoForm" id="distributeStockOrderDetaillBasicInfoForm">
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">PMI No.</label>
+                <label class="col-md-3 control-label" for="textinput">User ID.</label>
                 <div class="col-md-7">
-                    <input id="patientpmino" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">
+                    <input id="requestorUserID" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">
                 </div>
             </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-3 control-label" for="textinput">Name</label>
                 <div class="col-md-7">
-                    <input id="patientName" name="patientName" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="requestorName" name="patientName" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
-
-        </div>
-
-        <div class="col-md-4">
-
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-3 control-label" for="textinput">New IC No.</label>
                 <div class="col-md-7">
-                    <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
-                </div>
-            </div>
-            <!--Text input-->
-            <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">Gender</label>
-                <div class="col-md-7">
-                    <input id="patientGender" name="patientGender" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="requestorIC" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             <!--Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">D.O.B</label>
+                <label class="col-md-3 control-label" for="textinput">Gender</label>
                 <div class="col-md-7">
-                    <input id="patientBdate" name="patientBdate" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="requestorGender" name="patientGender" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
             <!--Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">Blood Type</label>
+                <label class="col-md-3 control-label" for="textinput">D.O.B</label>
                 <div class="col-md-7">
-                    <input id="patientBtype" name="patientBtype" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="requestorBDate" name="patientBdate" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+            <!--Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Occupation Type</label>
+                <div class="col-md-7">
+                    <input id="requestorOType" name="patientBtype" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
 
@@ -82,49 +77,12 @@
     </div>
 </form>
 
-<h5>
-    ALLERGY LIST
-</h5>
-
-<div id="patientAllergyListTableDiv" class="form-group">
-    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left;" id="patientAllergyListTable">
-        <thead>
-        <th style="display: none">PMI NO</th>
-        <th>HFC CODE</th>
-        <th>EPISODE DATE</th>
-        <th>ENCOUNTER DATE</th>
-        <th>ALLERGY CODE</th>
-        <th style="text-align: left; width: 50%;">ALLERGY DESCRIPTION</th>
-        <th style="text-align: left; width: 20%;">COMMENT</th>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-</div>
+<br>
 
 <hr/>
-<h4>Diagnosis Info</h4>
 
-<div id="patientDiagnosisListTableDiv" class="form-group">
-    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientDiagnosisListTable">
-        <thead>
-        <th style="display: none">PMI NO</th>
-        <th >HFC CODE</th>
-        <th>EPISODE DATE</th>
-        <th>ENCOUNTER DATE</th>
-        <th>DIAGNOSIS CODE</th>
-        <th style="text-align: left; width: 50%;">DIAGNOSIS DESCRIPTION</th>
-        <th style="text-align: left; width: 20%;">COMMENT</th>
-        </thead>
-        <tbody>
+<br>
 
-        </tbody>
-    </table>
-</div>
-
-
-<hr/>
 <h4>
     Order Info
     <div class="pull-right">
@@ -289,35 +247,37 @@
             console.log(arrayData);
 
             //Assign Array into seprated val
-            var patientpmino = arrayData[0];
-            var patientName = arrayData[13];
-            var patientnic = arrayData[14];
-            var patientGender = arrayData[18];
-            var patientBdate = arrayData[15];
-            var patientBtype = arrayData[19];
-            var patientOrderNo = arrayData[1];
-            var patientOrderDate = arrayData[2];
-            var patientEncounterDate = arrayData[2];
-            var patientEpisodeDate = arrayData[2];
-            var patientOrderLocationCodeName = arrayData[20];
+            var requestorUserID = arrayData[0];
+            var requestorName = arrayData[13];
+            var requestorIC = arrayData[14];
+            var requestorGender = arrayData[18];
+            var requestorBDate = arrayData[15];
+            var requestorOType = arrayData[19];
+
+            var stockOrderNo = arrayData[1];
+            var stockOrderDate = arrayData[2];
+            var stockEncounterDate = arrayData[2];
+            var stockEpisodeDate = arrayData[2];
+            var stockOrderLocationCodeName = arrayData[20];
 
 
             // Set value to the Second Tab 
-            $("#patientpmino").val(patientpmino);
-            $("#patientName").val(patientName);
-            $("#patientnic").val(patientnic);
-            $("#patientGender").val(patientGender);
-            $("#patientBdate").val(patientBdate);
-            $("#patientBtype").val(patientBtype);
-            $("#distributeStockOrderNo").val(patientOrderNo);
-            $("#distributeStockOrderDate").val(patientOrderDate);
-            $("#distributeStockEpisodeDate").val(patientEpisodeDate);
-            $("#distributeStockEncounterDate").val(patientEncounterDate);
-            $("#distributeStockOrderLocationCode").val(patientOrderLocationCodeName);
+            $("#requestorUserID").val(requestorUserID);
+            $("#requestorName").val(requestorName);
+            $("#requestorIC").val(requestorIC);
+            $("#requestorGender").val(requestorGender);
+            $("#requestorBDate").val(requestorBDate);
+            $("#requestorOType").val(requestorOType);
+
+            $("#distributeStockOrderNo").val(stockOrderNo);
+            $("#distributeStockOrderDate").val(stockOrderDate);
+            $("#distributeStockEpisodeDate").val(stockEncounterDate);
+            $("#distributeStockEncounterDate").val(stockEpisodeDate);
+            $("#distributeStockOrderLocationCode").val(stockOrderLocationCodeName);
 
 
             // Load Table
-            loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
+            loadAllergyDiagnosisOrder(stockOrderNo);
 
 
         });
@@ -328,9 +288,6 @@
         // Move to Order Details And Load All Table Data Start
         function loadAllergyDiagnosisOrder(orderNo, pmino) {
 
-            var dataAllergyDiagnosis = {
-                pmino: pmino
-            };
 
             var dataOrder = {
                 orderNo: orderNo
@@ -338,36 +295,20 @@
 
 
             $.ajax({
-                url: "distributeStockOrderListAllergyDiagnosisTable.jsp",
+                url: "distributeStockOrderDetailsTable.jsp",
                 type: "post",
-                data: dataAllergyDiagnosis,
+                data: dataOrder,
                 timeout: 3000,
-                success: function (returnAllergyTableHTML) {
+                success: function (returnOrderDetailsTableHTML) {
 
-                    var arrayData = returnAllergyTableHTML.trim().split("<ShammugamRamasamySeperator></ShammugamRamasamySeperator>");
-
-                    $('#patientAllergyListTable').html(arrayData[0]);
-                    $('#patientDiagnosisListTable').html(arrayData[1]);
-
-
-                    $.ajax({
-                        url: "distributeStockOrderDetailsTable.jsp",
-                        type: "post",
-                        data: dataOrder,
-                        timeout: 3000,
-                        success: function (returnOrderDetailsTableHTML) {
-
-                            $('#distributeStockOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                            datatablesDestroyAndRecreate();
-                            $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-                            $('.loading').hide();
-
-                        }
-                    });
-
+                    $('#distributeStockOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                    datatablesDestroyAndRecreate();
+                    $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                    $('.loading').hide();
 
                 }
             });
+
 
         }
         // Move to Order Details And Load All Table Data End
@@ -380,9 +321,8 @@
 
             console.log("Destroying Datatable");
 
-            $('#patientAllergyListTable').DataTable().destroy();
-            $('#patientDiagnosisListTable').DataTable().destroy();
             $('#distributeStockOrderDetailsListTable').DataTable().destroy();
+
 
 
             console.log("Creating Datatable");
@@ -398,31 +338,7 @@
                     "emptyTable": "No Order Available To Display"
                 }
             });
-
-            // do something after the div content has changed
-            $('#patientDiagnosisListTable').DataTable({
-                "paging": true,
-                "searching": false,
-                "info": false,
-                "lengthChange": false,
-                "pageLength": 5,
-                "language": {
-                    "emptyTable": "No Record Available To Display"
-                }
-            });
-
-            // do something after the div content has changed
-            $('#patientAllergyListTable').DataTable({
-                "paging": true,
-                "searching": false,
-                "info": false,
-                "lengthChange": false,
-                "pageLength": 5,
-                "language": {
-                    "emptyTable": "No Record Available To Display"
-                }
-            });
-
+            
 
         }
         // Destroy And Create Datatable End
@@ -560,7 +476,7 @@
 
         //JS Search in Add Stock Item Start
         $(function () {
-            
+
             $("#orderStockDetailsSearchItemInput").on('keyup', function () { // everytime keyup event
 
                 var input = $(this).val(); // We take the input value
@@ -1010,7 +926,7 @@
 
         $('#distributeStockOrderDetailContent').off('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease', function (e) {
 
-            var customer_id = $("#patientpmino").val();
+            var customer_id = $("#requestorUserID").val();
             var order_no = $("#distributeStockOrderNo").val();
             var txt_date = $("#distributeStockOrderDate").val();
             var item_amt = $("#releaseGrandTotalChecked").val();
@@ -1185,8 +1101,6 @@
 
             document.getElementById("distributeStockOrderDetaillNewContentOrderInfoForm").reset();
             document.getElementById("distributeStockOrderDetaillBasicInfoForm").reset();
-            $("#distributeStockOrderDetailContent #patientAllergyListTableDiv").load("distributeStockOrderDetaillBasicInfo.jsp #patientAllergyListTableDiv");
-            $("#distributeStockOrderDetailContent #patientDiagnosisListTableDiv").load("distributeStockOrderDetaillBasicInfo.jsp #patientDiagnosisListTableDiv");
             $("#distributeStockOrderDetailContent #distributeStockOrderDetailsListTableDiv").load("distributeStockOrderDetaillBasicInfo.jsp #distributeStockOrderDetailsListTableDiv");
             $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
