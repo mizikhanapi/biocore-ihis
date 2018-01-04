@@ -65,7 +65,7 @@
                 + " IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name "
                 // FROM ORDER TABLE
                 + " FROM stk_order_master stkom  "
-                // LEFT JOIN BIODATA TABLE
+                // LEFT JOIN USER TABLE
                 + " LEFT JOIN adm_users aus ON (stkom.customer_id = aus.USER_ID) "
                 // LEFT JOIN HFC TABLE
                 + " LEFT JOIN adm_health_facility adm ON (stkom.hfc_cd = adm.hfc_cd) "
