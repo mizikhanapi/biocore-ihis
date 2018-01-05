@@ -73,7 +73,7 @@
                             </div>
                             <label class="col-md-1 control-label" for="textinput">-</label>
                             <div class="col-md-8">
-                                <input type="text" placeholder="Insert last 4 character of code" class="form-control" maxlength="27" id="PRO_proCode2">
+                                <input type="text" placeholder="Insert last 4 character of code" class="form-control code-input" maxlength="27" id="PRO_proCode2">
                             </div>                           
                         </div>
                     </div>

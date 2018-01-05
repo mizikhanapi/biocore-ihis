@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Modality Code*</label>
                         <div class="col-md-8">
-                            <input id="MOD_modalityCode"  type="text" placeholder="Insert modality code" class="form-control input-md" maxlength="30">
+                            <input id="MOD_modalityCode"  type="text" placeholder="Insert modality code" class="form-control input-md code-input" maxlength="30">
 
                         </div>
                     </div>

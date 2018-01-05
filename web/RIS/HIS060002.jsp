@@ -127,12 +127,18 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/radiologyFootLibrary.jsp" %>
         <script src="libraries/js/jquery.multi-select.js"></script>
+        <script src="../assets/js/rd.jquery.preventKey.js"></script>
         <!-- Placed at the end of the document so the pages load faster -->
 
 
 
         <script>
-
+            
+            $(function(){
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+            });
 
             $('<div class="loading">Loading</div>').appendTo('body');
 
