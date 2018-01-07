@@ -50,17 +50,17 @@
         var status = $('#PRO2_status').val();
 
         if (code_1 === "") {
-            bootbox.alert("Please choose existing level 1 code");
+            bootbox.alert("Please choose existing level 2 code");
 
         } else if (code_2 === "") {
-            bootbox.alert("Please complete the level 2 code");
+            bootbox.alert("Please complete the level 3 code");
 
         }else if (name === "") {
-            bootbox.alert("Please insert the level 2 name");
+            bootbox.alert("Please insert the level 3 name");
 
         } else if (!/^[a-zA-Z0-9]+$/.test(code_2)) {
-            bootbox.alert("Please enter alphabets and numbers only.", function(){
-                $('#PRO2_level2_code_ins').focus();
+            bootbox.alert("Please enter alphabets and numbers only for code.", function(){
+                $('#PRO2_level2_code_ins').val("");
             });
         }  else {
 

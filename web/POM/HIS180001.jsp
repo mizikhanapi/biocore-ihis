@@ -70,7 +70,7 @@
                                                 </div>
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
                                                 <%@include file="order_modal/prepareResult_modal.jsp" %>
-                                                
+
                                             </div>
 
                                         </div>
@@ -90,19 +90,26 @@
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
+        <script type="text/javascript" src="../assets/js/rd.jquery.preventKey.js"></script>
         <!-- Placed at the end of the document so the pages load faster -->
-        
+
 
         <script>
 
-           // createScreenLoading();
+            // createScreenLoading();
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+            });
+
 
 
             $("#risOrderMain").load("risManageOrderMaster_main.jsp");
             $("#risOrderListContent").load("risManageOrderListTable.jsp");
             $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
-            
-           // destroyScreenLoading();
+
+            // destroyScreenLoading();
 
         </script>
 

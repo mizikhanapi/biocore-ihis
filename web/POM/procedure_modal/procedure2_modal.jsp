@@ -37,7 +37,7 @@
                         <div class="col-md-8 input-group">
                             <input id="PRO2_level2_code_front" type="text" class="form-control" style="text-align:right;" placeholder="Auto" size="1" disabled>
                             <span class="input-group-addon" style="border: 0px; background-color: white; width: 0.15px">.</span>
-                            <input id="PRO2_level2_code_ins"  type="text" placeholder="Insert level 3 procedure code " class="form-control input-md" maxlength="20">
+                            <input id="PRO2_level2_code_ins"  type="text" placeholder="Insert level 3 procedure code " class="form-control input-md code-input" maxlength="10">
 
                         </div>
                     </div>

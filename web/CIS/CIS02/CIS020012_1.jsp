@@ -26,9 +26,9 @@ String sqlRIS = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, 
                                                 + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
                                                 + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
                                                 + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
-                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
-                                                + "LEFT JOIN lhr_procedure lp ON lp.pmi_no = om.pmi_no "
-                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"'  "
+                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no AND rd.procedure_cd=od.procedure_cd "
+                                                + "LEFT JOIN lhr_procedure lp ON lp.pmi_no = om.pmi_no AND lp.procedure_cd=od.procedure_cd "
+                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"' "
                                                 + "ORDER BY om.order_no DESC;";
 
 ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);

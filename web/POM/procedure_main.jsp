@@ -169,6 +169,9 @@
         } else if (sell===""){
             bootbox.alert("Please fill in the selling price.");
             
+        } else if(!$('#PRO_addForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
+           
         }
         else {
 
