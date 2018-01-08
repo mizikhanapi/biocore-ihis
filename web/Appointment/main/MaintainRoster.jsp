@@ -35,7 +35,7 @@
         <label class="control-label col-sm-2" for="staffID">Staff ID / Name / Title </label>
         <div class="col-sm-10"> 
             <select class="form-control" id="staffIDRoster" name="staffID">
-                <option></option>
+                <option value=""></option>
                 <%
                     String sql7 = "SELECT  ar.USER_ID, au.USER_NAME, au.OCCUPATION_CODE, au.HEALTH_FACILITY_CODE FROM adm_user_access_role ar "
                             + "INNER JOIN adm_users au ON au.`USER_ID` = ar.`USER_ID` "
@@ -218,6 +218,8 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        
+        initDateStartEnd("startDateRoster","endDateRoster","dd/mm/yy");
 
         $("#roster_category").on('change', function () {
             var shift_cd = $(this).val();
@@ -261,9 +263,13 @@
             var startDate = changeDateFormat($('#startDateRoster').val());
             var endDate = changeDateFormat($('#endDateRoster').val());
             var startDateBefore = changeDateFormat($('#startDateBeforeRoster').val());
-
-
-            var dataURoster = {
+            
+            if (startDate === "" || endDate === ""){
+                alert("Please select the shift state date");
+            }else if ($('#roster_category').val() === ""){
+                alert("Please select the shift category");
+            }else {
+                            var dataURoster = {
                 hfcCode: $('#hfcRoster').val(),
                 staffId: $('#staffIDRoster').val(),
                 userIdBefore: $('#userIDBefore').val(),
@@ -285,6 +291,7 @@
                 success: function (result) {
                     console.log(result);
                     if (result.trim() === 'success') {
+                      
                         alert('Update roster successful');
                         $('#rosterTable').load('main/MaintainRoster.jsp #rosterTable');
                     } else {
@@ -295,6 +302,10 @@
                     console.log(error);
                 }
             });
+            }
+
+
+
         });
 
         $('#rosterTable').on('click', '.roster-editBtn', function (e) {
@@ -311,6 +322,7 @@
             var dataRArry = dataRoster.split("|");
 
             console.log(dataRArry);
+             initDateStartEnd("startDateRoster","endDateRoster","dd/mm/yy");
 
 
 //                    var starttimeRoster = ConvertTimeformat12('12', dataRArry[3]);
@@ -330,7 +342,18 @@
 
         $('#addRoster').click(function (e) {
             e.preventDefault();
-
+            
+            if($('#staffIDRoster').val() === ""){
+                alert("Please select the staff");
+            } else if ($('#roster_category').val() === ""){
+                alert("Please select the roster category");
+            }else if ($('#startDateRoster').val() === ""){
+                alert("Please select the roster state date");
+            }else if ($('#endDateRoster').val() === ""){
+                alert("Please select the roster end date");
+            }else if ($('#roster_category').val() === ""){
+                alert("Please select the roster end date");
+            }else {
             var startDateRoster = $('#startDateRoster').val().split('/');
             var endDateRoster = $('#endDateRoster').val().split('/');
             startDateRoster = startDateRoster[2] + '-' + startDateRoster[1] + '-' + startDateRoster[0];
@@ -380,6 +403,9 @@
                     console.log(err);
                 }
             });
+            }
+
+
         });
 
     })

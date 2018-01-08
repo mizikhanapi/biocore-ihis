@@ -53,6 +53,17 @@ $(document).ready(function () {
         var start_time = $('#t_MANAGE_Appointment_START_TIME').val();
         var end_time = $('#t_MANAGE_Appointment_END_TIME').val();
         var duration = $('#t_MANAGE_Appointment_DURATION').val();
+        
+        if(start_time === ""){
+            alert("Please enter the start time");
+        }else if(end_time === ""){
+            alert("Please enter the end time");
+        }else if(duration === ""){
+            alert("Please enter the duration");
+        }else {
+            
+        
+        
         var store_duration = "00:"+duration+":00"
         var durationX = parseInt(duration) / 60;
 
@@ -173,7 +184,7 @@ $(document).ready(function () {
                 }
             }
         })
-
+}
 
 //        
       
