@@ -148,7 +148,7 @@
 
         if (name === "") {
             bootbox.alert("Fill in the Nent of Kin Name !");
-            $("#nextOfKinName").focus()();
+            $("#nextOfKinName").focus();
         } else if (containsNumber(name)) {
             bootbox.alert("Unvalid Name, Contain Numbers !");
             $("#nextOfKinName").focus();

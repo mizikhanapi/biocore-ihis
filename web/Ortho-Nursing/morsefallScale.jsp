@@ -36,7 +36,7 @@
         </div>
     </div>
 </div>
-<div id="div_morseAss_table" class="table-guling">
+<div id="div_morseAss_table" class="table-guling" style="overflow-y: auto;">
     
     <div style="text-align:center;border:1px solid #2196f3"><h3>No record found!</h3></div>
     
