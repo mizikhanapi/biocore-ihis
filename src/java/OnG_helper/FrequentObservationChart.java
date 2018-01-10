@@ -35,11 +35,11 @@ public class FrequentObservationChart {
 
             //                  0           1                2             3                                    4                                               5                                          
             sql = "SELECT freq.pmi_no,freq.hfc_cd,freq.episode_date,freq.encounter_date,TIME_FORMAT(TIME(freq.observation_datetime),'%r'),DATE_FORMAT(DATE(freq.observation_datetime),'%d/%m/%Y'), "
-                    //          6                7                  8                 9                       10                  11                  12                     13                             
-                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size,freq.pupil_left_react, "
-                    //               14                     15                  16         17                       18                                          19                           
-                    + " freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          20                                 
+                    //          6                7                  8                 9                       10                           11                  12                     13                             
+                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
+                    //               14                     15                  16                  17            18                                 19                                 20
+                    + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
+                    //          21                                 
                     + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
@@ -52,11 +52,11 @@ public class FrequentObservationChart {
 
             //                  0           1                2             3                                    4                                               5                                          
             sql = "SELECT freq.pmi_no,freq.hfc_cd,freq.episode_date,freq.encounter_date,TIME_FORMAT(TIME(freq.observation_datetime),'%r'),DATE_FORMAT(DATE(freq.observation_datetime),'%d/%m/%Y'), "
-                    //          6                7                  8                 9                       10                  11                  12                     13                             
-                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size,freq.pupil_left_react, "
-                    //               14                     15                  16         17                       18                                          19                           
-                    + " freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          20                                 
+                    //          6                7                  8                 9                       10                           11                  12                     13                             
+                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
+                    //               14                     15                  16                  17            18                                 19                                 20
+                    + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
+                    //          21                                                    
                     + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
@@ -69,11 +69,11 @@ public class FrequentObservationChart {
 
             //                  0           1                2             3                                    4                                               5                                          
             sql = "SELECT freq.pmi_no,freq.hfc_cd,freq.episode_date,freq.encounter_date,TIME_FORMAT(TIME(freq.observation_datetime),'%r'),DATE_FORMAT(DATE(freq.observation_datetime),'%d/%m/%Y'), "
-                    //          6                7                  8                 9                       10                  11                  12                     13                             
-                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size,freq.pupil_left_react, "
-                    //               14                     15                  16         17                       18                                          19                           
-                    + " freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          20                                 
+                    //          6                7                  8                 9                       10                           11                  12                     13                             
+                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
+                    //               14                     15                  16                  17            18                                 19                                 20
+                    + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
+                    //          21                                                    
                     + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
@@ -86,11 +86,11 @@ public class FrequentObservationChart {
 
             //                  0           1                2             3                                    4                                               5                                          
             sql = "SELECT freq.pmi_no,freq.hfc_cd,freq.episode_date,freq.encounter_date,TIME_FORMAT(TIME(freq.observation_datetime),'%r'),DATE_FORMAT(DATE(freq.observation_datetime),'%d/%m/%Y'), "
-                    //          6                7                  8                 9                       10                  11                  12                     13                             
-                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size,freq.pupil_left_react, "
-                    //               14                     15                  16         17                       18                                          19                           
-                    + " freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          20                                 
+                    //          6                7                  8                 9                       10                           11                  12                     13                             
+                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
+                    //               14                     15                  16                  17            18                                 19                                 20
+                    + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
+                    //          21                                                 
                     + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
@@ -103,11 +103,11 @@ public class FrequentObservationChart {
 
             //                  0           1                2             3                                    4                                               5                                          
             sql = "SELECT freq.pmi_no,freq.hfc_cd,freq.episode_date,freq.encounter_date,TIME_FORMAT(TIME(freq.observation_datetime),'%r'),DATE_FORMAT(DATE(freq.observation_datetime),'%d/%m/%Y'), "
-                    //          6                7                  8                 9                       10                  11                  12                     13                             
-                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size,freq.pupil_left_react, "
-                    //               14                     15                  16         17                       18                                          19                           
-                    + " freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          20                                 
+                    //          6                7                  8                 9                       10                           11                  12                     13                             
+                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
+                    //               14                     15                  16                  17            18                                 19                                 20
+                    + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
+                    //          21                                                      
                     + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
@@ -124,11 +124,11 @@ public class FrequentObservationChart {
 
             //                  0           1                2             3                                    4                                               5                                          
             sql = "SELECT freq.pmi_no,freq.hfc_cd,freq.episode_date,freq.encounter_date,TIME_FORMAT(TIME(freq.observation_datetime),'%r'),DATE_FORMAT(DATE(freq.observation_datetime),'%d/%m/%Y'), "
-                    //          6                7                  8                 9                       10                  11                  12                     13                             
-                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size,freq.pupil_left_react, "
-                    //               14                     15                  16         17                       18                                          19                           
-                    + " freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          20                                 
+                    //          6                7                  8                 9                       10                           11                  12                     13                             
+                    + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
+                    //               14                     15                  16                  17            18                                 19                                 20
+                    + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
+                    //          21                                                      
                     + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
@@ -148,8 +148,8 @@ public class FrequentObservationChart {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, observation_datetime, temperature, pulse_rate, respiratory_rate, blood_pressure, pupil_left_react, pupil_left_size,
-                pupil_right_react, pupil_right_size, conscious_state_remarks, drug_given, approved_by, status, created_by, created_date;
+        String pmi_no, hfc_cd, episode_date, encounter_date, observation_datetime, temperature, pulse_rate, respiratory_rate, blood_pressure_sys, blood_pressure_dia,
+                pupil_left_react, pupil_left_size, pupil_right_react, pupil_right_size, conscious_state_remarks, drug_given, approved_by, status, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -159,23 +159,24 @@ public class FrequentObservationChart {
         temperature = splittedData[5];
         pulse_rate = splittedData[6];
         respiratory_rate = splittedData[7];
-        blood_pressure = splittedData[8];
-        pupil_left_react = splittedData[9];
-        pupil_left_size = splittedData[10];
-        pupil_right_react = splittedData[11];
-        pupil_right_size = splittedData[12];
-        conscious_state_remarks = splittedData[13];
-        drug_given = splittedData[14];
-        approved_by = splittedData[15];
-        status = splittedData[16];
-        created_by = splittedData[20];
-        created_date = splittedData[21];
+        blood_pressure_sys = splittedData[8];
+        blood_pressure_dia = splittedData[9];
+        pupil_left_react = splittedData[10];
+        pupil_left_size = splittedData[11];
+        pupil_right_react = splittedData[12];
+        pupil_right_size = splittedData[13];
+        conscious_state_remarks = splittedData[14];
+        drug_given = splittedData[15];
+        approved_by = splittedData[16];
+        status = splittedData[17];
+        created_by = splittedData[21];
+        created_date = splittedData[22];
 
         String sqlInsert = "INSERT INTO lhr_ong_frequent_observation_chart "
-                + " (pmi_no,hfc_cd,episode_date,encounter_date,observation_datetime,temperature,pulse_rate,respiratory_rate,blood_pressure,pupil_left_react,pupil_left_size,pupil_right_react,"
-                + " pupil_right_size,conscious_state_remarks,drug_given,approved_by,status,created_by,created_date)  "
+                + " (pmi_no,hfc_cd,episode_date,encounter_date,observation_datetime,temperature,pulse_rate,respiratory_rate,blood_pressure_sys,blood_pressure_dia,pupil_left_react,"
+                + " pupil_left_size,pupil_right_react,pupil_right_size,conscious_state_remarks,drug_given,approved_by,status,created_by,created_date)  "
                 + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + observation_datetime + "','" + temperature + "','" + pulse_rate + "','" + respiratory_rate + "'"
-                + ",'" + blood_pressure + "','" + pupil_left_react + "','" + pupil_left_size + "','" + pupil_right_react + "','" + pupil_right_size + "','" + conscious_state_remarks + "','" + drug_given + "', "
+                + ",'" + blood_pressure_sys + "','" + blood_pressure_dia + "','" + pupil_left_react + "','" + pupil_left_size + "','" + pupil_right_react + "','" + pupil_right_size + "','" + conscious_state_remarks + "','" + drug_given + "', "
                 + "'" + approved_by + "','" + status + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
@@ -188,8 +189,8 @@ public class FrequentObservationChart {
 
         Boolean data = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, observation_datetime, temperature, pulse_rate, respiratory_rate, blood_pressure, pupil_left_react, pupil_left_size,
-                pupil_right_react, pupil_right_size, conscious_state_remarks, drug_given, approved_by, status;
+        String pmi_no, hfc_cd, episode_date, encounter_date, observation_datetime, temperature, pulse_rate, respiratory_rate, blood_pressure_sys, blood_pressure_dia,
+                pupil_left_react, pupil_left_size, pupil_right_react, pupil_right_size, conscious_state_remarks, drug_given, approved_by, status;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -199,18 +200,19 @@ public class FrequentObservationChart {
         temperature = splittedData[5];
         pulse_rate = splittedData[6];
         respiratory_rate = splittedData[7];
-        blood_pressure = splittedData[8];
-        pupil_left_react = splittedData[9];
-        pupil_left_size = splittedData[10];
-        pupil_right_react = splittedData[11];
-        pupil_right_size = splittedData[12];
-        conscious_state_remarks = splittedData[13];
-        drug_given = splittedData[14];
-        approved_by = splittedData[15];
-        status = splittedData[16];
+        blood_pressure_sys = splittedData[8];
+        blood_pressure_dia = splittedData[9];
+        pupil_left_react = splittedData[10];
+        pupil_left_size = splittedData[11];
+        pupil_right_react = splittedData[12];
+        pupil_right_size = splittedData[13];
+        conscious_state_remarks = splittedData[14];
+        drug_given = splittedData[15];
+        approved_by = splittedData[16];
+        status = splittedData[17];
 
         String sql = " UPDATE lhr_ong_frequent_observation_chart SET observation_datetime='" + observation_datetime + "',temperature='" + temperature + "',pulse_rate='" + pulse_rate + "',"
-                + " respiratory_rate='" + respiratory_rate + "',blood_pressure='" + blood_pressure + "',pupil_left_react='" + pupil_left_react + "',pupil_left_size='" + pupil_left_size + "', "
+                + " respiratory_rate='" + respiratory_rate + "',blood_pressure_sys='" + blood_pressure_sys + "',blood_pressure_dia='" + blood_pressure_dia + "',pupil_left_react='" + pupil_left_react + "',pupil_left_size='" + pupil_left_size + "', "
                 + " pupil_right_react='" + pupil_right_react + "',pupil_right_size='" + pupil_right_size + "',conscious_state_remarks='" + conscious_state_remarks + "',drug_given='" + drug_given + "' "
                 + " WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "' ";
 
@@ -230,7 +232,7 @@ public class FrequentObservationChart {
         hfc_cd = splittedData[1];
         episode_date = splittedData[2];
         encounter_date = splittedData[3];
-        userid = splittedData[24];
+        userid = splittedData[25];
 
         String sql = "UPDATE lhr_ong_frequent_observation_chart SET status = 'Approved' , approved_by = '" + userid + "' WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "'";
 

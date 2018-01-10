@@ -7,16 +7,16 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%
- //   Config.getFile_url(session);
+    //   Config.getFile_url(session);
 //    Config.getBase_url(request);
     Conn ccconn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 //    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String datee5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0123' AND hfc_cd = '" + hfc + "' and status ='0'";
-    
+
     ArrayList<ArrayList<String>> datadatee5;
     datadatee5 = ccconn.getData(datee5);
-    
+
 %>
 
 <!-- Start Modal -->
@@ -30,45 +30,44 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                            <input type="hidden" id="ONGFreqObservationChartPmi" >
-                            <input type="hidden" id="ONGFreqObservationChartHfc" >
-                            <input type="hidden" id="ONGFreqObservationChartEpisodeDate" >
-                            <input type="hidden" id="ONGFreqObservationChartEncounterDate">
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalDate" readonly>
-                                </div>
+                        <input type="hidden" id="ONGFreqObservationChartPmi" >
+                        <input type="hidden" id="ONGFreqObservationChartHfc" >
+                        <input type="hidden" id="ONGFreqObservationChartEpisodeDate" >
+                        <input type="hidden" id="ONGFreqObservationChartEncounterDate">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Date</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" id="freqObservationChartModalDate" readonly>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <form autocomplete="off" id="freqObservationChartModalForm">
 
                     <div class="row">
-<!--                        <div class="col-md-6">
-                            <input type="hidden" id="ONGFreqObservationChartPmi" >
-                            <input type="hidden" id="ONGFreqObservationChartHfc" >
-                            <input type="hidden" id="ONGFreqObservationChartEpisodeDate" >
-                            <input type="hidden" id="ONGFreqObservationChartEncounterDate">
-                             Text input
-                            <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalDate" readonly>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="col-md-6">
+                        <!--                        <div class="col-md-6">
+                                                    <input type="hidden" id="ONGFreqObservationChartPmi" >
+                                                    <input type="hidden" id="ONGFreqObservationChartHfc" >
+                                                    <input type="hidden" id="ONGFreqObservationChartEpisodeDate" >
+                                                    <input type="hidden" id="ONGFreqObservationChartEncounterDate">
+                                                     Text input
+                                                    <div class="form-group">
+                                                        <label class="col-md-12 control-label" for="textinput">Date</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control input-md" id="freqObservationChartModalDate" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                        <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-<!--                                    <input type="text" class="form-control input-md" id="freqObservationChartModalTime" readonly>-->
+                                    <!--                                    <input type="text" class="form-control input-md" id="freqObservationChartModalTime" readonly>-->
                                     <select id="freqObservationChartModalTime" class="form-control">
                                         <option value="-" selected="" disabled="">Select Time</option>
-                                        <option value="-">-</option>
-                                        <% for (int i = 0;i < datadatee5.size();i++) {%>
+                                        <% for (int i = 0; i < datadatee5.size(); i++) {%>
                                         <option value="<%=datadatee5.get(i).get(1)%>"><%=datadatee5.get(i).get(2)%></option>
                                         <%  }
                                         %>
@@ -120,9 +119,12 @@
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Blood Pressure</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalBP" maxlength="7">
+                                <label class="col-md-12 control-label" for="textinput">BP (mmHg)</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="Systolic"  id="freqObservationChartModalBPSys" maxlength="3">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="Diastolic" id="freqObservationChartModalBPDia" maxlength="3">
                                 </div>
                             </div>
                         </div>

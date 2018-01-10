@@ -71,25 +71,28 @@
         <td><%=datas.get(i).get(6)%></td>                   <!-- Temperature -->
         <td><%=datas.get(i).get(7)%></td>                   <!-- Pulse -->
         <td><%=datas.get(i).get(8)%></td>                   <!-- Respiration -->
-        <td><%=datas.get(i).get(9)%></td>                   <!-- BP -->
+        <td>            
+            Size: <strong><%=datas.get(i).get(9)%></strong><br>
+            React: <strong><strong><%=datas.get(i).get(10)%></strong>
+        </td>                   <!-- BP -->
         <td>                                                                <!-- Pulse Right -->
-            Size: <strong><%=datas.get(i).get(10)%></strong><br>
-            React: <strong><strong><%=datas.get(i).get(11)%></strong>
+            Size: <strong><%=datas.get(i).get(11)%></strong><br>
+            React: <strong><strong><%=datas.get(i).get(12)%></strong>
         </td>                                                               <!-- Pulse Right -->                
         <td>                                                                <!-- Pulse Left -->
-            Size: <strong><%=datas.get(i).get(12)%></strong><br>
-            React: <strong><strong><%=datas.get(i).get(13)%></strong>
+            Size: <strong><%=datas.get(i).get(13)%></strong><br>
+            React: <strong><strong><%=datas.get(i).get(14)%></strong>
         </td>                                                               <!-- Pulse Left -->  
-        <td><%=datas.get(i).get(14)%></td>                  <!-- Remark -->
-        <td><%=datas.get(i).get(19)%></td>                  <!-- Drug -->
-        <td><%=datas.get(i).get(20)%></td>                  <!-- Approved By -->
+        <td><%=datas.get(i).get(15)%></td>                  <!-- Remark -->
+        <td><%=datas.get(i).get(20)%></td>                  <!-- Drug -->
+        <td><%=datas.get(i).get(21)%></td>                  <!-- Approved By -->
         <td>
             <%
-                if (datas.get(i).get(17).equalsIgnoreCase("pending")) { %>
+                if (datas.get(i).get(18).equalsIgnoreCase("pending")) { %>
 
             <button class="btn btn-warning btn-block" id="tableFreqObservationChartPendingBtn"><i class="fa fa-check-square-o"></i> Pending</button>
 
-            <%          } else if (datas.get(i).get(17).equalsIgnoreCase("approved")) { %>
+            <%          } else if (datas.get(i).get(18).equalsIgnoreCase("approved")) { %>
 
             <button class="btn btn-success btn-block disabled"><i class="fa fa-check-square-o"></i> Approved</button>
             <%    }
@@ -97,7 +100,7 @@
         </td>
         <td>
             <%
-                if (datas.get(i).get(17).equalsIgnoreCase("pending")) { %>
+                if (datas.get(i).get(18).equalsIgnoreCase("pending")) { %>
 
             <a data-toggle="modal" data-target="#edit" id="tableFreqObservationChartUpdateBtn"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 
