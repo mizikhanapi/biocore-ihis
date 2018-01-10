@@ -68,7 +68,7 @@
         </div>
 
         <div class="text-center">
-            <button id="billingReportAccountReportYearlyStatementBtn" class="btn btn-info" >Customer Yearly Account Statement</button>
+            <button id="billingReportAccountReportYearlyStatementBtn" class="btn btn-info" >Customer Account Statement</button>
             <button id="billingReportAccountReportDetailsStatementBtn" class="btn btn-info" >Customer Details Account Statement</button>
             <button id="billingReportAccountReportYearEndReportBtn" class="btn btn-info" >Year End Processing Report</button>
         </div>

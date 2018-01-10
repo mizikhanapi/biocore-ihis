@@ -31,7 +31,7 @@
 //                    + "SET status='canceled', canceled_by='" + username + "', canceled_date=now(), canceled_reason='" + canceledReason + "' "
 //                    + "WHERE pmi_no='" + pmiNo + "' AND hfc_cd='" + hfcCd + "' AND DATE(appointment_date)='" + date + "' AND discipline = '"+discipline+"' AND subdiscipline = '"+subdiscipline+"'";
                 
-String sqlUpdate = "UPDATE pms_appointment SET `status` = 'inactive' WHERE pmi_no = '"+pmiNo+"' AND hfc_cd = '"+hfcCd+"' AND appointment_date = '"+date+"';";
+String sqlUpdate = "UPDATE pms_appointment SET `status` = 'active' WHERE pmi_no = '"+pmiNo+"' AND hfc_cd = '"+hfcCd+"' AND appointment_date = '"+date+"';";
 boolean isUpdate = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlUpdate);
             
             if(isUpdate)

@@ -60,10 +60,12 @@
 
         // Insert Master Distribute
         String sqlInsertDustributeMaster = "INSERT INTO stk_distribition_master "
-                + " (customer_id, order_no, txt_date, item_amt, quantity, location, hfc_cd, discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_discipline_cd, "
+                + " (customer_id, order_no, txt_date, item_amt, quantity, location, hfc_cd, "
+                + " discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_discipline_cd, "
                 + " ordering_subdiscipline_cd, status, created_by, created_date) "
                 + " VALUES ('" + customer_id + "','" + order_no + "','" + txt_date + "','" + item_amt + "','" + quantity + "', "
-                + " '" + hfc + "','" + dis + "','" + sub + "','" + hfc + "','" + hfc + "'," + dis + ",'" + sub + "','0','" + created_by + "','" + created_date + "' )";
+                + " '" + hfc + "','" + hfc + "','" + dis + "','" + sub + "','" + hfc + "','" + dis + "', "
+                + " '" + sub + "','0','" + created_by + "','" + created_date + "' ) ";
 
         isInsertDistrubiteMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDustributeMaster);
 

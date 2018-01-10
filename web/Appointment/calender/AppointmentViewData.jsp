@@ -16,8 +16,8 @@
     //String episode_date = "2017-09-06 10:30:00.0";
         String pmi_no = request.getParameter("pmi_no");
     String episode_date = request.getParameter("appointment_date");
-                                    //        0             1               2           3               4                 5           6               7                   8           9           10                    11                   12             13
-    String appointment_detail_sql = "SELECT pa.pmi_no, pb.`PATIENT_NAME`, pa.hfc_cd, hf.hfc_name, pa.appointment_date, pa.userid, au.`USER_NAME`, pa.appointment_type, pa.status, pa.start_time, pb.`EMAIL_ADDRESS`,pb.`MOBILE_PHONE`,dis.discipline_name,sub.subdiscipline_name "
+                                    //        0             1               2           3               4                 5           6               7                   8           9           10                    11                   12             13                      14                  15  
+    String appointment_detail_sql = "SELECT pa.pmi_no, pb.`PATIENT_NAME`, pa.hfc_cd, hf.hfc_name, pa.appointment_date, pa.userid, au.`USER_NAME`, pa.appointment_type, pa.status, pa.start_time, pb.`EMAIL_ADDRESS`,pb.`MOBILE_PHONE`,dis.discipline_name,sub.subdiscipline_name,dis.discipline_cd,sub.subdiscipline_cd "
             + "FROM pms_appointment pa "
             + "INNER JOIN pms_patient_biodata pb ON pa.pmi_no = pb.`PMI_NO` "
             + "INNER JOIN adm_users au ON pa.userid = au.`USER_ID`  "
@@ -38,9 +38,10 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label class="col-md-12" for="textinput">Name : </label>
+                           
+                            <label class="col-md-12" for="textinput">Name :</label>
                             <div class="col-md-12">
-                                <h4><%out.print(appointment_detail_data.get(0).get(1));%></h4>
+                                <h4 id="d_APP_V_PATIENT_NAME"><%out.print(appointment_detail_data.get(0).get(1));%></h4>
                             </div>
                         </div>
                     </div>
@@ -48,7 +49,7 @@
                         <div class="form-group">
                             <label class="col-md-12" for="textinput">PMI No : </label>
                             <div class="col-md-12">
-                                <h4><%out.print(appointment_detail_data.get(0).get(0));%></h4>
+                                <h4 id="d_APP_V_PATIENT_PMI"><%out.print(appointment_detail_data.get(0).get(0));%></h4>
 
                             </div>
                         </div>
@@ -59,14 +60,14 @@
                                         <div class="form-group">
                                             <label class="col-md-12" for="textinput">Email : </label>
                                             <div class="col-md-12">
-                                                <h4><%out.print(appointment_detail_data.get(0).get(10));%></h4>
+                                                <h4 id="d_APP_V_PATIENT_EMAIL"><%out.print(appointment_detail_data.get(0).get(10));%></h4>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="col-md-12" for="textinput">Phone No : </label>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" id="d_APP_V_PATIENT_PHONE_NO">
                                                 <h4><%out.print(appointment_detail_data.get(0).get(11));%></h4>
 
                                             </div>
@@ -78,7 +79,8 @@
                                                         <div class="form-group">
                                                             <label class="col-md-12" for="textinput">Health Facility : </label>
                                                             <div class="col-md-12">
-                                                                <h4><%out.print(appointment_detail_data.get(0).get(3));%></h4>
+                                                                <p id="d_APP_V_PATIENT_HFC"><%out.print(appointment_detail_data.get(0).get(2));%></p>
+                                                                <h4 ><%out.print(appointment_detail_data.get(0).get(3));%></h4>
 
                                                             </div>
                                                         </div>
@@ -87,6 +89,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-12" for="textinput">Discipline : </label>
                                                             <div class="col-md-12">
+                                                                <p id="d_APP_V_PATIENT_DIS"><%out.print(appointment_detail_data.get(0).get(14));%></p>
                                                                 <h4><%out.print(appointment_detail_data.get(0).get(12));%></h4>
 
                                                             </div>
@@ -96,6 +99,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-12" for="textinput">Subdiscipline : </label>
                                                             <div class="col-md-12">
+                                                                <p id="d_APP_V_PATIENT_SUBDIS"><%out.print(appointment_detail_data.get(0).get(15));%></p>
                                                                 <h4><%out.print(appointment_detail_data.get(0).get(13));%></h4>
 
                                                             </div>
@@ -119,7 +123,7 @@
                         <div class="form-group">
                             <label class="col-md-12" for="textinput">Appointment Date / Time : </label>
                             <div class="col-md-12">
-                                <h4><%out.print(appointment_detail_data.get(0).get(4));%></h4>
+                                <h4 id="d_APP_V_PATIENT_APPOINTMENT_DATE"><%out.print(appointment_detail_data.get(0).get(4));%></h4>
                             </div>
                         </div>
                     </div>
@@ -143,12 +147,6 @@
 
                 </div>
             </div>
-
-
-            <!-- Tab 1 -->
-
-
-            <!-- Tab 2 -->
 
         </div>
     </div>

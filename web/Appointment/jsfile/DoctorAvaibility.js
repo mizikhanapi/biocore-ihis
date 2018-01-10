@@ -30,23 +30,29 @@ $(document).ready(function () {
     
     $('#todaySearch').click(function (e) {
         e.preventDefault();
-        //$('#doctorAvailabilityTable').load('adminAppointmentAjax.jsp #doctorAvailabilityTable');
+        $('#doctorAvailabilityTable').load('index.jsp #doctorAvailabilityTable');
     });
 
     $('#searchDoctor').click(function (e) {
         e.preventDefault();
         var doc_name = $("#selectDoctorAvailibility").val();
         var date =  $("#dateDoctorA").val();
-        var dateAppointment = date.split('-');
-        dateAppointment = dateAppointment[2] + "-" + dateAppointment[1] + "-" + dateAppointment[0];
-        
-        var data = {
-            doc_name:doc_name,
-            date : dateAppointment
+        if(doc_name === ""){
+            alert("Please select doctor name");
+        }else if(date === ""){
+            alert("Please select date");
+        }else{
+            var dateAppointment = date.split('-');
+            dateAppointment = dateAppointment[2] + "-" + dateAppointment[1] + "-" + dateAppointment[0];
+
+            var data = {
+                doc_name: doc_name,
+                date: dateAppointment
+            }
+            searchDoctorAvailibility(data)
         }
-      searchDoctorAvailibility(data)
-        //searchDoctor();
-        //searchDoctor();
+
+
     });
 });
 

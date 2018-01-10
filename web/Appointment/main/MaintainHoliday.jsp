@@ -30,7 +30,7 @@
                                             <div class="col-sm-10"> 
                                                
                                                 <select class="form-control" id="state" name="state_code" required>
-                                                    <option></option>
+                                                    <option value=""></option>
                                                     <%   String sql2 = "SELECT Detail_Reference_code, Description FROM adm_lookup_detail WHERE Master_Reference_code = '0002' AND hfc_cd = '" + hfc + "' ";
                                                         ArrayList<ArrayList<String>> dataState = Conn.getData(sql2);
 
@@ -69,7 +69,7 @@
                                             <label class="control-label col-sm-2 col-md-2" for="description">Description</label>  
                                             <div class="col-sm-10">
 
-                                                <textarea name="holiday_desc" class="form-control" rows="5" id="desc" required></textarea>
+                                                <textarea name="holiday_desc" class="form-control" rows="5" id="desc" maxlength="100" required></textarea>
 
 
 
@@ -80,7 +80,7 @@
                                             <div class="col-sm-10">  
                                                 <select class="form-control" id="appTo" name="holiday_type" required>
 
-                                                    <option></option>
+                                                    <option value=""></option>
                                                     <option value="national">national</option>
                                                     <option value="state">state</option>
 
@@ -162,7 +162,7 @@
                                                                     var resultTrim = result.replace(";", "");
                                                                     var response = resultTrim.trim();
                                                                     if (response === 'success') {
-                                                                        $('#holidayTable').load('adminAppointmentAjax.jsp #holidayTable');
+                                                                        $('#holidayTable').load('index.jsp #holidayTable');
                                                                         alert('Holiday has successful deleted');
                                                                     } else {
                                                                         alert('error deleting the holiday');
