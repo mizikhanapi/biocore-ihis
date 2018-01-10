@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Shift Code</label>
                         <div class="col-md-8">
-                            <input id="Add_shift_code" name="masterName" type="text" placeholder="e.g. FS" class="form-control input-md" maxlength="100">
+                            <input id="Add_shift_code" name="masterName" type="text" placeholder="e.g. FS" class="form-control input-md" maxlength="40">
                         </div>
                     </div>
 
@@ -244,8 +244,8 @@
               });
               
               $("#detailTable").on('click','#manage_shift_table #MSHIFT_btnUpdate',function(){
-                 $("#modal_manage_shift").modal('show');
-                 $('#ActionAddShift').hide();
+                $("#modal_manage_shift").modal('show');
+                $('#ActionAddShift').hide();
                 $('#ActionUpdateShift').show();
                
                 var _tr = $(this).closest("tr");
@@ -259,20 +259,20 @@
                 var status = _tr.find("#status_e").text();
                 
                  $("#Add_shift_code").val(shift_code);
-                $("#Add_shift_name").val(shift_name);
-                  $("#Add_shift_start_time").val(start_time);
-                   $("#Add_shift_duration").val(duration);
+                 $("#Add_shift_name").val(shift_name);
+                 $("#Add_shift_start_time").val(start_time);
+                 $("#Add_shift_duration").val(duration);
                  $("#Add_shift_end_time").val(end_time);
-                  $("#Add_shift_start_date").val(start_date);
-                  $("#Add_shift_end_date").val(end_date);
-                  $("#Add_shift_status").val(status);
+                 $("#Add_shift_start_date").val(start_date);
+                 $("#Add_shift_end_date").val(end_date);
+                 $("#Add_shift_status").val(status);
                  $('#Add_shift_code').prop('disabled', 'disabled');
                 
                
               });
               $("#btnUpdateShiftName").click(function(e){
                   e.preventDefault();
-                  var shift_code = $("#Add_shift_code").val();
+                   var shift_code = $("#Add_shift_code").val();
                   var shift_name = $("#Add_shift_name").val();
                   var start_time = $("#Add_shift_start_time").val();
                   var shift_duration = $("#Add_shift_duration").val();
@@ -281,6 +281,24 @@
                   var end_date = $("#Add_shift_end_date").val();
                   var status = $("#Add_shift_status").val();
                   
+                  if(shift_code === ""){
+                      alert("Please enter the shift code");
+                  }else if(shift_name === ""){
+                      alert("Please enter the shift name");
+                  }else if(start_time === ""){
+                      alert("Please enter the shift time");
+                  }else if(shift_duration === ""){
+                      alert("Please enter the shift duration");
+                  }else if(end_time === ""){
+                      alert("Please enter the shift end time");
+                  }else if(start_date === ""){
+                      alert("Please enter the shift start date");
+                  }else if(end_date === ""){
+                      alert("Please enter the shift end date");
+                  }else if(status === ""){
+                      alert("Please enter the shift status date");
+                  } else {
+                          
                   var data ={
                       shift_code:shift_code,
                       shift_name:shift_name,
@@ -307,6 +325,9 @@
                         }
                      }
                   })
+                  }
+                 
+              
               })
               
               $("#btnAddShiftName").click(function(e){
@@ -321,32 +342,52 @@
                   var end_date = $("#Add_shift_end_date").val();
                   var status = $("#Add_shift_status").val();
                   
-                  var data ={
-                      shift_code:shift_code,
-                      shift_name:shift_name,
-                      start_time:start_time,
-                      shift_duration:shift_duration,
-                      end_time:end_time,
-                      start_date:start_date,
-                      end_date:end_date,
-                      status:status
+                  if(shift_code === ""){
+                      alert("Please enter the shift code");
+                  }else if(shift_name === ""){
+                      alert("Please enter the shift name");
+                  }else if(start_time === ""){
+                      alert("Please enter the shift time");
+                  }else if(shift_duration === ""){
+                      alert("Please enter the shift duration");
+                  }else if(end_time === ""){
+                      alert("Please enter the shift end time");
+                  }else if(start_date === ""){
+                      alert("Please enter the shift start date");
+                  }else if(end_date === ""){
+                      alert("Please enter the shift end date");
+                  }else if(status === ""){
+                      alert("Please enter the shift status date");
+                  } else {
+                    var data ={
+                        shift_code:shift_code,
+                        shift_name:shift_name,
+                        start_time:start_time,
+                        shift_duration:shift_duration,
+                        end_time:end_time,
+                        start_date:start_date,
+                        end_date:end_date,
+                        status:status
+                    }
+                    $.ajax({
+                       timeout:3000,
+                       data:data,
+                       url:"addShift.jsp",
+                       method:'POST',
+                       success:function(r){
+                          if(r.trim() === "|SUCCESS|"){
+                              alert("Inserting Success");
+                              $("#modal_manage_shift").modal('hide');
+                              $("#detailTable").load("manage_shift_table.jsp");
+                                clearShiftForm();
+                          }else{
+                              console.log(r.trim());
+                          }
+                       }
+                    })
                   }
-                  $.ajax({
-                     timeout:3000,
-                     data:data,
-                     url:"addShift.jsp",
-                     method:'POST',
-                     success:function(r){
-                        if(r.trim() === "|SUCCESS|"){
-                            alert("Inserting Success");
-                            $("#modal_manage_shift").modal('hide');
-                            $("#detailTable").load("manage_shift_table.jsp");
-                              clearShiftForm();
-                        }else{
-                            console.log(r.trim());
-                        }
-                     }
-                  })
+                  
+
               })
               
 

@@ -71,7 +71,7 @@
                                                 </div>
                                                 <%@include file="procedure_modal/procedure_modal.jsp" %>
                                             </div>
-                                            
+
                                             <div class="tab-pane" id="tab_default_2">
                                                 <div id="procedure1Main">
 
@@ -80,9 +80,9 @@
 
                                                 </div>
                                                 <%@include file="procedure_modal/procedure1_modal.jsp" %>                                                
-                                                
+
                                             </div>
-                                                
+
                                             <div class="tab-pane" id="tab_default_3">
                                                 <div id="procedure2Main">
 
@@ -91,7 +91,7 @@
 
                                                 </div>
                                                 <%@include file="procedure_modal/procedure2_modal.jsp" %>                                                
-                                                
+
                                             </div>    
 
                                         </div>
@@ -112,25 +112,31 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
         <script src="libraries/js/jquery.multi-select.js"></script>
+        <script src="../assets/js/rd.jquery.preventKey.js"></script>
         <!-- Placed at the end of the document so the pages load faster -->
-        
+
 
         <script>
 
-           // createScreenLoading();
+            // createScreenLoading();
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+            });
 
 
             $("#procedureMain").load("procedure_main.jsp");
             $("#procedureTable").load("procedure_table.jsp");
-            
+
             $("#procedure1Main").load("procedure1_main.jsp");
             $("#procedure1Table").load("procedure1_table.jsp");
-            
+
             $("#procedure2Main").load("procedure2_main.jsp");
             $("#procedure2Table").load("procedure2_table.jsp");
-            
-            
-           // destroyScreenLoading();
+
+
+            // destroyScreenLoading();
 
         </script>
 

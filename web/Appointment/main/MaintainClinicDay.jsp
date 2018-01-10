@@ -161,7 +161,7 @@
                 <%
                     if (hfc == null) {
                 %>
-                <option></option> <%
+                <option value=""></option> <%
                 } else {
 
                     //                                                checkDropdown=true;
@@ -191,7 +191,7 @@
         <label class="control-label col-sm-2" for="discipline">Discipline </label>
         <div class="col-sm-10"> 
             <select class="form-control" id="discipline" name="discipline" required>
-                <option></option>
+                <option value=""></option>
 
             </select>
             <input type="hidden" name="disciplineBefore" id="disciplineBefore">
@@ -201,7 +201,7 @@
         <label class="control-label col-sm-2" for="subdiscipline">Subdiscipline </label>
         <div class="col-sm-10">
             <select class="form-control" id="subdiscipline" name="subdiscipline" required>
-                <option></option>
+                <option value=""></option>
                 <%  String sql6 = "SELECT Detail_Reference_code, Description FROM adm_lookup_detail WHERE Master_Reference_code = '0071'  AND  hfc_cd = '" + hfc + "' ";
                     ArrayList<ArrayList<String>> dataSubClinic = Conn.getData(sql6);
                     if (dataSubClinic.size() > 0) {
@@ -219,7 +219,7 @@
         <div class="col-sm-10"> 
             <input type="hidden" name="dayBefore"  id="dayBefore">
             <select class="form-control" id="clinicDay" name="day" required>
-                <option></option>
+                <option value=""></option>
 
                 <option value="Monday">Monday</option>
                 <option value="Tuesday">Tuesday</option>

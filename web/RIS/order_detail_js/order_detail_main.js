@@ -273,8 +273,14 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
     var modCode = $('#RNO_modality').val();
     var procedure = $('#RNO_proName').val();
     var instruction = $('#RNO_instruction').val();
+    
+    if (isProSelected === false || selectedPro !== procedure || procedure === "") {
+        bootbox.alert('Please choose existing procedure.', function () {
+            $('#RNO_proName').focus();
+        });
 
-    if (bsCode === "") {
+    }
+    else if (bsCode === "") {
         bootbox.alert('Select body system.', function () {
             $('#RNO_bodySystem').focus();
         });
@@ -284,12 +290,7 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
             $('#RNO_modality').focus();
         });
 
-    } else if (isProSelected === false || selectedPro !== procedure || procedure === "") {
-        bootbox.alert('Please choose existing procedure.', function () {
-            $('#RNO_proName').focus();
-        });
-
-    } else {
+    }  else {
         instruction = instruction.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         var arrData = procedure.split('|');
         procedure = arrData[0].trim();

@@ -73,7 +73,7 @@
                             </div>
                             <label class="col-md-1 control-label" for="textinput">-</label>
                             <div class="col-md-8">
-                                <input type="text" placeholder="Insert last 4 character of code" class="form-control" maxlength="27" id="PRO_proCode2">
+                                <input type="text" placeholder="Insert last 4 character of code" class="form-control code-input" maxlength="27" id="PRO_proCode2">
                             </div>                           
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Buying Price (RM)*</label>
                         <div class="col-md-8">
-                            <input type="text" placeholder="Insert radiology procedure buying price" class="form-control" maxlength="9" id="PRO_buyPrice">
+                            <input type="number" placeholder="Insert radiology procedure buying price" class="form-control" max="9999999.99" min="0" step="0.01" id="PRO_buyPrice">
                             <p id="PRO_buyPrice_err" style="color: red"></p>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Selling Price (RM)*</label>
                         <div class="col-md-8">
-                            <input type="text" placeholder="Insert radiology procedure selling price" class="form-control" maxlength="9" id="PRO_sellPrice">
+                            <input type="number" placeholder="Insert radiology procedure selling price" class="form-control" max="9999999.99" min="0" step="0.01" id="PRO_sellPrice">
                             <p id="PRO_sellPrice_err" style="color: red"></p>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Quantity*</label>
                         <div class="col-md-8">
-                            <input type="text" placeholder="Insert quantity of available radiology procedure" class="form-control" maxlength="9" id="PRO_quantity">
+                            <input type="number" placeholder="Insert quantity of available radiology procedure" class="form-control" max="99999999999" min="0" step="1" id="PRO_quantity">
                             <p id="PRO_quantity_err" style="color: red"></p>
                         </div>
                     </div>

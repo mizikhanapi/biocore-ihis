@@ -71,11 +71,16 @@
         <%@include file = "libraries/radiologyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
+        <script src="../assets/js/rd.jquery.preventKey.js" type="text/javascript"></script>
 
         <script>
+            
+            $(function(){
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+            });
 
             createScreenLoading();
-
 
             $("#risResultMain").load("risResult_main.jsp");
             $("#risResultContent").load("risResult_table.jsp");

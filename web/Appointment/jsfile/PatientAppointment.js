@@ -8,6 +8,12 @@
 $(document).ready(function () {
 
     var hfc_name = $("#t_SEARCH_Appointment_HFC_NAME").val();
+    
+    $("#btn_CANCEL_Appoinment_CANCEL").click(function(e){
+        e.preventDefault();
+        alert("lol");
+    })
+    
 //    $("#t_SEARCH_Appointment_SUBDIS_NAME").prop('disabled', true);
 //    searchHFCDefault("t_SEARCH_Appointment_HFC_NAME", "t_SEARCH_Appointment_HFC_NAME_LOADING", hfc_name);
 //    searchDisciplineOnly("t_SEARCH_Appointment_DIS_NAME", "t_SEARCH_Appointment_DIS_NAME_LOADING", $("#t_SEARCH_Appointment_HFC_CD").val());
@@ -87,21 +93,31 @@ $(document).ready(function () {
         e.preventDefault();
 
         var dateConvert = $("#t_ADD_Appoinment_Date").val().split("-");
-
         var _pmi_no = $("#t_ADD_Appointment_PMI_NO").val();
-
         var _ic_no = $("#t_ADD_Appointment_IC_NO").val();
         var _id_no = $("#t_ADD_Appointment_ID_NO").val();
         var _patient_name = $("#t_ADD_Appointment_Patient_Name").val();
-
         var _doctor = $("#t_ADD_Appoinment_Doctor option:selected").val();
         var _date = dateConvert[2] + "-" + dateConvert[1] + "-" + dateConvert[0];
         var _time = $("#t_ADD_Appoinment_Time option:selected").val();
         var _type = $("#t_ADD_Appoinment_Type option:selected").val();
-
         var _discipline = $("#t_ADD_Appointment_PATIENT_DIS_CODE").val();
         var _subdiscipline = $("#t_ADD_Appointment_PATIENT_SUBDIS_CODE").val();
         var _hfc_cd = $("#t_ADD_Appointment_PATIENT_HFC_CD").val();
+        
+        if(_pmi_no === "" || _ic_no === "" || _id_no === ""){
+            alert("Please select the patient")
+        }else if(_patient_name === ""){
+            alert("No patient name. Please select the patient");
+        }else if(_doctor === ""){
+            alert("No doctor selected. Please select the doctor");
+        }else if(dateConvert === ""){
+            alert("No date selected. Please select the date");
+        }else if(_time === ""){
+            alert("No time selected. Please select the time");
+        }else if(_type === ""){
+            alert("No type selected. Please select the type");
+        }else{
 
         var data = {
             pmiNo: _pmi_no,
@@ -188,6 +204,7 @@ $(document).ready(function () {
                 console.log(err);
             }
         });
+        }
     });
 
 });

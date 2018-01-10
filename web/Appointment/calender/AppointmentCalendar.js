@@ -66,6 +66,12 @@ $(document).ready(function () {
     });
 
     // calendar.fullCalendar( 'render' );
+    
+    
+    $("#AppointmentViewModal").on('hidden.bs.modal',function(){
+        $("#btn_CANCEL_Appoinment_CANCEL").show();
+        $("#btn_CANCEL_Appoinment_REACTIVE").hide();
+    })
 
     $("#AppointmentAdd").on('shown.bs.modal', function () {
         $.ajax({
@@ -140,6 +146,21 @@ $(document).ready(function () {
         var _discipline = $("#t_ADD_Appointment_DIS_CODE").val();
         var _subdiscipline = $("#t_ADD_Appointment_SUBDIS_CODE").val();
         var _hfc_cd = $("#t_ADD_Appointment_HFC_CD").val();
+        
+        
+        if (_pmi_no === "" || _ic_no === "" || _id_no === "") {
+            alert("Please select the patient")
+        } else if (_patient_name === "") {
+            alert("No patient name. Please select the patient");
+        } else if (_doctor === "") {
+            alert("No doctor selected. Please select the doctor");
+        } else if (dateConvert === "") {
+            alert("No date selected. Please select the date");
+        } else if (_time === "") {
+            alert("No time selected. Please select the time");
+        } else if (_type === "") {
+            alert("No type selected. Please select the type");
+        } else{
 
         var data = {
             pmiNo: _pmi_no,
@@ -224,11 +245,82 @@ $(document).ready(function () {
                 console.log(err);
             }
         });
+        
+            }
+    });
+    
+    $("#btn_CANCEL_Appoinment_CANCEL").click(function(e){
+      $("#AppointmentCancelReason").modal('show');
+    });
+    $("#btn_CANCEL_Appoinment_REACTIVE").click(function (e) {
+        if (confirm("Do you want to active this appointment?") == true) {
+            var pmiNo = $("#d_APP_V_PATIENT_PMI").text();
+            var date = $("#d_APP_V_PATIENT_APPOINTMENT_DATE").text();
+            var hfc = $("#d_APP_V_PATIENT_HFC").text();
+            var discipline = $("#d_APP_V_PATIENT_DIS").text();
+            var subdiscipline = $("#d_APP_V_PATIENT_SUBDIS").text();
+            var data = {
+               
+                pmiNo: pmiNo,
+                date: date,
+                hfc: hfc,
+                discipline: discipline,
+                subdiscipline: subdiscipline
+            }
+            $.ajax({
+                method: "POST",
+                url: "reactiveAppointment.jsp",
+                timeout: 3000,
+                data: data,
+                success: function (r) {
+                    console.log(r);
+                    if (r.trim() === "success") {
+                        $("#AppointmentViewModal").modal('hide')
+                        $('#AppointmentCalender').fullCalendar('refetchEvents');
+                    }
+                }
+            })
+        } else {
+           
+        }
     });
 
     $("#tab_ADD_Appointment").click(function () {
         //initilizeAppointmentCalendar();
         $('#AppointmentCalender').fullCalendar('render');
+    });
+    
+    $("#btn_CANCEL_Appointment_CONFIRM").click(function(e){
+        e.preventDefault();
+        var reason = $("#t_CANCEL_Appointment_REASON").val();
+        var pmiNo = $("#d_APP_V_PATIENT_PMI").text();
+        var date = $("#d_APP_V_PATIENT_APPOINTMENT_DATE").text();
+        var hfc = $("#d_APP_V_PATIENT_HFC").text();
+        var discipline = $("#d_APP_V_PATIENT_DIS").text();
+        var subdiscipline = $("#d_APP_V_PATIENT_SUBDIS").text();
+        
+        var data= {
+            reason:reason,
+            pmiNo:pmiNo,
+            date:date,
+            hfc:hfc,
+            discipline:discipline,
+            subdiscipline:subdiscipline
+        }
+        
+       $.ajax({
+           method:"POST",
+           url:"cancelAppointment.jsp",
+           timeout:3000,
+           data:data,
+           success:function(r){
+               console.log(r);
+               if(r.trim() === "success"){
+                   $("#AppointmentViewModal").modal('hide')
+                   $('#AppointmentCalender').fullCalendar( 'refetchEvents' );
+               }
+           }
+       })
     })
 
 });
@@ -289,17 +381,31 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
         },
 
         eventClick: function (calEvent, jsEvent, view) {
+            $("#btn_CANCEL_Appoinment_REACTIVE").hide();
             var id = calEvent.id;
             var idAry = id.split("[-|-]");
             var appointment_date = idAry[0];
             var pmi_no = idAry[1];
-
-            console.log(appointment_date);
-            console.log(pmi_no);
             var detail_data = {
                 pmi_no: pmi_no,
                 appointment_date: appointment_date
             }
+           
+            var date = appointment_date.split(" ");
+            var appDateArray = date[0].split("-");
+            if(compareDate(appDateArray[0],appDateArray[1]-1,appDateArray[2])){
+                 $("#btn_CANCEL_Appoinment_CANCEL").prop("disabled",true);
+            }else{
+                if(idAry[2] === ""){
+                    $("#btn_CANCEL_Appoinment_CANCEL").prop("disabled",false);
+                }else{
+                    $("#btn_CANCEL_Appoinment_CANCEL").hide();
+                    $("#btn_CANCEL_Appoinment_REACTIVE").show();
+                    
+                }
+                
+            }
+            
             getAppointmentDetail(detail_data);
             $("#AppointmentViewModal").modal("show");
         },
@@ -317,7 +423,11 @@ function insertAppointment(data) {
         success: function (result) {
 
             alert("Your Appointment is success added");
-            location.reload();
+            $('#AppointmentCalender').fullCalendar( 'refetchEvents' );
+            $("#t_ADD_Appointment_PMI_NO").val("");
+            $("#t_ADD_Appointment_IC_NO").val("");
+            $("#t_ADD_Appointment_ID_NO").val("");
+            $("#t_ADD_Appointment_Patient_Name").val("");
         }
     });
 }
@@ -401,11 +511,27 @@ function initilizeAppointmentCalendarPatient(_hfc_cd_CODE, _discipline_CODE, _su
 
 
 
-
         },
 
         events: "calender/AppointmentDataPatient.jsp?h=" + _hfc_cd_CODE + "&d=" + _discipline_CODE + "&s=" + _subdiscipline_CODE,
     });
+    
+
 }
 
 
+    function compareDate(year,month,date){
+        var CurrentDate = new Date();
+        var SelectedDate = new Date(year,month,date);
+
+//As quite rightly mentioned, January = 0, so if your inputs have the literal number for each month (1 for January) replace the line above with the following, to take a month off:
+//var SelectedDate = new Date($('[id$=txtYear]').val(), $('[id$=drpMonth]').val()-1, $('[id$=spDate]').val());
+
+        if (CurrentDate > SelectedDate) {
+            //CurrentDate is more than SelectedDate
+            return true;
+        } else {
+            //SelectedDate is more than CurrentDate
+            return false;
+        }
+    }

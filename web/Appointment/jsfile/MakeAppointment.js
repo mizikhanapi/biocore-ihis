@@ -60,7 +60,7 @@ $(document).ready(function () {
                 result = result.trim();
                 //console.log(result);
                 if (result === "clinicOff") {
-                    alert("The clinic is off. Please pick other date");
+                    alert("The clinic is off wq. Please pick other date");
                 } else if (result === "datePicked") {
                     alert("Date Picked");
                 } else if (result === "slotPicked") {

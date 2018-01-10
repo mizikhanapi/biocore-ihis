@@ -197,5 +197,5 @@
     <!--<button class="btn btn-primary " type="button" id="btnRISOrderSendResults" name="btnRISOrderSendResults" > <i class="fa fa-print fa-lg" ></i>&nbsp; Send Result &nbsp;</button>-->
     <button class="btn btn-default " type="button" id="btnRISClearOrderDetail" name="btnRISClearOrderDetail"> <i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
-<script src="order_detail_js/order_detail_main.js" type="text/javascript"></script>
+<script src="order_detail_js/order_detail_main.js?v1" type="text/javascript"></script>
 

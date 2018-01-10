@@ -48,20 +48,20 @@
                                                            json.put("start", str);
                                                            json.put("end", end);
                                                            json.put("color","red");
-                                                           json.put("id", search.get(i).get(1) + "[-|-]" + search.get(i).get(2));
+                                                           json.put("id", search.get(i).get(1) + "[-|-]" + search.get(i).get(2)+ "[-|-]");
                                                        }else{
                                                            if(search.get(i).get(4).equals("inactive")){
                                                                json.put("title", search.get(i).get(0));
                                                                    json.put("start", str);
                                                                    json.put("end", end);
                                                                    json.put("color", "#cc9900");
-                                                                   json.put("id", search.get(i).get(1) + "[-|-]" + search.get(i).get(2));
+                                                                   json.put("id", search.get(i).get(1) + "[-|-]" + search.get(i).get(2)+ "[-|-]" +search.get(i).get(4));
                                                            }else{
                                                                json.put("title", search.get(i).get(0));
                                                                json.put("start", str);
                                                                json.put("end", end);
                                                                
-                                                               json.put("id", search.get(i).get(1) + "[-|-]" + search.get(i).get(2));
+                                                               json.put("id", search.get(i).get(1) + "[-|-]" + search.get(i).get(2)+ "[-|-]");
                                                            }
                                                             
                                                        }

@@ -85,7 +85,11 @@
         }else if (quantity === "") {
             bootbox.alert("Please insert the quantity");
 
-        } else {
+        } else if(!$('#PRO_addForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
+           
+        }
+        else {
             
             var procedure_code = cdis_code.trim() + bs_code.trim() + mod_code.trim() + last4_proCode.trim();
             console.log(procedure_code);
@@ -228,6 +232,9 @@
         }else if (quantity === "") {
             bootbox.alert("Please insert the quantity");
 
+        } else if(!$('#PRO_addForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
+           
         } else {
             
             var procedure_code = cdis_code.trim() + bs_code.trim() + mod_code.trim() + last4_proCode.trim();
@@ -459,7 +466,7 @@
     $('#PRO_buyPrice').on('keypress', function (event) {
         if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
                 && (event.which < 48 || event.which > 57)
-                || ($(this).val().length > 8))
+                || ($(this).val().length > 9))
                 && event.which !== 8) {
             event.preventDefault();
             $("#PRO_buyPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
@@ -472,7 +479,7 @@
     $('#PRO_sellPrice').on('keypress', function (event) {
         if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
                 && (event.which < 48 || event.which > 57)
-                || ($(this).val().length > 8))
+                || ($(this).val().length > 9))
                 && event.which !== 8) {
             event.preventDefault();
             $("#PRO_sellPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
@@ -484,7 +491,7 @@
     $('#PRO_quantity').on('keypress', function (e) {
 
         //if the letter is not digit then display error and don't type anything
-        if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+        if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57) || $(this).val().length > 10) {
             //display error message
             $("#PRO_quantity_err").html("Whole Number Only!!!").show().fadeOut("slow");
             return false;

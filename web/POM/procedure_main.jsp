@@ -65,6 +65,9 @@
         } else if (sell===""){
             bootbox.alert("Insert the selling price");
             
+        } else if(!$('#PRO_addForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
+           
         }
         else {
 
@@ -166,6 +169,9 @@
         } else if (sell===""){
             bootbox.alert("Please fill in the selling price.");
             
+        } else if(!$('#PRO_addForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
+           
         }
         else {
 
@@ -394,7 +400,7 @@
     $('#PRO_buyPrice').on('keypress', function (event) {
         if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
                 && (event.which < 48 || event.which > 57)
-                || ($(this).val().length > 8))
+                || ($(this).val().length > 9))
                 && event.which !== 8) {
             event.preventDefault();
             $("#PRO_buyPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
@@ -407,7 +413,7 @@
     $('#PRO_sellPrice').on('keypress', function (event) {
         if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
                 && (event.which < 48 || event.which > 57)
-                || ($(this).val().length > 8))
+                || ($(this).val().length > 9))
                 && event.which !== 8) {
             event.preventDefault();
             $("#PRO_sellPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");

@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Procedure Code*</label>
                         <div class="col-md-8">
-                            <input id="PRO_Code"  type="text" placeholder="Insert procedure code" class="form-control input-md" maxlength="30">
+                            <input id="PRO_Code"  type="text" placeholder="Insert procedure code" class="form-control input-md code-input" maxlength="10">
 
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Buying Price (RM)*</label>
                         <div class="col-md-8">
-                            <input type="text" placeholder="Insert the procedure buying price" class="form-control" maxlength="9" id="PRO_buyPrice">
+                            <input type="number" placeholder="Insert the procedure buying price" class="form-control" max="9999999.99" min="0" step="0.01" id="PRO_buyPrice">
                             <p id="PRO_buyPrice_err" style="color: red"></p>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Selling Price (RM)*</label>
                         <div class="col-md-8">
-                            <input type="text" placeholder="Insert the procedure selling price" class="form-control" maxlength="9" id="PRO_sellPrice">
+                            <input type="number" placeholder="Insert the procedure selling price" class="form-control" max="9999999.99" min="0" step="0.01" id="PRO_sellPrice">
                             <p id="PRO_sellPrice_err" style="color: red"></p>
                         </div>
                     </div>
