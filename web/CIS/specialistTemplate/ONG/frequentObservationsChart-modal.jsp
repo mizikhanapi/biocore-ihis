@@ -36,7 +36,7 @@
                         <input type="hidden" id="ONGFreqObservationChartEncounterDate">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-12 control-label" for="textinput">Date</label>
+                            <label class="col-md-12 control-label" for="textinput">Date *</label>
                             <div class="col-md-12">
                                 <input type="text" class="form-control input-md" id="freqObservationChartModalDate" readonly>
                             </div>
@@ -62,7 +62,7 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Time *</label>
                                 <div class="col-md-12">
                                     <!--                                    <input type="text" class="form-control input-md" id="freqObservationChartModalTime" readonly>-->
                                     <select id="freqObservationChartModalTime" class="form-control">
