@@ -28,7 +28,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                             <input type="hidden" id="ONGNurseryFeedingChartPmi" >
                             <input type="hidden" id="ONGNurseryFeedingChartHfc" >
                             <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>-->
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
@@ -66,7 +66,6 @@
 <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalTime" readonly>-->
                                     <select id="nurseryFeedingChartModalTime" class="form-control">
                                         <option value="null" selected="" disabled="">Select Time</option>
-                                        <option value="-">-</option>
                                         <% for (int i = 0;i < datadate52.size();i++) {%>
                                         <option value="<%=datadate52.get(i).get(1)%>"><%=datadate52.get(i).get(2)%></option>
                                         <%  }
@@ -90,7 +89,6 @@
 <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">-->
                                     <select id="nurseryFeedingChartModalFeedingMethod" class="form-control">
                                         <option value="null" selected="" disabled="">Select Method Of Feeding</option>
-                                        <option value="-">-</option>
                                         <% for (int i = 0;i < datamethodfedd5.size();i++) {%>
                                         <option value="<%=datamethodfedd5.get(i).get(1)%>"><%=datamethodfedd5.get(i).get(2)%></option>
                                         <%  }
@@ -124,7 +122,6 @@
 <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit" maxlength="50">-->
                                     <select id="nurseryFeedingChartModalAspirateVomit" class="form-control">
                                         <option value="null" selected="" disabled="">Select Aspirate Vomit</option>
-                                        <option value="-">-</option>
                                         <% for (int i = 0;i < dataaspi5.size();i++) {%>
                                         <option value="<%=dataaspi5.get(i).get(1)%>"><%=dataaspi5.get(i).get(2)%></option>
                                         <%  }
