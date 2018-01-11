@@ -62,7 +62,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Page Code*</label>
                         <div class="col-md-8">
-                            <input id="PM_pageCode"  type="text" placeholder="Insert page code " class="form-control input-md" maxlength="30">
+                            <input id="PM_pageCode"  type="text" placeholder="Insert page code " class="form-control input-md code-input" maxlength="30">
                         </div>
                     </div>
                     

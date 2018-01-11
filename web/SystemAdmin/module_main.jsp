@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Module Code</label>
                         <div class="col-md-8">
-                            <input id="MM_moduleCode"  type="text" placeholder="Code required" class="form-control input-md" maxlength="30">
+                            <input id="MM_moduleCode"  type="text" placeholder="Code required" class="form-control input-md code-input" maxlength="30">
                         </div>
                     </div>
                     

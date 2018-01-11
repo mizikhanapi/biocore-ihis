@@ -18,7 +18,7 @@
 <script src="libraries/js/papaparse.min.js"></script>
 <script src="libraries/js/create_destroy_loading.js" type="text/javascript"></script>-->
 
-<script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+<script src="js/jquery-ui.js" type="text/javascript"></script>
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js"></script>
