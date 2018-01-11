@@ -1,0 +1,554 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 28, 2017, 3:17:14 PM
+    Author     : miziK
+*/
+
+.twPc-div {
+    background: #FE9D2A none repeat scroll 0 0;
+    height: 170px;
+    background: #fe9d2a;
+    background: -moz-linear-gradient(-45deg, #fe9d2a 0%, #ff670f 100%);
+    background: -webkit-linear-gradient(-45deg, #fe9d2a 0%,#ff670f 100%);
+    background: linear-gradient(135deg, #fe9d2a 0%,#ff670f 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe9d2a', endColorstr='#ff670f',GradientType=1 );
+}
+
+.twPc-bg {
+    background-image: url("https://pbs.twimg.com/profile_banners/50988711/1384539792/600x200");
+    background-position: 0 50%;
+    background-size: 100% auto;
+    border-bottom: 1px solid #e1e8ed;
+    border-radius: 4px 4px 0 0;
+    height: 95px;
+    width: 100%;
+}
+
+.navbar-brands{
+    width: 160px !important;
+    height: 160px !important;
+    float: left;
+    padding: 0;
+    margin-top: -130px !important;
+    overflow: hidden !important;
+    border: 3px solid #eee !important;
+    margin-left: 15px !important;
+    background: #333;
+    text-align: center;
+    line-height: 160px;
+    color: #fff !important;
+    font-size: 2em;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.site-name {
+    color: #fff;
+    font-size: 2.4em;
+    float: left;
+    margin-top: -70px !important;
+    margin-left: 15px;
+    text-transform: lowercase;
+    font-family: 'Open Sans Condensed', sans-serif, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}	
+.site-description{
+    color:#fff;
+    font-size:1.3em;
+    float:left;
+    margin-top:-30px !important;
+    margin-left:15px;
+}
+.main-menu {
+    position: absolute;
+    margin-left: 160px;
+}
+
+/*            @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);*/
+* {
+    box-sizing: border-box;
+}
+
+.rollovers {
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+}
+.rollovers li {
+    position: relative;
+    display: inline-block;
+    width: 13em;
+}
+.rollovers li a {
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.25em;
+    text-decoration: none;
+    color: #000;
+    padding: 4.7em 1em 1em;
+}
+
+.icon_contain {
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 4.375em;
+    height: 4.375em;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.icon_contain .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    fill: #fff;
+    width: 35%;
+    height: 35%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: fill 1s ease;
+    transition: fill 1s ease;
+}
+
+.logosa {
+    position: absolute;
+    width: 4.375em;
+    height: 4.375em;
+    top: 3em;
+    left: 50%;
+    fill: #eb3f32;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.icon_contain::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 73%;
+    height: 73%;
+    opacity: 1;
+    /*                background: #eb3f32;*/
+    border-radius: .125em;
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.logosa_reveal .icon_contain::before {
+    -webkit-transition: opacity 1s ease;
+    transition: opacity 1s ease;
+}
+.logosa_reveal:hover .icon_contain .icon {
+    fill: #eb3f32;
+}
+.logosa_reveal:hover .icon_contain::before {
+    opacity: 0;
+}
+
+.logosa_grow .logosa {
+    -webkit-transform: translateX(-50%) scale(0);
+    transform: translateX(-50%) scale(0);
+    -webkit-transition: -webkit-transform 1s ease;
+    transition: -webkit-transform 1s ease;
+    transition: transform 1s ease;
+    transition: transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_grow .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_grow:hover .logosa {
+    -webkit-transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
+}
+.logosa_grow:hover .icon_contain .icon {
+    fill: #eb3f32;
+}
+.logosa_grow:hover .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    opacity: 0;
+}
+
+.logosa_grow_alt .logosa {
+    -webkit-animation: grow_alt 1s reverse;
+    animation: grow_alt 1s reverse;
+    -webkit-transform: translateX(-50%) scale(0);
+    transform: translateX(-50%) scale(0);
+}
+.logosa_grow_alt .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_grow_alt:hover .logosa {
+    -webkit-animation: grow_alt .7s ease-out;
+    animation: grow_alt .7s ease-out;
+    -webkit-transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
+}
+.logosa_grow_alt:hover .icon_contain .icon {
+    fill: #eb3f32;
+}
+.logosa_grow_alt:hover .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    opacity: 0;
+}
+
+@-webkit-keyframes grow_alt {
+    0% {
+        -webkit-transform: translateX(-50%) scale(0);
+        transform: translateX(-50%) scale(0);
+    }
+    80% {
+        -webkit-transform: translateX(-50%) scale(1.2);
+        transform: translateX(-50%) scale(1.2);
+    }
+    100% {
+        -webkit-transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+@keyframes grow_alt {
+    0% {
+        -webkit-transform: translateX(-50%) scale(0);
+        transform: translateX(-50%) scale(0);
+    }
+    80% {
+        -webkit-transform: translateX(-50%) scale(1.2);
+        transform: translateX(-50%) scale(1.2);
+    }
+    100% {
+        -webkit-transform: translateX(-50%) scale(1);
+        transform: translateX(-50%) scale(1);
+    }
+}
+.logosa_rotate .logosa {
+    -webkit-transform: translateX(-50%) rotate(90deg);
+    transform: translateX(-50%) rotate(90deg);
+    -webkit-transition: -webkit-transform 1s ease;
+    transition: -webkit-transform 1s ease;
+    transition: transform 1s ease;
+    transition: transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_rotate .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+    -webkit-transition: opacity .5s ease, -webkit-transform .5s ease;
+    transition: opacity .5s ease, -webkit-transform .5s ease;
+    transition: opacity .5s ease, transform .5s ease;
+    transition: opacity .5s ease, transform .5s ease, -webkit-transform .5s ease;
+}
+.logosa_rotate:hover .logosa {
+    -webkit-transform: translateX(-50%) rotate(0);
+    transform: translateX(-50%) rotate(0);
+}
+.logosa_rotate:hover .icon_contain .icon {
+    fill: #eb3f32;
+}
+.logosa_rotate:hover .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(135deg);
+    transform: translate(-50%, -50%) rotate(135deg);
+    opacity: 0;
+}
+
+.logosa_rotate_alt .logosa {
+    -webkit-animation: rotate_alt 1s reverse;
+    animation: rotate_alt 1s reverse;
+    -webkit-transform: translateX(-50%) scale(0);
+    transform: translateX(-50%) scale(0);
+}
+.logosa_rotate_alt .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_rotate_alt:hover .logosa {
+    -webkit-animation: rotate_alt .7s ease-out;
+    animation: rotate_alt .7s ease-out;
+    -webkit-transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
+}
+.logosa_rotate_alt:hover .icon_contain .icon {
+    fill: #eb3f32;
+}
+.logosa_rotate_alt:hover .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(135deg) scale(0);
+    transform: translate(-50%, -50%) rotate(135deg) scale(0);
+    opacity: 0;
+}
+
+@-webkit-keyframes rotate_alt {
+    0% {
+        -webkit-transform: translateX(-50%) rotate(90deg) scale(0);
+        transform: translateX(-50%) rotate(90deg) scale(0);
+    }
+    80% {
+        -webkit-transform: translateX(-50%) rotate(-15deg) scale(1.2);
+        transform: translateX(-50%) rotate(-15deg) scale(1.2);
+    }
+    100% {
+        -webkit-transform: translateX(-50%) rotate(0) scale(1);
+        transform: translateX(-50%) rotate(0) scale(1);
+    }
+}
+
+@keyframes rotate_alt {
+    0% {
+        -webkit-transform: translateX(-50%) rotate(90deg) scale(0);
+        transform: translateX(-50%) rotate(90deg) scale(0);
+    }
+    80% {
+        -webkit-transform: translateX(-50%) rotate(-15deg) scale(1.2);
+        transform: translateX(-50%) rotate(-15deg) scale(1.2);
+    }
+    100% {
+        -webkit-transform: translateX(-50%) rotate(0) scale(1);
+        transform: translateX(-50%) rotate(0) scale(1);
+    }
+}
+.logosa_grow_rotate .logosa {
+    -webkit-transform: translateX(-50%) rotate(90deg) scale(0);
+    transform: translateX(-50%) rotate(90deg) scale(0);
+    -webkit-transition: -webkit-transform 1s ease;
+    transition: -webkit-transform 1s ease;
+    transition: transform 1s ease;
+    transition: transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_grow_rotate .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, -webkit-transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease, -webkit-transform 1s ease;
+}
+.logosa_grow_rotate:hover .logosa {
+    -webkit-transform: translateX(-50%) rotate(0) scale(1);
+    transform: translateX(-50%) rotate(0) scale(1);
+}
+.logosa_grow_rotate:hover .icon_contain .icon {
+    fill: #eb3f32;
+}
+.logosa_grow_rotate:hover .icon_contain::before {
+    -webkit-transform: translate(-50%, -50%) rotate(135deg) scale(0);
+    transform: translate(-50%, -50%) rotate(135deg) scale(0);
+    opacity: 0;
+}
+
+.grid li {
+    width: 50%;
+    padding: 3em 0;
+    float: left;
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.grid li:nth-child(2n) {
+    border-right: none;
+}
+
+.grid li:last-child {
+    border-bottom: none;
+}
+
+.grid li:nth-last-child(2) {
+    border-bottom: none;
+}
+
+@media (min-width: 45em) {
+    .grid li {
+        width: 33.333333%;
+    }
+
+    .grid li:nth-child(2n) {
+        border-right: 1px solid rgba(0, 0, 0, 0.25);
+    }
+
+    .grid li:nth-child(3) {
+        border-right: none;
+    }
+
+    .grid li:last-child {
+        border-right: none;
+        border-bottom: none;
+    }
+
+    .grid li:nth-last-child(2), .grid li:nth-last-child(3) {
+        border-bottom: none;
+    }
+}
+
+.kotak{
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.25em;
+    text-decoration: none;
+    color: #000;
+    padding: 4.7em 1em 0em;
+}
+
+.main-dashboard a.thumbnail{
+    max-height: none;
+    padding: 3em 0;
+}
+
+.p-label {
+    display: block;
+    font-weight: 700;
+}
+
+ul.patientDetails {
+    padding-left: 0px;
+}
+
+.patientDetails>li {
+    margin-right: 30px;
+    float: left;
+    color: #fff !important;
+}
+
+.patientDetails .p-label {
+    margin-bottom: 0px;
+}
+
+.patient {
+    color: #fff;
+    margin-left: 225px;
+    margin-top: 70px;
+    padding-right: 35px;
+}
+
+.profile-userpic {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #2196f3;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+}
+
+.profile-userpic>img {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    height: 100%;
+    max-width: none;
+}
+
+.skin-care .main-header .navbar {
+    background-color: #fff;
+}
+
+.skin-care .main-header .navbar .nav>li>a {
+    color: #333;
+}
+
+.main-header .navbar-brand {
+    color: #FE9D2A;
+}
+
+.p-label {
+    display: block;
+    font-weight: 700;
+    color: #FE9D2A !important;
+}
+
+.main-dashboard {
+    background: none !important;
+    padding: 0px !important;
+}
+
+.btn-rounded {
+    border-radius: 2em;
+}
+
+.btn-mkag {
+    color: #fff;
+    background: #FE9D2A;
+    border-color: #FE9D2A;
+    font-weight: 600;
+}
+
+.btn-mkag:hover {
+    color: #fff;
+    background: #f48c0f;
+    border-color: #f48c0f;
+}
+
+a {
+    color: #FE9D2A;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #f48c0f;
+    text-decoration: underline;
+}
+
+.login-footer {
+    color: #999;
+    margin-top: 30px;
+}
+
+.login-footer p {
+    margin-bottom: 0px;
+}
+
+.m-b-0 {
+    margin-bottom: 0px;
+}
+
+.login-page h1 {
+    color: #575a5b;
+}
+
+.top-profile {
+    color: #575a5b;
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #575a5b;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}

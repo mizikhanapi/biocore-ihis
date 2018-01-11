@@ -1,0 +1,11 @@
+.nav-pills {
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    color: #FE9D2A!important;
+    background: none !important;
+    border-top: none;
+    border-bottom: 3px solid #FE9D2A;
+    border-radius: 0px !important;
+}

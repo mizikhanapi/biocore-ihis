@@ -133,7 +133,7 @@
                                             </center></td>
                                             <td><center><%=date%></center></td>
                                             <td><left><%=data.get(i).get(5)%></left></td>
-                                            <td><left><%=data.get(i).get(10)%></left></td>
+                                            <td><left><%=data.get(i).get(11)%></left></td>
                                             <td><left><%=data.get(i).get(6)%></left></td>
 
                                             <input type="hidden" id="holidayData<%=i%>" value="<%=data.get(i).get(3)%>|<%=data.get(i).get(4)%>|<%=data.get(i).get(5)%>|<%=data.get(i).get(6)%>|<%=data.get(i).get(7)%>|<%=data.get(i).get(10)%>">

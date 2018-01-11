@@ -79,7 +79,7 @@
         <label class="control-label col-sm-2" for="startDate">Start Date </label>
         <input type="hidden" name="startDateBeforeRoster" value="" id="startDateBeforeRoster">
         <div class="col-sm-10">
-            <input  class="form-control" name="startDateRoster" value="" type="text" id="startDateRoster">
+            <input  class="form-control" name="startDateRoster" value="" type="text" id="startDateRoster" readonly placeholder="Click to pop-up calendar">
 
         </div>
     </div>
@@ -87,7 +87,7 @@
         <label class="control-label col-sm-2" for="endDate">End Date </label>
         <div class="col-sm-10">
 
-            <input  class="form-control" name="end_date" value="" type="text" id="endDateRoster">
+            <input  class="form-control" name="end_date" value="" type="text" id="endDateRoster" readonly placeholder="Click to pop-up calendar">
 
         </div>
     </div>
