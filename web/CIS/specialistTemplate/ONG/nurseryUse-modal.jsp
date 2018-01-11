@@ -25,7 +25,7 @@
                             <input type="hidden" id="ONGNurseryUseMasterChartMasterDate">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Master Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Master Date *</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalMasterDate" readonly>
                                 </div>
@@ -34,7 +34,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Master Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Master Time *</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalMasterTime" readonly>
                                 </div>
@@ -50,7 +50,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Start Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Start Date *</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalStartDate" readonly>
                                 </div>
@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">End Date</label>
+                                <label class="col-md-12 control-label" for="textinput">End Date *</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalEndDate" readonly>
                                 </div>
@@ -290,7 +290,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Description</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryUseDetailChartModalDescription" maxlength="20">
+                                    <input type="text" class="form-control input-md" id="nurseryUseDetailChartModalDescription" maxlength="100">
                                 </div>
                             </div>
                         </div>
