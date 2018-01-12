@@ -142,7 +142,7 @@
       
     <servlet>
         <servlet-name>order_list</servlet-name>
-        <jsp-file>/LIS/MainPage.jsp</jsp-file>
+        <jsp-file>/LIS/HIS050001.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>order_list</servlet-name>
@@ -196,7 +196,7 @@
     
     <servlet>
         <servlet-name>Maintain_Test_Code</servlet-name>
-        <jsp-file>/LIS/ManageTestCode.jsp</jsp-file>
+        <jsp-file>/LIS/HIS050004.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Maintain_Test_Code</servlet-name>
