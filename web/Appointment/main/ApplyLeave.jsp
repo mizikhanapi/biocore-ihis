@@ -54,7 +54,7 @@
             <input type="hidden" name="startLeaveBefore" value="" id="startLeaveBefore">
             <div class="col-sm-10">
 
-                <input  class="form-control" name="start_leave" value="" type="text" id="startDateLeave" required>
+                <input  class="form-control" name="start_leave" placeholder="Click to select a date" type="text" id="startDateLeave" required readonly>
 
             </div>
         </div>
@@ -62,7 +62,7 @@
             <label class="control-label col-sm-2" for="endLeave">End Leave </label>
             <div class="col-sm-10">
 
-                <input  class="form-control" name="end_leave" value="" type="text" id="endDateLeave" disabled="" required>
+                <input  class="form-control" name="end_leave" placeholder="Click to select a date" type="text" id="endDateLeave" disabled="" required readonly>
 
             </div>
         </div>
@@ -70,7 +70,7 @@
             <label class="control-label col-sm-2 col-md-2" for="description">Leave Reason</label>  
             <div class="col-sm-10">
 
-                <textarea class="form-control" name="leave_reason"  rows="5" id="descLeave" value="" required></textarea>
+                <textarea class="form-control" name="leave_reason"  rows="5" id="descLeave" required></textarea>
 
             </div>
         </div>
