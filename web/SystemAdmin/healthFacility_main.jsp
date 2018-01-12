@@ -54,7 +54,7 @@
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Health Facility Code*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFM_hfcCode" placeholder="Insert Health Facility Code" maxlength="30">   
+                                    <input type="text"  class="form-control code-input" id="HFM_hfcCode" placeholder="Insert Health Facility Code" maxlength="30">   
                                 </div>
                             </div>
 

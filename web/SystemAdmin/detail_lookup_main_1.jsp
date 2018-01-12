@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Detail code</label>
                         <div class="col-md-8">
-                            <input id="detailCode" maxlength="30" name="detailCode" type="text" placeholder="Lookup Detail Code" class="form-control input-md">
+                            <input id="detailCode" maxlength="30" name="detailCode" type="text" placeholder="Lookup Detail Code" class="form-control input-md code-input">
                         </div>
                     </div>
 

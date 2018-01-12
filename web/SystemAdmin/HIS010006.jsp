@@ -127,24 +127,30 @@
 
         <%@include file="libraries/footLibrary.jsp" %>
 
-
+        <script type="text/javascript" src="../assets/js/rd.jquery.preventKey.js"></script>
 
 
         <script>
 
-
-            $(document).ready(function () {
-
-                $("#CISMain").load("setting/setting_CIS.jsp");
-
-
-                $("#PMSMain").load("setting/setting_PMS.jsp");
-                $("#CSMain").load("setting/setting_CS.jsp");
-
-
-
-
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+                $('.modal').css("overflow", "auto");
             });
+
+
+
+            $("#CISMain").load("setting/setting_CIS.jsp");
+
+
+            $("#PMSMain").load("setting/setting_PMS.jsp");
+            $("#CSMain").load("setting/setting_CS.jsp");
+
+
+
+
+
 
         </script>
 

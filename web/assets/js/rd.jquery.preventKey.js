@@ -132,7 +132,7 @@ function preventPipeKeyUp(elem){
 function codeValidityKeyUp(elem){
     $(elem).keyup(function (e){
         var str = $(this).val();
-        var gotSpecialChar = /[!@#$%^&*()+=,?\\:;\"\'~`>< ]/.test(str); 
+        var gotSpecialChar = /[!@#$%^&*()+=,?\\:;\"\'~`>< \{\}]/.test(str); 
         if(gotSpecialChar){
             $(this).val("");
             $(this).blur();

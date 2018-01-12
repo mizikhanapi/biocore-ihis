@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">User ID *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_userID"  type="text" placeholder="Insert User ID" class="form-control input-md" maxlength="30">
+                                        <input id="UM_userID"  type="text" placeholder="Insert User ID" class="form-control input-md code-input" maxlength="30">
                                     </div>
                                 </div>
                             </div>

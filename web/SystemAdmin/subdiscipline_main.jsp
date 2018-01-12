@@ -76,7 +76,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Subdiscipline Code*</label>
                         <div class="col-md-8">
-                            <input id="SDM_subdisciplineCode" maxlength="30" type="text" placeholder="Insert Subdiscipline Code" class="form-control input-md">
+                            <input id="SDM_subdisciplineCode" maxlength="30" type="text" placeholder="Insert Subdiscipline Code" class="form-control input-md code-input">
                         </div>
                     </div>
 

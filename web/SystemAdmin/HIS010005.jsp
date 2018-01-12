@@ -6,13 +6,13 @@
 
 <%@include file="validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
-<%    
-    String temp_hfc_99 = (String) session.getAttribute("HFC_99");
+<%    String temp_hfc_99 = (String) session.getAttribute("HFC_99");
     String temp_user_id = (String) session.getAttribute("USER_ID");
 
-    String temp_last_9 = temp_user_id.substring(temp_user_id.length() - 1);
+    MySession SYS_mys = new MySession(temp_user_id, temp_hfc_99);
 
-    if(!temp_last_9.equals("9") || !temp_hfc_99.equals("99_iHIS_99")){
+    // String temp_last_9 = temp_user_id.substring(temp_user_id.length() - 1);
+    if (!SYS_mys.isSuperUser()) {
         response.sendRedirect("../Entrance/dashboard.jsp");
         return;
     }
@@ -29,9 +29,9 @@
         <!-- header -->
         <%@include file="libraries/headLibrary.jsp" %>
         <%@include file="../assets/header.html" %>
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
+        <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
         <link rel="stylesheet" href="css/table.css">
         <link rel="stylesheet" href="css/loading_sham.css">
 
@@ -41,12 +41,12 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+        <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+                <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+                <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
 
 
 
@@ -96,7 +96,7 @@
                                                 <a href="#S_tab4" data-toggle="tab">
                                                     PAGE </a>
                                             </li>
-                                            
+
                                             <li>
                                                 <a href="#S_tab5" data-toggle="tab">
                                                     SESSION </a>
@@ -150,14 +150,14 @@
                                                 </div>
 
                                             </div>
-                                            
+
                                             <div class="tab-pane" id="S_tab5">
 
                                                 <div id="session">
                                                     <div id="sessionMain">
                                                     </div>
-<!--                                                    <div id="pageTable">
-                                                    </div>-->
+                                                    <!--                                                    <div id="pageTable">
+                                                                                                        </div>-->
                                                 </div>
 
                                             </div>
@@ -181,8 +181,9 @@
             <!-- main -->		
 
         </div>
-                    <%@include file="libraries/footLibrary.jsp" %>
+        <%@include file="libraries/footLibrary.jsp" %>
 
+        <script type="text/javascript" src="../assets/js/rd.jquery.preventKey.js"></script>
         <script>
 
 
@@ -195,26 +196,33 @@
             //            }
             //        });
 
-            $(document).ready(function () {
-
-                $("#systemMain").load("system_main.jsp");
-                $("#systemTable").load("system_table.jsp");
-
-                $("#moduleMain").load("module_main.jsp");
-                $("#moduleTable").load("module_table.jsp");
-
-                $("#transactionMain").load("transaction_main.jsp");
-                $("#transactionTable").load("transaction_table.jsp");
-
-                $("#pageMain").load("page_main.jsp");
-                $("#pageTable").load("page_table.jsp");
-                
-                $('#sessionMain').load("session_main.jsp");
-
-
-
-
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+                $('.modal').css("overflow", "auto");
             });
+
+
+
+            $("#systemMain").load("system_main.jsp");
+            $("#systemTable").load("system_table.jsp");
+
+            $("#moduleMain").load("module_main.jsp");
+            $("#moduleTable").load("module_table.jsp");
+
+            $("#transactionMain").load("transaction_main.jsp");
+            $("#transactionTable").load("transaction_table.jsp");
+
+            $("#pageMain").load("page_main.jsp");
+            $("#pageTable").load("page_table.jsp");
+
+            $('#sessionMain').load("session_main.jsp");
+
+
+
+
+
 
         </script>
 

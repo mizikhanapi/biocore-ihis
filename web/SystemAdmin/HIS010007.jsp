@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iHIS | Report</title>
         <!-- header -->
-       
+
         <%@include file="libraries/headLibrary.jsp" %>
         <%@include file="../assets/header.html"%>
 
@@ -31,7 +31,7 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        
+
         <!-- header -->
     </head>
 
@@ -58,7 +58,7 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#REP_tab1" data-toggle="tab">
-                                                     User List </a>
+                                                    User List </a>
                                             </li>
 
                                             <li>
@@ -66,7 +66,7 @@
                                                     Lookup List </a>
                                             </li>
 
-                                           
+
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
@@ -76,11 +76,11 @@
 
                                                     <div id="USRMain">
                                                     </div>
-                                                    
+
                                                     <div id="USRTable" class="table-guling">
-                                                        
+
                                                     </div>
-                                                    
+
 
                                                 </div>
 
@@ -91,52 +91,54 @@
                                                 <div id="Lookup">
                                                     <div id="LookupMain">
                                                     </div>
-                                                    
+
                                                     <div id="LookupTable" class="table-guling">
-                                                    
+
                                                     </div>
 
-                                            </div>
+                                                </div>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                     <jsp:include page="modal/report_modal.jsp"/>
-                                <!-- Tab Menu -->
+                                    <!-- Tab Menu -->
 
 
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
+                <!-- main -->		
 
             </div>
-            <!-- main -->		
-
         </div>
-
-                    <%@include file="libraries/footLibrary.jsp" %>
-                    <script src="js/jquery.check-file.js" type="text/javascript"></script>
-
-
-
-
+        <%@include file="libraries/footLibrary.jsp" %>
+        <script src="js/jquery.check-file.js" type="text/javascript"></script>
+        <script src="../assets/js/rd.jquery.preventKey.js" type="text/javascript"></script>
 
         <script>
-
-            $(document).ready(function () {
-                
-                $("#USRMain").load("report_user_main.jsp");
-                $("#LookupMain").load("report_lookup_main.jsp");
-                destroyScreenLoading();
-
-                //$("#PMSMain").load("setting_PMS.jsp");
-                
-
-                
-
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+                $('.modal').css("overflow", "auto");
             });
+
+
+            $("#USRMain").load("report_user_main.jsp");
+            $("#LookupMain").load("report_lookup_main.jsp");
+            destroyScreenLoading();
+
+            //$("#PMSMain").load("setting_PMS.jsp");
+
+
+
+
+
 
         </script>
 

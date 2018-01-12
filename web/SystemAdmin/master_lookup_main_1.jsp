@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Master code</label>
                         <div class="col-md-8">
-                            <input id="masterCode" name="masterCode" type="text" placeholder="Master Lookup Code" class="form-control input-md" maxlength="30" readonly="true">
+                            <input id="masterCode" name="masterCode" type="text" placeholder="Master Lookup Code" class="form-control input-md code-input" maxlength="30" readonly="true">
                         </div>
                     </div>
 

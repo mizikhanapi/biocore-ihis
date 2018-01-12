@@ -101,9 +101,17 @@
         <div id="modal3"></div>
 
         <%@include file="libraries/footLibrary.jsp" %>
+        
+        <script src="../assets/js/rd.jquery.preventKey.js"></script>
 
         <script>
-
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+                $('.modal').css("overflow", "auto");
+            });
+        
 //            $('#queueType').load('maintainQueueType.jsp');
             $('#queueName').load('maintainQueueName.jsp');
             $('#queueList').load('maintainQueueList.jsp');

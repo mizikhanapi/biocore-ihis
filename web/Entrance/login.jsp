@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Jan 13, 2017, 9:26:29 AM
-    Author     : user
---%>
-
 <%@page import="ADM_helper.MySession"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
@@ -11,86 +5,106 @@
 <%
     if (session.getAttribute("USER_ID") != null && session.getAttribute("HEALTH_FACILITY_CODE") != null && session.getAttribute("ROLE_CODE") != null) {
 
-        response.sendRedirect("dashboard.jsp");
+        response.sendRedirect("Home");
 
         return;
     }
-    
+
     Config.getBase_url(request);
     Config.getFile_url(session);
-     
-    try{
-        
+
+    try {
+
         MySession.setPathToSuper(application.getRealPath("/superConfig"));
-    
-    }
-    catch(Exception e){
+
+    } catch (Exception e) {
         e.printStackTrace();
         out.print("Oopps! Try again later");
     }
 
-
     //out.print(MySession.getSuperString());
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | Login</title>
-
-        <!-- header -->
+        <title>HIS CARE</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="../assets/js/jquery.min.js"></script>
-        <%@include file = "../assets/header.html" %>
-        <link href="../assets/css/login.css" rel="stylesheet">
-        <link href="libraries/loading_sham.css" rel="stylesheet">
-        <!-- header -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/care.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" type="image/png" href="../assets/favicon.png"/>
+        <style>
+            body {
+                background: #f6f8f8;
+            }
+            .login-box{
+                margin-bottom: 5em;
+                margin-top: 5em;
+                max-width: 50em;
+            }
+
+            .login-logo {
+                height: auto;
+                max-width: 100%;
+            }
+
+            .login-btn {
+                min-width: 18.75em;
+            }
+        </style>
         <script>
             history.forward();
         </script>
-    </head> 
-    <body>
-        <div class="container m-scene">
-            <div class="card card-container">
-                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-                <div class="profile-img-card">
-                    <img src="../assets/i-his.logo.svg" class="logo-login">
+    </head>
+    <body class="hold-transition login-page">
+        <div class="container login-box">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img class="login-logo" src="../assets/img/hiscare-icon.svg"/>
                 </div>
-                <div class="logo" style="font-size: 32px;">
-                    Welcome to <span>i-HIS</span>
-                </div>
-                <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
-                <form class="form-signin" id="leForm" >
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserID" class="form-control" placeholder="Enter User ID" name="username" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Enter Password" name="password" required>
-                    <!--                
-                    <div id="remember" class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="remember-me"> Remember me
-                                        </label>
+                <div class="col-md-8">
+                    <div class="g-b g-b--m--4of6">
+                        <h1 class="m-b-0"><b>Sign In</b></h1>
+                        <p class="">
+                            Don't have HIS-Care account?
+                            <a class="link link--underline" href="">Create a free account</a>
+                        </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="leForm" class="form-horizontal ">
+                                    <div class="form-group">
+                                        <div class="col-md-12"><label class="control-label" for="company_name">User ID</label></div>
+                                        <div class="col-md-12">
+                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID" >
+                                        </div>
                                     </div>
-                    -->
+                                    <div class="form-group">
+                                        <div class="col-md-12"><label class="control-label" for="company_name">Password</label></div>
+                                        <div class="col-md-12">
+                                            <input id="inputPassword" type="password" class="form-control input-lg" name="inputPassword" >
+                                            <a href="Forgot_Password"> Forgot your password?</a>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="m-t-10">
+                                    <div class="text-center">
+                                        <button id="btnSign" class="btn btn-rounded btn-mkag btn-lg login-btn">Sign In</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                </form><!-- /form -->
-                <button class="btn btn-lg btn-primary btn-block btn-signin" id="btnSign">Sign in</button>
-                <a href="Forgot_Password" class="forgot-password">
-                    Forgot the password?
-                </a>
-                
-                <p class="text-center" style="margin-top: 25px;">Version 3.1</p>
-            </div><!-- /card-container -->
-            
-        </div><!-- /container -->
+                    </div>
+                </div>
 
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <%@include file="libraries/script.html" %>
-        <%@include file="../assets/script.html" %>
-        <!--<script src="Dashboard_files\jquery.min.js.download"></script>
-        <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
-
+            </div>
+            <div class="text-center login-footer">
+                <p>Version 3.1.0</p>
+                <p>Powered by MKAG Technologies PLT</p>
+            </div>
+        </div>
 
 
         <script>

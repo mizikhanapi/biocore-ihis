@@ -23,12 +23,12 @@
         <%@include file="../assets/header.html"%>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
         <!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
-<!--        <link rel="stylesheet" href="datepicker/jquery-ui.css">
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="css/table.css">-->
+        <!--        <link rel="stylesheet" href="datepicker/jquery-ui.css">
+                <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
+                <link rel="stylesheet" href="css/table.css">-->
 
-<%@include file="libraries/headLibrary.jsp" %>
-        
+        <%@include file="libraries/headLibrary.jsp" %>
+
         <link href="libraries/loader_animation.css" rel="stylesheet" type="text/css"/>
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -37,17 +37,17 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-        
-<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="datepicker/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="http://www.w3schools.com/lib/w3data.js"></script>
 
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+        <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script src="datepicker/jquery-ui.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <script src="http://www.w3schools.com/lib/w3data.js"></script>
+        
+                <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+                <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+                <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
 
 
 
@@ -165,31 +165,37 @@
         </div>
 
 
-                    <%@include file="libraries/footLibrary.jsp" %>
+        <%@include file="libraries/footLibrary.jsp" %>
 
 
 
 
-
+        <script src="../assets/js/rd.jquery.preventKey.js"></script>
         <script>
 
-
-            $(document).ready(function () {
-
-                $("#userMain").load("user_main.jsp");
-                $("#userTable").load("user_table.jsp");
-
-                $("#roleMain").load("role_main.jsp");
-                $("#roleTable").load("role_table.jsp");
-
-                $("#accessRoleMain").load("accessRole_main.jsp");
-                $("#accessRoleTable").load("accessRole_table.jsp");
-
-                $("#responsibilityMain").load("responsibility_main.jsp");
-                $("#responsibilityTable").load("responsibility_table.jsp");
-
-
+            $(function () {
+                preventPipeKeyPress(document);
+                preventPipeKeyUp("input");
+                codeValidityKeyUp(".code-input");
+                $('.modal').css("overflow", "auto");
             });
+
+
+
+            $("#userMain").load("user_main.jsp");
+            $("#userTable").load("user_table.jsp");
+
+            $("#roleMain").load("role_main.jsp");
+            $("#roleTable").load("role_table.jsp");
+
+            $("#accessRoleMain").load("accessRole_main.jsp");
+            $("#accessRoleTable").load("accessRole_table.jsp");
+
+            $("#responsibilityMain").load("responsibility_main.jsp");
+            $("#responsibilityTable").load("responsibility_table.jsp");
+
+
+
 
         </script>
 
