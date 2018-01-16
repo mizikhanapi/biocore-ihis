@@ -109,7 +109,6 @@
             language: {
                 emptyTable: "No Completed Order Available To Display"
             }, initComplete: function (settings, json) {
-                destroyScreenLoading();
             }
         });
 
@@ -150,8 +149,6 @@
             };
 
 
-            createScreenLoading();
-
 
             console.log(data);
 
@@ -178,14 +175,14 @@
 
                     }
 
-                    destroyScreenLoading();
+
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 
                     bootbox.alert('Opps! ' + errorThrown);
 
-                    destroyScreenLoading();
+         
 
                 }
             });

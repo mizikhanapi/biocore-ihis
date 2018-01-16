@@ -149,6 +149,27 @@
         <url-pattern>/LIS/Order_list</url-pattern>
     </servlet-mapping>
     
+    
+    <servlet>
+        <servlet-name>Receive_Specimen</servlet-name>
+        <jsp-file>/LIS/HIS050002.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Receive_Specimen</servlet-name>
+        <url-pattern>/LIS/Receive_Specimen</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>Manage_Test</servlet-name>
+        <jsp-file>/LIS/HIS050003.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Manage_Test</servlet-name>
+        <url-pattern>/LIS/Manage_Test</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet>
         <servlet-name>Assign_Specimen</servlet-name>
         <jsp-file>/LIS/assignSpecimen.jsp</jsp-file>
@@ -159,30 +180,12 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>Receive_Specimen</servlet-name>
-        <jsp-file>/LIS/ManageResult.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Receive_Specimen</servlet-name>
-        <url-pattern>/LIS/Receive_Specimen</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
         <servlet-name>Sent_Receive_Specimen</servlet-name>
         <jsp-file>/LIS/ReceiveSpecimen.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Sent_Receive_Specimen</servlet-name>
         <url-pattern>/LIS/Sent_Receive_Specimen</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>Manage_Test</servlet-name>
-        <jsp-file>/LIS/ManageTest.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Manage_Test</servlet-name>
-        <url-pattern>/LIS/Manage_Test</url-pattern>
     </servlet-mapping>
     
     <servlet>

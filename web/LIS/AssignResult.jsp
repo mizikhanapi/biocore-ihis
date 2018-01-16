@@ -229,6 +229,7 @@
             <script type="text/javascript">
 
                 (function ($) {
+                    
                     $.fn.checkFileType = function (options) {
                         var defaults = {
                             allowedExtensions: [],
