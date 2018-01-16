@@ -67,8 +67,6 @@
 
         <script>
 
-            createScreenLoading();
-
 
             $("#CompleteOrderListMain").load("BillingMain.jsp");
             

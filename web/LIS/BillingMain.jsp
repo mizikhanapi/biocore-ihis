@@ -86,10 +86,6 @@
     $(document).ready(function () {
 
 
-        // Destroy Loading Bar For Screen
-        destroyScreenLoading();
-
-
         $(function () {
 
 
@@ -176,9 +172,6 @@
     // Search Record Function Start
     function loadBillTable() {
 
-
-        // Create Loading Bar For Screen
-        createScreenLoading();
 
         // Getting Variable
         var orderType = $("#orderType").val();
