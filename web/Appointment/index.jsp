@@ -529,12 +529,13 @@
                             method: 'post',
                             timeout: 10000,
                             data: dataC,
+                            dataType: 'json',
                             success: function (result) {
-                                var resultTrim = result.replace(";", "");
-                                var response = resultTrim.trim();
-                                if (response === "success") {
+//                                var resultTrim = result.replace(";", "");
+//                                var response = resultTrim.trim();
+                                if (result.valid) {
                                     alert('Clinic Day added');
-                                    $('#clinicDayTable').load('index.jsp #clinicDayTable');
+                                    $('#clinicDayTable').load('main/MaintainClinicDay.jsp #clinicDayTable');
                                     $('#state_').val('');
                                     $('#hfc_codeC').val('');
                                     $('#hfcBefore').val('');
@@ -548,11 +549,12 @@
                                     $('#enddateC').val('');
                                     $('#status').val('');
                                 } else {
-                                    alert('error');
+                                    alert(result.msg);
+                                    //console.log(response);
                                 }
                             },
-                            error: function (err) {
-                                alert('Ajax error');
+                            error: function(jsd, ksjs, err){
+                                alert("Error: "+err);
                             }
                         });
                         

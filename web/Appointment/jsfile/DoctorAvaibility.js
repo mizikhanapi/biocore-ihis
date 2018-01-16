@@ -30,7 +30,7 @@ $(document).ready(function () {
     
     $('#todaySearch').click(function (e) {
         e.preventDefault();
-        $('#doctorAvailabilityTable').load('index.jsp #doctorAvailabilityTable');
+        $('#doctorAvailabilityTable').load('main/DoctorAvailability.jsp #doctorAvailabilityTable');
     });
 
     $('#searchDoctor').click(function (e) {

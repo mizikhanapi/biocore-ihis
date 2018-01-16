@@ -15,6 +15,7 @@
     String hfc_state_name = null;
     String hfc_state_code = null;
 
+    /*
     String sqlDisplayClinic = "SELECT d.*, sub.description AS subdiscipline_name FROM adm_lookup_detail sub,"
             + " (SELECT c.*, al.description AS discipline_name FROM adm_lookup_detail al, "
             + "(SELECT b.*,hfc.description AS hfc_name FROM adm_lookup_detail hfc,"
@@ -25,6 +26,14 @@
             + "  WHERE al.`Master_Reference_code`='0072' AND al.`Detail_Reference_code` = c.discipline_cd AND al.hfc_cd = '" + hfc + "')d  "
             + "WHERE sub.`Master_Reference_code` = '0071' AND sub.`Detail_Reference_code` = d.subdiscipline_cd  AND sub.hfc_cd = '" + hfc + "'"
             + " ORDER BY state_name ASC";
+    */
+     String sqlDisplayClinic="SELECT cli.state_code, cli.hfc_cd, cli.day_cd, cli.discipline_cd, cli.subdiscipline_cd, cli.start_time, cli.end_time, cli.status, sta.`Description` as state_name, hfc.hfc_name, dis.discipline_name, sub.subdiscipline_name "
+            + "FROM pms_clinic_day cli "
+            + "JOIN adm_health_facility hfc on hfc.hfc_cd=cli.hfc_cd "
+            + "LEFT JOIN adm_discipline dis on dis.discipline_hfc_cd=cli.hfc_cd and dis.discipline_cd=cli.discipline_cd "
+            + "LEFT JOIN adm_subdiscipline sub on sub.subdiscipline_hfc_cd=cli.hfc_cd and sub.discipline_cd=cli.discipline_cd and sub.subdiscipline_cd=cli.subdiscipline_cd "
+            + "JOIN adm_lookup_detail sta on sta.hfc_cd=cli.hfc_cd and sta.`Detail_Reference_code`=cli.state_code and sta.`Master_Reference_code`='0002' "
+            + "WHERE cli.hfc_cd='"+hfc+"' Order By state_name;";
     ArrayList<ArrayList<String>> dataClinicDay = Conn.getData(sqlDisplayClinic);
 
     String sql_hfc_state = "SELECT ld.`Description`, hf.state_cd FROM adm_health_facility hf  INNER JOIN adm_lookup_detail ld ON ld.`Detail_Reference_code` = hf.state_cd WHERE hf.hfc_cd = '" + hfc + "' AND ld.hfc_cd = '04010101' AND ld.`Master_Reference_code` = '0002'";
