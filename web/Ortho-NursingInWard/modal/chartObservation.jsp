@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWObsDate" required="">
+                                    <input type="text" class="form-control input-md" id="NIWObsDate" placeholder="Click to pick a date" required readonly>
                                 </div>
                             </div>
                         </div>
