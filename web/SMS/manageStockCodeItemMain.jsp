@@ -37,8 +37,8 @@
         $('#addNewStockItemButton').on('click', function () {
 
             $('#stockItemModalTitle').text("Add New Stock Item");
-            $('#stockItemCode').prop('readonly', false);
-            $('#stockItemCatCode').prop('readonly', false);
+            $('#stockItemCode').prop('disabled', false);
+            $('#stockItemCatCode').prop('disabled', false);
             $('#stockItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addStockItemButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
 
             $('#stockItemForm')[0].reset();
