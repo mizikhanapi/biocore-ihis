@@ -324,7 +324,7 @@
 
 
         // Add Item Function Start
-        $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').on('click', '#invoiceAddOrderAddNewItemBtn', function () {
+        $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').off('click', '#invoiceAddOrderAddNewItemBtn').on('click', '#invoiceAddOrderAddNewItemBtn', function () {
 
 
             datatableTableDestroy();
@@ -755,8 +755,30 @@
         // Cancel Button Function Start
         $('#invoiceContentAddDetail').off('click', '#invoiceAddOrderCancelBtn').on('click', '#invoiceAddOrderCancelBtn', function (e) {
 
-            $("#invoiceContentAddMaster").load("../GNL/manageStockQuantity/manageStockQuantityBasicInfo.jsp");
-            $("#invoiceContentAddDetail").load("../GNL/manageStockQuantity/manageStockQuantityInvoiceTable.jsp");
+            var data = {
+                moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "../GNL/manageStockQuantity/manageStockQuantityMasterTable.jsp", // call the jsp file ajax/auto-autocomplete.php
+                data: data, // 
+                timeout: 3000,
+                success: function (dataBack) { // If success
+
+                    $("#invoiceContentMaster").html(dataBack);
+                    
+                    $("#invoiceContentAddMaster").load("../GNL/manageStockQuantity/manageStockQuantityBasicInfo.jsp");
+                    $("#invoiceContentAddDetail").load("../GNL/manageStockQuantity/manageStockQuantityInvoiceTable.jsp");
+
+                    $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                },
+                error: function () { // if error
+
+                }
+            });
+
 
         });
         // Cancel Button Function End
