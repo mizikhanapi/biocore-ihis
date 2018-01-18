@@ -1,5 +1,6 @@
 var gambarURI2 = "";
 var ext = "";
+Webcam.attach( '#my_camera' );
 $(document).ready(function () {
     
     $(function () {
@@ -511,3 +512,10 @@ function loadImageFileAsURL2()
         $('#dym2').html("");
     }
 }
+
+
+    function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+            document.getElementById('dym2').innerHTML = '<img src="'+data_uri+'"/>';
+        } );
+    }

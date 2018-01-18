@@ -47,6 +47,11 @@
         <h4>Patient Information</h4>
         <form style=" margin: 0 auto;" class="form-horizontal" id="formPMI">
             <div class="row">
+                <div id="my_camera" style="width:320px; height:240px;"></div>
+                <div id="my_result"></div>
+                <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+            </div>
+            <div class="row">
                 <!-- Text input-->
                 <div class="col-md-12">
                     <center>
