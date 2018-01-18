@@ -76,7 +76,7 @@
 
         // Insert Master Distribute
         String sqlInsertSpecimenDetail = "UPDATE lis_specimen_detail "
-                + " SET specimen_status = 'Approve' , approval = 'Waiting For Test' "
+                + " SET specimen_status = 'Approved' , approval = 'Waiting For Test Result' "
                 + " WHERE specimen_no = '" + specimen_no + "' AND item_cd = '" + item_cdD + "' ";
 
         isInsertSpecimenDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertSpecimenDetail);
@@ -95,7 +95,7 @@
         boolean isUpdateOrderDetail = true;
 
         String sqlUpdateOrderDetail = "UPDATE lis_order_detail "
-                + " SET Verification = 'Waiting For Approval' , detail_status = '2' "
+                + " SET Verification = 'Waiting For Test Result' , detail_status = '2' "
                 + " WHERE order_no = '" + order_no + "' AND item_cd = '" + item_cdD + "' ";
 
         isUpdateOrderDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderDetail);
@@ -115,7 +115,7 @@
     // Specimen Master Table Part Start //
     // Update Master Specimen
     String sqlCheckMasterSpecimenData = "SELECT * FROM lis_specimen_detail  "
-            + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Waiting For Approval')";
+            + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Newly Assigned Specimen')";
     ArrayList<ArrayList<String>> getSpecimenSummary = conn.getData(sqlCheckMasterSpecimenData);
 
     if (getSpecimenSummary.size() == 0) {
@@ -123,7 +123,7 @@
         boolean isUpdateSpecimenMasterData = true;
 
         String sqlUpdateSpecimenMasterPartialData = "UPDATE lis_specimen_master "
-                + " SET order_status = '1' "
+                + " SET order_status = '3' "
                 + " WHERE specimen_no = '" + specimen_no + "' ";
 
         isUpdateSpecimenMasterData = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateSpecimenMasterPartialData);

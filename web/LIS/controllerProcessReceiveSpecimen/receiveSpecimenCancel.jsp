@@ -120,7 +120,7 @@
     // Specimen Master Table Part Start //
     // Update Master Specimen
     String sqlCheckMasterSpecimenData = "SELECT * FROM lis_specimen_detail  "
-            + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Waiting For Approval')";
+            + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Newly Assigned Specimen')";
     ArrayList<ArrayList<String>> getSpecimenSummary = conn.getData(sqlCheckMasterSpecimenData);
 
     if (getSpecimenSummary.size() == 0) {
@@ -128,7 +128,7 @@
         boolean isUpdateSpecimenMasterData = true;
 
         String sqlUpdateSpecimenMasterPartialData = "UPDATE lis_specimen_master "
-                + " SET order_status = '1' "
+                + " SET order_status = '2' "
                 + " WHERE specimen_no = '" + specimen_no + "' ";
 
         isUpdateSpecimenMasterData = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateSpecimenMasterPartialData);

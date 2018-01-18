@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Specimen No</label>
                                 <div class="col-md-8">
-                                    <input id="addSpecimenResultSpecimenNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" maxlength="15" readonly>
+                                    <input id="addSpecimenResultSpecimenNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" readonly>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Order No</label>
                                 <div class="col-md-8">
-                                    <input id="addSpecimenResultOrderNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" maxlength="15" readonly>
+                                    <input id="addSpecimenResultOrderNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" readonly>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Item Code</label>
                                 <div class="col-md-8">
-                                    <input id="addSpecimenResultItemCode" name="updateDrugCode" type="text" placeholder="Item Code" class="form-control input-md" maxlength="15" readonly>
+                                    <input id="addSpecimenResultItemCode" name="updateDrugCode" type="text" placeholder="Item Code" class="form-control input-md" readonly>
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Item Name</label>
                                 <div class="col-md-8">
-                                    <input id="addSpecimenResultItemName" name="updateDrugCode" type="text" placeholder="Item Name" class="form-control input-md" maxlength="15" readonly>
+                                    <input id="addSpecimenResultItemName" name="updateDrugCode" type="text" placeholder="Item Name" class="form-control input-md" readonly>
                                 </div>
                             </div>
 
@@ -146,7 +146,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Specimen No</label>
                                 <div class="col-md-8">
-                                    <input id="verifySpecimenResultSpecimenNo" name="updateOrderNo" type="text" placeholder="Specimen No" class="form-control input-md" maxlength="15" readonly>
+                                    <input id="verifySpecimenResultSpecimenNo" name="updateOrderNo" type="text" placeholder="Specimen No" class="form-control input-md" readonly>
                                 </div>
                             </div>
                         </div>
@@ -156,10 +156,27 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Order No</label>
                                 <div class="col-md-8">
-                                    <input id="verifySpecimenResultOrderNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" maxlength="15" readonly>
+                                    <input id="verifySpecimenResultOrderNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" readonly>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Item Code</label>
+                            <div class="col-md-8">
+                                <input id="verifySpecimenResultItemCode" name="updateDrugCode" type="text" placeholder="Item Code" class="form-control input-md" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Item Name</label>
+                            <div class="col-md-8">
+                                <input id="verifySpecimenResultItemName" name="updateDrugCode" type="text" placeholder="Item Name" class="form-control input-md" readonly>
+                            </div>
+                        </div>
+
 
                         <div class="col-md-12">
                             <!-- Text input-->
@@ -171,13 +188,14 @@
                             </div>
                         </div>
 
+
                         <!-- Select input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Verification</label>
                             <div class="col-md-8">
                                 <select class="form-control" name="tstatus" id="verifySpecimenResultStatus">
-                                    <option value="Approve" selected>Approve</option>>
-                                    <option value="Reject" >Rejected</option>
+                                    <option value="Approved" selected>Approve</option>>
+                                    <option value="Rejected" >Rejected</option>
                                 </select>
                             </div>
                         </div>
@@ -448,6 +466,8 @@
         var specimen_no = $("#verifySpecimenResultSpecimenNo").val();
         var result_no = $("#verifySpecimenResultResultNo").val();
         var order_no = $("#verifySpecimenResultOrderNo").val();
+        var item_cd = $("#verifySpecimenResultItemCode").val();
+        var item_name = $("#verifySpecimenResultItemName").val();
         var status = $("#verifySpecimenResultStatus").val();
 
 
@@ -463,6 +483,8 @@
                 result_no: result_no,
                 specimen_no: specimen_no,
                 order_no: order_no,
+                item_cd: item_cd,
+                item_name: item_name,
                 status: status
             };
 
@@ -479,7 +501,7 @@
 
                     if (datasR.trim() === "Success") {
 
-                        bootbox.alert("Result Is Verified !!!");
+                        bootbox.alert("Result Is Verified Succesfully !!!");
 
                         var dataOrder = {
                             specimenNo: specimen_no

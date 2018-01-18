@@ -51,14 +51,14 @@
             + " performBy, verification, order_no, picture, verify_by) "
             + " VALUES ('" + result_no + "','" + result + "','" + remark + "','" + collectionDate + "','" + collectionTime + "', "
             + " '" + item_cd + "','" + pmi_no + "','" + specimen_no + "','" + item_name + "','" + created_by + "', "
-            + " 'Waiting Approval','" + order_no + "','" + picture + "','" + created_by + "')";
+            + " 'Waiting For Approval','" + order_no + "','" + picture + "','" + created_by + "')";
 
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
     if (isInsert == true) {
 
         String sqlUpdateDetailData = "UPDATE lis_specimen_detail "
-                + " SET result_no = '" + result_no + "' "
+                + " SET result_no = '" + result_no + "' , approval = 'Waiting For Approval' "
                 + " WHERE specimen_no = '" + specimen_no + "' AND item_cd = '" + item_cd + "' ";
 
         boolean isUpdateDetailData = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateDetailData);

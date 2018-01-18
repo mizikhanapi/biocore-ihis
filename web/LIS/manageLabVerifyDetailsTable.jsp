@@ -22,7 +22,7 @@
     NumberFormat formatterInt = new DecimalFormat("#0");
     //                                  0             1                 2               3                       4                   5                  6                   7
     String orderList = "SELECT lissd.txt_date, lissd.specimen_no, lissd.item_cd, lissd.collection_date, lissd.collection_time, lissd.comment, lissd.specimen_status, lissd.approval, "
-            //         8                         9                          10                          11                
+            //         8                         9                          10                          11                12
             + " lisid.item_name, IFNULL(lisid.spe_source,''), IFNULL(lisid.spe_container,''), IFNULL(lisid.volume,''), IFNULL(lissd.result_no,'') "
             // FROM DETAIL TABLE
             + " FROM lis_specimen_detail lissd "
@@ -52,7 +52,15 @@
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
 
+            String result = dataOrderList.get(i).get(12);
+            String addDisabled = "";
+            String verifyDisabled = "";
 
+            if (result.trim().isEmpty()) {
+                verifyDisabled = "disabled";
+            } else {
+                addDisabled = "disabled";
+            }
     %>
 
     <tr style="text-align: center;" >
@@ -65,9 +73,9 @@
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(11)%></td> <!--  Volume -->
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(5)%></td> <!--  Comment -->
 <td  align="center">
-    <button class="btn btn-primary " type="button" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult"><i class="fa fa-database fa-lg"></i>&nbsp; Enter Result &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i>&nbsp; Enter Result &nbsp;</button>
     &nbsp;
-    <button class="btn btn-success " type="button" id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-id="1" data-target="#verifySpecimenResult"><i class="fa fa-check-square-o fa-lg"></i>&nbsp; Verify Result &nbsp;</button>
+    <button class="btn btn-success " type="button" id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-id="1" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i>&nbsp; Verify Result &nbsp;</button>
 </td> <!--  Action -->
 
 </tr>

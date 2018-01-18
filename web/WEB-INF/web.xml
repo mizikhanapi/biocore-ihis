@@ -138,7 +138,11 @@
     </servlet-mapping>
     <!--mapping for profile end-->
     
-    <!--mapping for LIS-->
+    
+    <!-- Mapping For LIS Hidding URL Start -->
+
+
+    <!-- Mapping for LIS HIS050001 -->
       
     <servlet>
         <servlet-name>order_list</servlet-name>
@@ -149,7 +153,11 @@
         <url-pattern>/LIS/Order_list</url-pattern>
     </servlet-mapping>
     
-    
+    <!-- Mapping for LIS HIS050001 -->
+
+
+    <!-- Mapping for LIS HIS050002 -->
+
     <servlet>
         <servlet-name>Receive_Specimen</servlet-name>
         <jsp-file>/LIS/HIS050002.jsp</jsp-file>
@@ -159,7 +167,11 @@
         <url-pattern>/LIS/Receive_Specimen</url-pattern>
     </servlet-mapping>
     
-    
+    <!-- Mapping for LIS HIS050002 -->
+
+
+    <!-- Mapping for LIS HIS050003 -->
+
     <servlet>
         <servlet-name>Manage_Test</servlet-name>
         <jsp-file>/LIS/HIS050003.jsp</jsp-file>
@@ -169,7 +181,40 @@
         <url-pattern>/LIS/Manage_Test</url-pattern>
     </servlet-mapping>
     
+    <!-- Mapping for LIS HIS050003 -->
+
+
+    <!-- Mapping for LIS HIS050004 -->
     
+    <servlet>
+        <servlet-name>Post_To_Bill</servlet-name>
+        <jsp-file>/LIS/Billing.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Post_To_Bill</servlet-name>
+        <url-pattern>/LIS/Post_To_Bill</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Mapping for LIS HIS050004 -->
+
+
+    <!-- Mapping for LIS HIS050005 -->
+
+    <servlet>
+        <servlet-name>Maintain_Test_Code</servlet-name>
+        <jsp-file>/LIS/HIS050005.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Maintain_Test_Code</servlet-name>
+        <url-pattern>/LIS/Maintain_Test_Code</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for LIS HIS050005 -->
+
+
+
+    <!-- Unused Mapping -->
+
     <servlet>
         <servlet-name>Assign_Specimen</servlet-name>
         <jsp-file>/LIS/assignSpecimen.jsp</jsp-file>
@@ -188,27 +233,14 @@
         <url-pattern>/LIS/Sent_Receive_Specimen</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>Post_To_Bill</servlet-name>
-        <jsp-file>/LIS/Billing.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Post_To_Bill</servlet-name>
-        <url-pattern>/LIS/Post_To_Bill</url-pattern>
-    </servlet-mapping>
+    <!-- Unused Mapping -->
+
     
-    <servlet>
-        <servlet-name>Maintain_Test_Code</servlet-name>
-        <jsp-file>/LIS/HIS050004.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Maintain_Test_Code</servlet-name>
-        <url-pattern>/LIS/Maintain_Test_Code</url-pattern>
-    </servlet-mapping>
+    
     <!--mapping for LIS end-->
     
     
-    
+    <!-- Mapping For LIS Hidding URL End -->
     
     
     

@@ -115,7 +115,7 @@
     // Specimen Master Table Part Start //
     // Update Master Specimen
     String sqlCheckMasterSpecimenData = "SELECT * FROM lis_specimen_detail  "
-            + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Waiting For Approval')";
+            + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Newly Assigned Specimen')";
     ArrayList<ArrayList<String>> getSpecimenSummary = conn.getData(sqlCheckMasterSpecimenData);
 
     if (getSpecimenSummary.size() == 0) {

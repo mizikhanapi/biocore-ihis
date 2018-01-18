@@ -91,11 +91,9 @@
             if (status.equalsIgnoreCase("0")) {
                 status = "Waiting For Approval";
             } else if (status.equalsIgnoreCase("1")) {
-                status = "Specimen Assigned";
+                status = "Approved";
             } else if (status.equalsIgnoreCase("2")) {
-                status = "Partial Complete";
-            } else if (status.equalsIgnoreCase("4")) {
-                status = "Full";
+                status = "Rejected";
             }
 
     %>

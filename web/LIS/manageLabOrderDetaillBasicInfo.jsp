@@ -934,8 +934,8 @@
             } else {
 
                 bootbox.confirm({
-                    message: "Are you sure want to release this order ?",
-                    title: "Release Item?",
+                    message: "Are you sure want to assign specimen the selected order ?",
+                    title: "Assign Specimen?",
                     buttons: {
                         confirm: {
                             label: 'Yes',

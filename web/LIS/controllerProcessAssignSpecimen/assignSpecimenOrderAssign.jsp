@@ -104,7 +104,7 @@
         String sqlInsertSpecimenDetail = "INSERT INTO lis_specimen_detail "
                 + " (txt_date, specimen_no, item_cd, collection_date, collection_time, comment, specimen_status, approval) "
                 + " VALUES ('" + txt_date + "','" + seqNo + "','" + item_cdD + "','" + collectionDate + "','" + collectionTime + "',"
-                + " '" + item_commentD + "','" + status + "','" + status + "' )";
+                + " '" + item_commentD + "', 'Newly Assigned Specimen', 'Test Is Not Performed Yet' )";
 
         isInsertSpecimenDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertSpecimenDetail);
 
@@ -122,7 +122,7 @@
         boolean isUpdateOrderDetail = true;
 
         String sqlUpdateOrderDetail = "UPDATE lis_order_detail "
-                + " SET Verification = 'Wait for Assign Specimen' , detail_status='1'  "
+                + " SET Verification = 'Wait for Specimen Verification' , detail_status='1'  "
                 + " WHERE order_no = '" + order_no + "' AND item_cd = '" + item_cdD + "' ";
 
         isUpdateOrderDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderDetail);

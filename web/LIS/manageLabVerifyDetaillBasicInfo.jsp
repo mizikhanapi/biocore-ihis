@@ -152,7 +152,7 @@
 <hr/>
 
 <div style="float: left;" id="patientOrderSpecimenLeftButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnSpecimenBackSpecimen" ><i class="fa fa-backward fa-lg"></i>&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnVerifyBackSpecimen" ><i class="fa fa-backward fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 
@@ -359,10 +359,14 @@
             console.log(arrayData);
 
             var result_no = arrayData[12];
+            var item_cd = arrayData[2];
+            var item_name = arrayData[8];
 
             $("#verifySpecimenResultSpecimenNo").val(specimen_no);
             $("#verifySpecimenResultOrderNo").val(order_no);
             $("#verifySpecimenResultResultNo").val(result_no);
+            $("#verifySpecimenResultItemCode").val(item_cd);
+            $("#verifySpecimenResultItemName").val(item_name);
 
 
 
@@ -371,7 +375,7 @@
 
 
 
-//-------------------------------------------------------------------------------  Insert Specimen End  --------------------------------------------------------------------------------//
+//-------------------------------------------------------------------------------  Verify Specimen End  --------------------------------------------------------------------------------//
 
 
 
@@ -382,7 +386,7 @@
 
 
         // Clear Button Function Start
-        $('#lisLabRequestSpecimenDetailContent').on('click', '#btnSpecimenBackSpecimen', function (e) {
+        $('#lisLabRequestVerifyDetailContent').on('click', '#btnVerifyBackSpecimen', function (e) {
             resetPage();
         });
         // Clear Button Function End
@@ -392,14 +396,14 @@
         // Reset The Page Start
         function resetPage() {
 
-            $("#lisLabRequestSpecimenMasterContent").load("manageLabSpecimenMasterTable.jsp");
+            $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
 
-            $('#LAB_SpecimenTime').prop('selectedIndex', 0);
+            $('#LAB_VerifyTime').prop('selectedIndex', 0);
 
             document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
             document.getElementById("patientOrderDetailContentBasicInfoForm").reset();
 
-            $("#lisLabRequestSpecimenDetailContent #patientSpecimenDetailsListTableDiv").load("manageLabSpecimenDetaillBasicInfo.jsp #patientSpecimenDetailsListTableDiv");
+            $("#lisLabRequestVerifyDetailContent #patientSpecimenDetailsListTableDiv").load("manageLabVerifyDetaillBasicInfo.jsp #patientSpecimenDetailsListTableDiv");
 
             $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 

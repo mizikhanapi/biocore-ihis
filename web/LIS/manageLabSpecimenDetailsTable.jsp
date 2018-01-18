@@ -29,7 +29,7 @@
             // LEFT JOIN ITEM TABLE
             + " LEFT JOIN lis_item_detail lisid ON (lissd.item_cd = lisid.item_cd)  "
             // WHERE CONDITION
-            + " WHERE lissd.specimen_no = '" + specimenNo + "' AND (lissd.specimen_status = 'Waiting For Approval') "
+            + " WHERE lissd.specimen_no = '" + specimenNo + "' AND (lissd.specimen_status = 'Newly Assigned Specimen') "
             + " AND lisid.hfc_cd = '" + HEALTH_FACILITY_CODE + "' ";
 
     ArrayList<ArrayList<String>> dataOrderList;
