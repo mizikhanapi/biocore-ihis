@@ -188,7 +188,7 @@
     
     <servlet>
         <servlet-name>Post_To_Bill</servlet-name>
-        <jsp-file>/LIS/Billing.jsp</jsp-file>
+        <jsp-file>/LIS/HIS050004.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>Post_To_Bill</servlet-name>

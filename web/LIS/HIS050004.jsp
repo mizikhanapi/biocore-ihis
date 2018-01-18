@@ -68,7 +68,7 @@
         <script>
 
 
-            $("#CompleteOrderListMain").load("BillingMain.jsp");
+            $("#CompleteOrderListMain").load("manageSendToBillMain.jsp");
 
 
         </script>
