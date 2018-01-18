@@ -16,7 +16,7 @@
 
 %>
 
-<div id="tableOccuTable" class="table-guling">
+<div id="tableOccuTable" class="table-guling" style="overflow: auto;">
         <table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
 

@@ -24,7 +24,7 @@
     </div>
 
 </div>
-<div id="WardOccuTable" class="table-guling"></div>
+        <div id="WardOccuTable" class="table-guling" style="overflow: auto;"></div>
 
 <script>
     $('#WardOccuTable').on('click', '#btnMoveDischarge', function(){
