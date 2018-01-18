@@ -24,6 +24,7 @@
         <script src="libraries/lib/js/bootbox.min.js"></script>
         <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
         <script src="../assets/js/modernizr.js" type="text/javascript"></script>
+        <script src="../assets/js/webcam.js" type="text/javascript"></script>
         <%@include file = "../assets/header.html" %>
 
         <!-- header -->
