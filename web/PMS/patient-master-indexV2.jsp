@@ -47,6 +47,50 @@
         <h4>Patient Information</h4>
         <form style=" margin: 0 auto;" class="form-horizontal" id="formPMI">
             <div class="row">
+                <div class="col-md-12">
+                    <center>
+                    <div class="form-group">
+                <div style="width: 50%; margin: 0 auto">
+                    <div id="my_camera"></div>
+                </div>
+                    </div>
+                    </center>
+                </div>
+                <script>
+                    
+                    Webcam.set({
+                        width: 320,
+                        height: 240,
+                        dest_width: 640,
+                        dest_height: 480,
+                        image_format: 'jpeg',
+                        jpeg_quality: 90,
+                        force_flash: false
+                    });
+                    var elementFile = document.getElementById('my_camera');
+                    function start_camera(){
+                        var x = $('#btncamera').text();
+                        if(x==="Open Camera"){
+                            Webcam.attach( '#my_camera' );
+                            document.getElementById('my_camera').scrollIntoView();
+                            $('#btncamera').text("Take Picture");
+                        }else if(x==="Take Picture"){
+                            Webcam.snap( function(data_uri) {
+                                document.getElementById('dym2').innerHTML = '<img id="myImage2" src="'+data_uri+'"/>';
+                            } );
+                            Webcam.reset();
+                            elementFile.removeAttribute("style");
+                            $('#btncamera').text("Open Camera");
+                        }
+                    }
+                    function close_camera(){
+                        Webcam.reset();
+                        elementFile.removeAttribute("style");
+                        $('#btncamera').text("Open Camera");
+                    }
+                </script>
+            </div>
+            <div class="row">
                 <!-- Text input-->
                 <div class="col-md-12">
                     <center>
@@ -62,6 +106,16 @@
                         <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif">
                     </div>
                 </div>
+                    <center>
+                    <div class="form-group">
+                        <div style="width: 50%; margin: 0 auto"><a id="btncamera" href="javascript:void(start_camera())">Open Camera</a></div>
+                    </div>
+                    </center>
+                    <center>
+                    <div class="form-group">
+                        <div style="width: 50%; margin: 0 auto"><a href="javascript:void(close_camera())">Close Camera</a></div>
+                    </div>
+                    </center>
                 </div>
             </div>
             

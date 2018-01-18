@@ -12,7 +12,7 @@
 
 
 <hr class="pemisah" />
-<div class="table-guling">
+<div class="table-guling" style="overflow: auto;">
     <table id="OccuTableTT"  class="table table-striped table-bordered" cellspacing="0" style="width:100%;">
 
 

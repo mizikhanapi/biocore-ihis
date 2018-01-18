@@ -1,5 +1,6 @@
 var gambarURI2 = "";
 var ext = "";
+
 $(document).ready(function () {
     
     $(function () {
@@ -309,8 +310,8 @@ $(document).ready(function () {
 
             }, error: function (xhr) {
                 //alert("There is an error!");
-                var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message);
+//                var err = eval("(" + xhr.responseText + ")");
+//                alert(err.Message);
             }
         });
     }
@@ -511,3 +512,5 @@ function loadImageFileAsURL2()
         $('#dym2').html("");
     }
 }
+
+

@@ -45,14 +45,9 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
     </div>
     
-    <script type="text/javascript">
-        
-
-        
-        </script>

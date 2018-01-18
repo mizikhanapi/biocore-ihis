@@ -27,7 +27,7 @@
                                                 + "AND om.order_by = au.`USER_ID`"
                                                 + "AND om.pmi_no = '"+pmiNo+"' "
                                                 + "AND DATE(om.episode_date) = '"+todayDate+"'  "
-                                                + "GROUP BY od.item_cd LIMIT 3";
+                                                + "GROUP BY od.item_cd ";
                                         
                                        //out.print(searchProblem);
                                     } else if (type.equals("previous")) {
@@ -39,7 +39,7 @@
                                                 + "AND om.order_by = au.`USER_ID`"
                                                 + "AND hf.hfc_cd = om.hfc_to "
                                                 + "AND om.pmi_no = '"+pmiNo+"' "
-                                                + "GROUP BY od.item_cd LIMIT 3";
+                                                + "GROUP BY od.item_cd ";
                                         
                                         resultProblem = "SELECT om.order_no, om.hfc_to ,hf.hfc_name, od.item_cd, id.item_name, r.`result`, om.episode_date, r.id_result, au.`USER_NAME`, od.spe_source "
                                                 + "FROM lis_order_master om "
@@ -55,7 +55,7 @@
                                                 + "AND om.hfc_to = hf.hfc_cd "
                                                 + "AND om.pmi_no = '" + pmiNo + "' "
                                                 
-                                                + "ORDER BY om.order_no DESC LIMIT 3; ";
+                                                + "ORDER BY om.order_no DESC ; ";
                                      
                                     }
                                }else{
@@ -70,7 +70,7 @@
                                                 + "AND om.pmi_no = '"+pmiNo+"' "
                                                 + "AND DATE(om.episode_date) = '"+todayDate+"'  "
                                                 + " AND om.order_no = '"+orderId+"' "
-                                                + "GROUP BY od.item_cd  LIMIT 3;";
+                                                + "GROUP BY od.item_cd ;";
                                             
                                         } else if (type.equals("previous")) {
                                         searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
@@ -82,7 +82,7 @@
                                                 + "AND hf.hfc_cd = om.hfc_to "
                                                 + "AND om.pmi_no = '"+pmiNo+"' "
                                                 + " AND om.order_no = '"+orderId+"' "
-                                                + "GROUP BY od.item_cd  LIMIT 3;";
+                                                + "GROUP BY od.item_cd ;";
                                         
                                         resultProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
                                                 + "FROM lis_order_master om "
@@ -96,7 +96,7 @@
                                                 + "AND om.hfc_to = hf.hfc_cd "
                                                 + "AND om.pmi_no = '" + pmiNo + "' "
                                                 + " AND om.order_no = '" + orderId + "' "
-                                                + "ORDER BY om.order_no DESC LIMIT 3; ";
+                                                + "ORDER BY om.order_no DESC ; ";
                                         }
                                     
                                }
