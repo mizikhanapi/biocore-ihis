@@ -12,7 +12,7 @@
     String id_result = request.getParameter("id_result");
 
 
-    String query = "Select ifnull(convert(picture using utf8), '') from lis_result where id_result = "+id_result+"";
+    String query = "Select ifnull(convert(picture using utf8), '') from lis_result where result_no = '"+id_result+"'";
 
     ArrayList<ArrayList<String>> dataLogo = conn.getData(query);
 

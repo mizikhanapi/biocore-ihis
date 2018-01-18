@@ -269,6 +269,10 @@
 
                         <div class="none swapping-tab" id="ong">
                             <jsp:include page="ong.jsp"/>
+                        </div>
+                        
+                        <div class="none swapping-tab" id="ong-ward">
+                            <jsp:include page="ong_ward.jsp"/>
                         </div> 
 
                         <div class="none swapping-tab" id="CIS-analyseTab">
@@ -320,7 +324,7 @@
         <jsp:include page="CIS02/CIS020015.jsp"/>
 
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
-        <script src="../assets/js/swapping-tab.js" type="text/javascript"></script>
+        <script src="../assets/js/swapping-tab.js?v1" type="text/javascript"></script>
         <script>
 
             (function ($) {
@@ -357,62 +361,62 @@
                 });
             });
             
-            $('#menu-content #LinkOngGeneral').on('click',function(){
-                console.log('xxx');
-                getGra();
-                $('#frequentObserbationTab').hide();
-                $('#nursingUseTab').hide();
-                $('#nurseryFeedingCharttab').hide();
-                $('#maternityUnitTab').hide();
-                $('#LabourSumaaryTab').hide();
-                $('#reportTab').hide();
-                
-                $('#ONG_4').removeClass("active");
-                $('#ONG_5').removeClass("active");
-                $('#ONG_6').removeClass("active");
-                $('#ONG_7').removeClass("active");
-                $('#ONG_8').removeClass("active");
-                $('#ONG_9').removeClass("active");
-                
-                $('#tabPI').show();
-                $('#tabBP').show();
-                $('#CIS_PN_TAB').show();
-                
-                $('#ONG_1').addClass("active in");
-//                $('#ONG_2').removeClass("active");
-//                $('#ONG_3').removeClass("active");
-                
-                
-            });
-            
-            $('#menu-content #LinkOngCareWard').on('click',function(){
+//            $('#menu-content #LinkOngGeneral').on('click',function(){
 //                console.log('xxx');
 //                getGra();
-                $('#frequentObserbationTab').show();
-                $('#nursingUseTab').show();
-                $('#nurseryFeedingCharttab').show();
-                $('#maternityUnitTab').show();
-                $('#LabourSumaaryTab').show();
-                $('#reportTab').show();
-                
-//                $('#ONG_4').addClass("active");
+//                $('#frequentObserbationTab').hide();
+//                $('#nursingUseTab').hide();
+//                $('#nurseryFeedingCharttab').hide();
+//                $('#maternityUnitTab').hide();
+//                $('#LabourSumaaryTab').hide();
+//                $('#reportTab').hide();
+//                
+//                $('#ONG_4').removeClass("active");
 //                $('#ONG_5').removeClass("active");
 //                $('#ONG_6').removeClass("active");
 //                $('#ONG_7').removeClass("active");
 //                $('#ONG_8').removeClass("active");
 //                $('#ONG_9').removeClass("active");
-                
-                $('#tabPI').hide();
-                $('#tabBP').hide();
-                $('#CIS_PN_TAB').hide();
-                
-                $('#ONG_1').removeClass("active");
-                $('#ONG_2').removeClass("active");
-                $('#ONG_3').removeClass("active");
-                $('#ONG_4').addClass("active in");
-                
-                
-            });
+//                
+//                $('#tabPI').show();
+//                $('#tabBP').show();
+//                $('#CIS_PN_TAB').show();
+//                
+//                $('#ONG_1').addClass("active in");
+////                $('#ONG_2').removeClass("active");
+////                $('#ONG_3').removeClass("active");
+//                
+//                
+//            });
+            
+//            $('#menu-content #LinkOngCareWard').on('click',function(){
+////                console.log('xxx');
+////                getGra();
+//                $('#frequentObserbationTab').show();
+//                $('#nursingUseTab').show();
+//                $('#nurseryFeedingCharttab').show();
+//                $('#maternityUnitTab').show();
+//                $('#LabourSumaaryTab').show();
+//                $('#reportTab').show();
+//                
+////                $('#ONG_4').addClass("active");
+////                $('#ONG_5').removeClass("active");
+////                $('#ONG_6').removeClass("active");
+////                $('#ONG_7').removeClass("active");
+////                $('#ONG_8').removeClass("active");
+////                $('#ONG_9').removeClass("active");
+//                
+//                $('#tabPI').hide();
+//                $('#tabBP').hide();
+//                $('#CIS_PN_TAB').hide();
+//                
+//                $('#ONG_1').removeClass("active");
+//                $('#ONG_2').removeClass("active");
+//                $('#ONG_3').removeClass("active");
+//                $('#ONG_4').addClass("active in");
+//                
+//                
+//            });
             
             function toggleChevron(e) {
                 $(e.target)

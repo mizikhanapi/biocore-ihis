@@ -97,6 +97,13 @@ $(document).ready(function () {
 
     });
     
+    //ong-ward
+    $('#LinkOngCareWard').click(function(){
+        $('.swapping-tab').hide();
+        $('#ong-ward').show(400);
+        $('#div_CIS_PATIENT_DASHBOARD').show();
+    });
+    
     //analyse
     $('#btnAnalysePatient').click(function(){
         $('.swapping-tab').hide();
