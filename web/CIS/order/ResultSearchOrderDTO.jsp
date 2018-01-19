@@ -126,6 +126,9 @@
             <td>D.Strength</td>
             <td>D.Frequency</td>
             <td>Provider Facility</td>
+            <td hidden>orderID</td>
+            <td hidden>providerID</td>
+            <td hidden>drug_cd</td>
             <td>Action</td>
         </tr>
     </thead>
@@ -153,6 +156,9 @@
 
     </tbody>
 </table>
+        <script>
+            $('#tblODTO').DataTable();
+        </script>        
 
 <%} else {
         out.print("No Order");

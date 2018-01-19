@@ -119,8 +119,9 @@
             <td>Order By</td>
             <td>Procedure Name</td>
             <td>Result</td>
-            
             <td>Provider Facility</td>
+            <td hidden>orderID</td>
+            <td hidden>providerID</td>
             <td>Action</td>
         </tr>
     </thead>
@@ -148,6 +149,10 @@
 
     </tbody>
 </table>
+        
+        <script>
+            $('#tblOROS').DataTable();
+        </script>     
 
 <%} else {
         out.print("No Order");

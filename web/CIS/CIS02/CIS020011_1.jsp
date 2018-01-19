@@ -52,8 +52,7 @@
             + "WHERE r.pmi_no='" + pmiNo + "' "
             + "ORDER BY tarikh ;";
     ArrayList<ArrayList<String>> dataRIS = conn.getData(resultProblem);
-    out.print(resultProblem);
-
+   
 %>
 <table class="table table-striped table-filter table-bordered" id="lisTable" style="width: 100%">
     <%        if (dataRIS.size() > 0) {
