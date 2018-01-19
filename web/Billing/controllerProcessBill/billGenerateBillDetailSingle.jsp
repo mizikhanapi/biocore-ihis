@@ -257,7 +257,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-5 control-label" for="textinput">Total Quantity :</label>
+                <label class="col-md-5 control-label" for="textinput">Total Item Quantity :</label>
                 <div class="col-md-4">
                     <input id="billDetailOrderDetailSingleTotalQuantity" name="billDetailOrderDetailSingleTotalQuantity" type="text" placeholder="Total Quantity" class="form-control input-md" maxlength="50" value="<%=dfQuan.format(grandQuantity)%>" readonly>
                 </div>

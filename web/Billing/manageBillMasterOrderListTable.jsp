@@ -11,11 +11,11 @@
 <%
     String ic = request.getParameter("ic");
     String status = request.getParameter("status");
-    
+
     DecimalFormat df = new DecimalFormat("0.00");
-    
+
     Conn conn = new Conn();
-    
+
     String userID = session.getAttribute("USER_ID").toString();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
@@ -46,7 +46,7 @@
     <th>Other ID</th>
     <th>Phone No.</th>
     <th>Outstanding (RM)</th>
-    <th></th>
+    <th>Action</th>
 </thead>
 <tbody>
     <%

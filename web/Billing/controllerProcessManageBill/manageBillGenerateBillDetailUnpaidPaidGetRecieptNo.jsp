@@ -43,7 +43,7 @@
     //R = Receipt
     //I = Invoice
     boolean seqControl = false;
-    String orderHead = "RCPT";
+    String orderHead = "RCP";
     String sqlSeqSelect = "SELECT hfc_cd,module_name,year_seq "
             + " FROM far_last_seq_no "
             + " WHERE module_name = 'RCP' AND hfc_cd = '" + hfc + "' ";
