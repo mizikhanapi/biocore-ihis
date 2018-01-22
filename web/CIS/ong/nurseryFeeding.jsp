@@ -71,9 +71,24 @@
 
 <script>
 
+
+    $('.decimalNumbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        }
+    });
+
+
+    $('.singleNumbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9]/g, '')) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+    });
+
+
     $('#nurseryFeedingChartModalFeedingMethod').on('change', function () {
         var jenissusu = $(this).val();
-        if (jenissusu === "01") {
+        if (jenissusu === "Breast feed") {
             $('#susupower').hide();
         } else {
             $('#susupower').show();

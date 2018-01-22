@@ -137,16 +137,16 @@
 
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Supply One</label>
+                                <label class="col-md-12 control-label" for="textinput">Supply One (Quantity)</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md singleNumbersOnly" id="nurseryUseMasterChartModalDrugSupplyOne" maxlength="3">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Dispensed By</label>
@@ -167,16 +167,16 @@
 
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Supply Two</label>
+                                <label class="col-md-12 control-label" for="textinput">Supply Two (Quantity)</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md singleNumbersOnly" id="nurseryUseMasterChartModalDrugSupplyTwo" maxlength="3">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Dispensed By</label>

@@ -12,7 +12,7 @@
 
     String methodfedd5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0124' AND hfc_cd = '" + hfc + "' and status ='0'";
     String aspi5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0125' AND hfc_cd = '" + hfc + "' and status ='0'";
-    ArrayList<ArrayList<String>>  datamethodfedd5,dataaspi5,datadate52;
+    ArrayList<ArrayList<String>> datamethodfedd5, dataaspi5, datadate52;
     datamethodfedd5 = cccconn.getData(methodfedd5);
     dataaspi5 = cccconn.getData(aspi5);
     datadate52 = cccconn.getData(datee52);
@@ -29,44 +29,44 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                            <input type="hidden" id="ONGNurseryFeedingChartPmi" >
-                            <input type="hidden" id="ONGNurseryFeedingChartHfc" >
-                            <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
-                            <input type="hidden" id="ONGNurseryFeedingChartEncounterDate">
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalDate" readonly>
-                                </div>
+                        <input type="hidden" id="ONGNurseryFeedingChartPmi" >
+                        <input type="hidden" id="ONGNurseryFeedingChartHfc" >
+                        <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
+                        <input type="hidden" id="ONGNurseryFeedingChartEncounterDate">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Date</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" id="nurseryFeedingChartModalDate" readonly>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <form autocomplete="off" id="nurseryFeedingChartModalForm">
 
                     <div class="row">
-<!--                        <div class="col-md-6">
-                            <input type="hidden" id="ONGNurseryFeedingChartPmi" >
-                            <input type="hidden" id="ONGNurseryFeedingChartHfc" >
-                            <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
-                            <input type="hidden" id="ONGNurseryFeedingChartEncounterDate">
-                             Text input
-                            <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalDate" readonly>
-                                </div>
-                            </div>
-                        </div>-->
+                        <!--                        <div class="col-md-6">
+                                                    <input type="hidden" id="ONGNurseryFeedingChartPmi" >
+                                                    <input type="hidden" id="ONGNurseryFeedingChartHfc" >
+                                                    <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
+                                                    <input type="hidden" id="ONGNurseryFeedingChartEncounterDate">
+                                                     Text input
+                                                    <div class="form-group">
+                                                        <label class="col-md-12 control-label" for="textinput">Date</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control input-md" id="nurseryFeedingChartModalDate" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-<!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalTime" readonly>-->
+                                    <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalTime" readonly>-->
                                     <select id="nurseryFeedingChartModalTime" class="form-control">
                                         <option value="null" selected="" disabled="">Select Time</option>
-                                        <% for (int i = 0;i < datadate52.size();i++) {%>
+                                        <% for (int i = 0; i < datadate52.size(); i++) {%>
                                         <option value="<%=datadate52.get(i).get(1)%>"><%=datadate52.get(i).get(2)%></option>
                                         <%  }
                                         %>
@@ -86,11 +86,11 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Method Of Feeding</label>
                                 <div class="col-md-12">
-<!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">-->
+                                    <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">-->
                                     <select id="nurseryFeedingChartModalFeedingMethod" class="form-control">
                                         <option value="null" selected="" disabled="">Select Method Of Feeding</option>
-                                        <% for (int i = 0;i < datamethodfedd5.size();i++) {%>
-                                        <option value="<%=datamethodfedd5.get(i).get(1)%>"><%=datamethodfedd5.get(i).get(2)%></option>
+                                        <% for (int i = 0; i < datamethodfedd5.size(); i++) {%>
+                                        <option value="<%=datamethodfedd5.get(i).get(2)%>"><%=datamethodfedd5.get(i).get(2)%></option>
                                         <%  }
                                         %>
                                     </select>
@@ -100,13 +100,13 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group" id="susupower">
-                                <label class="col-md-12 control-label" for="textinput">Strength Of Milk</label>
+                                <label class="col-md-12 control-label" for="textinput">Strength Of Milk (ml)</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalMilkStrength" maxlength="50">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="1 to 999" id="nurseryFeedingChartModalMilkStrength" maxlength="3">
                                 </div>
                             </div>
                         </div>
-              
+
                     </div>
 
 
@@ -119,11 +119,11 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Aspirate Vomit</label>
                                 <div class="col-md-12">
-<!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit" maxlength="50">-->
+                                    <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit" maxlength="50">-->
                                     <select id="nurseryFeedingChartModalAspirateVomit" class="form-control">
                                         <option value="null" selected="" disabled="">Select Aspirate Vomit</option>
-                                        <% for (int i = 0;i < dataaspi5.size();i++) {%>
-                                        <option value="<%=dataaspi5.get(i).get(1)%>"><%=dataaspi5.get(i).get(2)%></option>
+                                        <% for (int i = 0; i < dataaspi5.size(); i++) {%>
+                                        <option value="<%=dataaspi5.get(i).get(2)%>"><%=dataaspi5.get(i).get(2)%></option>
                                         <%  }
                                         %>
                                     </select>
@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Temperature</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md singleNumbersOnly" id="nurseryFeedingChartModalTemperature" maxlength="3">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="nurseryFeedingChartModalTemperature" maxlength="4">
 
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">PU</label>
+                                <label class="col-md-12 control-label" for="textinput">Parsing Urine (PU)</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="nurseryFeedingChartModalPU" maxlength="10">
                                 </div>
@@ -168,7 +168,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">BO</label>
+                                <label class="col-md-12 control-label" for="textinput">Bowel Open (BO)</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="nurseryFeedingChartModalBO" maxlength="10">
                                 </div>
@@ -193,10 +193,10 @@
                     </div>
                 </form>
             </div>
-            
+
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                     <div class="btn-group" role="group" id="nurseryFeedingChartModal_btnAdd_or_btnUpdate_div">
+                    <div class="btn-group" role="group" id="nurseryFeedingChartModal_btnAdd_or_btnUpdate_div">
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" id="nurseryFeedingChartModalReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>

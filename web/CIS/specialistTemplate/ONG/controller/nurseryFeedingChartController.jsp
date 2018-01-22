@@ -28,11 +28,11 @@
     Boolean result;
 
     if (methodName.equalsIgnoreCase("add")) {
-         result = feeding.addNurseryFeeding(data + longString);
-         out.print(result);
+        result = feeding.addNurseryFeeding(data + longString);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
-         result = feeding.updateNurseryFeeding(data);
-         out.print(result);
+        result = feeding.updateNurseryFeeding(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("approve")) {
         result = feeding.approveNurseryFeeding(data + longString);
         out.print(result);
@@ -50,8 +50,8 @@
         <thead>
         <th>Date</th>
         <th>Time</th>
-        <th>Strength of Milk</th>
         <th>Method of Feeding</th>
+        <th>Strength of Milk (ML)</th>
         <th>Aspirate Vomit</th>
         <th>Temperature</th>
         <th>Respiration</th>
@@ -68,8 +68,8 @@
         <input id="dataNurseryFeedingCharthidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
         <td><%=datas.get(i).get(5)%></td>                   <!-- Date -->
         <td><%=datas.get(i).get(4)%></td>                   <!-- Time -->
-        <td><%=datas.get(i).get(6)%></td>                   <!-- Strength -->
         <td><%=datas.get(i).get(7)%></td>                   <!-- Method -->
+        <td><%=datas.get(i).get(6)%></td>                   <!-- Strength -->
         <td><%=datas.get(i).get(8)%></td>                   <!-- Aspirate -->
         <td><%=datas.get(i).get(9)%></td>                   <!-- Temperature -->                                                             <!-- Pulse Left -->  
         <td><%=datas.get(i).get(10)%></td>                   <!-- Respiration -->                                                             <!-- Pulse Left -->  

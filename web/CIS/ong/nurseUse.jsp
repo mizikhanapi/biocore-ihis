@@ -41,7 +41,7 @@
     <div class="row" >
         <div class="col-md-12" >
             <div id="tableChartNursingUseMasterDiv" class="clear-patient">
-                <h5>Nursing Use Master Chart</h5>
+                <h5>Nursing Master Chart</h5>
                 <div class="table-guling">
                     <table class="table table-bordered" id="tableChartNursingUseMasterTable" style="width: 100%">
                         <thead>
@@ -85,6 +85,20 @@
 
 
 <script>
+
+    $('.decimalNumbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        }
+    });
+
+
+    $('.singleNumbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9]/g, '')) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+    });
+
 
     $(document).ready(function () {
 
