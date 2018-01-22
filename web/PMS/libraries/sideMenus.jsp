@@ -25,6 +25,11 @@
                 <i class="fa fa-users fa-lg"></i> List Of Queue
             </a>
         </li>
+        <li>
+            <a data-toggle="modal" data-target="#referralModal" id="btnReferralModal">
+                <i class="fa fa-envelope fa-lg"></i> Referral List
+            </a>
+        </li>
 
         <!--        <li>
                     <a href="queue.jsp">

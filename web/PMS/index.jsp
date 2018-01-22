@@ -133,6 +133,7 @@
         <div  id="modalSaya"><%@include file = "AppointmentModal.jsp" %></div>
         <div id="modalSaya2"><%@include file = "QueueModal.jsp" %></div>
         <div id="modalQueueNumberSaya"><%@include file = "queueNumberModal.jsp" %></div>
+        <div id="modalReferralSaya"><%@include file = "ReferralModal.jsp" %></div>
 
 
 
