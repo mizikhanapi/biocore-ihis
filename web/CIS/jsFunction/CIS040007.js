@@ -203,8 +203,8 @@ $(document).ready(function () {
     function clearFieldADW() {
         $('#tCIS_ADWsearchDis').val('');
         $('#tCIS_ADWsearchDisCd').val('');
-        $('#tCIS_ADWreferFrom').val('');
-        $('#tCIS_ADWreferFromCd').val('');
+        //$('#tCIS_ADWreferFrom').val('');
+        //$('#tCIS_ADWreferFromCd').val('');
         $('#tCIS_ADWreason').val('');
 
         $('#tCIS_ADWdate').val('');

@@ -326,6 +326,10 @@
 
             $('#freqObservationChartModalForm')[0].reset();
 
+            var harini = new Date();
+            var hariniyangtelahconvert = ("0" + harini.getDate()).slice(-2) + "/" + ("0" + (harini.getMonth() + 1)).slice(-2) + "/" + harini.getFullYear();
+            $('#freqObservationChartModalDate').val(hariniyangtelahconvert);
+
             $('#freqObservationChartModalDrugGiven').val('');
 
             var val = $('#freqObservationChartModalDrugGiven').val().trim();

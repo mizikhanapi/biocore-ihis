@@ -1,5 +1,11 @@
 
-
+<%@page import="ADM_helper.MySessionKey"%>
+<%
+    String adw_hfc_cd = (String) session.getAttribute(MySessionKey.HFC_CD);
+    String adw_hfc_name = (String) session.getAttribute(MySessionKey.HFC_NAME);
+    String adw_dis_cd = (String) session.getAttribute(MySessionKey.DISCIPLINE_CD);
+    String adw_dis_name = (String) session.getAttribute(MySessionKey.DISCIPLINE_NAME);
+%>
 <!--Modal ADD Monitoring-->
 <div class="modal fade" id="CIS040007" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" >
@@ -17,10 +23,10 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcOrderDetailADW" placeholder="Hfc Order Detail" readonly="">
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcProviderDetailADW" placeholder="Hfc Provider Detail" >
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" placeholder="Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." required="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcOrderDetailADW" >
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcProviderDetailADW">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" value="<%=adw_hfc_cd%>">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." required=""  disabled value="<%=adw_hfc_name%>">
                                 <div id="tCIS_ADWHFCreferFromLoading" ></div>
                                 <br>
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
@@ -34,8 +40,8 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search..." required="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" value="<%=adw_dis_cd%>">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search..." disabled value="<%=adw_dis_name%>">
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
                                 <div id="tCIS_ADWreferFromLoading" ></div>
                             </div>
@@ -44,9 +50,9 @@
                 </div>
                   <br>
                 <div class="row">
-                    <h4 class="modal-title" style="font-weight: bold">Admit to discipline :</h4>
-                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailADW" placeholder="">
-                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailADW" placeholder="">
+                    <h4 class="modal-title" style="font-weight: bold">Admit to ward :</h4>
+                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailADW" >
+                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailADW" >
                     <input class="form-control input-lg" type="hidden"  id="hfcIdADW">
                 </div>
                   <div class="row">
@@ -168,4 +174,4 @@
 
 
 
- <script src="jsFunction/CIS040007.js" type="text/javascript"></script>
+ <script src="jsFunction/CIS040007.js?v1" type="text/javascript"></script>

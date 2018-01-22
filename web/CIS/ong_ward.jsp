@@ -13,7 +13,7 @@
             <div class="tabbable-panel cis-tab">
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
-                        
+
                         <li class="active">
                             <a href="#ONG_4" data-toggle="tab" aria-expanded="true" id="frequentObserbationTab">
                                 <i class="fa fa-th-list fa-lg"></i> Frequent Observations Chart </a>
@@ -41,9 +41,9 @@
                     </ul>
 
                     <div class="tab-content">
-                       
+
                         <!-- content -->
-                        <div class="tab-pane fade" id="ONG_4">
+                        <div class="tab-pane active fade in" id="ONG_4">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-freqObservationChart" href="" class="soap-select" id="frequentObservationAddNewRecord"><i class="fa fa-comments  fa-li"></i>Add New Record</a></li>
                             </ul>

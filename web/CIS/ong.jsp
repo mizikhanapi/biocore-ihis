@@ -29,7 +29,7 @@
 
                     <div class="tab-content">
                         <!-- content -->
-                        <div class="tab-pane fade" id="ONG_1">
+                        <div class="tab-pane active fade in" id="ONG_1">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravida</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select" id="btnnewpreviouspregnancy"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
@@ -94,17 +94,8 @@
     $('#tabPI').on('click', function () {
         getGra();
     });
-    $('#nurseryFeedingChartAddNewRecord').on('click', function () {
-        var harini = new Date();
-        var hariniyangtelahconvert = ("0" + harini.getDate()).slice(-2) + "/" + ("0" + (harini.getMonth() + 1)).slice(-2) + "/" + harini.getFullYear();
-        $('#nurseryFeedingChartModalDate').val(hariniyangtelahconvert);
-        $('#susupower').show();
-    });
-    $('#frequentObservationAddNewRecord').on('click', function () {
-        var harini = new Date();
-        var hariniyangtelahconvert = ("0" + harini.getDate()).slice(-2) + "/" + ("0" + (harini.getMonth() + 1)).slice(-2) + "/" + harini.getFullYear();
-        $('#freqObservationChartModalDate').val(hariniyangtelahconvert);
-    });
+    
+    
 //    $('#tabBP').on('click', function () {
 //        var pmi_no = pmiNo;
 //        var hfc_cd1 = hfc_cd;
