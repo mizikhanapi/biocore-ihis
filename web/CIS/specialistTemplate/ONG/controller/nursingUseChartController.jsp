@@ -54,7 +54,7 @@
     } else if (methodName.equalsIgnoreCase("viewMaster") && !data.equalsIgnoreCase("null")) {
         ArrayList<ArrayList<String>> datas = nurUse.getNursingUseMaster(data + longString);
 %>
-<h5>Nursing Use Master Chart</h5>
+<h5>Nursing Master Chart</h5>
 <div class="table-guling">
     <table class="table table-bordered" id="tableChartNursingUseMasterTable" style="width: 100%">
         <thead>
@@ -158,7 +158,7 @@
 <br><br><br>
 
 <div class="col-md-12" id="tableChartNursingUseDetailTableDiv">     
-    <h5>Nursing Use Detail Chart</h5>
+    <h5>Nursing Detail Chart</h5>
     <input id="tableChartNursingUseDetailTableMasterDateHidden" type="hidden" >
     <div class="table-guling">
         <table class="table table-bordered" id="tableChartNursingUseDetailTable" style="width: 100%">
