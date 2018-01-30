@@ -38,6 +38,28 @@
                             <div class="tab-pane active" id="laboratoryRequest1">
 
                                 <!-- content goes here -->
+
+                                <div class="row">
+                                    <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6" for="textinput">Health Facility</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
+                                                <div id="tCISOELIOHFCSearchLoading" ></div>
+                                                <!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
+                                                <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
+                                                <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailLIO" placeholder="">
+                                                <input class="form-control input-lg" type="hidden"  id="hfcIdLOS">
+                                                <div id="matchHFCLOS" ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <!-- content goes here -->
@@ -184,28 +206,6 @@
                                     </div>
                                 </div>
 
-                                <hr/>
-                                <div class="row">
-                                    <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>    
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-6" for="textinput">Health Facility</label>
-                                            <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
-                                                <div id="tCISOELIOHFCSearchLoading" ></div>
-                                                <!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
-                                                <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
-                                                <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailLIO" placeholder="">
-                                                <input class="form-control input-lg" type="hidden"  id="hfcIdLOS">
-                                                <div id="matchHFCLOS" ></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -231,7 +231,7 @@
                                 <form class="form-horizontal" name="myForm" id="myForm">
                                     <!-- Select Basic -->
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
+                                        <label class="col-md-4 control-label" for="selectbasic">Search order by</label>
                                         <div class="col-md-4">
                                             <select id="selectCIS_OE_LIO_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
