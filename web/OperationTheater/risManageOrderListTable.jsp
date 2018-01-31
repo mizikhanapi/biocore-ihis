@@ -75,7 +75,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToRISOrderDetailsTButton" style="text-align: left; cursor: pointer;">
+    <tr id="moveToRISOrderDetailsTButton" class="clickable_tr">
 <input id="dataRISOrderListhidden" type="hidden" value="<%=String.join("|", dataRISOrderList.get(i))%>">
 <td><%= dataRISOrderList.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataRISOrderList.get(i).get(0)%></td> <!-- PMI No -->
