@@ -273,9 +273,22 @@
         <url-pattern>/LIS/Laboratory_Sales_List</url-pattern>
     </servlet-mapping>
 
-    <!-- Mapping for LIS HIS050009 -->
+    <!-- Mapping for LIS HIS050010 -->
     
     
+    
+    <!-- Mapping for LIS HIS050006 -->
+
+    <servlet>
+        <servlet-name>Laboratory_Past_Order</servlet-name>
+        <jsp-file>/LIS/HIS050006.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Laboratory_Past_Order</servlet-name>
+        <url-pattern>/LIS/Laboratory_Past_Order</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for LIS HIS050006 -->
     
 
 
@@ -458,6 +471,19 @@
     <!-- mapping for PIS HIS040013 -->
     
     
+    <!-- Mapping for PIS HIS040014 -->
+
+    <servlet>
+        <servlet-name>Pharmacy_Past_Order</servlet-name>
+        <jsp-file>/PIS/HIS040014.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Pharmacy_Past_Order</servlet-name>
+        <url-pattern>/PIS/Pharmacy_Past_Order</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for PIS HIS040014 -->
+    
     
     <!-- Mapping For PIS Hidding URL End -->
 
@@ -629,6 +655,20 @@
         <url-pattern>/SMS/Sales_For_Stock</url-pattern>
     </servlet-mapping>
     <!-- mapping for SMS HIS220009 -->
+    
+    
+    <!-- Mapping for SMS HIS220010 -->
+
+    <servlet>
+        <servlet-name>Stock_Past_Order</servlet-name>
+        <jsp-file>/SMS/HIS220010.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Stock_Past_Order</servlet-name>
+        <url-pattern>/SMS/Stock_Past_Order</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for SMS HIS040014 -->
     
         
     <!-- Mapping For SMS Hidding URL End -->

@@ -80,7 +80,7 @@
 
 
 <script>
-    
+
     $(function () {
 
 
@@ -160,6 +160,8 @@
 
             } else {
 
+                $('<div class="loading">Loading</div>').appendTo('body');
+
                 var datas = {
                     type: type,
                     dateFrom: dateFrom,
@@ -186,6 +188,8 @@
                     },
                     complete: function (jqXHR, textStatus) {
 
+                        $('.loading').hide();
+
                     }
                 });
 
@@ -198,7 +202,7 @@
 
         // Clicking The Table Row
         $('#OM_viewDiv').on('click', '#OM_tableOrder tbody tr', function () {
-            
+
             var hidden = $(this).closest('tr').find('#OM_json').val();
             var obj = JSON.parse(hidden);
 
@@ -210,7 +214,9 @@
             $('#OD_patName').val(obj.name);
 
             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-            
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
             OD_getPatientDetail(obj.pmi_no);
             OD_getOrderDetail(obj.order_no);
 

@@ -161,6 +161,8 @@
 
             } else {
 
+                $('<div class="loading">Loading</div>').appendTo('body');
+
                 var datas = {
                     type: type,
                     dateFrom: dateFrom,
@@ -187,6 +189,8 @@
                     },
                     complete: function (jqXHR, textStatus) {
 
+                        $('.loading').hide();
+
                     }
                 });
 
@@ -211,6 +215,9 @@
             $('#OD_patName').val(obj.name);
 
             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
 
             OD_getPatientDetail(obj.pmi_no);
             OD_getOrderDetail(obj.order_no);

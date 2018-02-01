@@ -79,7 +79,7 @@
 <form class="form-horizontal" id="OD_orderForm">
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             <!-- Text input-->
             <div class="form-group">
@@ -92,7 +92,7 @@
         </div>
 
 
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             <!-- Text input-->
             <div class="form-group">
@@ -188,6 +188,8 @@
 
             },
             complete: function (jqXHR, textStatus) {
+
+                $('.loading').hide();
 
             }
         });
