@@ -116,12 +116,12 @@
     <table class="table table-bordered table-striped" style="width: 100%" >
         <thead>
             <tr>
-                <th style="width: 15%">Body System</th>
-                <th style="width: 5%">Modality</th>
-                <th style="width: 5%">Procedure Code</th>
-                <th style="width: 15%">Procedure Name</th>
-                <th style="width: 5%">Completed Date</th>
-                <th style="width: 35%">Filler Comment</th>
+                <th>Procedure Code</th>
+                <th>Procedure Name</th>
+                <th>Requestor Comment</th>
+                <th>Outcome</th>
+                <th>Completed Date</th>
+                
             </tr>
         </thead>
         <tbody id="OD_orderDetailTableBody">
@@ -195,30 +195,9 @@
             var orderNo = $('#OD_orderNo').val();
             
             $('#VR_orderNo').val(orderNo);
-            $('#VR_bodySystem').val(obj.bs_name);
-            $('#VR_modality').val(obj.mod_name);
-            $('#VR_proName').val(obj.pm_name);
-            $('#VR_Reqcomment').val(obj.req_com);
-            $('#VR_Filcomment').val(obj.fil_com);
-            $('#VR_gamba').attr('src', 'img/ajax-loader.gif');
-            
-            var dat={
-                orderNo: orderNo,
-                pm_cd:obj.pm_cd
-            };
-            
-            $.ajax({
-                type: 'POST',
-                timeout: 60000,
-                url: "history/control/getImage.jsp",
-                data: dat,
-                success: function (data, textStatus, jqXHR) {
-                        $('#VR_gamba').attr('src', data.trim());
-                    },
-                error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Cannot load image. "+errorThrown);
-                    }
-            });
+            $('#VR_proName').val(obj.pro_name);
+            $('#VR_Reqcomment').val(obj.com);
+            $('#VR_Filcomment').val(obj.out);
             
             $('#OD_modalResult').modal('show');
         });

@@ -28,5 +28,6 @@
                 <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Procedure Sale</a></li>
             </ul>
         </li>
+        <li><a href="HIS180004.jsp"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
     </ul>  
 </div>
