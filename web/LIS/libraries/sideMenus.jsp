@@ -50,6 +50,11 @@
             </ul>
         </li>
         </li>
+        <li>
+            <a  href="Laboratory_Past_Order" >
+                <i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order
+            </a>
+        </li>
 
 
 </div>  
