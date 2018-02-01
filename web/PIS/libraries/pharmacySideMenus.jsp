@@ -37,9 +37,10 @@
         </ul> 
         <!-- Menu with dropdown 2 -->
 
-        <%            
-            
-            String roleCode = session.getAttribute("ROLE_CODE").toString();
+        <li><a href="Pharmacy_Past_Order"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
+
+
+        <%            String roleCode = session.getAttribute("ROLE_CODE").toString();
             String hfcCD = session.getAttribute("HEALTH_FACILITY_CODE").toString();
             String userID = session.getAttribute("USER_ID").toString();
 
