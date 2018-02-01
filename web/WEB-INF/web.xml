@@ -213,6 +213,72 @@
 
 
 
+    <!-- Mapping for LIS HIS050007 -->
+
+    <servlet>
+        <servlet-name>Category_Code_List</servlet-name>
+        <jsp-file>/LIS/HIS050007.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Category_Code_List</servlet-name>
+        <url-pattern>/LIS/Category_Code_List</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for LIS HIS050007 -->
+    
+    
+    
+    <!-- Mapping for LIS HIS050008 -->
+
+    <servlet>
+        <servlet-name>Item_Code_List</servlet-name>
+        <jsp-file>/LIS/HIS050008.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Item_Code_List</servlet-name>
+        <url-pattern>/LIS/Item_Code_List</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for LIS HIS050008 -->
+    
+    
+    
+    
+    <!-- Mapping for LIS HIS050009 -->
+
+    <servlet>
+        <servlet-name>Laboratory_Order_List</servlet-name>
+        <jsp-file>/LIS/HIS050009.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Laboratory_Order_List</servlet-name>
+        <url-pattern>/LIS/Laboratory_Order_List</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for LIS HIS050009 -->
+    
+    
+    
+    
+        
+    
+    <!-- Mapping for LIS HIS050010 -->
+
+    <servlet>
+        <servlet-name>Laboratory_Sales_List</servlet-name>
+        <jsp-file>/LIS/HIS050010.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Laboratory_Sales_List</servlet-name>
+        <url-pattern>/LIS/Laboratory_Sales_List</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for LIS HIS050009 -->
+    
+    
+    
+
+
     <!-- Unused Mapping -->
 
     <servlet>

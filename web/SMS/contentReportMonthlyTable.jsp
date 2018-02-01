@@ -30,7 +30,7 @@
 <table  id="reportMonthlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead >
     <th style="text-align: center;">MONTH/YEAR</th>
-    <th style="text-align: center;">TOTAL DRUG QUANTITY RELEASED</th>
+    <th style="text-align: center;">TOTAL ITEM QUANTITY RELEASED</th>
     <th style="text-align: center;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>

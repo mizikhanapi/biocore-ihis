@@ -29,7 +29,7 @@
 <table  id="reportYearlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th style="text-align: center;">YEAR</th>
-    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
+    <th style="text-align: center;">TOTAL ITEM QUANTITY RELEASED</th>
     <th style="text-align: center;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
@@ -209,7 +209,7 @@
                 data: data,
                 timeout: 3000,
                 success: function (returnReportDetailsTableHTML) {
-                    
+
                     console.log(returnReportDetailsTableHTML);
 
 
