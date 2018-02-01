@@ -33,6 +33,7 @@
             <li><a data-toggle="modal" data-target="#" href="Sales_For_Stock">Sales For Stock</a></li>
         </ul> 
         <!-- Menu with dropdown 2 -->
+        <li><a href="Stock_Past_Order"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
     </ul>  
 
 </div>
