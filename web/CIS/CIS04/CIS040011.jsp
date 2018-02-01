@@ -20,7 +20,7 @@
                         </li>
                         <li id="POSSurgical_History" >
                             <a href="#surgicalProcedure2" data-toggle="tab">
-                                Drug Procedure History</a>
+                                Surgical Procedure History</a>
                         </li>
                     </ul>
                 </div>
