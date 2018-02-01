@@ -27,16 +27,16 @@
     } else if (type.equalsIgnoreCase("Order")) {
         whereClause = "AND om.order_no='" + inputID + "' ;";
     } else if (type.equalsIgnoreCase("Date")) {
-        whereClause = "AND (date(om.order_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') );";
+        whereClause = "AND (date(om.encounter_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') );";
     }
 
-    String query = "SELECT om.order_no, om.order_date, om.pmi_no, bio.`PATIENT_NAME` "
-            + "FROM ris_order_master om "
+    String query = "SELECT om.order_no, om.encounter_date, om.pmi_no, bio.`PATIENT_NAME` "
+            + "FROM opt_order_master om "
             + "JOIN pms_patient_biodata bio ON bio.`PMI_NO`=om.pmi_no "
             + "WHERE om.hfc_to='" + hfc_cd + "' AND om.order_status='2' " + whereClause;
 
     ArrayList<ArrayList<String>> dataOm = con.getData(query);
-
+    
 %>
 <table class="table table-bordered table-striped" id="OM_tableOrder">
     <thead>

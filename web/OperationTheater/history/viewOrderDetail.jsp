@@ -116,12 +116,12 @@
     <table class="table table-bordered table-striped" style="width: 100%" >
         <thead>
             <tr>
-                <th style="width: 15%">Body System</th>
-                <th style="width: 5%">Modality</th>
-                <th style="width: 5%">Procedure Code</th>
-                <th style="width: 15%">Procedure Name</th>
-                <th style="width: 5%">Completed Date</th>
-                <th style="width: 35%">Filler Comment</th>
+                <th>Category</th>
+                <th>Procedure Code</th>
+                <th>Procedure Name</th>
+                <th>Comment</th>
+                <th>Start</th>
+                <th>End</th>
             </tr>
         </thead>
         <tbody id="OD_orderDetailTableBody">
@@ -168,6 +168,7 @@
             url: "history/control/getOrderDetail.jsp",
             data: {orderNo: orderNo},
             success: function (data, textStatus, jqXHR) {
+                
                 $('#OD_orderDetailTableBody').html(data);
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -195,16 +196,20 @@
             var orderNo = $('#OD_orderNo').val();
             
             $('#VR_orderNo').val(orderNo);
-            $('#VR_bodySystem').val(obj.bs_name);
-            $('#VR_modality').val(obj.mod_name);
-            $('#VR_proName').val(obj.pm_name);
-            $('#VR_Reqcomment').val(obj.req_com);
-            $('#VR_Filcomment').val(obj.fil_com);
-            $('#VR_gamba').attr('src', 'img/ajax-loader.gif');
+            $('#VR_category').val(obj.cat_name);
+            $('#VR_proName').val(obj.pro_name);
+            $('#VR_start').val(obj.start);
+            $('#VR_end').val(obj.end);
+            $('#VR_minutes').val(obj.minute);
+            $('#VR_room').val(obj.room);
+            $('#VR_consultant').val(obj.consultant);
+            $('#VR_prepare').val(obj.prepare);
+            $('#VR_comment').val(obj.comment);
+            $('#VR_gamba').attr('src', 'img/LoaderIcon.gif');
             
             var dat={
                 orderNo: orderNo,
-                pm_cd:obj.pm_cd
+                pm_cd:obj.pro_cd
             };
             
             $.ajax({
@@ -214,6 +219,7 @@
                 data: dat,
                 success: function (data, textStatus, jqXHR) {
                         $('#VR_gamba').attr('src', data.trim());
+                        
                     },
                 error: function (jqXHR, textStatus, errorThrown) {
                         bootbox.alert("Cannot load image. "+errorThrown);

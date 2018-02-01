@@ -15,12 +15,7 @@
             <div class="modal-body">
 
                 <form class="form-horizontal" id="VR_form">
-                    
-                    <input type="hidden" id="VR_pmiNo">
-                    <input type="hidden" id="VR_orderDate">
-                    <input type="hidden" id="VR_episodeDate">
-                    <input type="hidden" id="VR_encounterDate">
-                    
+                                       
                      <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Order No.*</label>
@@ -33,31 +28,66 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Body System*</label>
+                        <label class="col-md-4 control-label" for="textinput">Category</label>
                         <div class="col-md-8">
-                            <input class="form-control" type="text" readonly id="VR_bodySystem">
-                            <input type="hidden"  id="VR_bodySystem_cd">
-
+                            <input class="form-control" type="text" readonly id="VR_category">
+                          
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Modality*</label>
-                        <div class="col-md-8">
-                            <input class="form-control" type="text" readonly id="VR_modality">
-                            <input type="hidden" id="VR_modality_cd">
-
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Procedure*</label>
+                        <label class="col-md-4 control-label" for="textinput">Procedure</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" id="VR_proName" readonly>
-                            <input type="hidden" class="form-control" id="VR_pro_cd">
-
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Start</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="VR_start" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">End</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="VR_end" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group hidden">
+                        <label class="col-md-4 control-label" for="textinput">Duration(Minutes)</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="VR_minutes" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Room No.</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="VR_room" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Consultant</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="VR_consultant" readonly>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Prepared by</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="VR_prepare" readonly>
                         </div>
                     </div>
 
@@ -72,20 +102,12 @@
                     
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Requestor Comment</label>
+                        <label class="col-md-4 control-label" for="textinput">Comment</label>
                        <div class="col-md-8">
-                           <textarea id="VR_Reqcomment" placeholder="Write your comment here (Optional)" class="form-control input-md" maxlength="500" rows="4" readonly></textarea>
+                           <textarea id="VR_comment" placeholder="Write your comment here (Optional)" class="form-control input-md" maxlength="500" rows="4" readonly></textarea>
                         </div>
                     </div>
-                     
-                     <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Filler Comment</label>
-                       <div class="col-md-8">
-                           <textarea id="VR_Filcomment" placeholder="Write your comment here (Optional)" class="form-control input-md" maxlength="500" rows="4" readonly></textarea>
-                        </div>
-                    </div>
-
+                  
                 </form>
 
 

@@ -22,10 +22,16 @@
         if(dataIm.get(0).get(0) == null){
             out.print(request.getContextPath()+"/assets/img/no-image.png");
         }
+        else if(dataIm.get(0).get(0).isEmpty()){
+            out.print(request.getContextPath()+"/assets/img/no-image.png");
+        }
         else{
             out.print(dataIm.get(0).get(0));
         }
         
+    }
+    else{
+        out.print(request.getContextPath()+"/assets/img/no-image.png");
     }
     
 %>

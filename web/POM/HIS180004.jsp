@@ -18,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | RIS - View History</title>
+        <title>iHIS | POM - View History</title>
         <!-- header -->
         <%@include file = "libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
