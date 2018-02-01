@@ -22,9 +22,13 @@
 
     String whereClause = "";
 
-    if (type.equalsIgnoreCase("User")) {
+    if (type.equalsIgnoreCase("PMI")) {
 
-        whereClause = "AND om.customer_id = '" + inputID + "' ;";
+        whereClause = "AND om.pmi_no = '" + inputID + "' ;";
+
+    } else if (type.equalsIgnoreCase("IC")) {
+
+        whereClause = "AND bio.NEW_IC_NO = '" + inputID + "' ;";
 
     } else if (type.equalsIgnoreCase("Order")) {
 
@@ -32,7 +36,7 @@
 
     } else if (type.equalsIgnoreCase("Date")) {
 
-        whereClause = "AND (date(om.txt_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') ) ;";
+        whereClause = "AND (date(om.order_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') ) ;";
 
     }
 
@@ -76,7 +80,7 @@
         </tr>
         <%
             }//end for loop
-%>
+        %>
     </tbody>
 </table>
 
