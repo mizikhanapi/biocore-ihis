@@ -31,7 +31,7 @@
         </li>
         <li>
             <a  href="Post_To_Bill" >
-                <i class="fa fa-file-text fa-lg"></i> Post To Bill
+                <i class="fa fa-paper-plane fa-lg"></i> Post To Bill
             </a>
         </li>
         <li>
