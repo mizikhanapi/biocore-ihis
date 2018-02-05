@@ -50,7 +50,7 @@
                                 <th>Range</th>
                                 <th>Drug Details</th>
                                 <th>Supply</th>
-                                <th>Approval</th>
+                                <th>Record Information</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -242,6 +242,10 @@
 
         // Function for Table Start 
         function ChartNursingUseTableFiter(viewData) {
+
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
 
             var data = {
                 dataString: viewData,

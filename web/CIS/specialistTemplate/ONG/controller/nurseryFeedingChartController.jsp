@@ -58,7 +58,7 @@
         <th>PU</th>
         <th>BO</th>
         <th>Remarks</th>
-        <th>Doctor Approval</th>
+        <th>Record Information</th>
         <th>Status</th>
         <th>Action</th>
         </thead>
@@ -76,7 +76,13 @@
         <td><%=datas.get(i).get(11)%></td>                   <!-- PU -->                                                             <!-- Pulse Left -->  
         <td><%=datas.get(i).get(12)%></td>                  <!-- BO -->
         <td><%=datas.get(i).get(13)%></td>                  <!-- Remarks -->
-        <td><%=datas.get(i).get(17)%></td>                  <!-- Approved By -->
+        <td>
+            <strong>Created By</strong><br><!-- Created By -->
+            <%=datas.get(i).get(18)%>
+            <br><br>
+            <strong>Approved By</strong><br><!-- Approved By -->
+            <%=datas.get(i).get(17)%>
+        </td>   
         <td>
             <%
                 if (datas.get(i).get(15).equalsIgnoreCase("pending")) { %>
@@ -109,14 +115,18 @@
 
 </div>
 <script>
+    
     $('#tableNurseryFeedingChartTable').DataTable({
         "paging": true,
         "lengthChange": false,
         "pageLength": 4,
         "language": {
             "emptyTable": "No Record Available To Display"
+        }, initComplete: function (settings, json) {
+            $('.loading').hide();
         }
     });
+    
 </script>
 
 <% }%>

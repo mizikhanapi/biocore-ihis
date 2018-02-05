@@ -37,10 +37,12 @@ public class NurseryFeedingChart {
             sql = "SELECT nurfe.pmi_no,nurfe.hfc_cd,nurfe.episode_date,nurfe.encounter_date,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%r'),DATE_FORMAT(DATE(nurfe.feeding_datetime),'%d/%m/%Y'), "
                     //          6                   7                   8                       9                   10           11      12         13                             
                     + " nurfe.strength_milk,nurfe.method_feeding,nurfe.aspirate_vomit,nurfe.body_temperature,nurfe.resp_n_hr,nurfe.pu,nurfe.bo,nurfe.remark, "
-                    //             14           15                  16                                              17                            
-                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(adm.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (nurfe.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //             14           15                  16                                              17                  18              
+                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
+                    //     JOIN ADM   CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (nurfe.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM   APPROVED BY                           
+                    + " LEFT JOIN adm_users admAppr ON (nurfe.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                 
                     + " WHERE nurfe.pmi_no ='" + pmino + "' AND DATE(nurfe.feeding_datetime) ='" + dateTime + "'; ";
 
@@ -50,10 +52,12 @@ public class NurseryFeedingChart {
             sql = "SELECT nurfe.pmi_no,nurfe.hfc_cd,nurfe.episode_date,nurfe.encounter_date,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%r'),DATE_FORMAT(DATE(nurfe.feeding_datetime),'%d/%m/%Y'), "
                     //          6                   7                   8                       9                   10           11      12         13                             
                     + " nurfe.strength_milk,nurfe.method_feeding,nurfe.aspirate_vomit,nurfe.body_temperature,nurfe.resp_n_hr,nurfe.pu,nurfe.bo,nurfe.remark, "
-                    //             14           15                  16                                              17                            
-                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(adm.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (nurfe.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //             14           15                  16                                              17                  18              
+                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
+                    //     JOIN ADM   CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (nurfe.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM   APPROVED BY                           
+                    + " LEFT JOIN adm_users admAppr ON (nurfe.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                 
                     + " where nurfe.pmi_no ='" + pmino + "' AND DATE(nurfe.feeding_datetime) = SUBDATE('" + dateTime + "',1); ";
 
@@ -63,10 +67,12 @@ public class NurseryFeedingChart {
             sql = "SELECT nurfe.pmi_no,nurfe.hfc_cd,nurfe.episode_date,nurfe.encounter_date,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%r'),DATE_FORMAT(DATE(nurfe.feeding_datetime),'%d/%m/%Y'), "
                     //          6                   7                   8                       9                   10           11      12         13                             
                     + " nurfe.strength_milk,nurfe.method_feeding,nurfe.aspirate_vomit,nurfe.body_temperature,nurfe.resp_n_hr,nurfe.pu,nurfe.bo,nurfe.remark, "
-                    //             14           15                  16                                              17                            
-                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(adm.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (nurfe.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //             14           15                  16                                              17                  18              
+                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
+                    //     JOIN ADM   CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (nurfe.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM   APPROVED BY                           
+                    + " LEFT JOIN adm_users admAppr ON (nurfe.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                                  
                     + " where nurfe.pmi_no ='" + pmino + "' AND DATE(nurfe.feeding_datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
@@ -76,10 +82,12 @@ public class NurseryFeedingChart {
             sql = "SELECT nurfe.pmi_no,nurfe.hfc_cd,nurfe.episode_date,nurfe.encounter_date,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%r'),DATE_FORMAT(DATE(nurfe.feeding_datetime),'%d/%m/%Y'), "
                     //          6                   7                   8                       9                   10           11      12         13                             
                     + " nurfe.strength_milk,nurfe.method_feeding,nurfe.aspirate_vomit,nurfe.body_temperature,nurfe.resp_n_hr,nurfe.pu,nurfe.bo,nurfe.remark, "
-                    //             14           15                  16                                              17                            
-                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(adm.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (nurfe.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //             14           15                  16                                              17                  18              
+                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
+                    //     JOIN ADM   CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (nurfe.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM   APPROVED BY                           
+                    + " LEFT JOIN adm_users admAppr ON (nurfe.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                                            
                     + " where nurfe.pmi_no ='" + pmino + "' AND DATE(nurfe.feeding_datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
@@ -89,10 +97,12 @@ public class NurseryFeedingChart {
             sql = "SELECT nurfe.pmi_no,nurfe.hfc_cd,nurfe.episode_date,nurfe.encounter_date,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%r'),DATE_FORMAT(DATE(nurfe.feeding_datetime),'%d/%m/%Y'), "
                     //          6                   7                   8                       9                   10           11      12         13                             
                     + " nurfe.strength_milk,nurfe.method_feeding,nurfe.aspirate_vomit,nurfe.body_temperature,nurfe.resp_n_hr,nurfe.pu,nurfe.bo,nurfe.remark, "
-                    //             14           15                  16                                              17                            
-                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(adm.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (nurfe.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //             14           15                  16                                              17                  18              
+                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
+                    //     JOIN ADM   CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (nurfe.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM   APPROVED BY                           
+                    + " LEFT JOIN adm_users admAppr ON (nurfe.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                                            
                     + " where nurfe.pmi_no ='" + pmino + "' AND DATE(nurfe.feeding_datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
 
@@ -105,10 +115,12 @@ public class NurseryFeedingChart {
             sql = "SELECT nurfe.pmi_no,nurfe.hfc_cd,nurfe.episode_date,nurfe.encounter_date,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%r'),DATE_FORMAT(DATE(nurfe.feeding_datetime),'%d/%m/%Y'), "
                     //          6                   7                   8                       9                   10           11      12         13                             
                     + " nurfe.strength_milk,nurfe.method_feeding,nurfe.aspirate_vomit,nurfe.body_temperature,nurfe.resp_n_hr,nurfe.pu,nurfe.bo,nurfe.remark, "
-                    //             14           15                  16                                              17                            
-                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(adm.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (nurfe.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //             14           15                  16                                              17                  18              
+                    + " nurfe.approved_by,nurfe.status,TIME_FORMAT(TIME(nurfe.feeding_datetime),'%H:%i'),IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursery_feeding_chart nurfe "
+                    //     JOIN ADM   CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (nurfe.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM   APPROVED BY                           
+                    + " LEFT JOIN adm_users admAppr ON (nurfe.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                                         
                     + " where nurfe.pmi_no ='" + pmino + "' AND DATE(nurfe.feeding_datetime) between '" + startDate + "' and '" + endDate + "'; ";
 
@@ -201,7 +213,7 @@ public class NurseryFeedingChart {
         hfc_cd = splittedData[1];
         episode_date = splittedData[2];
         encounter_date = splittedData[3];
-        userid = splittedData[21];
+        userid = splittedData[22];
 
         String sql = "UPDATE lhr_ong_nursery_feeding_chart SET status = 'Approved' , approved_by = '" + userid + "' WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "'";
 

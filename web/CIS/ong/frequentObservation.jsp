@@ -47,17 +47,16 @@
             <th>Temperature</th>
             <th>Pulse</th>
             <th>Respiration</th>
-            <th>BP</th>
-            <th>Pupil Right</th>
-            <th>Pupil Left</th>
+            <th>B. Pressure</th>
+            <th>Pupil Details</th>
             <th>Conscious State &amp; Remarks</th>
             <th>Drugs Given</th>
-            <th>Doctor Approval</th>
+            <th>Record Information</th>
             <th>Action</th>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="12" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                    <td colspan="11" align="center">No Record To Show<br>Please Select A History Assessment</td>
                 </tr>
             </tbody>
         </table>
@@ -216,6 +215,10 @@
 
         // Function for Table Start 
         function FreqObservationChartTableFiter(viewData) {
+
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
 
             var data = {
                 dataString: viewData,

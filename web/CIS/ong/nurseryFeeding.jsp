@@ -52,7 +52,7 @@
             <th>PU</th>
             <th>BO</th>
             <th>Remarks</th>
-            <th>Approval</th>
+            <th>Record Information</th>
             <th>Action</th>   
             </thead>
             <tbody>
@@ -224,6 +224,10 @@
 
         // Function for Table Start 
         function NurseryFeedingChartTableFiter(viewData) {
+
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
 
             var data = {
                 dataString: viewData,

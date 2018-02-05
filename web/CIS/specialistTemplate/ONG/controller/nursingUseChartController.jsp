@@ -62,7 +62,7 @@
         <th>Range</th>
         <th>Drug Details</th>
         <th>Supply</th>
-        <th>Approval</th>
+        <th>Record Information</th>
         <th>Status</th>
         <th>Action</th>
         </thead>
@@ -100,7 +100,13 @@
             <br>
             Dispensed By : <strong><%=datas.get(i).get(28)%></strong>
         </td> 
-        <td><%=datas.get(i).get(21)%></td>                  <!-- Approved By -->
+        <td>
+            <strong>Created By</strong><br><!-- Created By -->
+            <%=datas.get(i).get(29)%>
+            <br><br>
+            <strong>Approved By</strong><br><!-- Approved By -->
+            <%=datas.get(i).get(21)%>
+        </td> 
         <td>
             <%
                 if (datas.get(i).get(16).equalsIgnoreCase("pending")) { %>
@@ -134,14 +140,18 @@
 </div>
 
 <script>
+
     $('#tableChartNursingUseMasterTable').DataTable({
         "paging": true,
         "lengthChange": false,
         "pageLength": 2,
         "language": {
             "emptyTable": "No Record Available To Display"
+        }, initComplete: function (settings, json) {
+            $('.loading').hide();
         }
     });
+
 </script>
 
 
@@ -204,14 +214,18 @@
 
 
 <script>
+
     $('#tableChartNursingUseDetailTable').DataTable({
         "paging": true,
         "lengthChange": false,
         "pageLength": 2,
         "language": {
             "emptyTable": "No Record Available To Display"
+        }, initComplete: function (settings, json) {
+            $('.loading').hide();
         }
     });
+
 </script>
 
 

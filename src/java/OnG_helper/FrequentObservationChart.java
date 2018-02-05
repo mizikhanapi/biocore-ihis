@@ -39,12 +39,14 @@ public class FrequentObservationChart {
                     + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
                     //               14                     15                  16                  17            18                                 19                                 20
                     + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          21                                 
-                    + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
+                    //          21                              22                           
+                    + " IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (freq.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (freq.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM APPROVED BY                                                      
+                    + " LEFT JOIN adm_users admAppr ON (freq.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                 
                     + " WHERE freq.pmi_no ='" + pmino + "' AND DATE(freq.observation_datetime) ='" + dateTime + "'; ";
 
@@ -56,12 +58,14 @@ public class FrequentObservationChart {
                     + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
                     //               14                     15                  16                  17            18                                 19                                 20
                     + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          21                                                    
-                    + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
+                    //          21                              22                           
+                    + " IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (freq.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (freq.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM APPROVED BY                                                      
+                    + " LEFT JOIN adm_users admAppr ON (freq.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //      Where Condition                                 
                     + " where freq.pmi_no ='" + pmino + "' and DATE(freq.observation_datetime) = SUBDATE('" + dateTime + "',1); ";
 
@@ -73,12 +77,14 @@ public class FrequentObservationChart {
                     + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
                     //               14                     15                  16                  17            18                                 19                                 20
                     + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          21                                                    
-                    + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
+                    //          21                              22                           
+                    + " IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (freq.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (freq.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM APPROVED BY                                                      
+                    + " LEFT JOIN adm_users admAppr ON (freq.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //      Where Condition                                 
                     + " where freq.pmi_no ='" + pmino + "' and DATE(freq.observation_datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
@@ -90,12 +96,14 @@ public class FrequentObservationChart {
                     + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
                     //               14                     15                  16                  17            18                                 19                                 20
                     + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          21                                                 
-                    + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
+                    //          21                              22                           
+                    + " IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (freq.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (freq.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM APPROVED BY                                                      
+                    + " LEFT JOIN adm_users admAppr ON (freq.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //      Where Condition                                 
                     + " where freq.pmi_no ='" + pmino + "' and DATE(freq.observation_datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
@@ -107,12 +115,14 @@ public class FrequentObservationChart {
                     + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
                     //               14                     15                  16                  17            18                                 19                                 20
                     + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          21                                                      
-                    + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
+                    //          21                              22                           
+                    + " IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (freq.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (freq.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM APPROVED BY                                                      
+                    + " LEFT JOIN adm_users admAppr ON (freq.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //      Where Condition                                 
                     + " where freq.pmi_no ='" + pmino + "' and DATE(freq.observation_datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
 
@@ -128,12 +138,14 @@ public class FrequentObservationChart {
                     + " freq.temperature,freq.pulse_rate,freq.respiratory_rate,freq.blood_pressure_sys,freq.blood_pressure_dia,freq.pupil_right_size,freq.pupil_right_react,freq.pupil_left_size, "
                     //               14                     15                  16                  17            18                                 19                                 20
                     + " freq.pupil_left_react,freq.conscious_state_remarks,freq.drug_given,freq.approved_by,freq.status,TIME_FORMAT(TIME(freq.observation_datetime),'%H:%i'),IFNULL(mdc.d_trade_name,''),  "
-                    //          21                                                      
-                    + " IFNULL(adm.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
+                    //          21                              22                           
+                    + " IFNULL(admAppr.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_frequent_observation_chart freq "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (freq.drug_given = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (freq.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM CREATED BY                           
+                    + " LEFT JOIN adm_users admCre ON (freq.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM APPROVED BY                                                      
+                    + " LEFT JOIN adm_users admAppr ON (freq.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     Where Condition                                 
                     + " where freq.pmi_no ='" + pmino + "' and DATE(freq.observation_datetime) between '" + startDate + "' and '" + endDate + "'; ";
 
@@ -232,7 +244,7 @@ public class FrequentObservationChart {
         hfc_cd = splittedData[1];
         episode_date = splittedData[2];
         encounter_date = splittedData[3];
-        userid = splittedData[25];
+        userid = splittedData[26];
 
         String sql = "UPDATE lhr_ong_frequent_observation_chart SET status = 'Approved' , approved_by = '" + userid + "' WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "'";
 

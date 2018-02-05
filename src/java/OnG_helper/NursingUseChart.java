@@ -40,13 +40,15 @@ public class NursingUseChart {
                     //        10                11              12                        13                   14                    15               16                            17                                   
                     + " mast.drug_code,mast.supply_one,mast.supply_one_dispensed_by,mast.supply_two,mast.supply_two_dispensed_by,mast.approved_by,mast.status,TIME_FORMAT(TIME(mast.master_datetime),'%H:%i'), "
                     //                      18                                      19                              20                          21                          22                      23
-                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(adm.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
-                    //               24                     25                              26                      27                              28              
-                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
+                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(admAppr.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    //               24                     25                              26                      27                              28                      29
+                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (mast.drug_code = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (mast.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  CREATED BY                            
+                    + " LEFT JOIN adm_users admCre ON (mast.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  APPROVED BY                            
+                    + " LEFT JOIN adm_users admAppr ON (mast.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 1                          
                     + " LEFT JOIN adm_users admDis1 ON (mast.supply_one_dispensed_by = admDis1.USER_ID) AND admDis1.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 2                            
@@ -63,13 +65,15 @@ public class NursingUseChart {
                     //        10                11              12                        13                   14                    15               16                            17                                   
                     + " mast.drug_code,mast.supply_one,mast.supply_one_dispensed_by,mast.supply_two,mast.supply_two_dispensed_by,mast.approved_by,mast.status,TIME_FORMAT(TIME(mast.master_datetime),'%H:%i'), "
                     //                      18                                      19                              20                          21                          22                      23
-                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(adm.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
-                    //               24                     25                              26                      27                              28              
-                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
+                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(admAppr.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    //               24                     25                              26                      27                              28                      29
+                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (mast.drug_code = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (mast.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  CREATED BY                            
+                    + " LEFT JOIN adm_users admCre ON (mast.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  APPROVED BY                            
+                    + " LEFT JOIN adm_users admAppr ON (mast.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 1                          
                     + " LEFT JOIN adm_users admDis1 ON (mast.supply_one_dispensed_by = admDis1.USER_ID) AND admDis1.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 2                            
@@ -84,15 +88,17 @@ public class NursingUseChart {
                     //                 6                                         7                                              8                                               9                                                
                     + " TIME_FORMAT(TIME(mast.start_date),'%r'),DATE_FORMAT(DATE(mast.start_date),'%d/%m/%Y'),TIME_FORMAT(TIME(mast.end_date),'%r'),DATE_FORMAT(DATE(mast.end_date),'%d/%m/%Y'),"
                     //        10                11              12                        13                   14                    15               16                            17                                   
-                    + " mast.drug_code,mast.supply_one,mast.supply_one_dispensed_by,mast.supply_two,mast.supply_two_dispensed_by,mast.approved_by,mast.status,TIME_FORMAT(TIME(mast.master_datetime),'%H:%i'), "
-                    //                      18                                      19                              20                          21                          22                      23
-                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(adm.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(admAppr.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    //               24                     25                              26                      27                              28                      29
+                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //               24                     25                              26                      27                              28              
                     + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (mast.drug_code = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (mast.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  CREATED BY                            
+                    + " LEFT JOIN adm_users admCre ON (mast.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  APPROVED BY                            
+                    + " LEFT JOIN adm_users admAppr ON (mast.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 1                          
                     + " LEFT JOIN adm_users admDis1 ON (mast.supply_one_dispensed_by = admDis1.USER_ID) AND admDis1.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 2                            
@@ -109,13 +115,15 @@ public class NursingUseChart {
                     //        10                11              12                        13                   14                    15               16                            17                                   
                     + " mast.drug_code,mast.supply_one,mast.supply_one_dispensed_by,mast.supply_two,mast.supply_two_dispensed_by,mast.approved_by,mast.status,TIME_FORMAT(TIME(mast.master_datetime),'%H:%i'), "
                     //                      18                                      19                              20                          21                          22                      23
-                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(adm.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
-                    //               24                     25                              26                      27                              28              
-                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
+                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(admAppr.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    //               24                     25                              26                      27                              28                      29
+                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (mast.drug_code = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (mast.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  CREATED BY                            
+                    + " LEFT JOIN adm_users admCre ON (mast.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  APPROVED BY                            
+                    + " LEFT JOIN adm_users admAppr ON (mast.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 1                          
                     + " LEFT JOIN adm_users admDis1 ON (mast.supply_one_dispensed_by = admDis1.USER_ID) AND admDis1.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 2                            
@@ -132,13 +140,15 @@ public class NursingUseChart {
                     //        10                11              12                        13                   14                    15               16                            17                                   
                     + " mast.drug_code,mast.supply_one,mast.supply_one_dispensed_by,mast.supply_two,mast.supply_two_dispensed_by,mast.approved_by,mast.status,TIME_FORMAT(TIME(mast.master_datetime),'%H:%i'), "
                     //                      18                                      19                              20                          21                          22                      23
-                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(adm.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
-                    //               24                     25                              26                      27                              28              
-                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
+                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(admAppr.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    //               24                     25                              26                      27                              28                      29
+                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (mast.drug_code = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (mast.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  CREATED BY                            
+                    + " LEFT JOIN adm_users admCre ON (mast.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  APPROVED BY                            
+                    + " LEFT JOIN adm_users admAppr ON (mast.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 1                          
                     + " LEFT JOIN adm_users admDis1 ON (mast.supply_one_dispensed_by = admDis1.USER_ID) AND admDis1.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 2                            
@@ -159,13 +169,15 @@ public class NursingUseChart {
                     //        10                11              12                        13                   14                    15               16                            17                                   
                     + " mast.drug_code,mast.supply_one,mast.supply_one_dispensed_by,mast.supply_two,mast.supply_two_dispensed_by,mast.approved_by,mast.status,TIME_FORMAT(TIME(mast.master_datetime),'%H:%i'), "
                     //                      18                                      19                              20                          21                          22                      23
-                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(adm.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
-                    //               24                     25                              26                      27                              28              
-                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
+                    + " TIME_FORMAT(TIME(mast.start_date),'%H:%i'),TIME_FORMAT(TIME(mast.end_date),'%H:%i'),IFNULL(mdc.d_trade_name,''),IFNULL(admAppr.USER_NAME,''),mast.master_datetime,IFNULL(mdc.d_strength,''), "
+                    //               24                     25                              26                      27                              28                      29
+                    + " IFNULL(mdc.d_route_code,''),IFNULL(mdc.d_form_code,''),IFNULL(mdc.d_frequency,''),IFNULL(admDis1.USER_NAME,''),IFNULL(admDis2.USER_NAME,''),IFNULL(admCre.USER_NAME,'') FROM lhr_ong_nursing_use_master mast "
                     //     JOIN MDC                               
                     + " LEFT JOIN pis_mdc2 mdc ON (mast.drug_code = mdc.UD_MDC_CODE) AND mdc.hfc_cd = '" + hfc + "' AND mdc.discipline_cd = '" + dis + "' "
-                    //     JOIN ADM                              
-                    + " LEFT JOIN adm_users adm ON (mast.approved_by = adm.USER_ID) AND adm.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  CREATED BY                            
+                    + " LEFT JOIN adm_users admCre ON (mast.created_by = admCre.USER_ID) AND admCre.HEALTH_FACILITY_CODE = '" + hfc + "' "
+                    //     JOIN ADM  APPROVED BY                            
+                    + " LEFT JOIN adm_users admAppr ON (mast.approved_by = admAppr.USER_ID) AND admAppr.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 1                          
                     + " LEFT JOIN adm_users admDis1 ON (mast.supply_one_dispensed_by = admDis1.USER_ID) AND admDis1.HEALTH_FACILITY_CODE = '" + hfc + "' "
                     //     JOIN ADM DIS 2                            
@@ -256,7 +268,7 @@ public class NursingUseChart {
         episode_date = splittedData[2];
         encounter_date = splittedData[3];
         masDate = splittedData[22];
-        userid = splittedData[32];
+        userid = splittedData[33];
 
         String sql = "UPDATE lhr_ong_nursing_use_master SET status = 'Approved' , approved_by = '" + userid + "' WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "'  and master_datetime='" + masDate + "'";
         String sql2 = "UPDATE lhr_ong_nursing_use_detail SET status = 'Approved' WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and master_datetime='" + masDate + "'";

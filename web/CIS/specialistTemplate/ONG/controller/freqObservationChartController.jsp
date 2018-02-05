@@ -28,11 +28,11 @@
     Boolean result;
 
     if (methodName.equalsIgnoreCase("add")) {
-         result = freqObser.addFrequentObservation(data + longString);
-         out.print(result);
+        result = freqObser.addFrequentObservation(data + longString);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
-         result = freqObser.updateFrequentObservation(data);
-         out.print(result);
+        result = freqObser.updateFrequentObservation(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("approve")) {
         result = freqObser.approveFrequentObservation(data + longString);
         out.print(result);
@@ -53,12 +53,11 @@
         <th>Temperature</th>
         <th>Pulse</th>
         <th>Respiration</th>
-        <th>BP</th>
-        <th>Pupil Right</th>
-        <th>Pupil Left</th>
+        <th>B. Pressure</th>
+        <th>Pupil Details</th>
         <th>Conscious State &amp; Remarks</th>
         <th>Drugs Given</th>
-        <th>Doctor Approval</th>
+        <th>Record Information</th>
         <th>Status</th>
         <th>Action</th>
         </thead>
@@ -72,20 +71,26 @@
         <td><%=datas.get(i).get(7)%></td>                   <!-- Pulse -->
         <td><%=datas.get(i).get(8)%></td>                   <!-- Respiration -->
         <td>            
-            Size: <strong><%=datas.get(i).get(9)%></strong><br>
-            React: <strong><strong><%=datas.get(i).get(10)%></strong>
+            Systolic: <strong><%=datas.get(i).get(9)%></strong><br>
+            Diastolic: <strong><strong><%=datas.get(i).get(10)%></strong>
         </td>                   <!-- BP -->
-        <td>                                                                <!-- Pulse Right -->
+        <td>   
+            <strong>Pulse Right</strong><br><!-- Pulse Right -->
             Size: <strong><%=datas.get(i).get(11)%></strong><br>
-            React: <strong><strong><%=datas.get(i).get(12)%></strong>
-        </td>                                                               <!-- Pulse Right -->                
-        <td>                                                                <!-- Pulse Left -->
+            React: <strong><%=datas.get(i).get(12)%></strong><br><br>
+            <strong>Pulse Left</strong><br><!-- Pulse Left -->
             Size: <strong><%=datas.get(i).get(13)%></strong><br>
-            React: <strong><strong><%=datas.get(i).get(14)%></strong>
-        </td>                                                               <!-- Pulse Left -->  
+            React:<strong><%=datas.get(i).get(14)%></strong>
+        </td>                                                               <!-- Pulse Right -->                
         <td><%=datas.get(i).get(15)%></td>                  <!-- Remark -->
         <td><%=datas.get(i).get(20)%></td>                  <!-- Drug -->
-        <td><%=datas.get(i).get(21)%></td>                  <!-- Approved By -->
+        <td>
+            <strong>Created By</strong><br><!-- Created By -->
+            <%=datas.get(i).get(22)%>
+            <br><br>
+            <strong>Approved By</strong><br><!-- Approved By -->
+            <%=datas.get(i).get(21)%>
+        </td>                  <!-- Approved By -->
         <td>
             <%
                 if (datas.get(i).get(18).equalsIgnoreCase("pending")) { %>
@@ -118,14 +123,18 @@
 
 </div>
 <script>
+
     $('#tableFreqObservationChartTable').DataTable({
         "paging": true,
         "lengthChange": false,
         "pageLength": 4,
         "language": {
             "emptyTable": "No Record Available To Display"
+        }, initComplete: function (settings, json) {
+            $('.loading').hide();
         }
     });
+
 </script>
 
 <% }%>
