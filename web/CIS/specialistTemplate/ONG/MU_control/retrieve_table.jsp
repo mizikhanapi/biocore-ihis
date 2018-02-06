@@ -32,14 +32,16 @@
             <th>Intravenous Therapy</th>
             <th>Date / Time Off</th>
             <th>Status</th>
+            <th>Created By</th>
             <th>Action</th>
         </tr>    
     </thead>
     <tbody>
     <%
-        //                              0                               1                               2                         3                           4                                        5                        6
-        String queryTheraphy="select created_date, date_format(order_date, '%d/%m/%Y'), date_format(order_date, '%H:%i'), intravenous_therapy, date_format(completed_date, '%d/%m/%Y'), date_format(completed_date, '%H:%i'), status "
-                + "from lhr_ong_maternity_unit "
+        //                              0                               1                                    2                              3                            4                                               5                        6                     7
+        String queryTheraphy="select mu.created_date, date_format(mu.order_date, '%d/%m/%Y'), date_format(mu.order_date, '%H:%i'), mu.intravenous_therapy, date_format(mu.completed_date, '%d/%m/%Y'), date_format(mu.completed_date, '%H:%i'), mu.status, ifnull(u.user_name, mu.created_by) "
+                + "from lhr_ong_maternity_unit mu "
+                + "LEFT JOIN adm_users u ON u.user_id=mu.created_by "
                 + "where pmi_no='"+pmiNo+"' and intravenous_therapy is not null "+whenCondition
                 +"order by order_date desc;";
         ArrayList<ArrayList<String>> dataTheraphy = con.getData(queryTheraphy);
@@ -71,6 +73,7 @@
             <td><%=dataTheraphy.get(i).get(3)%></td>
             <td><%=completed_date%></td>
             <td><%=symbol%></td>
+            <td><%=dataTheraphy.get(i).get(7)%></td>
             <td>
                 <input type="hidden" id="MU_theraphyHidden" value="<%=String.join("|", dataTheraphy.get(i))%>">
                 <a id="MU_therapyUpdateModal" style="cursor: pointer" title="Update record" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
@@ -97,9 +100,10 @@ X-RD_split-X
 </thead>
 <tbody>
     <%
-         //                              0                               1                               2                         3                           4                                        5                        6
-        String queryInvestigation="select created_date, date_format(order_date, '%d/%m/%Y'), date_format(order_date, '%H:%i'), investigation, date_format(completed_date, '%d/%m/%Y'), date_format(completed_date, '%H:%i'), status "
-                + "from lhr_ong_maternity_unit "
+         //                                 0                               1                                       2                          3                           4                                           5                            6
+        String queryInvestigation="select mu.created_date, date_format(mu.order_date, '%d/%m/%Y'), date_format(mu.order_date, '%H:%i'), mu.investigation, date_format(mu.completed_date, '%d/%m/%Y'), date_format(mu.completed_date, '%H:%i'), mu.status, ifnull(u.user_name, mu.created_by) "
+                + "from lhr_ong_maternity_unit mu "
+                + "LEFT JOIN adm_users u on u.user_id=mu.created_by "
                 + "where pmi_no='"+pmiNo+"' and investigation is not null "+whenCondition
                 +"order by order_date desc;";
         ArrayList<ArrayList<String>> dataInvest = con.getData(queryInvestigation);

@@ -43,4 +43,17 @@ public class LookupHelper {
         }
         return name;
     }
+    
+    public String getUserName(String user_id){
+        String name = user_id;
+        
+        String query = "Select user_name from adm_users where user_id='"+user_id+"' limit 1;";
+        
+        ArrayList<ArrayList<String>> data = con.getData(query);
+        if(data.size()>0){
+            name = data.get(0).get(0);
+        }
+        
+        return name;
+    }
 }

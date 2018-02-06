@@ -1477,6 +1477,7 @@
         
         if(perDate===""){
             $('#LS_perNoteDate').val(tarikh);
+            perDate = tarikh;
         }
         
         if(perNote===""){
@@ -1571,7 +1572,10 @@
         
         if(dateOfMonth===""){
             isComplete = false;
-            message="Please choose the date";
+            message="<b>Please choose the date.</b> Otherwise, the system will pick the current date!";
+            var kini = new Date();
+            var tarikh = kini.getDate()+"/"+(kini.getMonth()+1)+"/"+kini.getFullYear();
+            $('#LS_puerDate').val(tarikh);
         }
         else if(day===""){
             isComplete=false;

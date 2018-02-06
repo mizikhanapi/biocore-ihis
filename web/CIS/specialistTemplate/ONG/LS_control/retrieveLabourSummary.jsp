@@ -4,18 +4,23 @@
     Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
+<%@page import="ADM_helper.LookupHelper"%>
 <%@page import="Formatter.ConvertMasa"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Formatter.FormatTarikh"%>
 <%
     Conn con = new Conn();
+    LookupHelper myLookUp = new LookupHelper((String) session.getAttribute(MySessionKey.HFC_CD));
     String pmiNo = (String) session.getAttribute("patientPMINo");
     String intervalDay = request.getParameter("day");
     String dateFrom = request.getParameter("from");
     String dateTo = request.getParameter("to");
     
     String whenCondition="";
+    
+    String creatorName="";
     
     if (!intervalDay.equalsIgnoreCase("all") && !intervalDay.equalsIgnoreCase("x")) {
         whenCondition = " and (date(summary_date) between curdate()- interval " + intervalDay + " day and curdate()) ";
@@ -31,8 +36,8 @@
             + "`3stage_blood_lost`, placenta, cord_round, tear, repaired_by, "
             //                      11                                                  12                                                          13                                                   14
             + "date_format(labour_begin, '%d/%m/%Y %H:%i'), date_format(membranes_ruptured, '%d/%m/%Y %H:%i'), date_format(second_stage_labour, '%d/%m/%Y %H:%i'), date_format(child_born, '%d/%m/%Y %H:%i'), "
-            //                          15                                     16                  17                  18             19            20           21          22         23
-            + "date_format(placenta_expelled, '%d/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by, cord_tightness  "
+            //                          15                                     16                  17                  18             19            20           21          22         23              24
+            + "date_format(placenta_expelled, '%d/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by, cord_tightness, created_by  "
             + "FROM lhr_ong_labour_summary "
             + "WHERE pmi_no='"+pmiNo+"' "+whenCondition
             + " order by summary_date desc;";
@@ -49,9 +54,8 @@
             String panelClass = "panel-default";
             
             if(isApproved){
-                String queryApprover = "Select ifnull(user_name, '-') from adm_users where user_id='"+dataLS.get(i).get(22)+"'; ";
-                ArrayList<ArrayList<String>> dataApp = con.getData(queryApprover);
-                String approver = dataApp.get(0).get(0);    
+                
+                String approver = myLookUp.getUserName(dataLS.get(i).get(22));    
                 approveStatus="Approved by "+approver;
                 panelClass = "panel-success";
             }
@@ -128,24 +132,16 @@
             if(dataLS.get(i).get(20) != null){
                 conductedBy = dataLS.get(i).get(20);
             }
-            String queryConductedBy = "SELECT user_name from adm_users where user_id='"+conductedBy+"' limit 1;";
-            ArrayList<ArrayList<String>> dataConductedBy = con.getData(queryConductedBy);
-            if(dataConductedBy.size()>0){
-                conductedBy = dataConductedBy.get(0).get(0);
-            }
+            conductedBy = myLookUp.getUserName(conductedBy);
             
             if(dataLS.get(i).get(21) != null){
                 witness = dataLS.get(i).get(21);
             }
             
             String repaired_by=dataLS.get(i).get(10);
-            
-            String queryRepairName = "SELECT user_name from adm_users where user_id='"+repaired_by+"' limit 1;";
-            ArrayList<ArrayList<String>> dataRepairName = con.getData(queryRepairName);
-            
-            if(dataRepairName.size()>0){
-                repaired_by=dataRepairName.get(0).get(0);
-            }
+            repaired_by = myLookUp.getUserName(repaired_by);
+                        
+            creatorName = myLookUp.getUserName(dataLS.get(i).get(24));
             
             String summaryDate = FormatTarikh.formatDate(dataLS.get(i).get(0), "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
             
@@ -191,6 +187,8 @@
                                 <div class="col-xs-3">
                                     <dt>Repaired by:</dt>
                                     <dd><%=repaired_by%></dd>
+                                    <dt>Recorded by:</dt>
+                                    <dd><%=creatorName%></dd>
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_labourHidden" value="<%=String.join("|", dataLS.get(i))%>">
@@ -301,8 +299,8 @@
  
     //                           0       1        2                           3                                     4                          5      6                     7            8                 9              10             
     String queryInfant="SELECT alive, other, infant_tag_no, date_format(date_of_birth, '%d/%m/%Y'), date_format(date_of_birth, '%H:%i'), d_sex, birth_weight, head_circumference, apgar_score1, apgar_score5, apgar_score10, "
-    //             11           12                 13       14          15        
-            + "`length`, cord_blood_collected, vitamin, vaccine, foetal_abnormality "
+    //             11           12                 13       14          15                  16
+            + "`length`, cord_blood_collected, vitamin, vaccine, foetal_abnormality, created_by "
             + "FROM lhr_ong_infant_birth_record "
             + "where pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' "
             + "order by date_of_birth desc;";
@@ -318,6 +316,8 @@
         else if(dataInfant.get(j).get(5).equalsIgnoreCase("003")){
             sex="Other";
         }
+
+        creatorName = myLookUp.getUserName(dataInfant.get(j).get(16));
     
 %>
 <div class="panel panel-default">
@@ -327,6 +327,7 @@
                <div class="media">
                     <div class="col-xs-3">
                         <dt style="font-size: 18px;">INFANT - Birth Record</dt>
+                        <dd>Recorded by: <strong><%=creatorName%></strong></dd>
                         <dd>Alive?: <strong><%=dataInfant.get(j).get(0)%></strong></dd>
                         <dd>Other: <strong><%=dataInfant.get(j).get(1)%></strong></dd>
                     </div>
@@ -368,8 +369,8 @@
         
     }//end infant for loop
     
-    //                                  0                   1           2              3                   4                   5       6
-    String queryTransfer="SELECT standing_pulse, systolic_supine, diastolic_supine, uterus, time_format(`time`, '%H:%i'), perineum, doctor_nurse_name "
+    //                                  0                   1           2              3                   4                   5            6               7
+    String queryTransfer="SELECT standing_pulse, systolic_supine, diastolic_supine, uterus, time_format(`time`, '%H:%i'), perineum, doctor_nurse_name, created_by "
                         + "FROM lhr_ong_mother_transfer_observation where pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' limit 1;";
     ArrayList<ArrayList<String>> dataTransfer = con.getData(queryTransfer);
     String pulse="", systol="", diastol="", uterus="", perineum="", time="", doctor="";
@@ -382,12 +383,10 @@
         time=dataTransfer.get(0).get(4);
         perineum=dataTransfer.get(0).get(5);
         doctor=dataTransfer.get(0).get(6);
-
-        String queryTransferDoc = "SELECT user_name from adm_users where user_id='"+doctor+"' limit 1;";
-        ArrayList<ArrayList<String>> dataTransferDoc = con.getData(queryTransferDoc);
-        if(dataTransferDoc.size()>0){
-            doctor=dataTransferDoc.get(0).get(0);
-        }
+        
+        doctor = myLookUp.getUserName(doctor);
+        creatorName = myLookUp.getUserName(dataTransfer.get(0).get(7));
+        
     }
 %>
 
@@ -398,6 +397,7 @@
                             <div class="media">
                                 <div class="col-xs-3">
                                     <dt style="font-size: 18px;">MOTHER - Transfer Observations</dt>
+                                    <dd>Recorded by: <strong><%=creatorName%></strong></dd>
                                 </div>
                                 <div class="col-xs-3">
                                     <dd>Pulse: <strong><%=pulse%> bpm</strong></dd>
@@ -435,8 +435,8 @@
             </ul>
             <%
                 }
-                //                                         0                                        1                       2                   3           4           5           6          7            8           
-                String queryPuer="SELECT date_format(date_of_month, '%d/%m/%Y'), date_format(date_of_month, '%H:%i') ,day_of_puerperium, fundal_height, temperature, systolic, diastolic, blood_pressure, pulse "
+                //                                         0                                        1                       2                   3           4           5           6          7            8           9
+                String queryPuer="SELECT date_format(date_of_month, '%d/%m/%Y'), date_format(date_of_month, '%H:%i') ,day_of_puerperium, fundal_height, temperature, systolic, diastolic, blood_pressure, pulse, created_by "
                                 + "FROM lhr_ong_puerperium WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' order by date_of_month asc;";
                 ArrayList<ArrayList<String>> dataPuer = con.getData(queryPuer);
 
@@ -463,6 +463,7 @@
                                 <th>DBP(mmHg)</th>
                                 <th>MAP(mmHg)</th>
                                 <th>Pulse(bpm)</th>
+                                <th>Recorded by</th>
                                 <%if(!isApproved){%>
                                 <th>Action</th>
                                 <%}%>
@@ -487,6 +488,7 @@
                                     dataDiastol.add(dataPuer.get(k).get(6));
                                     dataMBP.add(dataPuer.get(k).get(7));
                                     dataPulse.add(dataPuer.get(k).get(8));
+                                    creatorName=myLookUp.getUserName(dataPuer.get(k).get(9));
                             %> 
                                 <tr>
                                 <td><%=dataPuer.get(k).get(0)%></td>
@@ -498,6 +500,7 @@
                                 <td><%=dataPuer.get(k).get(6)%></td>
                                 <td><%=dataPuer.get(k).get(7)%></td>
                                 <td><%=dataPuer.get(k).get(8)%></td>
+                                <td><%=creatorName%></td>
                                 <%if(!isApproved){%>
                                 <td>
                                     <input type="hidden" id="LS_theHiddenPuer" value="<%= String.join("|", dataPuer.get(k))%>">
@@ -536,15 +539,17 @@
             </div>
             <%    
                 
-                String queryPerNote="SELECT date_format(encounter_date, '%d/%m/%Y'), notes, treatment "
+                String queryPerNote="SELECT date_format(encounter_date, '%d/%m/%Y'), notes, treatment, created_by "
                                     + "FROM lhr_ong_puerperium_note "
                                     + "WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' limit 1; ";
                 ArrayList<ArrayList<String>> dataPerNote = con.getData(queryPerNote);
                 String perNote="", perDate="", perTreatment="";
+                creatorName = "";
                 if(dataPerNote.size()>0){
                     perDate=dataPerNote.get(0).get(0);
                     perNote=dataPerNote.get(0).get(1);
                     perTreatment=dataPerNote.get(0).get(2);
+                    creatorName = myLookUp.getUserName(dataPerNote.get(0).get(3));
                 }
 
                
@@ -556,6 +561,7 @@
                             <div class="media">
                                 <div class="col-xs-3">
                                     <dt style="font-size: 18px;">PUERPERIUM NOTES</dt>
+                                    <dd>Recorded by: <strong><%=creatorName%></strong></dd>
                                 </div>
                                 <div class="col-xs-3">
                                     <dt>Date: </dt>
@@ -568,7 +574,7 @@
                                 <div class="col-xs-3">
                                     <dt>Treatment:</dt>
                                     <dd><%=perTreatment%></dd>
-                                </div>
+                                </div>                               
                                 <%
                                     if(!isApproved){
                                 %>
