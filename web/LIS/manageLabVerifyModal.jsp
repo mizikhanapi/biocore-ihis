@@ -90,7 +90,7 @@
                         <div class="col-md-12">
                             <label class="col-md-4 control-label" for="textinput">Upload Result</label>
                             <div class="col-md-6">
-                                <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
+                                <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif">
                             </div>
 
                         </div>
@@ -98,7 +98,7 @@
                         <hr/>
 
                         <div class="col-md-12" style="width: 100%; margin: 0 auto">
-                            <div id="dym" style="text-align: center;">
+                            <div id="dym" style="text-align: center;" class=" img-responsive"  alt="Exam Result" style="height: 100%; width: 100%">
                             </div>
                         </div>
 

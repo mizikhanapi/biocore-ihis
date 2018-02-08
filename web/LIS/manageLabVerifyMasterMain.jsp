@@ -47,7 +47,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "manageLabOrderMasterTable.jsp",
+                url: "manageLabVerifyMasterTable.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                     $('#lisLabRequestVerifyMasterContent').html(data);

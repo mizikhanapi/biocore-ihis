@@ -327,6 +327,13 @@
             $("#addSpecimenResultItemCode").val(item_cd);
             $("#addSpecimenResultItemName").val(item_name);
 
+            $("#addSpecimenResultResult").val('');
+            $("#addSpecimenResultRemark").val('');
+
+            $('#inputFileToLoad').val("");
+            $('#dym').html("");
+
+
 
 
         });
