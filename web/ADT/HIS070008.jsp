@@ -15,6 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
+        <script src="old/assets/js/jquery.min.js"></script>
         <%@include file = "../assets/header.html" %>
         <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
         <link rel="stylesheet" href="old/assets/css/loading.css">
@@ -22,7 +23,7 @@
         <link href="old/assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="old/assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <!-- header -->
-        <script src="old/assets/js/jquery.min.js"></script>
+        
     </head>
 
     <body>

@@ -3,6 +3,7 @@ hostserver:10.73.32.200
 hostport:1098
 #development - 10.73.32.200
 #stagging - biocore-stag.utem.edu.my
+#stagging 2 - 10.73.33.211
 #production - ecss.utem.edu.my OR 10.1.3.209
 #hostport:1099 servercis
 #hostport:1098 emedica
