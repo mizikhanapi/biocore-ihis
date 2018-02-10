@@ -329,7 +329,7 @@
     }
 
 
-    // Add Order Start
+    // Add Result Start
     $('#addSpecimenResultMButton').on('click', function (e) {
 
         e.preventDefault();
@@ -454,11 +454,11 @@
         }
 
     });
-    // Add Order End
+    // Add Result End
 
 
 
-    // Add Order Start
+    // Verify Result Start
     $('#verifySpecimenResultMButton').on('click', function (e) {
 
         e.preventDefault();
@@ -533,6 +533,8 @@
 
                                 $('#verifySpecimenResult').modal('hide');
 
+                                verifyResetPageDisabledNumber();
+
                             }
                         });
 
@@ -556,7 +558,67 @@
         }
 
     });
-    // Add Order End
+    // Verify Result End
+
+
+
+    function verifyResetPageDisabledNumber() {
+
+        // Getting Table
+        var table = $("#patientSpecimenDetailsListTable tbody");
+
+        // Setting Variable For Counter
+        var resetCounter = 0;
+
+
+        // Calculating Data For Selected Dispense
+        table.find('tr').each(function (i) {
+
+            var isAddDisabled = $(this).find("#btnVerifySpecimenEnterResult").is(':disabled');
+            var isVerifyDisabled = $(this).find("#btnVerifySpecimenVerifyResult").is(':disabled');
+
+            console.log(isAddDisabled);
+            console.log(isVerifyDisabled);
+
+            if (isAddDisabled === false || isVerifyDisabled === false) {
+
+                resetCounter = resetCounter + 1;
+
+            }
+        });
+
+
+        verifyResetPage(resetCounter);
+
+    }
+
+
+
+    function verifyResetPage(resetCounter) {
+
+
+        var totalNumber = resetCounter;
+
+
+        if (totalNumber === 0) {
+
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
+            // Load LIST Page
+            $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");
+            $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
+
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+            // Load Detail Page
+            $("#lisLabRequestVerifyDetailContent").load("manageLabVerifyDetaillBasicInfo.jsp");
+
+
+        }
+
+
+    }
 
 
 
