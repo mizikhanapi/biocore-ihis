@@ -848,7 +848,7 @@
         if (UD_MDC_CODE === "") {
             bootbox.alert("Please Insert Drug Code");
         } else if (UD_ATC_CODE === "") {
-            bootbox.alert("Please Search Any ATC Code");
+            bootbox.alert("Please Search Any Category Code");
         } else if (D_TRADE_NAME === "") {
             bootbox.alert("Please Insert Drug Trade Name");
         } else if (D_GNR_NAME === "") {
@@ -906,7 +906,7 @@
         } else if (UD_MDC_CODECheck.checkValidity() === false) {
             bootbox.alert("Please Insert Drug Code Not More Than 30 Characters");
         } else if (UD_ATC_CODECheck.checkValidity() === false) {
-            bootbox.alert("Please Insert ATC Code Not More Than 30 Characters");
+            bootbox.alert("Please Insert Category Code Not More Than 30 Characters");
         } else if (D_TRADE_NAMECheck.checkValidity() === false) {
             bootbox.alert("Please Insert Drug Trade Name Not More Than 200 Characters");
         } else if (D_GNR_NAMECheck.checkValidity() === false) {

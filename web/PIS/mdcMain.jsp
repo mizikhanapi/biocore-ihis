@@ -177,7 +177,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
+                                <label class="col-md-4 control-label" for="textinput">Category Code *</label>
                                 <div class="col-md-8">
                                     <input id="addUD_ATC_CODE" name="textinput" type="text" placeholder="Please Search Category Code" class="form-control input-md" maxlength="30" >
                                     <div id="addUD_ATC_CODESearch" class="search-drop">
@@ -767,7 +767,7 @@
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert Drug Code");
             } else if (UD_ATC_CODE === "") {
-                bootbox.alert("Please Search Any ATC Code");
+                bootbox.alert("Please Search Any Category Code");
             } else if (D_TRADE_NAME === "") {
                 bootbox.alert("Please Insert Drug Trade Name");
             } else if (D_GNR_NAME === "") {
@@ -825,7 +825,7 @@
             } else if (UD_MDC_CODECheck.checkValidity() === false) {
                 bootbox.alert("Please Insert Drug Code Not More Than 30 Characters");
             } else if (UD_ATC_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert ATC Code Not More Than 30 Characters");
+                bootbox.alert("Please Insert Category Code Not More Than 30 Characters");
             } else if (D_TRADE_NAMECheck.checkValidity() === false) {
                 bootbox.alert("Please Insert Drug Trade Name Not More Than 200 Characters");
             } else if (D_GNR_NAMECheck.checkValidity() === false) {

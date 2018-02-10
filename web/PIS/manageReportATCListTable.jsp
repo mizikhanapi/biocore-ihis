@@ -22,13 +22,13 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of ATC Drugs</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Category Codes</h4>
 <br>
 <table  id="reportListATCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">ATC CODE</th>
-    <th style="text-align: center;">ATC CODE DESCRIPTION</th>
     <th style="text-align: center;">CATEGORY CODE</th>
+    <th style="text-align: center;">CATEGORY DESCRIPTION</th>
+    <th style="text-align: center;">CATEGORY CLASSIFICATION</th>
     <th style="text-align: center;">HFC CODE</th>
     <th style="text-align: center;">DISCIPLINE CODE</th>
     <th style="text-align: center;">SUBDISCIPLINE CODE</th>
@@ -87,7 +87,7 @@
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Pharmacy ATC Drug List',
+                    title: 'Pharmacy Category Code List',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
@@ -95,14 +95,14 @@
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Pharmacy ATC Drug List',
+                    title: 'Pharmacy Category Code List',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'print',
-                    text: 'Print ATC List',
+                    text: 'Print Category List',
                     title: $('h1').text(),
                     message: '<br><br>',
                     className: 'btn btn-primary',
@@ -111,7 +111,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy ATC Drug List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Category Code List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>PIS-0001</strong></dd>\n\
