@@ -15,16 +15,17 @@
     String updateEliSrc_cd = request.getParameter("updateEliSrc_cd");
     String updateEliTy_cd = request.getParameter("updateEliTy_cd");
     String updateChargeType_cd = request.getParameter("updateChargeType_cd");
-   out.print(updateEliSrc_cd);
-      out.print(updateEliTy_cd);
-
-         out.print(updateChargeType_cd);
+    String class_cd = request.getParameter("class_cd");
+    String ward_cd = request.getParameter("ward_cd");
+   
+    
 
 
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
     
-    String sql = "DELETE FROM wis_hospital_charges WHERE charges_type = '" + updateChargeType_cd + "' and eligibility_type_cd = '"+updateEliTy_cd+"' and eligibility_sources_cd = '"+updateEliSrc_cd+"'";
+    String sql = "DELETE FROM wis_hospital_charges WHERE charges_type = '" + updateChargeType_cd + "' and eligibility_type_cd = '"+updateEliTy_cd+"' and eligibility_sources_cd = '"+updateEliSrc_cd+"' "
+            + "and ward_class_code='"+class_cd+"' and ward_id='"+ward_cd+"';";
 //   ward_class_code = '" + id + "' AND hfc_cd = '" + hfc + "' 
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
