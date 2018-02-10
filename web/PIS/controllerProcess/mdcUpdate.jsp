@@ -48,6 +48,7 @@
     String D_CAUTIONARY_CODE = request.getParameter("D_CAUTIONARY_CODE");
     String D_EXP_DATE = request.getParameter("D_EXP_DATE");
     String D_CLASSIFICATION = request.getParameter("D_CLASSIFICATION");
+    String D_SUPPLIER_ID = request.getParameter("D_SUPPLIER_ID");
 
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
@@ -58,7 +59,7 @@
             + " d_qty = '" + D_QTY + "',d_qtyt = '" + D_QTYT + "',d_duration = '" + D_DURATION + "',d_durationt = '" + D_DURATIONT + "',d_frequency = '" + D_FREQUENCY + "',"
             + " d_caution_code = '" + D_CAUTIONARY_CODE + "',d_exp_date = '" + D_EXP_DATE + "',d_classification = '" + D_CLASSIFICATION + "',status = '" + STATUS + "',"
             + " d_location_code = '" + D_LOCATION_CODE + "',d_sell_price = '" + D_SELL_PRICE + "',d_cost_price = '" + D_COST_PRICE + "',"
-            + " d_packaging = '" + D_PACKAGING + "',d_packagingt = '" + D_PACKAGINGT + "',d_price_ppack = '" + D_PRICE_PPACK + "'"
+            + " d_packaging = '" + D_PACKAGING + "',d_packagingt = '" + D_PACKAGINGT + "',d_price_ppack = '" + D_PRICE_PPACK + "',d_supplier_cd = '" + D_SUPPLIER_ID + "'"
             + " WHERE UD_MDC_CODE = '" + UD_MDC_CODE + "' AND hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
 
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);

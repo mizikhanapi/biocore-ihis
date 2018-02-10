@@ -48,6 +48,7 @@
     <th style="display: none">HFC</th>
     <th style="display: none">DISCIPLINE</th>
     <th style="display: none">SUB-DISCIPLINE</th>
+    <th style="display: none">SUPPLIER</th>
 
     <th style="text-align: center;">Update</th>
     <th style="text-align: center;">Delete</th>
@@ -61,8 +62,8 @@
                 //          10                                              11          12     13        14         15          16            17                    18                   
                 + "IFNULL(d_maximum_stock_level,'0'),IFNULL(d_reorder_stock_level,'0'),d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),"
                 //
-                //          19        20         21             22          23            24          25            26        27          28            29
-                + "d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,hfc_cd,discipline_cd,subdiscipline_cd "
+                //          19        20         21             22          23            24          25            26        27          28            29              30
+                + "d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,hfc_cd,discipline_cd,subdiscipline_cd, d_supplier_cd "
                 //
                 // Where Condition
                 + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "'; ";
@@ -108,6 +109,7 @@
 <td style="display: none"><%= dataMTC.get(s).get(27)%></td>                     <!-- HFC -->
 <td style="display: none"><%= dataMTC.get(s).get(28)%></td>                     <!-- Discipline -->
 <td style="display: none"><%= dataMTC.get(s).get(29)%></td>                     <!-- Sub Discipline -->
+<td style="display: none"><%= dataMTC.get(s).get(30)%></td>                     <!-- Supplier -->
 
 
 <!-- Button Part Start -->
@@ -189,9 +191,9 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
+                                <label class="col-md-4 control-label" for="textinput">Category Code *</label>
                                 <div class="col-md-8">
-                                    <input id="updateUD_ATC_CODE" name="textinput" type="text" placeholder="ATC Drug Code" class="form-control input-md" readonly>
+                                    <input id="updateUD_ATC_CODE" name="textinput" type="text" placeholder="Category Code" class="form-control input-md" readonly>
                                 </div>
                             </div>
 
@@ -216,9 +218,32 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Generic Name *</label>
                                 <div class="col-md-8">
-                                    <textarea id="updateD_GNR_NAME" class="form-control" rows="3" maxlength="300"></textarea>
+                                    <textarea id="updateD_GNR_NAME" class="form-control" rows="2" maxlength="300"></textarea>
                                 </div>
                             </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Supplier *</label>
+                                <div class="col-md-8">
+                                    <select id="updateD_SupplierID" name="supplierDetails" class="form-control" >
+                                        <option value="">Please Select Supplier</option>
+                                        <%
+                                            String sqlSupp = "SELECT vendor_id,vendor_name FROM fap_vendor where hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfSup = conn.getData(sqlSupp);
+
+                                            int sizeSup = listOfSup.size();
+
+                                            for (int i = 0; i < sizeSup; i++) {
+                                        %>
+                                        <option value="<%= listOfSup.get(i).get(0)%>"><%= listOfSup.get(i).get(1)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <!-- Select Basic -->
                             <div class="form-group">
@@ -244,6 +269,15 @@
                                 </div>
                             </div>
 
+                        </div>
+
+
+
+
+
+                        <div class="col-md-4">
+
+
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dosage Form *</label>
@@ -267,14 +301,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                        </div>
-
-
-
-
-
-                        <div class="col-md-4">
 
                             <!-- Text input-->
                             <div class="form-group">
@@ -326,6 +352,7 @@
                                 </div>
                             </div>
 
+
                             <hr/>
 
 
@@ -374,6 +401,14 @@
                                 </div>
                             </div>
 
+                        </div>
+
+
+
+
+                        <div class="col-md-4">
+
+
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Sell Price *</label>
@@ -382,16 +417,9 @@
                                 </div>
                             </div>
 
-                        </div>
 
+                            <hr/>
 
-
-
-
-
-
-
-                        <div class="col-md-4">
 
                             <h4>Label Information</h4>
 
@@ -499,7 +527,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cautionary *</label>
                                 <div class="col-md-8">
-                                    <textarea id="updateD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Drug Cautionary" maxlength="200"></textarea>
+                                    <textarea id="updateD_CAUTIONARY_CODE" class="form-control" rows="2" placeholder="Drug Cautionary" maxlength="200"></textarea>
                                 </div>
                             </div>
 
@@ -548,7 +576,6 @@
                                 </div>
                             </div>
 
-                            <hr/>
 
 
                         </div>
@@ -711,6 +738,7 @@
         var D_CAUTIONARY_CODE = arrayData[17];
         var D_EXP_DATE = arrayData[18];
         var D_CLASSIFICATION = arrayData[19];
+        var D_SUPPLIER_ID = arrayData[30];
 
 
         $("#updateUD_MDC_CODE").val(UD_MDC_CODE);
@@ -741,6 +769,7 @@
         $("#updateD_CAUTIONARY_CODE").val(D_CAUTIONARY_CODE);
         $("#updateD_EXP_DATE").val(D_EXP_DATE);
         $("#updateD_CLASSIFICATION").val(D_CLASSIFICATION);
+        $("#updateD_SupplierID").val(D_SUPPLIER_ID);
 
     });
     // Getting Data For Update End
@@ -798,6 +827,7 @@
         var D_CAUTIONARY_CODE = $("#updateD_CAUTIONARY_CODE").val();
         var D_EXP_DATE = $("#updateD_EXP_DATE").val();
         var D_CLASSIFICATION = $("#updateD_CLASSIFICATION").val();
+        var D_SUPPLIER_ID = $("#updateD_SupplierID").val();
 
         var strCom = D_CAUTIONARY_CODE.replace(/'/g, '\\\'');
         D_CAUTIONARY_CODE = strCom;
@@ -870,6 +900,8 @@
             bootbox.alert("Please Insert Drug Expire Date");
         } else if (D_CLASSIFICATION === "-") {
             bootbox.alert("Select Any Classification");
+        } else if (D_SUPPLIER_ID === "") {
+            bootbox.alert("Select Any Supplier");
 
         } else if (UD_MDC_CODECheck.checkValidity() === false) {
             bootbox.alert("Please Insert Drug Code Not More Than 30 Characters");
@@ -935,7 +967,8 @@
                 D_ADVISORY_CODE: D_ADVISORY_CODE,
                 D_CAUTIONARY_CODE: D_CAUTIONARY_CODE,
                 D_EXP_DATE: D_EXP_DATE,
-                D_CLASSIFICATION: D_CLASSIFICATION
+                D_CLASSIFICATION: D_CLASSIFICATION,
+                D_SUPPLIER_ID: D_SUPPLIER_ID
             };
             console.log(data);
 
