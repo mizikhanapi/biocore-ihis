@@ -16,14 +16,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
         <script src="old/assets/js/jquery.min.js"></script>
-        <%@include file = "../assets/header.html" %>
+       
         <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
         <link rel="stylesheet" href="old/assets/css/loading.css">
         <link href="old/assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="old/assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="old/assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <%@include file = "../assets/header.html" %>
         <!-- header -->
-        
+
     </head>
 
     <body>
@@ -97,8 +98,8 @@
         <script src="old/assets/js/form-validator.min.js"></script>
         <script src="old/assets/js/bootbox.min.js"></script>
         <script src="old/assets/js/dataTables.bootstrap.min.js"></script>
-                   <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
-                    <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <!-- Script Goes Here -->
     </body>
 </html>
