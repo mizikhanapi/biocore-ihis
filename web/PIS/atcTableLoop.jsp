@@ -18,12 +18,12 @@
 
 <table  id="atcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">ATC CODE</th>
-    <th style="text-align: center;">ATC CODE DESCRIPTION</th>
     <th style="text-align: center;">CATEGORY CODE</th>
-    <th style="text-align: center;">HFC CODE</th>
-    <th style="text-align: center;">DISCIPLINE CODE</th>
-    <th style="text-align: center;">SUBDISCIPLINE CODE</th>
+    <th style="text-align: center;">CATEGORY DESCRIPTION</th>
+    <th style="text-align: center;">CATEGORY CLASSIFICATION</th>
+    <th style="text-align: center; display: none">HFC CODE</th>
+    <th style="text-align: center; display: none">DISCIPLINE CODE</th>
+    <th style="text-align: center; display: none">SUBDISCIPLINE CODE</th>
     <th style="text-align: center;">STATUS</th>
     <th style="text-align: center;">UPDATE</th>
     <th style="text-align: center;">DELETE</th>
@@ -47,9 +47,9 @@
 <td><%= dataATC.get(i).get(0)%></td>
 <td><%= dataATC.get(i).get(1)%></td>
 <td><%= dataATC.get(i).get(2)%></td>
-<td><%= dataATC.get(i).get(3)%></td>
-<td><%= dataATC.get(i).get(4)%></td>
-<td><%= dataATC.get(i).get(5)%></td>
+<td style="display: none"><%= dataATC.get(i).get(3)%></td>
+<td style="display: none"><%= dataATC.get(i).get(4)%></td>
+<td style="display: none"><%= dataATC.get(i).get(5)%></td>
 <td><%if (dataATC.get(i).get(6).equals("1")) {
         out.print("Active");
     } else {
@@ -79,7 +79,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Update ATC Code Details</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Update Category Code Details</h2>
             </div>
             <div class="modal-body">
 
@@ -88,25 +88,25 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">ATC Code</label>
-                        <div class="col-md-8">
-                            <input id="updateatcCode" type="text" placeholder="ATC Code" class="form-control input-md" maxlength="15" readonly>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">ATC Description</label>
-                        <div class="col-md-8">
-                            <textarea id="updateatcDesc" class="form-control" rows="4" placeholder="ATC Description" maxlength="200" ></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code</label>
                         <div class="col-md-8">
-                            <input id="updateatccategory" type="text" placeholder="Category Code" maxlength="50" class="form-control input-md" >
+                            <input id="updateatcCode" type="text" placeholder="Category Code" class="form-control input-md" maxlength="15" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Category Description</label>
+                        <div class="col-md-8">
+                            <textarea id="updateatcDesc" class="form-control" rows="4" placeholder="Category Description" maxlength="200" ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Category Classification</label>
+                        <div class="col-md-8">
+                            <input id="updateatccategory" type="text" placeholder="Category Classification" maxlength="50" class="form-control input-md" >
                         </div>
                     </div>
 
@@ -168,7 +168,7 @@
 
     // Getting Data Part Start
     $('#contentATCTable').off('click', '#atcTable #updateTButton').on('click', '#atcTable #updateTButton', function (e) {
-        
+
         e.preventDefault();
 
         //get the row value
@@ -224,29 +224,29 @@
         var status = $("#updatestatus").val();
 
         if (atcCode === "" || atcCode === null) {
-            bootbox.alert("Please Insert ATC Code Name");
+            bootbox.alert("Please Insert Category Code");
         } else if (atcCodeCheck.checkValidity() === false) {
-            bootbox.alert("Please Insert ATC Code Name That Is Not More Than 15 Characters");
+            bootbox.alert("Please Insert Category Code That Is Not More Than 15 Characters");
         } else if (atcDesc === "" || atcDesc === null) {
-            bootbox.alert("Please Insert ATC Code Description");
+            bootbox.alert("Please Insert Category Code Description");
         } else if (atcDescCheck.checkValidity() === false) {
-            bootbox.alert("Please Insert ATC Code Description Name That Is Not More Than 200 Characters");
+            bootbox.alert("Please Insert Category Code Description That Is Not More Than 200 Characters");
         } else if (category === "" || category === null) {
-            bootbox.alert("Please Insert ATC Code Category");
+            bootbox.alert("Please Insert Category Code Classification");
         } else if (categoryCheck.checkValidity() === false) {
-            bootbox.alert("Please Insert ATC Code Category Name That Is Not More Than 50 Characters");
+            bootbox.alert("Please Insert Category Code Classification That Is Not More Than 50 Characters");
         } else if (hfc === "" || hfc === null) {
-            bootbox.alert("Please Search ATC HFC Code");
+            bootbox.alert("Please Search Category HFC Code");
         } else if (hfcCheck.checkValidity() === false) {
-            bootbox.alert("Please Select ATC HFC Code That Is Not More Than 30 Characters");
+            bootbox.alert("Please Select Category HFC Code That Is Not More Than 30 Characters");
         } else if (discipline === "" || discipline === null) {
-            bootbox.alert("Please Search ATC Discipline Code");
+            bootbox.alert("Please Search Category Discipline Code");
         } else if (disciplineCheck.checkValidity() === false) {
-            bootbox.alert("Please Select ATC Discipine Code Name That Is Not More Than 30 Characters");
+            bootbox.alert("Please Select Category Discipine Code Name That Is Not More Than 30 Characters");
         } else if (subdiscipline === "" || subdiscipline === null) {
-            bootbox.alert("Please Search ATC Sub-Discipline Code");
+            bootbox.alert("Please Search Category Sub-Discipline Code");
         } else if (subdisciplineCheck.checkValidity() === false) {
-            bootbox.alert("Please Select ATC Sub-Discipline Code Name That Is Not More Than 30 Characters");
+            bootbox.alert("Please Select Category Sub-Discipline Code Name That Is Not More Than 30 Characters");
         } else if (status !== "1" && status !== "0") {
             bootbox.alert("Please Select Any Status");
         } else {
@@ -262,7 +262,7 @@
             };
 
             $.ajax({
-                url: "controllerProcess/atcUpdate.jsp",
+                url: "controllerProcessDrugCategory/atcUpdate.jsp",
                 type: "post",
                 data: data,
                 timeout: 10000,
@@ -273,7 +273,7 @@
                         $('#contentATCTable').load('atcTableLoop.jsp');
                         $(".modal-backdrop").hide();
                         bootbox.alert({
-                            message: "ATC Code is Updated Successful",
+                            message: "Category Code is Updated Successful",
                             title: "Process Result",
                             backdrop: true
                         });
@@ -281,7 +281,7 @@
                     } else if (datas.trim() === 'Failed') {
 
                         bootbox.alert({
-                            message: "ATC Code Update Failed",
+                            message: "Category Code Update Failed",
                             title: "Process Result",
                             backdrop: true
                         });
@@ -339,7 +339,7 @@
                     };
 
                     $.ajax({
-                        url: "controllerProcess/atcDelete.jsp",
+                        url: "controllerProcessDrugCategory/atcDelete.jsp",
                         type: "post",
                         data: data,
                         timeout: 10000, // 10 seconds
@@ -349,7 +349,7 @@
 
                                 $('#contentATCTable').load('atcTableLoop.jsp');
                                 bootbox.alert({
-                                    message: "ATC Code is Deleted Successful",
+                                    message: "Category Code is Deleted Successful",
                                     title: "Process Result",
                                     backdrop: true
                                 });
@@ -357,7 +357,7 @@
                             } else if (datas.trim() === 'Failed') {
 
                                 bootbox.alert({
-                                    message: "ATC Code Delete Failed",
+                                    message: "Category Code Delete Failed",
                                     title: "Process Result",
                                     backdrop: true
                                 });
@@ -401,7 +401,7 @@
             pageLength: 15,
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
             "language": {
-                "emptyTable": "No ATC Drug Available To Display"
+                "emptyTable": "No Category Code Available To Display"
             }
         });
 

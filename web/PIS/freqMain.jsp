@@ -89,7 +89,7 @@
 
 
                 $.ajax({
-                    url: "controllerProcess/freqInsert.jsp",
+                    url: "controllerProcessDrugFrequency/freqInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
@@ -201,7 +201,7 @@
                 console.log(data);
 
                 $.ajax({
-                    url: "controllerProcess/freqUpdate.jsp",
+                    url: "controllerProcessDrugFrequency/freqUpdate.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
@@ -277,7 +277,7 @@
                         };
 
                         $.ajax({
-                            url: "controllerProcess/freqDelete.jsp",
+                            url: "controllerProcessDrugFrequency/freqDelete.jsp",
                             type: "post",
                             data: data,
                             timeout: 10000, // 10 seconds
@@ -346,7 +346,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "controllerSearch/freqCloneDrugList.jsp",
+                url: "controllerProcessDrugFrequency/freqCloneDrugList.jsp",
                 success: function (data, textStatus, jqXHR) {
 
                     $('#FREQ_Code').html(data);
@@ -393,7 +393,7 @@
                 };
 
                 $.ajax({
-                    url: "controllerProcess/freqCloneDrugListInsert.jsp",
+                    url: "controllerProcessDrugFrequency/freqCloneDrugListInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 15000,

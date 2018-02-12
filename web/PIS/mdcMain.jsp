@@ -177,9 +177,9 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
+                                <label class="col-md-4 control-label" for="textinput">Category Code *</label>
                                 <div class="col-md-8">
-                                    <input id="addUD_ATC_CODE" name="textinput" type="text" placeholder="Please Search ATC Drug Code" class="form-control input-md" maxlength="30" >
+                                    <input id="addUD_ATC_CODE" name="textinput" type="text" placeholder="Please Search Category Code" class="form-control input-md" maxlength="30" >
                                     <div id="addUD_ATC_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
@@ -209,9 +209,33 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Generic Name *</label>
                                 <div class="col-md-8">
-                                    <textarea id="addD_GNR_NAME" class="form-control" rows="3" maxlength="300" placeholder="Please Insert Generic Name"></textarea>
+                                    <textarea id="addD_GNR_NAME" class="form-control" rows="2" maxlength="300" placeholder="Please Insert Generic Name"></textarea>
                                 </div>
                             </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Supplier *</label>
+                                <div class="col-md-8">
+                                    <select id="addD_SupplierID" name="supplierDetails" class="form-control" >
+                                        <option value="">Please Select Supplier</option>
+                                        <%
+                                            String sqlSupp = "SELECT vendor_id,vendor_name FROM fap_vendor where hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfSup = conn.getData(sqlSupp);
+
+                                            int sizeSup = listOfSup.size();
+
+                                            for (int i = 0; i < sizeSup; i++) {
+                                        %>
+                                        <option value="<%= listOfSup.get(i).get(0)%>"><%= listOfSup.get(i).get(1)%> </option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <!-- Select Basic -->
                             <div class="form-group">
@@ -235,6 +259,16 @@
                                 </div>
                             </div>
 
+
+
+
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dosage Form *</label>
@@ -256,13 +290,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
-
-                        </div>
-
-
-                        <div class="col-md-4">
 
 
                             <!-- Text input-->
@@ -312,6 +339,7 @@
                                     <input id="addD_LOCATION_CODE" name="textinput" type="text" placeholder="Please Insert Location Code" class="form-control input-md" maxlength="10">
                                 </div>
                             </div>
+
 
                             <hr/>
 
@@ -363,6 +391,14 @@
                                 </div>
                             </div>
 
+                        </div>
+
+
+
+
+
+                        <div class="col-md-4">
+
 
                             <!-- Text input-->
                             <div class="form-group">
@@ -373,15 +409,7 @@
                             </div>
 
 
-                        </div>
-
-
-
-
-
-
-
-                        <div class="col-md-4">
+                            <hr/>
 
 
                             <h4>Label Information</h4>
@@ -484,7 +512,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cautionary *</label>
                                 <div class="col-md-8">
-                                    <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Please Insert Drug Cautionary" maxlength="200"></textarea>
+                                    <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="2" placeholder="Please Insert Drug Cautionary" maxlength="200"></textarea>
                                 </div>
                             </div>
 
@@ -529,7 +557,6 @@
                                 </div>
                             </div>
 
-                            <hr/>
 
 
                         </div>
@@ -618,7 +645,7 @@
             document.getElementById("addD_ADVISORY_CODE").value = "-";
             document.getElementById("addD_CAUTIONARY_CODE").value = "";
             document.getElementById("addD_EXP_DATE").value = "";
-            document.getElementById("addD_CLASSIFICATION").value = "-";
+            document.getElementById("addD_SupplierID").value = "";
 
         }
         // Reset Function End
@@ -719,6 +746,7 @@
             var D_CAUTIONARY_CODE = document.getElementById("addD_CAUTIONARY_CODE").value;
             var D_EXP_DATE = document.getElementById("addD_EXP_DATE").value;
             var D_CLASSIFICATION = document.getElementById("addD_CLASSIFICATION").value;
+            var D_SUPPLIER_ID = document.getElementById("addD_SupplierID").value;
 
             var strCom = D_CAUTIONARY_CODE.replace(/'/g, '\\\'');
             D_CAUTIONARY_CODE = strCom;
@@ -739,7 +767,7 @@
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert Drug Code");
             } else if (UD_ATC_CODE === "") {
-                bootbox.alert("Please Search Any ATC Code");
+                bootbox.alert("Please Search Any Category Code");
             } else if (D_TRADE_NAME === "") {
                 bootbox.alert("Please Insert Drug Trade Name");
             } else if (D_GNR_NAME === "") {
@@ -791,11 +819,13 @@
                 bootbox.alert("Please Insert Drug Expire Date");
             } else if (D_CLASSIFICATION === "-") {
                 bootbox.alert("Select Any Classification");
+            } else if (D_SUPPLIER_ID === "") {
+                bootbox.alert("Select Any Supplier");
 
             } else if (UD_MDC_CODECheck.checkValidity() === false) {
                 bootbox.alert("Please Insert Drug Code Not More Than 30 Characters");
             } else if (UD_ATC_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert ATC Code Not More Than 30 Characters");
+                bootbox.alert("Please Insert Category Code Not More Than 30 Characters");
             } else if (D_TRADE_NAMECheck.checkValidity() === false) {
                 bootbox.alert("Please Insert Drug Trade Name Not More Than 200 Characters");
             } else if (D_GNR_NAMECheck.checkValidity() === false) {
@@ -859,7 +889,8 @@
                     D_ADVISORY_CODE: D_ADVISORY_CODE,
                     D_CAUTIONARY_CODE: D_CAUTIONARY_CODE,
                     D_EXP_DATE: D_EXP_DATE,
-                    D_CLASSIFICATION: D_CLASSIFICATION
+                    D_CLASSIFICATION: D_CLASSIFICATION,
+                    D_SUPPLIER_ID: D_SUPPLIER_ID
                 };
                 console.log(data);
 

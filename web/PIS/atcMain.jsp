@@ -19,10 +19,10 @@
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    ATC MEDICINE MANAGEMENT
+    CATEGORY CODE MANAGEMENT
     <span class="pull-right">
-        <button id="addATCTriggerHFC" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD ATC</button>
-        <button id="ATCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE ATC CODE</button>
+        <button id="addATCTriggerHFC" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD CATEGORY CODE</button>
+        <button id="ATCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE CATEGORY CODE</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -34,7 +34,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Add New ATC Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Add New Category Code</h2>
             </div>
             <div class="modal-body">
 
@@ -43,25 +43,25 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">ATC Code *</label>
-                        <div class="col-md-8">
-                            <input id="atcCode" name="atcCode" type="text" placeholder="Insert ATC Code" class="form-control input-md" maxlength="15" required>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">ATC Description *</label>
-                        <div class="col-md-8">
-                            <textarea id="atcDesc" name="atcDesc" class="form-control" rows="4" placeholder="Insert ATC Description" maxlength="200" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code *</label>
                         <div class="col-md-8">
-                            <input id="category" name="category" type="text" placeholder="Insert Category Code" class="form-control input-md" maxlength="50" required>
+                            <input id="atcCode" name="atcCode" type="text" placeholder="Insert Category Code" class="form-control input-md" maxlength="15" required>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Category Description *</label>
+                        <div class="col-md-8">
+                            <textarea id="atcDesc" name="atcDesc" class="form-control" rows="4" placeholder="Insert Category Description" maxlength="200" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Category Classification *</label>
+                        <div class="col-md-8">
+                            <input id="category" name="category" type="text" placeholder="Insert Category Classification" class="form-control input-md" maxlength="50" required>
                         </div>
                     </div>
 
@@ -134,7 +134,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone ATC Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Category Code</h2>
             </div>
             <div class="modal-body">
 
@@ -147,7 +147,7 @@
 
                         <div style="align-items: center; text-align: center">
                             <br>
-                            <label>Select ATC Drug To Be Cloned</label>
+                            <label>Select Category Code To Be Cloned</label>
                             <br><br>
                             <span>
                                 <a href="#" class="btn btn-default" id="ATC_Code_selectAll">&nbsp; Select all &nbsp;</a>
@@ -199,29 +199,29 @@
             var status = $('input[name="status"]:checked').val();
 
             if (atcCode === "" || atcCode === null) {
-                bootbox.alert("Please Insert ATC Code Name");
+                bootbox.alert("Please Insert Category Code");
             } else if (atcCodeCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert ATC Code Name That Is Not More Than 15 Characters");
+                bootbox.alert("Please Insert Category Code That Is Not More Than 15 Characters");
             } else if (atcDesc === "" || atcDesc === null) {
-                bootbox.alert("Please Insert ATC Code Description");
+                bootbox.alert("Please Insert Category Code Description");
             } else if (atcDescCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert ATC Code Description Name That Is Not More Than 200 Characters");
+                bootbox.alert("Please Insert Category Code Description That Is Not More Than 200 Characters");
             } else if (category === "" || category === null) {
-                bootbox.alert("Please Insert ATC Code Category");
+                bootbox.alert("Please Insert Category Code Classification");
             } else if (categoryCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert ATC Code Category Name That Is Not More Than 50 Characters");
+                bootbox.alert("Please Insert Category Code Classification That Is Not More Than 50 Characters");
             } else if (hfc === "" || hfc === null) {
-                bootbox.alert("Please Search ATC HFC Code");
+                bootbox.alert("Please Search Category HFC Code");
             } else if (hfcCheck.checkValidity() === false) {
-                bootbox.alert("Please Select ATC HFC Code That Is Not More Than 30 Characters");
+                bootbox.alert("Please Select Category HFC Code That Is Not More Than 30 Characters");
             } else if (discipline === "" || discipline === null) {
-                bootbox.alert("Please Search ATC Discipline Code");
+                bootbox.alert("Please Search Category Discipline Code");
             } else if (disciplineCheck.checkValidity() === false) {
-                bootbox.alert("Please Select ATC Discipine Code Name That Is Not More Than 30 Characters");
+                bootbox.alert("Please Select Category Discipine Code Name That Is Not More Than 30 Characters");
             } else if (subdiscipline === "" || subdiscipline === null) {
-                bootbox.alert("Please Search ATC Sub-Discipline Code");
+                bootbox.alert("Please Search Category Sub-Discipline Code");
             } else if (subdisciplineCheck.checkValidity() === false) {
-                bootbox.alert("Please Select ATC Sub-Discipline Code Name That Is Not More Than 30 Characters");
+                bootbox.alert("Please Select Category Sub-Discipline Code Name That Is Not More Than 30 Characters");
             } else if (status !== "1" && status !== "0") {
                 bootbox.alert("Please Select Any Status");
             } else {
@@ -239,7 +239,7 @@
                 console.log(data);
 
                 $.ajax({
-                    url: "controllerProcess/atcInsert.jsp",
+                    url: "controllerProcessDrugCategory/atcInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
@@ -250,7 +250,7 @@
                             $('#contentATCTable').load('atcTableLoop.jsp');
                             $('#detail').modal('hide');
                             bootbox.alert({
-                                message: "ATC Code is Added Successful",
+                                message: "Category Code is Added Successful",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -259,7 +259,7 @@
                         } else if (datas.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "ATC Code Duplication Detected. Please use diffrerent ATC code",
+                                message: "Category Code Duplication Detected. Please use different Category code",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -267,7 +267,7 @@
                         } else if (datas.trim() === 'Failed') {
 
                             bootbox.alert({
-                                message: "ATC Code Add Failed",
+                                message: "Category Code Add Failed",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -339,14 +339,14 @@
 
             $.ajax({
                 type: 'POST',
-                url: "controllerSearch/atcCloneDrugList.jsp",
+                url: "controllerProcessDrugCategory/atcCloneDrugList.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
 
                     $('#ATC_DrugCode').html(data);
                     $('#ATC_DrugCode').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable ATC Code</div>",
-                        selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected ATC Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Category Code</div>",
+                        selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Category Code</div>",
                         keepOrder: true
                     });
 
@@ -378,7 +378,7 @@
             console.log(strATCClone);
 
             if (strATCClone === "") {
-                bootbox.alert("Select at least one MDC Medcine to be cloned");
+                bootbox.alert("Select at least one Category Code to be cloned");
             } else {
                 $('<div class="loading">Loading</div>').appendTo('#atcCloneModal');
 
@@ -387,7 +387,7 @@
                 };
 
                 $.ajax({
-                    url: "controllerProcess/atcCloneDrugListInsert.jsp",
+                    url: "controllerProcessDrugCategory/atcCloneDrugListInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 15000,
@@ -399,7 +399,7 @@
                             $('#atcCloneModal').modal('hide');
 
                             bootbox.alert({
-                                message: "ATC Medcine is successfully cloned",
+                                message: "Category Code is successfully cloned",
                                 title: "Process Result",
                                 backdrop: true
                             });

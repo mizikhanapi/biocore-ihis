@@ -31,6 +31,8 @@
 
     String sqlInsert = "";
 
+    String supplier = "";
+
     String strMDCClone = request.getParameter("strMDCClone");
 
     String drugs[] = strMDCClone.split("\\|");
@@ -43,11 +45,11 @@
 
         sqlInsert = "INSERT INTO pis_mdc2 (ud_mdc_code,ud_atc_code,d_trade_name,d_gnr_name,d_route_code,d_form_code,d_strength,d_advisory_code,d_stock_qty, "
                 + " d_minimum_stock_level,d_maximum_stock_level,d_reorder_stock_level,d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,d_exp_date, "
-                + " d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,hfc_cd,discipline_cd, "
+                + " d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,d_supplier_cd,hfc_cd,discipline_cd, "
                 + " subdiscipline_cd,created_by,created_date) "
                 + " SELECT ud_mdc_code,ud_atc_code,d_trade_name,d_gnr_name,d_route_code,d_form_code,d_strength,d_advisory_code,d_stock_qty, "
                 + " d_minimum_stock_level,d_maximum_stock_level,d_reorder_stock_level,d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,d_exp_date, "
-                + " d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,"
+                + " d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,'" + supplier + "', "
                 + " '" + hfc + "','" + dis + "', '" + sub + "','" + created_by + "', '" + created_date + "' "
                 + " FROM pis_mdc2 WHERE UD_MDC_CODE = '" + drugs[i] + "' AND hfc_cd = '" + superUserHFC + "' ";
 

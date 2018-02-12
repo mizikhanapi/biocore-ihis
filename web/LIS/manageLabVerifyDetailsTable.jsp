@@ -22,12 +22,14 @@
     NumberFormat formatterInt = new DecimalFormat("#0");
     //                                  0             1                 2               3                       4                   5                  6                   7
     String orderList = "SELECT lissd.txt_date, lissd.specimen_no, lissd.item_cd, lissd.collection_date, lissd.collection_time, lissd.comment, lissd.specimen_status, lissd.approval, "
-            //         8                         9                          10                          11                12
-            + " lisid.item_name, IFNULL(lisid.spe_source,''), IFNULL(lisid.spe_container,''), IFNULL(lisid.volume,''), IFNULL(lissd.result_no,'') "
+            //         8                         9                          10                          11                12                                    13
+            + " lisid.item_name, IFNULL(lisid.spe_source,''), IFNULL(lisid.spe_container,''), IFNULL(lisid.volume,''), IFNULL(lissd.result_no,''), IFNULL(lisrt.verification,'') "
             // FROM DETAIL TABLE
             + " FROM lis_specimen_detail lissd "
             // LEFT JOIN ITEM TABLE
             + " LEFT JOIN lis_item_detail lisid ON (lissd.item_cd = lisid.item_cd)  "
+            // LEFT JOIN ITEM TABLE
+            + " LEFT JOIN lis_result lisrt ON (lissd.result_no = lisrt.result_no)  "
             // WHERE CONDITION
             + " WHERE lissd.specimen_no = '" + specimenNo + "' AND (lissd.specimen_status = 'Approved') "
             + " AND lisid.hfc_cd = '" + HEALTH_FACILITY_CODE + "' ";
@@ -40,7 +42,7 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientSpecimenDetailsListTable">
     <thead>
-    <th style="text-align: left;">Check</th>
+        <!--    <th style="text-align: left;">Check</th>-->
     <th style="text-align: left;">Item Code</th>
     <th style="text-align: left;">Item Name</th>
     <th style="text-align: left;">Specimen Source</th>
@@ -52,20 +54,27 @@
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
 
-            String result = dataOrderList.get(i).get(12);
-            String addDisabled = "";
-            String verifyDisabled = "";
+            String resultNo = dataOrderList.get(i).get(12);
+            String resultStatus = dataOrderList.get(i).get(13);
+            String addDisabled = "disabled";
+            String verifyDisabled = "disabled";
 
-            if (result.trim().isEmpty()) {
+            if (resultNo.trim().isEmpty()) {
                 verifyDisabled = "disabled";
-            } else {
-                addDisabled = "disabled";
+                addDisabled = "";
             }
+
+            if (resultStatus.trim().equalsIgnoreCase("Waiting For Approval")) {
+                addDisabled = "disabled";
+                verifyDisabled = "";
+            }
+
+
     %>
 
     <tr style="text-align: center;" >
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
-<td align="center"><input type="checkbox" id="labSpecimenChecked" checked></td> <!-- Checked -->
+<!--<td align="center"><input type="checkbox" id="labSpecimenChecked" checked></td>  Checked -->
 <td data-status="pagado" data-toggle="modal" data-id="1"  align="center" ><%= dataOrderList.get(i).get(2)%></td> <!-- Code -->
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(8)%></td> <!-- Name -->
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(9)%></td> <!--  S Source -->

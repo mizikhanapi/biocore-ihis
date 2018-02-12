@@ -332,6 +332,7 @@
 
             $('#inputFileToLoad').val("");
             $('#dym').html("");
+            gambarURI = "";
 
 
 

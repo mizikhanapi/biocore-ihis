@@ -98,7 +98,7 @@
 
             $(document).ready(function () {
 
-//                $('<div class="loading">Loading</div>').appendTo('body');
+                $('<div class="loading">Loading</div>').appendTo('body');
 
                 // Load LIST Page
                 $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");

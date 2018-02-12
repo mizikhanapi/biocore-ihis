@@ -50,7 +50,7 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    ATC CODE MANAGEMENT
+                                                    CATEGORY CODE MANAGEMENT
                                                 </a>
                                             </li>
                                             <li>
@@ -89,7 +89,6 @@
                                                     <div id="contentFREQTable">
                                                     </div>
                                                     <%@include file="freqModal.jsp" %>
-                                                    <%@include file="freqCloneModal.jsp" %>
                                                 </div>
                                             </div>
                                         </div>

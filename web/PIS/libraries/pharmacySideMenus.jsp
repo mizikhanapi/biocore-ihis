@@ -27,7 +27,7 @@
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="Report">
-            <li><a data-toggle="modal" data-target="#" href="ATC_Drug_List">List Of ATC Drugs</a></li>
+            <li><a data-toggle="modal" data-target="#" href="ATC_Drug_List">List Of Category Codes</a></li>
             <li><a data-toggle="modal" data-target="#" href="MDC_Drug_List">List Of Pharmacy Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="Supplier_List">List Of Supplier</a></li>
             <li><a data-toggle="modal" data-target="#" href="Drug_Reorder_Level_List">List Of Drugs Below Reorder Level</a></li>
