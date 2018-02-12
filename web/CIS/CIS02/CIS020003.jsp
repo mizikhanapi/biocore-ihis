@@ -195,14 +195,17 @@
             if ($(this).val().length > 3){
                 bootbox.alert("Enter the specific value");
                 $(this).val('');
+                $(this).blur();
             }
             else if(input.validity.stepMismatch || isNaN(this.value)){
                 bootbox.alert("Enter whole number only.");
                 $(this).val(''); 
+                $(this).blur();
             }
             else if(!input.checkValidity()){
                 bootbox.alert(input.validationMessage);
                 $(this).val('');
+                $(this).blur();
             }
             else{
                 var intNum = parseInt(this.value.replace(/[^0-9\.]/g, ''), 10);

@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="row lineSeperator">
+                            <div class="row lineSeperator hidden">
                                 <div class="col-xs-2 col-sm-2 col-md-3"></div>
                                 <div class="col-xs-2 col-sm-2 col-md-2"><h5>Blood Glucose</h5></div>
                                 <div class="col-xs-2 col-sm-2 col-md-2">
@@ -229,14 +229,17 @@
                 if ($(this).val().length > 4){
                     bootbox.alert("Enter the specific value");
                     $(this).val('');
+                    $(this).blur();
                 }
                 else if(input.validity.stepMismatch || isNaN(this.value)){
                     bootbox.alert("Enter number with one decimal number only.");
                     $(this).val(''); 
+                    $(this).blur();
                 }
                 else if(!input.checkValidity()){
                     bootbox.alert(input.validationMessage);
                     $(this).val('');
+                    $(this).blur();
                 }
                 else{
                     if(input.value.length > 0){

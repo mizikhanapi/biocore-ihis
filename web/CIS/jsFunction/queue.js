@@ -103,10 +103,6 @@ $(document).ready(function () {
 
                 encounterDate = getDate();
 
-                if (status === 'On Hold') {
-                    getEHRPatient(pmiNo, episodeDate);
-                }
-
                 $('#queueModal').modal('toggle');
                  $('.soap-select').off('click',disableSOAP);
                 //$('.soap-select').unbind('click');
@@ -615,8 +611,18 @@ function convertEHR(ehr) {
                 _data.push(objPainScale);
                 displayPanScale(objPainScale.painScale, objPainScale.resultPanScale);
             }
+            
+            if(VTSData[31] !==""){
+                var objBGlu={
+                    Acode:"VTS",
+                    CIS020016_glucose: VTSData[31]
+                };
+                
+                _data.push(objBGlu);
+                displayBGlucose(objBGlu.CIS020016_glucose);
+            }
 
-            if (VTSData[8] === "" && VTSData[7] === "" && VTSData[31] === "") {
+            if (VTSData[8] === "" && VTSData[7] === "") {
 
             } else {
                 var heightO = VTSData[8].split(" ");
@@ -1030,7 +1036,7 @@ function lexerDCG(data) {
     //for loop add object from ehr data
     for (var x in data) {
         var dataArry = data[x].trim().split("|");
-        var message_type = dataArry[3]
+        var message_type = dataArry[3];
         var seperator = "^" + message_type + "|";
         var disSum = data[x].trim().split(seperator);
         var disSumNote = disSum[1];
@@ -1280,8 +1286,17 @@ function lexerDCG(data) {
                 var index = getDCGItemIndex(_data, dataObj);
                 indexArry.push(index);
             }
+            
+            if(VTSData[31] !==""){
+                var objBGlu = {
+                    Acode: "VTS",
+                    CIS020016_glucose: VTSData[31]
+                };
+                
+                dataObj = objBGlu;
+            }
 
-            if (VTSData[8] === "" && VTSData[7] === "" && VTSData[31] === "") {
+            if (VTSData[8] === "" && VTSData[7] === "") {
 
             } else {
                 var heightO = VTSData[8].split(" ");
@@ -1509,7 +1524,7 @@ function lexerDCG(data) {
             PRI = disSumNote;
             var PRIData = convertNoteToData(PRI);
 
-            var dataObj = {
+            var dataPRI = {
                 Acode: "PRI",
                 REF: PRIData[4],
                 appREF: PRIData[2],
@@ -1520,7 +1535,7 @@ function lexerDCG(data) {
                 hfcREFcode: PRIData[3],
                 medicalHisRef: PRIData[11]
             };
-            dataObj = dataObj;
+            dataObj = dataPRI;
         } else if (msg_code === "ARQ") {
             ARQ = disSumNote;
             var ARQData = convertNoteToData(ARQ);

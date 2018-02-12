@@ -224,6 +224,7 @@
                                             <tbody id="OTRNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="PupilNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="PEMNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="BLOODGLUCOSENotes"   class="O ConsultationNotes"> </tbody>
 
                                             <tbody id="DGSNotes"   class="A ConsultationNotes"> </tbody>
                                             <tbody id="PNTNotes"   class="A ConsultationNotes"> </tbody>
@@ -321,7 +322,9 @@
         
         <jsp:include page="CIS02/CIS020014.jsp"/>
         <jsp:include page="CIS02/CIS020013.jsp"/>
+        <jsp:include page="CIS02/CIS020016.jsp"/>
         <jsp:include page="CIS02/CIS020015.jsp"/>
+        
 
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
         <script src="../assets/js/swapping-tab.js?v1" type="text/javascript"></script>
