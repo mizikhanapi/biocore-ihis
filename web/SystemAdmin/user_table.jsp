@@ -11,7 +11,7 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
-    String user_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_hfc = (String)session.getAttribute("HEALTH_FACILITY_CODE");
     String super_user = (String)session.getAttribute("USER_ID");
     
     MySession mys = new MySession(super_user, user_hfc);
@@ -32,10 +32,12 @@
 
     <%
         String whereClause = "";
+        String disabled="";
         
         if(!mys.isSuperUser()){
     
           whereClause = "WHERE a.health_facility_code = '" + user_hfc + "'";
+          disabled="disabled";
         }
         
         //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24           25                      26                  27                  28                      29
@@ -191,7 +193,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Health Facility *</label>
                                     <div class="col-md-8">
-                                        <input id="UT_hfc"  type="text" placeholder="Search Health Facility" class="form-control input-md">
+                                        <input id="UT_hfc" <%=disabled%>  type="text" placeholder="Search Health Facility" class="form-control input-md">
                                         <div id="UT_hfc_match"  class="search-drop">
                                             <!--search result-->
                                         </div>
@@ -1003,7 +1005,11 @@
 
         });
 
+<%
+    if(mys.isSuperUser()){
+%>
 //----------------------------- search hfc --------------------------------
+// only super user can have this function
         $('#UT_hfc').on('keyup', function () {
 
             var input = $('#UT_hfc').val();
@@ -1041,43 +1047,10 @@
         });
 //----------------------------- search hfc end --------------------------------
 
-//----------------------------- search hfc --------------------------------
-        $('#UT_hfc').on('keyup', function () {
+<%    
+    }// end if super user
+%>
 
-            var input = $('#UT_hfc').val();
-
-            if (input.length > 0) {
-
-                var data = {input: input};
-
-                $.ajax({
-                    url: "UM_result.jsp",
-                    type: 'POST',
-                    data: data,
-                    timeout: 10000,
-                    success: function (data) {
-                        $('#UT_hfc_match').html(data);
-                        $('#UM_hfc_matchlist li').on('click', function () {
-
-                            $('#UT_hfc').val($(this).text());
-                            $('#UT_hfc_match').text('');
-                            isHFCselected = true;
-                            selectedHFC = $('#UT_hfc').val();
-
-                        });
-                    },
-                    error: function () {
-                        $('#UT_hfc_match').text('Problem!');
-                    }
-
-                });
-
-            } else {
-                $('#UT_hfc_match').text('');
-            }
-
-        });
-//----------------------------- search hfc end --------------------------------
 
 //----------------------------- search discipline --------------------------------
         $('#UT_discipline').on('keyup', function () {
