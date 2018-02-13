@@ -19,7 +19,7 @@
 <table  id="mdcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th style="text-align: center;">Drug CODE</th>
-    <th style="text-align: center;">ATC CODE</th>
+    <th style="text-align: center;">CATEGORY CODE</th>
     <th style="text-align: center;">TRADE NAME</th>
     <th style="text-align: center;">GNR NAME</th>
     <th style="display: none">ROUTE CODE</th>
