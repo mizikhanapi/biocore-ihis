@@ -16,7 +16,7 @@
     String sql_eye_score = "SELECT `Detail_Reference_code`,`Description` FROM adm_lookup_detail WHERE `Master_Reference_code` = '0112' AND hfc_cd = '" + hfc_cd + "'";
     ArrayList<ArrayList<String>> data_eye_score = Conn.getData(sql_eye_score);
 %>
-<div class="modal fade" id="CIS0200014" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="CIS020014" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

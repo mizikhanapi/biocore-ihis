@@ -540,8 +540,8 @@ function convertVTS(VTSData) {
     if (d.painScale === undefined) {
         d.painScale = "";
     }
-    if (d.bloodGlucose === undefined) {
-        d.bloodGlucose = "";
+    if (d.CIS020016_glucose === undefined) {
+        d.CIS020016_glucose = "";
     }
     if (d.rrRate === undefined) {
         d.rrRate = "";
@@ -583,7 +583,7 @@ function convertVTS(VTSData) {
     vtsNotes += "VTS|" + episodeDate + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate ;
     vtsNotes +="^" + d.pointMain + "^^^^" + d.left_pupil + "^" + d.left_reactivity + "^" + d.right_reactivity + "^^^";
     vtsNotes +="^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale;
-    vtsNotes +="^" + d.bloodGlucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "^^^" + d.right_pupil + "^^" + d.left_eye_score + "^" + d.right_eye_score + "^^" + d.vision_comment + "^" + d.resultPanScale + "|<cr>\n";
+    vtsNotes +="^" + d.CIS020016_glucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "^^^" + d.right_pupil + "^^" + d.left_eye_score + "^" + d.right_eye_score + "^^" + d.vision_comment + "^" + d.resultPanScale + "|<cr>\n";
 
 
     return vtsNotes;

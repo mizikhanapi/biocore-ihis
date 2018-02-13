@@ -24,6 +24,10 @@
         dataEliType = conn.getData(eliType);
 
         int sizeEL = dataEliType.size();
+        
+    %>
+    <option value="">Select Eligibility Type</option>
+    <%
 
         for (int i = 0; i < sizeEL; i++) {
     %>

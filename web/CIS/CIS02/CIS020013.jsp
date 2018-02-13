@@ -17,7 +17,7 @@
     String sql_reactivity = "SELECT `Detail_Reference_code`,`Description` FROM adm_lookup_detail WHERE `Master_Reference_code` = '0111' AND hfc_cd = '"+hfc_cd+"'";
     ArrayList<ArrayList<String>> data_reactivity = Conn.getData(sql_reactivity);
 %>
-<div class="modal fade" id="CIS0200013" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="CIS020013" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

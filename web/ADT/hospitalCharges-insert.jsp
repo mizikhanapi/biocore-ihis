@@ -13,13 +13,13 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String eliSrc,eliTy,ChargeType,ChargeFees;
+    String eliSrc, eliTy, ChargeType, ChargeFees;
     String hfc = request.getParameter("hfc");
-    String dis = request.getParameter("dis");
-    String sub = request.getParameter("sub");
-    
-      String wname = request.getParameter("wname");
-        String wclass = request.getParameter("wclass");
+    String dis = "";
+    String sub = "";
+
+    String wname = request.getParameter("wname");
+    String wclass = request.getParameter("wclass");
 
     String createdBy = request.getParameter("createdBy");
 
@@ -27,17 +27,22 @@
     eliTy = request.getParameter("EliTy");
     ChargeType = request.getParameter("ChargeType");
     ChargeFees = request.getParameter("ChargeFees");
-    DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-    Date dateobj = new Date();
-    df.format(dateobj);
+    
 
-  String sqlCheck = "SELECT charges_type,  eligibility_sources_cd, eligibility_type_cd, ward_class_code, ward_id from wis_hospital_charges WHERE charges_type = '" + ChargeType + "' and "
-          + "eligibility_sources_cd = '" + eliSrc + "'   and eligibility_type_cd = '" + eliTy + "' and  ward_class_code = '" + wclass + "' and ward_id = '" + wname + "' LIMIT 1 ";
-  ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
+    String sqlCheck = "SELECT charges_type FROM wis_hospital_charges WHERE charges_type = '" + ChargeType + "' and "
+            + "eligibility_sources_cd = '" + eliSrc + "'   and eligibility_type_cd = '" + eliTy + "' and  ward_class_code = '" + wclass + "' and ward_id = '" + wname + "' and hfc_cd='"+hfc+"' LIMIT 1 ";
+    int duplicateSize = conn.getData(sqlCheck).size();
 //
-   if (duplicate.size() > 0) {
-       out.print("Duplicate");
- } else {
+    if (duplicateSize > 0) {
+        out.print("Duplicate");
+    } else {
+        
+        sqlCheck ="Select discipline_cd, subdiscipline_cd from wis_ward_name where ward_id='"+wname+"' and hfc_cd='"+hfc+"' limit 1;";
+        ArrayList<ArrayList<String>> dataDis = conn.getData(sqlCheck);
+        if(dataDis.size()>0){
+            dis = dataDis.get(0).get(0);
+            sub = dataDis.get(0).get(1);
+        }
 
         String sqlInsert = "INSERT INTO wis_hospital_charges (ward_class_code, ward_id, eligibility_sources_cd, hfc_cd, eligibility_type_cd, discipline_cd, charges_type, subdiscipline_cd, charges_fees,"
                 + " created_by, created_date) "
@@ -51,7 +56,7 @@
         } else {
             out.print("Failed");
         }
-   }
+    }
 
 
 %>

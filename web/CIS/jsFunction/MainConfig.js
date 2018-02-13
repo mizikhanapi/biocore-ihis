@@ -53,7 +53,7 @@ var HCSContent = [];
 
 
 function  disableSOAP() {
-    bootbox.alert("You need to select the patient");
+    bootbox.alert("You need to select a patient from the <b>Queue!</b>");
     return false;
 }
 

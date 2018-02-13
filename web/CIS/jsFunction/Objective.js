@@ -85,13 +85,13 @@ var pitemIDpe8 = "";
 var updateObjCd;
 
 var NotesPE;
-     
-        
-            
-       
-   
+
+
+
+
+
 $(document).ready(function () {
-    
+
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------GCS MODUL----------------------------------------------------------------/////;
@@ -110,14 +110,14 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-    
+
         displayGCS(gcsResult, gcsPoint);
 
         $('#resultMain').val('');
         $('#pointMain').val('');
-         $('#rowEOR').replaceWith("<tr id='rowEOR'><td>-</td><td>0</td></tr>");
-         $('#rowMR').replaceWith("<tr id='rowMR'><td>-</td><td>0</td></tr>");
-         $('#rowVR').replaceWith("<tr id='rowVR'><td>-</td><td>0</td></tr>");
+        $('#rowEOR').replaceWith("<tr id='rowEOR'><td>-</td><td>0</td></tr>");
+        $('#rowMR').replaceWith("<tr id='rowMR'><td>-</td><td>0</td></tr>");
+        $('#rowVR').replaceWith("<tr id='rowVR'><td>-</td><td>0</td></tr>");
 
         $("#CIS020001").modal('hide');
     });
@@ -125,7 +125,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        
+
         $("#CIS020001").modal('show');
         $('#actionGSC').hide();
         $('#updateGSC').show();
@@ -141,7 +141,7 @@ $(document).ready(function () {
         var rowId = $('#Jsonid').val();
         upObject.resultMain = $('#resultMain').val();
         upObject.pointMain = $('#pointMain').val();
-      
+
 
         var sum = 'GCS Result:' + upObject.resultMain + '| GCS Point:' + upObject.pointMain;
         $('#sum' + rowId).html(sum);
@@ -164,7 +164,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-    
+
         displayPGCS(pgcsResult, pgcsPoint);
         $('#resultpgcsMain').val('');
         $('#pointpgcsMain').val('');
@@ -172,7 +172,7 @@ $(document).ready(function () {
         $('#rowpMR').replaceWith("<tr id='rowpMR'><td>-</td><td>0</td></tr>");
         $('#rowpVR').replaceWith("<tr id='rowpVR'><td>-</td><td>0</td></tr>");
         $("#CIS020002").modal('hide');
-        
+
     });
 
     $('#ortho_actionPGSC').click(function (e) {
@@ -198,7 +198,7 @@ $(document).ready(function () {
                     timeout: 3000,
                     success: function (returnObservation) {
                         $('#getNeuObservation').html(returnObservation);
-                       
+
                         $('#getNeuObservation').trigger('contentchanged');
                         $('#CIS020002').modal('hide');
                         $("#CIS020002").hide();
@@ -217,7 +217,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-       
+
         $("#CIS020002").modal('show');
         $('#actionPGSC').hide();
         $('#updatePGSC').show();
@@ -266,7 +266,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-      
+
         displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP);
 
         $("#CIS020003").modal('hide');
@@ -308,7 +308,7 @@ $(document).ready(function () {
                     timeout: 3000,
                     success: function (returnObservation) {
                         $('#getNeuObservation').html(returnObservation);
-                       
+
                         $('#getNeuObservation').trigger('contentchanged');
                         $('#sitS').val("");
                         $('#sitD').val("");
@@ -324,7 +324,7 @@ $(document).ready(function () {
                 bootbox.alert("Error update!");
             }
         });
-        
+
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateBP', function (e) {
@@ -403,7 +403,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         $('#RRid').val(id[1]);
-        
+
         $('#rrRate').val(updateObj.rrRate);
 
     });
@@ -447,7 +447,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         $('#idOS').val(id[1]);
-        
+
 
     });
 
@@ -480,9 +480,9 @@ $(document).ready(function () {
             obj1[this.id] = value[0];
         });
         _data.push(obj1);
-        displayBTemp(_BTemp)
+        displayBTemp(_BTemp);
         $('#BTemp').val('');
-         $("#slider").slider("value", parseInt(1));
+        $("#slider").slider("value", parseInt(1));
         $("#CIS020006").modal('hide');
     });
 
@@ -514,6 +514,52 @@ $(document).ready(function () {
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+/// -------------------------------------------------------------Blood Glucose modal-----------------------------------------------------------/////;
+/// ----------------------------------------------------------------------------------------------------------------------------------------------/////;    
+    $('#acceptBGluBtn').click(function (e) {
+        
+        var _BGlu = $('#CIS020016_glucose').val();
+
+        var items = $('#CIS020016_glucose');
+        var obj1 = {Acode: "VTS"};
+        items.each(function () {
+            var value = $(this).val().split(" ");
+            obj1[this.id] = value[0];
+        });
+        _data.push(obj1);
+        displayBGlucose(_BGlu);
+        $('#CIS020016_glucose').val('');
+        
+        $("#CIS020016").modal('hide');
+    });
+
+    $('#tblCIS_Consultation_Table').on('click', '.updateBGlu', function () {
+        $('#CIS020016').modal('show');
+        $('#actionBGlu').hide();
+        $('#updateBGlu').show();
+
+        var idName = $(this).get(0).id;
+        var id = idName.split('|');
+        var updateObj = _data[id[1]];
+        console.log("Update Glucose: "+updateObj);
+        $('#CIS020016_glucoseID').val(id[1]);
+        $("#CIS020016_glucose").val(updateObj.CIS020016_glucose);
+        
+    });
+
+    $('#updateBGluBtn').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#CIS020016_glucoseID').val()];
+        var rowId = $('#CIS020016_glucoseID').val();
+
+        var value = $('#CIS020016_glucose').val().split(" ");
+        upObject.CIS020016_glucose = value[0];
+
+        var sum = upObject.CIS020016_glucose + " mmol/L";
+        $('#sum' + rowId).html(sum);
+        $("#CIS020016").modal('hide');
+    });
+/// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------Pan Scale modal-----------------------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
@@ -544,7 +590,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
- 
+
 
         $('#resultPanScale').val(updateObj.resultPanScale);
         $('#painScale').val(updateObj.painScale);
@@ -585,15 +631,15 @@ $(document).ready(function () {
         var OBloodGlucose = $('#bloodGlucose').val();
 
         var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');
-        
+
         var obj = {
-            Acode:"VTS",
-            bmiHeight:Oheight,
-            bmiWeight:Oweight,
-            bmi:Obmi,
-            bmiStatus:OWeightStatus,
-            headCir:OheadCir,
-            bloodGlucose:OBloodGlucose
+            Acode: "VTS",
+            bmiHeight: Oheight,
+            bmiWeight: Oweight,
+            bmi: Obmi,
+            bmiStatus: OWeightStatus,
+            headCir: OheadCir,
+            bloodGlucose: OBloodGlucose
         }
 
 //        var obj1 = {Acode: "VTS"};
@@ -617,7 +663,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-       
+
         $('#otherId').val(id[1]);
 
         $('#bmiHeight').val(updateObj.bmiHeight);
@@ -644,51 +690,51 @@ $(document).ready(function () {
         $('#sum' + rowId).html(sum);
         $("#CIS020008").modal('hide');
     });
-    
+
     /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------PUPIL CHECK MODAL-----------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
-    
+
     $(".vts-pupil-update").hide();
-    
-    
-    $('#CIS0200013').on('hide.bs.modal',function(e){
+
+
+    $('#CIS0200013').on('hide.bs.modal', function (e) {
         $(".vts-pupil-update").hide();
         $(".vts-pupil-add").show();
         $("#cis-vts-left_pupil").val('1');
         $("#cis-vts-right_pupil").val('1');
         $("#cis-vts-left-reactivity").val('');
         $("#cis-vts-right-reactivity").val('');
-        
+
     });
 
-    
+
     $('#btn_CIS_VTS_Pupil_ADD').click(function (e) {
-        
+
         var left_pupil = $("#cis-vts-left_pupil").val();
         var right_pupil = $("#cis-vts-right_pupil").val();
         var left_reactivity = $("#cis-vts-left-reactivity").val();
         var right_reactivity = $("#cis-vts-right-reactivity").val();
-        
+
         var obj1 = {
             Acode: "VTS",
-            left_pupil:left_pupil,
-            right_pupil:right_pupil,
-            left_reactivity:left_reactivity,
-            right_reactivity:right_reactivity
+            left_pupil: left_pupil,
+            right_pupil: right_pupil,
+            left_reactivity: left_reactivity,
+            right_reactivity: right_reactivity
         }
         _data.push(obj1);
         displayPupil(obj1);
         console.log(obj1);
         $("#CIS0200013").modal('hide');
     });
-    
+
     $('#tblCIS_Consultation_Table').on('click', '.updatePupil', function () {
 
         $('#CIS0200013').modal('show');
         $(".vts-pupil-update").show();
         $(".vts-pupil-add").hide();
-        
+
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
@@ -699,56 +745,56 @@ $(document).ready(function () {
         $("#cis-vts-left-reactivity").val(updateObj.left_reactivity);
         $("#cis-vts-right-reactivity").val(updateObj.right_reactivity);
     });
-    
+
     $('#btn_CIS_VTS_Pupil_UPDATE').click(function (e) {
         e.preventDefault();
         var upObject = _data[$('#pupil-ID').val()];
         var rowId = $('#pupil-ID').val();
-       
+
         upObject.left_pupil = $("#cis-vts-left_pupil").val();
-        upObject.right_pupil = $("#cis-vts-right_pupil").val(); 
-        upObject.left_reactivity = $("#cis-vts-left-reactivity").val(); 
-        upObject.right_reactivity = $("#cis-vts-right-reactivity").val(); 
+        upObject.right_pupil = $("#cis-vts-right_pupil").val();
+        upObject.left_reactivity = $("#cis-vts-left-reactivity").val();
+        upObject.right_reactivity = $("#cis-vts-right-reactivity").val();
 
         var sum = 'Left Pupil : ' + upObject.left_pupil + ' | Reactivity to Light : ' + upObject.left_reactivity + ' </br>Right Pupil : ' + upObject.right_pupil + ' | Reactivity to Light : ' + upObject.right_reactivity
         $('#sum' + rowId).html(sum);
         $("#CIS0200013").modal('hide');
     });
-    
+
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------VISION MODAL----------------------------------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
     $(".vts-vision-update").hide();
-    
+
     $('#CIS0200014').on('hide.bs.modal', function (e) {
         $(".vts-vision-update").hide();
         $(".vts-vision-add").show();
-         $('#cis-vts-rvs').val('');
-         $('#cis-vts-lvs').val('');
-         $('#cis-vts-vision-comment').val('');
-         
+        $('#cis-vts-rvs').val('');
+        $('#cis-vts-lvs').val('');
+        $('#cis-vts-vision-comment').val('');
+
 
     })
-    
-    $('#btn_CIS_VTS_Vision_ADD').click(function(e){
+
+    $('#btn_CIS_VTS_Vision_ADD').click(function (e) {
         e.preventDefault();
         var left_eye_score = $('#cis-vts-lvs').val();
         var right_eye_score = $('#cis-vts-rvs').val();
         var vision_comment = $('#cis-vts-vision-comment').val();
         var obj1 = {
-            Acode:"VTS",
-            left_eye_score:left_eye_score,
-            right_eye_score:right_eye_score,
-            vision_comment:vision_comment
+            Acode: "VTS",
+            left_eye_score: left_eye_score,
+            right_eye_score: right_eye_score,
+            vision_comment: vision_comment
         }
         _data.push(obj1);
         displayVision(obj1);
-        
+
         $("#CIS0200014").modal('hide');
-        
+
     });
-    
-    
+
+
     $('#tblCIS_Consultation_Table').on('click', '.updateVision', function () {
 
         $('#CIS0200014').modal('show');
@@ -763,9 +809,9 @@ $(document).ready(function () {
         $('#cis-vts-lvs').val(updateObj.left_eye_score);
         $('#cis-vts-rvs').val(updateObj.right_eye_score);
         $('#cis-vts-vision-comment').val(updateObj.vision_comment);
-      
+
     });
-    
+
     $('#btn_CIS_VTS_Vision_Update').click(function (e) {
         e.preventDefault();
         var upObject = _data[$('#vision-ID').val()];
@@ -776,11 +822,11 @@ $(document).ready(function () {
         upObject.vision_comment = $("#cis-vts-vision-comment").val();
 
 
-        var sum = 'Left Eye : ' + upObject.left_eye_score + ' |  Right Eye : ' + upObject.right_eye_score + '<br/> Comment : ' +upObject.vision_comment
+        var sum = 'Left Eye : ' + upObject.left_eye_score + ' |  Right Eye : ' + upObject.right_eye_score + '<br/> Comment : ' + upObject.vision_comment
         $('#sum' + rowId).html(sum);
         $("#CIS0200014").modal('hide');
     });
-    
+
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------PHYSICAL EXAM MODAL-----------------------------------------------/////;
@@ -801,8 +847,8 @@ $(document).ready(function () {
         var PEComment = $('#PEComment').val();
 
         //var NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7 + ', ' + pe8;
-         if(validationField(pe0,"Please enter the correct Physical Examination")){
-             if (pe1.length < 1) {
+        if (validationField(pe0, "Please enter the correct Physical Examination")) {
+            if (pe1.length < 1) {
                 NotesPE = pe0;
             } else if (pe2.length < 1) {
                 NotesPE = pe0 + ', ' + pe1;
@@ -842,8 +888,8 @@ $(document).ready(function () {
 
             displayPEM(NotesPE, PEComment);
             $("#CIS020009").modal('hide');
-         }
-        
+        }
+
     });
 
     $("#ortho_accpetPEBtn").click(function () {
@@ -888,14 +934,14 @@ $(document).ready(function () {
             },
             timeout: 10000,
             success: function (data) {
-                
+
                 $.ajax({
                     url: "../Ortho-Consultation/table/t_physicalExam.jsp",
                     type: "post",
                     timeout: 3000,
                     success: function (returnPhysicalExam) {
                         $('#get_physicalExam').html(returnPhysicalExam);
-                       
+
                         $('#get_physicalExam').trigger('contentchanged');
                         $('#CIS020009').modal('hide');
                         $("#ortho_physical_exam").hide();
@@ -1021,7 +1067,7 @@ $(document).ready(function () {
 
         var upObject = _data[$('#idPE').val()];
         var rowId = $('#idPE').val();
-     
+
         upObject.pe0 = $('#pe0').val();
         upObject.pe1 = $('#pe1').val();
         upObject.pe2 = $('#pe2').val();
@@ -1035,7 +1081,7 @@ $(document).ready(function () {
 
         var itemIDpe = [];
 
-      if(validationField(upObject.pe0,"Please enter the correct Physical Examination")){
+        if (validationField(upObject.pe0, "Please enter the correct Physical Examination")) {
             var NotesPE;
             if (upObject.pe1.length < 1) {
                 NotesPE = upObject.pe0;
@@ -1105,21 +1151,21 @@ $(document).ready(function () {
             var sum = NotesPE + ' </br> Comment:' + upObject.PEComment;
             $('#sum' + rowId).html(sum);
             $("#CIS020009").modal('hide');
-      }
+        }
 
-        
+
     });
 
     $('#RISResult').on('click', function () {
 
         $.get("CIS02/CIS020010_1.jsp", function (data) {
-         
+
             $('#divCIS_O_RIS_RadiologyResult').html(data);
 
         });
     });
-    
-    $("#divCIS_O_RIS_RadiologyResult").on("click","#risTable #btnCIS_O_ROS_VIEW_RESULT",function(e){
+
+    $("#divCIS_O_RIS_RadiologyResult").on("click", "#risTable #btnCIS_O_ROS_VIEW_RESULT", function (e) {
         e.preventDefault();
         var rowOrder = $(this).closest("tr");
         var orderId = rowOrder.find("#orderId").html();
@@ -1149,14 +1195,14 @@ $(document).ready(function () {
     $('#LISResult').on('click', function () {
 
         $.get("CIS02/CIS020011_1.jsp", function (data) {
-  
+
             $('#divCIS_O_LIS_LaboratoryResult').html(data);
 
         });
     });
-    
+
     $("#divCIS_O_LIS_LaboratoryResult").on("click", "#lisTable #btnCIS_O_LIO_VIEW_RESULT", function (e) {
-  
+
         e.preventDefault();
         var rowOrder = $(this).closest("tr");
         var orderId = rowOrder.find("#id_result").html();
@@ -1184,7 +1230,7 @@ $(document).ready(function () {
     $('#OPResult').on('click', function () {
 
         $.get("CIS02/CIS020012_1.jsp", function (data) {
- 
+
             $('#divCIS_O_POS_ProcedureResult').html(data);
 
         });
@@ -1239,14 +1285,14 @@ function displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#BPNotes').append(_tr);
- 
+
     i = i + 1;
 }
 function displayrrRate(_rrRate) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#RRNotes').append(_tr);
-  
+
     i = i + 1;
 }
 
@@ -1267,14 +1313,22 @@ function displayPanScale(painScale, resultpainScale) {
 
 function displayBTemp(_BTemp) {
 
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: :<p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: <p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#BTEMPNotes').append(_tr);
 
     i = i + 1;
 }
 
+function displayBGlucose(_BGlu) {
+
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Glucose: <p class="summary" id="sum' + i + '">' + _BGlu + ' mmol/L</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBGlu" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#BLOODGLUCOSENotes').append(_tr);
+
+    i = i + 1;
+}
+
 function displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm </br> Blood Glucose:' + OBloodGlucose + 'mmol/L</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#OTRNotes').append(_tr);
 
     i = i + 1;
@@ -1296,7 +1350,7 @@ function displayPupil(obj) {
 }
 function displayVision(obj) {
 
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vision Test:<p class="summary" id="sum' + i + '"> Left Eye : ' + obj.left_eye_score + ' | Right Eye : ' + obj.right_eye_score + ' </br> Comment : '+obj.vision_comment+'</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateVision" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vision Test:<p class="summary" id="sum' + i + '"> Left Eye : ' + obj.left_eye_score + ' | Right Eye : ' + obj.right_eye_score + ' </br> Comment : ' + obj.vision_comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateVision" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#PupilNotes').append(_tr);
     i = i + 1;
 }

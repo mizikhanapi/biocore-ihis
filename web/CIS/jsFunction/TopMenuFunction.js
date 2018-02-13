@@ -699,7 +699,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
                 notes: notes,
                 pmino: pmiNo,
                 episodedate: episodeDate,
-                status: status,
+                status: status
             },
             success: function (data) {
                 //destroyScreenLoading()

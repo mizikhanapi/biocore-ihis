@@ -207,10 +207,10 @@
 
 
 <script type="text/javascript">
-//    var hcTable;
+
     $(document).ready(function () {
 
-
+        var hcTable = $('#facilityIDTable').DataTable();
 
         //function to edit facility type from table
         $('#FacilityIDTable').off('click', '#facilityIDTable #MWID_edit').on('click', '#facilityIDTable #MWID_edit', function (e) {
@@ -335,96 +335,94 @@
                 });
             }
         });
-    });
-//delete function when click delete on next of kin
-    $('#tablefacilityIDTable').on('click', '#facilityIDTable #MWID_delete', function (e) {
 
-        e.preventDefault();
-        var row = $(this).closest("tr");
-        var rowData = row.find("#dataFacilityIDhidden").val();
-        var arrayData = rowData.split("|");
 
-        //assign into seprated val
-        var updateEliSrc_cd = arrayData[3];
-        var updateEliTy_cd = arrayData[4];
-        var updateChargeType_cd = arrayData[5];
-        var class_cd = arrayData[9];
-        var ward_cd = arrayData[10];
+        $('#tablefacilityIDTable').off('click').on('click', '#facilityIDTable #MWID_delete', function (e) {
 
-        console.log(arrayData);
-        bootbox.confirm({
-            message: "Are you sure to delete Hospital Charges information?",
-            title: "Delete Item?",
-            buttons: {
-                confirm: {
-                    label: 'Yes',
-                    className: 'btn-success'
+            e.preventDefault();
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataFacilityIDhidden").val();
+            var arrayData = rowData.split("|");
+
+            //assign into seprated val
+            var updateEliSrc_cd = arrayData[3];
+            var updateEliTy_cd = arrayData[4];
+            var updateChargeType_cd = arrayData[5];
+            var class_cd = arrayData[9];
+            var ward_cd = arrayData[10];
+
+            console.log(arrayData);
+            bootbox.confirm({
+                message: "Are you sure to delete Hospital Charges information?",
+                title: "Delete Item?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
                 },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
+                callback: function (result) {
 
-                if (result === true) {
-                    console.log(arrayData);
-                    var datas = {
-                        updateEliSrc_cd: updateEliSrc_cd,
-                        updateEliTy_cd: updateEliTy_cd,
-                        updateChargeType_cd: updateChargeType_cd,
-                        class_cd: class_cd,
-                        ward_cd: ward_cd
+                    if (result === true) {
+                        console.log(arrayData);
+                        var datas = {
+                            updateEliSrc_cd: updateEliSrc_cd,
+                            updateEliTy_cd: updateEliTy_cd,
+                            updateChargeType_cd: updateChargeType_cd,
+                            class_cd: class_cd,
+                            ward_cd: ward_cd
 
-                    };
-                    $.ajax({
-                        type: "post",
-                        url: "hospitalCharges-Delete.jsp",
-                        data: datas,
-                        timeout: 10000,
-                        success: function (result) {
-                            console.log(result);
-                            if (result.trim() === 'Success') {
-//                                hcTable
-//                                        .row(row)
-//                                        .remove()
-//                                        .draw();
-                                row.remove();
+                        };
+                        $.ajax({
+                            type: "post",
+                            url: "hospitalCharges-Delete.jsp",
+                            data: datas,
+                            timeout: 10000,
+                            success: function (result) {
+                                console.log(result);
+                                if (result.trim() === 'Success') {
+                                    hcTable
+                                            .row(row)
+                                            .remove()
+                                            .draw();
+
+                                    //row.remove();
 
 
-                                bootbox.alert({
-                                    message: "Successfully deleted",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                            } else if (result.trim() === 'Failed') {
-                                bootbox.alert({
-                                    message: "Delete Failed",
-                                    title: "Process Result",
-                                    backdrop: true
+                                    bootbox.alert({
+                                        message: "Successfully deleted",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+                                } else if (result.trim() === 'Failed') {
+                                    bootbox.alert({
+                                        message: "Delete Failed",
+                                        title: "Process Result",
+                                        backdrop: true
 
-                                });
+                                    });
+                                }
+
+
+                            }, error: function (err) {
+                                alert("Error! Deletion Ajax failed!!");
                             }
 
-
-                        }, error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
-                        }
-
-                    });
-                } else {
-                    console.log("Process Is Canceled");
+                        });
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-//        hcTable = $('#facilityIDTable').DataTable();
-        $('#facilityIDTable').DataTable();
 
-    });
+    });// end on document ready
+//delete function when click delete on next of kin
+
 </script>
 

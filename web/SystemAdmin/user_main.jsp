@@ -4,10 +4,14 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%
     Conn conn = new Conn();
+
+    String user_id = (String) session.getAttribute(MySessionKey.USER_ID);
 
     String hfc_default = "";
     String hfc_kod = "";
@@ -17,6 +21,12 @@
         hfc_nama = session.getAttribute("HFC_NAME").toString();
 
         hfc_default = hfc_kod + " | " + hfc_nama;
+    }
+
+    MySession mys = new MySession(user_id, hfc_kod);
+    String disabled = "";
+    if (!mys.isSuperUser()) {
+        disabled = "disabled";
     }
 %>
 
@@ -72,7 +82,7 @@
                                         <select id="UM_title" class="form-control input-md">
                                             <option value="">-- Select title --</option>
                                             <%
-                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' AND hfc_cd = '" + hfc_kod + "' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataTitle = conn.getData(sqlTitle);
 
                                                 for (int i = 0; i < dataTitle.size(); i++) {
@@ -135,7 +145,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Health Facility *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_hfc"  type="text" placeholder="Search Health Facility" class="form-control input-md">
+                                        <input id="UM_hfc" <%=disabled%>  type="text" placeholder="Search Health Facility" class="form-control input-md">
                                         <div id="UM_hfc_match" class="search-drop">
                                             <!--search result-->
                                         </div>
@@ -247,7 +257,7 @@
                                         <select id="UM_gender" class="form-control input-md">
                                             <option value="">-- Select gender --</option>
                                             <%
-                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041' AND hfc_cd = '" + hfc_kod + "' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataGender = conn.getData(sqlGender);
 
                                                 for (int i = 0; i < dataGender.size(); i++) {
@@ -272,7 +282,7 @@
                                         <select id="UM_occupation" class="form-control input-md">
                                             <option value="">-- Select occupation --</option>  
                                             <%
-                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050' AND hfc_cd = '" + hfc_kod + "' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataOccupation = conn.getData(sqlOccupation);
 
                                                 for (int i = 0; i < dataOccupation.size(); i++) {
@@ -293,7 +303,7 @@
                                         <select id="UM_nationality" class="form-control input-md">
                                             <option value="">-- Select nationality --</option>  
                                             <%
-                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011' AND hfc_cd = '" + hfc_kod + "' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataNationality = conn.getData(sqlNationality);
 
                                                 for (int i = 0; i < dataNationality.size(); i++) {
@@ -619,10 +629,10 @@
 
         var isHFCselected = false;
         var selectedHFC = "";
-        
+
         var isDisciplineSelected = false;
         var selectedDiscipline = "";
-        
+
         var isSubdisciplineSelected = false;
         var selectedSubsiscipline = "";
         //---------------- global variable for confirming hfc is selected from search ------------------------------------
@@ -657,7 +667,7 @@
 
             UM_reset();
             $('#UM_endDate').datepicker('option', 'minDate', null);
-            $('#UM_endDate').datepicker("setDate","31/12/9999");//setting the default end date; sampai kiamat
+            $('#UM_endDate').datepicker("setDate", "31/12/9999");//setting the default end date; sampai kiamat
             $('#UM_startDate').datepicker("setDate", new Date());
             isHFCselected = false;
             selectedHFC = "";
@@ -708,8 +718,8 @@
             var userIDStatus = $('#UM_userIDStatus').val();
             var mother = $('#UM_mother').val();
             var roomNo = $('#UM_roomNo').val();
-            
-            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(userID);          
+
+            var gotSpecialChar = /[!#$%^&*()+=,?\/\\:;\"\' ]/.test(userID);
 
             //$('#UM_detail').css('overflow', 'auto');
 
@@ -733,10 +743,10 @@
             } else if (hfc === "") {
                 bootbox.alert("Fill in the staff health facility");
 
-            }else if (discipline === "") {
+            } else if (discipline === "") {
                 bootbox.alert("Fill in the staff discipline");
 
-            }else if (subdiscipline === "") {
+            } else if (subdiscipline === "") {
                 bootbox.alert("Fill in the staff subdiscipline");
 
             } else if (password === "" || password2 === "") {
@@ -766,11 +776,9 @@
             } else if (roomNo === "") {
                 bootbox.alert("Insert the staff room number");
 
-            }
-            else if(gotSpecialChar){
+            } else if (gotSpecialChar) {
                 bootbox.alert("User ID cannot contain special characters!");
-            }            
-            else if (ValidateEmail(email) === false) {
+            } else if (ValidateEmail(email) === false) {
                 bootbox.alert("Invalid email address");
                 $('#UM_email').val("");
 
@@ -778,11 +786,11 @@
                 bootbox.alert("Choose existing health facility");
                 $('#UM_hfc').val("");
 
-            }else if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
+            } else if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
                 bootbox.alert("Choose existing discipline");
                 $('#UM_discipline').val("");
 
-            }else if (isSubdisciplineSelected === false || selectedSubsiscipline !== subdiscipline) {
+            } else if (isSubdisciplineSelected === false || selectedSubsiscipline !== subdiscipline) {
                 bootbox.alert("Choose existing subdiscipline");
                 $('#UM_subdiscipline').val("");
 
@@ -818,16 +826,16 @@
                 $('#UM_endDate').val("");
 
             } else {
-                
+
                 name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
                 mother = mother.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                 var array = hfc.split("|");
                 hfc = array[0].trim();
-                
+
                 var array2 = discipline.split("|");
                 discipline = array2[0].trim();
-                
+
                 var array3 = subdiscipline.split("|");
                 subdiscipline = array3[0].trim();
 
@@ -899,6 +907,13 @@
 
         });
 
+
+        
+    <%
+            if (mys.isSuperUser()) {
+
+    %>
+         //only super user can have this function...
         $('#UM_hfc').on('keyup', function () {
 
             var input = $('#UM_hfc').val();
@@ -934,6 +949,10 @@
             }
 
         });
+    <%            
+        }// end if super user
+    %>
+
 
 
 
@@ -947,12 +966,12 @@
 
                 //make sure hfc is selected fisrt before we can search discipline
                 if (isHFCselected === false || selectedHFC !== hfc) {
-                    
+
                     bootbox.alert("Select health facility first!");
                     //$('#UM_detail').css('overflow', 'auto');
 
                 } else {
-                    
+
                     $('#UM_discipline_match').html('<img src = "img/ajax-loader.gif">');
                     var array = hfc.split("|");
                     hfc = array[0];
@@ -1002,7 +1021,7 @@
             var hfc = $('#UM_hfc').val();
             var discipline = $('#UM_discipline').val();
             var input = $(this).val();
-            
+
             if (input.length > 0) {
 
                 //make sure discipline is selected fisrt before we can search discipline
@@ -1011,14 +1030,14 @@
                     $(this).val('');
 
                 } else {
-                    
+
                     $('#UM_subdiscipline_match').html('<img src = "img/ajax-loader.gif">');
                     var array = hfc.split("|");
                     hfc = array[0].trim();
-                    
+
                     var array2 = discipline.split("|");
                     discipline = array2[0].trim();
-                    
+
                     var data = {
                         process: 'subdiscipline',
                         discipline: discipline,
@@ -1064,26 +1083,26 @@
 
 
 //----------------------- check changes of hfc, discipline after selection is made ------------------------------ 
-        $('#UM_hfc').on('blur', function(){
-            
+        $('#UM_hfc').on('blur', function () {
+
             // if change then clear discipline and subdiscipline
-            if(isHFCselected === false || selectedHFC !== $(this).val()){
-                 $('#UM_discipline').val('');
-                 $('#UM_subdiscipline').val('');
-            
-            }else{
+            if (isHFCselected === false || selectedHFC !== $(this).val()) {
+                $('#UM_discipline').val('');
+                $('#UM_subdiscipline').val('');
+
+            } else {
                 return false;
             }
         });
-        
-        $('#UM_discipline').on('blur', function(){
-            
+
+        $('#UM_discipline').on('blur', function () {
+
             // if change then clear subdiscipline
-            if(isDisciplineSelected === false || selectedDiscipline !== $(this).val()){
+            if (isDisciplineSelected === false || selectedDiscipline !== $(this).val()) {
                 $('#UM_subdiscipline').val('');
-                 
-            
-            }else{
+
+
+            } else {
                 return false;
             }
         });
