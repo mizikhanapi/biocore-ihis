@@ -16,11 +16,19 @@
     String subdiscipline_name = null;
     String user_type = (String) session.getAttribute("USER_TYPE");
     String USER_ID = session.getAttribute("USER_ID").toString();
+    
+    boolean isPublicUser = true;
 
     String sql_check_user_type = "SELECT `USER_TYPE` FROM adm_users WHERE `USER_ID` = '" + USER_ID + "'";
     ArrayList<ArrayList<String>> data_check_user_type = Conn.getData(sql_check_user_type);
+    
+    try{
+        isPublicUser = data_check_user_type.get(0).get(0).equals("PUBLIC");
+    }catch(Exception e){
+        isPublicUser = false;
+    }
 
-    if (data_check_user_type.get(0).get(0).equals("PUBLIC")) {
+    if (isPublicUser) {
 
     } else {
 

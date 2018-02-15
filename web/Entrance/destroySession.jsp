@@ -12,7 +12,7 @@
     RMIConnector rmic = new RMIConnector();
     String user_id = (String) session.getAttribute("USER_ID");
     
-    String query = "Update adm_users set login_status = '0' where user_id = '"+user_id+"'";
+    String query = "Update adm_users set login_status = '0', REMOTE_LOGOUT_DATE = now() where user_id = '"+user_id+"'";
     
     rmic.setQuerySQL(conn.HOST, conn.PORT, query);
     

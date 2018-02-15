@@ -38,16 +38,16 @@
                         + "LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id  AND c.hfc_cd=a.hfc_cd AND c.discipline_cd=a.discipline_cd "
                         + "LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd AND d.discipline_hfc_cd=a.hfc_cd "
                         + "LEFT JOIN adm_subdiscipline sd ON sd.subdiscipline_hfc_cd = d.discipline_hfc_cd AND sd.discipline_cd = d.discipline_cd AND sd.subdiscipline_cd = a.subdiscipline_cd "
-                        + "where a.hfc_cd = '"+hfcASS+"' AND a.discipline_cd='"+disAss+"' group by a.bed_id; ";
+                        + "where a.hfc_cd = '" + hfcASS + "' AND a.discipline_cd='" + disAss + "' group by a.bed_id; ";
 
-            /*    String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id, "
+                /*    String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id, "
                         + "a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd "
                         + "FROM wis_bed_id a "
                         + "LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code AND b.hfc_cd=a.hfc_cd AND b.discipline_cd=a.discipline_cd "
                         + "LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id  AND c.hfc_cd=a.hfc_cd AND c.discipline_cd=a.discipline_cd "
                         + "LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd AND d.discipline_hfc_cd=a.hfc_cd "
                         + "where a.hfc_cd = '"+hfcASS+"' group by a.bed_id; ";
-            */
+                 */
                 ArrayList<ArrayList<String>> databed = conn4.getData(sqlbed);
 
                 int size29 = databed.size();
@@ -80,7 +80,7 @@
         %>
         </tbody>
     </table>
-   
+
 </div>
 <!-- Modal Update -->
 <div class="modal fade" id="assignBedUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -134,7 +134,7 @@
                         <div class="col-md-6">
                             <select class="form-control" name="status" id="updatestatusBed">
                                 <option value="Available">Available</option>
-                               
+
                                 <option value="Occupied">Occupied</option>
                             </select>
                         </div>
@@ -164,6 +164,10 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        //initialise table assignBed
+        var tableAssignBed = $('#assignBedTable').DataTable();
+
         //function to edit facility type from table
 
         // var row;
@@ -283,81 +287,78 @@
                 });
             }
         });
-    });
-//delete function when click delete on next of kin
-    $('#tableassignBedTable').on('click', '#assignBedTable #BED_delete', function (e) {
 
-        e.preventDefault();
-        var row = $(this).closest("tr");
-        var rowData = row.find("#dataAssignBedhidden").val();
-        var arrayData = rowData.split("|");
-        console.log(arrayData);
-        //assign into seprated val
-        var idbed = arrayData[3], hfc = arrayData[8];
-        bootbox.confirm({
-            message: "Are you sure to delete bed information?",
-            title: "Delete Item?",
-            buttons: {
-                confirm: {
-                    label: 'Yes',
-                    className: 'btn-success'
+        //delete function when click delete on next of kin
+        $('#tableassignBedTable').off('click').on('click', '#assignBedTable #BED_delete', function (e) {
+
+            e.preventDefault();
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataAssignBedhidden").val();
+            var arrayData = rowData.split("|");
+            console.log(arrayData);
+            //assign into seprated val
+            var idbed = arrayData[3], hfc = arrayData[8];
+            bootbox.confirm({
+                message: "Are you sure to delete bed information?",
+                title: "Delete Item?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
                 },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
+                callback: function (result) {
 
-                if (result === true) {
+                    if (result === true) {
 
-                    var data = {
-                        idbed: idbed,
-                        hfc: hfc
+                        var data = {
+                            idbed: idbed,
+                            hfc: hfc
 
-                    };
-                    $.ajax({
-                        type: "post",
-                        url: "assignBedDelete.jsp",
-                        data: data,
-                        timeout: 10000,
-                        success: function (datas) {
-  
-                            if (datas.trim() === 'Success') {
+                        };
+                        $.ajax({
+                            type: "post",
+                            url: "assignBedDelete.jsp",
+                            data: data,
+                            timeout: 10000,
+                            success: function (datas) {
 
-                                row.remove();
-                                bootbox.alert({
-                                    message: "Successfully deleted",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                            } else if (datas.trim() === 'Failed') {
-                                bootbox.alert({
-                                    message: "Delete Failed",
-                                    title: "Process Result",
-                                    backdrop: true
+                                if (datas.trim() === 'Success') {
 
-                                });
+                                    tableAssignBed.row(row).remove().draw();
+
+                                    bootbox.alert({
+                                        message: "Successfully deleted",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+                                } else if (datas.trim() === 'Failed') {
+                                    bootbox.alert({
+                                        message: "Delete Failed",
+                                        title: "Process Result",
+                                        backdrop: true
+
+                                    });
+                                }
+
+
+                            }, error: function (err) {
+                                alert("Error! Deletion Ajax failed!!");
                             }
 
-
-                        }, error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
-                        }
-
-                    });
-                } else {
-                    console.log("Process Is Canceled");
+                        });
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
-
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#assignBedTable').DataTable();
 
     });
+
 </script>
 
