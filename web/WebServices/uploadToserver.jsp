@@ -23,6 +23,7 @@
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String sql ="";
     String user = "";
+    String userpmi = "";
     Boolean insert;
     if(container.size() <= 0){
     }else{
@@ -52,8 +53,15 @@
 //            String sql = "VTS|"+neDate+" "+time+":00|temp^"+systolic+"^"+dystolic+"^supine sys^supine dys^stand sys^stand dys^weight^height^head^rr^gcs^"+pulse+"^leftpup^leftpupoption^leftpupsize^lrftpupreflex^right^left^right^hr^"+dateFormat.format(d)+
 //                    "^hfc^doc^docname^gcs^gcsre^pgcs^pgcs^so2^pain^bld^"+pulse+"^supine^stabd^right^right^right^visin^left^right^clor^comment^pain";
         }
+        String queryPmino = "SELECT pmino from pms_patient_biodata WHERE new_ic_no = '"+user+"'";
+        ArrayList<ArrayList<String>> pmino = conn.getData(queryPmino);
+        if(pmino.size()>0){
+            userpmi = pmino.get(0).get(0);
+        }else{
+            userpmi = user;
+        }
         String fullmsg = msh+sql;
-        String query = "INSERT INTO ehr_central(pmi_no, c_txndate, c_txndata, status,status_1,status_2,status_3,status_4,status_5)VALUES('"+user+"','"+dateFormat.format(d)+"','"+fullmsg+"','1','0','0','0','0','0')";
+        String query = "INSERT INTO ehr_central(pmi_no, c_txndate, c_txndata, status,status_1,status_2,status_3,status_4,status_5)VALUES('"+userpmi+"','"+dateFormat.format(d)+"','"+fullmsg+"','1','0','0','0','0','0')";
         insert = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
         if (insert == true) {
             out.print("true");
