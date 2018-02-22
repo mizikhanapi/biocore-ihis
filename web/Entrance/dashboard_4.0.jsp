@@ -332,7 +332,7 @@
                                             %>
 
                                             <div class="col-xs-6 col-sm-6 col-md-3">
-                                                <a href="../RIS/HIS060001.jsp" class="thumbnail">
+                                                <a href="../RIS/ReceiveOrder" class="thumbnail">
                                                     <span class="icon_contain">
                                                         <i class="iconsmind-Radioactive" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
                                                     </span>

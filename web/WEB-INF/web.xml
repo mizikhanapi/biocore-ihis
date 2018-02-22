@@ -673,6 +673,82 @@
         
     <!-- Mapping For SMS Hidding URL End -->
     
+    
+    <!--Mapping for RIS-->
+    <servlet>
+        <servlet-name>RIS_Order</servlet-name>
+        <jsp-file>/RIS/HIS060001.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_Order</servlet-name>
+        <url-pattern>/RIS/ReceiveOrder</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_Verify</servlet-name>
+        <jsp-file>/RIS/HIS060003.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_Verify</servlet-name>
+        <url-pattern>/RIS/VerifyResult</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_Procedure</servlet-name>
+        <jsp-file>/RIS/HIS060002.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_Procedure</servlet-name>
+        <url-pattern>/RIS/Procedure</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_Bill</servlet-name>
+        <jsp-file>/RIS/HIS060004.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_Bill</servlet-name>
+        <url-pattern>/RIS/Bill</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_ListProcedure</servlet-name>
+        <jsp-file>/RIS/list_procedure_cd.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_ListProcedure</servlet-name>
+        <url-pattern>/RIS/ListProcedure</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_ListOrder</servlet-name>
+        <jsp-file>/RIS/list_pending_order.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_ListOrder</servlet-name>
+        <url-pattern>/RIS/ListOrder</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_ListSale</servlet-name>
+        <jsp-file>/RIS/list_OfSale.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_ListSale</servlet-name>
+        <url-pattern>/RIS/ListSale</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RIS_PastOrder</servlet-name>
+        <jsp-file>/RIS/HIS060005.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RIS_PastOrder</servlet-name>
+        <url-pattern>/RIS/PastOrder</url-pattern>
+    </servlet-mapping>
+    
+     <!--====== End mapping RIS ====-->
+    
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/Error/index.jsp</location>

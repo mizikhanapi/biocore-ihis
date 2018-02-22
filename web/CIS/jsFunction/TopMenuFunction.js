@@ -23,7 +23,7 @@ var VTSObjDCG = {};
 var order_data = [];
 
 function goToHome() {
-    location.href = '../Entrance/dashboard.jsp';
+    location.href = '../Entrance/Home';
 }
 function logOut(){
     location.href = '../Entrance/destroySession.jsp';
