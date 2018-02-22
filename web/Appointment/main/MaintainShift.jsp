@@ -49,53 +49,55 @@
 
 %>
 
-    <h3 class="headerTitle">Maintain Shift</h3>
-    <div class="row">
- 
-        <div class="tabbable-panel">
+<h3 class="headerTitle">Maintain Shift</h3>
+<div class="row">
 
-            <div class="tabbable-line">
-   
+    <div class="tabbable-panel">
 
-                <!-- tab content -->
-                <div class="tab-content">
-                    <div class="tab-pane " id="tab_shift_code">
+        <div class="tabbable-line">
 
-                        <div id="master">
 
-                            <div id="shift_code">
-                            </div>
-                            <div id="masterTable" class="table-guling">
-                            </div>
+            <!-- tab content -->
+            <div class="tab-content">
+                <div class="tab-pane " id="tab_shift_code">
 
+                    <div id="master">
+
+                        <div id="shift_code">
                         </div>
-
-                    </div>
-                    <div class="tab-pane active" id="tab_shift_hour">
-
-                        <div id="detail">
-                            <div id="manage_shift">
-                            </div>
-                            <div id="detailTable" class="table-guling">
-                            </div>
+                        <div id="masterTable" class="table-guling">
                         </div>
 
                     </div>
 
                 </div>
+                <div class="tab-pane active" id="tab_shift_hour">
+
+                    <div id="detail">
+                        <div id="manage_shift">
+                        </div>
+                        <div id="detailTable" class="table-guling">
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
-
     </div>
-  
+
+</div>
 
 
-    <script>
-        
-        $(document).ready(function(){
-            $("#shift_code").load("maintain_shift_code.jsp");
-            $("#manage_shift").load("manage_shift.jsp");
-            $("#detailTable").load("manage_shift_table.jsp");
-            
-        })
-        </script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#shift_code").load("maintain_shift_code.jsp");
+        $("#manage_shift").load("manage_shift.jsp");
+        $("#detailTable").load("manage_shift_table.jsp", function(){
+            initDataTable("manage_shift_table");
+        });
+
+    });
+</script>

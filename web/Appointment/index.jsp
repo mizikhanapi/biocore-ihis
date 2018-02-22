@@ -173,6 +173,7 @@
         <script type="text/javascript">
             //dataTable plugin
             $.fn.dataTable.moment('DD/MM/YYYY');
+            $.fn.dataTable.moment('DD-MM-YYYY');
             $.fn.dataTable.moment('dddd');
             function holidayEmptyField() {
                 $('#state').val('');
@@ -210,6 +211,10 @@
 
                 //initialise data table
                 initDataTable("tableViewClinicDay");
+                initDataTable("rosterTable");
+                initDataTable("viewRosterTable");
+                initDataTable("maintainStaffLeave");
+                
 
                 $('#startdateC').ptTimeSelect();
                 $('#enddateC').ptTimeSelect();
@@ -251,7 +256,7 @@
                 });
 
 
-                $('#maintainStaffLeave').on('click', '.notApprove-leave', function (e) {
+                $('#maintainStaffLeaveDiv').on('click', '.notApprove-leave', function (e) {
                     e.preventDefault();
                     var idBtn = $(this).get(0).id;
                     idBtn = idBtn.split("|");
@@ -270,7 +275,9 @@
                         timeout: 10000,
                         success: function (result) {
                             if (result.trim() === 'success') {
-                                $('#maintainStaffLeave').load('index.jsp #maintainStaffLeave');
+                                $('#maintainStaffLeaveDiv').load('main/MaintainLeave.jsp #maintainStaffLeave', function(){
+                                    initDataTable("maintainStaffLeave");
+                                });
                                 alert('Successfully disapproved this staff leave application');
                             } else if (result.trim() === 'notallow') {
                                 alert('You are not allow to disapprove leave for yourself as you are admin. Please ask other admin to do so');
@@ -294,7 +301,7 @@
                     $('#descLeave').val('');
                 });
 
-                $('#maintainStaffLeave').on('click', '.approve-leave', function (e) {
+                $('#maintainStaffLeaveDiv').on('click', '.approve-leave', function (e) {
                     e.preventDefault();
                     var idbtn = $(this).get(0).id;
                     idbtn = idbtn.split('|');
@@ -315,7 +322,9 @@
                         success: function (result) {
                             if (result.trim() === 'success') {
                                 alert('Successfully approved this staff leave application');
-                                $('#maintainStaffLeave').load('index.jsp #maintainStaffLeave');
+                                $('#maintainStaffLeaveDiv').load('main/MaintainLeave.jsp #maintainStaffLeave', function(){
+                                    initDataTable("maintainStaffLeave");
+                                });
                             } else if (result.trim() === 'nodata') {
                                 alert('data not exist');
                             } else if (result.trim() === 'notallow') {
@@ -341,8 +350,8 @@
                     $('#updateClinicDay').prop('disabled', true);
                     $('#addClinicDay').prop('disabled', false);
 
-                    $('#state_').val('');
-                    $('#hfc_codeC').val('');
+//                    $('#state_').val('');
+//                    $('#hfc_codeC').val('');
                     $('#hfcBefore').val('');
                     $('#discipline').val('');
                     $('#disciplineBefore').val('');
@@ -435,7 +444,7 @@
 
                 });
 
-                $('#clinicDayTable').on('click', '.clinic-editBtn', function (e) {
+                $('#clinicDayTableDiv').on('click', '.clinic-editBtn', function (e) {
 
                     e.preventDefault();
                     $('#updateClinicDay').prop('disabled', false);
@@ -579,7 +588,7 @@
 
 
 
-                $('#holidayTable').on('click', '.editBtn', function () {
+                $('#holidayTableDiv').on('click', '.editBtn', function () {
                     $('#updateBtn').prop('disabled', false);
                     $('html, body').animate({
                         scrollTop: $("#maintainholiday").offset().top
@@ -610,7 +619,6 @@
                 $('#updateBtn').click(function (e) {
                     e.preventDefault();
 
-
                     var _uState = $('#state').val();
                     var _uStateBefore = $('#stateBefore').val();
                     var _uDate = $('#startdate').datepicker().val();
@@ -618,9 +626,39 @@
                     var _uAppTo = $('#appTo').val();
                     var _uStatus = $('#holidayStatus').val();
                     var _uDateBefore = $('#dateBefore').val();
-
-                    _uDate = _uDate.split('/');
-                    _uDate = _uDate[2] + "-" + _uDate[1] + "-" + _uDate[0];
+                    var _uDateArr = [];
+                  
+                    
+                    var okey = true;
+                    var errMsg = "";
+                    if(_uState === "" || _uState == null){
+                        okey = false;
+                        errMsg = "Please select the state!";
+                    }
+                    else if(_uDesc==="" || _uDesc == null){
+                        okey = false;
+                        errMsg = "Please type some description!";
+                    }
+                    else if(_uDate==="" || _uDate == null){
+                        okey = false;
+                        errMsg = "Please pick the date!";
+                    }
+                    else if(_uAppTo==="" || _uAppTo == null){
+                        okey = false;
+                        errMsg = "Please select where the holiday applicable to!";
+                    }
+                    else if(_uStatus ==="" || _uStatus == null){
+                        okey = false;
+                        errMsg = "Please select the holiday status!";
+                    }
+                    
+                    if(!okey){
+                        alert(errMsg);
+                        return;
+                    }
+                    
+                    _uDateArr = _uDate.split('/');
+                    _uDate = _uDateArr[2] + "-" + _uDateArr[1] + "-" + _uDateArr[0];
 
                     var _upData = {
                         state: _uState,

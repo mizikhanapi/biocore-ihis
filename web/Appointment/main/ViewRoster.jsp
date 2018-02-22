@@ -16,15 +16,18 @@
         String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
             String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
             
-    String sqlDisplayRoster = "SELECT LCASE(ad.USER_NAME) as patientName, ad.USER_ID, dr.hfc_cd, DATE(dr.start_date) AS start_date, DATE(dr.end_date) AS end_date, TIME(dr.start_time) AS start_time, TIME(dr.end_time) AS end_time, dr.roster_category, dr.status  FROM adm_users ad, pms_duty_roster dr WHERE ad.USER_ID = dr.user_id AND dr.hfc_cd ='" + hfc + "'";
+    String sqlDisplayRoster = "SELECT ad.USER_NAME as patientName, ad.USER_ID, dr.hfc_cd, DATE(dr.start_date) AS start_date, DATE(dr.end_date) AS end_date, "
+            + "TIME(dr.start_time) AS start_time, TIME(dr.end_time) AS end_time, dr.roster_category, dr.status "
+            + "FROM adm_users ad, pms_duty_roster dr "
+            + "WHERE ad.USER_ID = dr.user_id AND dr.hfc_cd ='" + hfc + "' AND dr.status='active';";
         ArrayList<ArrayList<String>> dataClinicRoster = Conn.getData(sqlDisplayRoster);
     
 %>
 
                                 
                                     <h3 class="headerTitle">View Staff Roster</h3>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
+                                    <div class="table-responsive" id="viewRosterTableDiv">
+                                        <table class="table table-bordered table-hover" id="viewRosterTable">
                                             <thead>
 
                                                 <tr> 

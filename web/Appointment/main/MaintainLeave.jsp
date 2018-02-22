@@ -17,7 +17,7 @@
         String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
             String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
             
-    String sqlStaffLeave = "SELECT sl.hfc_cd, au.USER_ID, LCASE(au.USER_NAME) AS patientName, date(sl.start_leave_date), date(sl.end_leave_date), LCASE(sl.leave_reason) AS reason, sl.status "
+    String sqlStaffLeave = "SELECT sl.hfc_cd, au.USER_ID, au.USER_NAME AS patientName, date(sl.start_leave_date), date(sl.end_leave_date), LCASE(sl.leave_reason) AS reason, sl.status "
             + "FROM pms_staff_leave sl, adm_users au "
             + "WHERE (sl.status = 'process' OR sl.status = 'approve' OR sl.status = 'not approve') AND au.USER_ID = sl.user_id  and sl.hfc_cd = '" + hfc + "'"
             + "ORDER BY au.USER_NAME DESC";
@@ -28,7 +28,7 @@
 %>
 
                                     <h3 class="headerTitle">Maintain Staff Leave</h3>
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" id="maintainStaffLeaveDiv">
                                         <table class="table table-bordered table-hover" id="maintainStaffLeave">
                                             <thead>
                                                 <tr>

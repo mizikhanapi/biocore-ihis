@@ -16,7 +16,7 @@
     String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
     String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
 
-    String sqlDisplayRoster = "SELECT LCASE(ad.USER_NAME) as patientName, ad.USER_ID, dr.hfc_cd, DATE(dr.start_date) AS start_date, DATE(dr.end_date) AS end_date, TIME(dr.start_time) AS start_time, TIME(dr.end_time) AS end_time, dr.roster_category, dr.status  FROM adm_users ad, pms_duty_roster dr WHERE ad.USER_ID = dr.user_id AND dr.hfc_cd ='" + hfc + "'";
+    String sqlDisplayRoster = "SELECT ad.USER_NAME as patientName, ad.USER_ID, dr.hfc_cd, DATE(dr.start_date) AS start_date, DATE(dr.end_date) AS end_date, TIME(dr.start_time) AS start_time, TIME(dr.end_time) AS end_time, dr.roster_category, dr.status  FROM adm_users ad, pms_duty_roster dr WHERE ad.USER_ID = dr.user_id AND dr.hfc_cd ='" + hfc + "'";
     ArrayList<ArrayList<String>> dataClinicRoster = Conn.getData(sqlDisplayRoster);
 
 %>
@@ -27,7 +27,7 @@
     <div class="form-group"> 
         <label class="control-label col-sm-2" for="staffID">Health Facility Name </label>
         <div class="col-sm-10"> 
-            <input  class="form-control" value="<%=hfc%>" type="hidden" id="hfcRoster" readonly>
+            <input  class="form-control" value="<%=hfc%>" type="hidden" id="hfcRoster" >
             <input  class="form-control" value="<%=hfcName%>" type="text" id="hfcNameRoster" readonly>
         </div>
     </div>
@@ -46,7 +46,7 @@
                         for (int i = 0; i < dataUserRoster.size(); i++) {%>
                 <option value="<%=dataUserRoster.get(i).get(0)%>"><%=dataUserRoster.get(i).get(0)%> / <%=dataUserRoster.get(i).get(1)%> / <%=dataUserRoster.get(i).get(2)%></option>
                 <%}
-                                                        }%>
+                    }%>
 
             </select>
             <input type="hidden" name="userIDBefore" value="" id="userIDBefore">
@@ -127,7 +127,7 @@
         </div>
     </div>
 </form>
-<div class="table-responsive">
+<div class="table-responsive" id="rosterTableDiv">
     <table class="table table-bordered table-hover" id="rosterTable">
         <thead>
 
@@ -194,7 +194,12 @@
                                 result = result.replace(";", "");
                                 if (result.trim() === "success") {
                                     alert('Roster are successful deleted');
-                                    $('#rosterTable').load('main/MaintainRoster.jsp #rosterTable');
+                                    $('#rosterTableDiv').load('main/MaintainRoster.jsp #rosterTable', function () {
+                                        initDataTable("rosterTable");
+                                    });
+                                    $('#viewRosterTableDiv').load('main/ViewRoster.jsp #viewRosterTable', function () {
+                                        initDataTable("viewRosterTable");
+                                    });
                                 } else {
                                     alert('Data Roster does not exist');
                                 }
@@ -212,14 +217,14 @@
         </center></td>
         </tr>
         <%}
-                                                }%>
+            }%>
         </tbody>
     </table>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        
-        initDateStartEnd("startDateRoster","endDateRoster","dd/mm/yy");
+
+        initDateStartEnd("startDateRoster", "endDateRoster", "dd/mm/yy");
 
         $("#roster_category").on('change', function () {
             var shift_cd = $(this).val();
@@ -239,8 +244,8 @@
                         $("#endTimeRoster").val(timeA[1]);
                     }
                 }
-            })
-        })
+            });
+        });
 
         $('#cancelRoster').click(function (e) {
             e.preventDefault();
@@ -263,52 +268,57 @@
             var startDate = changeDateFormat($('#startDateRoster').val());
             var endDate = changeDateFormat($('#endDateRoster').val());
             var startDateBefore = changeDateFormat($('#startDateBeforeRoster').val());
-            
-            if (startDate === "" || endDate === ""){
-                alert("Please select the shift state date");
-            }else if ($('#roster_category').val() === ""){
-                alert("Please select the shift category");
-            }else {
-                            var dataURoster = {
-                hfcCode: $('#hfcRoster').val(),
-                staffId: $('#staffIDRoster').val(),
-                userIdBefore: $('#userIDBefore').val(),
-                roster_category: $('#roster_category').val(),
-                startDateBefore: startDateBefore,
-                startDate: startDate,
-                endDate: endDate,
-                startTime: $('#startTimeRoster').val(),
-                endTime: $('#endTimeRoster').val(),
-                status: $('#statusRoster').val()
-            };
-            //console.log(dataURoster);
 
-            $.ajax({
-                url: 'updateRosterAjax.jsp',
-                method: 'post',
-                data: dataURoster,
-                timeout: 10000,
-                success: function (result) {
-                    console.log(result);
-                    if (result.trim() === 'success') {
-                      
-                        alert('Update roster successful');
-                        $('#rosterTable').load('main/MaintainRoster.jsp #rosterTable');
-                    } else {
-                        alert('Update roster fail due to the roster data does not exist');
+            if (startDate === "" || endDate === "") {
+                alert("Please select the shift state date");
+            } else if ($('#roster_category').val() === "") {
+                alert("Please select the shift category");
+            } else {
+                var dataURoster = {
+                    hfcCode: $('#hfcRoster').val(),
+                    staffId: $('#staffIDRoster').val(),
+                    userIdBefore: $('#userIDBefore').val(),
+                    roster_category: $('#roster_category').val(),
+                    startDateBefore: startDateBefore,
+                    startDate: startDate,
+                    endDate: endDate,
+                    startTime: $('#startTimeRoster').val(),
+                    endTime: $('#endTimeRoster').val(),
+                    status: $('#statusRoster').val()
+                };
+                //console.log(dataURoster);
+
+                $.ajax({
+                    url: 'updateRosterAjax.jsp',
+                    method: 'post',
+                    data: dataURoster,
+                    timeout: 10000,
+                    success: function (result) {
+                        console.log(result);
+                        if (result.trim() === 'success') {
+
+                            alert('Update roster successful');
+                            $('#rosterTableDiv').load('main/MaintainRoster.jsp #rosterTable', function () {
+                                initDataTable("rosterTable");
+                            });
+                            $('#viewRosterTableDiv').load('main/ViewRoster.jsp #viewRosterTable', function () {
+                                initDataTable("viewRosterTable");
+                            });
+                        } else {
+                            alert('Update roster fail due to the roster data does not exist');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
                     }
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
+                });
             }
 
 
 
         });
 
-        $('#rosterTable').on('click', '.roster-editBtn', function (e) {
+        $('#rosterTableDiv').on('click', '.roster-editBtn', function (e) {
             e.preventDefault();
             $('#updateRoster').prop('disabled', false);
             $('#addRoster').prop('disabled', true);
@@ -322,7 +332,7 @@
             var dataRArry = dataRoster.split("|");
 
             console.log(dataRArry);
-             initDateStartEnd("startDateRoster","endDateRoster","dd/mm/yy");
+            initDateStartEnd("startDateRoster", "endDateRoster", "dd/mm/yy");
 
 
 //                    var starttimeRoster = ConvertTimeformat12('12', dataRArry[3]);
@@ -342,67 +352,74 @@
 
         $('#addRoster').click(function (e) {
             e.preventDefault();
-            
-            if($('#staffIDRoster').val() === ""){
+
+            if ($('#staffIDRoster').val() === "") {
                 alert("Please select the staff");
-            } else if ($('#roster_category').val() === ""){
+            } else if ($('#roster_category').val() === "") {
                 alert("Please select the roster category");
-            }else if ($('#startDateRoster').val() === ""){
+            } else if ($('#startDateRoster').val() === "") {
                 alert("Please select the roster state date");
-            }else if ($('#endDateRoster').val() === ""){
+            } else if ($('#endDateRoster').val() === "") {
                 alert("Please select the roster end date");
-            }else if ($('#roster_category').val() === ""){
+            } else if ($('#roster_category').val() === "") {
                 alert("Please select the roster end date");
-            }else {
-            var startDateRoster = $('#startDateRoster').val().split('/');
-            var endDateRoster = $('#endDateRoster').val().split('/');
-            startDateRoster = startDateRoster[2] + '-' + startDateRoster[1] + '-' + startDateRoster[0];
-            endDateRoster = endDateRoster[2] + '-' + endDateRoster[1] + '-' + endDateRoster[0];
+            } else if ($('#statusRoster').val() === "") {
+                alert("Please select the roster end date");
+            } else {
+                var startDateRoster = $('#startDateRoster').val().split('/');
+                var endDateRoster = $('#endDateRoster').val().split('/');
+                startDateRoster = startDateRoster[2] + '-' + startDateRoster[1] + '-' + startDateRoster[0];
+                endDateRoster = endDateRoster[2] + '-' + endDateRoster[1] + '-' + endDateRoster[0];
 
 //                    var starttimeRoster = ConvertTimeformat('24', $('#startTimeRoster').val());
 //                    var endtimeRoster = ConvertTimeformat('24', $('#endTimeRoster').val());
 
-            var dataRoster = {
-                hfcRoster: $('#hfcRoster').val(),
-                staffIDRoster: $('#staffIDRoster').val(),
-                roster_category: $('#roster_category').val(),
-                startDateRoster: startDateRoster,
-                endDateRoster: endDateRoster,
-                startTimeRoster: $('#startTimeRoster').val(),
-                endTimeRoster: $('#endTimeRoster').val(),
-                statusRoster: $('#statusRoster').val()
-            };
+                var dataRoster = {
+                    hfcRoster: $('#hfcRoster').val(),
+                    staffIDRoster: $('#staffIDRoster').val(),
+                    roster_category: $('#roster_category').val(),
+                    startDateRoster: startDateRoster,
+                    endDateRoster: endDateRoster,
+                    startTimeRoster: $('#startTimeRoster').val(),
+                    endTimeRoster: $('#endTimeRoster').val(),
+                    statusRoster: $('#statusRoster').val()
+                };
 
-            console.log(dataRoster);
-            $.ajax({
-                url: 'addRosterAjax.jsp',
-                method: 'post',
-                timeout: 10000,
-                data: dataRoster,
-                success: function (result) {
-                    console.log(result);
-                    if (result.trim() === 'fail') {
-                        alert('Fail to add staff roster due to the roster period still active');
-                    } else if (result.trim() === 'success') {
-                        alert('Insert Roster Successful');
-                        $('#rosterTable').load('main/MaintainRoster.jsp #rosterTable');
-                        $('#staffIDRoster').val('');
-                        $('#userIDBefore').val('');
-                        $('#roster_category').val('');
-                        $('#startDateBeforeRoster').val('');
-                        $('#startDateRoster').val('');
-                        $('#endDateRoster').val('');
-                        $('#startTimeRoster').val('');
-                        $('#endTimeRoster').val('');
-                        $('#statusRoster').val('');
-                    } else {
-                        alert('error on ajax');
+                console.log(dataRoster);
+                $.ajax({
+                    url: 'addRosterAjax.jsp',
+                    method: 'post',
+                    timeout: 10000,
+                    data: dataRoster,
+                    success: function (result) {
+                        console.log(result);
+                        if (result.trim() === 'fail') {
+                            alert('Fail to add staff roster due to the roster period still active');
+                        } else if (result.trim() === 'success') {
+                            alert('Insert Roster Successful');
+                            $('#rosterTableDiv').load('main/MaintainRoster.jsp #rosterTable', function () {
+                                initDataTable("rosterTable");
+                            });
+                            $('#viewRosterTableDiv').load('main/ViewRoster.jsp #viewRosterTable', function () {
+                                initDataTable("viewRosterTable");
+                            });
+                            $('#staffIDRoster').val('');
+                            $('#userIDBefore').val('');
+                            $('#roster_category').val('');
+                            $('#startDateBeforeRoster').val('');
+                            $('#startDateRoster').val('');
+                            $('#endDateRoster').val('');
+                            $('#startTimeRoster').val('');
+                            $('#endTimeRoster').val('');
+                            $('#statusRoster').val('');
+                        } else {
+                            alert('error on ajax');
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
                     }
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
+                });
             }
 
 
