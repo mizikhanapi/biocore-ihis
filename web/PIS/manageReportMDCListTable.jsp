@@ -33,6 +33,9 @@
     <th style="text-align: center;">STRENGTH</th>
     <th style="text-align: center;">ADVISE</th>
     <th style="text-align: center;">STOCK QTY</th>
+    <th style="text-align: center;">MINIMUM QTY</th>
+    <th style="text-align: center;">MAXIMUM QTY</th>
+    <th style="text-align: center;">REORDER QTY</th>
     <th style="text-align: center;">DOSE QTY</th>
     <th style="text-align: center;">DOSE TYPE</th>
     <th style="text-align: center;">DURATION</th>
@@ -59,10 +62,10 @@
 
         //                              0         1           2           3           4           5           6           7           
         String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
-                //      8       9       10      11      12          13          14          15          16              17          18          
+                //      8       9       10      11          12          13          14                  15                                  16              17          18          
                 + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
                 //      19          20          21              22          23        24        25              26
-                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK,hfc_cd,discipline_cd,subdiscipline_cd "
+                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK,hfc_cd,discipline_cd,subdiscipline_cd,d_minimum_stock_level,d_maximum_stock_level,d_reorder_stock_level "
                 + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
         ArrayList<ArrayList<String>> dataMTC = conn.getData(sqlMain);
 
@@ -80,6 +83,9 @@
         <td ><%= dataMTC.get(s).get(6)%></td>
         <td ><%= dataMTC.get(s).get(7)%></td>
         <td ><%= dataMTC.get(s).get(8)%></td>
+        <td ><%= dataMTC.get(s).get(27)%></td>
+        <td ><%= dataMTC.get(s).get(28)%></td>
+        <td ><%= dataMTC.get(s).get(29)%></td>
         <td ><%= dataMTC.get(s).get(9)%></td>
         <td ><%= dataMTC.get(s).get(10)%></td>
         <td ><%= dataMTC.get(s).get(11)%></td>
@@ -124,7 +130,7 @@
             pageLength: 15,
             dom: 'Bfrtip',
             columnDefs: [
-                {targets: [0, 1, 2, 3, 4, 5, 6, 8, 15, 19], visible: true},
+                {targets: [0, 1, 2, 3, 4, 5, 6, 8, 18, 22], visible: true},
                 {targets: '_all', visible: false}
             ],
             buttons: [
