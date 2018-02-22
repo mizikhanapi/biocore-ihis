@@ -47,12 +47,12 @@
 
         ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));
 
-        boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18, mod19, mod20, mod21, mod22;
+        boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18, mod19, mod20, mod21, mod22, mod23;
 
-        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = mod20 = mod21 = mod22 = false;
+        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = mod20 = mod21 = mod22 = mod23 = false;
 
         if (mys.isSuperUser()) {
-            mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = mod20 = mod21 = mod22 = true;
+            mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = mod20 = mod21 = mod22 = mod23 = true;
 
         } else {
 
@@ -145,6 +145,10 @@
                 } else if (arrayModule.get(i).equalsIgnoreCase("22")) {
 
                     mod22 = true;
+
+                }else if (arrayModule.get(i).equalsIgnoreCase("23")) {
+
+                    mod23 = true;
 
                 }
             }//end for loop
@@ -246,7 +250,7 @@
                                             <%
                                                 }
 
-                                                if (mod03) {
+                                                if (mod23) {
                                             %>
 
                                             <div class="col-xs-6 col-sm-6 col-md-3">
@@ -259,7 +263,10 @@
                                                     </div>
                                                 </a>
                                             </div>
-
+                                            <%
+                                                }
+                                                if(mod03){
+                                            %>
                                             <div class="col-xs-6 col-sm-6 col-md-3">
                                                 <a href="../PMS/index.jsp" class="thumbnail">
                                                     <span class="icon_contain">

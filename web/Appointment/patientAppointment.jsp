@@ -4,6 +4,7 @@
     Author     : asyraf
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -27,24 +28,17 @@ Conn Conn = new Conn();
     String name = (String) session.getAttribute("USER_NAME");
     String title = (String) session.getAttribute("OCCUPATION_CODE");
 
-    String hfcSession = (String) session.getAttribute("sessionHFC");
+//    String hfcSession = (String) session.getAttribute("sessionHFC");
+    String hfc = (String) session.getAttribute(MySessionKey.HFC_CD);
 
 //    out.print(hfcSession);
-    String hfcCode = "SELECT Detail_Ref_code, Description "
-            + "FROM lookup_detail "
-            + "WHERE Master_Ref_code = '0081' AND Description = '" + hfcSession + "' ";
-    ArrayList<ArrayList<String>> dataHFCCode = Conn.getData(hfcCode);
+  
+    String hfcCD = hfc;
 
-    String hfcCD;
-
-    if (dataHFCCode.size() > 0) {
-        hfcCD = dataHFCCode.get(0).get(0);
-    } else {
-        hfcCD = null;
-    }
+  
     String sqlhfc = "SELECT DISTINCT state_code "
             + "FROM pms_duty_roster "
-            + "WHERE hfc_cd = '" + hfcSession + "' ";
+            + "WHERE hfc_cd = '" + hfc + "' ";
     ArrayList<ArrayList<String>> dataSQLHFC = Conn.getData(sqlhfc);
     
 //    out.print(sqlhfc); if (true) { return; }
@@ -55,7 +49,7 @@ Conn Conn = new Conn();
     String sqlDisplayHoliday = "SELECT lm.Master_Ref_code, ld.`Master_Ref_code`, ld.Detail_Ref_code, pmsh.*, ld.Description "
             + "FROM lookup_master lm, lookup_detail ld, pms_holiday pmsh "
             + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' "
-            + "AND ld.`Detail_Ref_code` = pmsh.state_code AND (pmsh.state_code = '" + codeState + "' OR pmsh.state_code = '00') "
+            + "AND ld.`Detail_Ref_code` = pmsh.state_code AND (pmsh.state_code = '" + codeState + "' OR pmsh.state_code = '00') AND pmsh.hfc_cd='"+hfc+"' "
             + "ORDER BY ld.`Description` ASC, pmsh.holiday_date ASC, pmsh.status DESC";
     ArrayList<ArrayList<String>> data = Conn.getData(sqlDisplayHoliday);
 
@@ -520,7 +514,7 @@ Conn Conn = new Conn();
                                     <%
                                                 if (dateDB.before(today)) {
                                                     RMIConnector rmic = new RMIConnector();
-                                                    String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now());";
+                                                    String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now()) AND hfc_cd='"+hfc+"';";
 
                                                     boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
                                                 }

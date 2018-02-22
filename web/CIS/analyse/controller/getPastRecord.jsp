@@ -12,10 +12,10 @@
     Conn con = new Conn();
     
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-    String pmi_no = request.getParameter("pmiNo");
-    String intervalDay = request.getParameter("day");
-    String dateFrom = request.getParameter("from");
-    String dateTo = request.getParameter("to");
+    String pmi_no = request.getParameter("pmiNo").trim();
+    String intervalDay = request.getParameter("day").trim();
+    String dateFrom = request.getParameter("from").trim();
+    String dateTo = request.getParameter("to").trim();
     
     LookupHelper lookH = new LookupHelper(hfc_cd);
     

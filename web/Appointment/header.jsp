@@ -5,8 +5,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel='stylesheet' href='calender/fullcalendar/fullcalendar.css' />
+        <link rel='stylesheet' href='../assets/css/dataTables.bootstrap.min.css' />
+        
         <script src="bootstrap-3.3.6-dist/js/jquery.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.dataTables.min.js"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js"></script>
+        <script src="../assets/js/moment.js"></script>
+        <script src="../assets/js/datetime-moment.js"></script>
         <link href="authenticate.css" rel="stylesheet" type="text/css" />
         
         <link rel="stylesheet" href="js/jquery-ui.css">

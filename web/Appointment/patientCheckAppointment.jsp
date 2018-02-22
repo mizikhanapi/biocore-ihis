@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
@@ -18,13 +19,15 @@
         String appDate= request.getParameter("appDate");
         String appTime = request.getParameter("appTime");
         String appDoc = request.getParameter("appDoc");
-        String hfc = (String)session.getAttribute("sessionHFC");
+//        String hfc = (String)session.getAttribute("sessionHFC");
         String disApp = request.getParameter("disApp");
         String subDisApp = request.getParameter("subDisApp");
         String appType = request.getParameter("appType");
         String discipline;
         String subdicipline;
         String id = null;
+        
+        String hfc_cd = (String) session.getAttribute(MySessionKey.HFC_CD);
         
         out.print("appDate "+appDate);
         out.print("appTime "+appTime);
@@ -53,27 +56,27 @@
         
 
 //      QUERY TO VALIDATE CLINIC DAY (hfc yg open - status > active - compare day) - message -> the clinic is off. Please choose other day
-        String sqlGetHFCCode = "SELECT Detail_Ref_code "
-                + "FROM lookup_detail "
-                + "WHERE Master_Ref_code = '0081' AND Description = '"+hfc+"'";
-        ArrayList<ArrayList<String>> dataGetHFCCode = Conn.getData(sqlGetHFCCode);
-        
-        String dataHFCCode; 
-        
-        
-         if(dataGetHFCCode.size() > 0)
-        {
-             dataHFCCode = dataGetHFCCode.get(0).get(0);
-        }
-        else
-        {
-              dataHFCCode = null;
-        }
+//        String sqlGetHFCCode = "SELECT Detail_Ref_code "
+//                + "FROM lookup_detail "
+//                + "WHERE Master_Ref_code = '0081' AND Description = '"+hfc+"'";
+//        ArrayList<ArrayList<String>> dataGetHFCCode = Conn.getData(sqlGetHFCCode);
+//        
+//        String dataHFCCode; 
+//        
+//        
+//         if(dataGetHFCCode.size() > 0)
+//        {
+//             dataHFCCode = dataGetHFCCode.get(0).get(0);
+//        }
+//        else
+//        {
+//              dataHFCCode = null;
+//        }
         
 
         String sqlGetClinicDay = "SELECT day_cd, discipline_cd, subdiscipline_cd, hfc_cd, state_code "
                 + "FROM pms_clinic_day "
-                + "WHERE hfc_cd = '"+dataHFCCode+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+newAppTime+"' BETWEEN start_time AND end_time)";
+                + "WHERE hfc_cd = '"+hfc_cd+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+newAppTime+"' BETWEEN start_time AND end_time)";
         ArrayList<ArrayList<String>> dataGetStates = Conn.getData(sqlGetClinicDay);
         
         
@@ -92,7 +95,7 @@
 //      QUERY VALIDATE HOLIDAY (hfc based on state yg active - allowed) - message -> 
         String sqlHoliday = "SELECT holiday_date "
                 + "FROM pms_holiday "
-                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+appDate+"'";
+                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+appDate+"' AND hfc_cd='"+hfc_cd+"' ;";
         ArrayList<ArrayList<String>> dataGetHoliday = Conn.getData(sqlHoliday);
         
 //        out.print(dataGetHoliday.size());
@@ -110,7 +113,7 @@
 //      QUERY VALIDATE DUTY ROSTER (staff yg sedang bekerja - status > active (Doctor only))
         String sqlDutyRoster = "SELECT * "
                 + "FROM pms_duty_roster "
-                + "WHERE hfc_cd = '"+hfc+"' AND user_id = '"+dataUserID+"' AND status = 'active' AND ('"+appDate+"' BETWEEN start_date AND end_date)";
+                + "WHERE hfc_cd = '"+hfc_cd+"' AND user_id = '"+dataUserID+"' AND status = 'active' AND ('"+appDate+"' BETWEEN start_date AND end_date)";
         ArrayList<ArrayList<String>> dataGetRoster = Conn.getData(sqlDutyRoster);
 //        out.print(sqlDutyRoster);
         
@@ -123,8 +126,8 @@
 //        out.print(sqlGetLeaveStatus);
         
         String sqlGetStaffID = "SELECT * "
-                + "FROM adm_user "
-                + "WHERE USER_NAME = '"+appDoc+"'";
+                + "FROM adm_users "
+                + "WHERE USER_NAME = '"+appDoc+"' AND health_facility_code = '"+hfc_cd+"';";
         ArrayList<ArrayList<String>> dataGetStaffID  = Conn.getData(sqlGetStaffID);
         
         String dataStaffID = dataGetStaffID.get(0).get(0);
@@ -132,7 +135,7 @@
         
         String sqlCheckAppPast = "SELECT pmi_no, hfc_cd, DATE(appointment_date) AS app_date, userid, appointment_type, status  "
                 + "FROM pms_appointment "
-                + "WHERE pmi_no = '"+pmiNo+"' AND DATE(appointment_date) = '"+appDate+"' AND hfc_cd = '"+dataHFCCode+"' AND status = 'active'";
+                + "WHERE pmi_no = '"+pmiNo+"' AND DATE(appointment_date) = '"+appDate+"' AND hfc_cd = '"+hfc_cd+"' AND status = 'active'";
         ArrayList<ArrayList<String>> dataCheckAppPastActive = Conn.getData(sqlCheckAppPast);
         
 //        out.print(sqlCheckAppPast);
@@ -203,7 +206,7 @@
                                             var result = confirm("The chosen date has been canceled before. Click Ok if you want to proceed with make the appointment on that date");
                                             if(result == true)
                                             { 
-                                                window.location= 'patientAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=ic%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=dataHFCCode%>';
+                                                window.location= 'patientAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=ic%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=hfc_cd%>';
                                             }
                                             else
                                             {
@@ -217,7 +220,7 @@
                                             var result = confirm("By clicking OK you are directly Save the info");
                                             if(result == true)
                                             { 
-                                                window.location= 'patientAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=ic%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=dataHFCCode%>';
+                                                window.location= 'patientAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=ic%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=hfc_cd%>';
                                             }
                                             else
                                             {
@@ -240,7 +243,7 @@
                                             var result = confirm("By clicking OK you are directly Save the info");
                                             if(result == true)
                                             { 
-                                                window.location= 'patientAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=ic%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=dataHFCCode%>';
+                                                window.location= 'patientAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=ic%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=hfc_cd%>';
 //                                                var pmiNo = "<%=pmiNo%>";
 //                                                var dataUserID = "<%=dataUserID%>";
 //                                                var patientName = "<%=patientName%>";
@@ -249,7 +252,7 @@
 //                                                var ic = "<%=ic%>";
 //                                                var discipline = "<%=discipline%>";
 //                                                var subdicipline = "<%=subdicipline%>";
-//                                                var dataHFCCode = "<%=dataHFCCode%>";
+//                                                var dataHFCCode = "<%=hfc_cd%>";
 //                                                var appType = "<%=appType%>";
 //                                                console.log(pmiNo);
 //                                                console.log(dataUserID);

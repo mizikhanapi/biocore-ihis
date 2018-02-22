@@ -40,15 +40,11 @@
             + "WHERE Master_Ref_code = '0081' AND Description = '" + hfcSession + "'";
     ArrayList<ArrayList<String>> dataHFCCode = Conn.getData(hfcCode);
 
-    String hfcCD;
-    if (dataHFCCode.size() > 0) {
-        hfcCD = dataHFCCode.get(0).get(0);
-    } else {
-        hfcCD = null;
-    }
+    String hfcCD = hfc;
+    
     String sqlhfc = "SELECT DISTINCT state_code "
             + "FROM pms_duty_roster "
-            + "WHERE hfc_cd = '" + hfcSession + "' ";
+            + "WHERE hfc_cd = '" + hfc + "' ";
     ArrayList<ArrayList<String>> dataSQLHFC = Conn.getData(sqlhfc);
 
 //    out.print(sqlhfc);
@@ -57,7 +53,7 @@
     String sqlDisplayHoliday = "SELECT lm.Master_Ref_code, ld.`Master_Ref_code`, ld.Detail_Ref_code, pmsh.*, ld.Description "
             + "FROM lookup_master lm, lookup_detail ld, pms_holiday pmsh "
             + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' "
-            + "AND ld.`Detail_Ref_code` = pmsh.state_code AND (pmsh.state_code = '" + codeState + "' OR pmsh.state_code = '00') "
+            + "AND ld.`Detail_Ref_code` = pmsh.state_code AND (pmsh.state_code = '" + codeState + "' OR pmsh.state_code = '00') AND pmsh.hfc_cd='"+hfc+"' "
             + "ORDER BY ld.`Description` ASC, pmsh.holiday_date ASC, pmsh.status DESC";
     ArrayList<ArrayList<String>> data = Conn.getData(sqlDisplayHoliday);
 
@@ -530,7 +526,7 @@
                                     <%
                                                 if (dateDB.before(today)) {
                                                     RMIConnector rmic = new RMIConnector();
-                                                    String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now());";
+                                                    String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now()) AND hfc_cd='"+hfc+"';";
 
                                                     boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
                                                 }

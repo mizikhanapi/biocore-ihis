@@ -672,6 +672,11 @@
     
         
     <!-- Mapping For SMS Hidding URL End -->
+    
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/Error/index.jsp</location>
+    </error-page>
 
 
     <session-config>

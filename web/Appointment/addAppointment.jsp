@@ -37,26 +37,26 @@
 //      out.print(chosenDayDate);
 
 //      QUERY TO VALIDATE CLINIC DAY (hfc yg open - status > active - compare day) - message -> the clinic is off. Please choose other day
-        String sqlGetHFCCode = "SELECT Detail_Ref_code "
-                + "FROM lookup_detail "
-                + "WHERE Master_Ref_code = '0081' AND Description = '"+hfc+"'";
-        ArrayList<ArrayList<String>> dataGetHFCCode = Conn.getData(sqlGetHFCCode);
+//        String sqlGetHFCCode = "SELECT Detail_Ref_code "
+//                + "FROM lookup_detail "
+//                + "WHERE Master_Ref_code = '0081' AND Description = '"+hfc+"'";
+//        ArrayList<ArrayList<String>> dataGetHFCCode = Conn.getData(sqlGetHFCCode);
         
-        String dataHFCCode;
+//        String dataHFCCode;
         
-        if(dataGetHFCCode.size() > 0)
-        {
-            dataHFCCode = dataGetHFCCode.get(0).get(0);
-        }
-        else
-        {
-            dataHFCCode = null;
-        }
-         
+//        if(dataGetHFCCode.size() > 0)
+//        {
+//            dataHFCCode = dataGetHFCCode.get(0).get(0);
+//        }
+//        else
+//        {
+//            dataHFCCode = null;
+//        }
+//         
 
         String sqlGetClinicDay = "SELECT day_cd, discipline_cd, subdiscipline_cd, hfc_cd, state_code "
                 + "FROM pms_clinic_day "
-                + "WHERE hfc_cd = '"+dataHFCCode+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+newAppTime+"' BETWEEN start_time AND end_time)";
+                + "WHERE hfc_cd = '"+hfc+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+newAppTime+"' BETWEEN start_time AND end_time)";
         ArrayList<ArrayList<String>> dataGetStates = Conn.getData(sqlGetClinicDay);
         
         String dataStates;
@@ -74,13 +74,13 @@
 //      QUERY VALIDATE HOLIDAY (hfc based on state yg active - allowed) - message -> 
         String sqlHoliday = "SELECT holiday_date "
                 + "FROM pms_holiday "
-                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+appDate+"'";
+                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+appDate+"' AND hfc_cd='"+hfc+"'";
         ArrayList<ArrayList<String>> dataGetHoliday = Conn.getData(sqlHoliday);
         
 //      GET DOCTOR ID FROM THE INPUT FORM TO SET UP FOR DOCTOR ROSTER AND DOCTOR LEAVE
         String sqlGetUserID = "SELECT * "
                 + "FROM adm_users "
-                + "WHERE USER_NAME = '"+appDoc+"'";
+                + "WHERE USER_NAME = '"+appDoc+"' AND health_facility_code='"+hfc+"';";
         ArrayList<ArrayList<String>> dataGetUserID  = Conn.getData(sqlGetUserID);
         String dataUserID = dataGetUserID.get(0).get(0);
         id=dataUserID;
@@ -124,7 +124,7 @@
                     {
                         String sqlValidateAppointment = "SELECT * "
                                             + "FROM pms_appointment "
-                                            + "WHERE pmi_no = '"+pmiNo+"' AND hfc_cd = '"+dataHFCCode+"' AND appointment_date = '"+appDate+"' AND status = 'active'";
+                                            + "WHERE pmi_no = '"+pmiNo+"' AND hfc_cd = '"+hfc+"' AND appointment_date = '"+appDate+"' AND status = 'active'";
                         ArrayList<ArrayList<String>> dataGetAppointment  = Conn.getData(sqlValidateAppointment);
 
                         if(dataGetAppointment.size() > 0)
@@ -138,7 +138,7 @@
                         {
                             RMIConnector rmic = new RMIConnector();
                             String sqlInsert = "INSERT INTO pms_appointment (pmi_no, hfc_cd, appointment_date, module_cd, hfc_to, txn_date, location_cd, userid, encounter_date, episode_date, order_no, appointment_type, register_status, status, remarks, start_time, end_time, discipline, subdiscipline) "
-                                            + "VALUES ('"+pmiNo+"' , '"+dataHFCCode+"','"+appDate+"','-','-','0000-00-00','-','"+dataUserID+"','0000-00-00','0000-00-00','-','walk in','-','active','-','"+appDateTime+"','0000-00-00','"+disApp+"','"+subDisApp+"')";
+                                            + "VALUES ('"+pmiNo+"' , '"+hfc+"','"+appDate+"','-','-','0000-00-00','-','"+dataUserID+"','0000-00-00','0000-00-00','-','walk in','-','active','-','"+appDateTime+"','0000-00-00','"+disApp+"','"+subDisApp+"')";
 
                             boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
 

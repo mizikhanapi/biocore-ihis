@@ -327,7 +327,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
+        //initialise datatable 
+        var tableWard = $('#facilityIDTable').DataTable();
 
 
         //function to edit facility type from table
@@ -386,12 +387,12 @@
             $('#updatePensionerRates').val(PensionerRates);
             $('#updatePensionerDeposit').val(PensionerDeposit);
             $('#updatePensionerDiscount').val(PensionerDiscount);
-            
-            var toiletCheck = (toilet === "Yes")? true:false;
-            var televisionCheck = (televison === "Yes")? true:false;
-            var bathroomCheck = (bathroom === "Yes")? true:false;
-            var telephoneCheck = (telephone === "Yes")? true:false;
-            
+
+            var toiletCheck = (toilet === "Yes") ? true : false;
+            var televisionCheck = (televison === "Yes") ? true : false;
+            var bathroomCheck = (bathroom === "Yes") ? true : false;
+            var telephoneCheck = (telephone === "Yes") ? true : false;
+
             $('#updatetoilet').prop("checked", toiletCheck);
             $('#updatetelevision').prop("checked", televisionCheck);
             $('#updatebathroom').prop("checked", bathroomCheck);
@@ -419,10 +420,10 @@
             var PensionerRates = $('#updatePensionerRates').val();
             var PensionerDeposit = $('#updatePensionerDeposit').val();
             var PensionerDiscount = $('#updatePensionerDiscount').val();
-            var toilet = $('#updatetoilet').prop("checked")? "Yes":"No";
-            var televison = $('#updatetelevision').prop("checked")? "Yes":"No";
-            var bathroom = $('#updatebathroom').prop("checked")? "Yes":"No";
-            var telephone = $('#updatetelephone').prop("checked")? "Yes":"No";
+            var toilet = $('#updatetoilet').prop("checked") ? "Yes" : "No";
+            var televison = $('#updatetelevision').prop("checked") ? "Yes" : "No";
+            var bathroom = $('#updatebathroom').prop("checked") ? "Yes" : "No";
+            var telephone = $('#updatetelephone').prop("checked") ? "Yes" : "No";
             var status = $('#updatestatus').val();
             var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
@@ -520,108 +521,101 @@
                     error: function (err) {
                         alert("Error update!");
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         destroyScreenLoading();
                     }
                 });
             }
         });
-    });
-//delete function when click delete on next of kin
-    $('#tablefacilityIDTable').on('click', '#facilityIDTable #MWID_delete', function (e) {
 
-        e.preventDefault();
-        var row = $(this).closest("tr");
-        var rowData = row.find("#dataFacilityIDhidden").val();
-        var arrayData = rowData.split("|");
+        //delete function when click delete on next of kin
+        $('#tablefacilityIDTable').on('click', '#facilityIDTable #MWID_delete', function (e) {
 
-        //assign into seprated val
-        var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19], wname=arrayData[1], wdis = arrayData[20];
-        console.log(arrayData);
-        bootbox.confirm({
-            message: "Are you sure to delete facility ID information?",
-            title: "Delete Item?",
-            buttons: {
-                confirm: {
-                    label: 'Yes',
-                    className: 'btn-success'
+            e.preventDefault();
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataFacilityIDhidden").val();
+            var arrayData = rowData.split("|");
+
+            //assign into seprated val
+            var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19], wname = arrayData[1], wdis = arrayData[20];
+            console.log(arrayData);
+            bootbox.confirm({
+                message: "Are you sure to delete facility ID information?",
+                title: "Delete Item?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
                 },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
+                callback: function (result) {
 
-                if (result === true) {
-                    console.log(arrayData);
-                    var datas = {
-                        wcd: wcd,
-                        wid: wid,
-                        hfc: hfc,
-                        wname: wname,
-                        wdis: wdis
+                    if (result === true) {
+                        console.log(arrayData);
+                        var datas = {
+                            wcd: wcd,
+                            wid: wid,
+                            hfc: hfc,
+                            wname: wname,
+                            wdis: wdis
 
-                    };
-                    createScreenLoading();
-                    $.ajax({
-                        type: "post",
-                        url: "facilityIDDelete.jsp",
-                        data: datas,
-                        timeout: 10000,
-                        success: function (result) {
-                            console.log(result);
-                            if (result.trim() === 'Success') {
-                                row.remove();
+                        };
+                        createScreenLoading();
+                        $.ajax({
+                            type: "post",
+                            url: "facilityIDDelete.jsp",
+                            data: datas,
+                            timeout: 10000,
+                            success: function (result) {
+                                console.log(result);
+                                if (result.trim() === 'Success') {
+                                    tableWard.row(row).remove.draw();
+                                    bootbox.alert({
+                                        message: "Successfully deleted",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+                                    FI_loadWardNameOption();
+                                    $('#AssignBedTable').html('');
+                                    $('#AssignBedTable').load('assign-bed-to-ward-table.jsp');
+
+                                } else if (result.trim() === 'Failed') {
+                                    bootbox.alert({
+                                        message: "Delete Failed",
+                                        title: "Process Result",
+                                        backdrop: true
+
+                                    });
+                                } else if (result.trim() === 'no') {
+                                    bootbox.alert({
+                                        message: "You cannot delete this ward because there are patients inside it.",
+                                        title: "Process Result",
+                                        backdrop: true
+
+                                    });
+                                }
 
 
-                                bootbox.alert({
-                                    message: "Successfully deleted",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                                FI_loadWardNameOption();
-                                $('#AssignBedTable').html('');
-                                $('#AssignBedTable').load('assign-bed-to-ward-table.jsp');
-                                
-                            } else if (result.trim() === 'Failed') {
-                                bootbox.alert({
-                                    message: "Delete Failed",
-                                    title: "Process Result",
-                                    backdrop: true
-
-                                });
+                            }, error: function (err) {
+                                alert("Error! Deletion Ajax failed!!");
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                destroyScreenLoading();
                             }
-                            else if (result.trim() === 'no') {
-                                bootbox.alert({
-                                    message: "You cannot delete this ward because there are patients inside it.",
-                                    title: "Process Result",
-                                    backdrop: true
 
-                                });
-                            }
-
-
-                        }, error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
-                        },
-                        complete: function (jqXHR, textStatus ) {
-                            destroyScreenLoading();
-                        }
-
-                    });
-                } else {
-                    console.log("Process Is Canceled");
+                        });
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#facilityIDTable').DataTable();
+    });// end of document ready
 
-    });
 </script>
 

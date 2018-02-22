@@ -95,7 +95,7 @@
                         ArrayList<ArrayList<String>> dataDutyDoctor = Conn.getData(sqlDutyDoctor);
 
         
-                        String sqlCheckHoliday = "SELECT * FROM pms_holiday WHERE DATE(holiday_date) = '" + CompareDay + "' ";
+                        String sqlCheckHoliday = "SELECT * FROM pms_holiday WHERE DATE(holiday_date) = '" + CompareDay + "' AND hfc_cd='"+hfc+"' ";
                         ArrayList<ArrayList<String>> dataCheckHoliday = Conn.getData(sqlCheckHoliday);
 
                         String sqlCompareDay = "SELECT * FROM pms_clinic_day WHERE hfc_cd = '" + hfc + "' AND day_cd = '" + newCompareDay + "' ";

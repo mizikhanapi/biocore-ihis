@@ -33,10 +33,10 @@
             + "LEFT JOIN adm_discipline dis on dis.discipline_hfc_cd=cli.hfc_cd and dis.discipline_cd=cli.discipline_cd "
             + "LEFT JOIN adm_subdiscipline sub on sub.subdiscipline_hfc_cd=cli.hfc_cd and sub.discipline_cd=cli.discipline_cd and sub.subdiscipline_cd=cli.subdiscipline_cd "
             + "JOIN adm_lookup_detail sta on sta.hfc_cd=cli.hfc_cd and sta.`Detail_Reference_code`=cli.state_code and sta.`Master_Reference_code`='0002' "
-            + "WHERE cli.hfc_cd='"+hfc+"' Order By state_name;";
+            + "WHERE cli.hfc_cd='"+hfc+"' AND cli.status='active' Order By state_name;";
     ArrayList<ArrayList<String>> dataClinicDay = Conn.getData(sqlDisplayClinic);
 
-    String sql_hfc_state = "SELECT ld.`Description`, hf.state_cd FROM adm_health_facility hf  INNER JOIN adm_lookup_detail ld ON ld.`Detail_Reference_code` = hf.state_cd WHERE hf.hfc_cd = '" + hfc + "' AND ld.hfc_cd = '04010101' AND ld.`Master_Reference_code` = '0002'";
+    String sql_hfc_state = "SELECT ld.`Description`, hf.state_cd FROM adm_health_facility hf  INNER JOIN adm_lookup_detail ld ON ld.`Detail_Reference_code` = hf.state_cd WHERE hf.hfc_cd = '" + hfc + "' AND ld.hfc_cd = '"+hfc+"' AND ld.`Master_Reference_code` = '0002'";
     ArrayList<ArrayList<String>> data_hfc_state = Conn.getData(sql_hfc_state);
 
     hfc_state_code = data_hfc_state.get(0).get(1);
@@ -52,8 +52,8 @@
 
 
     <h3 class="headerTitle">View Clinic Day</h3>  
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
+    <div class="table-responsive" id="tableViewClinicDayDiv">
+        <table class="table table-bordered table-hover" id="tableViewClinicDay">
             <thead>
 
                 <tr> 
