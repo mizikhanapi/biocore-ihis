@@ -4,13 +4,14 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="java.util.ArrayList"%>;
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 
 <%
-    Conn Conn = new Conn();
+    Conn conn = new Conn();
         String state_code = request.getParameter("state");
         String holiday_date = request.getParameter("date");
         String holiday_desc = request.getParameter("desc");
@@ -20,8 +21,10 @@
         String dateBefore = request.getParameter("dateBefore");
         String username = (String)session.getAttribute("username");
         
-        String sqlDisplayHoliday = "SELECT * FROM pms_holiday WHERE state_code = '"+stateBefore+"' AND holiday_date = '"+dateBefore+"'";
-        ArrayList<ArrayList<String>> data = Conn.getData(sqlDisplayHoliday);
+        String hfc = (String) session.getAttribute(MySessionKey.HFC_CD);
+        
+        String sqlDisplayHoliday = "SELECT * FROM pms_holiday WHERE state_code = '"+stateBefore+"' AND holiday_date = '"+dateBefore+"' AND hfc_cd='"+hfc+"'";
+        ArrayList<ArrayList<String>> data = conn.getData(sqlDisplayHoliday);
       
             if(data.size() == 0)
             {//Update holiday fail due to the holiday data does not exist
@@ -32,9 +35,9 @@
                 RMIConnector rmic = new RMIConnector();
                 String sqlInsert = "UPDATE pms_holiday "
                         + "SET state_code='" + state_code + "',holiday_date='" + holiday_date + "',holiday_desc='" + holiday_desc + "',holiday_type='" + holiday_type + "',status='" + status + "', created_by='" + username + "', created_date= now() "
-                        + "WHERE state_code='" + stateBefore + "' AND holiday_date='" + dateBefore + "';";
+                        + "WHERE state_code='" + stateBefore + "' AND holiday_date='" + dateBefore + "' AND hfc_cd='"+hfc+"';";
 
-                boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
+                boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
                 if (isInsert) 
                 {

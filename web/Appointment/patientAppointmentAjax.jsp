@@ -76,7 +76,7 @@
     String sqlDisplayHoliday = "SELECT lm.Master_Ref_code, ld.`Master_Ref_code`, ld.Detail_Ref_code, pmsh.*, ld.Description "
             + "FROM lookup_master lm, lookup_detail ld, pms_holiday pmsh "
             + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' "
-            + "AND ld.`Detail_Ref_code` = pmsh.state_code AND (pmsh.state_code = '" + codeState + "' OR pmsh.state_code = '00') "
+            + "AND ld.`Detail_Ref_code` = pmsh.state_code AND (pmsh.state_code = '" + codeState + "' OR pmsh.state_code = '00') AND pmsh.hfc_cd='"+hfc+"' "
             + "ORDER BY ld.`Description` ASC, pmsh.holiday_date ASC, pmsh.status DESC";
     ArrayList<ArrayList<String>> data = Conn.getData(sqlDisplayHoliday);
 
@@ -483,7 +483,7 @@
                                             </td>
                                             <% }%>
 
-                                            <td><center><%=dateStart%> <% out.print('-');%><%=dateEnd%></center></td> 
+                                            <td><center><%=dateStart%> <% out.print("'-'");%><%=dateEnd%></center></td> 
 
                                             </tr>
                                             <%}%>
@@ -569,7 +569,7 @@
                                             <%
                                                         if (dateDB.before(today)) {
                                                             RMIConnector rmic = new RMIConnector();
-                                                            String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now());";
+                                                            String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now()) AND hfc_cd='"+hfc+"';";
 
                                                             boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
                                                         }

@@ -67,7 +67,7 @@
                 
                 String sqlHoliday = "SELECT holiday_date "
                 + "FROM pms_holiday "
-                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+dateAppointment+"'";
+                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+dateAppointment+"' AND hfc_cd='"+hfc+"' ";
                 ArrayList<ArrayList<String>> dataGetHoliday = Conn.getData(sqlHoliday);
                 
             //      QUERY VALIDATE DUTY ROSTER (staff yg sedang bekerja - status > active (Doctor only))

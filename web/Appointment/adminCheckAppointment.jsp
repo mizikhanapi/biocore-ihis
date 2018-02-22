@@ -49,27 +49,11 @@
         
 
 //      QUERY TO VALIDATE CLINIC DAY (hfc yg open - status > active - compare day) - message -> the clinic is off. Please choose other day
-        String sqlGetHFCCode = "SELECT Detail_Ref_code "
-                + "FROM lookup_detail "
-                + "WHERE Master_Ref_code = '0081' AND Description = '"+hfc+"'";
-        ArrayList<ArrayList<String>> dataGetHFCCode = Conn.getData(sqlGetHFCCode);
-        
-        String dataHFCCode; 
-        
-        
-         if(dataGetHFCCode.size() > 0)
-        {
-             dataHFCCode = dataGetHFCCode.get(0).get(0);
-        }
-        else
-        {
-              dataHFCCode = null;
-        }
-        
+                
          //GET DISCIPLINE CODE QUERY
         String sqlGetClinicDay = "SELECT day_cd, discipline_cd, subdiscipline_cd, hfc_cd, state_code "
                 + "FROM pms_clinic_day "
-                + "WHERE hfc_cd = '"+dataHFCCode+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+newAppTime+"' BETWEEN start_time AND end_time)";
+                + "WHERE hfc_cd = '"+hfc+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+newAppTime+"' BETWEEN start_time AND end_time)";
         ArrayList<ArrayList<String>> dataGetStates = Conn.getData(sqlGetClinicDay);
         
         
@@ -88,7 +72,7 @@
 //      QUERY VALIDATE HOLIDAY (hfc based on state yg active - allowed) - message -> 
         String sqlHoliday = "SELECT holiday_date "
                 + "FROM pms_holiday "
-                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+appDate+"'";
+                + "WHERE (state_code = '"+dataStates+"' OR state_code = '00') AND status = 'active' AND holiday_date = '"+appDate+"' AND hfc_cd='"+hfc+"'";
         ArrayList<ArrayList<String>> dataGetHoliday = Conn.getData(sqlHoliday);
         
 //        out.print(dataGetHoliday.size());
@@ -128,7 +112,7 @@
         
         String sqlCheckAppPast = "SELECT pmi_no, hfc_cd, DATE(appointment_date) AS app_date, userid, appointment_type, status  "
                 + "FROM pms_appointment "
-                + "WHERE pmi_no = '"+pmiNo+"' AND DATE(appointment_date) = '"+appDate+"' AND hfc_cd = '"+dataHFCCode+"' AND status = 'active'";
+                + "WHERE pmi_no = '"+pmiNo+"' AND DATE(appointment_date) = '"+appDate+"' AND hfc_cd = '"+hfc+"' AND status = 'active'";
         ArrayList<ArrayList<String>> dataCheckAppPastActive = Conn.getData(sqlCheckAppPast);
         
 //        out.print(sqlCheckAppPast);
@@ -201,7 +185,7 @@
                                             var result = confirm("The chosen date has been canceled before. Click Ok if you want to proceed with make the appointment on that date");
                                             if(result == true)
                                             { 
-                                                window.location= 'adminAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=username%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=dataHFCCode%>';
+                                                window.location= 'adminAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=username%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=hfc%>';
                                             }
                                             else
                                             {
@@ -215,7 +199,7 @@
                                             var result = confirm("By clicking OK you are directly Save the info");
                                             if(result == true)
                                             { 
-                                                window.location= 'adminAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=username%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=dataHFCCode%>';
+                                                window.location= 'adminAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=username%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=hfc%>';
                                             }
                                             else
                                             {
@@ -229,7 +213,7 @@
                                             var result = confirm("By clicking OK you are directly Save the info");
                                             if(result == true)
                                             { 
-                                                window.location= 'adminAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=username%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=dataHFCCode%>';
+                                                window.location= 'adminAppointmentInsertAppointmentData.jsp?e27=<%=pmiNo%>&e30=<%=dataUserID%>&e31=<%=patientName%>&e32=<%=newAppDate%>&e33=<%=appDateTime%>&e34=<%=username%>&e35=<%=discipline%>&e36=<%=subdicipline%>&e46=<%=appType%>&e48=<%=hfc%>';
                                             }
                                             else
                                             {

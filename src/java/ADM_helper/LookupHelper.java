@@ -56,4 +56,17 @@ public class LookupHelper {
         
         return name;
     }
+    
+    
+    public String getLookupDetailDescription(String master_cd, String detail_cd){
+        String detail="";
+        
+        String query ="Select description from adm_lookup_detail where master_reference_code='"+master_cd+"' AND detail_reference_code='"+detail_cd+"' AND hfc_cd='"+hfc_cd+"' limit 1;";
+        ArrayList<ArrayList<String>> data = con.getData(query);
+        if(data.size()>0){
+            detail = data.get(0).get(0);
+        }
+        
+        return detail;
+    }
 }

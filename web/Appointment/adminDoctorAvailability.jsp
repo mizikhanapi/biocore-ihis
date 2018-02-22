@@ -34,25 +34,14 @@
 //    String searchDoctorAvailability = "ahmed abdallah sheikh";
 
 //   
-    if (hfc == null || hfc == "") {
+    if (hfc == null || hfc.equals("")) {
         hfc = hfcSession;
     }
-    String hfcCode = "SELECT Detail_Ref_code "
-            + "FROM lookup_detail "
-            + "WHERE Master_Ref_code = '0081' AND Description = '" + hfc + "'";
-    ArrayList<ArrayList<String>> dataHFC = Conn.getData(hfcCode);
-
-    String hfcCD;
-    if (dataHFC.size() > 0) {
-        hfcCD = dataHFC.get(0).get(0);
-    } else {
-        hfcCD = null;
-    }
-
+    
 //    out.print(hfcCD);
     String sqlDisplayHoliday = "SELECT lm.Master_Reference_code, ld.`Master_Reference_code`, ld.Detail_Ref_code, pmsh.*, ld.Description "
             + "FROM adm_lookup_master lm, adm_lookup_detail ld, pms_holiday pmsh "
-            + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' AND ld.`Detail_Ref_code` = pmsh.state_code "
+            + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' AND ld.`Detail_Ref_code` = pmsh.state_code AND pmsh.hfc_cd='"+hfc+"' "
             + "ORDER BY pmsh.holiday_date ASC, ld.`Description` ASC";
     ArrayList<ArrayList<String>> data = Conn.getData(sqlDisplayHoliday);
 
@@ -66,7 +55,7 @@
             + "FROM lookup_detail ld, "
             + "(SELECT state_code, hfc_cd, day_cd, discipline_cd, subdiscipline_cd, start_time, end_time,  status "
             + "FROM pms_clinic_day)t "
-            + "WHERE t.state_code=ld.`Detail_Ref_code` AND ld.`Master_Ref_code` = '0002'  AND hfc_cd= '" + hfcCD + "')b "
+            + "WHERE t.state_code=ld.`Detail_Ref_code` AND ld.`Master_Ref_code` = '0002'  AND hfc_cd= '" + hfc + "')b "
             + "WHERE hfc.Master_Ref_Code='0081' AND hfc.Detail_Ref_code = b.hfc_cd)c "
             + "WHERE al.`Master_Ref_code`='0072' AND al.`Detail_Ref_code` = c.discipline_cd)d "
             + "WHERE sub.`Master_Ref_code` = '0071' AND sub.`Detail_Ref_code` = d.subdiscipline_cd "
@@ -201,7 +190,7 @@
                         ArrayList<ArrayList<String>> dataDutyDoctor = Conn.getData(sqlDutyDoctor);
 
                         //int(sqlDutyDoctor);
-                        String sqlCheckHoliday = "SELECT * FROM pms_holiday WHERE DATE(holiday_date) = '" + CompareDay + "' ";
+                        String sqlCheckHoliday = "SELECT * FROM pms_holiday WHERE DATE(holiday_date) = '" + CompareDay + "' AND hfc_cd='"+hfc+"' ";
                         ArrayList<ArrayList<String>> dataCheckHoliday = Conn.getData(sqlCheckHoliday);
 //out.print(sqlCheckHoliday);
 

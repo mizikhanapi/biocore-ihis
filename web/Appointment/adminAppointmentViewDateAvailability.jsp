@@ -31,29 +31,11 @@
     String searchDateAvailability = request.getParameter("searchDateAvailability");
     String searchDoctorAvailability = request.getParameter("searchDoctorAvailability");
     
-
-
-    
-
-    String hfcCode = "SELECT Detail_Ref_code "
-            + "FROM lookup_detail "
-            + "WHERE Master_Ref_code = '0081' AND Description = '"+hfc+"'";
-    ArrayList<ArrayList<String>> dataHFC = Conn.getData(hfcCode);  
-
-    String hfcCD;
-    if(dataHFC.size() > 0)
-    {
-        hfcCD = dataHFC.get(0).get(0);
-    }
-    else
-    {
-        hfcCD = null;
-    }
     
 //    out.print(hfcCD);
     String sqlDisplayHoliday = "SELECT lm.Master_Ref_code, ld.`Master_Ref_code`, ld.Detail_Ref_code, pmsh.*, ld.Description "
             + "FROM lookup_master lm, lookup_detail ld, pms_holiday pmsh "
-            + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' AND ld.`Detail_Ref_code` = pmsh.state_code "
+            + "WHERE lm.`Master_Ref_code` = ld.`Master_Ref_code` AND ld.`Master_Ref_code` = '0002' AND ld.`Detail_Ref_code` = pmsh.state_code AND pmsh.hfc_cd='"+hfc+" '"
             + "ORDER BY pmsh.holiday_date ASC, ld.`Description` ASC";
     ArrayList<ArrayList<String>> data = Conn.getData(sqlDisplayHoliday);
     
@@ -67,7 +49,7 @@
             + "FROM lookup_detail ld, "
             + "(SELECT state_code, hfc_cd, day_cd, discipline_cd, subdiscipline_cd, start_time, end_time,  status "
             + "FROM pms_clinic_day)t "
-            + "WHERE t.state_code=ld.`Detail_Ref_code` AND ld.`Master_Ref_code` = '0002'  AND hfc_cd= '"+hfcCD+"')b "
+            + "WHERE t.state_code=ld.`Detail_Ref_code` AND ld.`Master_Ref_code` = '0002'  AND hfc_cd= '"+hfc+"')b "
             + "WHERE hfc.Master_Ref_Code='0081' AND hfc.Detail_Ref_code = b.hfc_cd)c "
             + "WHERE al.`Master_Ref_code`='0072' AND al.`Detail_Ref_code` = c.discipline_cd)d "
             + "WHERE sub.`Master_Ref_code` = '0071' AND sub.`Detail_Ref_code` = d.subdiscipline_cd "
@@ -572,7 +554,7 @@
                                     if(dateDB.before(today))
                                     {      
                                                 RMIConnector rmic = new RMIConnector();
-                                                String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now());";
+                                                String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now()) AND hfc_cd='"+hfc+"';";
 
                                                 boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
                                     }
@@ -655,7 +637,7 @@
                                     if(dateDB.before(today))
                                     {      
                                                 RMIConnector rmic = new RMIConnector();
-                                                String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now());";
+                                                String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now()) AND hfc_cd='"+hfc+"';";
 
                                                 boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
                                     }
@@ -1763,10 +1745,10 @@
 
     //                                            out.print(sqlDutyDoctor);
 
-                                String sqlCheckHoliday = "SELECT * FROM pms_holiday WHERE DATE(holiday_date) = '"+searchDateAvailability+"' ";
+                                String sqlCheckHoliday = "SELECT * FROM pms_holiday WHERE DATE(holiday_date) = '"+searchDateAvailability+"' AND hfc_cd='"+hfc+"' ";
                                 ArrayList<ArrayList<String>> dataCheckHoliday = Conn.getData(sqlCheckHoliday);
 
-                                String sqlCompareDay = "SELECT * FROM pms_clinic_day WHERE hfc_cd = '"+hfcCD+"' AND day_cd = '"+newCompareDay+"' ";
+                                String sqlCompareDay = "SELECT * FROM pms_clinic_day WHERE hfc_cd = '"+hfc+"' AND day_cd = '"+newCompareDay+"' ";
                                 ArrayList<ArrayList<String>> dataCompareDay = Conn.getData(sqlCompareDay);
 
                                 if(dataCheckHoliday.size() == 0)
@@ -2258,7 +2240,7 @@
                                             <td class="incoming_date_area"><center><%=dataAppointment.get(i).get(7)%></center></td>
                                             <td class="incoming_date_area">
                                     <center>
-                                        <button class="btn btn-xs btn-primary" onClick="return myFunction('<%=dataAppointment.get(i).get(2)%>','<%=hfcCD%>','<%=dataAppointment.get(i).get(0)%>')">Cancel</button>
+                                        <button class="btn btn-xs btn-primary" onClick="return myFunction('<%=dataAppointment.get(i).get(2)%>','<%=hfc%>','<%=dataAppointment.get(i).get(0)%>')">Cancel</button>
                                             <script>
                                                 function myFunction(e27,e48,e32)
                                                 {
@@ -2299,7 +2281,7 @@
                                             <!--<td><center><%=dataAppointment.get(i).get(9)%></center></td>-->
                                             <td>
                                                 <center>
-                                                    <button disabled="disabled" class="btn btn-xs btn-primary" onClick="location.href='adminCancelAppointment.jsp?e27=<%=dataAppointment.get(i).get(2)%>&e48=<%=hfcCD%>&e32=<%=dataAppointment.get(i).get(0)%>'">Cancel</button>
+                                                    <button disabled="disabled" class="btn btn-xs btn-primary" onClick="location.href='adminCancelAppointment.jsp?e27=<%=dataAppointment.get(i).get(2)%>&e48=<%=hfc%>&e32=<%=dataAppointment.get(i).get(0)%>'">Cancel</button>
                                                 </center>
                                             </td>
                                             <td><center><%=dataAppointment.get(i).get(10)%></center></td>
@@ -2320,7 +2302,7 @@
                                             <!--<td><center><%=dataAppointment.get(i).get(9)%></center></td>-->
                                             <td>
                                                 <center>
-                                                    <button disabled="disabled" class="btn btn-xs btn-primary" onClick="location.href='adminCancelAppointment.jsp?e27=<%=dataAppointment.get(i).get(2)%>&e48=<%=hfcCD%>&e32=<%=dataAppointment.get(i).get(0)%>'">Cancel</button>
+                                                    <button disabled="disabled" class="btn btn-xs btn-primary" onClick="location.href='adminCancelAppointment.jsp?e27=<%=dataAppointment.get(i).get(2)%>&e48=<%=hfc%>&e32=<%=dataAppointment.get(i).get(0)%>'">Cancel</button>
                                                 </center>
                                             </td>
                                             <td><center>Not Applicable</center></td>

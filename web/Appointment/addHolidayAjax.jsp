@@ -4,6 +4,7 @@
     Author     : asyraf
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -16,7 +17,7 @@
         String holiday_desc = request.getParameter("desc");
         String holiday_type = request.getParameter("appTo");
         String status = request.getParameter("status");
-        String username = (String)session.getAttribute("username");
+        String username = (String)session.getAttribute(MySessionKey.USER_ID);
         String hfc = (String)session.getAttribute("HEALTH_FACILITY_CODE");
         
         
@@ -24,8 +25,8 @@
 //        out.print(holiday_date);
         
         RMIConnector rmic = new RMIConnector();
-        String sqlInsert = "INSERT INTO pms_holiday (state_code, holiday_date,holiday_desc, holiday_type, status, created_by, created_date) "
-                        + "VALUES ('" + state_code + "' , '" + holiday_date + "','" + holiday_desc + "','" + holiday_type + "','active', '" + username + "', now())";
+        String sqlInsert = "INSERT INTO pms_holiday (hfc_cd, state_code, holiday_date, holiday_desc, holiday_type, status, created_by, created_date) "
+                        + "VALUES ('"+hfc+"', '" + state_code + "' , '" + holiday_date + "','" + holiday_desc + "','" + holiday_type + "', 'active', '" + username + "', now())";
 
         
         boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);

@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : index
     Created on : Sep 6, 2017, 11:28:40 AM
     Author     : -D-
@@ -11,22 +11,22 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
+<%-- <%@page buffer="1000kb" autoFlush="false" %> --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    String user_type = (String) session.getAttribute("USER_TYPE");
-    if (user_type.equals("PUBLIC")) {
-        String P_NAME = session.getAttribute("USER_NAME").toString();
-        String PMI_NO = session.getAttribute("PMI_NO").toString();
-        String P_EMAIL = session.getAttribute("EMAIL").toString();
-        String P_MOBILE_PHONE = session.getAttribute("MOBILE_PHONE").toString();
-
-%>
 <html>
     <%@include file="header.jsp"%>
     <%@include file="assets/header.html"%>
+    <%    //String user_type = (String) session.getAttribute("USER_TYPE");
+        String user_type = session.getAttribute("USER_TYPE") == null ? "-" : (String) session.getAttribute("USER_TYPE");
+        if (user_type.equals("PUBLIC")) {
+            String P_NAME = (String) session.getAttribute("USER_NAME");
+            String PMI_NO = (String) session.getAttribute("PMI_NO");
+            String P_EMAIL = (String) session.getAttribute("EMAIL");
+            String P_MOBILE_PHONE = (String) session.getAttribute("MOBILE_PHONE");
 
+    %>
     <body>
         <jsp:include page="main/SideMenuPatient.jsp"/>
         <div class="main" style="background: #f2f4f8;">
@@ -69,42 +69,37 @@
                 </div>
             </div>
 
-        </div> 
-    </body>
-</html>
-<%        } else {
-    Conn Conn = new Conn();
-    String discipline_name = null;
-    String subdiscipline_name = null;
-    String username = (String) session.getAttribute("USER_ID");
-    String my_1_gamba = session.getAttribute("PICTURE").toString();
+        </div>
+        <%        }// ---------------- end if user is PUBLIC
+        else {
 
-    String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-    String hfc_name = (String) session.getAttribute("HFC_NAME");
-    String name = (String) session.getAttribute("USER_NAME");
-    String title = (String) session.getAttribute("OCCUPATION_CODE");
-    String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
-    String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+            Conn Conn = new Conn();
+            String discipline_name = null;
+            String subdiscipline_name = null;
+            String username = (String) session.getAttribute("USER_ID");
+            String my_1_gamba = session.getAttribute("PICTURE").toString();
 
-    String discipline_name_sql = "SELECT discipline_name FROM adm_discipline WHERE discipline_cd = '" + discipline + "' AND discipline_hfc_cd = '" + hfc + "';";
-    ArrayList<ArrayList<String>> discipline_name_AL = Conn.getData(discipline_name_sql);
-    discipline_name = discipline_name_AL.get(0).get(0);
-    String subdiscipline_name_sql = "SELECT subdiscipline_name FROM adm_subdiscipline WHERE subdiscipline_hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "' AND subdiscipline_cd = '" + subdiscipline + "'";
-    ArrayList<ArrayList<String>> subdiscipline_name_AL = Conn.getData(subdiscipline_name_sql);
-    subdiscipline_name = subdiscipline_name_AL.get(0).get(0);
+            String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+            String hfc_name = (String) session.getAttribute("HFC_NAME");
+            String name = (String) session.getAttribute("USER_NAME");
+            String title = (String) session.getAttribute("OCCUPATION_CODE");
+            String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
+            String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
 
+            String discipline_name_sql = "SELECT discipline_name FROM adm_discipline WHERE discipline_cd = '" + discipline + "' AND discipline_hfc_cd = '" + hfc + "';";
+            ArrayList<ArrayList<String>> discipline_name_AL = Conn.getData(discipline_name_sql);
+            discipline_name = discipline_name_AL.get(0).get(0);
+            String subdiscipline_name_sql = "SELECT subdiscipline_name FROM adm_subdiscipline WHERE subdiscipline_hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "' AND subdiscipline_cd = '" + subdiscipline + "'";
+            ArrayList<ArrayList<String>> subdiscipline_name_AL = Conn.getData(subdiscipline_name_sql);
+            subdiscipline_name = subdiscipline_name_AL.get(0).get(0);
 
-%>
-<html>
-    <%@include file="header.jsp"%>
-    <%@include file="assets/header.html"%>
-
+        %>
     <body>
         <jsp:include page="main/SideMenu.jsp"/>
         <!-- main -->
         <div class="main" style="background: #f2f4f8;">
 
-            <jsp:include page="main/TopMenu.jsp"/>
+            <jsp:include page="main/TopMenu.jsp" flush="true"/>
 
             <div class="container-fluid">
 
@@ -115,11 +110,11 @@
                             <div class="tab-content">
 
                                 <div id="home" class="tab-pane active">
-                                    <jsp:include page="main/home.jsp"/>
+                                    <jsp:include page="main/home.jsp" flush="true"/>
                                 </div>
 
-                                <div id="maintainholiday" class="tab-pane fade">
-                                    <jsp:include page="main/MaintainHoliday.jsp"/>
+                                <div id="maintainholiday" class="tab-pane fade" >
+                                    <jsp:include page="main/MaintainHoliday.jsp" flush="true"/>
 
                                 </div>
                                 <div id="viewholiday" class="tab-pane fade">
@@ -168,15 +163,17 @@
                 </div>
             </div>
 
-        </div> 
+        </div>
 
-        <%    }
-        %>
+        <%            }//-------------- end else if user not public
+%>
 
 
         <!--        End of div container-fluid-->
         <script type="text/javascript">
-
+            //dataTable plugin
+            $.fn.dataTable.moment('DD/MM/YYYY');
+            $.fn.dataTable.moment('dddd');
             function holidayEmptyField() {
                 $('#state').val('');
                 $('#startdate').val('');
@@ -200,10 +197,19 @@
                 });
             }
 
+            function initDataTable(tableName) {
+                $('#' + tableName).dataTable({destroy: true});
+                $('#' + tableName).DataTable();
+            }
+
             $(document).ready(function () {
+
 
 //                $('#startTimeRoster').ptTimeSelect();
 //                $('#endTimeRoster').ptTimeSelect();
+
+                //initialise data table
+                initDataTable("tableViewClinicDay");
 
                 $('#startdateC').ptTimeSelect();
                 $('#enddateC').ptTimeSelect();
@@ -411,7 +417,13 @@
                                 console.log(result);
                                 if (result.trim() === 'success') {
                                     alert('Clinic day updated');
-                                    $('#clinicDayTable').load('index.jsp #clinicDayTable');
+                                    $('#clinicDayTableDiv').load('index.jsp #clinicDayTable', function () {
+                                        initDataTable("clinicDayTable");
+                                    });
+                                    $('#tableViewClinicDayDiv').load("main/ViewClinicDay.jsp #tableViewClinicDay", function(){
+                                        initDataTable("tableViewClinicDay");
+                                    });
+                                    $('#cancelClinicDay').click();
                                 } else {
                                     alert('Error');
                                 }
@@ -440,18 +452,18 @@
                     console.log(dataArry);
 
 
-                    $('#state_  option').filter(function () {
-                        return ($(this).text() === dataArry[0]); //To select Blue
-                    }).prop('selected', true);
+//                    $('#state_  option').filter(function () {
+//                        return ($(this).text() === dataArry[0]); //To select Blue
+//                    }).prop('selected', true);
 
-                    showUser();
+//                    showUser();
+//
+//                    var hfcData = {
+//                        state: $('#state_').val(),
+//                        hfcName: dataArry[1]
+//                    };
 
-                    var hfcData = {
-                        state: $('#state_').val(),
-                        hfcName: dataArry[1]
-                    };
-
-                    selectHFC(hfcData);
+                    //selectHFC(hfcData);
 
 
                     $('#discipline  option').filter(function () {
@@ -479,9 +491,6 @@
 
                 $('#addClinicDay').click(function (e) {
                     e.preventDefault();
-
-
-
 
 
                     var _state = $('#state_').val();
@@ -534,7 +543,13 @@
 //                                var response = resultTrim.trim();
                                 if (result.valid) {
                                     alert('Clinic Day added');
-                                    $('#clinicDayTable').load('main/MaintainClinicDay.jsp #clinicDayTable');
+                                    $('#clinicDayTableDiv').load('main/MaintainClinicDay.jsp #clinicDayTable', function () {
+                                        $('#clinicDayTable').dataTable({destroy: true});
+                                        $('#clinicDayTable').DataTable();
+                                    });
+                                    $('#tableViewClinicDayDiv').load("main/ViewClinicDay.jsp #tableViewClinicDay", function(){
+                                        initDataTable("tableViewClinicDay");
+                                    });
                                     $('#state_').val('');
                                     $('#hfc_codeC').val('');
                                     $('#hfcBefore').val('');
@@ -627,7 +642,10 @@
                             var response = resultTrim.trim();
                             if (response === 'success') {
                                 alert('Holiday has successful update');
-                                $('#holidayTable').load('index.jsp #holidayTable');
+                                $('#holidayTableDiv').load('index.jsp #holidayTable', function () {
+                                    $('#holidayTable').dataTable({destroy: true});
+                                    $('#holidayTable').DataTable();
+                                });
                                 $('#viewHoliday').load('index.jsp #viewHoliday');
                             } else if (response === 'fail') {
                                 alert('Update holiday fail due to the holiday data does not exist');
@@ -685,17 +703,21 @@
                                 result = result.trim();
                                 if (result === "success") {
                                     alert('Holiday successful added');
-                                    $('#holidayTable').load('index.jsp #holidayTable');
+                                    $('#holidayTableDiv').load('index.jsp #holidayTable', function () {
+                                        $('#holidayTable').dataTable({destroy: true});
+                                        $('#holidayTable').DataTable();
+                                    });
                                     $('#viewHoliday').load('index.jsp #viewHoliday');
                                     $('#state').val("");
                                     $('#startdate').datepicker().val("");
                                     $('#desc').val("");
                                     $('#appTo').val("");
+
                                 } else if (result === "error")
                                 {
                                     alert('The Holiday already added');
                                 } else {
-                                    alert('error');
+                                    alert(result);
                                 }
                             },
                             error: function (err) {

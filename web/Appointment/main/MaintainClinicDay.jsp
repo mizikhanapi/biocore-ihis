@@ -3,6 +3,7 @@
     Created on : Sep 7, 2017, 5:46:42 PM
     Author     : -D-
 --%>
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -12,8 +13,10 @@
 <%
     Conn Conn = new Conn();
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-    String hfc_state_name = null;
-    String hfc_state_code = null;
+    String hfc_name = (String) session.getAttribute(MySessionKey.HFC_NAME);
+    String hfc_state_name = "";
+    String hfc_state_code = "";
+
 
     /*String sqlDisplayClinic = "SELECT d.*, sub.description AS subdiscipline_name FROM adm_lookup_detail sub,"
             + " (SELECT c.*, al.description AS discipline_name FROM adm_lookup_detail al, "
@@ -25,60 +28,35 @@
             + "  WHERE al.`Master_Reference_code`='0072' AND al.`Detail_Reference_code` = c.discipline_cd AND al.hfc_cd = '" + hfc + "')d  "
             + "WHERE sub.`Master_Reference_code` = '0071' AND sub.`Detail_Reference_code` = d.subdiscipline_cd  AND sub.hfc_cd = '" + hfc + "'"
             + " ORDER BY state_name ASC";
-    */
-    
-    //                               
-    String sqlDisplayClinic="SELECT cli.state_code, cli.hfc_cd, cli.day_cd, cli.discipline_cd, cli.subdiscipline_cd, cli.start_time, cli.end_time, cli.status, sta.`Description` as state_name, hfc.hfc_name, dis.discipline_name, sub.subdiscipline_name "
+     */
+    //                                      0              1            2           3                   4                   5               6              7            8                           
+    String sqlDisplayClinic = "SELECT cli.state_code, cli.hfc_cd, cli.day_cd, cli.discipline_cd, cli.subdiscipline_cd, cli.start_time, cli.end_time, cli.status, sta.`Description` as state_name, "
+            //       9              10                          11              
+            + "hfc.hfc_name, dis.discipline_name, sub.subdiscipline_name "
             + "FROM pms_clinic_day cli "
             + "JOIN adm_health_facility hfc on hfc.hfc_cd=cli.hfc_cd "
             + "LEFT JOIN adm_discipline dis on dis.discipline_hfc_cd=cli.hfc_cd and dis.discipline_cd=cli.discipline_cd "
             + "LEFT JOIN adm_subdiscipline sub on sub.subdiscipline_hfc_cd=cli.hfc_cd and sub.discipline_cd=cli.discipline_cd and sub.subdiscipline_cd=cli.subdiscipline_cd "
             + "JOIN adm_lookup_detail sta on sta.hfc_cd=cli.hfc_cd and sta.`Detail_Reference_code`=cli.state_code and sta.`Master_Reference_code`='0002' "
-            + "WHERE cli.hfc_cd='"+hfc+"' Order By state_name;";
+            + "WHERE cli.hfc_cd='" + hfc + "' Order By state_name;";
     ArrayList<ArrayList<String>> dataClinicDay = Conn.getData(sqlDisplayClinic);
 
-    String sql_hfc_state = "SELECT ld.`Description`, hf.state_cd FROM adm_health_facility hf  INNER JOIN adm_lookup_detail ld ON ld.`Detail_Reference_code` = hf.state_cd WHERE hf.hfc_cd = '" + hfc + "' AND ld.hfc_cd = '04010101' AND ld.`Master_Reference_code` = '0002'";
-    ArrayList<ArrayList<String>> data_hfc_state = Conn.getData(sql_hfc_state);
-
-    hfc_state_code = data_hfc_state.get(0).get(1);
-    hfc_state_name = data_hfc_state.get(0).get(0);
-
-    String sql_hfc_list = " SELECT hfc_cd,hfc_name FROM adm_health_facility WHERE state_cd = '" + hfc_state_code + "'  ";
-    ArrayList<ArrayList<String>> data_hfc_list = Conn.getData(sql_hfc_list);
+    if (dataClinicDay.size() > 0) {
+        hfc_state_code = dataClinicDay.get(0).get(0);
+        hfc_state_name = dataClinicDay.get(0).get(8);
+    }
 
     String e7 = null;
 
-    String stateCode = null;
 %>
 
 <h3 class="headerTitle">Maintain Clinic Day</h3>
+<input class="form-control" id="state_" name="state_code" type="hidden" value="<%=hfc_state_code%>"> 
+<input class="form-control" id="hfc_codeC" name="hfc_code" type="hidden" value="<%=hfc%>">
+
 <form class="form-horizontal" id="clinicForm">    
     <div class="form-group"> 
         <script>
-            function showUser()
-            {
-                var str = $("#state_ option:selected").val();
-
-                if (str === "")
-                {
-                    document.getElementById("hfc_codeC").innerHTML = "";
-                    return;
-                }
-                //                                                
-           
-                //                                                           if($('#hfc_code').val()==null)){
-                $.ajax({
-                    type: "POST",
-                    url: "adminGetHFC.jsp",
-                    data: {state: str},
-                    success: function (data) {
-
-                        document.getElementById("hfc_codeC").innerHTML = data;
-                        getDiscipline();
-                    }
-                });
-         
-            }
 
             function getDiscipline(hfc_cd) {
                 var hfc = hfc_cd;
@@ -91,108 +69,54 @@
                         $("#discipline").change();
                     }
                 });
-                
+
             }
-            
-             function getSubDiscipline(hfc_cd,discipline_cd) {
+
+            function getSubDiscipline(hfc_cd, discipline_cd) {
                 var hfc = hfc_cd;
                 var discipline_cd = discipline_cd
                 $.ajax({
                     type: "POST",
                     url: "adminGetSubDiscipline.jsp",
-                    data: {hfc_cd: hfc,discipline_cd:discipline_cd},
+                    data: {hfc_cd: hfc, discipline_cd: discipline_cd},
                     success: function (data) {
                         $("#subdiscipline").html(data);
 
                     }
                 });
-                
+
             }
 
+
             $(document).ready(function () {
+
                 $("#hfc_codeC").on('change', function () {
                     getDiscipline($(this).val());
                 });
-                
-                $("#discipline").on('change',function(){
-                    var hfc_cd =  $("#hfc_codeC option:selected").val();
+
+                $("#discipline").on('change', function () {
+                    var hfc_cd = $("#hfc_codeC").val();
                     var discipline_cd = $(this).val();
-                    getSubDiscipline(hfc_cd,discipline_cd);
- 
-                    
+                    getSubDiscipline(hfc_cd, discipline_cd);
+
+
                 });
-                $("#discipline").change();
+
+                $("#hfc_codeC").change();
+
             });
 
         </script>
         <label class="control-label col-sm-2" for="state">State </label>
         <div class="col-sm-10"> 
-            <select class="form-control" id="state_" name="state_code" onchange="showUser()" required>
-                <option value="">Select State</option>
-                <%   String sql3 = "SELECT Detail_Reference_code, Description FROM adm_lookup_detail WHERE Master_Reference_code = '0002'  AND  hfc_cd = '" + hfc + "'  ";
-                    ArrayList<ArrayList<String>> dataStateClinic = Conn.getData(sql3);
-
-                    if (hfc_state_name == null) {
-                        if (dataStateClinic.size() > 0) {
-                            for (int i = 0; i < dataStateClinic.size(); i++) {%>
-                <option value="<%=dataStateClinic.get(i).get(0)%>"><%=dataStateClinic.get(i).get(1)%></option>
-                <%}
-                    }
-                } else {
-                    String sqlStateCode = "SELECT Detail_Reference_code FROM adm_lookup_detail WHERE Master_Reference_code = '0002' AND  Description ='" + hfc_state_name + "'   AND  hfc_cd = '" + hfc + "'  ";
-                    ArrayList<ArrayList<String>> dataStateCode = Conn.getData(sqlStateCode);
-
-                    stateCode = dataStateCode.get(0).get(0);
-
-                    for (int i = 0; i < dataStateClinic.size(); i++) {
-                        if (stateCode.equals(dataStateClinic.get(i).get(0))) {%> 
-                <option value="<%=stateCode%>" selected ><%=dataStateClinic.get(i).get(1)%></option>
-                <%} else {%>
-                <option value="<%=dataStateClinic.get(i).get(0)%>"><%=dataStateClinic.get(i).get(1)%></option>
-                <%}
-                    }
-                %>
-                <script>
-
-                    showUser();
-
-                </script><%
-                    }%>
-            </select>
+            <input class="form-control" type="text" readonly value="<%=hfc_state_name%>">                            
         </div>
     </div>
 
     <div class="form-group"> 
         <label class="control-label col-sm-2" for="hfc">Health Facility Name  </label>
         <div id="hfc" class="col-sm-10">
-            <select class="form-control" id="hfc_codeC" name="hfc_code" required>
-
-                <%
-                    if (hfc == null) {
-                %>
-                <option value=""></option> <%
-                } else {
-
-                    //                                                checkDropdown=true;
-                    String getHFCValue = " SELECT hfc_cd,hfc_name FROM adm_health_facility WHERE state_cd = '" + stateCode + "'  ";
-                    ArrayList<ArrayList<String>> dataGetHFCValue = Conn.getData(getHFCValue);
-                    out.print(getHFCValue);
-                    if (dataGetHFCValue.size() > 0) {
-                        for (int i = 0; i < dataGetHFCValue.size(); i++) {
-                            if (hfc.equals(dataGetHFCValue.get(i).get(0))) {
-                %><option selected value="<%=dataGetHFCValue.get(i).get(0)%>" ><%=dataGetHFCValue.get(i).get(1)%></option> <%
-                } else {
-                %><option value="<%=dataGetHFCValue.get(i).get(0)%>" ><%=dataGetHFCValue.get(i).get(1)%></option> <%
-                        }
-                    }
-                } else {
-                %> <option>No Healthcare Facility Exist</option><%
-                        }
-
-                    }
-                %>
-            </select>
-
+            <input class="form-control" type="text" readonly value="<%=hfc_name%>">
             <input type="hidden" name="hfcBefore" id="hfcBefore">
         </div>
     </div>
@@ -211,14 +135,6 @@
         <div class="col-sm-10">
             <select class="form-control" id="subdiscipline" name="subdiscipline" required>
                 <option value=""></option>
-                <%  String sql6 = "SELECT Detail_Reference_code, Description FROM adm_lookup_detail WHERE Master_Reference_code = '0071'  AND  hfc_cd = '" + hfc + "' ";
-                    ArrayList<ArrayList<String>> dataSubClinic = Conn.getData(sql6);
-                    if (dataSubClinic.size() > 0) {
-                        for (int i = 0; i < dataSubClinic.size(); i++) {%>
-                <option value="<%=dataSubClinic.get(i).get(0)%>"><%=dataSubClinic.get(i).get(1)%></option>
-                <%}
-                    }%>
-
             </select>
             <input type="hidden" name="subdisciplineBefore" id="subdisciplineBefore">
         </div>
@@ -277,7 +193,7 @@
         </div>
     </div>
 </form>
-<div class="table-responsive">
+<div class="table-responsive" id="clinicDayTableDiv">
     <table class="table table-bordered table-hover" id="clinicDayTable">
         <thead>
 
@@ -337,7 +253,12 @@
                                 result = result.replace(";", "");
                                 if (result.trim() === 'success') {
                                     //$('#clinicDayTable').load('adminAppointmentAjax.jsp #clinicDayTable');
-                                    $('#clinicDayTable').load('main/MaintainClinicDay.jsp #clinicDayTable');
+                                    $('#clinicDayTableDiv').load('main/MaintainClinicDay.jsp #clinicDayTable', function(){
+                                        initDataTable("clinicDayTable");
+                                    });
+                                    $('#tableViewClinicDayDiv').load("main/ViewClinicDay.jsp #tableViewClinicDay", function(){
+                                        initDataTable("tableViewClinicDay");
+                                    });
                                     alert('Clinic day deleted');
                                 } else {
                                     alert('Error while deleted');
@@ -362,3 +283,8 @@
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('#clinicDayTable').DataTable();
+    });
+</script>

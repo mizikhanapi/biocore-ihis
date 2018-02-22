@@ -14,7 +14,7 @@
     Conn Conn = new Conn();
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     
-    String sqlDctorAvailability = "SELECT doc.*from pms_duty_roster pdr, (SELECT USER_ID,USER_NAME,OCCUPATION_CODE FROM adm_users WHERE OCCUPATION_CODE = '002')doc where doc.USER_ID=pdr.user_id AND pdr.status='active' AND  pdr.hfc_cd = '"+hfc+"'";
+    String sqlDctorAvailability = "SELECT doc.* from pms_duty_roster pdr, (SELECT USER_ID,USER_NAME,OCCUPATION_CODE FROM adm_users WHERE OCCUPATION_CODE = '002')doc where doc.USER_ID=pdr.user_id AND pdr.status='active' AND  pdr.hfc_cd = '"+hfc+"'";
     ArrayList<ArrayList<String>> dataDctorAvailability = Conn.getData(sqlDctorAvailability);
 
             

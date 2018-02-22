@@ -73,7 +73,7 @@ Conn Conn = new Conn();
 
     String sql = "SELECT lm.Master_Reference_code, ld.`Master_Reference_code`, ld.Detail_Reference_code, pmsh.*, ld.Description "
             + "FROM adm_lookup_master lm, adm_lookup_detail ld, pms_holiday pmsh "
-            + "WHERE lm.`Master_Reference_code` = ld.`Master_Reference_code` AND ld.`Master_Reference_code` = '0002' AND ld.`Detail_Reference_code` = pmsh.state_code AND ld.hfc_cd = '"+hfc+"' "
+            + "WHERE lm.`Master_Reference_code` = ld.`Master_Reference_code` AND ld.`Master_Reference_code` = '0002' AND ld.`Detail_Reference_code` = pmsh.state_code AND ld.hfc_cd = '"+hfc+"' AND pmsh.hfc_cd='"+hfc+"' "
             + "ORDER BY pmsh.holiday_date ASC, ld.`Description` ASC";
     ArrayList<ArrayList<String>> data = Conn.getData(sql);
 
@@ -306,7 +306,7 @@ Conn Conn = new Conn();
                                     <%
                                                 if (dateDB.before(today)) {
                                                     RMIConnector rmic = new RMIConnector();
-                                                    String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now());";
+                                                    String sqlInsert = "UPDATE pms_holiday SET status='inactive' WHERE holiday_date < date(now()) AND hfc_cd='"+hfc+"';";
 
                                                     boolean isInsert = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsert);
                                         }

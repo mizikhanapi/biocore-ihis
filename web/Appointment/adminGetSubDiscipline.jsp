@@ -35,7 +35,7 @@
 
      }
  } else {%>
-        <option>No Healthcare Facility Exist</option>
+        <option>No Subdiscipline Exist</option>
         <%}
 
 

@@ -44,9 +44,8 @@
         <!-- //copyright --> 
 
         <!-- Error Message 
-        Message:
-        <%=exception.getMessage()%>
-        
+        Message: <%=exception%>
+               
         StackTrace:
         <%
             StringWriter stringWriter = new StringWriter();
@@ -55,9 +54,10 @@
             out.println(stringWriter);
             printWriter.close();
             stringWriter.close();
+            
         %>
         
-        
+      
         --> 
 
     </body>
