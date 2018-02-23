@@ -49,14 +49,12 @@
                     <div class="row">
                         <div class="col-md-12">
 
+                            <div class="thumbnail">
 
-                            <div id="reportBilllingReportMainDIV">
+                                <div id="reportBilllingCustomerAccountReportMainDIV">
+                                </div>
+
                             </div>
-
-                            <div id="reportBilllingSalesReportMainDIV">
-                            </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -76,8 +74,7 @@
 
             //  $('<div class="loading">Loading</div>').appendTo('body');
 
-            $("#reportBilllingReportMainDIV").load("reportBilllingReportMain.jsp");
-            $("#reportBilllingSalesReportMainDIV").load("reportBilllingSalesReportMain.jsp");
+            $("#reportBilllingCustomerAccountReportMainDIV").load("reportBilllingCustomerAccountReportMain.jsp");
 
 
         </script>
