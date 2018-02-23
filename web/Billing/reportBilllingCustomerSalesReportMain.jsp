@@ -1,6 +1,6 @@
 <%-- 
-    Document   : reportBilllingItemSalesReportMain
-    Created on : Feb 22, 2018, 9:39:49 AM
+    Document   : reportBilllingCustomerSalesReportMain
+    Created on : Feb 23, 2018, 8:28:26 PM
     Author     : Shammugam
 --%>
 
@@ -14,14 +14,14 @@
 
 %>
 
-<h2>SALES REPORT BY ITEM</h2>
+<h2>SALES REPORT BY CUSTOMER</h2>
 <hr/>
 <div class="form-horizontal" >
 
     <div class="form-group" >
         <label class="col-md-4 control-label">Day</label>
         <div class="col-md-4" style="margin-bottom: 10px">
-            <select id="billingReportItemSalesReportDay" class="form-control">
+            <select id="billingReportCustomerSalesReportDay" class="form-control">
                 <option value="-" selected="true">-- Select A Day --</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -61,7 +61,7 @@
     <div class="form-group" >
         <label class="col-md-4 control-label">Month</label>
         <div class="col-md-4" style="margin-bottom: 10px">
-            <select id="billingReportItemSalesReportMonth" class="form-control">
+            <select id="billingReportCustomerSalesReportMonth" class="form-control">
                 <option value="-" selected="true">-- Select A Month --</option>
                 <option value="01">January</option>
                 <option value="02">February</option>
@@ -82,7 +82,7 @@
     <div class="form-group" >
         <label class="col-md-4 control-label">Year</label>
         <div class="col-md-4" style="margin-bottom: 10px">
-            <select id="billingReportItemSalesReportYear" class="form-control">
+            <select id="billingReportCustomerSalesReportYear" class="form-control">
                 <option value="-" selected="true">-- Select A Year --</option>
                 <%                        int size3 = rangeList.size();
                     for (int i = 0; i < size3; i++) {
@@ -96,9 +96,9 @@
     </div>
 
     <div class="text-center" style="margin-bottom: 10px;width: 100%;">
-        <button id="billingReportItemSalesReportDailySalesBtn" class="btn btn-info" >Daily Sales Report</button>
-        <button id="billingReportItemSalesReportMonthlySalesBtn" class="btn btn-info" >Monthly Sales Report</button>
-        <button id="billingReportItemSalesReportYearlySalesBtn" class="btn btn-info" >Yearly Sales Report</button>
+        <button id="billingReportCustomerSalesReportDailySalesBtn" class="btn btn-info" >Daily Sales Report</button>
+        <button id="billingReportCustomerSalesReportMonthlySalesBtn" class="btn btn-info" >Monthly Sales Report</button>
+        <button id="billingReportCustomerSalesReportYearlySalesBtn" class="btn btn-info" >Yearly Sales Report</button>
     </div>
 </div>
 
@@ -106,13 +106,13 @@
 <hr>
 <br>
 
-<div id="reportBilllingItemSalesReportTableDIV">
+<div id="reportBilllingCustomerSalesReportTableDIV">
 
-    <table class="table table-bordered" id="reportBilllingItemSalesReportTable" style="width: 100%">
+    <table class="table table-bordered" id="reportBilllingCustomerSalesReportTable" style="width: 100%">
         <thead>
         <th width="10%">No.</th>
-        <th width="20%">Item Code</th>
-        <th width="50%">Item Name</th>
+        <th width="20%">PMI NO</th>
+        <th width="50%">Name</th>
         <th width="15%">Quantity</th>
         <th width="15%">Total Sales</th>
         </thead>
@@ -124,6 +124,8 @@
     </table>
 
 </div>
+
+
 
 <script type="text/javascript" charset="utf-8">
 
@@ -150,12 +152,12 @@
 
 
         // Function Daily Statement Start
-        $('#reportBilllingItemSalesReportMainDIV').off('click', '#billingReportItemSalesReportDailySalesBtn').on('click', '#billingReportItemSalesReportDailySalesBtn', function (e) {
+        $('#reportBilllingCustomerSalesReportMainDIV').off('click', '#billingReportCustomerSalesReportDailySalesBtn').on('click', '#billingReportCustomerSalesReportDailySalesBtn', function (e) {
 
-            var day = document.getElementById('billingReportItemSalesReportDay').value;
-            var month = document.getElementById('billingReportItemSalesReportMonth').value;
-            var year = document.getElementById('billingReportItemSalesReportYear').value;
-            var monthString = $("#billingReportItemSalesReportMonth option:selected").text();
+            var day = document.getElementById('billingReportCustomerSalesReportDay').value;
+            var month = document.getElementById('billingReportCustomerSalesReportMonth').value;
+            var year = document.getElementById('billingReportCustomerSalesReportYear').value;
+            var monthString = $("#billingReportCustomerSalesReportMonth option:selected").text();
 
 
             if (day === "-") {
@@ -191,14 +193,14 @@
                 $('<div class="loading">Loading</div>').appendTo('body');
 
                 $.ajax({
-                    url: "controllerProcessReport/reportBillingSalesReportGetDailyItemSalesReport.jsp",
+                    url: "controllerProcessReport/reportBillingSalesReportGetDailyCustomerSalesReport.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
 
 
-                        $('#reportBilllingItemSalesReportTableDIV').html(datas);
+                        $('#reportBilllingCustomerSalesReportTableDIV').html(datas);
                         $('.loading').hide();
 
 
@@ -216,12 +218,12 @@
 
 
         // Function Daily Statement Start
-        $('#reportBilllingItemSalesReportMainDIV').off('click', '#billingReportItemSalesReportMonthlySalesBtn').on('click', '#billingReportItemSalesReportMonthlySalesBtn', function (e) {
+        $('#reportBilllingCustomerSalesReportMainDIV').off('click', '#billingReportCustomerSalesReportMonthlySalesBtn').on('click', '#billingReportCustomerSalesReportMonthlySalesBtn', function (e) {
 
-            var day = document.getElementById('billingReportItemSalesReportDay').value;
-            var month = document.getElementById('billingReportItemSalesReportMonth').value;
-            var year = document.getElementById('billingReportItemSalesReportYear').value;
-            var monthString = $("#billingReportItemSalesReportMonth option:selected").text();
+            var day = document.getElementById('billingReportCustomerSalesReportDay').value;
+            var month = document.getElementById('billingReportCustomerSalesReportMonth').value;
+            var year = document.getElementById('billingReportCustomerSalesReportYear').value;
+            var monthString = $("#billingReportCustomerSalesReportMonth option:selected").text();
 
 
             if (month === "-") {
@@ -251,14 +253,14 @@
                 $('<div class="loading">Loading</div>').appendTo('body');
 
                 $.ajax({
-                    url: "controllerProcessReport/reportBillingSalesReportGetMonthlyItemSalesReport.jsp",
+                    url: "controllerProcessReport/reportBillingSalesReportGetMonthlyCustomerSalesReport.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
 
 
-                        $('#reportBilllingItemSalesReportTableDIV').html(datas);
+                        $('#reportBilllingCustomerSalesReportTableDIV').html(datas);
                         $('.loading').hide();
 
 
@@ -276,12 +278,12 @@
 
 
         // Function Daily Statement Start
-        $('#reportBilllingItemSalesReportMainDIV').off('click', '#billingReportItemSalesReportYearlySalesBtn').on('click', '#billingReportItemSalesReportYearlySalesBtn', function (e) {
+        $('#reportBilllingCustomerSalesReportMainDIV').off('click', '#billingReportCustomerSalesReportYearlySalesBtn').on('click', '#billingReportCustomerSalesReportYearlySalesBtn', function (e) {
 
-            var day = document.getElementById('billingReportItemSalesReportDay').value;
-            var month = document.getElementById('billingReportItemSalesReportMonth').value;
-            var year = document.getElementById('billingReportItemSalesReportYear').value;
-            var monthString = $("#billingReportItemSalesReportMonth option:selected").text();
+            var day = document.getElementById('billingReportCustomerSalesReportDay').value;
+            var month = document.getElementById('billingReportCustomerSalesReportMonth').value;
+            var year = document.getElementById('billingReportCustomerSalesReportYear').value;
+            var monthString = $("#billingReportCustomerSalesReportMonth option:selected").text();
 
 
             if (year === "-") {
@@ -305,14 +307,14 @@
                 $('<div class="loading">Loading</div>').appendTo('body');
 
                 $.ajax({
-                    url: "controllerProcessReport/reportBillingSalesReportGetYearlyItemSalesReport.jsp",
+                    url: "controllerProcessReport/reportBillingSalesReportGetYearlyCustomerSalesReport.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
 
 
-                        $('#reportBilllingItemSalesReportTableDIV').html(datas);
+                        $('#reportBilllingCustomerSalesReportTableDIV').html(datas);
                         $('.loading').hide();
 
 
