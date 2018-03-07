@@ -1551,8 +1551,6 @@
                                                 data: data,
                                                 success: function (result) {
 
-                                                    var labelStringDetails = result.trim();
-
                                                     $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", "disabled");
                                                     document.getElementById("btnOrderDispenseCallPatient").disabled = false;
                                                     document.getElementById("btnOrderDispensePrescribe").disabled = true;
@@ -1561,8 +1559,7 @@
 
                                                     var contextPath = '<%=request.getContextPath()%>';
 
-                                                    var url = contextPath + "/generatePharmacyLabel?";
-                                                    url += "&labelData=" + labelStringDetails;
+                                                    var url = contextPath + "/SessionRecipt";
 
                                                     var win = window.open(url, '_blank');
                                                     win.focus();

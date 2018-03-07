@@ -36,6 +36,6 @@
 
     String fullString = orderNo + "|" + patientPMI + "|" + patientName + "|" + hfc_cd + "|" + hfcName + "|" + discipline + "|" + sub_discipline + "|" + dateToday;
 
-    out.print(fullString);
+    session.setAttribute("PHARMACY_GENERATED_LABEL_DATA", fullString);
 
 %>
