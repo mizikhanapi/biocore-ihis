@@ -120,7 +120,7 @@ $(document).ready(function () {
                 pmino: pmiNo,
                 episodedate: episodeDate,
                 status: "1"
-            }
+            };
             sendOrder(data, "tableOrderDTO");
             _dataDTO = [];
         } else {
