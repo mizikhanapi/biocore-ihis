@@ -3,6 +3,7 @@
     Created on : Jan 13, 2017, 10:53:48 AM
     Author     : shay
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="java.sql.*"%>
@@ -15,7 +16,7 @@
     Conn conn = new Conn();
     String now = request.getParameter("now");
     String pmi = request.getParameter("pmi");
-    String epiDate = request.getParameter("epiDate");
+    String epiDate = ""; //request.getParameter("epiDate");
     String name = request.getParameter("name");
     String newic = request.getParameter("newic");
     String oldic = request.getParameter("oldic");
@@ -41,7 +42,7 @@
     String referNo = request.getParameter("referNo");
     String gruGuard = request.getParameter("gruGuard");
     String glExpDate = request.getParameter("glExpDate");
-    String epiTime = request.getParameter("epiTime");
+    String epiTime = "";//request.getParameter("epiTime");
     String stat = request.getParameter("stat");
     String hfc = request.getParameter("hfc");
     String comTy = request.getParameter("comTy");
@@ -54,6 +55,15 @@
     int queue_now = 0;
     int newQueueNo = 0;
     String roomNo = "";
+    
+    //make sure epidate and epitime is using server time
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    epiDate = sdf.format(timestamp);
+    
+    sdf = new SimpleDateFormat("HH:mm:ss");
+    timestamp = new Timestamp(System.currentTimeMillis());
+    epiTime = sdf.format(timestamp);
 
     String insertEpisode = "";
 
@@ -82,16 +92,18 @@
         int totalQuota = Integer.parseInt(quotaNum.get(0).get(0));
         int totalFromQuota = Integer.parseInt(quotaNumFromQueue.get(0).get(0));
         int initialQueueNumber = Integer.parseInt(quotaNumFromQueue.get(0).get(1));
+        
+        //changes are made to make sure all time are according to server time
         if (totalQuota <= totalFromQuota) {
-            String findQueueNo = "select last_queue_no from pms_last_queue_no where hfc_cd ='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' and discipline_cd = '"+disCode+"';";
+            String findQueueNo = "select last_queue_no from pms_last_queue_no where hfc_cd ='" + hfc + "' and queue_name ='" + queue_name1 + "' and date(episode_date)=date(now()) and discipline_cd = '"+disCode+"';";
             ArrayList<ArrayList<String>> numberQueue = conn.getData(findQueueNo);
             if (numberQueue.size() < 1) {
                 newQueueNo = initialQueueNumber + 1;
-                queueSql = "insert into pms_last_queue_no(hfc_cd,queue_name,episode_date,last_queue_no,created_by,created_date,discipline_cd,subdiscipline_cd)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','"+newQueueNo+"','" + createdBy + "',NOW(),'"+disCode+"','"+subDis+"');";
+                queueSql = "insert into pms_last_queue_no(hfc_cd,queue_name,episode_date,last_queue_no,created_by,created_date,discipline_cd,subdiscipline_cd)values('" + hfc + "','" + queue_name1 + "', NOW(), '"+newQueueNo+"','" + createdBy + "',NOW(),'"+disCode+"','"+subDis+"');";
             } else {
                 queue_now = Integer.valueOf(numberQueue.get(0).get(0));
                 newQueueNo = queue_now + 1;
-                queueSql = "update pms_last_queue_no set last_queue_no='" + newQueueNo + "' where hfc_cd='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' and discipline_cd = '"+disCode+"';";
+                queueSql = "update pms_last_queue_no set last_queue_no='" + newQueueNo + "' where hfc_cd='" + hfc + "' and queue_name ='" + queue_name1 + "' and date(episode_date) = date(NOW()) and discipline_cd = '"+disCode+"';";
             }
             
             // changes made here to include discipline and subdiscipline into pms_patient_queue
