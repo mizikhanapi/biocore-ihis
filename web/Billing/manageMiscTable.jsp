@@ -24,15 +24,15 @@
     <th style="text-align: center;">Miscellaneous Name</th>
     <th style="text-align: center;">Buy Price</th>
     <th style="text-align: center;">Sell Price</th>
-    <th style="text-align: center;">Status</th>
+    <th style="text-align: center;">Enable</th>
     <th style="text-align: center;">Update</th>
     <th style="text-align: center;">Delete</th>
 </thead>
 <tbody>
 
     <%
-        //                         0        1        2               3           4            5       6      
-        String sql = " SELECT item_code, hfc_cd, item_desc, buying_price, selling_price, discount, status "
+        //                         0        1        2               3           4            5       6      7
+        String sql = " SELECT item_code, hfc_cd, item_desc, buying_price, selling_price, discount, enable, status "
                 //
                 // Where Condition
                 + " FROM far_miscellaneous_item WHERE hfc_cd  = '" + hfc + "' ";
@@ -46,13 +46,9 @@
 <input id="dataMischidden" type="hidden" value="<%=String.join("|", dataMisc.get(i))%>">
 <td><%= dataMisc.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataMisc.get(i).get(2)%></td> <!-- Name -->
-<td><%= dataMisc.get(i).get(3)%></td> <!-- Value -->
-<td><%= dataMisc.get(i).get(4)%></td> <!-- Enable -->
-<td><% if (dataMisc.get(i).get(6).equals("1")) {
-        out.print("Active");
-    } else {
-        out.print("Inactive");
-    }%></td> <!-- Status -->
+<td><%= dataMisc.get(i).get(3)%></td> <!-- B Price -->
+<td><%= dataMisc.get(i).get(4)%></td> <!-- S Price -->
+<td><%= dataMisc.get(i).get(6)%></td> <!-- Enable -->
 <td>
     <!-- Update Part Start -->
     <a id="miscUpdateTButton" data-toggle="modal" data-target="#miscModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>

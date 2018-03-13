@@ -42,8 +42,8 @@
     for (int i = 0; i < cates.length; i++) {
 
         sqlInsert = "INSERT INTO far_miscellaneous_item (item_code, hfc_cd, item_desc, buying_price, selling_price,"
-                + " discount, status, created_by, created_date) "
-                + " SELECT item_code, '" + hfc + "',item_desc, buying_price, selling_price, discount, status, '" + created_by + "', '" + created_date + "' "
+                + " discount, enable, status, created_by, created_date) "
+                + " SELECT item_code, '" + hfc + "',item_desc, buying_price, selling_price, discount, enable, status, '" + created_by + "', '" + created_date + "' "
                 + " FROM far_miscellaneous_item WHERE item_code = '" + cates[i] + "' AND hfc_cd = '" + superUserHFC + "' ";
 
         isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);

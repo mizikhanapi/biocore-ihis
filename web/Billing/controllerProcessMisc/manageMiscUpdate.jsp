@@ -22,7 +22,8 @@
     String miscName = request.getParameter("miscName");
     String miscBuyPrice = request.getParameter("miscBuyPrice");
     String miscSellPrice = request.getParameter("miscSellPrice");
-    String miscStatus = request.getParameter("miscStatus");
+    String miscEnable = request.getParameter("miscEnable");
+   // String miscStatus = request.getParameter("miscStatus");
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -31,7 +32,7 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlUpdate = "UPDATE far_miscellaneous_item SET item_desc = '" + miscName + "',buying_price = '" + miscBuyPrice + "',selling_price = '" + miscSellPrice + "',status = '" + miscStatus + "' "
+    String sqlUpdate = "UPDATE far_miscellaneous_item SET item_desc = '" + miscName + "',buying_price = '" + miscBuyPrice + "',selling_price = '" + miscSellPrice + "',enable = '" + miscEnable + "' "
             + " WHERE item_code = '" + miscCode + "' AND hfc_cd  = '" + hfc + "' ";
 
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);

@@ -25,7 +25,8 @@
     String miscName = request.getParameter("miscName");
     String miscBuyPrice = request.getParameter("miscBuyPrice");
     String miscSellPrice = request.getParameter("miscSellPrice");
-    String miscStatus = request.getParameter("miscStatus");
+    String miscEnable = request.getParameter("miscEnable");
+    //String miscStatus = request.getParameter("miscStatus");
     String created_by = session.getAttribute("USER_ID").toString();
     String created_date = format.format(now);
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -43,9 +44,9 @@
     } else {
 
         String sqlInsert = "INSERT INTO far_miscellaneous_item (item_code, hfc_cd, item_desc, buying_price, selling_price, discount,"
-                + " status, created_by, created_date)"
+                + " enable, status, created_by, created_date)"
                 + " VALUES ('" + miscCode + "','" + hfc + "','" + miscName + "','" + miscBuyPrice + "',"
-                + "'" + miscSellPrice + "','0','" + miscStatus + "','" + created_by + "','" + created_date + "' )";
+                + "'" + miscSellPrice + "','0','" + miscEnable + "','1','" + created_by + "','" + created_date + "' )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
