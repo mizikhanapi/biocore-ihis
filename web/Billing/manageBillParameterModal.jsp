@@ -46,13 +46,13 @@
                         <label class="col-md-4 control-label" for="selectbasic">Enable *</label>
                         <div class="col-md-8">
                             <select id="billParameterEnable" name="freqStatus" class="form-control">
-                                <option value="yes" selected>Yes</option>
+                                <option value="yes">Yes</option>
                                 <option value="no">No</option>     
                             </select>
                         </div>
                     </div>
 
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Status *</label>
                         <div class="col-md-8">
                             <select id="billParameterStatus" name="freqStatus" class="form-control">
@@ -60,7 +60,7 @@
                                 <option value="0">Inactive</option>     
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </form>

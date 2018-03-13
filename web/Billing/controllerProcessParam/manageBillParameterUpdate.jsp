@@ -22,7 +22,7 @@
     String billParameterName = request.getParameter("billParameterName");
     String billParameterValue = request.getParameter("billParameterValue");
     String billParameterEnable = request.getParameter("billParameterEnable");
-    String billParameterStatus = request.getParameter("billParameterStatus");
+    //String billParameterStatus = request.getParameter("billParameterStatus");
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -32,7 +32,7 @@
     Conn conn = new Conn();
 
     String sqlUpdate = "UPDATE far_billing_parameter SET param_name = '" + billParameterName + "',param_value = '" + billParameterValue + "',"
-            + " enable = '" + billParameterEnable + "',status = '" + billParameterStatus + "' "
+            + " enable = '" + billParameterEnable + "' "
             + " WHERE param_code = '" + billParameterCode + "' AND hfc_cd  = '" + hfc + "' ";
 
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);

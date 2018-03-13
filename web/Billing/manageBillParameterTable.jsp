@@ -24,7 +24,6 @@
     <th style="text-align: center;">Parameter Name</th>
     <th style="text-align: center;">Value</th>
     <th style="text-align: center;">Enable</th>
-    <th style="text-align: center;">Status</th>
     <th style="text-align: center;">Update</th>
     <th style="text-align: center;">Delete</th>
 </thead>
@@ -48,11 +47,6 @@
 <td><%= dataParam.get(i).get(2)%></td> <!-- Name -->
 <td><%= dataParam.get(i).get(3)%></td> <!-- Value -->
 <td><%= dataParam.get(i).get(6)%></td> <!-- Enable -->
-<td><% if (dataParam.get(i).get(7).equals("1")) {
-        out.print("Active");
-    } else {
-        out.print("Inactive");
-    }%></td> <!-- Status -->
 <td>
     <!-- Update Part Start -->
     <a id="billParameterUpdateTButton" data-toggle="modal" data-target="#billParameterModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>

@@ -25,7 +25,7 @@
     String billParameterName = request.getParameter("billParameterName");
     String billParameterValue = request.getParameter("billParameterValue");
     String billParameterEnable = request.getParameter("billParameterEnable");
-    String billParameterStatus = request.getParameter("billParameterStatus");
+    //String billParameterStatus = request.getParameter("billParameterStatus");
     String created_by = session.getAttribute("USER_ID").toString();
     String created_date = format.format(now);
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -45,7 +45,7 @@
         String sqlInsert = "INSERT INTO far_billing_parameter (param_code, hfc_cd, param_name, param_value, param_type, display_option,"
                 + " enable, status, created_by, created_date)"
                 + " VALUES ('" + billParameterCode + "','" + hfc + "','" + billParameterName + "','" + billParameterValue + "',"
-                + "'Double','check box','" + billParameterEnable + "','" + billParameterStatus + "','" + created_by + "','" + created_date + "' )";
+                + "'Double','check box','" + billParameterEnable + "','1','" + created_by + "','" + created_date + "' )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
