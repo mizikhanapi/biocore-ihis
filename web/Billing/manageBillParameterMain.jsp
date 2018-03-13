@@ -65,7 +65,7 @@
             var billParameterName = $('#billParameterName').val();
             var billParameterValue = $('#billParameterValue').val();
             var billParameterEnable = $('#billParameterEnable').val();
-            var billParameterStatus = $('#billParameterStatus').val();
+           // var billParameterStatus = $('#billParameterStatus').val();
 
 
             if (billParameterCode === "" || billParameterCode === null) {
@@ -103,8 +103,8 @@
                     billParameterCode: billParameterCode,
                     billParameterName: billParameterName,
                     billParameterValue: billParameterValue,
-                    billParameterEnable: billParameterEnable,
-                    billParameterStatus: billParameterStatus
+                    billParameterEnable: billParameterEnable
+                   // billParameterStatus: billParameterStatus
                 };
 
                 console.log(data);
@@ -187,7 +187,7 @@
             $('#billParameterCode').val(arrayData[0]);
             $('#billParameterName').val(arrayData[2]);
             $('#billParameterValue').val(arrayData[3]);
-            $('#billParameterEnables').val(arrayData[6]);
+            $('#billParameterEnable').val(arrayData[6]);
             $('#billParameterStatus').val(arrayData[7]);
 
 
@@ -206,7 +206,7 @@
             var billParameterName = $('#billParameterName').val();
             var billParameterValue = $('#billParameterValue').val();
             var billParameterEnable = $('#billParameterEnable').val();
-            var billParameterStatus = $('#billParameterStatus').val();
+           // var billParameterStatus = $('#billParameterStatus').val();
 
 
             if (billParameterCode === "" || billParameterCode === null) {
@@ -232,8 +232,8 @@
                     billParameterCode: billParameterCode,
                     billParameterName: billParameterName,
                     billParameterValue: billParameterValue,
-                    billParameterEnable: billParameterEnable,
-                    billParameterStatus: billParameterStatus
+                    billParameterEnable: billParameterEnable
+                   // billParameterStatus: billParameterStatus
                 };
 
                 console.log(data);

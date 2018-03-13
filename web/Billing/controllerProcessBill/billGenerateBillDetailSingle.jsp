@@ -140,34 +140,38 @@
                         subQuantity += Integer.parseInt(dataBillGenerateDetails.get(i).get(12));
                     }
 
-                    //Search and add miscellaneous item to table.
-                    String type = dataBillGenerateDetails.get(0).get(6);
-                    if (type.equals("004")) {
-                        type = "RG00001";
-                    } else if (type.equals("005")) {
-                        type = "RG00002";
-                    } else if (type.equals("Foreigner")) {
-                        type = "RG00003";
-                    } else {
-                        type = "RG00003";
-                    }
-
+//                    String type = dataBillGenerateDetails.get(0).get(6);
+//                    if (type.equals("004")) {
+//                        type = "RG00001";
+//                    } else if (type.equals("005")) {
+//                        type = "RG00002";
+//                    } else if (type.equals("Foreigner")) {
+//                        type = "RG00003";
+//                    } else {
+//                        type = "RG00003";
+//                    }
+                    // Add enabled miscellaneous item to table.
                     String sqlBillGenerateDetailsMisceItem = "SELECT item_code, hfc_cd, item_desc, buying_price ,selling_price "
-                            + " FROM far_miscellaneous_item WHERE hfc_cd = '" + hfc + "' AND item_code = '" + type + "' ";
+                            + " FROM far_miscellaneous_item "
+                            + " WHERE hfc_cd = '" + hfc + "' AND enable = 'yes' ";
                     ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = conn.getData(sqlBillGenerateDetailsMisceItem);
-                    subtotal = subtotal + Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4));
-                    subQuantity += 1;
+
+                    for (int i = 0; i < dataBillGenerateDetailsMisceItem.size(); i++) {
+
                 %>
                 <tr>
-                    <td><%=dataBillGenerateDetailsMisceItem.get(0).get(0)%></td>
-                    <td><%=dataBillGenerateDetailsMisceItem.get(0).get(2)%></td>
+                    <td><%=dataBillGenerateDetailsMisceItem.get(i).get(0)%></td>
+                    <td><%=dataBillGenerateDetailsMisceItem.get(i).get(2)%></td>
                     <td style="text-align: right;">1</td>
-                    <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4)))%></td>
-                    <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4)))%></td>
+                    <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateDetailsMisceItem.get(i).get(4)))%></td>
+                    <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateDetailsMisceItem.get(i).get(4)))%></td>
                 </tr>
                 <%
+                        subtotal = subtotal + Double.parseDouble(dataBillGenerateDetailsMisceItem.get(i).get(4));
+                        subQuantity += 1;
+                    }
 
-                    //Search and add billing parameters
+                    // Add enabled billing parameters to the table
                     String sqlBillGenerateDetailsBillingParameters = "SELECT param_code, param_name, param_value "
                             + " FROM far_billing_parameter "
                             + " WHERE hfc_cd = '" + hfc + "' AND enable = 'yes' ";

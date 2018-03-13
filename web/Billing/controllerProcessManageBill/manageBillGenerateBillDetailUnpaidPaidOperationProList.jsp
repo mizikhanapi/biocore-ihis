@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageBillGenerateBillDetailUnpaidPaidRadioProList
-    Created on : Oct 31, 2017, 9:07:57 AM
+    Document   : manageBillGenerateBillDetailUnpaidPaidOperationProList
+    Created on : Mar 13, 2018, 3:33:43 PM
     Author     : Shammugam
 --%>
 
@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<table id="tableRISProc" class="table table-filter table-bordered">
+<table id="tableOPTProc" class="table table-filter table-bordered">
     <thead>
     <th>Item Code</th>
     <th>Item Name</th>
@@ -28,9 +28,9 @@
         // Decimal Format
         DecimalFormat df = new DecimalFormat("0.00");
 
-        String query = "SELECT rpm.ris_procedure_cd, rpm.ris_procedure_name, rpm.selling_price "
-                + " FROM ris_procedure_master rpm "
-                + " WHERE rpm.hfc_cd = '" + hfc + "' ";
+        String query = "SELECT otp.procedure_cd, otp.procedure_shortName, otp.selling_price "
+                + " FROM opt_procedure otp "
+                + " WHERE otp.hfc_cd = '" + hfc + "' ";
 
         ArrayList<ArrayList<String>> data2 = conn.getData(query);
 
@@ -61,7 +61,7 @@
         document.getElementById("addMiscItem").disabled = false;
 
         // Enable TR Choosing Start
-        $("#tableRISProc tbody tr").click(function () {
+        $("#tableOPTProc tbody tr").click(function () {
 
             $('tr.row_selected').removeClass('row_selected selectedtr');
             $(this).addClass('row_selected selectedtr');

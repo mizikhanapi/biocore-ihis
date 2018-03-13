@@ -64,7 +64,8 @@
             var miscName = $('#miscName').val();
             var miscBuyPrice = $('#miscBuyPrice').val();
             var miscSellPrice = $('#miscSellPrice').val();
-            var miscStatus = $('#miscStatus').val();
+           // var miscStatus = $('#miscStatus').val();
+            var miscEnable = $('#miscEnable').val();
 
             var newBuyPrice = parseFloat(miscBuyPrice).toFixed(2);
             var newSellPrice = parseFloat(miscSellPrice).toFixed(2);
@@ -115,7 +116,8 @@
                     miscName: miscName,
                     miscBuyPrice: miscBuyPrice,
                     miscSellPrice: miscSellPrice,
-                    miscStatus: miscStatus
+                    miscEnable: miscEnable
+                    //miscStatus: miscStatus
                 };
 
                 console.log(data);
@@ -198,7 +200,8 @@
             $('#miscName').val(arrayData[2]);
             $('#miscBuyPrice').val(arrayData[3]);
             $('#miscSellPrice').val(arrayData[4]);
-            $('#miscStatus').val(arrayData[6]);
+            $('#miscEnable').val(arrayData[6]);
+            //$('#miscStatus').val(arrayData[6]);
 
 
 
@@ -216,7 +219,8 @@
             var miscName = $('#miscName').val();
             var miscBuyPrice = $('#miscBuyPrice').val();
             var miscSellPrice = $('#miscSellPrice').val();
-            var miscStatus = $('#miscStatus').val();
+            var miscEnable = $('#miscEnable').val();
+           // var miscStatus = $('#miscStatus').val();
 
             var newBuyPrice = parseFloat(miscBuyPrice).toFixed(2);
             var newSellPrice = parseFloat(miscSellPrice).toFixed(2);
@@ -247,7 +251,8 @@
                     miscName: miscName,
                     miscBuyPrice: miscBuyPrice,
                     miscSellPrice: miscSellPrice,
-                    miscStatus: miscStatus
+                    miscEnable: miscEnable
+                  //  miscStatus: miscStatus
                 };
 
                 console.log(data);
