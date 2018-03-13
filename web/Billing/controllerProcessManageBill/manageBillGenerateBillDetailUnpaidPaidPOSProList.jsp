@@ -54,7 +54,7 @@
 
 
 <script type="text/javascript">
-    
+
     $(document).ready(function () {
 
         // Enable Modal Button
@@ -80,6 +80,8 @@
 
         });
         // Enable TR Choosing End
+
+        $('.loading').hide();
 
     });
 </script>

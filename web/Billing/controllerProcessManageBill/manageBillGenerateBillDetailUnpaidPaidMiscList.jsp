@@ -61,7 +61,22 @@
             $('tr.row_selected').removeClass('row_selected selectedtr');
             $(this).addClass('row_selected selectedtr');
 
+            var dataTableTD = $(this).find('td').html();
+
+            if (dataTableTD === "No Data Avaliable To Be Showed") {
+
+                document.getElementById("addMiscItem").disabled = true;
+
+            } else {
+
+                document.getElementById("addMiscItem").disabled = false;
+
+            }
+
         });
+
+        $('.loading').hide();
+
 
     });
 

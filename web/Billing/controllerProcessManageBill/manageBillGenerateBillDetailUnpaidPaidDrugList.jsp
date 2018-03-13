@@ -31,7 +31,7 @@
 
         String sql = "SELECT ud_mdc_code, d_trade_name, DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'), d_sell_price "
                 + "FROM pis_mdc2 WHERE hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' ";
-        
+
         ArrayList<ArrayList<String>> data = conn.getData(sql);
         if (!data.isEmpty()) {
             for (int i = 0; i < data.size(); i++) {
@@ -53,9 +53,27 @@
     $(document).ready(function () {
 
         $("#tableDrugsItem tbody tr").click(function () {
+
             $('tr.row_selected').removeClass('row_selected selectedtr');
             $(this).addClass('row_selected selectedtr');
+
+
+            var dataTableTD = $(this).find('td').html();
+
+            if (dataTableTD === "No Data Avaliable To Be Showed") {
+
+                document.getElementById("addMiscItem").disabled = true;
+
+            } else {
+
+                document.getElementById("addMiscItem").disabled = false;
+
+            }
+
         });
+        // Enable TR Choosing End
+
+        $('.loading').hide();
 
     });
 

@@ -265,6 +265,8 @@
                     <li><a data-toggle="tab" href="#tabDrugsItem" id="tabDrugsItemHead">Drugs Item</a></li>
                     <li><a data-toggle="tab" href="#tabRISProcItem" id="tabRISProcsItemHead">RIS Procedure</a></li>
                     <li><a data-toggle="tab" href="#tabPOSProcItem" id="tabPOSProcsItemHead">POS Procedure</a></li>
+                    <li><a data-toggle="tab" href="#tabLISProcItem" id="tabLISProcsItemHead">LIS Procedure</a></li>
+                    <li><a data-toggle="tab" href="#tabOPTProcItem" id="tabOPTProcsItemHead">OPT Procedure</a></li>
                 </ul>
             </div>
             <div class="modal-body scrollable-modal-body" style="max-height: 350px;overflow: auto; height: 350px;">
@@ -325,6 +327,35 @@
                                 </div>
                                 <div id="POSProcItem" ></div>                            
                             </div>
+
+
+                            <div id="tabLISProcItem" class="tab-pane">
+                                <!-- Drugs Item -->
+                                <div id="custom-search-input" style="margin-top: 10px;">
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                        <div class="col-md-4">
+                                            <input id="searchLISProcItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchLISProcItem()"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="LISProcItem" ></div>                            
+                            </div>
+
+
+                            <div id="tabOPTProcItem" class="tab-pane">
+                                <!-- Drugs Item -->
+                                <div id="custom-search-input" style="margin-top: 10px;">
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                        <div class="col-md-4">
+                                            <input id="searchOPTProcItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchOPTProcItem()"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="OPTProcItem" ></div>                            
+                            </div>
+
 
                         </div>
                     </div>
@@ -549,7 +580,75 @@
             }
         }
     }
-    // Search RIS Procedure Function End
+    // Search POS Procedure Function End
+
+
+    // Search LIS Procedure Function Start
+    function searchLISProcItem() {
+
+        // Declare variables
+        var input, filter, table, tr, td, i;
+
+        input = document.getElementById("searchLISProcItem");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("LISProcItem");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+
+            td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    tr[i].style.display = "";
+
+                } else {
+
+                    tr[i].style.display = "none";
+
+                }
+
+            }
+        }
+    }
+    // Search LIS Procedure Function End
+
+
+    // Search OPT Procedure Function Start
+    function searchOPTProcItem() {
+
+        // Declare variables
+        var input, filter, table, tr, td, i;
+
+        input = document.getElementById("searchOPTProcItem");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("OPTProcItem");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+
+            td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    tr[i].style.display = "";
+
+                } else {
+
+                    tr[i].style.display = "none";
+
+                }
+
+            }
+        }
+    }
+    // Search OPT Procedure Function End
 
 
 
@@ -766,6 +865,7 @@
 
             e.preventDefault();
 
+            $('<div class="loading">Loading</div>').appendTo('body');
 
             console.log("Load Misc");
 
@@ -774,9 +874,12 @@
             $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableMisc');
 
             $('#searchMiscItem').val('');
+
             $('#drugsItem').html('');
             $('#RISProcItem').html('');
             $('#POSProcItem').html('');
+            $('#LISProcItem').html('');
+            $('#OPTProcItem').html('');
 
 
         });
@@ -788,12 +891,16 @@
 
             e.preventDefault();
 
+            $('<div class="loading">Loading</div>').appendTo('body');
 
             console.log("Load Drug");
 
             $('#miscItem').html('');
             $('#RISProcItem').html('');
             $('#POSProcItem').html('');
+            $('#LISProcItem').html('');
+            $('#OPTProcItem').html('');
+
             $('#searchDrugsItem').val('');
 
             $('#drugsItem').load('controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidDrugList.jsp');
@@ -810,12 +917,16 @@
 
             e.preventDefault();
 
+            $('<div class="loading">Loading</div>').appendTo('body');
 
             console.log("Load RIS Proc");
 
             $('#miscItem').html('');
             $('#drugsItem').html('');
             $('#POSProcItem').html('');
+            $('#LISProcItem').html('');
+            $('#OPTProcItem').html('');
+
             $('#searchRISProcItem').val('');
 
             $('#RISProcItem').load('controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidRadioProList.jsp');
@@ -832,13 +943,17 @@
 
             e.preventDefault();
 
+            $('<div class="loading">Loading</div>').appendTo('body');
 
             console.log("Load POS Proc");
 
             $('#miscItem').html('');
             $('#drugsItem').html('');
             $('#RISProcItem').html('');
-            $('#searchRISProcItem').val('');
+            $('#LISProcItem').html('');
+            $('#OPTProcItem').html('');
+
+            $('#searchPOSProcItem').val('');
 
             $('#POSProcItem').load('controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidPOSProList.jsp');
 
@@ -847,6 +962,59 @@
 
         });
         // Add Function Initialize POS Proc End
+
+
+        // Add Function Initialize LIS Proc Start
+        $('#addItemList').off('click', '#tabLISProcsItemHead').on('click', '#tabLISProcsItemHead', function (e) {
+
+            e.preventDefault();
+
+            $('<div class="loading">Loading</div>').appendTo('body');
+
+            console.log("Load LIS Proc");
+
+            $('#miscItem').html('');
+            $('#drugsItem').html('');
+            $('#RISProcItem').html('');
+            $('#POSProcItem').html('');
+            $('#OPTProcItem').html('');
+
+            $('#searchLISProcItem').val('');
+
+            $('#LISProcItem').load('controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidLabProList.jsp');
+
+            $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableLISProc');
+
+
+        });
+        // Add Function Initialize LIS Proc End
+
+
+        // Add Function Initialize OPT Proc Start
+        $('#addItemList').off('click', '#tabOPTProcsItemHead').on('click', '#tabOPTProcsItemHead', function (e) {
+
+            e.preventDefault();
+
+            //$('<div class="loading">Loading</div>').appendTo('body');
+
+
+            console.log("Load OPT Proc");
+
+            $('#miscItem').html('');
+            $('#drugsItem').html('');
+            $('#RISProcItem').html('');
+            $('#POSProcItem').html('');
+            $('#LISProcItem').html('');
+
+            $('#searchOPTProcItem').val('');
+
+            //$('#OPTProcItem').load('controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidOperationProList.jsp');
+
+            $('#manageBillViewBillDetailsTabIDHiddenForUse').val('tableOPTProc');
+
+
+        });
+        // Add Function Initialize OPT Proc End
 
 
         // Add Item To Detail M Category Start
@@ -900,7 +1068,7 @@
                 };
 
 
-                if (activeTab === 'Miscellaneous Item' || activeTab === 'RIS Procedure' || activeTab === 'POS Procedure') {
+                if (activeTab === 'Miscellaneous Item' || activeTab === 'RIS Procedure' || activeTab === 'POS Procedure' || activeTab === 'LIS Procedure' || activeTab === 'OPT Procedure') {
 
 
                     var dataAdd = {
