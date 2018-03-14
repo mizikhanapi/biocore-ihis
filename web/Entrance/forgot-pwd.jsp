@@ -173,18 +173,6 @@
 
             });
 
-            function buildMessage(nama, siapa, lalu) {
-
-                var strMessage = 'Dear ' + nama.trim() + ', '
-                        + '\n\nPlease do not disclose the following information to others. \n'
-                        + '\n\t Your user ID: ' + siapa + ' '
-                        + '\n\t Your password: ' + lalu + ' '
-                        + '\n\n Please remember your password next time.';
-
-
-                return strMessage;
-            }
-
             function resetabc123(userID, IC, mother) {
 
                 var data = {userID: userID,
@@ -246,10 +234,19 @@
 
                         if (arrData.length === 4) {
 
-                            var nama = arrData[0], email = arrData[1], siapa = arrData[2], lalu = arrData[3];
-                            var strMsg = buildMessage(nama, siapa, lalu);
-                            postTheMail(email, strMsg);
-
+                            var nama = arrData[0], email = arrData[1], siapa = arrData[2], result = arrData[3];
+                            
+                            if(result.trim() === "success"){
+                                bootbox.alert("An email is sent to "+email, function(){
+                                    window.location = "Sign-in";
+                                });
+                            }
+                            else{
+                                bootbox.alert("Opps! Something went wrong. Please try again later.");
+                                console.log("Error sending email. "+arrData);
+                                console.log("Result: "+result);
+                            }
+                            
                         } else {
 
                             bootbox.alert('Opps! Something went wrong. Please try again.');
@@ -266,43 +263,7 @@
 
             }
 
-            function postTheMail(to, message) {
-
-                var data = {
-                    password: "B10core",
-                    to: to,
-                    subject: "iHIS forgot password - NO REPLY",
-                    message: message
-                };
-
-                $.ajax({
-                    type: 'GET',
-                    url: "http://tuffah.info/biocore/",
-                    timeout: 60000,
-                    data: data,
-                    success: function (data, textStatus, jqXHR) {
-
-                        var arrData = data.split("|");
-                        if(arrData[0].trim() === '0'){
-                            bootbox.alert('An email is sent to '+to, function(){
-                                window.location = "Sign-in";
-                            });
-                            
-                        }else{
-                            bootbox.alert("Failed to send email. Please try again later");
-                        }
-                        
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-
-                        alert("Error: " + errorThrown.toString());
-
-                    }
-                });
-
-
-            }
-
+            
 
         </script>
     </body>
