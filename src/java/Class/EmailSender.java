@@ -10,6 +10,7 @@ import java.util.Properties;
  
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -125,10 +126,64 @@ public class EmailSender {
         } finally {
             //clean off
             if(null != baos) {
-                try { baos.close(); baos = null; }
-                catch(Exception ex) { }
+                try {
+                    baos.close(); 
+                    baos = null; 
+                }
+                catch(Exception ex2) { 
+                    ex2.printStackTrace();
+                }
             }
         }
+    }
+    
+    public boolean sendTextEmail(){
+        boolean isSent = true;
+        
+        String smtpHost = "smtp01.utem.edu.my"; //replace this with a valid host
+        String sender = "biocore@utem.edu.my"; //replace this with a valid sender email address
+
+        Properties properties = new Properties();
+        properties.setProperty("mail.smtp.host", smtpHost);
+        properties.setProperty("mail.user", "biocore@utem.edu.my");
+        properties.setProperty("mail.password", "Bano5782"); 
+        //properties.setProperty("mail.smtp.auth", "true");
+        Session session = Session.getDefaultInstance(properties, null);
+       
+        try {           
+            //construct the text body part
+            MimeBodyPart textBodyPart = new MimeBodyPart();
+            textBodyPart.setText(message);
+            
+            //create the sender/recipient addresses
+            InternetAddress iaSender = new InternetAddress(sender);
+            InternetAddress iaRecipient = new InternetAddress(recipient);
+
+            //construct the mime message
+            MimeMessage mimeMessage = new MimeMessage(session);
+            mimeMessage.setFrom(iaSender);
+            mimeMessage.setSubject(subject, "UTF-8");
+            mimeMessage.setText(message, "UTF-8");
+            mimeMessage.setRecipient(Message.RecipientType.TO, iaRecipient);
+            Address[] addresses = new Address[1];
+            addresses[0] = iaSender;
+            mimeMessage.setReplyTo(addresses);
+                        
+            
+            //send off the email
+            Transport.send(mimeMessage);
+             
+            System.out.println("sent from " + sender + 
+                    ", to " + recipient + 
+                    "; server = " + smtpHost);         
+        } catch(Exception ex) {
+            System.out.println("Error while sending email to "+recipient+": ");
+            ex.printStackTrace();
+            isSent = false;
+        }
+        
+        
+        return isSent;
     }
      
 //    /**
