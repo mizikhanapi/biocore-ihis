@@ -226,17 +226,17 @@
     <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
         <input type="hidden" class="form-control" name="manageBillViewBillDetailsStatusHiddenForUse" id="manageBillViewBillDetailsStatusHiddenForUse" value="<%=status%>" readonly="true">
         <input type="hidden" class="form-control" name="manageBillViewBillDetailsTabIDHiddenForUse" id="manageBillViewBillDetailsTabIDHiddenForUse" readonly="true">
-        <button id="manageBillViewBillDetailsCancelBtn" class="btn btn-warning" style="float: left;"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp; Cancel</button>
+        <button id="manageBillViewBillDetailsCancelBtn" class="btn btn-default" style="float: left;"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp; Cancel</button>
     </div>
     <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
-        <label class="col-lg-4"></label>
-        <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
+        <div class="pull-right" style="margin-bottom: 10px; ">
             <%
                 if (status.equalsIgnoreCase("unpaid")) {
             %>
             <button class="btn btn-success" data-toggle="modal" data-target="#makePayment" style="float: right;" id="manageBillViewBillDetailsPaymentBtn" ><i class="fa fa-money fa-lg" aria-hidden="true"></i>&nbsp; Payment</button>
-            <button id="manageBillViewBillDetailsAddBtn" class="btn btn-success modal-toggle" data-toggle="modal" data-target="#addItemList" style="float: right; margin-right: 10px;"><i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Add Item</button>
-            <button id="manageBillViewBillDetailsInvoicePrintBtn" class="btn btn-success" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Invoice</button>
+            <button id="manageBillViewBillDetailsAddBtn" class="btn btn-warning modal-toggle" data-toggle="modal" data-target="#addItemList" style="float: right; margin-right: 10px;"><i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Add Item</button>
+            <button id="manageBillViewBillDetailsInvoicePrintBtn" class="btn btn-primary" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Invoice</button>
+            <button id="manageBillViewBillDetailsInvoiceMergeBtn" class="btn btn-primary modal-toggle" data-toggle="modal" data-target="#mergeItemList" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Merge Invoice</button>
             <%} else {%>
             <button id="manageBillViewBillDetailsPrintBtn" class="btn btn-info" style="float: right;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Receipt</button>
             <%}%>
@@ -254,6 +254,10 @@
 
 </div>
 
+
+<div id="manageBillViewBillDetailsGenerateMergedInvoiceForPrint" class="hidden">
+
+</div>
 
 
 <div class="modal" id="addItemList" tabindex="-1" role="dialog" aria-hidden="true">
@@ -391,6 +395,40 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="modal fade" id="mergeItemList" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Merge Bill</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <label class="col-lg-4">Grand Total (RM):</label>
+                <div class="col-lg-8" style="margin-bottom: 10px">
+                    <input type="text" class="form-control" id="grandTotalMergedInvoice" value="<%=df.format(grandTotal)%>" disabled="true" style="text-align: center;">
+                </div>
+
+                <label class="col-lg-4">Enter Item Name :</label>
+                <div class="col-lg-8" style="margin-bottom: 10px">
+                    <input type="text" class="form-control" id="itemNameMergedInvoice" style="text-align: center;" maxlength="50">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="mergedInvoiceBtn" type="button" class="btn btn-success" data-dismiss="modal">Create Merged Bill</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -837,6 +875,122 @@
 
 
         // --------------------------------------------------------------- View Bill Payment Function --------------------------------------------------------------- //
+
+
+
+
+
+        // --------------------------------------------------------------- Merge Bill Payment Function --------------------------------------------------------------- //
+
+
+
+        $('#manageBillViewBillDetailsInvoiceMergeBtn').click(function () {
+
+            $('#itemNameMergedInvoice').val('');
+
+        });
+
+
+        // Merge Bill Function Start
+        $('#mergedInvoiceBtn').click(function () {
+
+
+            var itemName = document.getElementById('itemNameMergedInvoice').value;
+            var grandTotal = document.getElementById('grandTotalMergedInvoice').value;
+            var custID = document.getElementById('custID').value;
+            var billNo = document.getElementById('billNo').value;
+            var pName = $('#patientName').val();
+            var address = $('#address').val();
+            var icNo = $('#ic').val();
+
+
+            if (itemName === '' || itemName === null) {
+
+                bootbox.alert("Please insert Item Name first !!!");
+
+            } else {
+
+
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                $.ajax({
+                    url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNo.jsp",
+                    type: "post",
+                    timeout: 10000,
+                    success: function (dataInvoiceNo) {
+
+                        var dataRefresh = {
+                            billNo: billNo,
+                            grandTotal: grandTotal,
+                            custID: custID,
+                            icNo: icNo,
+                            pName: pName,
+                            address: address,
+                            itemName: itemName,
+                            invoive: dataInvoiceNo.trim()
+                        };
+
+                        console.log(dataRefresh);
+
+                        $.ajax({
+                            url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetRecieptForMerge.jsp",
+                            type: "post",
+                            data: dataRefresh,
+                            timeout: 10000,
+                            success: function (data) {
+
+
+                                $('#manageBillViewBillDetailsGenerateMergedInvoiceForPrint').html(data);
+
+
+                                setTimeout(function () {
+
+
+                                    var printDiv = $("#manageBillViewBillDetailsGenerateMergedInvoiceForPrint").html().trim();
+
+                                    var printWindow = window.open('', 'Print Reciept');
+
+                                    printWindow.document.write('<html><head><title>Reciept</title>');
+                                    printWindow.document.write('</head><body >');
+                                    printWindow.document.write(printDiv);
+                                    printWindow.document.write('</body></html>');
+                                    printWindow.document.close();
+                                    printWindow.focus();
+                                    printWindow.print();
+                                    printWindow.close();
+
+
+                                    resetTableBillMasterOrderList();
+
+                                    $('.loading').hide();
+
+                                }, 1500);
+
+
+
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+
+
+                    },
+                    error: function (err) {
+
+                    }
+                });
+
+
+            }
+
+        });
+        // Key Up Event For Change Calculation End
+
+
+        // --------------------------------------------------------------- Merge Bill Payment Function --------------------------------------------------------------- //
+
 
 
 
