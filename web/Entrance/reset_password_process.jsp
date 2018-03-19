@@ -4,7 +4,7 @@
     Author     : user
 --%>
 
-<%@page import="Class.EmailSender"%>
+<%@page import="ADM_helper.Emailer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
@@ -66,7 +66,7 @@
             String subject = "i-HIS. NO REPLY";
             String email = dataUser.get(0).get(1);
             
-            EmailSender es = new EmailSender(email, subject, strMessage);
+            Emailer es = new Emailer(email, subject, strMessage);
             
             boolean isSent = es.sendTextEmail();
             
