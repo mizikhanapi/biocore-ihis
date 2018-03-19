@@ -15,53 +15,58 @@
 
 <table  id="THE_pageTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th>System Code</th>
-    <th>System Name</th>
-    <th>Module Code</th>
-    <th>Module Name</th>
-    <th>Page Code</th>
-    <th>Page Name</th>
-    <th>Status</th>
-    <th>Update</th>
-    <th>Delete</th>
-</thead>
-<tbody>
+        <tr>
+            <th>System Code</th>
+            <th>System Name</th>
+            <th>Module Code</th>
+            <th>Module Name</th>
+            <th>Page Code</th>
+            <th>Page Name</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    <%
-        String sql ="SELECT s.system_code, s.system_name, m.module_code, m.module_name, page_code, page_name, p.status "+
-                    "FROM adm_system s "+
-                    "join adm_module m using (system_code) "+
-                    "join adm_page p using (module_code)";
+        <%
+            String sql = "SELECT s.system_code, s.system_name, m.module_code, m.module_name, page_code, page_name, p.status "
+                    + "FROM adm_system s "
+                    + "join adm_module m using (system_code) "
+                    + "join adm_page p using (module_code)";
+
+            ArrayList<ArrayList<String>> dataModule = conn.getData(sql);
+
+            int size = dataModule.size();
+            for (int i = 0; i < size; i++) {
+        %>
+
+        <tr>
+    <input id="PT_hidden" type="hidden" value="<%=String.join("|", dataModule.get(i))%>">
+    <td><%= dataModule.get(i).get(0)%></td> <!-- system code -->   
+    <td><%= dataModule.get(i).get(1)%></td> <!-- system name  --> 
+    <td><%= dataModule.get(i).get(2)%></td> <!-- module code  --> 
+    <td><%= dataModule.get(i).get(3)%></td> <!-- module name  --> 
+    <td><%= dataModule.get(i).get(4)%></td> <!-- page code  --> 
+    <td><%= dataModule.get(i).get(5)%></td> <!-- page name  --> 
+    <td style="width: 5%"><%if (dataModule.get(i).get(6).equals("1")) {
+            out.print("Inactive");
+        } else {
+            out.print("Active");
+        } %></td> <!--status --> 
+
+    <td style="width: 5% ">
+
+        <!-- Update Part Start -->
+        <a id="PT_btnUpdate" data-toggle="modal" data-target="#PT_detail" style="cursor: pointer" title="Update Page"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+        &nbsp;
+        <!-- Delete Button Start -->
+        <a id="PT_btnDelete" class="testing" style="cursor: pointer" title="Delete Page"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+        <!-- Delete Button End -->
+        &nbsp;
+        <a id="PT_btnViewMenu" class="testing" style="cursor: pointer" title="View Menu"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="display: inline-block;color: green;" ></i></a>
         
-        ArrayList<ArrayList<String>> dataModule = conn.getData(sql);
+    </td>
 
-        int size = dataModule.size();
-        for (int i = 0; i < size; i++) {
-    %>
-
-    <tr>
-<input id="PT_hidden" type="hidden" value="<%=String.join("|", dataModule.get(i))%>">
-<td><%= dataModule.get(i).get(0)%></td> <!-- system code -->   
-<td><%= dataModule.get(i).get(1)%></td> <!-- system name  --> 
-<td><%= dataModule.get(i).get(2)%></td> <!-- module code  --> 
-<td><%= dataModule.get(i).get(3)%></td> <!-- module name  --> 
-<td><%= dataModule.get(i).get(4)%></td> <!-- page code  --> 
-<td><%= dataModule.get(i).get(5)%></td> <!-- page name  --> 
-<td style="width: 5%"><%if(dataModule.get(i).get(6).equals("1"))
-                out.print("Inactive"); 
-              else
-                out.print("Active"); %></td> <!--status --> 
-
-<td style="width: 5% ">
-
-    <!-- Update Part Start -->
-    <a id="PT_btnUpdate" data-toggle="modal" data-target="#PT_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-</td>
-<td style="width: 5% ">
-    <!-- Delete Button Start -->
-    <a id="PT_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-    <!-- Delete Button End -->
-</td>
 </tr>
 
 
@@ -109,7 +114,7 @@
                             <input id="PT_pageCode" class="form-control" readonly="true"  >
                         </div>
                     </div>
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Page Name</label>
@@ -118,7 +123,7 @@
                         </div>
                     </div>
 
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
@@ -129,7 +134,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                 </form>
                 <!-- content goes here -->
             </div>
@@ -156,7 +161,7 @@
 
     $('#pageTable').off('click', '#THE_pageTable #PT_btnUpdate').on('click', '#THE_pageTable #PT_btnUpdate', function (e) {
         e.preventDefault();
-        
+
         //get the row value
         var row = $(this).closest("tr");
         var rowData = row.find("#PT_hidden").val();
@@ -168,7 +173,7 @@
         $('#PT_moduleCode').val(moduleCode);
         $('#PT_pageCode').val(pageCode);
         $('#PT_pageName').val(pageName);
-        
+
         if (status === '1')
             $('#PT_status').val(1);
         else
@@ -199,11 +204,11 @@
         } else {
 
             var data = {
-                systemCode : systemCode,
-                moduleCode : moduleCode,
-                pageCode : pageCode,
-                pageName : pageName,
-                status : status
+                systemCode: systemCode,
+                moduleCode: moduleCode,
+                pageCode: pageCode,
+                pageName: pageName,
+                status: status
             };
 
             $.ajax({
@@ -217,13 +222,13 @@
                         $('#pageTable').load('page_table.jsp');
                         $(".modal-backdrop").hide();
                         //alert("Update Success");
-                        
+
                         bootbox.alert({
-                                    message: "Page information is updated",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                        
+                            message: "Page information is updated",
+                            title: "Process Result",
+                            backdrop: true
+                        });
+
                     } else if (datas.trim() === 'Failed') {
                         bootbox.alert("Update failed!");
 
@@ -249,7 +254,7 @@
         //assign into seprated val
         var systemCode = arrayData[0], moduleCode = arrayData[2], pageCode = arrayData[4];
         console.log(arrayData);
-        
+
         bootbox.confirm({
             message: "Are you sure want to delete this item? " + systemCode + "-" + moduleCode + "-" + pageCode,
             title: "Delete Item?",
@@ -266,11 +271,11 @@
             callback: function (result) {
 
                 if (result === true) {
-                    
+
                     var data = {
-                        moduleCode : moduleCode,
-                        systemCode : systemCode,
-                        pageCode : pageCode
+                        moduleCode: moduleCode,
+                        systemCode: systemCode,
+                        pageCode: pageCode
                     };
 
                     $.ajax({
@@ -283,12 +288,12 @@
                             if (datas.trim() === 'Success') {
                                 $('#pageTable').load('page_table.jsp');
                                 //alert("Delete Success");
-                                 bootbox.alert({
+                                bootbox.alert({
                                     message: "A page information is deleted",
                                     title: "Process Result",
                                     backdrop: true
                                 });
-                                
+
                             } else if (datas.trim() === 'Failed') {
                                 alert("Delete failed!");
                             }
@@ -299,7 +304,7 @@
                         }
 
                     });
-                    
+
                 } else {
                     console.log("Process Is Canceled");
                 }
@@ -307,7 +312,7 @@
             }
         });
 
-       
+
 
     });
 
@@ -325,7 +330,7 @@
     $(document).ready(function () {
         $('#THE_pageTable').DataTable();
 
-        
+
     });
 </script>
 

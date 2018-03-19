@@ -9,70 +9,75 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     PAGE CODE MANAGEMENT
     <span class="pull-right">
-        <button id="PM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Page</button>
+        <button id="MENU_btnAddModal" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Menu</button>
     </span>
 </h4>
 <!-- Add Button End -->
 
 
+<!--hidden field-->
+<input type="hidden" id="MENU_module_cd">
+<input type="hidden" id="MENU_page_cd">
+<!--hidden field-->
+
 <!-- Add Modal Start -->
-<div class="modal fade" id="PM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="MENU_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Add New Page</h3>
+                <h3 class="modal-title" id="lineModalLabel">Add New Menu</h3>
             </div>
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" id="addForm" autocomplete="off">
+                <form class="form-horizontal" id="MENU_form" autocomplete="off">
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">System Name*</label>
+                        <label class="col-md-4 control-label" for="textinput">Menu Code*</label>
                         <div class="col-md-8">
-                            <input id="PM_systemName"  type="text" placeholder="Search system name" class="form-control input-md" maxlength="110">
-                             <div id="PM_match_system" class="search-drop">
-                                <!--for search area-->
-                            </div>
+                            <input id="MENU_code"  type="text" placeholder="Enter menu code" class="form-control input-md code-input" maxlength="30">
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Module Name*</label>
+                        <label class="col-md-4 control-label" for="textinput">Menu Name*</label>
                         <div class="col-md-8">
-                            <input id="PM_moduleName"  type="text" placeholder="Search module name" class="form-control input-md" maxlength="110">
-                            <div id="PM_match_module" class="search-drop">
-                                <!--for search area-->
-                            </div>
+                            <input id="MENU_name"  type="text" placeholder="Enter menu name" class="form-control input-md" maxlength="200">
                         </div>
                     </div>
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Page Name*</label>
+                        <label class="col-md-4 control-label" for="textinput">Menu Type*</label>
                         <div class="col-md-8">
-                            <input id="PM_pageName"  type="text" placeholder="Insert page name" class="form-control input-md" maxlength="100">
+                            <input id="MENU_type"  type="text" placeholder="Enter menu type" class="form-control input-md" maxlength="200">
                         </div>
                     </div>
-                    
-                    <!-- Text input-->
+                   
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Page Code*</label>
-                        <div class="col-md-8">
-                            <input id="PM_pageCode"  type="text" placeholder="Insert page code " class="form-control input-md code-input" maxlength="30">
-                        </div>
-                    </div>
-                    
-                    
-                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
-                            <select class="form-control"  id="PM_status">
+                            <select class="form-control"  id="MENU_status">
                                 <option  value="0" >Active</option>
                                 <option  value="1" >Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="MENU_levelHolder">
+                        
+                    </div>
+                    
+                     <div class="form-group">
+                        <input type="hidden" id="MENU_parent_cd">
+                        <input type="hidden" id="MENU_level">
+                        <label class="col-md-4 control-label" for="textinput">Level <span id="MENU_levelNoText">1</span>*</label>
+                        <div class="col-md-8">
+                            <select class="form-control"  id="MENU_parent">
+                                
                             </select>
                         </div>
                     </div>
@@ -84,10 +89,13 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PM_btnAdd">Add</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MENU_btnAdd">Add</button>
+                    </div>
+                    <div class="btn-group hidden" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MENU_btnUpdate">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="PM_btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                        <button type="reset" id="MENU_btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                     </div>
                 </div>
             </div>
@@ -99,238 +107,65 @@
 
 <script type="text/javascript">
 
-    
-    $(document).ready(function () {
+    $(function () {
 
-        var isSysCodeExist = false;
-        var strSystem = "";
+        var MENU_table;
         
-        var isModCodeExist = false;
-        var strModule = "";
-        
-        function PM_reset() {
-            
-            document.getElementById("PM_systemName").value = "";
-            document.getElementById("PM_moduleName").value = "";
-            document.getElementById("PM_pageName").value = "";
-            document.getElementById("PM_pageCode").value = "";
-            $('#PM_match_system').html('');
-            $('#PM_match_module').html('');
-                       
+        function MENU_initDataTable(){
+            $('#THE_menuTable').DataTable({destroy:true});
+            MENU_table = $('#THE_menuTable').DataTable();
         }
 
-        $('#PM_btnReset').on('click', function () {
-            PM_reset();
+        $('#pageTable').on('click', '#PT_btnViewMenu', function () {
+            createScreenLoading();
+
+            var arrData = $(this).closest('tr').find('#PT_hidden').val().split("|");
+
+            var data = {
+                module_cd: arrData[2],
+                page_cd: arrData[4],
+                module_name: arrData[3],
+                page_name: arrData[5]
+            };
             
-        });
-
-        $('#PM_btnAddNew').on('click', function () {
-            
-            isSysCodeExist = false;
-            isModCodeExist = false;
-            PM_reset();
-
-        });
-
-        $('#PM_btnAdd').on('click', function () {
-            
-            var systemCode = $('#PM_systemName').val();
-            var moduleCode = $('#PM_moduleName').val();
-            var pageName = $('#PM_pageName').val();
-            var pageCode = $('#PM_pageCode').val();
-            var status = $('#PM_status').val();
-            
-            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(pageCode);  
-
-            if (systemCode === "" || systemCode === null) {
-                bootbox.alert("Fill in the system name");
-                $('#PM_systemName').focus();
-
-            } else if (moduleCode === "") {
-                bootbox.alert("Fill in the module code");
-                $('#PM_moduleName').focus();
-
-            } else if (pageName === "") {
-                bootbox.alert("Fill in the page name");
-                $('#PM_pageName').focus();
-
-            } else if (gotSpecialChar){
-                bootbox.alert("Page code must contain only alphanumeric characters!");
-                $('#PM_pageCode').val('');
-            }
-            else if (pageCode === "") {
-                bootbox.alert("Fill in the page code");
-                $('#PM_pageCode').focus();
-
-            }  else if (status !== "1" && status !== "0") {
-                alert("Select Any Status");
-
-            } else if (isSysCodeExist === false || strSystem !== systemCode) {
-                bootbox.alert("Please choose existing system");
-                $('#PM_systemName').val("");
-                $('#PM_systemName').focus();
-                
-            }else if (isModCodeExist === false || strModule !== moduleCode) {
-                bootbox.alert("Please choose existing module");
-                $('#PM_moduleName').val("");
-                $('#PM_moduleName').focus();
-                
-            }else {
-
-                var arrayData = $('#PM_systemName').val().split("|");
-                systemCode = arrayData[0].trim();
-                var arrayData2 = $('#PM_moduleName').val().split("|");
-                moduleCode = arrayData2[0].trim();
-               
-
-                var data = {
-                    systemCode : systemCode,
-                    moduleCode : moduleCode,
-                    pageName : pageName,
-                    pageCode : pageCode,
-                    status: status
-                };
-
-                $.ajax({
-                    url: "page_insert.jsp",
-                    type: "post",
-                    data: data,
-                    timeout: 5000,
-                    success: function (datas) {
-
-                        if (datas.trim() === 'Success') {
-
-                            $('#pageTable').load('page_table.jsp');
-                            $('#PM_detail').modal('hide');
-                            //alert("Insertion Success");
-                            bootbox.alert({
-                                    message: "New page is added",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                          
-
-                        } else if (datas.trim() === 'Failed') {
-
-                            bootbox.alert("Failed to add new page!");
-                            $('#PM_detail').modal('hide');
-                          
-
-                        } else {
-                            
-                            //alert(datas.trim());
-                            bootbox.alert({
-                                    message: datas.trim(),
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                                
-                             $('#PM_pageCode').val("");
-                             $('#PM_pageCode').focus();    
-                                
-                                                     
-                        }
-
+            $.ajax({
+                url: "HIS010005/menu_table.jsp",
+                type: 'POST',
+                data: data,
+                timeout: 60000,
+                success: function (data, textStatus, jqXHR) {
+                        $('#menuTable').html(data);
+                        $('#MENU_module_cd').val(arrData[2]);
+                        $('#MENU_page_cd').val(arrData[4]);
+                        $('.nav-tabs a[href="#S_tab5"]').tab('show');
+                        MENU_initDataTable();
                     },
-                    error: function (err) {
-                        console.log("Ajax Is Not Success: ");
-                    }
-
-                });
-            }
-
-        });
-
-        $("#PM_systemName").on('keyup', function () { // everytime keyup event
-            var input = $(this).val(); // We take the input value
-            if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#PM_match_system').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                var dataFields = {input : input, process : "system"}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "PM_result.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#PM_match_system').html(dataBack); // Return data (UL list) and insert it in the <div id="PM_match_system"></div>
-                        $('#PM_match_systemList li').on('click', function () { // When click on an element in the list
-                            //$('#MM_systemCode').text($(this).text()); // Update the field with the new element
-                            $('#PM_systemName').val($(this).text());
-                            $('#PM_match_system').text(''); // Clear the <div id="PM_match_system"></div>
-                            var arrayData = $('#PM_systemName').val().split("|");
-                            isSysCodeExist = true;
-                            strSystem = $('#PM_systemName').val();
-                            console.log(arrayData);
-                            console.log(arrayData[0].trim());
-                            console.log(arrayData[1].trim());
-                        });
+                error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+errorThrown);
                     },
-                    error: function () { // if error
-                        $('#PM_match_system').text('Problem!');
-                    }
-                });
-            } else {
-                $('#PM_match_system').text(''); // If less than 2 characters, clear the <div id="PM_match_system"></div>
-            }
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+            });
         });
         
-        
-         $("#PM_moduleName").on('keyup', function () { // everytime keyup event
-            var input = $(this).val(); // We take the input value
+        //add new menu
+        $('#MENU_btnAddModal').on('click', function(){
+            var module_cd = $('#MENU_module_cd').val().trim();
+            var page_cd = $('#MENU_page_cd').val().trim();
             
-            var systemNameMust = $('#PM_systemName').val();
-            
-            if(systemNameMust === "" || isSysCodeExist === false){
-                
-                bootbox.alert("Fill in system name first!");
-                $('#PM_systemName').focus();
-            
-            }else if(systemNameMust !== strSystem || strSystem === "" || strSystem === null){
-                
-                bootbox.alert("Please choose existing system name first!");
-                $('#PM_systemName').focus();
-            
-            }else if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                
-                var arrayX = systemNameMust.split("|");
-                var systemCodeX = arrayX[0].trim();
-                console.log(systemCodeX);
-                
-                $('#PM_match_module').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                var dataFields = {input : input, process : "module", systemCode : systemCodeX}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "PM_result.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#PM_match_module').html(dataBack); // Return data (UL list) and insert it in the <div id="PM_match_system"></div>
-                        $('#PM_match_moduleList li').on('click', function () { // When click on an element in the list
-                            // Update the field with the new element
-                            $('#PM_moduleName').val($(this).text());
-                            $('#PM_match_module').text(''); // Clear the <div id="PM_match_system"></div>
-                            var arrayData = $('#PM_moduleName').val().split("|");
-                            isModCodeExist = true;
-                            strModule = $('#PM_moduleName').val();
-                            console.log(arrayData);
-                            console.log(arrayData[0].trim());
-                            console.log(arrayData[1].trim());
-                        });
-                    },
-                    error: function () { // if error
-                        $('#PM_match_module').text('Problem!');
-                    }
+            if(module_cd === "" || page_cd === ""){
+                bootbox.alert("Please choose a page first!", function(){
+                    $('.nav-tabs a[href="#S_tab4"]').tab('show');
                 });
-            } else {
-                $('#PM_match_module').text(''); // If less than 2 characters, clear the <div id="PM_match_system"></div>
+            }
+            else{
+                $('#MENU_modal').modal('show');
             }
         });
-
 
 
     });
-
-
 
 </script>
 

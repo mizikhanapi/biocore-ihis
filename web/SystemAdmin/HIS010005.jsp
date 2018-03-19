@@ -96,9 +96,14 @@
                                                 <a href="#S_tab4" data-toggle="tab">
                                                     PAGE </a>
                                             </li>
-
+                                            
                                             <li>
                                                 <a href="#S_tab5" data-toggle="tab">
+                                                    MENU </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="#S_tab6" data-toggle="tab">
                                                     SESSION </a>
                                             </li>
 
@@ -153,11 +158,21 @@
 
                                             <div class="tab-pane" id="S_tab5">
 
+                                                <div id="menu">
+                                                    <div id="menuMain">
+                                                    </div>
+                                                    <div id="menuTable" class="table-guling">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="S_tab6">
+
                                                 <div id="session">
                                                     <div id="sessionMain">
                                                     </div>
-                                                    <!--                                                    <div id="pageTable">
-                                                                                                        </div>-->
+                                                    
                                                 </div>
 
                                             </div>
@@ -216,6 +231,9 @@
 
             $("#pageMain").load("page_main.jsp");
             $("#pageTable").load("page_table.jsp");
+            
+            $("#menuMain").load("HIS010005/menu_main.jsp");
+            $("#menuTable").load("HIS010005/menu_table.jsp");
 
             $('#sessionMain').load("session_main.jsp");
 
