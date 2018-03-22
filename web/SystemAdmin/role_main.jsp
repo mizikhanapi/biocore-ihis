@@ -43,9 +43,9 @@
                             <input id="RM_roleCode"  type="text" placeholder="Code required" class="form-control input-md code-input" maxlength="30">
                         </div>
                     </div>
-                    
-                    
-                     <div class="form-group">
+
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
                         <div class="col-md-8">
                             <select class="form-control" name="tstatus" id="RM_status">
@@ -76,105 +76,107 @@
 <!-- Add Part End -->
 
 
- <script>
+<script>
 
-        
 
-        $(document).ready(function () {
-            
-            function RM_reset() {
-                document.getElementById("RM_roleName").value = "";
-                document.getElementById("RM_roleCode").value = "";
-                
-                
-            }
 
-            $('#RM_btnReset').on('click', function () {
-                RM_reset();
-            });
+    $(document).ready(function () {
 
-            $('#RM_btnAdd').on('click', function () {
-                               
-                var roleName = $('#RM_roleName').val();
-                var roleCode = $('#RM_roleCode').val();
-                var status = $('#RM_status').val();
-                
-                var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(roleCode); 
+        codeValidityKeyUp(".code-input");
+        preventPipeKeyUp("input");
 
-                if (roleName === "") {
-                    bootbox.alert("Fill in the role name");
-                    $('#RM_roleName').focus();
-                    
-                } else if (roleCode === "") {
-                    bootbox.alert("Fill in the role code");
-                    $('#RM_roleCode').focus();
-                    
-                } else if(gotSpecialChar){
-                    bootbox.alert("Role code cannot contain special characters and space!");
-                }
-                else if (status !== "1" && status !== "0") {
-                    bootbox.alert("Select Any Status");
-                    $('#RM_status').focus();
-                } else {
+        function RM_reset() {
+            document.getElementById("RM_roleName").value = "";
+            document.getElementById("RM_roleCode").value = "";
 
-                    var data = {
-                        roleName : roleName,
-                        roleCode : roleCode,
-                        status : status
-                    };
 
-                    $.ajax({
-                        url: "role_insert.jsp",
-                        type: "post",
-                        data: data,
-                        timeout: 10000,
-                        success: function (datas) {
+        }
 
-                            if (datas.trim() === 'Success') {
+        $('#RM_btnReset').on('click', function () {
+            RM_reset();
+        });
 
-                                $('#roleTable').load('role_table.jsp');
-                                $('#RM_detail').modal('hide');
-                                //alert("Insertion Success");
-                                bootbox.alert({
-                                    message: "New role is added",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                                RM_reset();
-                                //reload list of role in asign new role
-                                $('#ARM_role').html('');
-                                $('#ARM_role').load('accessRole_main.jsp #ARM_role option');
-                                
-                                $('#ART_role').html('');
-                                $('#ART_role').load('accessRole_table.jsp #ART_role option');
-                                
-                            } else if (datas.trim() === 'Failed') {
-                                
-                                bootbox.alert("Insertion failed!");
-                                //$('#RM_detail').modal('hide');
-                                RM_reset();
-                                
-                            } else{
-                                bootbox.alert(datas.trim());
-                                $('#RM_roleCode').val("");
-                                $('#RM_roleCode').focus();
-                            }
-                            
-                        },
-                        error: function (err) {
-                            console.log("Ajax Is Not Success");
+        $('#RM_btnAdd').on('click', function () {
+
+            var roleName = $('#RM_roleName').val();
+            var roleCode = $('#RM_roleCode').val();
+            var status = $('#RM_status').val();
+
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(roleCode);
+
+            if (roleName === "") {
+                bootbox.alert("Fill in the role name");
+                $('#RM_roleName').focus();
+
+            } else if (roleCode === "") {
+                bootbox.alert("Fill in the role code");
+                $('#RM_roleCode').focus();
+
+            } else if (gotSpecialChar) {
+                bootbox.alert("Role code cannot contain special characters and space!");
+            } else if (status !== "1" && status !== "0") {
+                bootbox.alert("Select Any Status");
+                $('#RM_status').focus();
+            } else {
+
+                var data = {
+                    roleName: roleName,
+                    roleCode: roleCode,
+                    status: status
+                };
+
+                $.ajax({
+                    url: "role_insert.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
+
+                        if (datas.trim() === 'Success') {
+
+                            $('#roleTable').load('role_table.jsp');
+                            $('#RM_detail').modal('hide');
+                            //alert("Insertion Success");
+                            bootbox.alert({
+                                message: "New role is added",
+                                title: "Process Result",
+                                backdrop: true
+                            });
+                            RM_reset();
+                            //reload list of role in asign new role
+                            $('#ARM_role').html('');
+                            $('#ARM_role').load('accessRole_main.jsp #ARM_role option');
+
+                            $('#ART_role').html('');
+                            $('#ART_role').load('accessRole_table.jsp #ART_role option');
+
+                        } else if (datas.trim() === 'Failed') {
+
+                            bootbox.alert("Insertion failed!");
+                            //$('#RM_detail').modal('hide');
+                            RM_reset();
+
+                        } else {
+                            bootbox.alert(datas.trim());
+                            $('#RM_roleCode').val("");
+                            $('#RM_roleCode').focus();
                         }
 
-                    });
-                }
+                    },
+                    error: function (err) {
+                        console.log("Ajax Is Not Success");
+                    }
 
-            });
-
+                });
+            }
 
         });
 
 
+    });
 
-    </script>
+
+
+</script>
 
 

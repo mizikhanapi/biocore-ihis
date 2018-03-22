@@ -165,6 +165,8 @@
    //==================end load detail lookup===================
 
     $(document).ready(function () {
+        codeValidityKeyUp(".code-input");
+        preventPipeKeyUp("input");
 
         var isMasterCodeExist = false;
 

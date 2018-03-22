@@ -421,6 +421,8 @@
     }
 
     $(document).ready(function () {
+        codeValidityKeyUp(".code-input");
+        preventPipeKeyUp("input");
 
         $('#HFM_establishedDate').datepicker({
             changeYear: true,

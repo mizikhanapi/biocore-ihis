@@ -40,7 +40,7 @@
     </thead>
     <tbody>
 
-        <%            //                      0           1           2       3           4       5
+        <% //                      0           1           2       3           4       5
             String sql = "SELECT menu_cd, menu_name, menu_level, `type`, parent_cd, status "
                     + "FROM adm_menu "
                     + "WHERE module_cd='" + module_cd + "' and page_cd='" + page_cd + "';";
@@ -52,35 +52,35 @@
         %>
 
         <tr>
-    <input id="MENU_hidden" type="hidden" value="<%=String.join("|", dataModule.get(i))%>">
-    <td><%= dataModule.get(i).get(0)%></td> <!-- code -->   
-    <td><%= dataModule.get(i).get(1)%></td> <!-- name  --> 
-    <td><%= dataModule.get(i).get(2)%></td> <!-- level  --> 
-    <td><%= dataModule.get(i).get(3)%></td> <!-- type  --> 
-    <td><%= dataModule.get(i).get(4)%></td> <!-- parent  --> 
-    <td style="width: 5%"><%if (dataModule.get(i).get(5).equals("1")) {
-            out.print("Inactive");
-        } else {
-            out.print("Active");
-        } %></td> <!--status --> 
 
-    <td style="width: 5% ">
+            <td><%= dataModule.get(i).get(0)%></td> <!-- code -->   
+            <td><%= dataModule.get(i).get(1)%></td> <!-- name  --> 
+            <td><%= dataModule.get(i).get(2)%></td> <!-- level  --> 
+            <td><%= dataModule.get(i).get(3)%></td> <!-- type  --> 
+            <td><%= dataModule.get(i).get(4)%></td> <!-- parent  --> 
+            <td style="width: 5%"><%if (dataModule.get(i).get(5).equals("0")) {
+                    out.print("Active");
+                } else {
+                    out.print("Inactive");
+                } %></td> <!--status --> 
 
-        <!-- Update Part Start -->
-        <a id="MENU_btnUpdateModal" data-toggle="modal" data-target="#MENU_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-        <!-- Delete Button Start -->
-        <a id="MENU_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-        <!-- Delete Button End -->
-    </td>    
-</tr>
+            <td style="width: 5% ">
+                <input id="MENU_hidden" type="hidden" value="<%=String.join("|", dataModule.get(i))%>">
+                <!-- Update Part Start -->
+                <a id="MENU_btnUpdateModal" style="cursor: pointer" title="Update menu"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                <!-- Delete Button Start -->
+                <a id="MENU_btnDelete" class="testing" style="cursor: pointer" title="Delete menu"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+                <!-- Delete Button End -->
+            </td>    
+        </tr>
 
 
 
-<%
-    }
-%>
+        <%
+            }
+        %>
 
-</tbody>
+    </tbody>
 </table>
 
 
