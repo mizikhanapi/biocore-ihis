@@ -834,6 +834,7 @@
 
                                         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
+                                        sendToEmailForBillTransaction();
                                         generateRecieptForBillTransaction();
 
 
@@ -1687,6 +1688,48 @@
 
         // --------------------------------------------------------------- View Bill Generate Reciept Function --------------------------------------------------------------- //
 
+
+
+
+
+        // --------------------------------------------------------------- Send Detail To Email Function --------------------------------------------------------------- //
+
+
+
+        function sendToEmailForBillTransaction() {
+
+
+            console.log("In Email Function...");
+
+
+            var billNo = $('#billNo').val();
+            var customerNo = $('#custID').val();
+
+            var data = {
+                billNo: billNo,
+                customerNo: customerNo
+            };
+
+            $.ajax({
+                url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidMakePaymentEmailer.jsp",
+                type: "post",
+                data: data,
+                timeout: 10000,
+                success: function (datas) {
+
+                    console.log(datas.trim());
+
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+
+
+
+
+        // --------------------------------------------------------------- Send Detail To Email Function --------------------------------------------------------------- //
 
 
 
