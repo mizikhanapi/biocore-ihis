@@ -15,14 +15,14 @@ $(document).ready(function () {
     var updatePOSSurgicalObj;
     var rowPOSSurgicalId;
     var rowPOSSurgicalDataTR;
-    
-    $("#CIS040011").on('show.bs.modal',function(){
+
+    $("#CIS040011").on('show.bs.modal', function () {
         searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
         searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
-        searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "")
-    })
-    
-   
+        searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "");
+    });
+
+
 
     $(".CIS-OE-SPO-DATE").datepicker({
         changeMonth: true,
@@ -42,11 +42,11 @@ $(document).ready(function () {
         dropdown: true,
         scrollbar: true
     });
-    
+
     $(".CIS-OE-SPO-DATE").datepicker("setDate", new Date());
-    
+
     $("#tCISOESPOSearch").prop("disabled", true);
-    
+
     //searching("tCISOESPOProblemName", "tCISOESPOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeSPO", "search/ResultCCNSearchCode.jsp");
 
 
@@ -59,12 +59,12 @@ $(document).ready(function () {
                 room_name: $(this).val()
             },
             success: function (e) {
-         
+
                 $("#tCISOESPOOTRoomCode").val(e.trim());
             }
-        })
+        });
     });
-    
+
     $("#tCISOESPOConsultantName").on('select:flexdatalist', function (value) {
         $.ajax({
             type: 'POST',
@@ -75,11 +75,12 @@ $(document).ready(function () {
                 hfc_code: hfc_cd
             },
             success: function (e) {
-           ;    console.log(e)
+                
+                console.log(e);
                 $("#tCISOESPOConsultantCode").val(e.trim());
             }
-        })
-    })
+        });
+    });
 
     $("#tCISOESPOCategoryName").on("select:flexdatalist", function (value) {
 
@@ -95,7 +96,7 @@ $(document).ready(function () {
                 $("#tCISOESPOCategoryCode").val(e.trim());
                 searchPOSSurgicalProcedure("tCISOESPOSearch", "tCISOESPOSearchLoading", "", e.trim());
             }
-        })
+        });
 
 
     });
@@ -114,15 +115,15 @@ $(document).ready(function () {
             timeout: 3000,
             data: data,
             success: function (e) {
-  
+
                 $("#tCISOESPOSearch_Code").val(e.trim());
             }
-        })
+        });
     });
 
     $("#btnCIS_OE_POSSurgical_SUBMIT").click(function (e) {
         e.preventDefault();
-    
+
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
             var msg = '';
@@ -141,12 +142,13 @@ $(document).ready(function () {
                 pmino: pmiNo,
                 episodedate: episodeDate,
                 status: "1"
-            }
+            };
             sendOrder(data, "tableOrderPOSSurgical");
+            _dataPOSSurgical = [];
         } else {
             return false;
         }
-    })
+    });
 
     $("#btnCIS_OE_POSSurgical_ADD").click(function (e) {
         e.preventDefault();
@@ -159,8 +161,8 @@ $(document).ready(function () {
 
         var consultantName = $("#tCISOESPOConsultantName").val();
         var consultant_cd = $("#tCISOESPOConsultantCode").val();
-        var otRoom_cd = $("#tCISOESPOOTRoomCode").val()
-        var otRoom = $("#tCISOESPOOTRoomName").val()
+        var otRoom_cd = $("#tCISOESPOOTRoomCode").val();
+        var otRoom = $("#tCISOESPOOTRoomName").val();
         var problemCode = "";
         var problemName = "";
         var priority = "";
@@ -173,7 +175,7 @@ $(document).ready(function () {
         var endDate = $("#tCISOESPOENDDate").val();
         var endTime = $("#tCISOESPOEndTime").val();
         var commentArea = $("#tCIS_POSSurgicalCommentArea").val();
-        
+
 
 
         var obj = {
@@ -198,36 +200,36 @@ $(document).ready(function () {
             consultantCode: consultant_cd,
             otRoom: otRoom,
             otRoomCode: otRoom_cd
-        }
-        
-        if (procedure_cd === ""  && commentArea === "" && consultantName === "" && otRoom === "" ) {
+        };
+
+        if (procedure_cd === "" && commentArea === "" && consultantName === "" && otRoom === "") {
             alert("You not enter procedure, comment, consultant and OT Room");
-        } else if (procedure_cd === ""  && commentArea === "" && consultantName === "" ) {
+        } else if (procedure_cd === "" && commentArea === "" && consultantName === "") {
             alert("You not enter procedure, comment and consultant name");
-        } else if (procedure_cd === ""  && commentArea === ""  && otRoom === "") {
+        } else if (procedure_cd === "" && commentArea === "" && otRoom === "") {
             alert("You not enter the procedure comment, and OT Room");
-        } else if (procedure_cd === ""   && consultantName === "" && otRoom === "") {
+        } else if (procedure_cd === "" && consultantName === "" && otRoom === "") {
             alert("You not enter procedure consultant and OT Room");
-        } else if ( commentArea === "" && consultantName === "" && otRoom === "") {
-            alert("You not enter the comment, consultant and OT Room")
-        } else if (procedure_cd === ""  && commentArea === "" ) {
-            alert("You not enter procedure and comment")
-        } else if (procedure_cd === ""  && otRoom === "") {
+        } else if (commentArea === "" && consultantName === "" && otRoom === "") {
+            alert("You not enter the comment, consultant and OT Room");
+        } else if (procedure_cd === "" && commentArea === "") {
+            alert("You not enter procedure and comment");
+        } else if (procedure_cd === "" && otRoom === "") {
             alert("You not enter the procedure and OT Room");
-        }else if (consultantName === "" && otRoom === "") {
+        } else if (consultantName === "" && otRoom === "") {
             alert("You not enter the consultant name and OT Room");
-        }else if (procedure_cd === "" ) {
+        } else if (procedure_cd === "") {
             alert("You not enter the procedure");
-        }else if ( commentArea === "" ) {
+        } else if (commentArea === "") {
             alert("You not enter the comment");
-        }else if (consultantName === "" ) {
+        } else if (consultantName === "") {
             alert("You not enter the consultant");
-        }else if (otRoom === "") {
+        } else if (otRoom === "") {
             alert("You not enter the OT Room");
         } else {
-             if (checkOrderCode(_dataPOSSurgical, obj.procedureCode)) {
+            if (checkOrderCode(_dataPOSSurgical, obj.procedureCode)) {
                 alert("This order already been added");
-            } else{
+            } else {
                 _dataPOSSurgical.push(obj);
                 indexPOSSurgical = _dataPOSSurgical.lastIndexOf(obj);
                 appendOrderPOSSurgical(obj, indexPOSSurgical);
@@ -236,7 +238,7 @@ $(document).ready(function () {
 
         }
 
-        
+
 
     });
 
@@ -267,7 +269,7 @@ $(document).ready(function () {
         $("#tCISOESPOENDDate").val(updatePOSSurgicalObj.endDate);
         $("#tCISOESPOEndTime").val(updatePOSSurgicalObj.endTime);
     });
-    
+
     $("#tableOrderPOSSurgical").on("click", ".btnDelete", function (e) {
 
         e.preventDefault();
@@ -279,7 +281,7 @@ $(document).ready(function () {
         if (delConfirm === true) {
             delete _dataPOSSurgical[delIndex];
             $(this).closest('tr').remove();
-            
+
         } else {
             return false;
         }
@@ -294,8 +296,8 @@ $(document).ready(function () {
         var procedure = $("#tCISOESPOSearch").val();
         var consultantName = $("#tCISOESPOConsultantName").val();
         var consultant_cd = $("#tCISOESPOConsultantCode").val();
-        var otRoom_cd = $("#tCISOESPOOTRoomCode").val()
-        var otRoom = $("#tCISOESPOOTRoomName").val()
+        var otRoom_cd = $("#tCISOESPOOTRoomCode").val();
+        var otRoom = $("#tCISOESPOOTRoomName").val();
         var startDate = $("#tCISOESPOStartDate").val();
         var startTime = $("#tCISOESPOStartTime").val();
         var endDate = $("#tCISOESPOENDDate").val();
@@ -323,8 +325,8 @@ $(document).ready(function () {
         clearFieldPOSSurgical();
 
     });
-    
-    $("#btnCIS_OE_POSSurgical_SEARCH_ORDER").click(function (e){
+
+    $("#btnCIS_OE_POSSurgical_SEARCH_ORDER").click(function (e) {
         e.preventDefault();
         var order_id = $("#tCIS_OE_POSSurgical_SEARCH_ORDER_ID").val();
         if (order_id === "") {
@@ -334,13 +336,13 @@ $(document).ready(function () {
         todayDate = todayDate.split(" ");
         todayDate = todayDate[0];
         var type = $("#selectCIS_OE_POSSurgical_SEARCH_TYPE option:selected").val();
-        
+
         var data = {
             pmiNo: pmiNo,
             todayDate: todayDate,
             type: type,
             orderId: order_id
-        }
+        };
 
         $.ajax({
             url: "order/ResultSearchOrderPOSSurgical.jsp",
@@ -350,10 +352,10 @@ $(document).ready(function () {
             success: function (e) {
                 $("#divCIS_OE_POSSurgical_OrderSearchResult").html(e);
             }
-        })
+        });
     });
-    
-    $("#divCIS_OE_POSSurgical_OrderSearchResult").on("click","#tblOPOSSurgical #btnCIS_OE_POSSurgical_SEARCH_ADD",function(e){
+
+    $("#divCIS_OE_POSSurgical_OrderSearchResult").on("click", "#tblOPOSSurgical #btnCIS_OE_POSSurgical_SEARCH_ADD", function (e) {
         e.preventDefault();
         var rowOrder = $(this).closest("tr");
         var cat_cd = rowOrder.find("#cat_cd").html();
@@ -364,14 +366,14 @@ $(document).ready(function () {
         var ot_roomName = rowOrder.find("#ot_roomName").html();
         var consultant_id = rowOrder.find("#consultant_id").html();
         var consultantName = rowOrder.find("#consultantName").html();
-        
+
         $("#tCISOESPOSearch").prop("disabled", false);
-        
+
         searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", categoryName);
         searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, consultantName);
         searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", ot_roomName);
         searchPOSSurgicalProcedure("tCISOESPOSearch", "tCISOESPOSearchLoading", procedureName, cat_cd);
-        
+
         $("#tCISOESPOCategoryCode").val(cat_cd);
         $("#tCISOESPOSearch_Code").val(procedure_cd);
         $("#tCISOESPOConsultantCode").val(consultant_id);
@@ -380,38 +382,81 @@ $(document).ready(function () {
 
     });
     
+    //clear the order array
+     $('#nextBtn').on('click', function () {
+        _dataPOSSurgical = [];
+        $('#btnCIS_OE_POS_SEARCH_CLEAR').click();
+
     });
 
-    function clearFieldPOSSurgical() {
-        $("#tCISOESPOSearch").val("");
-        $("#tCISOESPOSearch").prop("disabled", true);
-        searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
-        $("#tCISOESPOSearch").prop("disabled", true);
-        $("#tCIS_POSSurgicalCommentArea").val("");
-        searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
-        searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "");
-    }
+    $('#listQueue').on('click', '#consultBtn', function (e) {
+        _dataPOSSurgical = [];
+        $('#btnCIS_OE_POS_SEARCH_CLEAR').click();
 
-
-    function appendOrderPOSSurgical(obj, index) {
-        var _tr = '<tr id="trPOS_row|' + index + '" ><td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
-        $("#tableOrderPOSSurgical").append(_tr);
-    }
-
-
-    function updateOrderPOSTableSurgical(obj, index) {
-
-        var _tr = '<td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
-        $("#rowPOSSurgicalDataTR").html(_tr);
-    }
+    });
     
-    function checkOrderCode(data, code) {
-        var already = false;
-        for (var i in data) {
-            if (data[i].procedureCode === code) {
-                already = true;
-            }
+      //remind user to submit or cancel order before leaving the modal
+    $('#CIS040011').on('hidden.bs.modal', function () {
+
+        if (_dataPOSSurgical.length > 0) {
+            bootbox.confirm({
+                title: "Submit Order?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Ignore',
+                        className: 'btn-danger'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Submit Order',
+                        className: 'btn-success'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        $('#btnCIS_OE_POSSurgical_SUBMIT').click();
+                    }
+                    else{
+                        bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
+                    }
+                }
+            });
         }
-        return already;
+
+    });
+
+}); // end document ready
+
+function clearFieldPOSSurgical() {
+    $("#tCISOESPOSearch").val("");
+    $("#tCISOESPOSearch").prop("disabled", true);
+    searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
+    $("#tCISOESPOSearch").prop("disabled", true);
+    $("#tCIS_POSSurgicalCommentArea").val("");
+    searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
+    searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "");
+}
+
+
+function appendOrderPOSSurgical(obj, index) {
+    var _tr = '<tr id="trPOS_row|' + index + '" ><td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+    $("#tableOrderPOSSurgical").append(_tr);
+}
+
+
+function updateOrderPOSTableSurgical(obj, index) {
+
+    var _tr = '<td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+    $("#rowPOSSurgicalDataTR").html(_tr);
+}
+
+function checkOrderCode(data, code) {
+    var already = false;
+    for (var i in data) {
+        if (data[i].procedureCode === code) {
+            already = true;
+        }
     }
+    return already;
+}
 

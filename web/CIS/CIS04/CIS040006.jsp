@@ -50,7 +50,7 @@
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="textinput">Search Procedure</label>
                                             <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_0_ID">
-                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOSSearch" placeholder="Search Procedure Name..." tabindex="4">
+                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOSSearch" placeholder="Search Procedure Name..." tabindex="4" data-search-by-word="true">
                                             <div id="tCISOEPOSSearchLoading" ></div>
                                             <!--                                    <input class="form-control input-lg" type="text" name="problem"  id="Problem18" placeholder="Search Procedure..." tabindex="4">-->
                                             <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailPOS" placeholder="">
@@ -60,12 +60,12 @@
                                         </div>
                                         <div class="form-group" id="div_CIS_OE_POS_LVL1">
                                             <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_1_ID">
-                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS1Search" placeholder="Search Procedure Name..." tabindex="4">
+                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS1Search" placeholder="Search Procedure Name..." tabindex="4" data-search-by-word="true">
                                             <div id="tCISOEPOS1SearchLoading" ></div>
                                         </div>
                                         <div class="form-group"  id="div_CIS_OE_POS_LVL2">
                                             <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_2_ID">
-                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS2Search" placeholder="Search Procedure Name..." tabindex="4">
+                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS2Search" placeholder="Search Procedure Name..." tabindex="4" data-search-by-word="true">
                                             <div id="tCISOEPOS2SearchLoading" ></div>
                                         </div>
                                     </div>
@@ -213,4 +213,4 @@
 </div>
 <!--End add Procedure-->
 
-<script src="jsFunction/CIS040006.js?v=1" type="text/javascript"></script>
+<script src="jsFunction/CIS040006.js?v=1.1" type="text/javascript"></script>

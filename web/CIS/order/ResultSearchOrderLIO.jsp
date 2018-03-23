@@ -26,7 +26,7 @@
                     + "AND hf.hfc_cd = om.hfc_to "
                     + "AND om.order_by = au.`USER_ID`"
                     + "AND om.pmi_no = '" + pmiNo + "' "
-                    + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                    + "AND DATE(om.episode_date) = DATE(now())  "
                     + "GROUP BY od.item_cd ";
 
             //out.print(searchProblem);
@@ -66,7 +66,7 @@
                 + "AND om.order_by = au.`USER_ID`"
                 + "AND hf.hfc_cd = om.hfc_to "
                 + "AND om.pmi_no = '" + pmiNo + "' "
-                + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                + "AND DATE(om.episode_date) = DATE(now())  "
                 + " AND om.order_no = '" + orderId + "' "
                 + "GROUP BY od.item_cd ;";
 

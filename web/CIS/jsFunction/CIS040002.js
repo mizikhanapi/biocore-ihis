@@ -59,8 +59,8 @@ $(document).ready(function () {
 
 
             }
-        })
-    })
+        });
+    });
 
 
     $("#btnCIS_OE_DTO_SEARCH_ORDER").click(function (e) {
@@ -487,8 +487,51 @@ $(document).ready(function () {
         return already;
     }
 
+    //clear DTO on next patient consult.
+    $('#listQueue').on('click', '#consultBtn', function (e) {
+        _dataDTO = [];
+        $("#btnCIS_OE_DTO_SEARCH_CLEAR").click();
 
-});
+    });
+
+    $('#nextBtn').on('click', function () {
+        _dataDTO = [];
+        $("#btnCIS_OE_DTO_SEARCH_CLEAR").click();
+    });
+
+
+    //remind user to submit or cancel order before leaving the modal
+    $('#CIS040002').on('hidden.bs.modal', function () {
+
+        if (_dataDTO.length > 0) {
+            bootbox.confirm({
+                title: "Submit Order?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Ignore',
+                        className: 'btn-danger'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Submit Order',
+                        className: 'btn-success'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        $('#btnCIS_OE_DTO_SUBMIT').click();
+                    }
+                    else{
+                        bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
+                    }
+                }
+            });
+        }
+
+    });
+
+
+});// end document ready
 function calculateQuantity() {
     var drugDTOUnit = $("#tCIS_DTODrugUnit").val();
     var times = 1;

@@ -34,7 +34,7 @@
                     + " AND od.body_system_cd = bs.body_system_cd "
                     + " AND od.procedure_cd = pm.ris_procedure_cd "
                     + " AND om.pmi_no = '" + pmiNo + "' "
-                    + " AND DATE(om.episode_date) =  '" + todayDate + "' "
+                    + " AND DATE(om.episode_date) =  DATE(now()) "
                     + " GROUP BY procedure_cd ORDER BY om.episode_date DESC;";
             
         } else if (type.equals("previous")) {
@@ -75,7 +75,7 @@
                     + " AND od.body_system_cd = bs.body_system_cd "
                     + " AND od.procedure_cd = pm.ris_procedure_cd "
                     + " AND om.pmi_no = '" + pmiNo + "' "
-                    + " AND DATE(om.episode_date) = '" + todayDate + "' "
+                    + " AND DATE(om.episode_date) = DATE(now()) "
                     + " AND om.order_no = '" + orderId + "' "
                     + " GROUP BY procedure_cd ORDER BY om.episode_date DESC;";
             

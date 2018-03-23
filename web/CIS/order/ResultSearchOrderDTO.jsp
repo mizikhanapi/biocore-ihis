@@ -40,7 +40,7 @@
                     + "JOIN pis_mdc2 mdc on mdc.ud_mdc_code=od.`DRUG_ITEM_CODE` AND om.`HEALTH_FACILITY_CODE`=mdc.hfc_cd AND om.`DISCIPLINE_CODE`=mdc.discipline_cd "
                     + "JOIN adm_health_facility hf on om.`HEALTH_FACILITY_CODE`=hf.hfc_cd "
                     + "LEFT JOIN adm_users au on au.`USER_ID`=om.`ORDER_BY` "
-                    + "WHERE om.`PMI_NO` = '" + pmiNo + "' AND DATE(om.episode_date) = '" + todayDate + "' "
+                    + "WHERE om.`PMI_NO` = '" + pmiNo + "' AND DATE(om.episode_date) = DATE(now()) "
                     + "ORDER BY om.`ORDER_NO` DESC;";
 
             //out.print(searchProblem);
@@ -80,7 +80,7 @@
                 + "JOIN pis_mdc2 mdc on mdc.ud_mdc_code=od.`DRUG_ITEM_CODE` AND om.`HEALTH_FACILITY_CODE`=mdc.hfc_cd AND om.`DISCIPLINE_CODE`=mdc.discipline_cd "
                 + "JOIN adm_health_facility hf on om.`HEALTH_FACILITY_CODE`=hf.hfc_cd "
                 + "LEFT JOIN adm_users au on au.`USER_ID`=om.`ORDER_BY` "
-                + "WHERE om.`PMI_NO` = '" + pmiNo + "' AND DATE(om.episode_date) = '" + todayDate + "' AND om.order_no = '" + orderId + "' "
+                + "WHERE om.`PMI_NO` = '" + pmiNo + "' AND DATE(om.episode_date) = DATE(now()) AND om.order_no = '" + orderId + "' "
                 + "ORDER BY om.`ORDER_NO` DESC;";
 
     } else if (type.equals("previous")) {

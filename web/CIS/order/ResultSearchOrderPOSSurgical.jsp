@@ -28,7 +28,7 @@
                     + "INNER JOIN opt_room r ON od.ot_room_no = r.room_no  "
                     + "INNER JOIN adm_users au ON od.consultant_id = au.`USER_ID`  "
                     + "WHERE om.pmi_no = '" + pmiNo + "' "
-                    + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                    + "AND DATE(om.episode_date) = DATE(now())  "
                     + "GROUP BY om.order_no "
                     + "ORDER BY om.order_no ";
 
@@ -61,7 +61,7 @@
                     + "INNER JOIN opt_room r ON od.ot_room_no = r.room_no  "
                     + "INNER JOIN adm_users au ON od.consultant_id = au.`USER_ID`  "
                     + "WHERE om.pmi_no = '" + pmiNo + "' "
-                    + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                    + "AND DATE(om.episode_date) = DATE(now())  "
                     + " AND om.order_no = '" + orderId + "' "
                     + "GROUP BY om.order_no "
                     + "ORDER BY om.order_no ";
