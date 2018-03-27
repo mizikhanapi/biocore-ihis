@@ -25,7 +25,7 @@
                     + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
                     + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
                     + "WHERE  om.`PMI_NO` = '" + pmiNo + "'  "
-                    + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                    + "AND DATE(om.episode_date) = DATE(now())  "
                     + "ORDER BY om.order_no DESC;";
 
             //out.print(searchProblem);
@@ -48,7 +48,7 @@
                 + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
                 + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
                 + "WHERE  om.`PMI_NO` = '" + pmiNo + "'  "
-                + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                + "AND DATE(om.episode_date) = DATE(now())  "
                 + " AND om.order_no = '" + orderId + "' "
                 + "ORDER BY om.order_no DESC;";
 

@@ -177,10 +177,11 @@ $(document).ready(function () {
                 pmino: pmiNo,
                 episodedate: episodeDate,
                 status: "1"
-            }
+            };
             sendOrder(data, "tableOrderROS");
             searchInitialize("RIS", "D");
             $("#CIS040000").modal('hide');
+            _dataROS = [];
 
         } else {
             return false;
@@ -352,8 +353,51 @@ $(document).ready(function () {
         $("#btnCIS_OE_ROS_CANCEL").hide();
         $("#btnCIS_OE_ROS_ADD").show();
         clearROSField();
-    })
-});
+    });
+    
+    //clear _dataROS
+    $('#nextBtn').on('click', function(){
+        $('#btnCIS_OE_ROS_SEARCH_CLEAR').click();
+        _dataROS = [];
+    });
+    
+    $('#listQueue').on('click', '#consultBtn', function (e) {
+         $('#btnCIS_OE_ROS_SEARCH_CLEAR').click();
+        _dataROS = [];
+        
+    });
+    
+     //remind user to submit or cancel order before leaving the modal
+    $('#CIS040000').on('hidden.bs.modal', function () {
+
+        if (_dataROS.length > 0) {
+            bootbox.confirm({
+                title: "Submit Order?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Ignore',
+                        className: 'btn-danger'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Submit Order',
+                        className: 'btn-success'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        $('#btnCIS_OE_ROS_SUBMIT').click();
+                    }
+                    else{
+                        bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
+                    }
+                }
+            });
+        }
+
+    });
+    
+});// end document ready
 
 //function searching Radiology Procedure
 function searchingRISPRO(fieldId, loadingDivId, urlData, urlCode, codeFieldId, modalityCode, modality, bodySystemCode, bodySystem, value) {
