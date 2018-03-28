@@ -27,6 +27,11 @@
     String sql = "DELETE FROM adm_responsibility WHERE role_code = '" + roleCode + "' AND page_code = '"+pageCode+"' AND health_facility_code = '"+hfc_cd+"'";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+    
+    if(status){
+        sql = "DELETE FROM adm_responsibility_detail WHERE hfc_cd='"+hfc_cd+"' AND role_cd='"+roleCode+"' AND page_cd='"+pageCode+"';";
+        status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+    }
 
     if (status == true) {
         out.print("Success");

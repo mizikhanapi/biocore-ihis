@@ -26,6 +26,11 @@
     
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     
+    if(isUpdate){
+        sqlUpdate = "UPDATE adm_responsibility_detail set status='"+status+"' WHERE hfc_cd='"+hfc_cd+"' AND role_cd='"+roleCode+"' AND page_cd='"+pageCode+"';";
+        isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
+    }
+    
     
     if (isUpdate == true) {
         out.print("Success");

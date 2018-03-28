@@ -29,7 +29,7 @@
 
         <%@include file="libraries/headLibrary.jsp" %>
 
-        <link href="libraries/loader_animation.css" rel="stylesheet" type="text/css"/>
+        
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
