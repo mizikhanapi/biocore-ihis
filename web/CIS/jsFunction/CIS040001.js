@@ -436,11 +436,20 @@ $(document).ready(function () {
         $('#btnCIS_OE_LIO_SEARCH_CLEAR').click();
 
     });
-    
-      //remind user to submit or cancel order before leaving the modal
+
+    //remind user to submit or cancel order before leaving the modal
     $('#CIS040001').on('hidden.bs.modal', function () {
 
-        if (_dataLIO.length > 0) {
+        var gotItem = false;
+
+        for (var i = 0; i < _dataLIO.length; i++) {
+            if (typeof _dataLIO[i] != 'undefined') {
+                gotItem = true;
+                break;
+            }
+        }
+
+        if (gotItem) {
             bootbox.confirm({
                 title: "Submit Order?",
                 message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
@@ -455,10 +464,9 @@ $(document).ready(function () {
                     }
                 },
                 callback: function (result) {
-                    if(result){
+                    if (result) {
                         $('#btnCIS_OE_LIO_SUBMIT').click();
-                    }
-                    else{
+                    } else {
                         bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
                     }
                 }

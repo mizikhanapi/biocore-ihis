@@ -502,8 +502,17 @@ $(document).ready(function () {
 
     //remind user to submit or cancel order before leaving the modal
     $('#CIS040002').on('hidden.bs.modal', function () {
+        
+        var gotItem = false;
+        
+        for(var i=0; i < _dataDTO.length; i++){
+            if(typeof _dataDTO[i] != 'undefined'){
+                gotItem = true;
+                break;
+            }
+        }
 
-        if (_dataDTO.length > 0) {
+        if (gotItem) {
             bootbox.confirm({
                 title: "Submit Order?",
                 message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",

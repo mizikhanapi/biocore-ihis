@@ -213,4 +213,4 @@
 </div>
 <!--End add Procedure-->
 
-<script src="jsFunction/CIS040006.js?v=1.1" type="text/javascript"></script>
+<script src="jsFunction/CIS040006.js?v=1.2" type="text/javascript"></script>

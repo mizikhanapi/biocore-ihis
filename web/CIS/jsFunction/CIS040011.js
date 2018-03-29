@@ -75,7 +75,7 @@ $(document).ready(function () {
                 hfc_code: hfc_cd
             },
             success: function (e) {
-                
+
                 console.log(e);
                 $("#tCISOESPOConsultantCode").val(e.trim());
             }
@@ -381,9 +381,9 @@ $(document).ready(function () {
         $('#POSSurgical_NEW a[href="#surgicalProcedure1"]').tab('show');
 
     });
-    
+
     //clear the order array
-     $('#nextBtn').on('click', function () {
+    $('#nextBtn').on('click', function () {
         _dataPOSSurgical = [];
         $('#btnCIS_OE_POS_SEARCH_CLEAR').click();
 
@@ -394,11 +394,20 @@ $(document).ready(function () {
         $('#btnCIS_OE_POS_SEARCH_CLEAR').click();
 
     });
-    
-      //remind user to submit or cancel order before leaving the modal
+
+    //remind user to submit or cancel order before leaving the modal
     $('#CIS040011').on('hidden.bs.modal', function () {
 
-        if (_dataPOSSurgical.length > 0) {
+        var gotItem = false;
+
+        for (var i = 0; i < _dataPOSSurgical.length; i++) {
+            if (typeof _dataPOSSurgical[i] != 'undefined') {
+                gotItem = true;
+                break;
+            }
+        }
+
+        if (gotItem) {
             bootbox.confirm({
                 title: "Submit Order?",
                 message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
@@ -413,10 +422,9 @@ $(document).ready(function () {
                     }
                 },
                 callback: function (result) {
-                    if(result){
+                    if (result) {
                         $('#btnCIS_OE_POSSurgical_SUBMIT').click();
-                    }
-                    else{
+                    } else {
                         bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
                     }
                 }
