@@ -41,7 +41,7 @@
 
         <td><a id="REST_btnRolePage" data-toggle="modal" data-target="#REST_detail2" style="cursor: pointer"><%= dataRes.get(i).get(3)%></a></td>
         <td><%= dataRes.get(i).get(0)%></td>
-        <td><a id="REST_btnMenuModal" style="cursor: pointer"><%= dataRes.get(i).get(1)%></a></td>
+        <td><a id="MENU_btnMenuModal" style="cursor: pointer"><%= dataRes.get(i).get(1)%></a></td>
         <td style="width: 5% "><%if (dataRes.get(i).get(6).equals("1")) {
                 out.print("Inactive");
             } else {

@@ -216,6 +216,31 @@
 
 <!--modal role page map-->
 
+<!--modal menu detail-->
+<!--modal role page map-->
+<div class="modal fade" id="MENU_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="lineModalLabel">Menu Assignment</h3>
+            </div>
+            <input type="hidden" id="MENU_page_cd">
+            <input type="hidden" id="MENU_module_cd">
+            <input type="hidden" id="MENU_role_cd">
+            <div class="modal-body">
+                <h3 id="MENU_title"></h3>
+                <!-- content goes here -->
+                <div id="MENU_tableDiv"></div>
+                <!-- content goes here -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--modal menu detail-->
+
 
 <script>
 
@@ -692,7 +717,120 @@
 
         //========================== responsibility_table ==========================================================
 
-    });
+        //---------------------------------- responsibility detail -------------------------------------------------------------
+        $('#responsibilityTable').on('click', '#MENU_btnMenuModal', function () {
+            var arrData = $(this).closest('tr').find('#REST_hidden').val().split("|");
+            var page_cd = arrData[0];
+            var role_cd = arrData[2];
+            var module_cd = arrData[5];
+            var page_name = arrData[1];
+            var role_name = arrData[3];
+
+            MENU_loadMenuList(role_cd, page_cd, module_cd);
+
+            $('#MENU_title').text("Menu available for role " + role_name + " on page (" + page_cd + ") " + page_name + ".");
+            $('#MENU_page_cd').val(page_cd);
+            $('#MENU_module_cd').val(module_cd);
+            $('#MENU_role_cd').val(role_cd);
+
+        });
+
+        $('#MENU_tableDiv').on('click', '#MENU_btnEnable', function () {
+            var arrData = $(this).closest('td').find('#MENU_hidden').val().split("|");
+
+            var input = {
+                menu_cd: arrData[0],
+                role_cd: $('#MENU_role_cd').val(),
+                page_cd: $('#MENU_page_cd').val(),
+                module_cd: $('#MENU_module_cd').val(),
+                status: '0'
+            };
+
+            bootbox.confirm({
+                message: "Are you sure you want to enable menu (" + input.menu_cd + ") " + arrData[1] + "? All of its parent menus will be enabled automatically.",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        // process to enable
+                    }
+                }
+            });
+
+        });
+
+        $('#MENU_tableDiv').on('click', '#MENU_btnDisable', function () {
+            var arrData = $(this).closest('td').find('#MENU_hidden').val().split("|");
+
+            var input = {
+                menu_cd: arrData[0],
+                role_cd: $('#MENU_role_cd').val(),
+                page_cd: $('#MENU_page_cd').val(),
+                module_cd: $('#MENU_module_cd').val(),
+                status: '0'
+            };
+
+            bootbox.confirm({
+                message: "Are you sure you want to disable menu (" + input.menu_cd + ") " + arrData[1] + "? All of its child menus will be disabled automatically.",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        // process to enable
+                    }
+                }
+            });
+
+        });
+
+        function MENU_loadMenuList(role_cd, page_cd, module_cd) {
+            createScreenLoading();
+
+            var send = {
+                page_cd: page_cd,
+                role_cd: role_cd,
+                module_cd: module_cd
+            };
+
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                url: "HIS010002/menu_control/getMenuList.jsp",
+                data: send,
+                success: function (data, textStatus, jqXHR) {
+                    $('#MENU_tableDiv').html(data);
+                    $('#MENU_modal').modal('show');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#MENU_tableDiv').html("<b class='text-danger'>Oops! " + errorThrown + "</b>");
+                },
+                complete: function (jqXHR, textStatus) {
+                    destroyScreenLoading();
+                }
+            });
+        }
+
+        //================================== responsibility detail ============================================================
+
+
+    }); // END of document ready
+
 
 
 
