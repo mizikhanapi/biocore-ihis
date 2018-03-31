@@ -761,6 +761,31 @@
                 callback: function (result) {
                     if (result) {
                         // process to enable
+                        createScreenLoading();
+                        $.ajax({
+                            type: 'POST',
+                            timeout: 60000,
+                            url: "HIS010002/menu_control/access_control.jsp",
+                            data: input,
+                            dataType: 'json',
+                            success: function (data, textStatus, jqXHR) {
+                                if(data.isValid){
+                                    bootbox.alert("The menu is enabled");
+                                    MENU_loadMenuList(input.role_cd, input.page_cd, input.module_cd);
+                                    
+                                }
+                                else{
+                                    bootbox.alert("Opps! Something went wrong!");
+                                    console.log(data.query);
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                destroyScreenLoading();
+                            }
+                        });// end ajax
                     }
                 }
             });
@@ -775,7 +800,7 @@
                 role_cd: $('#MENU_role_cd').val(),
                 page_cd: $('#MENU_page_cd').val(),
                 module_cd: $('#MENU_module_cd').val(),
-                status: '0'
+                status: '1'
             };
 
             bootbox.confirm({
@@ -793,6 +818,31 @@
                 callback: function (result) {
                     if (result) {
                         // process to enable
+                        createScreenLoading();
+                        $.ajax({
+                            type: 'POST',
+                            timeout: 60000,
+                            url: "HIS010002/menu_control/access_control.jsp",
+                            data: input,
+                            dataType: 'json',
+                            success: function (data, textStatus, jqXHR) {
+                                if(data.isValid){
+                                    bootbox.alert("The menu is disabled");
+                                    MENU_loadMenuList(input.role_cd, input.page_cd, input.module_cd);
+                                    
+                                }
+                                else{
+                                    bootbox.alert("Opps! Something went wrong!");
+                                    console.log(data.query);
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                destroyScreenLoading();
+                            }
+                        });// end ajax
                     }
                 }
             });
