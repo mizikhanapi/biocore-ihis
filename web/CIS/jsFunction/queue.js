@@ -135,6 +135,7 @@ function findPatient(pmiNo, episodeDate) {
             var DataArry = result.split("|");
             $('#pName').html(DataArry[1]);
             $('#pIC').html(DataArry[0].trim());
+            $('#pIC_2').html(DataArry[2].trim());
             $('#pBloodType').html(DataArry[3]);
             $('#pSex').html(DataArry[4]);
             $('#pIdType').html(DataArry[5]);

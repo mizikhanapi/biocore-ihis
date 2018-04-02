@@ -45,7 +45,7 @@
         patientCategory = dataPatientCategory.get(0).get(0);
     }
 
-    //Convert Code to Description
+    //Convert Code to Description 0         1           2
     String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,IF(LENGTH(picture)>0,picture,'') from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 

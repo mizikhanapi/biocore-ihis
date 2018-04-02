@@ -118,7 +118,8 @@
                                         </td>
                                         <td>
                                             IC/ID No:
-                                            <span class="p-label" id="pIC">-</span>
+                                            <span class="p-label" id="pIC_2">-</span>
+                                            <span class="p-label hidden" id="pIC">-</span>
                                         </td>
                                         <td>
                                             BloodGroup/G6PD:
