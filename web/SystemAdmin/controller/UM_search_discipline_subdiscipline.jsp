@@ -16,8 +16,8 @@
     Conn conn = new Conn();
     
     if(process.equalsIgnoreCase("discipline")){
-        String query = "Select distinct(a.discipline_cd), a.discipline_name from adm_discipline a "
-                + "join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd AND a.discipline_status = b.hfc_discipline_status "
+        String query = "Select a.discipline_cd, a.discipline_name from adm_discipline a "
+                + "join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd AND a.discipline_status = b.hfc_discipline_status AND a.discipline_hfc_cd = b.hfc_cd "
                 + "WHERE a.discipline_status = '0' AND b.hfc_cd = '"+hfc+"' AND concat(a.discipline_cd, ' | ', a.discipline_name) like '%"+key+"%' "
                 + "order by a.discipline_name";
         

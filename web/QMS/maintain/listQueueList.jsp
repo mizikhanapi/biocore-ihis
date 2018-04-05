@@ -23,10 +23,10 @@
             + " left join adm_users u on u.user_id = l.user_id"
             + " left join adm_health_facility h on h.hfc_cd = l.hfc_cd"
             + " left join adm_hfc_discipline a on a.discipline_cd = l.discipline_cd and a.subdiscipline_cd = l.sub_discipline_cd and a.hfc_cd = l.hfc_cd"
-            + " left join adm_discipline d on d.discipline_cd = a.discipline_cd"
-            + " left join pms_queue_type q on q.queue_type = l.queue_type and q.status='Active' and q.hfc_cd = l.hfc_cd and q.discipline_code = l.discipline_cd"
-            + " left join pms_queue_name n on n.queue_type = l.queue_type and n.status='Active' and n.hfc_cd = l.hfc_cd and n.discipline_code = l.discipline_cd"
-            + " left JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd"
+            + " left join adm_discipline d on d.discipline_cd = a.discipline_cd AND d.discipline_hfc_cd=a.hfc_cd"
+            + " left join pms_queue_type q on q.queue_type = l.queue_type and q.status='Active' and q.hfc_cd = l.hfc_cd and q.discipline_code = l.discipline_cd and q.subdiscipline_code = l.sub_discipline_cd"
+            + " left join pms_queue_name n on n.queue_type = l.queue_type and n.status='Active' and n.hfc_cd = l.hfc_cd and n.discipline_code = l.discipline_cd and n.subdiscipline_code = l.sub_discipline_cd"
+            + " left JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd and s.subdiscipline_hfc_cd=a.hfc_cd"
             + " where l.hfc_cd = '" + hfc + "' and l.discipline_cd='" + disL + "';";
     ArrayList<ArrayList<String>> dataQL;
     dataQL = conn.getData(sql);
