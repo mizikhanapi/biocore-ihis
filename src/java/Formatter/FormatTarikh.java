@@ -23,7 +23,7 @@ public class FormatTarikh {
             parsedDate = formatter.format(initDate);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return "0000-00-00 00:00:00";
+            return "2000-01-01 00:00:00";
         }
        
 

@@ -124,7 +124,7 @@ function preventPipeKeyPress(elem) {
 
 function preventPipeKeyUp(elem){
     $(elem).keyup(function (e){
-        var str = $(this).val()
+        var str = $(this).val();
         $(this).val(str.replace(/\\/g, "").replace(/\|/g, ""));
     });
 }

@@ -61,7 +61,7 @@ public class Emailer {
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(iaSender);
             mimeMessage.setSubject(subject, "UTF-8");
-            mimeMessage.setText(message, "UTF-8");
+            mimeMessage.setText(message, "UTF-8", "html");
             mimeMessage.setRecipient(Message.RecipientType.TO, iaRecipient);
                                     
             
@@ -79,6 +79,17 @@ public class Emailer {
         
         
         return isSent;
+    }
+    
+    public static void main(String args[]){
+        String message = "<h3>Hai!!!</h3> "
+                + "<p>Click this <a href='http://localhost:8084/i-HIS.com'>link<a/> please...</p>";
+        String subject = "Test link";
+        String email = "b031410398@student.utem.edu.my";
+        Emailer em = new Emailer(email, subject, message);
+        
+        String msg = em.sendTextEmail()? "Success": "Fail";
+        System.out.println(msg);
     }
     
 }

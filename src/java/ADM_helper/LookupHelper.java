@@ -69,4 +69,12 @@ public class LookupHelper {
         
         return detail;
     }
+    
+    public ArrayList<ArrayList<String>> getListOfDetailCodeNameFlex(String master_cd, String key){
+        String query = "Select detail_reference_code, description FROM adm_lookup_detail "
+                + "WHERE master_reference_code = '"+master_cd+"' AND hfc_cd = '" + hfc_cd + "' AND status = '0' AND description like '%"+key+"%' "
+                + "ORDER BY priority_indicator desc, description";
+        
+        return con.getData(query);
+    }
 }
