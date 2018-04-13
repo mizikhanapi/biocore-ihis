@@ -865,6 +865,7 @@
                 data: send,
                 success: function (data, textStatus, jqXHR) {
                     $('#MENU_tableDiv').html(data);
+                    $('#MENU_modal').css('overflow', 'auto');
                     $('#MENU_modal').modal('show');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

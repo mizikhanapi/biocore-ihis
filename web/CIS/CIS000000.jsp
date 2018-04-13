@@ -21,6 +21,9 @@
     String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdicipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String cisSystemParam = session.getAttribute("CIS_PARAM").toString();
+    
+    MySession myCIS = new MySession(user_id, hfc_cd);
+    myCIS.initiateMenuList("02","HIS020000");
 
 
 %>
@@ -170,23 +173,41 @@
                                         <div class="tabbable-panel cis-tab">
                                             <div class="tabbable-line">
                                                 <ul class="nav nav-tabs ">
-
+                                                    <%
+                                                        if(myCIS.hasMenuAccess("CIS_01.1")){
+                                                    %>
                                                     <li class="active">
                                                         <a href="#tab_default_1" data-toggle="tab" aria-expanded="false">
                                                             <i class="fa fa-info-circle fa-lg"></i> Subjective </a>
                                                     </li>
+                                                    <%
+                                                        }
+                                                        
+                                                        if(myCIS.hasMenuAccess("CIS_01.2")){
+                                                    %>
                                                     <li class="">
                                                         <a href="#tab_default_2" data-toggle="tab" aria-expanded="false">
                                                             <i class="fa fa-check fa-lg"></i> Objective  </a>
                                                     </li>
+                                                    <%
+                                                        }
+                                                        if(myCIS.hasMenuAccess("CIS_01.3")){
+                                                    %>
                                                     <li >
                                                         <a href="#tab_default_3" data-toggle="tab" aria-expanded="true">
-                                                            <i class="fa fa-th-list fa-lg"></i> Assesment </a>
+                                                            <i class="fa fa-th-list fa-lg"></i> Assessment </a>
                                                     </li>
+                                                    <%
+                                                        }
+                                                        if(myCIS.hasMenuAccess("CIS_01.4")){
+                                                    %>
                                                     <li>
                                                         <a href="#tab_default_4" data-toggle="tab" aria-expanded="true">
                                                             <i class="fa fa-list-alt fa-lg"></i> Plan </a>
                                                     </li>
+                                                    <%
+                                                        }
+                                                    %>
                                                     <li>
 
 <!--                                                        <i class="fa fa-list-alt fa-lg hide"></i><button id="btnCIS_TEST_BUTTON" class="">testbutton</button>-->
@@ -288,12 +309,18 @@
 
             </div>
         </div>
-
+        
+        <%
+            if(myCIS.hasMenuAccess("CIS_05")){
+        %>
         <div class="material-button-anim toggle-draggable">
             <button class="material-button option1 order-ety" type="button" data-toggle="tooltip" data-placement="top" title="Physician Order Entry">
                 <a href="#order-entry" class="panelito order-ety" style="color: #fff;"><span class="fa fa-medkit"></span></a>
             </button>
         </div>
+        <%
+            }
+        %>
 
         <%@ include file="queue/QueueModal.jsp" %> 
         <%@ include file="search/SearchModal.jsp" %>
