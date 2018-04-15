@@ -115,34 +115,31 @@
                     alert("Fill in the password");
                     $("#inputPassword").focus();
                 } else {
-
+                    $('<div class="loading">Loading</div>').appendTo('#leForm');
                     $.ajax({
-                        url: "login_process2.jsp",
+                        url: "login_process.jsp",
                         type: "post",
                         data: {userIC: userID,
                             password: password
                         },
+                        dataType: 'json',
                         timeout: 60000,
                         success: function (data) {
-                            var num = parseInt(data);
-
-                            if (num === 2)
-                                window.location = "Home";
-                            else if (num === 1)
-                                alert("Wrong password");
-                            else if (num === 0)
-                                alert("User ID does not exist");
-                            else if (num === 3)
-                                alert("You don't have proper user access. Contact your admin to configure your user access");
-                            else if (num === 4) {
-                                alert("Wrong IC/Passport number");
-
-                            } else
-                                alert("Error");
+                            if(data.msg != null){
+                                alert(data.msg);
+                            }
+                            
+                            if(data.isRedirect){
+                                window.location = data.url;
+                            }
                         },
-                        error: function (err) {
-                            alert("error :" + err.toString());
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Opps! " + errorThrown);
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            $('.loading').hide();
                         }
+
 
                     });
                 }

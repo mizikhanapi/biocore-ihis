@@ -16,6 +16,7 @@ package ADM_helper;
  */
 public class MySessionKey {
     
+    //normal users
     public static final String 
             HFC_CD="HEALTH_FACILITY_CODE",
             HFC_NAME="HFC_NAME",
@@ -29,5 +30,10 @@ public class MySessionKey {
             SUBDISCIPLINE_CD="SUB_DISCIPLINE_CODE",
             SUBDISCIPLINE_NAME="SUB_DISCIPLINE_NAME",
             HFC_99="HFC_99";
+    
+    //tenant users
+    public static final String
+            TENANT_CD = "TENANT_CODE",
+            TENANT_NAME = "TENANT_NAME";
     
 }

@@ -12,7 +12,11 @@
     String code = request.getParameter("code");
     String process = request.getParameter("process");
     
-    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    
+    if(hfc_cd == null){
+        hfc_cd = "99_iHIS_99";
+    }
     
     Conn conn = new Conn();
     
@@ -30,7 +34,7 @@
         
             %>
             <option  value="0" >-- Select the district --</option>
-            <option value="00"> No District </option>>
+            <option value="00"> No District </option>
             <%
             
         }else{

@@ -4,18 +4,12 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="ADM_helper.MySession"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    if (session.getAttribute("USER_ID") != null && session.getAttribute("HEALTH_FACILITY_CODE") != null && session.getAttribute("ROLE_CODE") != null) {
-
-        response.sendRedirect("Home");
-
-        return;
-    }
-    
     Config.getBase_url(request);
     Config.getFile_url(session);
      
@@ -29,6 +23,21 @@
         out.print("Oopps! Try again later");
     }
 
+    
+    if (session.getAttribute("USER_ID") != null && session.getAttribute(MySessionKey.USER_TYPE) != null) {
+        
+        String user_type = (String) session.getAttribute(MySessionKey.USER_TYPE);
+        
+        if("STAFF".equals(user_type)){
+            response.sendRedirect("Home");
+            return;
+        }
+        else if("TENANT".equals(user_type)){
+            response.sendRedirect("../TMS/home.jsp");
+            return;
+        }
+    }  
+    
 
     //out.print(MySession.getSuperString());
 %>
@@ -131,28 +140,21 @@
                     $('<div class="loading">Loading</div>').appendTo('#leForm');
 
                     $.ajax({
-                        url: "login_process2.jsp",
+                        url: "login_process.jsp",
                         type: "post",
                         data: {userID: userID,
                             password: password
                         },
+                        dataType: 'json',
                         timeout: 60000,
                         success: function (data) {
-                            var num = parseInt(data);
-
-                            if (num === 2)
-                                window.location = "Home";
-                            else if (num === 1)
-                                alert("Wrong password");
-                            else if (num === 0)
-                                alert("User ID does not exist");
-                            else if (num === 3)
-                                alert("You don't have proper user access. Contact your admin to configure your user access");
-                            else if (num === 4) {
-                                alert("You have logged in to another PC or you did not log out properly");
-                                window.location = "ReSign-in";
-                            } else
-                                alert("Error");
+                            if(data.msg != null){
+                                alert(data.msg);
+                            }
+                            
+                            if(data.isRedirect){
+                                window.location = data.url;
+                            }
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             alert("Opps! " + errorThrown);
