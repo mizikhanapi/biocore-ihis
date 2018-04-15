@@ -42,7 +42,7 @@ public class MySession {
     private ArrayList<ArrayList<String>> listOfAssignedMenu;
 
     public MySession() {
-        // empty constructor. Only to be used to generateRandom.
+        // empty constructor. Only to be used to generateRandom and user
     }
 
     public MySession(String id, String hfc) {
@@ -52,6 +52,22 @@ public class MySession {
 
         sessionValidationMsg = "";
 
+    }
+
+    //function to generate first admin
+    public String getAdminID() {
+        String id = hfc_cd+"_ADM";
+        String query="";
+        int i=0;
+        do {
+            if(i>0){
+                id = id+i;
+            }
+            query ="SELECT user_id from adm_users WHERE user_id = '"+id+"' limit 1 ;";
+            i++;
+        }while(con.getData(query).size()>0);
+        
+        return id;    
     }
 
     //function to get the user current role code

@@ -1,11 +1,11 @@
 <%-- 
-    Document   : home
-    Created on : Apr 14, 2018, 7:13:44 PM
+    Document   : admin_hfc
+    Created on : Apr 15, 2018, 9:08:28 PM
     Author     : user
 --%>
 
 <%@include file="../Entrance/validateSession.jsp" %>
-<%@include file="validateModuleAccess.jsp" %>
+<%@include file="validateAdminAccess.jsp" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,12 +24,12 @@
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->	
-                <%@include file = "libraries/sideMenus.jsp" %>
+                <%@include file = "libraries/adminSideMenus.jsp" %>
                 <!-- menu side -->	
                 <!-- main -->		
                 <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
-                    <%@include file = "libraries/topMenus.jsp" %>
+                    <%@include file = "libraries/adminTopMenus.jsp" %>
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
@@ -88,7 +88,7 @@
 
 
 
-            $("#hfcMain").load("home/hfc_main.jsp");
+            $("#hfcMain").load("admin_hfc/hfc_main.jsp");
 //            $("#risOrderListContent").load("risManageOrderListTable.jsp");
 //            $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
 

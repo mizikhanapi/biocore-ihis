@@ -16,4 +16,5 @@
 <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
 <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
 <script src="../assets/js/papaparse.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.flexdatalist.min.js"></script>
 <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
