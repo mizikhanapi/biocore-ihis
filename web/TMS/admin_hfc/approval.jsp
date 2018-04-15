@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="java.sql.Timestamp"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="ADM_helper.Emailer"%>
 <%@page import="ADM_helper.MySession"%>
@@ -29,6 +30,8 @@
     if (isUpdate) {
         if ("0".equals(status)) {
             
+            String timestamp = new Timestamp(System.currentTimeMillis()).toString();
+            
             //create discipline, subdiscipline, assign discipline
             query = "INSERT INTO adm_discipline values('001', 'Outpatient', '', '', '', '"+user_id+"', now(), '0', '"+hfc_cd+"' )";
             rmi.setQuerySQL(con.HOST, con.PORT, query);
@@ -45,7 +48,7 @@
             String adminID= temp_mys.getAdminID();
             String adminPwd= temp_mys.getRandomSessionID();
             query = "INSERT INTO adm_users (user_id, health_facility_code, user_name, password, occupation_code, birth_date, sex_code, new_icno, home_phone, office_phone, mobile_phone, fax_no, email, id_category_code, start_date, end_date, title, nationality_code, user_type, user_group, user_classification_code, status, created_by, created_date, mother_name, room_no, picture, login_status, user_status) "+
-                            "VALUES('"+adminID+"', '"+hfc_cd+"', '"+hfc_cd+" Admin', '"+adminPwd+"', '001', now(), '001', '"+adminID+"', '', '', '', '', '"+email+"', '', 'now()', '9999-12-31 00:00:00', '002', '001', 'STAFF', '', '', '0', '"+user_id+"', now(), '-', '01', '', '0', '0')";
+                            "VALUES('"+adminID+"', '"+hfc_cd+"', '"+hfc_cd+" Admin', '"+adminPwd+"', '001', now(), '001', '"+adminID+"', '', '', '', '', '"+email+"', '', '"+timestamp+"', '9999-12-31 00:00:00', '002', '001', 'STAFF', '', '', '0', '"+user_id+"', now(), '-', '01', '', '0', '0')";
             rmi.setQuerySQL(con.HOST, con.PORT, query);
             
             //assign role to user
@@ -122,16 +125,16 @@
             rmi.setQuerySQL(con.HOST, con.PORT, copyLookup);
             rmi.setQuerySQL(con.HOST, con.PORT, copyRole);
             rmi.setQuerySQL(con.HOST, con.PORT, copyResponsibility);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyRIS_BS);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyRIS_modality);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyRIS_procedure);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyCISPro);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyCISPro1);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyCISPro2);
-            rmi.setQuerySQL(con.HOST, con.PORT, lis_item_category1);
-            rmi.setQuerySQL(con.HOST, con.PORT, lis_item_category2);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyOT_category);
-            rmi.setQuerySQL(con.HOST, con.PORT, copyOT_procedure);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyRIS_BS);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyRIS_modality);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyRIS_procedure);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyCISPro);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyCISPro1);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyCISPro2);
+//            rmi.setQuerySQL(con.HOST, con.PORT, lis_item_category1);
+//            rmi.setQuerySQL(con.HOST, con.PORT, lis_item_category2);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyOT_category);
+//            rmi.setQuerySQL(con.HOST, con.PORT, copyOT_procedure);
         }
         else{
             String em_msg ="<h3>Good day dear "+user_name+"!</h3>"
