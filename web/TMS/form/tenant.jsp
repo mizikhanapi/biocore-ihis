@@ -103,7 +103,7 @@
                     Postcode*:
                 </label>
                 <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="regPostcode" placeholder="Enter your tenant postcode" maxlength="30" required autocomplete="off"/>
+                    <input type="text" class="form-control" id="regPostcode" placeholder="Enter your tenant postcode" maxlength="30" required autocomplete="off"/>
                     <div id="regPostcodeMatch"></div>
                 </div>
             </div>

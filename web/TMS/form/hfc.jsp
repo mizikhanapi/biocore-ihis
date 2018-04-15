@@ -221,14 +221,14 @@
 
         <div class="col-md-12">
             <!-- Text input-->
-            <div class="form-group" id="inputFileToLoadDiv">
+            <div class="form-group logo_div" >
                 <label class="col-md-2 control-label" for="textinput">Logo</label>
                 <div class="col-md-8">
                     <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
                 </div>
             </div>
             <!-- Text input-->
-            <div class="form-group">
+            <div class="form-group logo_div">
 
                 <div style="width: 50%; margin: 0 auto">
                     <div id="dym">

@@ -280,7 +280,7 @@
                     }
 
                     var email = $('#regEmail').val().trim();
-                    if (email !== "" && !validateEmail(email)) {
+                    if (email !== "" && !ValidateEmail(email)) {
                         bootbox.alert("Invalid email format!", function () {
                             $('#regEmail').val("");
                             $('#regEmail').focus();

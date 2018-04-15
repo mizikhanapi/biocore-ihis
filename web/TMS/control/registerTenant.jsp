@@ -48,8 +48,8 @@
         return;
     }
 
-    query = "INSERT INTO adm_tenant(tnt_cd, tnt_name, address1, address2, address3, town_cd, district_cd, state_cd, country_cd, telephone_no, fax_no, email, created_by, created_date) "
-            + "VALUES('"+code+"', '"+name+"', '"+add1+"', '"+add2+"', '"+add3+"', '"+town+"', '"+district+"', '"+state+"', 'MY', '"+phone+"', '"+fax+"', '"+email+"', '"+user_id+"', now() );";
+    query = "INSERT INTO adm_tenant(tnt_cd, tnt_name, address1, address2, address3, town_cd, district_cd, state_cd, country_cd, telephone_no, fax_no, email, created_by, created_date, postcode) "
+            + "VALUES('"+code+"', '"+name+"', '"+add1+"', '"+add2+"', '"+add3+"', '"+town+"', '"+district+"', '"+state+"', 'MY', '"+phone+"', '"+fax+"', '"+email+"', '"+user_id+"', now(), '"+pos+"' );";
     
     RMIConnector rmi = new RMIConnector();
     if(rmi.setQuerySQL(con.HOST, con.PORT, query)){

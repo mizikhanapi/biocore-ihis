@@ -97,12 +97,6 @@
 
         }
 
-
-
-
-
-
-
         if (sizeSmall) {
             document.getElementById("dym").innerHTML = '<div class="loader"></div>';
             var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -136,8 +130,8 @@
 
 
     }
-    
-    $('#HFM_tenant').prop("readonly", true); 
+
+    $('#HFM_tenant').prop("readonly", true);
     $('#hfcTableDiv').load("home/hfc_table.jsp");
 
     $(document).ready(function () {
@@ -191,6 +185,7 @@
         $('#HFM_btnAddNew').on('click', function () {
             $('#HFM_detail').modal('show');
             $('.hide_show').hide();
+            $('.form-group').show();
             $('#HFM_AddDiv').show();
             $('#HFM_hfcCode').prop("disabled", false);
             $('#HFM_statusDiv').hide();
@@ -260,7 +255,7 @@
             }
 
             var email = $('#HFM_email').val().trim();
-            if (email !== "" && !validateEmail(email)) {
+            if (email !== "" && !ValidateEmail(email)) {
                 bootbox.alert("Invalid email format!", function () {
                     $('#HFM_email').val("");
                     $('#HFM_email').focus();
@@ -288,9 +283,9 @@
                 });
                 return false;
             }
-            
+
             var ip = $('#HFM_IP').val().trim();
-            if(ip !=="" && !ValidateIPaddress(ip)){
+            if (ip !== "" && !ValidateIPaddress(ip)) {
                 bootbox.alert("Invalid IP format", function () {
                     $('#HFM_IP').val('');
                     $('#HFM_IP').focus();
@@ -476,10 +471,80 @@
 
         initFlexData("HFM_postcode", "HFM_postcodeMatch", "control/getDetailFlexList.jsp", "0079");
 
+//        $('#hfcTableDiv').on('click', '#HFT_btnLogoModal', function(){
+//            $('#HFM_detail').modal('show');
+//            $('.form-group').hide();
+//            $('.hide_show').hide();
+//            $('.logo_div').show();
+//            $('#HFM_LogoDiv').show();
+//        });
+
+        $('#hfcTableDiv').on('click', '#HFT_btnActivate', function(){
+            var arrData = $(this).closest('td').find("#HFT_hidden").val().split("|");
+            var hfc_cd = arrData[0];
+            var hfc_name = arrData[2];
+            var ask = "Are you sure you want to activate ("+hfc_cd+") "+hfc_name+"?";
+            activateHFC(ask, hfc_cd, "0");
+        });
+        
+        $('#hfcTableDiv').on('click', '#HFT_btnDeactivate', function(){
+            var arrData = $(this).closest('td').find("#HFT_hidden").val().split("|");
+            var hfc_cd = arrData[0];
+            var hfc_name = arrData[2];
+            var ask = "Are you sure you want to deactivate ("+hfc_cd+") "+hfc_name+"?";
+            activateHFC(ask, hfc_cd, "1");
+        });
+
+
+        function activateHFC(ask, hfc_cd, status) {
+            bootbox.confirm({
+                message: ask,
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        createScreenLoading();
+                        var input = {
+                            hfc_cd: hfc_cd,
+                            status: status
+                        };
+                        $.ajax({
+                            type: 'POST',
+                            data: input,
+                            dataType: 'json',
+                            url: "home/hfc_activate.jsp",
+                            timeout: 60000,
+                            success: function (data, textStatus, jqXHR) {
+                                bootbox.alert(data.msg);
+                                if(data.isValid){
+                                    $('#hfcTableDiv').load("home/hfc_table.jsp");
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log("Error: "+errorThrown);
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                destroyScreenLoading();
+                            }
+                        });
+                    }
+                }
+            });
+
+        }
+
         destroyScreenLoading();
 
 
-    });
+    });//end ready
 
 
 </script>
