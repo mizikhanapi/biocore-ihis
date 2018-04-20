@@ -106,11 +106,12 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
 
 
     $('#' + fieldId).flexdatalist({
-        minLength: 3,
+        minLength: 1,
         searchIn: 'name',
         searchDelay: 2000,
         url: urlData,
         cache: false,
+        searchByWord: true,
         params: {
             timeout: 3000,
             success: function (result) {
@@ -319,6 +320,7 @@ function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
         searchDelay: 2000,
         url: "search/ResultDISCIPLINESearch.jsp?hfc_code="+hfc_code,
         cache: false,
+        searchByWord: true,
         params: {
             timeout: 3000,
             success: function (result) {
@@ -773,6 +775,7 @@ function searchDOCTOROnly(fieldId, loadingDivId, hfc_code) {
         searchDelay: 2000,
         url: "search/ResultDOCTORSearch.jsp?hfc_code=" + hfc_code,
         cache: false,
+        searchByWord: true,
         params: {
             timeout: 3000,
             success: function (result) {
