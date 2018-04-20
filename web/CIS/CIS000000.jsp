@@ -113,7 +113,7 @@
                                 <h4 style="margin: 0px; padding: 0px;">Patient Info <span id="pName2"></span></h4>
                                 <hr class="pemisah"/>
                                 
-                                <table class="p-table" style="width: 100%; color: #999;" id="patient-detail-dashboard">
+                                <table class="p-table" style="width: 100%; color: #999;font-weight: bolder;" id="patient-detail-dashboard">
                                     <tr>
                                         <td class="hidden">
                                             Name:
