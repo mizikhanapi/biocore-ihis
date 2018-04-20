@@ -45,8 +45,8 @@
         patientCategory = dataPatientCategory.get(0).get(0);
     }
 
-    //Convert Code to Description 0         1           2
-    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,IF(LENGTH(picture)>0,picture,'') from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
+    //Convert Code to Description 0         1           2           3       4        5        6         7           8                   9                   10
+    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,IF(LENGTH(picture)>0,picture,''),HOME_ADDRESS from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
     String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmiNo + "'";
@@ -152,9 +152,14 @@
     }else{
         gambarPesakitoi =  dataQueue.get(0).get(9);
     }
+    
+    String bDate = dataQueue.get(0).get(6);
+    String splitDate[] = bDate.split("-");
+    String updatedBDate = splitDate[2]+"/"+splitDate[1]+"/"+splitDate[0];
+    
 
-//out.print(check);
-    String patientBio = dataQueue.get(0).get(0) + "|" + dataQueue.get(0).get(1) + "|" + dataQueue.get(0).get(2) + "|" + bloodType + "|" + sex + "|" + IdType + "|" + ageS + "|" + race + "|" + allergy + "|" + patientCategory + "|" + dataFull+ "|" + gambarPesakitoi;
+//out.print(check);             0                               1                               2                           3              4            5             6            7              8                 9                   10                  11                      12                                  13
+    String patientBio = dataQueue.get(0).get(0) + "|" + dataQueue.get(0).get(1) + "|" + dataQueue.get(0).get(2) + "|" + bloodType + "|" + sex + "|" + IdType + "|" + ageS + "|" + race + "|" + allergy + "|" + patientCategory + "|" + dataFull+ "|" + gambarPesakitoi+ "|" +  dataQueue.get(0).get(10)+ "|" +  updatedBDate;
 
     session.setAttribute("patientCategory", patientCategory);
     session.setAttribute("patientPMINo", dataQueue.get(0).get(0));
