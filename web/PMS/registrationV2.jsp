@@ -58,7 +58,7 @@
     <div class="col-md-12">
         <div id="searchPatientModule"><%@include file = "search/searchPatient.jsp" %></div>
         <hr class="pemisah" />
-        <h4>Basic Info</h4>
+        <h4>Patient Info</h4>
 <!--        <button class="btn btn-success pull-right" data-toggle="modal" data-target="#queueNumberModal"><i class="fa fa-plus"></i>&nbsp; Add Next Of Kin Information</button></h4>-->
 
         <form class="form-horizontal" name="myForm2" id="myForm2">
@@ -81,15 +81,35 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">New IC No. *</label>
+                        <label class="col-md-4 control-label" for="textinput">Address *</label>
                         <div class="col-md-6">
-                            <input id="pnic" name="pnic" type="text" readonly placeholder="" class="form-control input-md">
+                            <textarea id="pAddress" name="pAddress" readonly placeholder="" class="form-control input-md"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <!-- Text input-->
                     <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Identifier (IC/ID No) *</label>
+                        <div class="col-md-6">
+                            <input id="pnic" name="pnic" type="text" readonly placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                     <!-- Text input-->
+                    <div class="form-group ">
+                        <label class="col-md-4 control-label" for="textinput">Birth Date *</label>
+                        <div class="col-md-6">
+                            <input id="pDOB" name="poic" type="text" readonly placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                      <!-- Text input-->
+                    <div class="form-group ">
+                        <label class="col-md-4 control-label" for="textinput">Gender *</label>
+                        <div class="col-md-6">
+                            <input id="pGender" name="poic" type="text" readonly placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group hidden">
                         <label class="col-md-4 control-label" for="textinput">Old IC No.</label>
                         <div class="col-md-6">
                             <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
@@ -97,7 +117,7 @@
                     </div>
 
                     <!-- Select Basic -->
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label class="col-md-4 control-label" for="selectbasic">ID Type *</label>
                         <div class="col-md-6">
                             <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
@@ -105,7 +125,7 @@
                     </div>
 
                     <!-- Text input-->
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         <label class="col-md-4 control-label" for="textinput">Identification No. *</label>
                         <div class="col-md-6">
                             <input id="pino" name="pino" type="text" readonly placeholder="" class="form-control input-md">

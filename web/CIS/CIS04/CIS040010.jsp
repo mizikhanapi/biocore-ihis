@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="btn-group" role="group">
-                        <button type="button" id="btnCIS_Discharge_Cancel" class="btn btn-default btn-block btn-lg"  role="button">Close</button>
+                        <button type="button" id="btnCIS_Discharge_Cancel" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>
                 </form>

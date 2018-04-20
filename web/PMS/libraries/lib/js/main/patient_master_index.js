@@ -2,7 +2,7 @@ var gambarURI2 = "";
 var ext = "";
 
 $(document).ready(function () {
-    
+
     $(function () {
 
         $('#PMIbday').datepicker({
@@ -64,7 +64,7 @@ $(document).ready(function () {
         } else {
             pminotemp = $("#PMIpminotemp").val();
         }
-        
+
         if (poic === "") {
             poic = "-";
         } else {
@@ -252,7 +252,7 @@ $(document).ready(function () {
             'pemail': pemail,
             'ppayer': ppayer,
             'ppty': ppty,
-            'gambar':picture};
+            'gambar': picture};
         console.log(data);
         //console.log(convertedBday);
         //convertedBday
@@ -367,7 +367,7 @@ $(document).ready(function () {
         } else if (pperty === null) {
             bootbox.alert("Please key in patient's Person Type..");
         } else if (pmino === "") {
-            bootbox.alert("Pleace use the search function to generate the pmino before registering/saving patient biodata..");
+            bootbox.alert("Pleace generate the PMI No before registering/saving patient biodata..");
         } else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",
@@ -392,9 +392,49 @@ $(document).ready(function () {
         }
     });
 
+    $('#PMI_btnGenerate').on('click', function (e) {
+        e.preventDefault();
+        var pmiNo = $('#PMIpmino').val().trim();
+
+        if (pmiNo !== "") {
+            return;
+        }
+
+        var idInput = $('#PMInic').val().trim();
+
+        if (idInput === "") {
+            bootbox.alert("Please enter the patient IC number first!", function () {
+                $('#PMInic').focus();
+            });
+            return;
+        }
+        $body.addClass("loading");
+        $.ajax({
+            type: "POST",
+            url: "controller/pmiGen.jsp",
+            data: {'idInput': idInput}, // Send input
+            timeout: 60000,
+            success: function (list) {
+                $('input[id=PMIpmino]').val($.trim(list));
+                $('input[id=pmino]').val($.trim(list));
+                //employment
+                $('input[id=EMPpmino]').val($.trim(list));
+                // set value in next of kin page
+                $('input[id=KINpmino]').val($.trim(list));
+                // set value in family page
+                $('input[id=FAMpmi]').val($.trim(list));
+                // set value in MEDICAL page
+                $('input[id=MEDpmino]').val($.trim(list));
+            },
+            complete: function (jqXHR, textStatus) {
+                $body.removeClass("loading");
+            }
+        });
+    });
+
     $('#clearPMI').on('click', function () {
         $('#formPMI')[0].reset();
-        $('input[id=PMIpmino]').prop('readonly', false);
+        //$('input[id=PMIpmino]').prop('readonly', false);
         $('#PMInic').prop('readonly', false);
     });
 
@@ -493,7 +533,7 @@ function loadImageFileAsURL2()
             {
 
                 gambarURI2 = fileLoadedEvent.target.result;
-                
+
 
 
                 document.getElementById("dym2").innerHTML = '<img id="myImage2" class="img-responsive" width="300" height="300"/>';

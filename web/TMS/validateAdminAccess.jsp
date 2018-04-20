@@ -10,6 +10,11 @@
     String adm_hfc = (String) session.getAttribute(MySessionKey.HFC_99);
     String adm_user = (String) session.getAttribute(MySessionKey.USER_ID);
     
+    if(adm_hfc == null || "null".equalsIgnoreCase(adm_hfc) || adm_hfc.equals(null)){
+        response.sendRedirect("../Entrance/destroySession.jsp");
+        return;
+    }
+    
     MySession adm_mys = new MySession(adm_user, adm_hfc);
     
     if(!adm_mys.isSuperUser()){

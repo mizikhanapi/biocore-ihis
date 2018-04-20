@@ -747,12 +747,22 @@
         <url-pattern>/RIS/PastOrder</url-pattern>
     </servlet-mapping>
     
-     <!--====== End mapping RIS ====-->
+    <!--====== End mapping RIS ====-->
     
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/Error/index.jsp</location>
     </error-page>
+    
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+		
 
 
     <session-config>

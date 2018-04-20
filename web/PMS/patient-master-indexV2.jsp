@@ -49,15 +49,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <center>
-                    <div class="form-group">
-                <div style="width: 50%; margin: 0 auto">
-                    <div id="my_camera"></div>
-                </div>
-                    </div>
+                        <div class="form-group">
+                            <div style="width: 50%; margin: 0 auto">
+                                <div id="my_camera"></div>
+                            </div>
+                        </div>
                     </center>
                 </div>
                 <script>
-                    
+
                     Webcam.set({
                         width: 320,
                         height: 240,
@@ -68,22 +68,22 @@
                         force_flash: false
                     });
                     var elementFile = document.getElementById('my_camera');
-                    function start_camera(){
+                    function start_camera() {
                         var x = $('#btncamera').text();
-                        if(x==="Open Camera"){
-                            Webcam.attach( '#my_camera' );
+                        if (x === "Open Camera") {
+                            Webcam.attach('#my_camera');
                             document.getElementById('my_camera').scrollIntoView();
                             $('#btncamera').text("Take Picture");
-                        }else if(x==="Take Picture"){
-                            Webcam.snap( function(data_uri) {
-                                document.getElementById('dym2').innerHTML = '<img id="myImage2" src="'+data_uri+'"/>';
-                            } );
+                        } else if (x === "Take Picture") {
+                            Webcam.snap(function (data_uri) {
+                                document.getElementById('dym2').innerHTML = '<img id="myImage2" src="' + data_uri + '"/>';
+                            });
                             Webcam.reset();
                             elementFile.removeAttribute("style");
                             $('#btncamera').text("Open Camera");
                         }
                     }
-                    function close_camera(){
+                    function close_camera() {
                         Webcam.reset();
                         elementFile.removeAttribute("style");
                         $('#btncamera').text("Open Camera");
@@ -94,38 +94,41 @@
                 <!-- Text input-->
                 <div class="col-md-12">
                     <center>
-                    <div class="form-group">
-                        <div style="width: 50%; margin: 0 auto">
-                            <div id="dym2">
+                        <div class="form-group">
+                            <div style="width: 50%; margin: 0 auto">
+                                <div id="dym2">
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </center>
-                <div class="form-group">
-                    <div style="width: 50%; margin: 0 auto">
-                        <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif">
-                    </div>
-                </div>
-                    <center>
                     <div class="form-group">
-                        <div style="width: 50%; margin: 0 auto"><a id="btncamera" href="javascript:void(start_camera())">Open Camera</a></div>
+                        <div style="width: 50%; margin: 0 auto">
+                            <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif">
+                        </div>
                     </div>
+                    <center>
+                        <div class="form-group">
+                            <div style="width: 50%; margin: 0 auto"><a id="btncamera" href="javascript:void(start_camera())">Open Camera</a></div>
+                        </div>
                     </center>
                     <center>
-                    <div class="form-group">
-                        <div style="width: 50%; margin: 0 auto"><a href="javascript:void(close_camera())">Close Camera</a></div>
-                    </div>
+                        <div class="form-group">
+                            <div style="width: 50%; margin: 0 auto"><a href="javascript:void(close_camera())">Close Camera</a></div>
+                        </div>
                     </center>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-6">
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
-                        <div class="col-md-6">
-                            <input id="PMIpmino" name="PMIpmino" type="text" placeholder="" class="form-control input-md">
+                        <div class="col-md-6 input-group">
+                            <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" id="PMI_btnGenerate">Generate PMI</button>
+                            </span>
                         </div>
                     </div>
 
@@ -160,7 +163,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">New IC No. *</label>
                         <div class="col-md-6">
-                            <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md numbersOnly" maxlength="12">
+                            <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md" maxlength="12">
                         </div>
                     </div>
 

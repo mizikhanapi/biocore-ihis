@@ -15,7 +15,7 @@
                 </ul>
                 <div class="nav navbar-nav navbar-left">
                     <div style="padding: 10px 20px; display: block; font-size: 22px;">
-                        <span style="font-size: 22px;">RIS Screen</span>
+                        <span style="font-size: 22px;">TMS Screen</span>
                     </div>
                 </div>
 

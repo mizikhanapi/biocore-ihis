@@ -102,7 +102,7 @@
 
 <%
     } else {
-        out.print("No record for this moment " + resultProblem);
+        out.print("No record for this moment. ");
     }
 %>
 

@@ -1189,8 +1189,8 @@ $(document).ready(function () {
                 //$("CIS040000_RESULT_IMG").html(e);
             }
 
-        })
-    })
+        });
+    });
 
     $('#LISResult').on('click', function () {
 
@@ -1222,7 +1222,7 @@ $(document).ready(function () {
                 //$("CIS040000_RESULT_IMG").html(e);
             }
 
-        })
+        });
 
 
     });

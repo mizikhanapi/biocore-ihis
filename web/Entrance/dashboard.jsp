@@ -472,5 +472,6 @@
         System.out.println("Entering dashboard");
         e.printStackTrace();
         out.print("<h1>Oopps! Something went wrong. Try again later.</h1>");
+        response.sendRedirect("destroySession.jsp");
     }
 %>
