@@ -88,6 +88,8 @@
             <button <%=canActivate%> id="HFT_btnActivate" title="Activate HFC" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i></button>
             
             <button <%=canDeactivate%> id="HFT_btnDeactivate" title="Deactivate HFC" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+            
+            <button id="HFT_btnResendEmail" title="Resend Email" class="btn btn-default"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                 <%
                     }
                 %>
