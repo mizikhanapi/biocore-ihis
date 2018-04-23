@@ -281,19 +281,19 @@ function searchInitialize(id, action){
             searching("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "dgsCode", "search/ResultDGSSearchCode.jsp");
             searching("tCISSubDGSSearchPersonalised", "tCISSubDGSSearchLoading", "search/ResultDGSPersonaliseSearch.jsp", "dgsCode", "search/ResultDGSPersonaliseSearchCode.jsp");
             
-        }else if(id === "RIS"){
-            searching("tCISOEROSProblemName", "tCISOEROSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCode", "search/ResultCCNSearchCode.jsp");
+        }else if(id === "RIS"){            
+            searching("tCISOEROSProblemName", "tCISOEROSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCode", "search/ResultCCNSearchCode.jsp");            
             searchingHFCValue("tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail", hfc_name);
-            searchHFCDetailv2($("#tCISOEROSHFC").val(), "hfcIdROS", "hfcOrderDetail", "hfcProviderDetail", "locationROS");
+            searchHFCDetailv2($("#tCISOEROSHFC").val(), "hfcIdROS", "hfcOrderDetail", "hfcProviderDetail", "locationROS");           
             $("#tCISOEROSProcedureSearch").prop("disabled", false);
             searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS", '')
        
-        }else if(id === "LIO"){
-            searchingHFC("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO");
+        }else if(id === "LIO"){       
+            searchingHFC("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO");           
             searching("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp");
-            searchLIO("tCISOELIOSearch", "search/ResultLIOSearch.jsp", "tCISOELIOSearchLoading", "");
+            searchLIO("tCISOELIOSearch", "search/ResultLIOSearch.jsp", "tCISOELIOSearchLoading", "");         
             searchingHFCValue("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO", hfc_name);
-            searchHFCDetailv2($("#tCISOELIOHFC").val(), "hfcIdLOS", "hfcOrderDetailLIO", "hfcProviderDetailLIO", "-");
+            searchHFCDetailv2($("#tCISOELIOHFC").val(), "hfcIdLOS", "hfcOrderDetailLIO", "hfcProviderDetailLIO", "-");           
         }else if(id === "DTO"){
             searching("tCISOEDTOProblemName", "tCISOEDTOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeDTO", "search/ResultCCNSearchCode.jsp");
             searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", "");

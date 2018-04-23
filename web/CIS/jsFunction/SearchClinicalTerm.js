@@ -266,6 +266,7 @@ function searchHFCOnly(fieldId,loadingDivId){
         searchDelay: 2000,
         url: "search/ResultHFCSearch.jsp",
         cache: false,
+        searchByWord: true,
         params: {
             timeout: 3000,
             success: function (result) {
@@ -412,6 +413,7 @@ function searchWard(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue,wardC
         searchDelay: 2000,
         url: "search/ResultWARDSearch.jsp?hfc_code="+hfc_cd+"&discipline_cd="+discipline_cd+"&class="+wardClass,
         cache: false,
+        searchByWord: true,
         params: {
             timeout: 3000,
             success: function (result) {
@@ -432,6 +434,7 @@ function searchWardClass(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue)
         searchDelay: 2000,
         url: "search/ResultWARDCLASSSearch.jsp?hfc_code="+hfc_cd+"&discipline_cd="+discipline_cd,
         cache: false,
+        searchByWord: true,
         params: {
             timeout: 3000,
             success: function (result) {
