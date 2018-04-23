@@ -479,19 +479,19 @@
 //            $('#HFM_LogoDiv').show();
 //        });
 
-        $('#hfcTableDiv').on('click', '#HFT_btnActivate', function(){
+        $('#hfcTableDiv').on('click', '#HFT_btnActivate', function () {
             var arrData = $(this).closest('td').find("#HFT_hidden").val().split("|");
             var hfc_cd = arrData[0];
             var hfc_name = arrData[2];
-            var ask = "Are you sure you want to activate ("+hfc_cd+") "+hfc_name+"?";
+            var ask = "Are you sure you want to activate (" + hfc_cd + ") " + hfc_name + "?";
             activateHFC(ask, hfc_cd, "0");
         });
-        
-        $('#hfcTableDiv').on('click', '#HFT_btnDeactivate', function(){
+
+        $('#hfcTableDiv').on('click', '#HFT_btnDeactivate', function () {
             var arrData = $(this).closest('td').find("#HFT_hidden").val().split("|");
             var hfc_cd = arrData[0];
             var hfc_name = arrData[2];
-            var ask = "Are you sure you want to deactivate ("+hfc_cd+") "+hfc_name+"?";
+            var ask = "Are you sure you want to deactivate (" + hfc_cd + ") " + hfc_name + "?";
             activateHFC(ask, hfc_cd, "1");
         });
 
@@ -524,12 +524,12 @@
                             timeout: 60000,
                             success: function (data, textStatus, jqXHR) {
                                 bootbox.alert(data.msg);
-                                if(data.isValid){
+                                if (data.isValid) {
                                     $('#hfcTableDiv').load("home/hfc_table.jsp");
                                 }
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
-                                console.log("Error: "+errorThrown);
+                                console.log("Error: " + errorThrown);
                             },
                             complete: function (jqXHR, textStatus) {
                                 destroyScreenLoading();
@@ -542,6 +542,85 @@
         }
 
         destroyScreenLoading();
+
+
+        function disabledTemporary(obj) {
+            $(obj).prop('disabled', true);
+            setTimeout(function () {
+                $(obj).prop('disabled', false);
+            }, 60000);
+        }
+
+        $('#hfcTableDiv').on('click', '#HFT_btnResendEmail', function () {
+            var arrData = $(this).closest('td').find("#HFT_hidden").val().split("|");
+            var hfc_cd = arrData[0];
+            var hfc_name = arrData[2];
+
+            var leObj = this;
+
+            bootbox.confirm({
+                message: "Are you sure you wan to resend the Admin ID for (" + hfc_cd + ") " + hfc_name + "?",
+                buttons: {
+                    confirm: {
+                        label: 'Send please',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'Cancel',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        createScreenLoading();
+                        var input = {
+                            hfc_cd: hfc_cd,
+                            hfc_name: hfc_name
+                        };
+                        $.ajax({
+                            type: 'POST',
+                            data: input,
+                            dataType: 'json',
+                            url: "home/resendEmail.jsp",
+                            timeout: 60000,
+                            success: function (data, textStatus, jqXHR) {
+                                bootbox.alert(data.msg);
+                                if (data.isValid) {
+                                    disabledTemporary(leObj);
+                                }
+                                if (!data.hasLookup) {
+                                    ajaxCopyLookup(input);
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log("Error: " + errorThrown);
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                destroyScreenLoading();
+                            }
+                        });
+                    }
+                }
+            });
+
+
+        });
+
+        function ajaxCopyLookup(input) {
+            $.ajax({
+                type: 'POST',
+                data: input,
+                dataType: 'json',
+                url: "home/copyLookupDetail.jsp",
+                timeout: 60000,
+                success: function (data, textStatus, jqXHR) {
+                   console.log(data.msg);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("Error: " + errorThrown);
+                }
+            });
+        }
 
 
     });//end ready
