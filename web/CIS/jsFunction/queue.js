@@ -25,15 +25,21 @@ $(document).ready(function () {
 
 
     $('#listQueue').on('click', '#consultBtn', function (e) {
+
         var row = $(this).closest('tr');
         var user_idList = row.find('#user_idQueue_List').text();
         statusBe4 = row.find('#status').text();
-        
+
         if (statusBe4 === 'On Hold') {
+
             if (user_idList !== doctor_id) {
+
                 alert("Patient has been consult by another doctor. Please select another waiting patient");
+
             } else {
+
                 if (pmiNo === "" && episodeDate === "") {
+
                     reloadStat = "1";
 
                     e.preventDefault();
@@ -44,14 +50,23 @@ $(document).ready(function () {
                     status = row.find('#status').text();
 
                     if (statusBe4 === 'On Hold') {
+
                         statusNow = 2;
+
                     } else if (statusBe4 === 'Waiting') {
+
                         statusNow = 0;
+
                     } else if (statusBe4 === 'Missing') {
+
                         statusNow = 4;
+
                     } else if (statusBe4 === 'Discharge') {
+
                         statusNow = 1;
+
                     }
+
                     var updateConsult = updateStatus(pmiNo, episodeDate, 5);
 
                     var patient = findPatient(pmiNo, episodeDate);
@@ -60,7 +75,9 @@ $(document).ready(function () {
                     encounterDate = getDate();
 
                     if (status === 'On Hold') {
+
                         getEHRPatient(pmiNo, episodeDate);
+
                     }
 
                     $('#queueModal').modal('toggle');
@@ -68,12 +85,16 @@ $(document).ready(function () {
 
 
                 } else {
+
                     alert('You need complete the consultation on patient before first');
+
                 }
 //
             }
         } else {
+
             if (pmiNo === "" && episodeDate === "") {
+
                 reloadStat = "1";
 
                 e.preventDefault();
@@ -84,15 +105,23 @@ $(document).ready(function () {
                 status = row.find('#status').text();
 
                 if (statusBe4 === 'On Hold') {
+
                     statusNow = 2;
+
                 } else if (statusBe4 === 'Waiting') {
+
                     statusNow = 0;
+
                 } else if (statusBe4 === 'Missing') {
+
                     statusNow = 4;
+
                 } else if (statusBe4 === 'Discharge') {
+
                     statusNow = 1;
+
                 }
-                
+
                 //Kept comment for a while
 //                var updateConsult = updateStatus(pmiNo, episodeDate, 5);
 //
@@ -104,12 +133,14 @@ $(document).ready(function () {
                 encounterDate = getDate();
 
                 $('#queueModal').modal('toggle');
-                 $('.soap-select').off('click',disableSOAP);
+                $('.soap-select').off('click', disableSOAP);
                 //$('.soap-select').unbind('click');
 
 
             } else {
+
                 alert('You need complete the consultation on patient before first');
+
             }
 //
         }
@@ -122,6 +153,7 @@ $(document).ready(function () {
 });
 
 function findPatient(pmiNo, episodeDate) {
+
     $.ajax({
         url: 'search/searchPatient.jsp',
         method: 'POST',
@@ -134,6 +166,10 @@ function findPatient(pmiNo, episodeDate) {
 
             var DataArry = result.split("|");
             $('#pName').html(DataArry[1]);
+            $('#pName2').html("(" + DataArry[1] + ")");
+            $('#pPMINo').html(DataArry[0]);
+            $('#pAddress').html(DataArry[12]);
+            $('#pBirthDayDate').html(DataArry[13]);
             $('#pIC').html(DataArry[0].trim());
             $('#pIC_2').html(DataArry[2].trim());
             $('#pBloodType').html(DataArry[3]);
@@ -144,7 +180,7 @@ function findPatient(pmiNo, episodeDate) {
             $('#pRace').html(DataArry[7]);
             patientCategory = DataArry[9];
             fullPatientData = DataArry[10];
-            $('#gambarpesakitdisini').html('<img class="img-responsive" width="100" height="100" src="'+DataArry[11]+'" />');
+            $('#gambarpesakitdisini').html('<img class="img-responsive" width="100" height="100" src="' + DataArry[11] + '" />');
 
 
         }
@@ -166,7 +202,7 @@ function getPDI(pmiNo, episodeDate) {
             PDIInfo = result.trim();
         },
         error: function (err) {
-            alert("Get PDI error: "+err);
+            alert("Get PDI error: " + err);
         }
     });
 }
@@ -191,6 +227,7 @@ function updateStatus(pmiNo, episodeDate, status) {
 
 //------------ update status to handle multiple user in selecting the same patient------
 function updateStatus_2(pmiNo, episodeDate, status, preStatus) {
+
     $.ajax({
         url: 'search/changeStatus_2.jsp',
         method: 'POST',
@@ -201,20 +238,26 @@ function updateStatus_2(pmiNo, episodeDate, status, preStatus) {
             preStatus: preStatus
         },
         success: function (result) {
-            
-            if(result.trim()==="|1|"){
+
+            if (result.trim() === "|1|") {
+
                 var patient = findPatient(pmiNo, episodeDate);
                 var getPDIInfo = getPDI(pmiNo, episodeDate);
-                 reloadStat = "1";
-            }
-            else{
+                reloadStat = "1";
+
+            } else {
+
                 //pmiNo = "";
                 bootbox.alert("The patient has been taken by other doctor.");
                 clearCIS();
+
             }
+
         },
         error: function (err) {
+
             console.log(err);
+
         }
     });
 }
@@ -612,13 +655,13 @@ function convertEHR(ehr) {
                 _data.push(objPainScale);
                 displayPanScale(objPainScale.painScale, objPainScale.resultPanScale);
             }
-            
-            if(VTSData[31] !==""){
-                var objBGlu={
-                    Acode:"VTS",
+
+            if (VTSData[31] !== "") {
+                var objBGlu = {
+                    Acode: "VTS",
                     CIS020016_glucose: VTSData[31]
                 };
-                
+
                 _data.push(objBGlu);
                 displayBGlucose(objBGlu.CIS020016_glucose);
             }
@@ -654,24 +697,24 @@ function convertEHR(ehr) {
             } else {
                 var objPupil = {
                     Acode: "VTS",
-                    left_pupil:VTSData[15],
-                    right_pupil:VTSData[37],
-                    left_reactivity:VTSData[16],
-                    right_reactivity:VTSData[17]
+                    left_pupil: VTSData[15],
+                    right_pupil: VTSData[37],
+                    left_reactivity: VTSData[16],
+                    right_reactivity: VTSData[17]
                 };
-             
+
                 _data.push(objPupil);
 
                 displayPupil(objPupil);
             }
-            if (VTSData[39] === "" && VTSData[40] === ""&& VTSData[42] === "") {
+            if (VTSData[39] === "" && VTSData[40] === "" && VTSData[42] === "") {
 
             } else {
                 var objVision = {
                     Acode: "VTS",
-                    left_eye_score:VTSData[39],
-                    right_eye_score:VTSData[40],
-                    vision_comment:VTSData[42]
+                    left_eye_score: VTSData[39],
+                    right_eye_score: VTSData[40],
+                    vision_comment: VTSData[42]
                 };
                 console.log(objVision);
                 _data.push(objVision);
@@ -912,7 +955,7 @@ function convertEHR(ehr) {
             console.log(MEC);
             var MECData1 = MEC.split("ICD10");
             var MECData = MECData1[2].split("^");
-            
+
             var objMEC = {
                 Acode: "MEC",
                 DateFromMEC: MECData[5],
@@ -1287,13 +1330,13 @@ function lexerDCG(data) {
                 var index = getDCGItemIndex(_data, dataObj);
                 indexArry.push(index);
             }
-            
-            if(VTSData[31] !==""){
+
+            if (VTSData[31] !== "") {
                 var objBGlu = {
                     Acode: "VTS",
                     CIS020016_glucose: VTSData[31]
                 };
-                
+
                 dataObj = objBGlu;
             }
 
@@ -1431,7 +1474,6 @@ function lexerDCG(data) {
                 priorityROScd: priorityAry[1],
                 patientConditionROS: patientConditionAry[2],
                 patientConditionROScd: patientConditionAry[1],
-
             };
 
             dataObj = objROS;
@@ -1454,7 +1496,6 @@ function lexerDCG(data) {
                 hfcLOS: hfcAry[1],
                 priorityLOS: prioAry[1],
                 searchLOS: labAry[1],
-
             };
             dataObj = objLIO;
 

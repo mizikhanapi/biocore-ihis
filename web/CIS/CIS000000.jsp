@@ -110,14 +110,18 @@
                     <div class="row" id="div_CIS_PATIENT_DASHBOARD">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h4 style="margin: 0px; padding: 0px;">Patient Details </h4>
+                                <h4 style="margin: 0px; padding: 0px;">Patient Info <span id="pName2"></span></h4>
                                 <hr class="pemisah"/>
                                 
-                                <table class="p-table" style="width: 100%; color: #999;" id="patient-detail-dashboard">
+                                <table class="p-table" style="width: 100%; color: #999;font-weight: bolder;" id="patient-detail-dashboard">
                                     <tr>
-                                        <td>
+                                        <td class="hidden">
                                             Name:
                                             <span class="p-label" id="pName">-</span>
+                                        </td>
+                                        <td >
+                                            PMI No:
+                                            <span class="p-label" id="pPMINo">-</span>
                                         </td>
                                         <td>
                                             IC/ID No:
@@ -134,12 +138,16 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            Gender:
-                                            <span class="p-label" id="pSex">-</span>
+                                            Address:
+                                            <span class="p-label" id="pAddress">-</span>
                                         </td>
-                                        <td>
+                                        <td class="hidden">
                                             ID Type:
                                             <span class="p-label" id="pIdType">-</span>
+                                        </td>
+                                        <td>
+                                            Birth Date:
+                                            <span class="p-label" id="pBirthDayDate">-</span>
                                         </td>
                                         <td>
                                             Allergy:
@@ -148,14 +156,16 @@
                                     </tr>
                                     <tr>
                                         <td>
+                                            Gender:
+                                            <span class="p-label" id="pSex">-</span>
+                                        </td>
+                                        <td>
                                             Age:
                                             <span class="p-label" id="pAge">-</span>
-                                        </td>
+                                        </td>                                    
                                         <td>
                                             Race:
                                             <span class="p-label" id="pRace">-</span>
-                                        </td>
-                                        <td>
                                         </td>
                                     </tr>
                                 </table>
