@@ -138,7 +138,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         $('#divCIS_Discharge_Summary').html($('#tblCIS_Consultation_Table').html());
         $('#tblCIS_Consultation_Table').html("");
         $('.fa-pencil-square-o').css("display", "none");
-        $('.fa-times').css("display", "none");
+        //$('.fa-times').css("display", "none");
         //searchHFCcode(hfc_name, "tCIS_DCGHFCOrderDetail", "tCIS_DCGHFCProviderDetail");
         searchHFCDetailv2(hfc_name,"-","tCIS_DCGHFCOrderDetail","tCIS_DCGHFCProviderDetail","-");
         

@@ -127,7 +127,7 @@
                         <div class="col-md-6 input-group">
                             <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" id="PMI_btnGenerate">Generate PMI</button>
+                                <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
                             </span>
                         </div>
                     </div>

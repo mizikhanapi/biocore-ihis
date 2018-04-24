@@ -37,7 +37,7 @@
 <script src="jsFunction/queue.js?v=1.2"></script>
 <script src="jsFunction/Converter.js?v=1.1" type="text/javascript"></script>
 
-<script src="jsFunction/TopMenuFunction.js?=1.1"></script>
+<script src="jsFunction/TopMenuFunction.js?=1.2"></script>
 <script src="jsFunction/searchTopMenu.js"></script>
 
 <script src="jsFunction/create_destroy_loading.js"></script>

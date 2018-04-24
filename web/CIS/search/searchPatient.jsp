@@ -52,7 +52,7 @@
     String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataPatientFull = conn.getData(sqlFullPatient);
 
-    if (dataQueue.get(0).get(3).equals("-")) {
+    if ("-".equals(dataQueue.get(0).get(3))) {
         bloodType = "-";
     } else {
         String sqlGetBlood = "select* from adm_lookup_detail where master_reference_code = '0074' and detail_reference_code = '" + dataQueue.get(0).get(3) + "'";
@@ -65,7 +65,7 @@
 
     }
 
-    if (dataQueue.get(0).get(4).equals("-")) {
+    if ("-".equals(dataQueue.get(0).get(4))) {
         sex = "-";
     } else {
         String sqlGetSexCd = "select* from adm_lookup_detail where master_reference_code = '0041' and detail_reference_code = '" + dataQueue.get(0).get(4) + "'";
@@ -78,7 +78,7 @@
 
     }
 
-    if (dataQueue.get(0).get(5).equals("-")) {
+    if ("-".equals(dataQueue.get(0).get(5))) {
         IdType = "-";
     } else {
         String sqlGetIdType = "select* from adm_lookup_detail where master_reference_code = '0012' and detail_reference_code = '" + dataQueue.get(0).get(5) + "'";
@@ -91,7 +91,7 @@
 
     }
 
-    if (dataQueue.get(0).get(7).equals("-")) {
+    if ("-".equals(dataQueue.get(0).get(7))) {
         race = "-";
     } else {
         String sqlGetRace = "select* from adm_lookup_detail where master_reference_code = '0004' and detail_reference_code = '" + dataQueue.get(0).get(7) + "'";
@@ -104,7 +104,7 @@
 
     }
 
-    if (dataQueue.get(0).get(8).equals("-")) {
+    if ("-".equals(dataQueue.get(0).get(8))) {
         allergy = "-";
     } else {
         String sqlAllergy = "select* from adm_lookup_detail where master_reference_code = '0075' and detail_reference_code = '" + dataQueue.get(0).get(8) + "'";
@@ -122,7 +122,8 @@
     }
 
 // Get Age from Date of Birth
-    dob = dataQueue.get(0).get(6).toString();
+    try{dob = dataQueue.get(0).get(6).toString();}catch(Exception e){dob="-";}
+    
     if (dob.contains("/")) {
         check = cdf.isValidFormat("dd/MM/yyyy", dob);
         if (check) {
