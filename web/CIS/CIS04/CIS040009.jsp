@@ -54,13 +54,13 @@
                         <div id="disREFcodeLoading" class="search-drop"></div>
                     </div>
                 </div>
-
+                               
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Doctor to be referred :</label>
                     <div class="col-md-12">
                         <input class="form-control input-lg" type="text" name="pro" id="docREF" placeholder="Start typing to search...">
                         <input type="hidden" id="docREFcode"></input>
-                        <div id="docREFLoading" class="search-drop"></div>
+                        <div id="docREFLoading" class="search-drop" hidden></div>
                     </div>
                 </div>
                 <div class="row">
