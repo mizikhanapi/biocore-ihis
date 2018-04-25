@@ -52,22 +52,33 @@
             <form class="form-horizontal" name="myForm2" id="myForm2">
                 <div class="row">
 
-
-
                     <div class="col-md-6">
-
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">PMI No.</label>
+                            <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
                             <div class="col-md-4">
                                 <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md">                        </div>
                         </div>
-
-
+                        
+                         <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Name *</label>
+                            <div class="col-md-4">
+                                <input id="pname" name="pname" type="text" readonly placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+                         
+                         <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Address *</label>
+                            <div class="col-md-4">
+                                <textarea id="pAddress" name="pAddress" readonly placeholder="" class="form-control input-md"></textarea>
+                            </div>
+                        </div>
 
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group hidden">
                             <label class="col-md-4 control-label" for="textinput">Old IC NO</label>
                             <div class="col-md-4">
                                 <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
@@ -75,41 +86,44 @@
                         </div>
 
                         <!-- Select Basic -->
-                        <div class="form-group">
+                        <div class="form-group hidden">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-4">
                                 <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
                             </div>
                         </div>
-
-                        
+                       
 
                     </div>
-
-
 
                     <div class="col-md-6">
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Name</label>
-                            <div class="col-md-4">
-                                <input id="pname" name="pname" type="text" readonly placeholder="" class="form-control input-md">
-                            </div>
-                        </div>
-
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">New IC No.</label>
+                            <label class="col-md-4 control-label" for="textinput">Identifier (IC/ID No) *</label>
                             <div class="col-md-4">
                                 <input id="pnic" name="pnic" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
 
-
-
                         <!-- Text input-->
                         <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Birth Date *</label>
+                            <div class="col-md-4">
+                                <input id="pDOB" name="pDOB" type="text" readonly placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Gender *</label>
+                            <div class="col-md-4">
+                                <input id="pGender" name="pGender" type="text" readonly placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group hidden">
                             <label class="col-md-4 control-label" for="textinput">Identification No.</label>
                             <div class="col-md-4">
                                 <input id="pino" name="pino" type="text" readonly placeholder="" class="form-control input-md">

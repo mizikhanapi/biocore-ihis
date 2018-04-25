@@ -351,7 +351,8 @@ function Main(array_data) {
         }
 
         var newbday = daysplitted + "/" + monthsplitted + "/" + yearsplitted;
-
+        
+        var lePAddress = $.trim(phomeadd)+", "+ $.trim(phtownname)+", "+ $.trim(phdisname)+", "+ $.trim(phpostcodename)+" "+ $.trim(phstatename)+", "+ $.trim(phcountryname);
 
         $('input[id=pmino]').val($.trim(pmino));
         $('input[id=pname]').val($.trim(pname));
@@ -360,7 +361,7 @@ function Main(array_data) {
         $('input[id=pit]').val($.trim(pidtypename));
         $('input[id=pino]').val($.trim(pino));
         $('input[id=payer]').val($.trim(ppayer));
-        $('#pAddress').val($.trim(phomeadd));
+        $('#pAddress').val(lePAddress.toUpperCase());
         $('#pGender').val(strGender);
         $('#pDOB').val(newbday);
         // set value in PMI page
