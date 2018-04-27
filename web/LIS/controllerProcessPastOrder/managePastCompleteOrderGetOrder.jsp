@@ -26,8 +26,6 @@
 
     ArrayList<ArrayList<String>> dataOrd = con.getData(query);
 
-    out.print(query);
-
     for (int i = 0; i < dataOrd.size(); i++) {
         JSONObject obj = new JSONObject();
         obj.put("result_no", dataOrd.get(i).get(0));
