@@ -115,55 +115,55 @@
                                 
                                 <table class="p-table" style="width: 100%; color: #999;font-weight: bolder;" id="patient-detail-dashboard">
                                     <tr>
-                                        <td class="hidden">
+                                        <td class="hidden" width="20%">
                                             Name:
                                             <span class="p-label" id="pName">-</span>
                                         </td>
-                                        <td >
+                                        <td width="20%">
                                             PMI No:
                                             <span class="p-label" id="pPMINo">-</span>
                                         </td>
-                                        <td>
+                                        <td width="20%">
                                             IC/ID No:
                                             <span class="p-label" id="pIC_2">-</span>
                                             <span class="p-label hidden" id="pIC">-</span>
                                         </td>
-                                        <td>
+                                        <td width="20%">
                                             BloodGroup/G6PD:
                                             <span class="p-label" id="pBloodType">-</span>
                                         </td>
-                                        <td rowspan="2">
+                                        <td rowspan="2" width="20%">
                                             <span class="p-label" id="gambarpesakitdisini"></span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td width="20%">
                                             Address:
                                             <span class="p-label" id="pAddress">-</span>
                                         </td>
-                                        <td class="hidden">
+                                        <td class="hidden" width="20%">
                                             ID Type:
                                             <span class="p-label" id="pIdType">-</span>
                                         </td>
-                                        <td>
+                                        <td width="20%"> 
                                             Birth Date:
                                             <span class="p-label" id="pBirthDayDate">-</span>
                                         </td>
-                                        <td>
+                                        <td width="20%">
                                             Allergy:
                                             <span class="p-label" id="pAllergy">-</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td width="20%">
                                             Gender:
                                             <span class="p-label" id="pSex">-</span>
                                         </td>
-                                        <td>
+                                        <td width="20%">
                                             Age:
                                             <span class="p-label" id="pAge">-</span>
                                         </td>                                    
-                                        <td>
+                                        <td width="20%">
                                             Race:
                                             <span class="p-label" id="pRace">-</span>
                                         </td>

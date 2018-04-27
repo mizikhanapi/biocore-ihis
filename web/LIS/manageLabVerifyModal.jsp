@@ -98,7 +98,7 @@
                         <hr/>
 
                         <div class="col-md-12" style="width: 100%; margin: 0 auto">
-                            <div id="dym" style="text-align: center;" class=" img-responsive"  alt="Exam Result" style="height: 100%; width: 100%">
+                            <div id="dym" style="text-align: center;">
                             </div>
                         </div>
 
@@ -226,7 +226,10 @@
 
     (function ($) {
 
+        $('#addSpecimenResult').css('overflow', 'auto');
+
         $.fn.checkFileType = function (options) {
+
             var defaults = {
                 allowedExtensions: [],
                 success: function () {},
@@ -237,14 +240,18 @@
             return this.each(function () {
 
                 $(this).on('change', function () {
+
                     var value = $(this).val(),
                             file = value.toLowerCase(),
                             extension = file.substring(file.lastIndexOf('.') + 1);
 
                     if ($.inArray(extension, options.allowedExtensions) === -1) {
+
                         options.error();
                         $(this).focus();
+
                     } else {
+
                         options.success();
 
                     }
@@ -259,13 +266,17 @@
     $('#inputFileToLoad').checkFileType({
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         success: function () {
+
             loadImageFileAsURL();
+
         },
         error: function () {
+
             bootbox.alert('Incompatible file type');
             $('#inputFileToLoad').val("");
             $('#dym').html("");
             gambarURI = "";
+
         }
     });
 
@@ -282,15 +293,26 @@
         var sizeSmall = false;
 
         if (iSize / 1024 > 1) {
-            sizeSmall = false;
+
+            if (((iSize / 1024) / 1024) > 1) {
+
+                sizeSmall = false;
+
+            } else {
+
+                iSize = (Math.round((iSize / 1024) * 100) / 100);
+                sizeSmall = iSize <= 0.7;
+
+            }
+
 
         } else {
 
             iSize = (Math.round(iSize * 100) / 100);
-
-            sizeSmall = iSize <= 45;
+            sizeSmall = iSize <= 700;
 
         }
+
         if (sizeSmall) {
 
             document.getElementById("dym").innerHTML = '<div class="loader"></div>';
@@ -308,7 +330,7 @@
                     gambarURI = fileLoadedEvent.target.result;
 
 
-                    document.getElementById("dym").innerHTML = '<img id="myImage">';
+                    document.getElementById("dym").innerHTML = '<img id="myImage" class="img-responsive"  alt="Exam Result" style="height: 100%; width: 100%">';
 
                     document.getElementById("myImage").src = gambarURI;
 
@@ -319,10 +341,11 @@
 
         } else {
 
-            bootbox.alert("File size must not exceed 40kb");
+            bootbox.alert("File size must not exceed 650kb !!!");
             $('#inputFileToLoad').val("");
             gambarURI = "";
             $('#dym').html("");
+
         }
 
 
@@ -354,10 +377,6 @@
         } else if (remark === "" || remark === null) {
 
             bootbox.alert("Please Insert Remark");
-
-        } else if (gambarURI === "") {
-
-            bootbox.alert("Please Choose a picture");
 
         } else {
 

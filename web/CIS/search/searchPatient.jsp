@@ -19,6 +19,7 @@
     CheckDateFormat cdf = new CheckDateFormat();
     String pmiNo = request.getParameter("pmiNo");
     String episodeDate = request.getParameter("episodeDate");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //String pmiNo ="7805110451210";
 
     String bloodType = "";
@@ -29,7 +30,7 @@
     String allergy = "";
     String dob = "";
     String dataFull = "";
-    String ageS = "",gambarPesakitoi = "";
+    String ageS = "", gambarPesakitoi = "";
 
     String patientCategory = "";
 
@@ -46,11 +47,21 @@
     }
 
     //Convert Code to Description 0         1           2           3       4        5        6         7           8                   9                   10
-    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,IF(LENGTH(picture)>0,picture,''),HOME_ADDRESS from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
+    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,IF(LENGTH(picture)>0,picture,''),"
+            + " HOME_ADDRESS from pms_patient_biodata where pmi_no = '" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
     String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataPatientFull = conn.getData(sqlFullPatient);
+
+    String sqlAddressPatient = "select IFNULL(pms.home_address,''), IFNULL(tc.description,''), IFNULL(dc.description,''), IFNULL(sc.description,''), IFNULL(cc.description,'') "
+            + " from pms_patient_biodata pms "
+            + " LEFT JOIN adm_lookup_detail tc on pms.home_town_code = tc.detail_reference_code AND tc.master_reference_code = '0003' AND tc.hfc_cd = '" + hfc + "' "
+            + " LEFT JOIN adm_lookup_detail dc on pms.home_district_code = dc.detail_reference_code AND dc.master_reference_code = '0078' AND dc.hfc_cd = '" + hfc + "' "
+            + " LEFT JOIN adm_lookup_detail sc on pms.home_state_code = sc.detail_reference_code AND sc.master_reference_code = '0002' AND sc.hfc_cd = '" + hfc + "' "
+            + " LEFT JOIN adm_lookup_detail cc on pms.home_country_code = cc.detail_reference_code AND cc.master_reference_code = '0001' AND cc.hfc_cd = '" + hfc + "' "
+            + " where pmi_no = '" + pmiNo + "'";
+    ArrayList<ArrayList<String>> dataPatientAddress = conn.getData(sqlAddressPatient);
 
     if ("-".equals(dataQueue.get(0).get(3))) {
         bloodType = "-";
@@ -122,8 +133,12 @@
     }
 
 // Get Age from Date of Birth
-    try{dob = dataQueue.get(0).get(6).toString();}catch(Exception e){dob="-";}
-    
+    try {
+        dob = dataQueue.get(0).get(6).toString();
+    } catch (Exception e) {
+        dob = "-";
+    }
+
     if (dob.contains("/")) {
         check = cdf.isValidFormat("dd/MM/yyyy", dob);
         if (check) {
@@ -135,7 +150,7 @@
         } else {
             ageS = "undefined";
         }
-    }else if(dob.contains("-")){
+    } else if (dob.contains("-")) {
         check = cdf.isValidFormat("yyyy-MM-dd", dob);
         if (check) {
             String[] dobAr = StringUtils.split(dob, "-");
@@ -147,20 +162,22 @@
             ageS = "undefined";
         }
     }
-    
-    if(dataQueue.get(0).get(9).equalsIgnoreCase("") || dataQueue.get(0).get(9).equalsIgnoreCase("-") || dataQueue.get(0).get(9).isEmpty() || dataQueue.get(0).get(9).equalsIgnoreCase("null")){
-       gambarPesakitoi =  "";
-    }else{
-        gambarPesakitoi =  dataQueue.get(0).get(9);
+
+    if (dataQueue.get(0).get(9).equalsIgnoreCase("") || dataQueue.get(0).get(9).equalsIgnoreCase("-") || dataQueue.get(0).get(9).isEmpty() || dataQueue.get(0).get(9).equalsIgnoreCase("null")) {
+        gambarPesakitoi = "";
+    } else {
+        gambarPesakitoi = dataQueue.get(0).get(9);
     }
-    
+
     String bDate = dataQueue.get(0).get(6);
     String splitDate[] = bDate.split("-");
-    String updatedBDate = splitDate[2]+"/"+splitDate[1]+"/"+splitDate[0];
-    
+    String updatedBDate = splitDate[2] + "/" + splitDate[1] + "/" + splitDate[0];
+
+    String patientAddress = dataPatientAddress.get(0).get(0).toUpperCase() + "," + dataPatientAddress.get(0).get(1).toUpperCase() + "," + dataPatientAddress.get(0).get(2).toUpperCase()
+            + "," + dataPatientAddress.get(0).get(3).toUpperCase() + "," + dataPatientAddress.get(0).get(4).toUpperCase();
 
 //out.print(check);             0                               1                               2                           3              4            5             6            7              8                 9                   10                  11                      12                                  13
-    String patientBio = dataQueue.get(0).get(0) + "|" + dataQueue.get(0).get(1) + "|" + dataQueue.get(0).get(2) + "|" + bloodType + "|" + sex + "|" + IdType + "|" + ageS + "|" + race + "|" + allergy + "|" + patientCategory + "|" + dataFull+ "|" + gambarPesakitoi+ "|" +  dataQueue.get(0).get(10)+ "|" +  updatedBDate;
+    String patientBio = dataQueue.get(0).get(0) + "|" + dataQueue.get(0).get(1) + "|" + dataQueue.get(0).get(2) + "|" + bloodType + "|" + sex + "|" + IdType + "|" + ageS + "|" + race + "|" + allergy + "|" + patientCategory + "|" + dataFull + "|" + gambarPesakitoi + "|" + patientAddress + "|" + updatedBDate;
 
     session.setAttribute("patientCategory", patientCategory);
     session.setAttribute("patientPMINo", dataQueue.get(0).get(0));
