@@ -109,6 +109,15 @@ $(document).ready(function () {
         $('.swapping-tab').hide();
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-analyseTab").show(400);
+        
+        var ic_no = $('#patient-detail-dashboard #pIC_2').text().trim();
+        if(ic_no !=="-"){
+            var anl_pmi = $('#ANL_idInputApp').val().trim();
+            if(anl_pmi ===""){
+                $('#ANL_idInputApp').val(ic_no);
+                $('#ANL_idType').val("002");
+            }
+        }
     });
     
 //    $('#CIS-analyseTab').on('hide', function(event) {

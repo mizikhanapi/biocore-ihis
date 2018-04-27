@@ -1021,7 +1021,7 @@
     $("#ANL_viewDiv").on('click', '#ANL_btnViewImage', function () {
         var td = $(this).closest('td');
         var type = td.find("#ANL_resType").val();
-        
+        console.log(type);
 
         var input;
         if (type === "RIS") {
@@ -1034,11 +1034,21 @@
                 type: type
             };
         }
-        else{
-            var code = $('#ANL_hidden_res').val();
+        else if(type === "LIS"){
+            var code = td.find('#ANL_hidden_res').val();
             input = {
                 code:code,
                 type:type
+            };
+        }
+        else if(type === "OPT"){
+            var arrData = td.find("#ANL_hidden_res").val().split("|");
+            input = {
+                type: type,
+                pmi_no: arrData[8],
+                order_no: arrData[6],
+                hfc_cd : arrData[2],
+                code : arrData[7]
             };
         }
 
@@ -1057,6 +1067,7 @@
                 } else {
                     $('#ANL_imgHolderDiv').hide();
                     $('#ANL_imgText').show();
+                    console.log(data.query);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

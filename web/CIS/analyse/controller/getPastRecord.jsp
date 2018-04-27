@@ -105,6 +105,13 @@
 
     sql = "SELECT " + selectSame + ", details FROM lhr_health_of_present_illness WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
     ArrayList<ArrayList<String>> dataPreIll = con.getData(sql);
+    
+    //                                  0                                                   1                               2            3                   4                       5           6               7
+    sql = "SELECT date_format(res.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(res.`endDateTime`,'%d/%m/%Y %H:%i'), res.hfc_cd,  res.ot_room_no, pro.`procedure_shortName`, res.comments, res.order_no, res.procedure_cd, res.`pmiNo` "
+            + "FROM opt_result res "
+            + "JOIN opt_procedure pro ON pro.procedure_cd=res.procedure_cd AND pro.hfc_cd=res.hfc_cd AND pro.category_cd=res.category_cd "
+            + "WHERE res.`pmiNo`='"+pmi_no+"' "+whenCondition+" ORDER BY res.episode_date desc;";
+    ArrayList<ArrayList<String>> dataOpt = con.getData(sql);
 
     //================================== end LHR general ===================================================================
     //================================ vital signs =============================================================================
@@ -145,7 +152,7 @@
 
     boolean isLHRExist = (dataDiag.size() > 0 || dataChiefComplaint.size() > 0 || dataMed.size() > 0 || dataPreIll.size() > 0 || dataPastMed.size() > 0 || dataFamHis.size() > 0 || dataImmun.size() > 0
             || dataMedLeav.size() > 0 || dataAllergy.size() > 0 || dataDisable.size() > 0 || dataProg.size() > 0 || dataPro.size() > 0 || dataBloType.size() > 0 || dataPhyExam.size() > 0 || dataRad.size() > 0
-            || dataSocHis.size() > 0 || dataTest.size() > 0);
+            || dataSocHis.size() > 0 || dataTest.size() > 0 || dataOpt.size() > 0);
 
     if (isVtsExist || isLHRExist) {
 
@@ -1446,6 +1453,58 @@
             </td>
         </tr>
         <%            }//end test
+                if (dataOpt.size() > 0) {
+
+        %>
+        <tr class="bg-primary summary text-center">
+            <td>
+                <span id="ANL_chartTitle">Surgery History</span> 
+
+            </td>
+        </tr>
+
+        <tr data-status="pagado">
+            <td>
+                <div style="overflow-x: auto;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Start</td>
+                                <td>End</td>
+                                <td>Venue</td>
+                                <td>Procedure</td>
+                                <td>Comments</td>
+                                <td>Image</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%            for (int i = 0; i < dataOpt.size(); i++) {
+
+                            %>
+                            <tr>
+                                <td style="width: 7%;"><%=dataOpt.get(i).get(0)%></td>
+                                <td style="width: 5%;"><%=dataOpt.get(i).get(1)%></td>
+                                <td style="width: 10%;"><%=lookH.getHFCName(dataOpt.get(i).get(2))%></td>
+                                <td><strong><%=dataOpt.get(i).get(4)%></strong></td>
+                                <td><%=dataOpt.get(i).get(5)%></td>
+                                <td>
+                                    <input type="hidden" id="ANL_hidden_res" value="<%=String.join("|", dataOpt.get(i))%>" />
+                                    <input type="hidden" id="ANL_resType" value="OPT"/>
+                                    <button class="btn btn-default" id="ANL_btnViewImage">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>View Result
+                                    </button>
+                                </td>
+                            </tr>
+                            <%
+                                }// end for
+
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <%            }//end opt
         %>
     </tbody>
 </table>

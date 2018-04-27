@@ -365,7 +365,7 @@
         
 
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
-        <script src="../assets/js/swapping-tab.js?v1" type="text/javascript"></script>
+        <script src="../assets/js/swapping-tab.js?v1.1" type="text/javascript"></script>
         <script>
 
             (function ($) {
