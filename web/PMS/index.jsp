@@ -14,7 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <link rel="stylesheet" href="libraries/lib/css/loading.css">
+        <!--<link rel="stylesheet" href="libraries/lib/css/loading.css">-->
+        <link rel="stylesheet" href="../assets/css/mystyles.css">
         <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="libraries/lib/js/jquery.min.js"></script>
         <script src="libraries/lib/js/bootstrap.min.js"></script>
@@ -22,7 +23,7 @@
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="libraries/lib/js/form-validator.min.js"></script>    
         <script src="libraries/lib/js/bootbox.min.js"></script>
-        <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
+        <script src="libraries/lib/js/search/searchPatient.js?v1" type="text/javascript"></script>
         <script src="../assets/js/modernizr.js" type="text/javascript"></script>
         <script src="../assets/js/webcam.js" type="text/javascript"></script>
         <%@include file = "../assets/header.html" %>
@@ -174,8 +175,8 @@
         <script src="libraries/lib/js/main/registration.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
 
-        <script src="libraries/lib/js/main/patient_master_index.js?v1" type="text/javascript"></script>
-        <script src="libraries/lib/js/main/OPMain.js?v1" type="text/javascript"></script>
+        <script src="libraries/lib/js/main/patient_master_index.js?v1.1" type="text/javascript"></script>
+        <script src="libraries/lib/js/main/OPMain.js?v1.1" type="text/javascript"></script>
 
 
         <script src="libraries/lib/js/main/nextOfKin.js" type="text/javascript"></script>
@@ -189,6 +190,7 @@
         <script src="libraries/lib/js/search/searchHFC.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchOccu.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
+        <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
 
     </body>
 </html>

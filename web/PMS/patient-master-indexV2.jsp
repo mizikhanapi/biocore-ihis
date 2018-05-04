@@ -45,7 +45,7 @@
 <div class="row">
     <div class="col-md-12">
         <h4>Patient Information</h4>
-        <form style=" margin: 0 auto;" class="form-horizontal" id="formPMI">
+        <form style=" margin: 0 auto;" class="form-horizontal" id="formPMI" autocomplete="off">
             <div class="row">
                 <div class="col-md-12">
                     <center>
@@ -130,10 +130,69 @@
                                 <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
                             </span>
                         </div>
+                    </div>                  
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic"> Nationality *</label>
+                        <div class="col-md-6">
+
+                            <input id="PMInational" name="textinput" type="text" placeholder="select nationality.." class="form-control input-md">
+                            <input id="PMInationalCODE" type="hidden" class="form-control input-md">
+                            <div id="matchnational" class="search-drop"></div>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group" id="PMIprimary_idty_div">
+                        <label class="col-md-4 control-label" for="selectbasic">Primary ID Type *</label>
+                        <div class="col-md-6">
+                            <select id="PMIprimary_idty" name="selectbasic" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Text input; Previously known as New IC No-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Primary ID Number *</label>
+                        <div class="col-md-6">
+                            <input id="PMInic" name="PMInic" type="text" placeholder="Enter IC No/ Passport No/ Military ID" class="form-control input-md" maxlength="12">
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Secondary ID Type *</label>
+                        <div class="col-md-6">
+                            <select id="PMIidty" name="selectbasic" class="form-control">
+
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Secondary ID Number *</label>
+                        <div class="col-md-6">
+                            <input id="PMIino" name="textinput" type="text" placeholder="" class="form-control input-md" maxlength="10">
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Salutation *</label>
+                        <div class="col-md-6">
+
+                            <input id="PMItitle" name="textinput" type="text" placeholder="Seacrh salutation" class="form-control input-md">
+                            <input id="PMItitleCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                            <div id="matchtitle" class="search-drop"></div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group hidden">
                         <label class="col-md-4 control-label" for="textinput">Temporary PMI No.</label>
                         <div class="col-md-6">
                             <input id="PMIpminotemp" name="textinput" type="text" placeholder="" class="form-control input-md">
@@ -144,109 +203,9 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Name *</label>
                         <div class="col-md-6">
-                            <input id="PMIpname" name="PMIpname" type="text" placeholder="" class="form-control input-md" required="require" maxlength="80">
+                            <input id="PMIpname" name="PMIpname" type="text" placeholder="" class="form-control input-md" required maxlength="80">
                         </div>
-                    </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Title *</label>
-                        <div class="col-md-6">
-
-                            <input id="PMItitle" name="textinput" type="text" placeholder="select title.." class="form-control input-md">
-                            <input id="PMItitleCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                            <div id="matchtitle" class="search-drop"></div>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">New IC No. *</label>
-                        <div class="col-md-6">
-                            <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md" maxlength="12">
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Old IC No.</label>
-                        <div class="col-md-6">
-                            <input id="PMIoic" name="PMIoic" type="text" placeholder="" class="form-control input-md" maxlength="8">
-                        </div>
-                    </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">ID Type *</label>
-                        <div class="col-md-6">
-                            <select id="PMIidty" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select ID Type</option>
-                                <%                                        for (int i = 0; i < dataIdType4.size(); i++) {%>
-                                <option value="<%=dataIdType4.get(i).get(1)%>"><%=dataIdType4.get(i).get(2)%></option>
-                                <%  }
-                                %>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Identification No. *</label>
-                        <div class="col-md-6">
-                            <input id="PMIino" name="textinput" type="text" placeholder="" class="form-control input-md" maxlength="10">
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Payer group *</label>
-                        <div class="col-md-6">
-                            <select id="PMIpg" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select payer group</option>
-                                <%                                        for (int i = 0; i < datapayer.size(); i++) {%>
-                                <option value="<%=datapayer.get(i).get(1)%>"><%=datapayer.get(i).get(2)%></option>
-                                <%  }
-                                %>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Category *</label>
-                        <div class="col-md-6">
-                            <select id="PMIelicat" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select Eligibility Category</option>
-                                <option value="-">-</option>
-                                <%
-                                    for (int i = 0;
-                                            i < dataEliCat4.size(); i++) {%>
-                                <option value="<%=dataEliCat4.get(i).get(1)%>"><%=dataEliCat4.get(i).get(2)%></option>
-                                <%  }
-                                %>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Type *</label>
-                        <div class="col-md-6">
-                            <select id="PMIelity" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select Eligibility Type</option>
-                                <option value="-">-</option>
-                                <%
-                                    for (int i = 0;
-                                            i < dataEliType4.size();
-                                            i++) {%>
-                                <option value="<%=dataEliType4.get(i).get(1)%>"><%=dataEliType4.get(i).get(2)%></option>
-                                <%  }
-                                %>
-                            </select>
-                        </div>
-                    </div>
+                    </div>  
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -256,13 +215,43 @@
                         </div>
                     </div>
 
+                    <!-- Text input-->
+                    <div class="form-group hidden">
+                        <label class="col-md-4 control-label" for="textinput">Old IC No.</label>
+                        <div class="col-md-6">
+                            <input id="PMIoic" name="PMIoic" type="text" placeholder="" class="form-control input-md" maxlength="8">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--  end of first half     end of first half        end of first half-->
+
+                <div class="col-md-6">
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Martial Status *</label>
+                        <div class="col-md-6">
+                            <select id="PMImarital" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select Martial Status</option>
+                                <option value="-">-</option>
+                                <%                                    for (int i = 0;
+                                            i < dataMarital4.size();
+                                            i++) {%>
+                                <option value="<%=dataMarital4.get(i).get(1)%>"><%=dataMarital4.get(i).get(2)%></option>
+                                <%  }
+                                %>
+                            </select>
+                        </div>
+                    </div>
+
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Gender *</label>
                         <div class="col-md-6">
                             <select id="PMIsex" name="selectbasic" class="form-control">
                                 <option value="null" selected="" disabled="">Select Gender</option>
-                                <option value="-">-</option>
                                 <%
                                     for (int i = 0;
                                             i < dataGender4.size();
@@ -272,20 +261,20 @@
                                 %>
                             </select>
                         </div>
-                    </div>
+                    </div>        
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Martial Status *</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Religion *</label>
                         <div class="col-md-6">
-                            <select id="PMImarital" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select Martial Status</option>
+                            <select id="PMIreligion" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select Religion</option>
                                 <option value="-">-</option>
                                 <%
                                     for (int i = 0;
-                                            i < dataMarital4.size();
+                                            i < dataReligion4.size();
                                             i++) {%>
-                                <option value="<%=dataMarital4.get(i).get(1)%>"><%=dataMarital4.get(i).get(2)%></option>
+                                <option value="<%=dataReligion4.get(i).get(1)%>"><%=dataReligion4.get(i).get(2)%></option>
                                 <%  }
                                 %>
                             </select>
@@ -310,29 +299,14 @@
                         </div>
                     </div>
 
-                    <!-- Select Basic -->
+                    <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Nationality *</label>
+                        <label class="col-md-4 control-label" for="textinput">Payer group </label>
                         <div class="col-md-6">
-
-                            <input id="PMInational" name="textinput" type="text" placeholder="select nationality.." class="form-control input-md">
-                            <input id="PMInationalCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                            <div id="matchnational" class="search-drop"></div>
-                        </div>
-                    </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Religion</label>
-                        <div class="col-md-6">
-                            <select id="PMIreligion" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select Religion</option>
-                                <option value="-">-</option>
-                                <%
-                                    for (int i = 0;
-                                            i < dataReligion4.size();
-                                            i++) {%>
-                                <option value="<%=dataReligion4.get(i).get(1)%>"><%=dataReligion4.get(i).get(2)%></option>
+                            <select id="PMIpg" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select payer group</option>
+                                <%                                        for (int i = 0; i < datapayer.size(); i++) {%>
+                                <option value="<%=datapayer.get(i).get(1)%>"><%=datapayer.get(i).get(2)%></option>
                                 <%  }
                                 %>
                             </select>
@@ -341,7 +315,42 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Person Type *</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Type </label>
+                        <div class="col-md-6">
+                            <select id="PMIelity" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select Eligibility Type</option>
+                                <option value="-">-</option>
+                                <%
+                                    for (int i = 0;
+                                            i < dataEliType4.size();
+                                            i++) {%>
+                                <option value="<%=dataEliType4.get(i).get(1)%>"><%=dataEliType4.get(i).get(2)%></option>
+                                <%  }
+                                %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Category </label>
+                        <div class="col-md-6">
+                            <select id="PMIelicat" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select Eligibility Category</option>
+                                <option value="-">-</option>
+                                <%
+                                    for (int i = 0;
+                                            i < dataEliCat4.size(); i++) {%>
+                                <option value="<%=dataEliCat4.get(i).get(1)%>"><%=dataEliCat4.get(i).get(2)%></option>
+                                <%  }
+                                %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Person Type </label>
                         <div class="col-md-6">
                             <select id="PMIperty" name="selectbasic" class="form-control">
                                 <option value="null" selected="" disabled="">Select type</option>
@@ -643,3 +652,86 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    var PMI_optIDType;
+
+    $(function () {
+        var preNationalityCode = $('#PMInationalCODE').val();
+
+        $('#PMInational').on('blur', function () {
+            setTimeout(function () {
+                var curNationalityCode = $('#PMInationalCODE').val();
+                if (preNationalityCode !== curNationalityCode) {
+                    //set the ID type
+                    var nation = $('#PMInational').val();
+                    PMI_listPrimaryIDType(nation, null, null);
+
+                }
+            }, 500);
+
+        });
+
+        $('#PMInational').blur();
+
+        $("#PMIprimary_idty").on("change", function () {
+            $("#PMIidty").children('option').remove();
+            var addoptarr = [];
+            for (var i = 0; i < PMI_optIDType.length; i++) {
+                if (PMI_optIDType[i].value.indexOf($(this).val()) < 0) {
+                    addoptarr.push(PMI_optIDType[i].option);
+                }
+            }
+            $("#PMIidty").html(addoptarr.join(''));
+        });
+
+
+    });//end ready function
+
+
+    function PMI_listPrimaryIDType(national, p_idty, s_idty) {
+        var input = {
+            nation: national
+        };
+        createScreenLoading();
+        $.ajax({
+            type: 'POST',
+            url: "controller/getIDType.jsp",
+            data: input,
+            dataType: 'json',
+            timeout: 60000,
+            success: function (data, textStatus, jqXHR) {
+                $('#PMIprimary_idty').html("");
+                data.forEach(function (item)
+                {
+                    $('#PMIprimary_idty').append("<option value='" + item.value + "'>" + item.name + "</option>");
+                });
+
+                PMI_optIDType = $("#PMIprimary_idty").children('option').map(function () {
+                    return {
+                        "value": this.value,
+                        "option": "<option value='" + this.value + "'>" + this.text + "</option>"
+                    };
+                });
+
+
+                if (p_idty != null) {
+                    $('#PMIprimary_idty').val(p_idty);
+                }
+
+                $('#PMIprimary_idty').change();
+                if(s_idty != null){
+                    $("#PMIidty").val(s_idty);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error: " + errorThrown);
+            },
+            complete: function (jqXHR, textStatus) {
+                destroyScreenLoading();
+            }
+        });
+    }
+</script>

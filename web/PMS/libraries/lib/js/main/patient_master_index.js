@@ -325,31 +325,27 @@ $(document).ready(function () {
                 pnic = $("#PMInic").val(),
                 poic = $("#PMIoic").val(),
                 pit = $("#PMIidty").val(),
-                pino = $("#PMIino").val(),
-                pelicat = $("#PMIelicat").val(),
-                pelity = $("#PMIelity").val(),
+                pidno = $("#PMIino").val().trim(),
+                //pelicat = $("#PMIelicat").val(),
+                //pelity = $("#PMIelity").val(),
                 pbday = $("#PMIbday").val(),
                 psex = $("#PMIsex").val(),
                 pmarital = $("#PMImarital").val(),
                 prace = $("#PMIrace").val(),
                 pnational = $("#PMInationalCODE").val(),
-                phomeadd = $("#PMIhadd").val(),
-                ppayergroup = $("#PMIpg").val(),
-                pperty = $("#PMIperty").val();
+                phomeadd = $("#PMIhadd").val();
+                //ppayergroup = $("#PMIpg").val(),
+                //pperty = $("#PMIperty").val();
 
 
         if (pname === "") {
             bootbox.alert("Please key in patient's name..");
         } else if (ptitle === "") {
-            bootbox.alert("Please key in patient's title..");
+            bootbox.alert("Please key in patient's salutation..");
         } else if (pnic === "") {
-            bootbox.alert("Please key in patient's New IC Number..");
+            bootbox.alert("Please key in patient's Primary ID Number..");
         } else if (pbday === "") {
             bootbox.alert("Please key in patient's date of birth..");
-        } else if (pelicat === null) {
-            bootbox.alert("Please key in patient's eligibility category..");
-        } else if (pelity === null) {
-            bootbox.alert("Please key in patient's eligibility type..");
         } else if (psex === null) {
             bootbox.alert("Please key in patient's gender..");
         } else if (pmarital === null) {
@@ -360,12 +356,8 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's nationality..");
         } else if (phomeadd === "") {
             bootbox.alert("Please key in patient's home address..");
-        } else if (pit === null) {
-            bootbox.alert("Please key in patient's Id Type..");
-        } else if (ppayergroup === null) {
-            bootbox.alert("Please key in patient's Payer Group..");
-        } else if (pperty === null) {
-            bootbox.alert("Please key in patient's Person Type..");
+        } else if (pit === null && pidno !== "") {
+            bootbox.alert("Please key in patient's secondary ID Type..");
         } else if (pmino === "") {
             bootbox.alert("Pleace generate the PMI No before registering/saving patient biodata..");
         } else {

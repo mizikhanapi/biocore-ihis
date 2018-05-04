@@ -41,7 +41,7 @@ $(function () {
 //            });
                 
         } else {
-            $('#idInput').attr('maxlength', '10');
+            $('#idInput').attr('maxlength', '20');
             $('#myForm #idInput').removeClass("numbersOnly");
 //            $("#idInput").on('keydown',function (e) {
 //                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && (e.which <97 || e.which > 122)) {

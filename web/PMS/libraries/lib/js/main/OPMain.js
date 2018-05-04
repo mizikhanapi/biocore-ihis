@@ -1,4 +1,5 @@
 function Main(array_data) {
+    $('#PMIprimary_idty_div').show();
     var idInput = $('#idInput').val();
     var idType = $('#idType').find(":selected").val();
     $('#PMIidty').val(idType);
@@ -48,6 +49,7 @@ function Main(array_data) {
                     //registration
 
                     $('input[id=pnic]').val($.trim(idInput));
+                    PMI_listPrimaryIDType("malaysia", idType, null);
 
                     $('#EMPcredate').val(ddMMyyyyDua);
 
@@ -86,13 +88,24 @@ function Main(array_data) {
             },
             callback: function (result) {
                 //if true go to PMI page
+                var temp_s_idty = "", temp_p_idty = "";
                 if (result === true) {
                     if (persontype === "1") {
-                        $("#PMIidty").val($.trim("004"));
+                        //$("#PMIidty").val($.trim("004"));
+                        temp_s_idty = "004";
                         $('input[id=pit]').val("Matric No.");
                     } else if (persontype === "0") {
-                        $("#PMIidty").val($.trim("005"));
+                        //$("#PMIidty").val($.trim("005"));
+                        temp_s_idty = "005";
                         $('input[id=pit]').val("Staff No.");
+                    }
+
+                    var low_nation = nationality.toLowerCase();
+
+                    if (low_nation.indexOf("malaysia") > -1) {
+                        temp_p_idty = "002";
+                    } else {
+                        temp_p_idty = "008";
                     }
 
                     //registration page
@@ -125,6 +138,7 @@ function Main(array_data) {
                     // set value in family page
                     // set value in MEDICAL page
                     console.log(ddMMyyyyDua);
+                    PMI_listPrimaryIDType(nationality, temp_p_idty, temp_s_idty);
                     $body.removeClass("loading");
                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
@@ -173,6 +187,8 @@ function Main(array_data) {
                     $('#EMPcredate').val(ddMMyyyyDua);
                     // set value in next of kin page
                     // set value in family page
+
+                    PMI_listPrimaryIDType("malaysia", idtype, null);
 
                     console.log(ddMMyyyyDua);
                     $body.removeClass("loading");
@@ -224,6 +240,7 @@ function Main(array_data) {
                     $('#EMPcredate').val(ddMMyyyyDua);
 
 //                            console.log(ddMMyyyyDua);
+                    PMI_listPrimaryIDType("malaysia", idtype, null);
                     $body.removeClass("loading");
                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
@@ -272,6 +289,7 @@ function Main(array_data) {
                     $('#EMPcredate').val(ddMMyyyyDua);
 
                     //console.log(ddMMyyyyDua);
+                    PMI_listPrimaryIDType("malaysia", idtype, null);
                     $body.removeClass("loading");
                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
@@ -351,9 +369,11 @@ function Main(array_data) {
         }
 
         var newbday = daysplitted + "/" + monthsplitted + "/" + yearsplitted;
-        
-        var lePAddress = $.trim(phomeadd)+", "+ $.trim(phtownname)+", "+ $.trim(phdisname)+", "+ $.trim(phpostcodename)+" "+ $.trim(phstatename)+", "+ $.trim(phcountryname);
 
+        var lePAddress = $.trim(phomeadd) + ", " + $.trim(phtownname) + ", " + $.trim(phdisname) + ", " + $.trim(phpostcodename) + " " + $.trim(phstatename) + ", " + $.trim(phcountryname);
+
+        $('#PMIprimary_idty_div').hide();
+        
         $('input[id=pmino]').val($.trim(pmino));
         $('input[id=pname]').val($.trim(pname));
         $('input[id=pnic]').val($.trim(pnic));
@@ -499,6 +519,8 @@ function Main(array_data) {
         }
 
         $('#prioGru').val('003');
+        
+        PMI_listPrimaryIDType(pnationalityname, null, pit);
 
     }
 

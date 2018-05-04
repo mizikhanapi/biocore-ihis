@@ -53,12 +53,8 @@
 
         if (idType.equals("001")) {
             searchPatient = fullQuery + " where a.PMI_NO='" + idInput + "'";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-        } else if (idType.equals("002")) {
-            searchPatient = fullQuery + " where a.NEW_IC_NO='" + idInput + "'";
-        } else if (idType.equals("003")) {
-            searchPatient = fullQuery + " where a.OLD_IC_NO='" + idInput + "'";
         } else {
-            searchPatient = fullQuery + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "'";
+            searchPatient = fullQuery + " where a.NEW_IC_NO='" + idInput + "' OR a.OLD_IC_NO='" + idInput + "' OR (a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "')";
         }
 
         ArrayList<ArrayList<String>> search = conn.getData(searchPatient);
@@ -103,12 +99,8 @@
 
         if (idType.equals("pmino") || idType.equals("001")) {
             searchPatient = fullQuery + " where a.PMI_NO='" + idInput + "'";
-        } else if (idType.equals("icnew") || idType.equals("002")) {
-            searchPatient = fullQuery + " where a.NEW_IC_NO='" + idInput + "'";
-        } else if (idType.equals("icold") || idType.equals("003")) {
-            searchPatient = fullQuery + " where a.OLD_IC_NO='" + idInput + "'";
         } else {
-            searchPatient = fullQuery + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "'";
+            searchPatient = fullQuery + " where a.NEW_IC_NO='" + idInput + "' OR a.OLD_IC_NO='" + idInput + "' OR (a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "')";
         }
 
         ArrayList<ArrayList<String>> search = conn.getData(searchPatient);

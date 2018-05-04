@@ -155,7 +155,7 @@
     <script src="libraries/lib/js/main/registration.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
     
-    <script src="libraries/lib/js/main/patient_master_index.js?v1" type="text/javascript"></script>
+    <script src="libraries/lib/js/main/patient_master_index.js?v1.1" type="text/javascript"></script>
     <script src="libraries/lib/js/main/OPMain.js?v1" type="text/javascript"></script>
     
     
