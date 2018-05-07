@@ -41,7 +41,7 @@
                             <label class="col-md-4 control-label" for="selectbasic">Insurance Company</label>
                             <div class="col-md-8">
 
-                                <input id="MEDinscom" name="textinput" type="text" placeholder="select Insurance Company.." class="form-control input-md">
+                                <input id="MEDinscom" name="textinput" type="text" placeholder="select Insurance Company.." class="form-control input-md" autocomplete="off">
                                 <input id="MEDinscomCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
                                 <div id="matcMEDinscom"></div>
                             </div>
@@ -70,7 +70,7 @@
                             <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
                             <div class="col-md-8">
 
-                                <input id="MEDhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md">
+                                <input id="MEDhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md" autocomplete="off">
                                 <input id="MEDhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
                                 <div id="matcMEDhfc"></div>
                             </div>

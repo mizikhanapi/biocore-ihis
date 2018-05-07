@@ -239,7 +239,11 @@
             disName = arrayData[19],townName=arrayData[20],postcodeName=arrayData[21],stateName=arrayData[22],countryName=arrayData[23],occuName=arrayData[24];
         //convert date
         var splitbirthdate = String(birthdate).split("-");
-        var convertedbirthdate = splitbirthdate[2] + "/" + splitbirthdate[1] + "/" + splitbirthdate[0];
+        var convertedbirthdate = birthdate;
+        if(splitbirthdate.length === 3){
+            convertedbirthdate = splitbirthdate[2] + "/" + splitbirthdate[1] + "/" + splitbirthdate[0];
+        }
+                
 
         $('#KINpmino').val(pmino);
         $('#KINidtype').val(idtype);

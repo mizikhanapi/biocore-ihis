@@ -34,6 +34,10 @@
             height: 'auto',
             'max-height': '100%'});
     });
+    
+    $('#addMEDmodal').on('click', function(){
+        $('#MEDclear').click();
+    });
 
     //function to edit next of kin data from table
     $('#tableListMed').on('click', '#listMED #MEDedit', function (e) {
@@ -50,10 +54,14 @@
         var rowData = row.find("#medval").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var pmino = arrayData[0], insuran = arrayData[1], policy = arrayData[2], maturitydate = arrayData[3], hfc = arrayData[4], status = arrayData[5], medHFCname = arrayData[6], medInsName = arrayData[7];
+        var pmino = arrayData[0], insuran = arrayData[1], policy = arrayData[2], maturitydate = arrayData[3], hfc = arrayData[4], status = arrayData[5], medHFCname = arrayData[8], medInsName = arrayData[9];
         //convert date
         var splitmaturitydate = String(maturitydate).split("-");
-        var convertedmaturitydate = splitmaturitydate[2] + "/" + splitmaturitydate[1] + "/" + splitmaturitydate[0];
+        var convertedmaturitydate = maturitydate;
+        if(splitmaturitydate.length === 3){
+            convertedmaturitydate = splitmaturitydate[2] + "/" + splitmaturitydate[1] + "/" + splitmaturitydate[0];
+        }
+                
 
         $('#MEDpmino').val(pmino);
         $('#MEDinscom').val(medInsName);
