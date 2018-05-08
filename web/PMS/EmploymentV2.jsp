@@ -52,7 +52,9 @@
             'max-height': '100%'});
     });
 
-
+    $('#addEMPmodal').on('click', function(){
+        $('#EMPclear').click();
+    });
 
     //function to edit employment data from table
     $('#tableListEmp').on('click', '#listEMP #EMPedit', function (e) {

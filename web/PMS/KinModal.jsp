@@ -131,9 +131,9 @@
                                     <label class="col-md-4 control-label" for="selectbasic">Occupation</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
-                                        <input id="KINoccuCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                        <div id="matcKINoccu"></div>
+                                        <input id="KINoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md" autocomplete="off">
+                                        <input id="KINoccuCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                        <div id="matcKINoccu" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
                                 <!-- Select Basic -->
@@ -171,9 +171,9 @@
                                     <label class="col-md-4 control-label" for="selectbasic">District</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINdistrict" name="textinput" type="text" placeholder="select District.." class="form-control input-md">
-                                        <input id="KINdistrictCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                        <div id="matcKINdistrict"></div>
+                                        <input id="KINdistrict" name="textinput" type="text" placeholder="select District.." class="form-control input-md" autocomplete="off">
+                                        <input id="KINdistrictCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                        <div id="matcKINdistrict" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
                                 <!-- Select Basic -->
@@ -181,9 +181,9 @@
                                     <label class="col-md-4 control-label" for="selectbasic">Postcode</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINpostcode" name="textinput" type="text" placeholder="select Postcode.." class="form-control input-md">
-                                        <input id="KINpostcodeCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                        <div id="matcKINpostcode"></div>
+                                        <input id="KINpostcode" name="textinput" type="text" placeholder="select Postcode.." class="form-control input-md" autocomplete="off">
+                                        <input id="KINpostcodeCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                        <div id="matcKINpostcode" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
 
@@ -192,9 +192,9 @@
                                     <label class="col-md-4 control-label" for="selectbasic">Country</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINcountry" name="textinput" type="text" placeholder="select Country.." class="form-control input-md">
+                                        <input id="KINcountry" name="textinput" type="text" placeholder="select Country.." class="form-control input-md" autocomplete="off">
                                         <input id="KINcountryCODE" type="hidden" class="form-control input-md">
-                                        <div id="matcKINcountry"></div>
+                                        <div id="matcKINcountry" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -204,9 +204,9 @@
                                     <label class="col-md-4 control-label" for="selectbasic">Town</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINtown" name="textinput" type="text" placeholder="select Town.." class="form-control input-md">
-                                        <input id="KINtownCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                        <div id="matcKINtown"></div>
+                                        <input id="KINtown" name="textinput" type="text" placeholder="select Town.." class="form-control input-md" autocomplete="off">
+                                        <input id="KINtownCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                        <div id="matcKINtown" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
 
@@ -215,9 +215,9 @@
                                     <label class="col-md-4 control-label" for="selectbasic">State</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINstate" name="textinput" type="text" placeholder="select State.." class="form-control input-md">
-                                        <input id="KINstateCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                        <div id="matcKINstate"></div>
+                                        <input id="KINstate" name="textinput" type="text" placeholder="select State.." class="form-control input-md" autocomplete="off">
+                                        <input id="KINstateCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                        <div id="matcKINstate" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -228,9 +228,9 @@
 
             </div>
             <div class="modal-footer">
-                <div class="text-right">
-                    <button id="KINclear" name="KINclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                <div class="text-center">
                     <button id="KINsave" name="KINsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button id="KINclear" name="KINclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                 </div>
             </div>
         </div>

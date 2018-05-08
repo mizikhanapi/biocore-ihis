@@ -66,9 +66,9 @@
                             <label class="col-md-4 control-label" for="textinput">Occupation</label>  
                             <div class="col-md-6">
 
-                                <input id="EMPoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
+                                <input id="EMPoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md" autocomplete="off">
                                 <input id="EMPoccuCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matcEMPoccu"></div>
+                                <div id="matcEMPoccu" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
 
@@ -101,9 +101,9 @@
                             <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
                             <div class="col-md-6">
 
-                                <input id="EMPhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md">
-                                <input id="EMPhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matcEMPhfc"></div>
+                                <input id="EMPhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md" autocomplete="off">
+                                <input id="EMPhfcCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                <div id="matcEMPhfc" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
 
@@ -136,15 +136,19 @@
 
             </div>
             <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="text-center">
+                    <button id="EMPsave" name="EMPsave" class="btn btn-primary " data-dismiss="modal" role="button">Save</button>
+                    &nbsp;
+                    <button id="EMPclear" name="EMPclear" class="btn btn-default">Clear</button>
+                </div>
+<!--                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button id="EMPsave" name="EMPsave" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" role="button">Save</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button id="EMPclear" name="EMPclear" class="btn btn-default btn-block btn-lg">Clear</button>
                     </div>
-                </div>
-                </form>
+                </div>               -->
             </div>
         </div>
     </div>

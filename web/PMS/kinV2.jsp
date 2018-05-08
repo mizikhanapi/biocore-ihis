@@ -9,7 +9,7 @@
 
         <div id="ModalKin"><%@include file = "KinModal.jsp" %></div>
             <h4>List of Next of Kin
-                <button id="addKINmodal" name="addKINmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#KINModal"><i class="fa fa-plus"></i>&nbsp; Add Next Of Kin Information</button></h4>
+                <button id="addKINmodal" name="addKINmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#KINModal"><i class="fa fa-plus"></i>&nbsp; Add Next Of Kin Information</button>
             </h4>
             <br/>
             <div id="tableListKin" class="form-group">

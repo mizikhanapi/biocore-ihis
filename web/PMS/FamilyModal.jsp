@@ -3,9 +3,9 @@
 <%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String relation71 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"' and status ='0'  ";
-    String occupation71 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"' and status ='0'";
-    ArrayList<ArrayList<String>> dataRelation71,dataOccu71;
+    String relation71 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '" + hfc + "' and status ='0'  ";
+    String occupation71 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '" + hfc + "' and status ='0'";
+    ArrayList<ArrayList<String>> dataRelation71, dataOccu71;
     dataRelation71 = conn.getData(relation71);
     dataOccu71 = conn.getData(occupation71);
 
@@ -19,83 +19,81 @@
             </div>
             <div class="modal-body" >
 
-                <div class="thumbnail" id="maintainFam">
-            <h4>Family Information</h4>
-            <form class="form-horizontal" id="famForm">
+                <div id="maintainFam">
+                    <h4>Family Information</h4>
+                    <form class="form-horizontal" id="famForm">
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                    <div class="col-md-8">
-                        <input id="FAMpmi" name="FAMpmi" type="text"  class="form-control input-md">
-                        <input id="FAMseq" name="FAMseq" type="hidden"  class="form-control input-md">
-                    </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">PMI No.</label>
+                            <div class="col-md-8">
+                                <input id="FAMpmi" name="FAMpmi" type="text"  class="form-control input-md">
+                                <input id="FAMseq" name="FAMseq" type="hidden"  class="form-control input-md">
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Family Relationship</label>
+                            <div class="col-md-8">
+                                <select id="FAMrelay" name="FAMrelay" class="form-control">
+                                    <option value="null" disabled="" selected="">Select Family Relationship</option>
+                                    <option value="-">-</option>
+
+                                    <%                                        for (int i = 0; i < dataRelation71.size(); i++) {%>
+                                    <option value="<%=dataRelation71.get(i).get(1)%>"><%=dataRelation71.get(i).get(2)%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">IC No.</label>  
+                            <div class="col-md-8">
+                                <input id="FAMpmifam" name="FAMpmifam" type="text" placeholder="Search IC..."  class="form-control input-md" maxlength="12">
+                                <div id="matcFampmifam" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Name</label>  
+                            <div class="col-md-8">
+                                <input id="FAMname" name="FAMname" type="text"  class="form-control input-md" maxlength="80">
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Occupation</label>
+                            <div class="col-md-8">
+
+
+                                <input id="FAMocc" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md" autocomplete="off">
+                                <input id="FAMoccCODE" name="PMIhstateCODE" type="hidden"  class="form-control input-md">
+                                <div id="matcFAMocc" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Family Relationship</label>
-                    <div class="col-md-8">
-                        <select id="FAMrelay" name="FAMrelay" class="form-control">
-                            <option value="null" disabled="" selected="">Select Family Relationship</option>
-                            <option value="-">-</option>
-
-                            <%                                        for (int i = 0; i < dataRelation71.size(); i++) {%>
-                            <option value="<%=dataRelation71.get(i).get(1)%>"><%=dataRelation71.get(i).get(2)%></option>
-                            <%  }
-                            %>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">IC no.</label>  
-                    <div class="col-md-8">
-                        <input id="FAMpmifam" name="FAMpmifam" type="text"  class="form-control input-md" maxlength="12">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Name</label>  
-                    <div class="col-md-8">
-                        <input id="FAMname" name="FAMname" type="text"  class="form-control input-md" maxlength="80">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Occupation</label>
-                    <div class="col-md-8">
-
-                       
-                        <input id="FAMocc" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
-                                <input id="FAMoccCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matcFAMocc"></div>
-                    </div>
-                </div>
-
-            </form>
-            <div class="text-center">
-                <button id="FAMsave" name="FAMsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
-                <button id="FAMclear" name="FAMclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-            </div>
-        </div>
 
             </div>
             <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="text-center">
+                    <button id="FAMsave" name="FAMsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button id="FAMclear" name="FAMclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
 </div>
 <script>
-       $('#FAMsave').on('click', function (e) {
+    $('#FAMsave').on('click', function (e) {
         e.preventDefault();
         var pmino = $('#FAMpmi').val(),
                 seq = $('#FAMseq').val(),

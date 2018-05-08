@@ -4,9 +4,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
-    String hcf81 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"' and status ='0'";
+    String hcf81 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '" + hfc + "' and status ='0'";
     //String insuranceCompany81 = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
-    String insurancePolicy81 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0058' AND hfc_cd = '"+hfc+"' and status ='0'";
+    String insurancePolicy81 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0058' AND hfc_cd = '" + hfc + "' and status ='0'";
     ArrayList<ArrayList<String>> dataHfc81, dataInsurancePolicy81, dataInsuranceCompany81;
     dataHfc81 = conn.getData(hcf81);
     dataInsurancePolicy81 = conn.getData(insurancePolicy81);
@@ -23,7 +23,7 @@
             </div>
             <div class="modal-body" >
 
-                <div class="thumbnail" id="maintainMED">
+                <div id="maintainMED">
                     <!--            <h4>Medical Insurance Information</h4>-->
                     <form class="form-horizontal" id="formMed">
 
@@ -43,7 +43,7 @@
 
                                 <input id="MEDinscom" name="textinput" type="text" placeholder="select Insurance Company.." class="form-control input-md" autocomplete="off">
                                 <input id="MEDinscomCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matcMEDinscom"></div>
+                                <div id="matcMEDinscom" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
 
@@ -71,8 +71,8 @@
                             <div class="col-md-8">
 
                                 <input id="MEDhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md" autocomplete="off">
-                                <input id="MEDhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matcMEDhfc"></div>
+                                <input id="MEDhfcCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
+                                <div id="matcMEDhfc" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
 
@@ -92,17 +92,15 @@
                         </div>
 
                     </form>
-                    <div class="text-center">
-                        <button id="MEDsave" name="MEDsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
-                        <button id="MEDclear" name="MEDclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                    </div>
+
                 </div>
 
             </div>
             <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="text-center">
+                    <button id="MEDsave" name="MEDsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button id="MEDclear" name="MEDclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>

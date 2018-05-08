@@ -217,6 +217,9 @@
             'max-height': '100%'});
     });
 
+    $('#addKINmodal').on('click', function(){
+        $('#KINclear').clear();
+    });
 
     //function to edit next of kin data from table
     $('#tableListKin').on('click', '#listKIN #KINedit', function (e) {
