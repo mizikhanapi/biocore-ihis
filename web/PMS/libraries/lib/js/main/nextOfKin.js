@@ -239,7 +239,7 @@
         var arrayData = rowData.split("|");
         //assign into seprated val
         var pmino = arrayData[0], seqno = arrayData[1], relationship = arrayData[2], kinname = arrayData[3], newic = arrayData[4], oldic = arrayData[5], idtype = arrayData[6], idno = arrayData[7], birthdate = arrayData[8], occu = arrayData[9], address = arrayData[10], district = arrayData[11], town = arrayData[12], postcode = arrayData[13], state = arrayData[14], country = arrayData[15], mobilephone = arrayData[16], homephone = arrayData[17], email = arrayData[18],
-            disName = arrayData[19],townName=arrayData[20],postcodeName=arrayData[21],stateName=arrayData[22],countryName=arrayData[23],occuName=arrayData[24];
+            disName = arrayData[21],townName=arrayData[22],postcodeName=arrayData[23],stateName=arrayData[24],countryName=arrayData[25],occuName=arrayData[26];
         //convert date
         var splitbirthdate = String(birthdate).split("-");
         var convertedbirthdate = birthdate;
@@ -275,7 +275,7 @@
         $("#KINtownCODE").val(town);
         $("#KINstateCODE").val(state);
         //console.log(convertedbirthdate);
-        //console.log(seqno);
+        console.log(arrayData);
     });
 
     //delete function when click delete on next of kin
