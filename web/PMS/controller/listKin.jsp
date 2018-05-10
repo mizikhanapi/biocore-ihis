@@ -39,24 +39,24 @@
     <tbody>
         <%  for (int i = 0; i < dataKinList.size(); i++) {
                 try {
-                    String occuName = "select * from lookup_detail where master_ref_code = '0050' and detail_ref_code = '" + dataKinList.get(i).get(9) + "'";
+                    String occuName = "select description from adm_lookup_detail where master_reference_code = '0050' and detail_reference_code = '" + dataKinList.get(i).get(9) + "'";
                     ArrayList<ArrayList<String>> dataOcuuName;
                     dataOcuuName = conn.getData(occuName);
                     String occu = "";
                     if (dataOcuuName.size() == 0) {
                         occu = "-";
                     } else {
-                        occu = dataOcuuName.get(0).get(2);
+                        occu = dataOcuuName.get(0).get(0);
                     }
 
-                    String relayName = "select * from lookup_detail where master_ref_code = '0007' and detail_ref_code = '" + dataKinList.get(i).get(2) + "'";
+                    String relayName = "select description from adm_lookup_detail where master_reference_code = '0007' and detail_reference_code = '" + dataKinList.get(i).get(2) + "'";
                     ArrayList<ArrayList<String>> dataRelayName;
                     dataRelayName = conn.getData(relayName);
                     String relay = "";
                     if (dataRelayName.size() == 0) {
                         relay = "-";
                     } else {
-                        relay = dataRelayName.get(0).get(2);
+                        relay = dataRelayName.get(0).get(0);
                     }
         %>
         <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">

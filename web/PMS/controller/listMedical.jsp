@@ -33,7 +33,7 @@
     <tbody>
         <%  for (int i = 0; i < dataMedList.size(); i++) {
 
-                String insName = "select * from lookup_detail where master_ref_code = '0083' and detail_ref_code = '" + dataMedList.get(i).get(1) + "'";
+                String insName = "select * from adm_lookup_detail where master_reference_code = '0083' and detail_reference_code = '" + dataMedList.get(i).get(1) + "'";
                 ArrayList<ArrayList<String>> dataInsName;
                 dataInsName = conn.getData(insName);
                 String ins = "";
