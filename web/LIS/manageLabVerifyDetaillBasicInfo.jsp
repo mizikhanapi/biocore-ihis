@@ -124,6 +124,8 @@
                     <input id="specimenOrderDate" name="patientOrderDate" type="text" readonly placeholder="" class="form-control input-md">
                     <input id="specimenEpisodeDate" name="patientOrderDate" type="hidden" readonly placeholder="" class="form-control input-md">
                     <input id="specimenEncounterDate" name="patientOrderDate" type="hidden" readonly placeholder="" class="form-control input-md">
+                    <input id="patientOrderLocationCodeFull" name="patientOrderLocationCodeFull" type="hidden" readonly placeholder="" class="form-control input-md" value="<%= locationcode%>">
+                    <input id="dataCallingID" name="dataCallingID" type="hidden" placeholder="" readonly class="form-control input-md">  
                 </div>
             </div>
 
@@ -156,6 +158,11 @@
 </div>
 
 
+<div class="text-right" id="patientOrderSpecimenRightButtonDiv" > 
+    <button class="btn btn-warning" type="button" id="btnVerifySpecimenCallPatient" name="btnVerifySpecimenCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
+    <button class="btn btn-danger" type="button" id="btnVerifySpecimenDeclineCallPatient" name="btnVerifySpecimenDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
+</div>
+
 
 <script>
 
@@ -173,6 +180,10 @@
         $('#lisLabRequestVerifyMasterContent').off('click', '#verifyLabOrderMasterTable #moveToOrderDetailsTButton').on('click', '#verifyLabOrderMasterTable #moveToOrderDetailsTButton', function (e) {
 
             $('<div class="loading">Loading</div>').appendTo('body');
+
+            // Disable And Enable Button
+            document.getElementById("btnVerifySpecimenCallPatient").disabled = false;
+            document.getElementById("btnVerifySpecimenDeclineCallPatient").disabled = true;
 
             e.preventDefault();
 
@@ -385,6 +396,202 @@
 
 //-------------------------------------------------------------------------------  Verify Specimen End  --------------------------------------------------------------------------------//
 
+
+
+
+
+
+        //------------------------------------------------------------------------------  Call patient Part Start  -------------------------------------------------------------------------------//
+
+
+        // Call or Decline Part Start
+        // 
+        // 
+        // Call Button Start
+        $('#lisLabRequestVerifyDetailContent').off('click', '#patientOrderSpecimenRightButtonDiv #btnVerifySpecimenCallPatient').on('click', '#patientOrderSpecimenRightButtonDiv #btnVerifySpecimenCallPatient', function (e) {
+
+
+            var specimenSpecimenNo = $("#specimenSpecimenNo").val();
+
+
+            if (specimenSpecimenNo === "" || specimenSpecimenNo === null) {
+
+                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                bootbox.alert("Please Select A Order First !!!");
+
+            } else {
+
+
+                var patientOrderLocationCodeFull = $("#patientOrderLocationCodeFull").val();
+                var patientpmino = $("#patientpmino").val();
+                var patientName = $("#patientName").val();
+                var dataCallPatientFull = patientOrderLocationCodeFull + "|" + patientpmino + "|" + patientName + "|" + specimenSpecimenNo;
+
+
+                bootbox.confirm({
+                    message: "Are You Sure ?",
+                    title: "Call Patient ?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+
+                        if (result === true) {
+
+
+                            var data = {
+                                dataCallPatientFull: dataCallPatientFull
+                            };
+
+
+                            $.ajax({
+                                url: "controllerProcessVerifySpecimen/verifySpecimenOrderCallPatientInsert.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 3000,
+                                success: function (result) {
+
+                                    var insertResult = result.trim();
+
+                                    console.log(insertResult);
+
+                                    var arrayData = insertResult.split("|");
+
+                                    var message = arrayData[0];
+                                    var callingNo = arrayData[1];
+
+                                    $("#dataCallingID").val(callingNo);
+
+                                    if (message === 'Success') {
+
+                                        bootbox.alert({
+                                            message: "Patient Call Successful",
+                                            title: "Process Result",
+                                            backdrop: true
+                                        });
+
+                                    }
+
+                                    document.getElementById("btnVerifySpecimenDeclineCallPatient").disabled = false;
+                                    document.getElementById("btnVerifySpecimenCallPatient").disabled = true;
+
+                                }
+                            });
+
+
+                        } else {
+                            console.log("Process Is Canceled");
+                        }
+
+                    }
+                });
+
+
+            }
+
+
+        });
+        // Call Button End
+
+
+
+
+        // Decline Call Button Start
+        $('#lisLabRequestVerifyDetailContent').off('click', '#patientOrderSpecimenRightButtonDiv #btnVerifySpecimenDeclineCallPatient').on('click', '#patientOrderSpecimenRightButtonDiv #btnVerifySpecimenDeclineCallPatient', function (e) {
+
+
+            var specimenSpecimenNo = $("#specimenSpecimenNo").val();
+
+
+            if (specimenSpecimenNo === "" || specimenSpecimenNo === null) {
+
+                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                bootbox.alert("Please Select A Order First !!!");
+
+            } else {
+
+
+                var callDeclineNo = $("#dataCallingID").val();
+
+
+                bootbox.confirm({
+                    message: "Are You Sure ?",
+                    title: "Decline Call Patient ?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+
+                        if (result === true) {
+
+
+                            var data = {
+                                callDeclineNo: callDeclineNo
+                            };
+
+                            $.ajax({
+                                url: "controllerProcessVerifySpecimen/verifySpecimenOrderCallPatientDelete.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 3000,
+                                success: function (result) {
+
+                                    var deleteResult = result.trim();
+
+                                    console.log(deleteResult);
+
+                                    if (deleteResult === 'Success') {
+
+                                        bootbox.alert({
+                                            message: "Decline Call Patient Successful",
+                                            title: "Process Result",
+                                            backdrop: true
+                                        });
+
+                                    }
+
+                                    document.getElementById("btnVerifySpecimenDeclineCallPatient").disabled = true;
+                                    document.getElementById("btnVerifySpecimenCallPatient").disabled = false;
+
+                                }
+                            });
+
+
+                        } else {
+                            console.log("Process Is Canceled");
+                        }
+
+                    }
+                });
+
+
+            }
+
+
+        });
+        // Decline Call Button End
+        // 
+        // 
+        // Call or Decline Part End
+
+
+        //==============================================================================  Call Patient Part End  ================================================================================//
 
 
 

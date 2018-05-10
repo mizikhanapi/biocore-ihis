@@ -621,17 +621,37 @@
 
         if (totalNumber === 0) {
 
+            var callDeclineNo = $("#dataCallingID").val();
 
-            $('<div class="loading">Loading</div>').appendTo('body');
+            var data = {
+                callDeclineNo: callDeclineNo
+            };
 
-            // Load LIST Page
-            $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");
-            $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
+            $.ajax({
+                url: "controllerProcessVerifySpecimen/verifySpecimenOrderCallPatientDelete.jsp",
+                type: "post",
+                data: data,
+                timeout: 3000,
+                success: function (result) {
 
-            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+                    var deleteResult = result.trim();
 
-            // Load Detail Page
-            $("#lisLabRequestVerifyDetailContent").load("manageLabVerifyDetaillBasicInfo.jsp");
+                    console.log(deleteResult);
+
+                    $('<div class="loading">Loading</div>').appendTo('body');
+
+                    // Load LIST Page
+                    $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");
+                    $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
+
+                    $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                    // Load Detail Page
+                    $("#lisLabRequestVerifyDetailContent").load("manageLabVerifyDetaillBasicInfo.jsp");
+
+                }
+
+            });
 
 
         }
