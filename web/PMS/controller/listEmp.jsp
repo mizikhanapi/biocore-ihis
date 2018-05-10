@@ -30,7 +30,7 @@
 </thead>
 <tbody>
     <%  for (int i = 0; i < dataEmpList.size(); i++) {
-            String occuName = "select * from lookup_detail where master_ref_code = '0050' and detail_ref_code = '" + dataEmpList.get(i).get(4) + "'";
+            String occuName = "select * from adm_lookup_detail where master_reference_code = '0050' and detail_reference_code = '" + dataEmpList.get(i).get(4) + "'";
             ArrayList<ArrayList<String>> dataOcuuName;
             dataOcuuName = conn.getData(occuName);
             String occu = "";
