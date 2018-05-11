@@ -63,6 +63,9 @@ $('#risOrderListContent').off('click', '#risManageOrderListTable #moveToRISOrder
     $("#risOrderLocationCode").val(risOrderLocationCode);
 
     loadAllergyDiagnosisOrder(risOrderNo, rispmino);
+    $('#btnRISCall').prop('disabled', false);
+    $('#btnRISCancelCall').prop('disabled', true);
+    cancelCallPatient(false);
 
 });
 // Move to Order Details Fetch Details End
@@ -782,8 +785,141 @@ $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', funct
     $("#risOrderDetailContent #risManageDiagnosisListTableDiv").load("risManageOrderListBasicInfoNew.jsp #risManageDiagnosisListTableDiv");
     $("#risOrderDetailContent #risManageOrderDetailsListTableDiv").load("risManageOrderListBasicInfoNew.jsp #risManageOrderDetailsListTableDiv");
     $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+    cancelCallPatient(false);
 });
 // Clear Button Function End
 
+//------------------ call function ----------
+function callPatient() {
 
+    var input = {
+        pat_name: $('#rispatientName').val().trim(),
+        pmi_no: $('#rispatientpmino').val().trim()
+    };
+    console.log(input);
+    $.ajax({
+        url: "../general/calling/callingInsert.jsp",
+        type: "post",
+        data: input,
+        dataType: 'json',
+        timeout: 30000,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            if (data.isValid) {
+                bootbox.alert("Success to call patient.");
+                $('#RIS_callingID').val(data.call_ID);
+                $('#btnRISCall').prop('disabled', true);
+                $('#btnRISCancelCall').prop('disabled', false);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+
+    });
+}
+//================ end call =================
+
+
+$('#btnRISCall').on('click', function () {
+    var specimenSpecimenNo = $("#risOrderNo").val();
+
+
+    if (specimenSpecimenNo === "" || specimenSpecimenNo === null) {
+
+        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+        bootbox.alert("Please Select An Order First !!!");
+
+        return;
+
+    }
+
+    bootbox.confirm({
+        message: "Are You Sure ?",
+        title: "Call Patient ?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                callPatient();
+            }
+        }
+    });
+
+});
+
+
+//--------------- cancel call -----------------
+function cancelCallPatient(show) {
+    var input = {
+        callDeclineNo: $('#RIS_callingID').val().trim()
+    };
+    $.ajax({
+        url: "../general/calling/callingDelete.jsp",
+        type: "post",
+        data: input,
+        dataType: 'json',
+        timeout: 30000,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            if (data.isValid) {
+                if (show) {
+                    bootbox.alert("Success to cancel call patient.");
+                }
+
+                $('#btnRISCall').prop('disabled', false);
+                $('#btnRISCancelCall').prop('disabled', true);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+
+    });
+}
+//==============================================
+$('#btnRISCancelCall').on('click', function () {
+    var specimenSpecimenNo = $("#risOrderNo").val();
+
+
+    if (specimenSpecimenNo === "" || specimenSpecimenNo === null) {
+
+        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+        bootbox.alert("Please Select An Order First !!!");
+
+        return;
+
+    }
+
+    bootbox.confirm({
+        message: "Are You Sure ?",
+        title: "Cancel Call Patient ?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                cancelCallPatient(true);
+            }
+        }
+    });
+
+});
 

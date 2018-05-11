@@ -74,6 +74,33 @@
             <%
                 }
 
+                if (myCIS.hasMenuAccess("CIS_01.2.1.1")) {
+            %>
+            <li><a data-toggle="modal" data-target="#CIS020001" href="" ><i class="flaticon flaticon-tool fa-li" style="display: inline"></i> Glasgow Coma Scale</a></li>
+                <%
+                    }
+                    if (myCIS.hasMenuAccess("CIS_01.2.1.2")) {
+                %>
+            <li><a data-toggle="modal" data-target="#CIS020002" href="" ><i class="flaticon flaticon-file fa-li" style="display: inline"></i> Pediatric Glasgow Coma Scale</a></li>
+                <%
+                    }
+                    if (myCIS.hasMenuAccess("CIS_01.2.1.8")) {
+                %>
+            <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pain Scale</a></li>
+                <%
+                    }
+                    if (myCIS.hasMenuAccess("CIS_01.2.1.9")) {
+                %>
+            <li><a data-toggle="modal" data-target="#CIS020013" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Pupil</a></li>
+                <%
+                    }
+                    if (myCIS.hasMenuAccess("CIS_01.2.1.10")) {
+                %>
+            <li><a data-toggle="modal" data-target="#CIS020014" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Vision</a></li>
+            <!--<li><a data-toggle="modal" data-target="#CIS020015" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Height and Weight</a></li>-->
+            <%
+                }
+
                 if (myCIS.hasMenuAccess("CIS_01.2.2")) {
             %>
             <li id="modalPE"><a data-toggle="modal" data-target="#CIS020009" href=""  class="soap-select" ><span class="fa fa-sticky-note fa-li"></span> Physical Exam</a></li>
@@ -109,18 +136,8 @@
 
         <div class="row">
             <ul class="sub-soap collapse fa-ul" id="vital-tab">
-                <%                    if (myCIS.hasMenuAccess("CIS_01.2.1.1")) {
+                <%                    if (myCIS.hasMenuAccess("CIS_01.2.1.3")) {
                 %>
-                <li><a data-toggle="modal" data-target="#CIS020001" href="" ><i class="flaticon flaticon-tool fa-li" style="display: inline"></i> Glasgow Coma Scale</a></li>
-                    <%
-                        }
-                        if (myCIS.hasMenuAccess("CIS_01.2.1.2")) {
-                    %>
-                <li><a data-toggle="modal" data-target="#CIS020002" href="" ><i class="flaticon flaticon-file fa-li" style="display: inline"></i> Pediatric Glasgow Coma Scale</a></li>
-                    <%
-                        }
-                        if (myCIS.hasMenuAccess("CIS_01.2.1.3")) {
-                    %>
                 <li><a data-toggle="modal" data-target="#CIS020003" href="" ><i class="flaticon flaticon-arrows fa-li" style="display: inline"></i> Blood Pressure</a></li>
                     <%
                         }
@@ -144,25 +161,10 @@
                 <li><a data-toggle="modal" data-target="#CIS020016" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i>Blood Glucose</a></li>
                     <%
                         }
-                        if (myCIS.hasMenuAccess("CIS_01.2.1.8")) {
+
+                        if (myCIS.hasMenuAccess("CIS_01.2.1.11")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pain Scale</a></li>
-                    <%
-                        }
-                        if (myCIS.hasMenuAccess("CIS_01.2.1.9")) {
-                    %>
-                <li><a data-toggle="modal" data-target="#CIS020013" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Pupil</a></li>
-                    <%
-                        }
-                        if (myCIS.hasMenuAccess("CIS_01.2.1.10")) {
-                    %>
-                <li><a data-toggle="modal" data-target="#CIS020014" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Vision</a></li>
-                <!--<li><a data-toggle="modal" data-target="#CIS020015" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Height and Weight</a></li>-->
-                <%
-                    }
-                    if (myCIS.hasMenuAccess("CIS_01.2.1.11")) {
-                %>
-                <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> Other</a></li>
+                <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> BMI</a></li>
                     <%
                         }
                     %>

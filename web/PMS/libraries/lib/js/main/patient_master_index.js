@@ -387,6 +387,50 @@ $(document).ready(function () {
     $('#PMI_btnGenerate').on('click', function (e) {
         e.preventDefault();
         var pmiNo = $('#PMIpmino').val().trim();
+        
+        var pname = $("#PMIpname").val(),
+                ptitle = $("#PMItitleCODE").val(),
+                pit = $("#PMIidty").val(),
+                pidno = $("#PMIino").val().trim(),
+                pbday = $("#PMIbday").val(),
+                psex = $("#PMIsex").val(),
+                pmarital = $("#PMImarital").val(),
+                prace = $("#PMIrace").val(),
+                pnational = $("#PMInationalCODE").val(),
+                phomeadd = $("#PMIhadd").val();
+               
+
+        if (pname === "") {
+            bootbox.alert("Please key in patient's name..");
+            return;
+        } else if (ptitle === "") {
+            bootbox.alert("Please key in patient's salutation..");
+            return;
+        } else if (pbday === "") {
+            bootbox.alert("Please key in patient's date of birth..");
+            return;
+        } else if (psex === null) {
+            bootbox.alert("Please key in patient's gender..");
+            return;
+        } else if (pmarital === null) {
+            bootbox.alert("Please key in patient's marital status..");
+            return;
+        } else if (prace === null) {
+            bootbox.alert("Please key in patient's race..");
+            return;
+        } else if (pnational === "") {
+            bootbox.alert("Please key in patient's nationality..");
+            return;
+        } else if (phomeadd === "") {
+            bootbox.alert("Please key in patient's home address..");
+            return;
+        } else if (pit === null && pidno !== "") {
+            bootbox.alert("Please key in patient's secondary ID Type..");
+            return;
+        } else if (pmino === "") {
+            bootbox.alert("Pleace generate the PMI No before registering/saving patient biodata..");
+            return;
+        }
 
         if (pmiNo !== "") {
             return;

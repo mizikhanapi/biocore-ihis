@@ -31,7 +31,7 @@ public class OrderMaster {
         this.rmic = new RMIConnector();
     }
 
-    public void updateOrderMasterStatus() {
+    public boolean updateOrderMasterStatus() {
         String query = "Select order_status from pos_order_detail where order_no = '" + orderNo + "' ";
         ArrayList<ArrayList<String>> data = conn.getData(query);
 
@@ -77,6 +77,8 @@ public class OrderMaster {
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
 
         }
+        
+        return proceedUpdate;
 
     }
 

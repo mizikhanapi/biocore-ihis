@@ -124,17 +124,20 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
-                        <div class="col-md-6 input-group">
-                            <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
-                            </span>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
+                                </span>
+                            </div>
+
                         </div>
                     </div>                  
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic"> Nationality *</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Nationality *</label>
                         <div class="col-md-6">
 
                             <input id="PMInational" name="textinput" type="text" placeholder="select nationality.." class="form-control input-md">
@@ -721,7 +724,7 @@
                 }
 
                 $('#PMIprimary_idty').change();
-                if(s_idty != null){
+                if (s_idty != null) {
                     $("#PMIidty").val(s_idty);
                 }
 

@@ -48,6 +48,9 @@ $('#risOrderListContent').off('click', '#risManageOrderListTable #moveToRISOrder
 
     loadAllergyDiagnosisOrder(risOrderNo, rispmino);
 
+    $('#btnRISCall').prop('disabled', false);
+    $('#btnRISCancelCall').prop('disabled', true);
+
 });
 // Move to Order Details Fetch Details End
 
@@ -136,10 +139,10 @@ $('#risOrderNewRequestButton').on('click', function () {
     $('#RNO_modalTitle').text('Request New Order');
 
     $('#RNO_addForm')[0].reset(); //reset the form
-    
+
     $('#RNO_pro_match').html('');
     $('#RNO_div_redo').hide();
-    
+
     $('#RNO_proName').prop('disabled', false);
 
     $('#RNO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="RNO_btnAdd">Add</button>');
@@ -150,15 +153,15 @@ $('#risOrderNewRequestButton').on('click', function () {
 
 
 $('#RNO_proName').on('keyup', function () {
-   
+
     var input = $(this).val();
 
     if (input.length > 0) {
 
-       
+
         $('#RNO_pro_match').html('<img src="img/ajax-loader.gif">');
         var data = {
-           key: input
+            key: input
         };
 
         $.ajax({
@@ -171,10 +174,10 @@ $('#RNO_proName').on('keyup', function () {
 
                     $('#RNO_proName').val($(this).text());
                     $('#RNO_pro_match').html('');
-                    
-                     $('#RNO_proName').prop('disabled', true);
+
+                    $('#RNO_proName').prop('disabled', true);
                     $('#RNO_div_redo').show();
-                    
+
 
                 });
 
@@ -186,7 +189,7 @@ $('#RNO_proName').on('keyup', function () {
 
 
         });//end ajax
-        
+
 
     } else {
         $('#RNO_pro_match').html('');
@@ -195,7 +198,7 @@ $('#RNO_proName').on('keyup', function () {
 
 //--------------------------- reset procedure name on btnRedo click ----------------------------------------
 
-$('#RNO_btnRedo').on('click', function(e){
+$('#RNO_btnRedo').on('click', function (e) {
     e.preventDefault();
     $('#RNO_proName').val('').prop('disabled', false);
     $('#RNO_div_redo').hide();
@@ -220,16 +223,16 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
         var arrData = procedure.split('|');
         procedure = arrData[0].trim();
         var pro_name = "";
-        
-        try{
+
+        try {
             pro_name = arrData[1].trim();
-        }catch (e){
+        } catch (e) {
             bootbox.alert("Please choose existing procedure!");
             $('#RNO_proName').val("");
             return false;
         }
         var epDate = $('#posEpDate').val();
-        
+
 
         var data = {
             orderNo: orderNo,
@@ -331,14 +334,17 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
                     url: "order_control/order_update.jsp",
                     type: "post",
                     data: data,
+                    dataType: 'json',
                     success: function (datas) {
 
-                        if (datas.trim() === 'success') {
+                        if (datas.isValid) {
                             bootbox.alert('Order is cancelled.');
                             loadOrderDetailList(orderNo);
+                            if (datas.isComplete) {
+                                cancelCallPatient(false);
+                            }
 
-
-                        } else if (datas.trim() === 'fail') {
+                        } else if (!datas.isValid) {
                             bootbox.alert("Fail to cancel order!");
                             destroyScreenLoading();
 
@@ -394,12 +400,12 @@ $('#PR_btnSubmit').on('click', function () {
     var comment = $('#PR_comment').val();
     var epDate = $('#posEpDate').val();
     var outcome = $('#PR_outcome').val();
-    
+
     //added on 29/6/2017
-    var pmiNo = $('#rispatientpmino').val() ;
+    var pmiNo = $('#rispatientpmino').val();
     var orderDate = $('#risOrderDate').val();
     var duration = $('#PR_duration').val();
-    
+
 
     if (outcome === '') {
         bootbox.alert('Please write your findings or outcome.',
@@ -407,17 +413,18 @@ $('#PR_btnSubmit').on('click', function () {
                     $('#PR_comment').focus();
                 }
         );
-    }
-    else if(duration === '' || parseInt(duration) > 999999){
-         bootbox.alert('Please key in the time taken to complete the procedure in minutes. Value must be between 0 and 999999',
+    } else if (parseInt(duration) > 999999) {
+        bootbox.alert('Please key in the time taken to complete the procedure in minutes. Value must be between 0 and 999999',
                 function () {
                     $('#PR_duration').focus();
                 }
         );
-    }
-    else{
+    } else {
         comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         outcome = outcome.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+        if (duration === '') {
+            duration = 0;
+        }
         var data = {
             process: 'report',
             orderNo: orderNo,
@@ -430,33 +437,38 @@ $('#PR_btnSubmit').on('click', function () {
             duration: duration,
             outcome: outcome
         };
-        
+
         //$('#modal_prepareResult').modal('hide');
         createScreenLoading();
-        
+
         $.ajax({
             type: 'POST',
             url: "order_control/order_update.jsp",
             data: data,
+            dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                if(data.trim() === 'success'){
+                if (data.isValid) {
                     bootbox.alert('Report is submitted.');
                     $('#modal_prepareResult').modal('hide');
                     $('#PR_form')[0].reset();
                     loadOrderDetailList(orderNo);
-                    
-                }else if(data.trim() === 'fail'){
+
+                    if (data.isComplete) {
+                        cancelCallPatient(false);
+                    }
+
+                } else if (!data.isValid) {
                     bootbox.alert('Fail to submit report.');
                     destroyScreenLoading();
-                }else{
+                } else {
                     console.log(data);
                     destroyScreenLoading();
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Opps! " + errorThrown);
-                        destroyScreenLoading();
-                    }
+                bootbox.alert("Opps! " + errorThrown);
+                destroyScreenLoading();
+            }
         });
     }
 
@@ -485,13 +497,144 @@ $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', funct
 
 $('#PR_duration').on('keypress', function (e) {
 
-        //if the letter is not digit then display error and don't type anything
-        if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
-            //display error message
-            $("#PR_duration_err").html("Whole Number Only!!!").show().fadeOut("slow");
-            return false;
+    //if the letter is not digit then display error and don't type anything
+    if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#PR_duration_err").html("Whole Number Only!!!").show().fadeOut("slow");
+        return false;
+    }
+});
+
+
+//------------------ call function ----------
+function callPatient() {
+
+    var input = {
+        pat_name: $('#rispatientName').val().trim(),
+        pmi_no: $('#rispatientpmino').val().trim()
+    };
+    console.log(input);
+    $.ajax({
+        url: "../general/calling/callingInsert.jsp",
+        type: "post",
+        data: input,
+        dataType: 'json',
+        timeout: 30000,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            if (data.isValid) {
+                bootbox.alert("Success to call patient.");
+                $('#RIS_callingID').val(data.call_ID);
+                $('#btnRISCall').prop('disabled', true);
+                $('#btnRISCancelCall').prop('disabled', false);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+
+    });
+}
+//================ end call =================
+
+
+$('#btnRISCall').on('click', function () {
+    var specimenSpecimenNo = $("#risOrderNo").val();
+
+
+    if (specimenSpecimenNo === "" || specimenSpecimenNo === null) {
+
+        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+        bootbox.alert("Please Select An Order First !!!");
+
+        return;
+
+    }
+
+    bootbox.confirm({
+        message: "Are You Sure ?",
+        title: "Call Patient ?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                callPatient();
+            }
         }
     });
 
+});
 
 
+//--------------- cancel call -----------------
+function cancelCallPatient(show) {
+    var input = {
+        callDeclineNo: $('#RIS_callingID').val().trim()
+    };
+    $.ajax({
+        url: "../general/calling/callingDelete.jsp",
+        type: "post",
+        data: input,
+        dataType: 'json',
+        timeout: 30000,
+        success: function (data, textStatus, jqXHR) {
+            if (data.isValid) {
+                if (show) {
+                    bootbox.alert("Success to cancel call patient.");
+                }
+
+                $('#btnRISCall').prop('disabled', false);
+                $('#btnRISCancelCall').prop('disabled', true);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+
+    });
+}
+//==============================================
+$('#btnRISCancelCall').on('click', function () {
+    var specimenSpecimenNo = $("#risOrderNo").val();
+
+
+    if (specimenSpecimenNo === "" || specimenSpecimenNo === null) {
+
+        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+        bootbox.alert("Please Select An Order First !!!");
+
+        return;
+
+    }
+
+    bootbox.confirm({
+        message: "Are You Sure ?",
+        title: "Cancel Call Patient ?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                cancelCallPatient(true);
+            }
+        }
+    });
+
+});

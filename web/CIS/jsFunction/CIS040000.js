@@ -180,7 +180,7 @@ $(document).ready(function () {
             };
             sendOrder(data, "tableOrderROS");
             searchInitialize("RIS", "D");
-            $("#CIS040000").modal('hide');
+            //$("#CIS040000").modal('hide');
             _dataROS = [];
 
         } else {

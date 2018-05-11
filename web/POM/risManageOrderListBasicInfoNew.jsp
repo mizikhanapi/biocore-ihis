@@ -196,10 +196,15 @@
 </div>
 
 <hr/>
-<div class="text-left" id="patientOrderDispenseButtonDiv" > 
+<div class="pull-left" id="patientOrderDispenseButtonDiv" > 
     <!--<button class="btn btn-success " type="button" id="btnRISOrderSave" name="btnRISOrderSave" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Save &nbsp;</button>-->
     <!--<button class="btn btn-primary " type="button" id="btnRISOrderSendResults" name="btnRISOrderSendResults" > <i class="fa fa-print fa-lg" ></i>&nbsp; Send Result &nbsp;</button>-->
     <button class="btn btn-default " type="button" id="btnRISClearOrderDetail" name="btnRISClearOrderDetail" > <i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
+</div>
+<div class="pull-right">
+    <input type="hidden" id="RIS_callingID"/>
+    <button class="btn btn-warning" type="button" id="btnRISCall" name="btnVerifySpecimenCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
+    <button class="btn btn-danger" type="button" id="btnRISCancelCall" name="btnVerifySpecimenDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
 </div>
 <script src="order_detail_js/order_detail_main.js?v1.2" type="text/javascript"></script>
 

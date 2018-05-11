@@ -65,6 +65,10 @@
             
         });
         
+        $('#RMOM_oderTime').on('change', function(){
+            $('#RMOM_btnRefresh').click();
+        });
+        
     });
     
 </script>
