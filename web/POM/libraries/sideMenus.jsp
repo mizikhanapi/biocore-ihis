@@ -26,6 +26,7 @@
                 <li><a data-toggle="modal" data-target="#" href="list_procedure_cd.jsp">List of Procedure Code</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Procedure Sale</a></li>
+                <li><a data-toggle="modal" data-target="#" href="list_performance.jsp">Staff Performance</a></li>
             </ul>
         </li>
         <li><a href="HIS180004.jsp"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
