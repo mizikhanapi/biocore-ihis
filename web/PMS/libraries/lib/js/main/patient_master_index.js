@@ -333,9 +333,10 @@ $(document).ready(function () {
                 pmarital = $("#PMImarital").val(),
                 prace = $("#PMIrace").val(),
                 pnational = $("#PMInationalCODE").val(),
-                phomeadd = $("#PMIhadd").val();
-                //ppayergroup = $("#PMIpg").val(),
-                //pperty = $("#PMIperty").val();
+                phomeadd = $("#PMIhadd").val(),
+                pMobile = $('#PMIhandphone').val();
+        //ppayergroup = $("#PMIpg").val(),
+        //pperty = $("#PMIperty").val();
 
 
         if (pname === "") {
@@ -360,6 +361,8 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's secondary ID Type..");
         } else if (pmino === "") {
             bootbox.alert("Pleace generate the PMI No before registering/saving patient biodata..");
+        } else if (pMobile === "") {
+            bootbox.alert("Pleace key in patient's mobile phone number..");
         } else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",
@@ -387,7 +390,7 @@ $(document).ready(function () {
     $('#PMI_btnGenerate').on('click', function (e) {
         e.preventDefault();
         var pmiNo = $('#PMIpmino').val().trim();
-        
+
         var pname = $("#PMIpname").val(),
                 ptitle = $("#PMItitleCODE").val(),
                 pit = $("#PMIidty").val(),
@@ -397,8 +400,9 @@ $(document).ready(function () {
                 pmarital = $("#PMImarital").val(),
                 prace = $("#PMIrace").val(),
                 pnational = $("#PMInationalCODE").val(),
-                phomeadd = $("#PMIhadd").val();
-               
+                phomeadd = $("#PMIhadd").val(),
+                pmobile = $('#PMIhandphone').val();
+
 
         if (pname === "") {
             bootbox.alert("Please key in patient's name..");
@@ -429,6 +433,9 @@ $(document).ready(function () {
             return;
         } else if (pmino === "") {
             bootbox.alert("Pleace generate the PMI No before registering/saving patient biodata..");
+            return;
+        } else if (pmobile === "") {
+            bootbox.alert("Pleace key in patient's mobile phone number..");
             return;
         }
 

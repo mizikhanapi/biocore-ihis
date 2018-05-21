@@ -31,14 +31,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>
                             <div class="col-md-8">
-                                <input id="MEDpmino" name="MEDpmino" type="text"  class="form-control input-md">
+                                <input id="MEDpmino" name="MEDpmino" type="text"  class="form-control input-md" readonly>
                                 <input id="MEDseq" name="MEDseq" type="hidden"  class="form-control input-md">
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Insurance Company</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Insurance Company *</label>
                             <div class="col-md-8">
 
                                 <input id="MEDinscom" name="textinput" type="text" placeholder="select Insurance Company.." class="form-control input-md" autocomplete="off">
@@ -49,7 +49,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Policy No.</label>  
+                            <label class="col-md-4 control-label" for="textinput">Policy No. *</label>  
                             <div class="col-md-8">
                                 <input id="MEDpolicy" name="MEDpolicy" type="text"  class="form-control input-md" maxlength="15">
 
@@ -98,7 +98,7 @@
             </div>
             <div class="modal-footer">
                 <div class="text-center">
-                    <button id="MEDsave" name="MEDsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button id="MEDsave" name="MEDsave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
                     <button id="MEDclear" name="MEDclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                 </div>
             </div>
@@ -108,11 +108,19 @@
 <script>
     $(document).ready(function () {
         $(function () {
-            $('#MEDdate').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+            $('#MEDdate').datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                minDate: '-150Y',
+                maxDate: '+10Y',
+                yearRange: '-150:+10'
+            });
         });
     });
     $('#MEDsave').on('click', function (e) {
         e.preventDefault();
+        $('#MEDModal').css('overflow', 'auto');
         var pmino = $('#MEDpmino').val(),
                 insuranceCom = $('#MEDinscomCODE').val(),
                 policy = $('#MEDpolicy').val(),
@@ -121,11 +129,17 @@
                 status = $('#MEDstatus').val(),
                 seq = $('#MEDseq').val();
 
-        if (insuranceCom === null) {
-            insuranceCom = "-";
+        if (insuranceCom == null || insuranceCom === "") {
+            bootbox.alert("Search existing insurance company!", function () {
+                $('#MEDinscom').focus();
+            });
+            return;
         }
         if (policy === "") {
-            policy = "-";
+            bootbox.alert("Key in the policy number!", function () {
+                $('#MEDpolicy').focus();
+            });
+            return;
         }
         if (hfc === null) {
             hfc = "-";
@@ -133,11 +147,12 @@
         if (status === null) {
             status = "-";
         }
-        if (maturityDate === null) {
-            maturityDate = "-";
-        } else {
+        var convertedmaturitydate = "-";
+        if (maturityDate !== null) {
             var splitmaturitydate = String(maturityDate).split("/");
-            var convertedmaturitydate = splitmaturitydate[2] + "-" + splitmaturitydate[1] + "-" + splitmaturitydate[0];
+            if (splitmaturitydate.length === 3) {
+                convertedmaturitydate = splitmaturitydate[2] + "-" + splitmaturitydate[1] + "-" + splitmaturitydate[0];
+            }
         }
 
 
@@ -168,6 +183,7 @@
             callback: function (result) {
 //if true go to PMI page
                 if (result === true) {
+                    $('#MEDModal').modal('hide');
                     $.ajax({
                         type: "post",
                         url: "controller/saveMedical.jsp",
@@ -188,7 +204,7 @@
                                     success: function (returnhtml) {
                                         //console.log(returnhtml);
                                         $('#tableListMed').html(returnhtml);
-                                        $('#MEDpmino').prop('readonly', false);
+                                        //$('#MEDpmino').prop('readonly', false);
                                         $('#MEDpolicy').prop('readonly', false);
                                     }
                                 });
@@ -210,7 +226,7 @@
         $('#formMed')[0].reset();
         $('#MEDpmino').val(pmino);
         $('#MEDseq').val("");
-        $('#MEDpmino').prop('readonly', false);
+        //$('#MEDpmino').prop('readonly', false);
         $('#MEDpolicy').prop('readonly', false);
     });
 

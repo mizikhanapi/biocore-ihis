@@ -27,14 +27,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>
                             <div class="col-md-8">
-                                <input id="FAMpmi" name="FAMpmi" type="text"  class="form-control input-md">
+                                <input id="FAMpmi" name="FAMpmi" type="text"  class="form-control input-md" readonly>
                                 <input id="FAMseq" name="FAMseq" type="hidden"  class="form-control input-md">
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Family Relationship</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Family Relationship *</label>
                             <div class="col-md-8">
                                 <select id="FAMrelay" name="FAMrelay" class="form-control">
                                     <option value="null" disabled="" selected="">Select Family Relationship</option>
@@ -48,18 +48,35 @@
                             </div>
                         </div>
 
+                        <!-- Select Basic -->
+                        <div class="form-group" id="FAMidtype_div">
+                            <label class="col-md-4 control-label" for="selectbasic">ID Type *</label>
+                            <div class="col-md-8">
+                                <select id="FAMidtype" class="form-control">
+                                    <option value="null" selected="" disabled="">Select ID Type</option>
+                                    <option value="-">-</option>
+
+                                    <%
+                                        for (int i = 0; i < dataIdType61.size(); i++) {%>
+                                    <option value="<%=dataIdType61.get(i).get(2)%>"><%=dataIdType61.get(i).get(2)%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">IC No.</label>  
+                            <label class="col-md-4 control-label" for="textinput">IC / ID No. *</label>  
                             <div class="col-md-8">
-                                <input id="FAMpmifam" name="FAMpmifam" type="text" placeholder="Search IC..."  class="form-control input-md" maxlength="12">
+                                <input id="FAMpmifam" name="FAMpmifam" type="text" placeholder="Search IC / ID No.."  class="form-control input-md" maxlength="12">
                                 <div id="matcFampmifam" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Name</label>  
+                            <label class="col-md-4 control-label" for="textinput">Name *</label>  
                             <div class="col-md-8">
                                 <input id="FAMname" name="FAMname" type="text"  class="form-control input-md" maxlength="80">
 
@@ -85,7 +102,7 @@
             </div>
             <div class="modal-footer">
                 <div class="text-center">
-                    <button id="FAMsave" name="FAMsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button id="FAMsave" name="FAMsave" class="btn btn-primary" ><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
                     <button id="FAMclear" name="FAMclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                 </div>
             </div>
@@ -93,23 +110,44 @@
     </div>
 </div>
 <script>
+    
+      
     $('#FAMsave').on('click', function (e) {
         e.preventDefault();
+        $('#FamilyModal').css('overflow', 'auto');
         var pmino = $('#FAMpmi').val(),
                 seq = $('#FAMseq').val(),
                 relay = $('#FAMrelay').val(),
                 fampnimo = $('#FAMpmifam').val(),
                 name = $('#FAMname').val(),
-                occu = $('#FAMoccCODE').val();
+                occu = $('#FAMoccCODE').val(),
+                idType = $('#FAMidtype').val();
 
         if (relay === null) {
-            relay = "-";
+            bootbox.alert("Select family relationship!", function () {
+                $('#FAMrelay').focus();
+            });
+            return;
         }
+
+        if (idType == null) {
+            bootbox.alert("Select ID type!", function () {
+                $('#FAMidtype').focus();
+            });
+            return;
+        }
+
         if (fampnimo === "") {
-            fampnimo = "-";
+            bootbox.alert("Key in the IC / ID number!", function () {
+                $('#FAMpmifam').focus();
+            });
+            return;
         }
         if (name === "") {
-            name = "-";
+            bootbox.alert("Key in the name!", function () {
+                $('#FAMname').focus();
+            });
+            return;
         }
         if (occu === "") {
             occu = "-";
@@ -139,6 +177,7 @@
             callback: function (result) {
 //if true go to PMI page
                 if (result === true) {
+                    $('#FamilyModal').modal('hide');
                     $.ajax({
                         type: "post",
                         url: "controller/saveFamily.jsp",
@@ -159,7 +198,7 @@
                                     success: function (returnhtml) {
                                         //console.log(returnhtml);
                                         $('#tableListFamily').html(returnhtml);
-                                        $('#FAMpmi').prop('readonly', false);
+                                        //$('#FAMpmi').prop('readonly', false);
 
                                         $('#FAMpmifam').prop('readonly', false);
                                     }
@@ -188,7 +227,7 @@
         $('#FAMseq').val("");
         $('#FAMpmi').prop('readonly', false);
 
-        $('#FAMpmifam').prop('readonly', false);
+        //$('#FAMpmifam').prop('readonly', false);
 
     });
 

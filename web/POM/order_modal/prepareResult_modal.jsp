@@ -45,7 +45,7 @@
                      
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Duration (In whole minutes)*</label>
+                        <label class="col-md-4 control-label" for="textinput">Duration (In whole minutes)</label>
                         <div class="col-md-8">
                             <input class="form-control" type="number" min="0" step="1" placeholder="Key in the duration to complete the procedure (minutes)" id="PR_duration">
                             <p id="PR_duration_err" style="color: red"></p>

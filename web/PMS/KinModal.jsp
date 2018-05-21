@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Patient PMI No.</label>  
                                     <div class="col-md-7">
-                                        <input id="KINpmino" name="KINpmino" type="text"  class="form-control input-md">
+                                        <input id="KINpmino" name="KINpmino" type="text"  class="form-control input-md" readonly>
                                         <input id="KINseq" name="KINseq" type="hidden"  class="form-control input-md">
 
                                     </div>
@@ -42,7 +42,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Relationship</label>  
                                     <div class="col-md-7">
                                         <select id="KINrelationship" name="KINrelationship" class="form-control">
-                                            <option value="null" selected="" disabled="">Select Relationship</option>
+                                            <option value="null" selected="" disabled="">Select Relationship *</option>
                                             <option value="-">-</option>
 
                                             <%                                        for (int i = 0; i < dataRelation61.size(); i++) {%>
@@ -55,25 +55,16 @@
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Name of Next of Kin</label>  
+                                    <label class="col-md-4 control-label" for="textinput">Name of Next of Kin *</label>  
                                     <div class="col-md-7">
                                         <input id="KINname" name="KINname" type="text"  class="form-control input-md" maxlength="80">
 
                                     </div>
                                 </div>
 
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">New IC</label>  
-                                    <div class="col-md-7">
-                                        <input id="KINnewic" name="KINnewic" type="text"  class="form-control input-md" maxlength="12">
-
-                                    </div>
-                                </div>
-
                                 <!-- Select Basic -->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
+                                    <label class="col-md-4 control-label" for="selectbasic">ID Type *</label>
                                     <div class="col-md-7">
                                         <select id="KINidtype" name="KINidtype" class="form-control">
                                             <option value="null" selected="" disabled="">Select ID Type</option>
@@ -90,9 +81,9 @@
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Date Of Birth</label>  
+                                    <label class="col-md-4 control-label" for="textinput">IC / ID NO *</label>  
                                     <div class="col-md-7">
-                                        <input id="KINdob" name="KINdob" type="text" class="form-control input-md">
+                                        <input id="KINnewic" name="KINnewic" type="text"  class="form-control input-md" maxlength="12">
 
                                     </div>
                                 </div>
@@ -100,9 +91,20 @@
 
 
 
+
+
                             </div>
 
                             <div class="col-md-6">
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Date Of Birth</label>  
+                                    <div class="col-md-7">
+                                        <input id="KINdob" name="KINdob" type="text" class="form-control input-md">
+
+                                    </div>
+                                </div>
 
                                 <!-- Select Basic -->
                                 <div class="form-group">
@@ -112,7 +114,7 @@
                                     </div>
                                 </div>
                                 <!-- Text input-->
-                                <div class="form-group">
+                                <div class="form-group hidden">
                                     <label class="col-md-4 control-label" for="textinput">Old IC</label>  
                                     <div class="col-md-7">
                                         <input id="KINoldic" name="KINoldic" type="text" class="form-control input-md" maxlength="8">
@@ -120,7 +122,7 @@
                                     </div>
                                 </div>
                                 <!-- Select Basic -->
-                                <div class="form-group">
+                                <div class="form-group hidden">
                                     <label class="col-md-4 control-label" for="selectbasic">ID number</label>
                                     <div class="col-md-7">
                                         <input id="KINidnumber" name="KINidnumber" type="text" class="form-control input-md">
@@ -128,19 +130,19 @@
                                 </div>
                                 <!-- Select Basic -->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="selectbasic">Occupation</label>
+                                    <label class="col-md-4 control-label" for="selectbasic">Occupation *</label>
                                     <div class="col-md-7">
 
-                                        <input id="KINoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md" autocomplete="off">
+                                        <input id="KINoccu" name="textinput" type="text" placeholder="Search occupation.." class="form-control input-md" autocomplete="off">
                                         <input id="KINoccuCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
                                         <div id="matcKINoccu" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                                     </div>
                                 </div>
                                 <!-- Select Basic -->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="selectbasic">Handphone Number</label>
+                                    <label class="col-md-4 control-label" for="selectbasic">Handphone Number *</label>
                                     <div class="col-md-7">
-                                        <input id="KINphone" name="KINphone" type="text" class="form-control input-md"maxlength="12" >
+                                        <input id="KINphone" name="KINphone" type="text" class="form-control input-md numbersOnly" maxlength="12" >
                                     </div>
                                 </div>
 
@@ -148,7 +150,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Homephone Number</label>
                                     <div class="col-md-7">
-                                        <input id="KINhomephone" name="KINhomephone" type="text" class="form-control input-md" maxlength="12">
+                                        <input id="KINhomephone" name="KINhomephone" type="text" class="form-control input-md numbersOnly" maxlength="12">
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +231,7 @@
             </div>
             <div class="modal-footer">
                 <div class="text-center">
-                    <button id="KINsave" name="KINsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button id="KINsave" name="KINsave" class="btn btn-primary" ><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
                     <button id="KINclear" name="KINclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                 </div>
             </div>

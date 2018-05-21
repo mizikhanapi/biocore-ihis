@@ -38,14 +38,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>  
                             <div class="col-md-6">
-                                <input id="EMPpmino" name="EMPpmino" type="text"  class="form-control input-md">
+                                <input id="EMPpmino" name="EMPpmino" type="text"  class="form-control input-md" readonly>
                                 <input id="EMPseq" name="EMPseq" type="hidden"  class="form-control input-md">
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Employer Code</label>  
+                            <label class="col-md-4 control-label" for="textinput">Employer Code *</label>  
                             <div class="col-md-6">
                                 <input id="EMPempcode" name="EMPempcode" type="text"  class="form-control input-md">
 
@@ -54,7 +54,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Employer Name</label>  
+                            <label class="col-md-4 control-label" for="textinput">Employer Name *</label>  
                             <div class="col-md-6">
                                 <input id="EMPempname" name="EMPempname" type="text"  class="form-control input-md" maxlength="80">
 
@@ -63,11 +63,11 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Occupation</label>  
+                            <label class="col-md-4 control-label" for="textinput">Occupation *</label>  
                             <div class="col-md-6">
 
-                                <input id="EMPoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md" autocomplete="off">
-                                <input id="EMPoccuCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                                <input id="EMPoccu" name="textinput" type="text" placeholder="Search occupation.." class="form-control input-md" autocomplete="off">
+                                <input id="EMPoccuCODE" type="hidden" class="form-control input-md">
                                 <div id="matcEMPoccu" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                         </div>
 
                         <!-- Select Basic -->
-                        <div class="form-group">
+                        <div class="form-group hidden">
                             <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
                             <div class="col-md-6">
 
@@ -108,7 +108,7 @@
                         </div>
 
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group hidden">
                             <label class="col-md-4 control-label" for="textinput">Created Date</label>  
                             <div class="col-md-6">
                                 <input id="EMPcredate" name="EMPcredate" type="text"  class="form-control input-md" readonly>
@@ -137,7 +137,7 @@
             </div>
             <div class="modal-footer">
                 <div class="text-center">
-                    <button id="EMPsave" name="EMPsave" class="btn btn-primary " data-dismiss="modal" role="button">Save</button>
+                    <button id="EMPsave" name="EMPsave" class="btn btn-primary " >Save</button>
                     &nbsp;
                     <button id="EMPclear" name="EMPclear" class="btn btn-default">Clear</button>
                 </div>
@@ -162,7 +162,14 @@
         });
 
         $(function () {
-            $('#EMPjdate').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+            $('#EMPjdate').datepicker({
+                dateFormat: 'dd/mm/yy', 
+                changeMonth: true, 
+                changeYear: true,
+                minDate: '-100Y',
+                maxDate: '+0',
+                yearRange: '-100:+0'
+            });
         });
 
     });
@@ -216,23 +223,44 @@
 
     //function to save employment when click save button
     $('#EMPsave').on('click', function () {
+        
+        $('#EMPModal').css('overflow', 'auto');
 
         var EMPpmino = $('#EMPpmino').val(),
                 EMPseq = $('#EMPseq').val(),
-                EMPcd = $('#EMPempcode').val(),
-                EMPname = $('#EMPempname').val(),
+                EMPcd = $('#EMPempcode').val().trim(),
+                EMPname = $('#EMPempname').val().trim(),
                 EMPoccu = $('#EMPoccuCODE').val(),
                 EMPjdate = $('#EMPjdate').val(),
                 EMPinrange = $('#EMPinrange').val(),
                 EMPhfc = $('#EMPhfcCODE').val(),
-                EMPcredate = $('#EMPcredate').val(),
                 EMPstatus = $('#EMPstatus').val();
-
-        var splitCreDate2 = String(EMPcredate).split("/");
-        var convertedCreDate2 = splitCreDate2[2] + "-" + splitCreDate2[1] + "-" + splitCreDate2[0];
+        
+        if(EMPcd === ""){
+            bootbox.alert("Please fill in the employer code!", function(){
+                $('#EMPempcode').focus();
+            });
+            return;
+        }
+        else if(EMPname===""){
+             bootbox.alert("Please fill in the employer name!", function(){
+                $('#EMPempname').focus();
+            });
+            return;
+        }
+        else if(EMPoccu == null || EMPoccu === ""){
+             bootbox.alert("Please choose existing occupation!", function(){
+                $('#EMPoccu').focus();
+            });
+            return;
+        }
 
         var splitJDate2 = String(EMPjdate).split("/");
-        var convertedJDate2 = splitJDate2[2] + "-" + splitJDate2[1] + "-" + splitJDate2[0];
+        var convertedJDate2 = "";
+        if(splitJDate2.length === 3){
+            convertedJDate2 = splitJDate2[2] + "-" + splitJDate2[1] + "-" + splitJDate2[0];
+        }
+                
 
         var datas = {
             EMPpmino: EMPpmino,
@@ -243,7 +271,6 @@
             EMPjdate: convertedJDate2,
             EMPinrange: EMPinrange,
             EMPhfc: EMPhfc,
-            EMPcredate: convertedCreDate2,
             EMPstatus: EMPstatus
         };
         //console.log(datas);
@@ -261,6 +288,7 @@
             },
             callback: function (result) {
                 //if true go to PMI page
+                $('#EMPModal').modal('hide');
                 if (result === true) {
                     $.ajax({
                         type: "post",
@@ -283,7 +311,7 @@
                                     success: function (returnhtml) {
                                         console.log(returnhtml);
                                         $('#tableListEmp').html(returnhtml);
-                                        $('#EMPpmino').prop('readonly', false);
+                                        //$('#EMPpmino').prop('readonly', false);
                                     }
                                 });
                             } else {
@@ -307,7 +335,7 @@
         $('#empform')[0].reset();
         $('input[id=EMPpmino]').val(pmino);
         $('#EMPseq').val("");
-        $('#EMPpmino').prop('readonly', false);
+        //$('#EMPpmino').prop('readonly', false);
     });
 
 </script>

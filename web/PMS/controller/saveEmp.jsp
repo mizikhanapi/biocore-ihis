@@ -3,6 +3,8 @@
     Created on : Jan 20, 2017, 3:05:49 PM
     Author     : shay
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="org.json.JSONArray"%>
@@ -22,8 +24,10 @@
     occupation = request.getParameter("EMPoccu");
     joinDate = request.getParameter("EMPjdate");
     incomeRange = request.getParameter("EMPinrange");
-    hfc = request.getParameter("EMPhfc");
-    createDate = request.getParameter("EMPcredate");
+    hfc = (String) session.getAttribute(MySessionKey.HFC_CD);//request.getParameter("EMPhfc");
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    createDate = sdf.format(timestamp);//request.getParameter("EMPcredate");
     status = request.getParameter("EMPstatus");
     sql = "SELECT EMPLOYMENT_SEQ_NO FROM AUTOGENERATE_ESNO";
     Boolean insert1 = false, insert2 = false,update = false;
@@ -64,8 +68,8 @@
         } else {
             out.print("false");
 //            out.print(Checkseq.size());
-//            out.print(sql2);
-//            out.print(sql3);
+            out.print(sql2);
+            out.print(sql3);
         }
     }
 

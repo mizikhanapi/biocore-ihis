@@ -554,9 +554,16 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Phone No.(Home)</label>
+                        <label class="col-md-4 control-label" for="textinput">Phone</label>
                         <div class="col-md-6">
                             <input id="PMIhphone" name="textinput" type="text" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Mobile *</label>
+                        <div class="col-md-6">
+                            <input id="PMIhandphone" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
                     </div>
                     <!-- Text input-->
@@ -632,15 +639,7 @@
                             <input id="PMIpcountryCODE" name="PMIhcountryCODE" type="hidden" placeholder="select country.." class="form-control input-md">
                             <div id="matchPcountry" class="search-drop"></div>
                         </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Handphone No.</label>
-                        <div class="col-md-6">
-                            <input id="PMIhandphone" name="textinput" type="text" placeholder="" class="form-control input-md">
-                        </div>
-                    </div>
+                    </div>                   
 
                 </div>
             </div>

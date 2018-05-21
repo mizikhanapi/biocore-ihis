@@ -46,11 +46,14 @@
 
     $('#addFAMmodal').on('click', function () {
         $('#FAMclear').click();
+        $('#FAMidtype_div').show();
     });
 
     //function to edit next of kin data from table
     $('#tableListFamily').on('click', '#listFamily #FAMedit', function (e) {
         e.preventDefault();
+         $('#FAMidtype_div').hide();
+          $('#FAMidtype').val("-");
         $('#FAMpmi').prop('readonly', true);
 
         $('#FAMpmifam').prop('readonly', true);

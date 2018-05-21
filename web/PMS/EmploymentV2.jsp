@@ -5,10 +5,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //Conn conn = new Conn();
-    String incomeRange5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0028' AND hfc_cd = '"+hfc+"' and status ='0'";
-    String hcf5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"' and status ='0'  ";
-    String status5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0014' AND hfc_cd = '"+hfc+"' and status ='0'  ";
-    String occupation5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"' and status ='0'";
+    String incomeRange5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0028' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String hcf5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '" + hfc + "' and status ='0'  ";
+    String status5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0014' AND hfc_cd = '" + hfc + "' and status ='0'  ";
+    String occupation5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '" + hfc + "' and status ='0'";
 
     //String empList = "select * from pms_employment where pmi_no = ''";
     ArrayList<ArrayList<String>> dataIncomeRange5, dataHfc5, dataStatus5, dataOccu5;
@@ -32,10 +32,15 @@
 
             <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
                 <thead>
-                <th>Employer Name</th>
-                <th>Occupation</th>
-                <th style="width: 5%;">Update</th>
-                <th style="width: 5%;">Delete</th>
+                    <tr>
+                        <th>Employer Name</th>
+                        <th>Occupation</th>
+                        <th>Joined Date</th>
+                        <th>Income Range</th>
+                        <th style="width: 5%;">Update</th>
+                        <th style="width: 5%;">Delete</th> 
+                    </tr>
+
                 </thead>
                 <tbody>
 
@@ -52,7 +57,7 @@
             'max-height': '100%'});
     });
 
-    $('#addEMPmodal').on('click', function(){
+    $('#addEMPmodal').on('click', function () {
         $('#EMPclear').click();
     });
 
@@ -76,18 +81,18 @@
         //convert date
         var splitCreDate = String(credate).split("-");
         var convertedCreDate = credate;
-        if(splitCreDate.length === 3){
+        if (splitCreDate.length === 3) {
             convertedCreDate = splitCreDate[2] + "/" + splitCreDate[1] + "/" + splitCreDate[0];
         }
-                
+
 
         var splitJDate = String(jdate).split("-");
         var convertedJDate = jdate;
-        
-        if(splitJDate.length === 3){
+
+        if (splitJDate.length === 3) {
             convertedJDate = splitJDate[2] + "/" + splitJDate[1] + "/" + splitJDate[0];
         }
-        
+
 //        console.log(convertedCreDate);
 //        console.log(convertedJDate);
 

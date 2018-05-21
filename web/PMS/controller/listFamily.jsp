@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th>Family Member's Name</th>
-            <th>IC Number</th>
+            <th>IC / ID Number</th>
             <th>Relationship</th>
             <th>Update</th>
             <th>Delete</th>

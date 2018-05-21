@@ -175,11 +175,11 @@
         <script src="libraries/lib/js/main/registration.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
 
-        <script src="libraries/lib/js/main/patient_master_index.js?v1.2" type="text/javascript"></script>
+        <script src="libraries/lib/js/main/patient_master_index.js?v1.3" type="text/javascript"></script>
         <script src="libraries/lib/js/main/OPMain.js?v1.1" type="text/javascript"></script>
 
 
-        <script src="libraries/lib/js/main/nextOfKin.js?v1.1" type="text/javascript"></script>
+        <script src="libraries/lib/js/main/nextOfKin.js?v1.2" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchState.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchPostcode.js" type="text/javascript"></script>

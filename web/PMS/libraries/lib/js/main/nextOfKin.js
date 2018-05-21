@@ -1,6 +1,13 @@
     $(document).ready(function () {
         $(function () {
-            $('#KINdob').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+            $('#KINdob').datepicker({
+                dateFormat: 'dd/mm/yy', 
+                changeMonth: true, 
+                changeYear: true,
+                minDate: '-150Y',
+                maxDate: '+0',
+                yearRange: '-150:+0'
+            });
         });
     });
     //function get birth date
@@ -35,6 +42,7 @@
     //function to save employment when click save button
     $('#KINsave').on('click', function (e) {
         e.preventDefault();
+        $('#KINModal').css('overflow', 'auto');
         var KINpmino = $('#KINpmino').val(),
                 KINidtype = $('#KINidtype').val(),
                 KINdob = $('#KINdob').val(),
@@ -61,17 +69,49 @@
                 KINstateCD = $('#KINstateCODE').val(),
                 KINoccuCD = $('#KINoccuCODE').val();
         console.log("kin country before: "+ $('#KINcountryCODE').val());
-        if (KINidtype === null) {
-            KINidtype = "-";
+        
+        if (KINrelationship === null) {
+            bootbox.alert("Select the relationship!", function(){
+                $('#KINrelationship').focus();
+            });
+            return;
         }
+        
+        if (KINidtype === null) {
+            bootbox.alert("Select the ID type!", function(){
+                $('#KINidtype').focus();
+            });
+            return;
+        }
+        
+        if (KINnewic === "") {
+            bootbox.alert("Key in the IC / ID number!", function(){
+                $('#KINnewic').focus();
+            });
+            return;
+        }
+        
+        if (KINoccuCD === "" || KINoccuCD == null) {
+            bootbox.alert("Search existing occupation!", function(){
+                $('#KINoccu').focus();
+            });
+            return;
+        }
+        
         if (KINphone === "") {
-            KINphone = "-";
+            bootbox.alert("Key in the mobile phone number!", function(){
+                $('#KINphone').focus();
+            });
+            return;
         }
         if (KINemail === "") {
             KINemail = "-";
         }
         if (KINname === "") {
-            KINname = "-";
+            bootbox.alert("Key in the NOK Name!", function(){
+                $('#KINname').focus();
+            });
+            return;
         }
         if (KINoldic === "") {
             KINoldic = "-";
@@ -79,9 +119,7 @@
         if (KINidnumber === "") {
             KINidnumber = "-";
         }
-        if (KINoccu === "") {
-            KINoccu = "-";
-        }
+        
         if (KINhomephone === "") {
             KINhomephone = "-";
         }
@@ -103,12 +141,8 @@
         if (KINstate === "") {
             KINstate = "-";
         }
-        if (KINrelationship === null) {
-            KINrelationship = "-";
-        }
-        if (KINnewic === "") {
-            KINnewic = "-";
-        }
+        
+        
 
 
 
@@ -155,6 +189,7 @@
             callback: function (result) {
 //if true go to PMI page
                 if (result === true) {
+                    $('#KINModal').modal('hide');
                     $.ajax({
                         type: "post",
                         url: "controller/saveKin.jsp",
@@ -175,7 +210,7 @@
                                     success: function (returnhtml) {
                                         //console.log(returnhtml);
                                         $('#tableListKin').html(returnhtml);
-                                        $('#KINpmino').prop('readonly', false);
+                                        //$('#KINpmino').prop('readonly', false);
                                         $('#KINnewic').prop('readonly', false);
                                         $('#KINoldic').prop('readonly', false);
                                     }
@@ -203,7 +238,7 @@
         $('#kinform')[0].reset();
         $('input[id=KINpmino]').val(pmino);
         $('#KINseq').val("");
-        $('#KINpmino').prop('readonly', false);
+        //$('#KINpmino').prop('readonly', false);
         $('#KINnewic').prop('readonly', false);
         $('#KINoldic').prop('readonly', false);
 
@@ -218,7 +253,7 @@
     });
 
     $('#addKINmodal').on('click', function(){
-        $('#KINclear').clear();
+        $('#KINclear').click();
     });
 
     //function to edit next of kin data from table
