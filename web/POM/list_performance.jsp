@@ -46,33 +46,53 @@
                                 <hr class="pemisah"/>
                                 <div style="width:50%; margin: auto;">
                                     <div class="form-horizontal">
-                                        <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group">
 
-                                            <div class="col-md-5" style=" text-align: center;">
-                                                <label class="col-md-4 control-label" for="textinput">View by: </label>
-                                                <div class="col-md-8">
-                                                    <select class="form-control" name="test" id="selectTimeframe">
-                                                        <option value="%d/%m/%Y">Daily</option>
-                                                        <option value="%M %Y">Monthly</option>
-                                                        <option value="%Y">Yearly</option>
-                                                    </select>
+                                                <div class="col-md-6" style=" text-align: center;">
+                                                    <label class="col-md-4 control-label" for="textinput">View by: </label>
+                                                    <div class="col-md-8">
+                                                        <select class="form-control" name="test" id="selectTimeframe">
+                                                            <option value="" disabled selected>View by</option>
+                                                            <option value="all">All</option>
+                                                            <option value="0">Today</option>
+                                                            <option value="1">Yesterday</option>
+                                                            <option value="7">7 Days</option>
+                                                            <option value="30">30 Days</option>
+                                                            <option value="60">60 Days</option>
+                                                            <option value="x">Select date</option>
+                                                        </select>
+                                                    </div>
+                                                </div> 
+
+                                                <div class="col-md-2">
+                                                    <button id="REP_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
+
                                                 </div>
-                                            </div> 
-
-                                            <div class="col-md-5" style=" text-align: center;">
-                                                <label class="col-md-4 control-label" for="textinput">Date: </label>
-                                                <div class="col-md-8">
-                                                    <input readonly id="theDate" class="form-control" placeholder="dd/mm/yyyy"/>
-                                                </div>
-                                            </div> 
-
-                                            <div class="col-md-2">
-                                                <button id="REP_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
 
                                             </div>
-
                                         </div>
+                                        <div class="row hidden" id="div_select_date">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="exampleInputName2">Start</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="dateFrom" placeholder="dd/mm/yyyy">
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="exampleInputEmail2">to</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="dateTo" placeholder="dd/mm/yyyy">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
+
                                 </div>
 
                                 <div class="table-guling" id='viewSale'>
@@ -113,33 +133,63 @@
         <!-- Placed at the end of the document so the pages load faster -->
 
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+        <script src="../assets/js/moment.js" type="text/javascript"></script>
+        <script src="../assets/js/datetime-moment.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $(function () {
-                $('#theDate').datepicker({
+                
+                $.fn.dataTable.moment('DD/MM/YYYY');
+                
+                //--- initialise datepicker for from ----
+                $('#dateFrom').datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'dd/mm/yy',
                     yearRange: '1990:+0',
                     maxDate: '+0d'
                 });
 
-                $('#theDate').datepicker('setDate', '+0');
-                $('#selectTimeframe').val("%d/%m/%Y");
-                
-                load_sale();
+                //--- initialise datepicker for to after changes on from ------------
+                $('#dateFrom').on('change', function () {
+
+                    $("#dateTo").datepicker("destroy");
+                    $('#dateTo').val('');
+                    var fromDate = $("#MU_dateFrom").datepicker("getDate");
+
+                    $('#dateTo').datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: 'dd/mm/yy',
+                        yearRange: '1990:+0',
+                        minDate: fromDate,
+                        maxDate: '+0d'
+                    });
+
+                });
+
+                $('#selectTimeframe').on('change', function () {
+                    var howTo = $(this).val();
+
+                    if (howTo === 'x') {
+                        $('#div_select_date').show();
+                    } else {
+                        $('#div_select_date').hide();
+                        load_sale();
+                    }
+                });
             });
 
             function load_sale() {
                 createScreenLoading();
                 var timeFrame = $('#selectTimeframe').val();
                 var strName = $("#selectTimeframe option:selected").text();
-                var theDate = $('#theDate').val().trim();
-
+                
                 var data = {
                     timeFrame: timeFrame,
                     strName: strName,
-                    theDate: theDate
+                    from: $('#dateFrom').val(),
+                    to: $('#dateTo').val()
                 };
 
                 $.ajax({
@@ -165,36 +215,36 @@
                 load_sale();
             });
 
-            $('#viewSale').on('click', '.clickable_tr', function () {
-                var tr = $(this).closest('tr');
-                var leDate = tr.find('#hiddenDate').val();
-                var leTimeFrame = tr.find('#hiddenTimeFrame').val();
-
-                var data = {
-                    date: leDate,
-                    timeFrame: leTimeFrame
-                };
-                console.log(data);
-
-                createScreenLoading();
-
-                $.ajax({
-                    type: 'POST',
-                    timeout: 60000,
-                    url: "report_control/getListOfStaffPerfomanceDetail.jsp",
-                    data: data,
-                    success: function (data, textStatus, jqXHR) {
-                        $('#REP_modalBody').html(data);
-                        $('#modal_report').modal('show');
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Oops! " + errorThrown);
-                    },
-                    complete: function (jqXHR, textStatus) {
-                        destroyScreenLoading();
-                    }
-                });
-            });
+//            $('#viewSale').on('click', '.clickable_tr', function () {
+//                var tr = $(this).closest('tr');
+//                var leDate = tr.find('#hiddenDate').val();
+//                var leTimeFrame = tr.find('#hiddenTimeFrame').val();
+//
+//                var data = {
+//                    date: leDate,
+//                    timeFrame: leTimeFrame
+//                };
+//                console.log(data);
+//
+//                createScreenLoading();
+//
+//                $.ajax({
+//                    type: 'POST',
+//                    timeout: 60000,
+//                    url: "report_control/getListOfStaffPerfomanceDetail.jsp",
+//                    data: data,
+//                    success: function (data, textStatus, jqXHR) {
+//                        $('#REP_modalBody').html(data);
+//                        $('#modal_report').modal('show');
+//                    },
+//                    error: function (jqXHR, textStatus, errorThrown) {
+//                        bootbox.alert("Oops! " + errorThrown);
+//                    },
+//                    complete: function (jqXHR, textStatus) {
+//                        destroyScreenLoading();
+//                    }
+//                });
+//            });
         </script>
 
     </body>
