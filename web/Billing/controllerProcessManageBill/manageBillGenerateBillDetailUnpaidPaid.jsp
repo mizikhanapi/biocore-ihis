@@ -915,7 +915,7 @@
                 $('<div class="loading">Loading</div>').appendTo('body');
 
                 $.ajax({
-                    url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNo.jsp",
+                    url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNoN.jsp",
                     type: "post",
                     timeout: 10000,
                     success: function (dataInvoiceNo) {
@@ -1500,7 +1500,7 @@
             var status = $('#dataManageBillMasterOrderListhiddenStatus').val();
 
             $.ajax({
-                url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNo.jsp",
+                url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNoN.jsp",
                 type: "post",
                 timeout: 10000,
                 success: function (dataInvoiceNo) {
@@ -1610,7 +1610,7 @@
 
 
             $.ajax({
-                url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetRecieptNo.jsp",
+                url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetRecieptNoN.jsp",
                 type: "post",
                 timeout: 10000,
                 success: function (dataRecieptNo) {
