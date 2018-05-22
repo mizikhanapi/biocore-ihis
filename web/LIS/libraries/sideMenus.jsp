@@ -36,7 +36,7 @@
         </li>
         <li>
             <a  href="Maintain_Test_Code" >
-                <i class="fa fa-code fa-lg"></i> Manage Test Code
+                <i class="fa fa-code fa-lg"></i> Manage LIS Test Code
             </a>
         </li>
         <li data-target="#Report" class="collapsed active">
