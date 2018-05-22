@@ -44,10 +44,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="col-md-6" for="textinput">Health Facility</label>
-                                            <div class="col-md-12">
+                                            <label class="col-md-2" for="textinput">Health Facility</label>
+                                            <div class="col-md-9">
                                                 <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
                                                 <div id="tCISOELIOHFCSearchLoading" ></div>
                                                 <!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
@@ -58,8 +58,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="textinput">Location</label>
+                                            <div class="col-md-9">
+                                                <textarea type="text" name="display_name" id="locationLIS" class="form-control input-lg" tabindex="3" readonly="" placeholder="Facility Address"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <hr/>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <!-- content goes here -->
