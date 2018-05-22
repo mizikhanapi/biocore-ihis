@@ -16,8 +16,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
 %>
@@ -150,7 +149,7 @@
             // Move to Order Details Fetch Details Start
             $('#contentRDaily').off('click', '#reportDailyTable #moveToDailySalesDetailsTButton').on('click', '#reportDailyTable #moveToDailySalesDetailsTButton', function (e) {
 
-                // $('<div class="loading">Loading</div>').appendTo('body');
+                $('<div class="loading">Loading</div>').appendTo('body');
 
                 e.preventDefault();
 
@@ -265,7 +264,7 @@
             // Move to Order Details Fetch Monthly Details Start
             $('#contentRMonthly').off('click', '#reportMonthlyTable #moveToMonthlySalesDetailsTButton').on('click', '#reportMonthlyTable #moveToMonthlySalesDetailsTButton', function (e) {
 
-                // $('<div class="loading">Loading</div>').appendTo('body');
+                $('<div class="loading">Loading</div>').appendTo('body');
 
                 e.preventDefault();
 
@@ -382,7 +381,7 @@
             // Move to Order Details Fetch Yearly Details Start
             $('#contentRYearly').off('click', '#reportYearlyTable #moveToYearlySalesDetailsTButton').on('click', '#reportYearlyTable #moveToYearlySalesDetailsTButton', function (e) {
 
-                // $('<div class="loading">Loading</div>').appendTo('body');
+                $('<div class="loading">Loading</div>').appendTo('body');
 
                 e.preventDefault();
 
