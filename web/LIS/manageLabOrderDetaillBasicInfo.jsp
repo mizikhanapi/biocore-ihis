@@ -953,7 +953,7 @@
                             $('#myLoadingModal').modal('show');
 
                             $.ajax({
-                                url: "controllerProcessAssignSpecimen/assignSpecimenOrderGetSeqNo.jsp",
+                                url: "controllerProcessAssignSpecimen/assignSpecimenOrderGetSeqNoN.jsp",
                                 type: "post",
                                 timeout: 10000, // 10 seconds
                                 success: function (seqNo) {

@@ -343,7 +343,7 @@
                     $('<div class="loading">Loading</div>').appendTo('body');
 
                     $.ajax({
-                        url: "controllerProcessBill/billGenerateBillDetailGetSeqNo.jsp",
+                        url: "controllerProcessBill/billGenerateBillDetailGetSeqNoN.jsp",
                         type: "post",
                         timeout: 10000,
                         success: function (datas) {
@@ -654,7 +654,7 @@
 
 
                         $.ajax({
-                            url: "controllerProcessBill/billGenerateBillDetailGetSeqNo.jsp",
+                            url: "controllerProcessBill/billGenerateBillDetailGetSeqNoN.jsp",
                             type: "post",
                             timeout: 10000,
                             success: function (datas) {

@@ -476,7 +476,7 @@
 
 
                 $.ajax({
-                    url: '../GNL/StockOrder/controllerProcess/orderStockGetSeqqNo.jsp',
+                    url: '../GNL/StockOrder/controllerProcess/orderStockGetSeqNo.jsp',
                     type: "post",
                     timeout: 3000,
                     success: function (returnSeqNo) {
