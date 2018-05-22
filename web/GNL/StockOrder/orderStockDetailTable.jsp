@@ -482,8 +482,8 @@
                     success: function (returnSeqNo) {
 
                         bootbox.confirm({
-                            message: "Are you sure want to update stock quantity for this items ?",
-                            title: "Update Item Stock Quantty ?",
+                            message: "Are you sure want to add stock order for this items ?",
+                            title: "Add Stock Order ?",
                             buttons: {
                                 confirm: {
                                     label: 'Yes',
@@ -497,6 +497,8 @@
                             callback: function (result) {
 
                                 if (result === true) {
+
+                                    $('.loading').show();
 
                                     var total_amt = $('#orderNewStockOrderItemDetailsFormGrandTotal').val();
                                     var quantity = $('#orderNewStockOrderItemDetailsFormTotalQuantity').val();
@@ -516,6 +518,8 @@
                                         data: data,
                                         timeout: 3000,
                                         success: function (returnMessage) {
+
+                                            $('.loading').hide();
 
                                             console.log(returnMessage);
 
