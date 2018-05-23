@@ -11,15 +11,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/bootbox.min.js"></script>
+        <script src="../assets/js/jquery-ui.js"></script>
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+        <link rel="stylesheet" href="../assets/css/jquery-ui.css">
+<!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
         
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="../assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/mystyles.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
         <%@include file = "../assets/header.html" %>
 
         <title>Drug Order List and Total Amount</title>
@@ -74,14 +83,16 @@
 
 
 
-        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
+            <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+            <script src="../assets/js/dataTables.buttons.min.js"></script>
+            <script src="../assets/js/buttons.flash.min.js"></script>
+            <script src="../assets/js/buttons.colVis.min.js"></script>
+            <script src="../assets/js/jszip.min.js"></script>
+            <script src="../assets/js/pdfmake.min.js"></script>
+            <script src="../assets/js/vfs_fonts.js"></script>
+            <script src="../assets/js/buttons.html5.min.js"></script>
+            <script src="../assets/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
+            <script src="../assets/js/create_destroy_loading.js" type="text/javascript" language="javascript"></script>
         
         <script>
 
@@ -90,12 +101,12 @@
                 $("#startDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'yy-mm-dd'
                 });
                 $("#endDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'yy-mm-dd'
                 });
                 $('#printLaporanKosPerubatan').on('click', function () {
 
@@ -107,6 +118,7 @@
                         var startDate = document.getElementById("startDate").value;
                         var endDate = document.getElementById("endDate").value;
                         //alert(startDate+" / "+startDate);
+                        createScreenLoading();
                         $.ajax({
                             async: true,
                             type: "POST",
@@ -114,8 +126,6 @@
                             data: {'startDate': startDate, 'endDate': endDate},
                             timeout: 10000,
                             success: function (list) {
-
-
                                 $('#cost').html(list);
                             },
                             error: function (xhr, status, error) {

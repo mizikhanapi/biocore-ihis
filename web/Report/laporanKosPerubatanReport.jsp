@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
 <%@page import="java.sql.Connection"%> 
@@ -26,19 +28,30 @@
                 String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                 //out.print(startDate);
 
-                String sql = "SELECT pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO, pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,far_customer_ledger.`customer_id` AS far_customer_ledger_customer_id,far_customer_ledger.`txn_date` AS far_customer_ledger_txn_date,far_customer_ledger.`bill_amt` AS far_customer_ledger_bill_amt,far_customer_ledger.`bill_desc` AS far_customer_ledger_bill_desc FROM `far_customer_ledger` far_customer_ledger INNER JOIN `pms_patient_biodata` pms_patient_biodata ON far_customer_ledger.`customer_id` = pms_patient_biodata.`PMI_NO` WHERE far_customer_ledger.`txn_date` BETWEEN '" + startDate + "' AND '" + endDate + "'";
+                String sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,led.`txn_date` ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
+                        + "FROM `far_customer_ledger` led "
+                        + "INNER JOIN `pms_patient_biodata` pat ON led.`customer_id` = pat.`PMI_NO` "
+                        + "WHERE led.hfc_cd='"+my_1_hfc_cd+"' AND led.`txn_date` BETWEEN '"+startDate+"' AND '"+endDate+"';";
                 //AND diagnosis.`HFC_Cd`='"+my_1_hfc_cd+"'
                 ArrayList<ArrayList<String>> cost = conn.getData(sql);
+
+                String hfc_cd_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + my_1_hfc_cd + "'";
+                ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd_logo);
+                LocalDate localDate = LocalDate.now();
+                String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
             %>
-            
-            <div class="pull-right"><input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print "></div><br>
+
+            <div class="pull-right hidden"><input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print "></div><br>
             <table id="costTable">
                 <thead>
-                <th style="width: 5%;">No.</th>
-                <th style="width: 15%;">Date Visit</th>
-                <th >IC No.</th>
-                <th style="width: 25%;">Name</th>	
-                <th style="">Cost (RM)</th>                
+                    <tr>
+                        <th style="width: 5%;">No.</th>
+                        <th style="width: 15%;">Date Visit</th>
+                        <th >IC No.</th>
+                        <th style="width: 25%;">Name</th>
+                        <th style="">Description</th>  
+                        <th style="">Cost (RM)</th>  
+                    </tr>
                 </thead>
                 <tfoot>
                     <tr>
@@ -49,12 +62,19 @@
                 <tbody>
                     <%
                         int size = cost.size();
+                        float grandTotal = 0f;
                         for (int i = 0; i < size; i++) {
+                            try {
+                                grandTotal += Float.parseFloat(cost.get(i).get(6));
+                            } catch (Exception e) {
+
+                            }
                     %>
                     <tr>
                         <td id="No"><%= i + 1%></td>
                         <td id="DateTime"><%= cost.get(i).get(5)%></td>
                         <td id="icNo"><%= cost.get(i).get(1)%></td>
+                        <td id="Name"><%= cost.get(i).get(8)%></td>
                         <td id="Name"><%= cost.get(i).get(7)%></td>
                         <td id="cost"><%= cost.get(i).get(6)%></td>
 
@@ -62,11 +82,34 @@
                     </tr>
 
                     <%
-                        }
+                        }// end for loop
+
+                        String strGrand = String.format("%.02f", grandTotal);
                     %> 
                 </tbody>
             </table>
+            <div class="row" id="data">
+                <!-- content goes here -->
+                <form class="form-horizontal" id="addForm">
 
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput">Grand Total (RM)</label>
+                            <div class="col-md-4">
+                                <input id="reportYearlyGrandTotal" name="reportYearlyGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%= strGrand%>" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
 
         </div>
     </div>
@@ -78,13 +121,66 @@
 
 
         $('#costTable').DataTable({
+            initComplete: function (settings, json) {
+                destroyScreenLoading();
+            },
+            pageLength: 15,
             dom: 'Bfrtip',
             buttons: [
-                'csv', 'excel', 'pdf', 'print',
-                
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export To Excel',
+                    title: 'Laporan Kos Perubatan',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'csvHtml5',
+                    text: 'Export To Excel CSV',
+                    title: 'Laporan Kos Perubatan',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'print',
+                    text: 'Print',
+                    title: $('h1').text(),
+                    message: '<br><br>',
+                    className: 'btn btn-primary',
+                    customize: function (win) {
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .prepend(
+                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Laporan Kos Perubatan</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        </div> '
+                                        );
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', '10pt')
+                                .css('font-size', 'inherit');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .css('font-weight', 'bolder')
+                                .append('<div style="text-align: right;padding-top:10px;"><br>Grand Total (RM): <%=strGrand%></div>');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                    },
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: 'Filter Table Column',
+                    className: 'btn btn-success'
+                }
             ]
 
-           
         });
 
         $('#b_print').click(function () {
@@ -103,9 +199,9 @@
 
 </script>
 
-
+<%-- 
 <div id="PrintCost" style="display: none">
-  
+
 
     <table id="costTable">
         <thead>
@@ -120,8 +216,8 @@
             <tr>
                 <th colspan="5" style="text-align:right">
                     <%
-                    String Total = "SELECT SUM(far_customer_ledger.`bill_amt`) FROM `far_customer_ledger` far_customer_ledger INNER JOIN `pms_patient_biodata` pms_patient_biodata ON far_customer_ledger.`customer_id` = pms_patient_biodata.`PMI_NO`WHERE far_customer_ledger.`txn_date` BETWEEN '" + startDate + "' AND '" + endDate + "'";
-                    ArrayList<ArrayList<String>> total = conn.getData(Total);
+                        String Total = "SELECT SUM(far_customer_ledger.`bill_amt`) FROM `far_customer_ledger` far_customer_ledger INNER JOIN `pms_patient_biodata` pms_patient_biodata ON far_customer_ledger.`customer_id` = pms_patient_biodata.`PMI_NO`WHERE far_customer_ledger.`txn_date` BETWEEN '" + startDate + "' AND '" + endDate + "'";
+                        ArrayList<ArrayList<String>> total = conn.getData(Total);
                     %>
                     Total: <%=total.get(0).get(0)%></th>
                 <th></th>
@@ -150,3 +246,4 @@
         </tbody>
     </table>
 </div>
+--%>

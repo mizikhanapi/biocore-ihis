@@ -13,7 +13,7 @@
     <head>
         <title>Activation</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -37,7 +37,8 @@
             String query = "SELECT user_id FROM adm_users "
                     + "WHERE `HEALTH_FACILITY_CODE`='???' AND `STATUS`='link' AND `USER_ID`='" + data[1].trim() + "' AND `USER_TYPE`='TENANT' AND `USER_STATUS`='" + data[0].trim() + "' limit 1;";
             if (con.getData(query).size() < 1) {
-                out.print("<h3 style='color:red'>Invalid Link!<h3>");
+                response.sendRedirect("../../Entrance/Sign-in");
+//                out.print("<h3 style='color:red'>Invalid Link!<h3>");
                 return;
             }
 

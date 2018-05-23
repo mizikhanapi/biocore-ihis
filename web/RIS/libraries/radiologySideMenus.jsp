@@ -20,7 +20,7 @@
     <ul class="nav nav-sidebar" id="side-menu">
         <li><a href="ReceiveOrder"><i class="fa fa-credit-card sideIcon" aria-hidden="true" ></i>Receive Order</a></li>   
         <li><a href="VerifyResult"><i class="fa fa-check-square sideIcon" aria-hidden="true" ></i>Verify Result</a></li>   
-        <li><a href="Procedure"><i class="fa fa-code-fork " aria-hidden="true" ></i>RIS Procedure Maintenance</a></li>
+        <li><a href="Procedure"><i class="fa fa-code-fork " aria-hidden="true" ></i>Manage RIS Procedure Code</a></li>
         <li><a href="Bill"><i class="fa fa-usd " aria-hidden="true" ></i>Billing</a></li>
         <li data-toggle="collapse" data-target="#Report" class="collapsed active">
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="caret"></span></a>

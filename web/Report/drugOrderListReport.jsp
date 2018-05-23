@@ -30,14 +30,17 @@
 <table id="drugListTable" class="table table-filter table-striped table-bordered margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
     <thead>
-
-    <th> No </th>
-    <th> Drug Code </th>
-    <th> Description</th>
-    <th> Price (RM)</th>
-    <th> Total Patient </th>
-    <th> Total Usage </th>
-    <th> Total Amount (RM) </th>
+        <tr>
+            <th> No </th>
+            <th> Drug Code </th>
+            <th> Description</th>
+            <th> Price (RM)</th>
+            <th> Total Patient </th>
+            <th> Total Usage </th>
+            <th> Total Amount (RM) </th>
+        </tr>
+    </thead>
+    <tbody>
         <%        String sql = "";
             sql = "select count(m.drug_cd),count(distinct(m.pmi_no)),m.drug_cd,m.drug_name,pmd2.`D_SELL_PRICE` from lhr_medication m, pis_mdc2 pmd2 where m.drug_cd = pmd2.`UD_MDC_CODE` and m.episode_date between '" + startDate + "' and '" + endDate + "' group by m.drug_cd";
 
@@ -46,6 +49,8 @@
             JSONObject responseObj = new JSONObject();
             JSONObject empObj = null;
             int size = ps.size();
+            float totalUsage = 0f;
+            float grandAmount = 0f;
             for (int i = 0; i < size; i++) {
 
                 String drug_name = ps.get(i).get(4);
@@ -57,49 +62,86 @@
                 float pri = Float.parseFloat(price);
                 float total_amt = drug * totPatient * pri;
 
-//                empObj = new JSONObject();
-//                empObj.put("drug_name", drug_name);
-//                empObj.put("total_amount", total_amt);
-//                empdetails.add(empObj);
-//
-//                responseObj.put("empdetails", empdetails);
-//                out.print(responseObj.toString());
+                totalUsage += drug;
+                grandAmount += total_amt;
+
+                //                empObj = new JSONObject();
+                //                empObj.put("drug_name", drug_name);
+                //                empObj.put("total_amount", total_amt);
+                //                empdetails.add(empObj);
+                //
+                //                responseObj.put("empdetails", empdetails);
+                //                out.print(responseObj.toString());
         %>
-</thead>
-<tr>
-    <td>
-        <%= i + 1%>
-    </td>
-    <td>
-        <%= ps.get(i).get(2)%> 
-    </td>
-    <td>
-        <%= ps.get(i).get(3)%>
-        <input type="hidden" id="drug_name" value="<%= ps.get(i).get(3)%>">
-    </td>
-    <td>
-        <%= ps.get(i).get(4)%>
-    </td>
 
-    <td>
-        <%= ps.get(i).get(1)%>
-    </td>
+        <tr>
+            <td>
+                <%= i + 1%>
+            </td>
+            <td>
+                <%= ps.get(i).get(2)%> 
+            </td>
+            <td>
+                <%= ps.get(i).get(3)%>
+                <input type="hidden" id="drug_name" value="<%= ps.get(i).get(3)%>">
+            </td>
+            <td>
+                <%= ps.get(i).get(4)%>
+            </td>
 
-    <td>
-        <%= ps.get(i).get(0)%>
-    </td>
+            <td>
+                <%= ps.get(i).get(1)%>
+            </td>
 
-    <td>
-        <%= total_amt%>
-    </td>
+            <td>
+                <%= ps.get(i).get(0)%>
+            </td>
 
-</tr>
+            <td>
+                <%= total_amt%>
+            </td>
+
+        </tr>
+ 
 
 
 <%
     }
+    String strGrand = String.format("%.02f", grandAmount);
 %>
+   </tbody>
+</table>
+<div class="row" id="data">
+    <!-- content goes here -->
+    <form class="form-horizontal" id="addForm">
 
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Total Quantity</label>
+                <div class="col-md-4">
+                    <input id="reportYearlyTotalQuantity" name="reportYearlyTotalQuantity" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" value="<%=totalUsage%>" readonly>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Grand Total (RM)</label>
+                <div class="col-md-4">
+                    <input id="reportYearlyGrandTotal" name="reportYearlyGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%= strGrand%>" readonly>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
 <script>
 
     $(document).ready(function () {

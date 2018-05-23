@@ -42,7 +42,7 @@
         createScreenLoading();
         
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: "report_control/getLookupMaster.jsp",
             timeout: 60000,
             success: function (data, textStatus, jqXHR) {

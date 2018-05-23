@@ -452,7 +452,7 @@
                 // Handler for .ready() called.
 
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: "getUserName.jsp",
                     success: function (data, textStatus, jqXHR) {
                         $('#welcome').text(data.trim());
