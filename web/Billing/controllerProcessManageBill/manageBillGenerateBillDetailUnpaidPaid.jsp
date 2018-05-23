@@ -916,7 +916,7 @@
 
                 $.ajax({
                     url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNoN.jsp",
-                    type: "post",
+                    type: "get",
                     timeout: 10000,
                     success: function (dataInvoiceNo) {
 
@@ -1501,7 +1501,7 @@
 
             $.ajax({
                 url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetInvoiceNoN.jsp",
-                type: "post",
+                type: "get",
                 timeout: 10000,
                 success: function (dataInvoiceNo) {
 
@@ -1611,7 +1611,7 @@
 
             $.ajax({
                 url: "controllerProcessManageBill/manageBillGenerateBillDetailUnpaidPaidGetRecieptNoN.jsp",
-                type: "post",
+                type: "get",
                 timeout: 10000,
                 success: function (dataRecieptNo) {
 

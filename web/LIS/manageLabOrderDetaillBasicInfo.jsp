@@ -954,7 +954,7 @@
 
                             $.ajax({
                                 url: "controllerProcessAssignSpecimen/assignSpecimenOrderGetSeqNoN.jsp",
-                                type: "post",
+                                type: "get",
                                 timeout: 10000, // 10 seconds
                                 success: function (seqNo) {
 

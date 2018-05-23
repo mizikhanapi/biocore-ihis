@@ -344,7 +344,7 @@
 
                     $.ajax({
                         url: "controllerProcessBill/billGenerateBillDetailGetSeqNoN.jsp",
-                        type: "post",
+                        type: "get",
                         timeout: 10000,
                         success: function (datas) {
 
