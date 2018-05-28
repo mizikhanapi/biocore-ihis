@@ -105,4 +105,4 @@
             </div>
         </div>
         <!--End ADD Diagnosis-->
-        <script type="text/javascript" src="assign/AssignToQueue.js"/>
+        <script type="text/javascript" src="assign/AssignToQueue.js?v1"></script>

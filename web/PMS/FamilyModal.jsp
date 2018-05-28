@@ -225,9 +225,9 @@
         $('#famForm')[0].reset();
         $('input[id=FAMpmi]').val(pmino);
         $('#FAMseq').val("");
-        $('#FAMpmi').prop('readonly', false);
+        //$('#FAMpmi').prop('readonly', false);
 
-        //$('#FAMpmifam').prop('readonly', false);
+        $('#FAMpmifam').prop('readonly', false);
 
     });
 

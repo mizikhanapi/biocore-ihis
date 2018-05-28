@@ -18,8 +18,8 @@
     Config.getFile_url(session);
     Conn Conn = new Conn();
 
-    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' and sub_discipline_cd = '" + subdis + "' ";
-    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' and sub_discipline_cd = '" + subdis + "'";
+    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' and sub_discipline_cd = '" + subdis + "' group by queue_name ";
+    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' and sub_discipline_cd = '" + subdis + "' group by queue_name ";
     String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' and sub_discipline_cd = '" + subdis + "'";
     ArrayList<ArrayList<String>> dataQueue = Conn.getData(Commonqueue);
     ArrayList<ArrayList<String>> dataQueue2 = Conn.getData(Consultationqueue);

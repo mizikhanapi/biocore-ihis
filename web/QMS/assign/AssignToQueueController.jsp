@@ -3,6 +3,7 @@
     Created on : Jul 20, 2017, 6:16:07 PM
     Author     : -D-
 --%>
+<%@page import="main.RMIConnector"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -11,6 +12,7 @@
 <%@page import="java.util.ArrayList"%>
 <%
     Conn Conn = new Conn();
+    RMIConnector rmi = new RMIConnector();
     
     String hfc_cd = request.getParameter("hfc_cd");
     String pmiNo = request.getParameter("pmiNo");
@@ -27,8 +29,8 @@
             + "AND `Description` = '"+patientCategory+"'; ";
     ArrayList<ArrayList<String>> getPatientCategory = Conn.getData(sql_getPatientCategory);
     
-    String sql_update_queue = "UPDATE pms_patient_queue SET queue_type = '"+comTy+"', queue_name = '"+queue+"', user_id = '"+docID+"'  WHERE pmi_no = '"+pmiNo+"' and episode_date = '"+episodeDate+"';";
-    boolean updatePatientQueue = Conn.setData(sql_update_queue);
+    String sql_update_queue = "UPDATE pms_patient_queue SET queue_type = '"+comTy+"', queue_name = '"+queue+"', user_id = null, status='0'  WHERE pmi_no = '"+pmiNo+"' and episode_date = '"+episodeDate+"';";
+    boolean updatePatientQueue = rmi.setQuerySQL(Conn.HOST, Conn.PORT, sql_update_queue);
     
     if(updatePatientQueue){
         out.print("|-SUCCESS-|");
