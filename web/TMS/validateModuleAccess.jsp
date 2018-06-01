@@ -24,7 +24,7 @@
 %>
 <script type="text/javascript">
      setTimeout(function () {
-       window.location.href = "tenant.jsp"; //will redirect to your blog page (an ex: blog.html)
+       window.location.href = "Tenant"; //will redirect to your blog page (an ex: blog.html)
     }, 2000); //will call the function after 3 secs.
 </script>
 <%

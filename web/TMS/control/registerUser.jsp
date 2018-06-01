@@ -56,8 +56,12 @@
         String token =random+"l0l"+userID;
         String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+"/TMS/control/linkActivate.jsp?token="+token;
         String message = "<h3>Good day dear "+name+"!</h3> "
-                + "<br/><p>Thank you for joining us.</p>"
-                + "<p>To activate your account, <a href='"+link+"'>simply click this <b>link</b>.<a/></p>";
+                + "<br/><p>Thank you for registering with us.</p>"
+                + "<br/><br/><p>Following are your ID information...</p>"
+                + "<p>User ID: "+userID+"</p>"
+                + "<p>IC Number: "+ic_no+"</p>"
+                + "<p>Password: "+pwd+"</p>"
+                + "<br/><p>To activate your account, <a href='"+link+"'>simply click this <b>link</b>.<a/></p>";
         String subject = "Account Activation Link";
         Emailer em = new Emailer(email, subject, message);
         em.sendTextEmail();

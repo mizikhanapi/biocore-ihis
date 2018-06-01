@@ -749,10 +749,69 @@
     
     <!--====== End mapping RIS ====-->
     
+    <!--TMS mapping--> 
+    <servlet>
+        <servlet-name>TMS_Admin</servlet-name>
+        <jsp-file>/TMS/admin_hfc.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TMS_Admin</servlet-name>
+        <url-pattern>/TMS/Admin</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TMS_Home</servlet-name>
+        <jsp-file>/TMS/home.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TMS_Home</servlet-name>
+        <url-pattern>/TMS/Home</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TMS_Personal</servlet-name>
+        <jsp-file>/TMS/personal.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TMS_Personal</servlet-name>
+        <url-pattern>/TMS/Personal</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TMS_TenInfo</servlet-name>
+        <jsp-file>/TMS/tenant_info.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TMS_TenInfo</servlet-name>
+        <url-pattern>/TMS/Tenant_Info</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TMS_Tenant</servlet-name>
+        <jsp-file>/TMS/tenant.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TMS_Tenant</servlet-name>
+        <url-pattern>/TMS/Tenant</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>TMS_SignUp</servlet-name>
+        <jsp-file>/TMS/sign_up.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TMS_SignUp</servlet-name>
+        <url-pattern>/TMS/Sign_Up</url-pattern>
+    </servlet-mapping>
+    
+    <!--error page mapping--> 
+    
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/Error/index.jsp</location>
     </error-page>
+    
+    <!--CORS filter-->
     
     <filter>
         <filter-name>CorsFilter</filter-name>

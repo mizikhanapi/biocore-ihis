@@ -117,7 +117,7 @@
                 session.setAttribute(MySessionKey.TENANT_NAME, tenant_name);
 
                 json.put("isRedirect", true);
-                json.put("url", "../TMS/home.jsp");
+                json.put("url", "../TMS/Home");
                 out.print(json.toString());
 
                 session.setAttribute("SESSION_ID", newSessionID); // saving the session ID into session object

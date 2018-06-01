@@ -19,7 +19,7 @@
     <hr/>
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="side-menu">
-        <li><a href="admin_hfc.jsp"><i class="fa fa-hospital-o sideIcon" aria-hidden="true" ></i>HFC Registration List</a></li>   
+        <li><a href="Admin"><i class="fa fa-hospital-o sideIcon" aria-hidden="true" ></i>Manage Tenant Application</a></li>   
         
     </ul>  
 </div>
