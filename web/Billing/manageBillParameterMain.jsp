@@ -390,7 +390,7 @@
             $('<div class="loading">Loading</div>').appendTo('#billParameterCloneModal');
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessParam/manageBillParameterCloneCodeList.jsp",
                 success: function (data, textStatus, jqXHR) {
 
