@@ -83,7 +83,7 @@
             function load_code(){
                 createScreenLoading();
                  $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: "report_control/getListOfCode.jsp",
                     success: function (data) {
                         //$("#viewProcedure").val(data.trim());

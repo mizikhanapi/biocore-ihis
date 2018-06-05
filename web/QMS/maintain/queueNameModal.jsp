@@ -234,7 +234,7 @@
                     });
                     //load new table
                     $.ajax({
-                        type: "post",
+                        type: "GET",
                         url: "maintain/listQueueName.jsp",
                         timeout: 3000,
                         success: function (returnHtml) {
@@ -294,7 +294,7 @@
                         $('#modal3').load('maintain/queueListModal.jsp');
                     });
                     $.ajax({
-                        type: "post",
+                        type: "GET",
                         url: "maintain/listQueueName.jsp",
                         timeout: 3000,
                         success: function (returnHtml) {

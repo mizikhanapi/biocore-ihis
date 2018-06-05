@@ -102,7 +102,7 @@
                 };
                 createScreenLoading();
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: "report_control/getListOfCategory.jsp",
                     data: data,
                     success: function (data) {

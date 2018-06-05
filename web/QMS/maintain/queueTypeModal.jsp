@@ -134,7 +134,7 @@
                     });
                     //refresh new queue name table
                     $.ajax({
-                        type: "post",
+                        type: "GET",
                         url: "maintain/listQueueName.jsp",
                         timeout: 3000,
                         success: function (returnHtml) {

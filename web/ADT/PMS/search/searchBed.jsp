@@ -488,7 +488,7 @@
     $('#btnShowBed').on('click', function () {
         createScreenLoading();
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: "controller/getAvailableBed.jsp",
             timeout: 60000,
             success: function (data, textStatus, jqXHR) {
