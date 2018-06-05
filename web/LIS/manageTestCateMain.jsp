@@ -352,7 +352,7 @@
             $('<div class="loading">Loading</div>').appendTo('#testCateCloneModal');
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessTestCategory/manageTestCodeCateCloneDrugList.jsp",
                 success: function (data, textStatus, jqXHR) {
 

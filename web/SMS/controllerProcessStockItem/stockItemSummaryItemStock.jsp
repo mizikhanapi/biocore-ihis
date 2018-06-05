@@ -26,10 +26,10 @@
         <table class="table table-striped"  width="30%" style="margin-bottom: 0px; margin-top:-30px;">
             <thead>
                 <tr >
-                    <th style="color: #999; font-weight: 500;" > Drug Name</th>
+                    <th style="color: #999; font-weight: 500;" > Item Name</th>
                     <th style="color: #999; font-weight: 500;" > Reorder Level</th>
                     <th style="color: #999; font-weight: 500;" > Minimum Level</th>
-                    <th style="color: #999; font-weight: 500;" > Drug Stock </th>
+                    <th style="color: #999; font-weight: 500;" > Item Stock </th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +76,6 @@
             </tbody>
         </table>
     </div>
-    <div style="position: absolute; color: #999; top: 65px; right: 30px; font-weight: 500; text-transform: uppercase">Total Medicine : <%= sizeSTOCKITEMReorder%></div>
+    <div style="position: absolute; color: #999; top: 65px; right: 30px; font-weight: 500; text-transform: uppercase">Total Items : <%= sizeSTOCKITEMReorder%></div>
 </div>
 

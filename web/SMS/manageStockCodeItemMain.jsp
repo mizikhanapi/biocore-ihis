@@ -649,7 +649,7 @@
             $('<div class="loading">Loading</div>').appendTo('#stockItemCloneModal');
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessStockItem/manageStockCodeItemCloneDrugList.jsp",
                 success: function (data, textStatus, jqXHR) {
 
@@ -785,7 +785,7 @@
         function createSTOCKITEMSummaryStock() {
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessStockItem/stockItemSummaryItemStock.jsp",
                 success: function (data, textStatus, jqXHR) {
                     
