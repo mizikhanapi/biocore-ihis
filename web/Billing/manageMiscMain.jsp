@@ -411,7 +411,7 @@
             $('<div class="loading">Loading</div>').appendTo('#miscCloneModal');
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessMisc/manageMiscCloneCodeList.jsp",
                 success: function (data, textStatus, jqXHR) {
 

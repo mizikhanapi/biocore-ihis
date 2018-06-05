@@ -345,7 +345,7 @@
             $('<div class="loading">Loading</div>').appendTo('#freqCloneModal');
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessDrugFrequency/freqCloneDrugList.jsp",
                 success: function (data, textStatus, jqXHR) {
 

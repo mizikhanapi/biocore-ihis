@@ -20,8 +20,8 @@
             <div class="col-sm-7 col-md-7" style="margin-bottom: 10px">
                 <div class="input-group">
                     <div id="manageBillMasterListMainFilterStatus" class="btn-group">
-                        <a class="btn btn-primary btn-sm active" data-toggle="status" data-title="U">UNPAID</a>
-                        <a class="btn btn-primary btn-sm" data-toggle="status" data-title="P">PAID</a>
+                        <a class="btn btn-info btn-sm active" data-toggle="status" data-title="U">UNPAID</a>
+                        <a class="btn btn-info btn-sm" data-toggle="status" data-title="P">PAID</a>
                     </div>
                 </div>
             </div>

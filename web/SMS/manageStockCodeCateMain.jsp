@@ -365,7 +365,7 @@
             $('<div class="loading">Loading</div>').appendTo('#stockCateCloneModal');
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcessStockCategory/manageStockCodeCateCloneDrugList.jsp",
                 success: function (data, textStatus, jqXHR) {
 

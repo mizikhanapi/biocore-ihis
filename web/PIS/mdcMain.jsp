@@ -1106,7 +1106,7 @@
         function createMDCSummaryDate() {
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcess/mdcDummaryDrugDate.jsp",
                 success: function (data, textStatus, jqXHR) {
                     $('#mdcDateSummary').html(data);
@@ -1127,7 +1127,7 @@
         function createMDCSummaryStock() {
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcess/mdcDummaryDrugStock.jsp",
                 success: function (data, textStatus, jqXHR) {
                     $('#mdcStockSummary').html(data);
@@ -1148,7 +1148,7 @@
         function createMDCSummaryATC() {
 
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: "controllerProcess/mdcDummaryDrugATC.jsp",
                 success: function (data, textStatus, jqXHR) {
                     $('#mdcATCSummary').html(data);
