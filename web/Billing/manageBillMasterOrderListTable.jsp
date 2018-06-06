@@ -68,6 +68,18 @@
 %>
 </tbody>
 </table>
+
+
+<hr>
+
+<div id="manageBillMasterOrderListButtonRightDiv">
+    <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
+        <button id="manageBillMasterOrderListButtonRightDivBackBtn" class="btn btn-default" style="float: left;"><i class="fa fa-backward fa-lg" aria-hidden="true"></i>&nbsp; &nbsp; Back</button>
+    </div>
+</div>
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
 

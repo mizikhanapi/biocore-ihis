@@ -665,6 +665,119 @@
 
 
 
+// --------------------------------------------------------------- Back Data In Master Table --------------------------------------------------------------- //
+
+
+
+    // Load Master Table Start
+    $('#manageBillMasterOrderListContent').off('click', '#manageBillMasterOrderListButtonRightDiv #manageBillMasterOrderListButtonRightDivBackBtn').on('click', '#manageBillMasterOrderListButtonRightDiv #manageBillMasterOrderListButtonRightDivBackBtn', function (e) {
+
+        e.preventDefault();
+
+
+
+        $('<div class="loading">Loading</div>').appendTo('body');
+
+
+        var process = $('#MANAGEBILL_MasterOrderRefreshSelect').val();
+
+        var longString, todayDate;
+
+        longString = "";
+
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();
+
+        todayDate = yy + "-" + mm + "-" + dd;
+
+
+        if (process === "today") {
+
+            longString = "today|" + todayDate;
+
+        } else if (process === "yesterday") {
+
+            longString = "yesterday|" + todayDate;
+
+        } else if (process === "7day") {
+
+            longString = "7day|" + todayDate;
+
+        } else if (process === "30day") {
+
+            longString = "30day|" + todayDate;
+
+        } else if (process === "60day") {
+
+            longString = "60day|" + todayDate;
+
+        } else if (process === "custom") {
+
+            var strtDate = $('#MANAGEBILL_MasterOrderSelectAssessmentStart').val();
+            var endDate = $('#MANAGEBILL_MasterOrderSelectAssessmentEnd').val();
+
+            var sDate = strtDate.split('/');
+            var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var eDate = endDate.split('/');
+            var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+            longString = "custom|" + SnewDate + "^" + EnewDate;
+
+        } else if (process === "all") {
+
+            longString = "all|" + todayDate;
+
+        }
+
+
+        var data = {
+            longString: longString
+        };
+
+
+        console.log(data);
+
+
+        $.ajax({
+            type: 'POST',
+            url: "manageBillMasterPatientListTable.jsp",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+
+                $('#manageBillMasterOrderListContent').html(data);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+                bootbox.alert('Opps! ' + errorThrown);
+
+            },
+            complete: function (jqXHR, textStatus) {
+
+                $('.loading').hide();
+
+            }
+
+        });
+
+
+
+    });
+    // Load Master Table End
+
+
+
+// --------------------------------------------------------------- Back Data In Master Table --------------------------------------------------------------- //
+
+
+
+
+
+
+
 // --------------------------------------------------------------- Single Number Only Restriction --------------------------------------------------------------- //
 
 

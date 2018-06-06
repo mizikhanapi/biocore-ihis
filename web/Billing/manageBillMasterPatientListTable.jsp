@@ -13,6 +13,13 @@
     Conn conn = new Conn();
     String userID = session.getAttribute("USER_ID").toString();
 %>
+
+<div style="width:50%;margin: auto;">
+
+    <h4> <b>Please Select "PAID or UNPAID" Button First and Click of the Patient Name To View The Bills</b> </h4>
+
+</div>
+<br>
 <div style="width:50%;margin: auto;">
     <form class="form-horizontal" name="manageBillMasterListMainFilterForm" id="manageBillMasterListMainFilterForm" autocomplete="off">
         <div class="form-group">
@@ -181,6 +188,8 @@
 
             $('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
             $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+            
+            bootbox.alert("Please choose the patient by clicking the patient record in the table !!!");
 
         });
 
