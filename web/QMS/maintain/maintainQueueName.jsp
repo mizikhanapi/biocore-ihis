@@ -16,7 +16,7 @@
 <script>
     $(document).ready(function () {
         $.ajax({
-            type: "post",
+            type: "GET",
             url: "maintain/listQueueName.jsp",
             timeout: 60000,
             success: function (returnHtml) {

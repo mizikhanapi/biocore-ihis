@@ -297,7 +297,7 @@
         createScreenLoading();
         $('#PRO1_clone_select_list').multiSelect('destroy');
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             timeout: 60000,
             url: "clone_controll/procedure1_getClone.jsp",
             success: function (data, textStatus, jqXHR) {
