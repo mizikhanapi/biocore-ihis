@@ -50,7 +50,7 @@
 
         //=============================================================================================
         if (!hfc.equals("99_iHIS_99") || !last_nine.equals("9")) {
-            whereClause = " AND lsm.hfc_cd = '" + hfc + "'  ";
+            whereClause = " AND lsm.hfc_to = '" + hfc + "'  ";
         }
 
         //                        0          1            2           3            4            5                   6               7
@@ -68,13 +68,13 @@
                 // LEFT JOIN USER TABLE
                 + " LEFT JOIN adm_users aus ON (lsm.order_by = aus.USER_ID) "
                 // LEFT JOIN HFC TABLE
-                + " LEFT JOIN adm_health_facility adm ON (lsm.hfc_cd = adm.hfc_cd) "
+                + " LEFT JOIN adm_health_facility adm ON (lsm.hfc_to = adm.hfc_cd) "
                 // LEFT LOOKUP SEX TABLE
                 + " LEFT JOIN adm_lookup_detail s ON pms.SEX_CODE = s.detail_reference_code "
-                + " AND s.master_reference_code = '0041' AND s.hfc_cd = lsm.hfc_cd "
+                + " AND s.master_reference_code = '0041' AND s.hfc_cd = lsm.hfc_to "
                 // LEFT LOOKUP BLOOD TABLE
                 + " LEFT JOIN adm_lookup_detail b ON pms.BLOOD_TYPE = b.detail_reference_code "
-                + " AND b.master_reference_code = '0074' AND b.hfc_cd = lsm.hfc_cd "
+                + " AND b.master_reference_code = '0074' AND b.hfc_cd = lsm.hfc_to "
                 // WHERE CONDITION
                 + " WHERE lsm.order_status = '0'   "
                 + orderWhereClause
