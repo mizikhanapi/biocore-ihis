@@ -44,6 +44,7 @@
     String searchHfcProblem =  search.get(0).get(0) + "|" + search.get(0).get(1);
     ProviderHfc = search.get(0).get(0);
     session.setAttribute("PROVIDER_HFC_ROS", search.get(0).get(0));
+    session.setAttribute("PROVIDER_HFC_LOS", search.get(0).get(0));
     
      String sqlMainOrder = "SELECT  hfc_cd,address1,address2,address3,town_cd,district_cd,state_cd,country_cd,postcode, telephone_no  FROM adm_health_facility WHERE hfc_cd = '"+OrderHfc+"';";
       String sqlMainProvider = "SELECT  hfc_cd,address1,address2,address3,town_cd,district_cd,state_cd,country_cd,postcode, telephone_no  FROM adm_health_facility WHERE hfc_cd = '"+ProviderHfc+"';";

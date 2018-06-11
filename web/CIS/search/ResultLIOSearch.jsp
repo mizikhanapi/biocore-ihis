@@ -6,7 +6,7 @@
 <%
     Conn Conn = new Conn();
     String key = request.getParameter("keyword");
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc = session.getAttribute("PROVIDER_HFC_LOS").toString();
     //String key ="Alb";
     //                                  0          1          2        3           4            5         6         7
     String searchProblem = "select item_name, spe_source, item_cd, test_cat, spe_container, volume, special_inst, item_cd "

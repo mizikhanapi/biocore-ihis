@@ -226,7 +226,7 @@ function searchingHFCValue(fieldId, loadingDivId, urlData, urlCode, codeFieldId,
 }
 
 function searchHFCDetailv2(hfcName, codeFieldId, hfcOrderDetail, hfcProviderDetail, locationField) {
-    var hfc_name = hfcName
+    var hfc_name = hfcName;
     $.ajax({
         type: "post",
         url: "search/ResultHFCSearchCode.jsp",
