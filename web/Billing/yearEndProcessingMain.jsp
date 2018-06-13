@@ -73,7 +73,7 @@
 
                         $.ajax({
                             url: "controllerProcessYearEndProcess/yearEndProcessingBackUp.jsp",
-                            type: "post",
+                            type: "get",
                             timeout: 10000, // 10 seconds
                             success: function (datas) {
 
@@ -174,7 +174,7 @@
 
                         $.ajax({
                             url: "controllerProcessYearEndProcess/yearEndProcessingStartYearEndProcessing.jsp",
-                            type: "post",
+                            type: "get",
                             timeout: 10000, // 10 seconds
                             success: function (datas) {
 
@@ -273,7 +273,7 @@
 
                         $.ajax({
                             url: "controllerProcessYearEndProcess/yearEndProcessingRestoreCustomerData.jsp",
-                            type: "post",
+                            type: "get",
                             timeout: 10000, // 10 seconds
                             success: function (datas) {
 
