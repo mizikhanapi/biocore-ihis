@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="BILLING_helper.YearEndProcessing"%>
 <%
 
@@ -12,30 +13,47 @@
     String disCD = session.getAttribute("DISCIPLINE_CODE").toString();
     String subCD = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
+    String roleCode = session.getAttribute("ROLE_CODE").toString();
 
-    int status = 0;
+    String systemAdmin = "001";
 
-    status = yep.doStartYearEndProcess();
+    MySession superUser = new MySession(userID, hfcCD);
 
-    if (status == 0) {
+    if (roleCode.equalsIgnoreCase(systemAdmin) || superUser.isSuperUser() == true) {
 
-        String infoMessage = "The year end process of current year have been done.\nPlease go to report section to view year end report.";
+        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
 
-        out.print("-|1|" + infoMessage + "|" + status);
+        int status = 0;
 
-    } else if (status == 50) {
+        status = yep.doStartYearEndProcess();
 
-        String infoMessage = "There is an error during processing.\n"
-                + "Please restore the customer data and repeat the year end processing.";
+        if (status == 0) {
 
-        out.print("-|-1|" + infoMessage + "|" + status);
+            String infoMessage = "The year end process of current year have been done.\nPlease go to report section to view year end report.";
 
-    } else if (status == 100) {
+            out.print("-|1|" + infoMessage + "|" + status);
 
-        String infoMessage = "The year end processing is completed.";
+        } else if (status == 50) {
 
-        out.print("-|1|" + infoMessage + "|" + status);
+            String infoMessage = "There is an error during processing.\n"
+                    + "Please restore the customer data and repeat the year end processing.";
+
+            out.print("-|-1|" + infoMessage + "|" + status);
+
+        } else if (status == 100) {
+
+            String infoMessage = "The year end processing is completed.";
+
+            out.print("-|1|" + infoMessage + "|" + status);
+
+        }
+
+    } else {
+
+        String infoMessage = "Invalid Operation Access.\n"
+                + "You are not authorised to run year end processing !!!";
+
+        out.print("-|-2|" + infoMessage + "|0");
 
     }
 

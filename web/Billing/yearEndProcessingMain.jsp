@@ -98,11 +98,11 @@
                                             document.getElementById('messageContent').innerHTML = d[2];
                                             $("#alertMessage").modal();
 
-                                            if (month === "11" || month === "12" || month === "01") {
+                                            //  if (month === "11" || month === "12" || month === "01") {
 
-                                                $('#yearEndProcessProcessBtn').prop('disabled', false);
+                                            $('#yearEndProcessProcessBtn').prop('disabled', false);
 
-                                            }
+                                            // }
 
                                         } else {
 
@@ -113,6 +113,12 @@
                                         }
 
                                     }
+
+                                } else if (d[1] === '-2') {
+
+                                    document.getElementById('messageHeader').innerHTML = "Invalid Request!";
+                                    document.getElementById('messageContent').innerHTML = d[2];
+                                    $("#alertMessage").modal();
 
                                 } else {
 
@@ -209,6 +215,12 @@
 
                                     }
 
+                                } else if (d[1] === '-2') {
+
+                                    document.getElementById('messageHeader').innerHTML = "Invalid Request!";
+                                    document.getElementById('messageContent').innerHTML = d[2];
+                                    $("#alertMessage").modal();
+
                                 } else {
 
                                     document.getElementById('messageHeader').innerHTML = "Failed!";
@@ -217,6 +229,7 @@
                                     $('#btnRestore').prop('disabled', false);
 
                                 }
+
                             },
                             error: function (err) {
 
@@ -309,6 +322,12 @@
                                         }
 
                                     }
+
+                                } else if (d[1] === '-2') {
+
+                                    document.getElementById('messageHeader').innerHTML = "Invalid Request!";
+                                    document.getElementById('messageContent').innerHTML = d[2];
+                                    $("#alertMessage").modal();
 
                                 } else {
 

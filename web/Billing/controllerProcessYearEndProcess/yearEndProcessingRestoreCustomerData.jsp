@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="BILLING_helper.YearEndProcessing"%>
 <%
 
@@ -12,25 +13,43 @@
     String disCD = session.getAttribute("DISCIPLINE_CODE").toString();
     String subCD = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
+    String roleCode = session.getAttribute("ROLE_CODE").toString();
 
-    int status = 0;
+    String systemAdmin = "001";
 
-    status = yep.doRestoreCustomerData();
+    MySession superUser = new MySession(userID, hfcCD);
 
-    if (status == 100) {
+    if (roleCode.equalsIgnoreCase(systemAdmin) || superUser.isSuperUser() == true) {
 
-        String infoMessage = "The data has been restored.";
+        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
 
-        out.print("-|1|" + infoMessage + "|" + status);
+        int status = 0;
+
+        status = yep.doRestoreCustomerData();
+
+        if (status == 100) {
+
+            String infoMessage = "The data has been restored.";
+
+            out.print("-|1|" + infoMessage + "|" + status);
+
+        } else {
+
+            String infoMessage = "There is an error during restoring process.\n"
+                    + "Please contact computer technician for fixing the issue.";
+
+            out.print("-|-1|" + infoMessage + "|" + status);
+
+        }
 
     } else {
 
-        String infoMessage = "There is an error during restoring process.\n"
-                + "Please contact computer technician for fixing the issue.";
+        String infoMessage = "Invalid Operation Access.\n"
+                + "You are not authorised to run year end processing !!!";
 
-        out.print("-|-1|" + infoMessage + "|" + status);
+        out.print("-|-2|" + infoMessage + "|0");
 
     }
+
 
 %>
