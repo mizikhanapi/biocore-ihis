@@ -13,6 +13,8 @@
     String disCD = session.getAttribute("DISCIPLINE_CODE").toString();
     String subCD = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
+    String year = request.getParameter("year");
+
     String roleCode = session.getAttribute("ROLE_CODE").toString();
 
     String systemAdmin = "001";
@@ -21,7 +23,7 @@
 
     if (roleCode.equalsIgnoreCase(systemAdmin) || superUser.isSuperUser() == true) {
 
-        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
+        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD, year);
 
         int status = 0;
 
@@ -29,7 +31,7 @@
 
         if (status == 100) {
 
-            String infoMessage = "Data has been backup.";
+            String infoMessage = "Data has been backed up. Please proceed to the next process by pressing the next button.";
 
             out.print("-|1|" + infoMessage + "|" + status);
 

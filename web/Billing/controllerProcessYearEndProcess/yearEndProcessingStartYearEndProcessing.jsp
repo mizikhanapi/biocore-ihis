@@ -13,6 +13,8 @@
     String disCD = session.getAttribute("DISCIPLINE_CODE").toString();
     String subCD = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
+    String year = request.getParameter("year");
+
     String roleCode = session.getAttribute("ROLE_CODE").toString();
 
     String systemAdmin = "001";
@@ -21,28 +23,28 @@
 
     if (roleCode.equalsIgnoreCase(systemAdmin) || superUser.isSuperUser() == true) {
 
-        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
+        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD, year);
 
         int status = 0;
 
-        status = yep.doStartYearEndProcess();
+        status = yep.doStartYearEndProcessUpdated();
 
         if (status == 0) {
 
-            String infoMessage = "The year end process of current year have been done.\nPlease go to report section to view year end report.";
+            String infoMessage = "The year end process of selected year already have been done.\n Please go to customer account report section to view year end report.";
 
             out.print("-|1|" + infoMessage + "|" + status);
 
         } else if (status == 50) {
 
             String infoMessage = "There is an error during processing.\n"
-                    + "Please restore the customer data and repeat the year end processing.";
+                    + " Please restore the customer data and repeat the year end processing. Please go to report section to view year end report.";
 
             out.print("-|-1|" + infoMessage + "|" + status);
 
         } else if (status == 100) {
 
-            String infoMessage = "The year end processing is completed.";
+            String infoMessage = "The year end processing is completed. Report can be view in the customer account report section. ";
 
             out.print("-|1|" + infoMessage + "|" + status);
 
