@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="BILLING_helper.YearEndProcessing"%>
 <%
 
@@ -12,30 +13,49 @@
     String disCD = session.getAttribute("DISCIPLINE_CODE").toString();
     String subCD = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD);
+    String year = request.getParameter("year");
 
-    int status = 0;
+    String roleCode = session.getAttribute("ROLE_CODE").toString();
 
-    status = yep.doStartYearEndProcess();
+    String systemAdmin = "001";
 
-    if (status == 0) {
+    MySession superUser = new MySession(userID, hfcCD);
 
-        String infoMessage = "The year end process of current year have been done.\nPlease go to report section to view year end report.";
+    if (roleCode.equalsIgnoreCase(systemAdmin) || superUser.isSuperUser() == true) {
 
-        out.print("-|1|" + infoMessage + "|" + status);
+        YearEndProcessing yep = new YearEndProcessing(userID, hfcCD, disCD, subCD, year);
 
-    } else if (status == 50) {
+        int status = 0;
 
-        String infoMessage = "There is an error during processing.\n"
-                + "Please restore the customer data and repeat the year end processing.";
+        status = yep.doStartYearEndProcessUpdated();
 
-        out.print("-|-1|" + infoMessage + "|" + status);
+        if (status == 0) {
 
-    } else if (status == 100) {
+            String infoMessage = "The year end process of selected year already have been done.\n Please go to customer account report section to view year end report.";
 
-        String infoMessage = "The year end processing is completed.";
+            out.print("-|1|" + infoMessage + "|" + status);
 
-        out.print("-|1|" + infoMessage + "|" + status);
+        } else if (status == 50) {
+
+            String infoMessage = "There is an error during processing.\n"
+                    + " Please restore the customer data and repeat the year end processing. Please go to report section to view year end report.";
+
+            out.print("-|-1|" + infoMessage + "|" + status);
+
+        } else if (status == 100) {
+
+            String infoMessage = "The year end processing is completed. Report can be view in the customer account report section. ";
+
+            out.print("-|1|" + infoMessage + "|" + status);
+
+        }
+
+    } else {
+
+        String infoMessage = "Invalid Operation Access.\n"
+                + "You are not authorised to run year end processing !!!";
+
+        out.print("-|-2|" + infoMessage + "|0");
 
     }
 

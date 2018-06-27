@@ -321,7 +321,7 @@
 
             $.ajax({
                 url: "controllerProcessReport/reportBillingAccountReportGetYearEndProcessing.jsp",
-                type: "post",
+                type: "get",
                 timeout: 10000,
                 success: function (data) {
 
