@@ -144,13 +144,31 @@
                 <div class="panel-body login_body">
 
                     <div class="form-horizontal">
+
+                        <form id="zeroForm">
+                            <fieldset class="steps step0 activate">
+                                <h2>You are signing up for which product?</h2>
+                                <div class="form-group">
+                                    <div class="col-md-12"><label class="control-label" for="company_name">HIS-CARE or JOMLAH:</label></div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-default btn-lg btn-product-option">HIS-CARE</button>
+                                        <button class="btn btn-default btn-lg btn-product-option">JOMLAH</button>
+                                        <input type="hidden" id="inputProduct">
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button id="btnNext0" class="first btn btn-rounded btn-mkag btn-lg login-btn">Continue <span class="txtProduct"></span> <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                </div>
+                            </fieldset>
+                        </form>
+
                         <form id="firstForm">
-                            <fieldset class="steps step1 activate">
+                            <fieldset class="steps step1">
                                 <h2>Enter your email address and phone number</h2>
                                 <div class="form-group">
                                     <div class="col-md-12"><label class="control-label" for="company_name">Email Address*:</label></div>
                                     <div class="col-md-12">
-                                        <input id="inputEmail" type="email" class="form-control input-lg" required maxlength="100">
+                                        <input id="inputEmail" type="email" class="form-control input-lg" required maxlength="150">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -160,7 +178,9 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button id="btnSign" class="first btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                    <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
+                                    <button id="btnPrev1" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
+                                    <button class="first btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
                                 </div>
                             </fieldset>
                         </form>
@@ -171,7 +191,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><label class="control-label" for="company_name">ID*:</label></div>
                                     <div class="col-md-12">
-                                        <input id="inputUserID" type="text" class="form-control input-lg" required maxlength="30">
+                                        <input id="inputUserID" type="text" class="form-control input-lg" required maxlength="150" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -199,8 +219,9 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button id="btnSign" class="next btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
-                                    <button id="btnSign" class="second btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                    <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
+                                    <button id="btnPrev2" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
+                                    <button class="second btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
                                 </div>
                             </fieldset>
                         </form>
@@ -208,6 +229,12 @@
                         <form id="thirdForm">
                             <fieldset class="steps step3">
                                 <h2>Personal Details</h2>
+                                <div class="form-group">
+                                    <div class="col-md-12"><label class="control-label" for="company_name">Salutation*:</label></div>
+                                    <div class="col-md-12">
+                                        <select id="inputSalutation" class="form-control input-lg"></select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><label class="control-label" for="company_name">Name*:</label></div>
                                     <div class="col-md-12">
@@ -219,19 +246,13 @@
                                     <div class="col-md-12">
                                         <input id="inputNRIC" type="text" class="form-control input-lg" maxlength="100" required>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Date of Birth*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputDOB" type="text" class="form-control input-lg" placeholder="dd/mm/yyyy" required>
-                                    </div>
-                                </div>
+                                </div>                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div class="col-md-12"><label class="control-label" for="company_name">Salutation*:</label></div>
+                                            <div class="col-md-12"><label class="control-label" for="company_name">Date of Birth*:</label></div>
                                             <div class="col-md-12">
-                                                <select id="inputSalutation" class="form-control input-lg"></select>
+                                                <input id="inputDOB" type="text" class="form-control input-lg" placeholder="dd/mm/yyyy" required>
                                             </div>
                                         </div>
                                     </div>
@@ -260,8 +281,9 @@
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button id="btnSign" class="next btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
-                                    <button id="btnSign" class="third btn btn-rounded btn-mkag btn-lg login-btn">Submit <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                    <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
+                                    <button id="btnPrev3" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
+                                    <button class="third btn btn-rounded btn-mkag btn-lg login-btn">Submit <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
                                 </div>
                             </fieldset>
                         </form>                      
@@ -281,22 +303,26 @@
                     </ul>
                 </div>
                 <div class="login_logo text-center">
-                    <div class="keterangan keterangan1 activate ">
+                    <div class="keterangan keterangan0 activate">
+                        <h3>Welcome</h3>
+                        <p>Your JOMLOKA OR HIS-CARE ID is the username and password you will need to access your JOMLOKA or HIS-CARE account online and the My JOMLOKA App. You'll need a valid email address as your JOMLOKA or HIS-CARE ID.</p>
+                    </div>
+                    <div class="keterangan keterangan1 ">
                         <img class="keterangan-logo" src="../assets/mail.svg">
-                        <h3>Create HIS-CARE ID</h3>
-                        <p>Your HIS-CARE ID is the username and password you will need to access your HIS-CARE account online and Apps</p>
+                        <h3>Create <span class="txtProduct">HIS-CARE</span> ID</h3>
+                        <p>Your <span class="txtProduct">HIS-CARE</span> ID is the username and password you will need to access your HIS-CARE account online and Apps</p>
                     </div>
 
                     <div class="keterangan keterangan2 ">
                         <img class="keterangan-logo" src="../assets/id.svg">
                         <h3>Complete your ID details</h3>
-                        <p>Your HIS-CARE ID is the username and password you will need to access your HIS-CARE  account online and Apps</p>
+                        <p>Your <span class="txtProduct">HIS-CARE</span> is the username and password you will need to access your HIS-CARE  account online and Apps</p>
                     </div>
 
                     <div class="keterangan keterangan3 ">
                         <img class="keterangan-logo" src="../assets/hospital.svg">
                         <h3>Provider Information</h3>
-                        <p>Your HIS-CARE ID is the username and password you will need to access your HIS-CARE account online and Apps</p>
+                        <p>Your <span class="txtProduct">HIS-CARE</span> ID is the username and password you will need to access your HIS-CARE account online and Apps</p>
                     </div>
                 </div>
 
@@ -312,7 +338,33 @@
             var RIS_gambarURI = "";
             $(function () {
 
-                codeValidityKeyUp("#inputUserID");
+                var $firstButton = $(".first"),
+                        $zeroButton = $("#btnNext0"),
+                        $secondButton = $(".second"),
+                        $thirdButton = $(".third"),
+                        $btnPrev1 = $("#btnPrev1"),
+                        $btnPrev2 = $("#btnPrev2"),
+                        $btnPrev3 = $("#btnPrev3"),
+                        $input = $("input"),
+                        $name = $(".name"),
+                        $more = $(".more"),
+                        $yourname = $(".yourname"),
+                        $reset = $(".reset"),
+                        $ctr0 = $(".step0"),
+                        $ctr1 = $(".step1"),
+                        $ctr2 = $(".step2"),
+                        $ctr3 = $(".step3"),
+                        $desc0 = $(".keterangan0"),
+                        $desc1 = $(".keterangan1"),
+                        $desc2 = $(".keterangan2"),
+                        $desc3 = $(".keterangan3"),
+                        $dir1 = $(".directory1"),
+                        $dir2 = $(".directory2"),
+                        $dir3 = $(".directory3");
+
+                $(".btn-product-option").button();
+
+                codeEmailValidityKeyUp("#inputUserID");
                 preventPipeKeyPress("input");
                 preventPipeKeyUp("input");
 
@@ -321,6 +373,7 @@
 
                 bindSameValue($('#inputMobile1'), $('#inputMobile2'));
                 bindSameValue($('#inputMobile2'), $('#inputMobile1'));
+                bindSameValue($('#inputEmail'), $('#inputUserID'));
 
                 $('#inputNRIC_pic').checkFileType({
                     allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
@@ -344,25 +397,8 @@
                     yearRange: "-100:+nn"
                 });
 
-                var $firstButton = $(".first"),
-                        $secondButton = $(".second"),
-                        $thirdButton = $(".third"),
-                        $input = $("input"),
-                        $name = $(".name"),
-                        $more = $(".more"),
-                        $yourname = $(".yourname"),
-                        $reset = $(".reset"),
-                        $ctr1 = $(".step1"),
-                        $ctr2 = $(".step2"),
-                        $ctr3 = $(".step3"),
-                        $desc1 = $(".keterangan1"),
-                        $desc2 = $(".keterangan2"),
-                        $desc3 = $(".keterangan3"),
-                        $dir1 = $(".directory1"),
-                        $dir2 = $(".directory2"),
-                        $dir3 = $(".directory3");
 
-                $(".next").on("click", function (e) {
+                $(".quit").on("click", function (e) {
                     e.preventDefault();
                     bootbox.confirm({
                         message: "Data will not be saved. Are you sure you want to quit?",
@@ -399,6 +435,38 @@
                             }
                         }
                     });
+                });
+
+                $(".btn-product-option").on("click", function (event) {
+                    event.preventDefault();
+                    var product = $(this).text();
+                    $(".txtProduct").text(product);
+
+                    $("#inputProduct").val(product);
+                });
+
+                $zeroButton.on("click", function (event) {
+                    event.preventDefault();
+                    var selectProduct = $("#inputProduct").val();
+
+                    if (selectProduct === "" || selectProduct == null) {
+                        bootbox.alert("Select a product first!");
+                        return;
+                    }
+
+                    $ctr0.removeClass("activate");
+                    $ctr1.addClass("activate");
+                    $desc0.removeClass("activate");
+                    $desc1.addClass("activate");
+
+                });
+
+                $btnPrev1.on("click", function (event) {
+                    event.preventDefault();
+                    $ctr1.removeClass("activate");
+                    $ctr0.addClass("activate");
+                    $desc1.removeClass("activate");
+                    $desc0.addClass("activate");
                 });
 
                 $firstButton.on("click", function (e) {
@@ -444,11 +512,32 @@
 
                                 $dir2.addClass("active");
                                 $dir1.removeClass("active");
+                                
+                                console.log(data.sql);
                             } else {
-                                bootbox.alert("The email is not available.Please insert different email!", function () {
-                                    $email.focus();
-                                    $email.val("");
+
+                                bootbox.confirm({
+                                    message: "The email is already exist. Continue to log in?",
+                                    buttons: {
+                                        confirm: {
+                                            label: 'Login',
+                                            className: 'btn-success'
+                                        },
+                                        cancel: {
+                                            label: 'Enter different email',
+                                            className: 'btn-danger'
+                                        }
+                                    },
+                                    callback: function (result) {
+                                        if (result) {
+                                            window.location = "../Entrance/Sign-in";
+                                        } else {
+                                            $email.focus();
+                                            $email.val("");
+                                        }
+                                    }
                                 });
+
                             }
 
                         },
@@ -463,6 +552,19 @@
 
 
                 });// end of first button
+
+                $btnPrev2.on("click", function (event) {
+                    event.preventDefault();
+
+                    $ctr1.addClass("activate");
+                    $ctr2.removeClass("activate");
+
+                    $desc1.addClass("activate");
+                    $desc2.removeClass("activate");
+
+                    $dir1.addClass("active");
+                    $dir2.removeClass("active");
+                });
 
                 $secondButton.on("click", function (e) {
                     e.preventDefault();
@@ -499,49 +601,16 @@
                         return;
                     }
 
-                    $(this).text("Loading...");
-                    $form.prop("disabled", true);
-
-                    var input = {
-                        userID: $id.val(),
-                        email: $email.val(),
-                        pwd: $pwd1.val(),
-                        question: $question.val(),
-                        answer: $answer.val()
-                    };
-
-                    $.ajax({
-                        type: 'POST',
-                        url: "control/addUserID.jsp",
-                        data: input,
-                        dataType: 'json',
-                        timeout: 60000,
-                        success: function (data, textStatus, jqXHR) {
-                            if (!data.isIDAvailable) {
-                                bootbox.alert("ID is not available. Please insert different ID.", function () {
-                                    $id.focus();
-                                    $id.val("");
-                                });
-                            } else if (data.isValid) {
-                                $ctr3.addClass("activate");
-                                $ctr2.removeClass("activate");
-                            } else {
-                                bootbox.alert(data.msg);
-                                console.log(data.sql);
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log("Fail register ID. " + errorThrown);
-                        },
-                        complete: function (jqXHR, textStatus) {
-                            $secondButton.text(oriText);
-                            $form.prop("disabled", false);
-                        }
-                    });
-
-
+                    $ctr3.addClass("activate");
+                    $ctr2.removeClass("activate");
 
                 });// end of second button
+
+                $btnPrev3.on("click", function (event) {
+                    event.preventDefault();
+                    $ctr2.addClass("activate");
+                    $ctr3.removeClass("activate");
+                });
 
                 $thirdButton.on("click", function (e) {
                     e.preventDefault();
@@ -558,7 +627,11 @@
                             $nric = $('#inputNRIC'),
                             $salutation = $('#inputSalutation'),
                             $gender = $('#inputGender'),
-                            $mobile = $('#inputMobile2');
+                            $mobile = $('#inputMobile2'),
+                            $pwd = $("#inputPassword1"),
+                            $question = $("#inputQuestion"),
+                            $answer = $("#inputAnswer"),
+                            $product = $("#inputProduct");
 
                     if (!isValidDate($dob.val())) {
                         bootbox.alert("Invalid date of birth!", function () {
@@ -567,9 +640,9 @@
                         });
                         return;
                     }
-                    
-                    if(!validatePhonenumber($mobile.val())){
-                        bootbox.alert("Invalid mobile phone number!", function(){
+
+                    if (!validatePhonenumber($mobile.val())) {
+                        bootbox.alert("Invalid mobile phone number!", function () {
                             $mobile.focus();
                             $mobile.val("");
                         });
@@ -582,15 +655,20 @@
 
                     $(this).text("Loading...");
                     $form.prop("disabled", true);
-                    
-                    var input ={
-                        name : $name.val(),
+
+                    var input = {
+                        name: $name.val(),
                         dob: $dob.val(),
                         gender: $gender.val(),
                         salutation: $salutation.val(),
                         mobile: $mobile.val(),
                         nric: $nric.val(),
-                        strPic: RIS_gambarURI
+                        strPic: RIS_gambarURI,
+                        pwd: $pwd.val(),
+                        question : $question.val(),
+                        answer: $answer.val(),
+                        product: $product.val()
+                        
                     };
 
                     $.ajax({
@@ -600,14 +678,14 @@
                         timeout: 60000,
                         url: "control/addUserID_step2.jsp",
                         success: function (data, textStatus, jqXHR) {
-                            bootbox.alert(data.msg, function(){
-                                if(data.isValid){
+                            bootbox.alert(data.msg, function () {
+                                if (data.isValid) {
                                     location.reload();
                                 }
                             });
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            console.log("Error: "+errorThrown);
+                            console.log("Error: " + errorThrown);
                         },
                         complete: function (jqXHR, textStatus) {
                             $thirdButton.text(oriText);
@@ -615,7 +693,7 @@
                         }
                     });
 
-                    
+
                 });
 
 

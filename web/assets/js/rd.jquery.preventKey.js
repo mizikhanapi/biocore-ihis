@@ -143,3 +143,17 @@ function codeValidityKeyUp(elem){
     });
 }
 
+function codeEmailValidityKeyUp(elem){
+    $(elem).keyup(function (e){
+        var str = $(this).val();
+        var gotSpecialChar = /[!#$%^&*()+=,?\\:;\"\'~`>< \{\}]/.test(str); 
+        if(gotSpecialChar){
+            $(this).val("");
+            $(this).blur();
+            bootbox.alert("<b style='color:red;'>Code/ID should not contain special characters!</b>");
+            return false;
+        }
+        
+    });
+}
+

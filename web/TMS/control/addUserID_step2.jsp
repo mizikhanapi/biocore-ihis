@@ -24,6 +24,10 @@
     String dob = request.getParameter("dob");
     String salutation = request.getParameter("salutation");
     String img = request.getParameter("strPic");
+    String pwd = request.getParameter("pwd");
+    String question = request.getParameter("question");
+    String answer = request.getParameter("answer");
+    String product = request.getParameter("product");
 
     //json object
     JSONObject json = new JSONObject();
@@ -37,18 +41,13 @@
 
     RMIConnector rmi = new RMIConnector();
     query = "UPDATE adm_users set `USER_NAME`='"+name+"', `NEW_ICNO`='"+ic_no+"', `SEX_CODE`='"+gender+"', `MOBILE_PHONE`='"+phone+"', birth_date='"+dob+"', `TITLE`='"+salutation+"', `STATUS`='link', `USER_STATUS`='"+random+"', `CREATED_DATE`=now(),"
-            + "`ID_IMG`='"+img+"' WHERE `USER_ID`='"+userID+"';";
+            + "`ID_IMG`='"+img+"', `PASSWORD`='"+pwd+"', `QUESTION`='"+question+"', `ANSWER`='"+answer+"', `USER_GROUP`='"+product+"' "
+            + "WHERE `USER_ID`='"+userID+"';";
 
     if (rmi.setQuerySQL(con.HOST, con.PORT, query)) {
         String token = random + "l0l" + userID;
         String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/TMS/control/linkActivate.jsp?token=" + token;
-        
-        String pwd = "";
-        query = "Select password from adm_users where user_id='"+userID+"' limit 1;";
-        ArrayList<ArrayList<String>> dataPwd = con.getData(query);
-        if(dataPwd.size()>0){
-            pwd = dataPwd.get(0).get(0);
-        }
+              
         
         String message = "<h3>Good day dear " + name + "!</h3> "
                 + "<br/><p>Thank you for registering with us.</p>"
@@ -61,15 +60,17 @@
         Emailer em = new Emailer(email, subject, message);
         em.sendTextEmail();
         json.put("isValid", true);
-        json.put("msg", "Your registration is successful. Please activate your account by clicking the activation link  sent to " + email);
+        json.put("msg", "Your registration is for "+product+" ID successful. Please activate your account by clicking the activation link  sent to " + email);
 
         out.print(json.toString());
+        session.invalidate();
 
     } else {
         json.put("isValid", false);
-        json.put("msg", "HIS-CARE online ID failed to create – please try again");
+        json.put("msg", product+" online ID failed to create – please try again");
 
         out.print(json.toString());
 
     }
+    
 %>
