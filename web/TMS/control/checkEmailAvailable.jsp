@@ -20,7 +20,7 @@
     
     boolean isAvailable = true;
     boolean emailSame = email.equals(sessionEmail);
-    query = "Select user_id from adm_users where email = '"+email+"' OR user_id='"+email+"' limit 1;";
+    query = "Select user_id from adm_users where user_id='"+email+"' limit 1;";
     
     if(con.getData(query).size()>0){
         isAvailable = false;
@@ -38,14 +38,14 @@
        session.setAttribute("REGISTRATION_EMAIL", email);
        
     }
-    else if(sessionEmail != null && isAvailable && !email.equals(sessionEmail)){
+    else if(sessionEmail != null && isAvailable && !emailSame){
         query = "Update adm_users set email='"+email+"', user_id='"+email+"' where user_id = '"+sessionEmail+"';";
         rmi.setQuerySQL(con.HOST, con.PORT, query);
         session.setAttribute("REGISTRATION_ID", email);
         session.setAttribute("REGISTRATION_EMAIL", email);
        
     }
-    else if(sessionEmail != null && email.equals(sessionEmail)){
+    else if(sessionEmail != null && emailSame){
         isAvailable = true;
     }
     

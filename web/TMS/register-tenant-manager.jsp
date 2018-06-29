@@ -154,10 +154,11 @@
                                         <button class="btn btn-default btn-lg btn-product-option">HIS-CARE</button>
                                         <button class="btn btn-default btn-lg btn-product-option">JOMLAH</button>
                                         <input type="hidden" id="inputProduct">
+                                        <input type="hidden" id="inputPrevProduct">
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button id="btnNext0" class="first btn btn-rounded btn-mkag btn-lg login-btn">Continue <span class="txtProduct"></span> <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                    <button id="btnNext0" class="btn btn-rounded btn-mkag btn-lg login-btn">Continue <span class="txtProduct"></span> <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
                                 </div>
                             </fieldset>
                         </form>
@@ -449,15 +450,34 @@
                     event.preventDefault();
                     var selectProduct = $("#inputProduct").val();
 
+                    var preViousProduct = $("#inputPrevProduct").val();
+
                     if (selectProduct === "" || selectProduct == null) {
                         bootbox.alert("Select a product first!");
                         return;
+                    }
+
+                    if ((preViousProduct !== "" || preViousProduct != null) && preViousProduct !== selectProduct) {
+                        $("#firstForm")[0].reset();
+                        $("#secondForm")[0].reset();
+                        $("#thirdForm")[0].reset();
+                        $('#NRIC_pic').attr('src', "");
+                        $.ajax({
+                            type: 'GET',
+                            timeout: 60000,
+                            url: "control/quitRegistration.jsp",
+                            dataType: 'json',
+                            success: function (data, textStatus, jqXHR) {
+                                console.log(data.msg);
+                            }
+                        });
                     }
 
                     $ctr0.removeClass("activate");
                     $ctr1.addClass("activate");
                     $desc0.removeClass("activate");
                     $desc1.addClass("activate");
+                    $("#inputPrevProduct").val(selectProduct);
 
                 });
 
@@ -512,7 +532,7 @@
 
                                 $dir2.addClass("active");
                                 $dir1.removeClass("active");
-                                
+
                                 console.log(data.sql);
                             } else {
 
@@ -665,10 +685,10 @@
                         nric: $nric.val(),
                         strPic: RIS_gambarURI,
                         pwd: $pwd.val(),
-                        question : $question.val(),
+                        question: $question.val(),
                         answer: $answer.val(),
                         product: $product.val()
-                        
+
                     };
 
                     $.ajax({
