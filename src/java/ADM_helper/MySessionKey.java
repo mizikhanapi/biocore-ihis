@@ -24,6 +24,7 @@ public class MySessionKey {
             USER_NAME="USER_NAME",
             USER_PICTURE="PICTURE",
             USER_TYPE="USER_TYPE",
+            USER_GROUP="USER_GROUP",
             SESSION_ID="SESSION_ID",
             DISCIPLINE_CD="DISCIPLINE_CODE",
             DISCIPLINE_NAME="DISCIPLINE_NAME",

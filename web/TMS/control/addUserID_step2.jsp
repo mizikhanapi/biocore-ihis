@@ -41,26 +41,26 @@
 
     RMIConnector rmi = new RMIConnector();
     query = "UPDATE adm_users set `USER_NAME`='"+name+"', `NEW_ICNO`='"+ic_no+"', `SEX_CODE`='"+gender+"', `MOBILE_PHONE`='"+phone+"', birth_date='"+dob+"', `TITLE`='"+salutation+"', `STATUS`='link', `USER_STATUS`='"+random+"', `CREATED_DATE`=now(),"
-            + "`ID_IMG`='"+img+"', `PASSWORD`='"+pwd+"', `QUESTION`='"+question+"', `ANSWER`='"+answer+"', `USER_GROUP`='"+product+"' "
+            + "`ID_IMG`='"+img+"', `PASSWORD`='"+pwd+"', `QUESTION`='"+question+"', `ANSWER`='"+answer+"', `USER_GROUP`='"+product+"', ID_CATEGORY_CODE='"+product+"' "
             + "WHERE `USER_ID`='"+userID+"';";
 
     if (rmi.setQuerySQL(con.HOST, con.PORT, query)) {
-        String token = random + "l0l" + userID;
+        String token = random + "l0l" + userID +"l0l"+ product;
         String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/TMS/control/linkActivate.jsp?token=" + token;
               
         
         String message = "<h3>Good day dear " + name + "!</h3> "
-                + "<br/><p>Thank you for registering with us.</p>"
+                + "<br/><p>Thank you for registering your "+product+" account with us.</p>"
                 + "<br/><br/><p>Following are your ID information...</p>"
                 + "<p>User ID: " + userID + "</p>"
                 + "<p>IC Number: " + ic_no + "</p>"
                 + "<p>Password: " + pwd + "</p>"
-                + "<br/><p>To activate your account, <a href='" + link + "'>simply click this <b>link</b>.<a/></p>";
+                + "<br/><p>To activate your account, <a href='" + link + "'>simply click this <b>"+product+" link</b>.<a/></p>";
         String subject = "Account Activation Link";
         Emailer em = new Emailer(email, subject, message);
         em.sendTextEmail();
         json.put("isValid", true);
-        json.put("msg", "Your registration is for "+product+" ID successful. Please activate your account by clicking the activation link  sent to " + email);
+        json.put("msg", "Your registration for "+product+" ID is successful. Please activate your "+product+" account by clicking the activation link  sent to " + email);
 
         out.print(json.toString());
         session.invalidate();

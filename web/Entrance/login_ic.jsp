@@ -120,7 +120,8 @@
                         url: "login_process.jsp",
                         type: "post",
                         data: {userIC: userID,
-                            password: password
+                            password: password,
+                            user_group: "HIS-CARE"
                         },
                         dataType: 'json',
                         timeout: 60000,

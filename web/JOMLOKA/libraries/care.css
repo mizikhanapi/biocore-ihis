@@ -24,7 +24,7 @@ and open the template in the editor.
     	background: -moz-linear-gradient(-45deg, #fe9d2a 0%, #ff670f 100%);
     	background: -webkit-linear-gradient(-45deg, #fe9d2a 0%,#ff670f 100%);
     	background: linear-gradient(135deg, #fe9d2a 0%,#ff670f 100%);
-    	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fe9d2a', endColorstr='#ff670f',GradientType=1 );
+    	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#84c1ff', endColorstr='#c1e0ff',GradientType=1 );
     }
 
     .twPc-bg {
@@ -510,24 +510,24 @@ and open the template in the editor.
 
     .btn-mkag {
     	color: #fff;
-    	background: #DB4A26;
-    	border-color: #DB4A26;
+    	background: #5588ff;
+    	border-color: #5588ff;
     	font-weight: 600;
     }
 
     .btn-mkag:hover {
     	color: #fff;
-    	background: #bd3e1f;
-    	border-color: #bd3e1f;
+    	background: #3366ff;
+    	border-color: #3366ff;
     }
 
     a {
-    	color: #FE9D2A;
+    	color: #77aaff;
     	text-decoration: none;
     }
 
     a:focus, a:hover {
-    	color: #f48c0f;
+    	color: #5588ff;
     	text-decoration: underline;
     }
 
@@ -593,8 +593,8 @@ and open the template in the editor.
     }
 
     .direction_numbering ul>li.active {
-    	border-color: #F16000;
-    	color: #F16000;
+    	border-color: #5588ff;
+    	color: #5588ff;
     }
 
     .upload-box {
@@ -625,7 +625,6 @@ fieldset h2 {
     border-radius: 4px;
     height: 150px;
     text-align: center;
-    margin: 2%;
-    cursor: pointer;
+    
 }
 

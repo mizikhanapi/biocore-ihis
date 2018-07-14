@@ -27,6 +27,7 @@
 
     String user_id = request.getParameter("userID");
     String password = request.getParameter("password");
+    String user_group = request.getParameter("user_group");
     String user_ic = "";
 
     if (request.getParameter("userIC") != null) {
@@ -37,10 +38,10 @@
     }
 
     //password = EncryptUtils.getEncryptText(password);
-    //                       0           1      2           3                   4                   5                               6                           7               8                   9
+    //                       0           1      2           3                   4                   5                               6                           7               8                   9      
     String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), ifnull(login_status, '0'), new_icno, ifnull(user_status, ''), user_type "
             + "from adm_users LEFT Join adm_health_facility on health_facility_code = hfc_cd "
-            + "where user_id = '" + user_id + "' AND status = '0' "
+            + "where user_id = '" + user_id + "' AND status = '0' AND user_group='" + user_group + "' "
             + "and now() between start_date AND end_date "
             + "limit 1";
 
@@ -58,13 +59,20 @@
 
             if (dataStaff.get(0).get(6).equals("1")) {
 
-                if (!dataStaff.get(0).get(7).equals(user_ic)) {
-
-                    session.setAttribute("TEMP_ID", user_id);
-
-                    //out.print(NOT_LOGOUT);
+                if ("".equals(user_ic)) {
+                     session.setAttribute("TEMP_ID", user_id);
+                    
                     json.put("isRedirect", true);
                     json.put("msg", "You have logged in to another PC or you did not log out properly");
+                    json.put("url", "ReSign-in");
+                    out.print(json.toString());
+
+                    return;
+                } else if (!dataStaff.get(0).get(7).equals(user_ic)) {
+
+                    //out.print(NOT_LOGOUT);
+                    json.put("isRedirect", false);
+                    json.put("msg", "Wrong NRIC/Passport number!");
                     json.put("url", "ReSign-in");
                     out.print(json.toString());
 
@@ -101,11 +109,11 @@
                 tenant_name = "???";
                 if (!"???".equals(hfc_cd)) {
                     //get the tenant name from database
-                    query = "SELECT tnt_name FROM adm_tenant WHERE tnt_cd='"+hfc_cd+"' limit 1;";
+                    query = "SELECT tnt_name FROM adm_tenant WHERE tnt_cd='" + hfc_cd + "' limit 1;";
                     ArrayList<ArrayList<String>> arrTenant = conn.getData(query);
-                    if(arrTenant.size()>0){
+                    if (arrTenant.size() > 0) {
                         tenant_name = arrTenant.get(0).get(0);
-                    }                    
+                    }
                 }
 
                 //set the session for tenant
@@ -115,6 +123,7 @@
                 session.setAttribute(MySessionKey.USER_PICTURE, proPic);
                 session.setAttribute(MySessionKey.TENANT_CD, hfc_cd);
                 session.setAttribute(MySessionKey.TENANT_NAME, tenant_name);
+                session.setAttribute(MySessionKey.USER_GROUP, user_group);
 
                 json.put("isRedirect", true);
                 json.put("url", "../TMS/Home");

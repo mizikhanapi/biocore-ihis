@@ -198,13 +198,13 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><label class="control-label" for="company_name">Password*:</label></div>
                                     <div class="col-md-12">
-                                        <input id="inputPassword1" type="password" class="form-control input-lg" required>
+                                        <input id="inputPassword1" type="password" class="form-control input-lg" required maxlength="50">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><label class="control-label" for="company_name">Confirm Password*:</label></div>
                                     <div class="col-md-12">
-                                        <input id="inputPassowrd2" type="password" class="form-control input-lg" required>
+                                        <input id="inputPassowrd2" type="password" class="form-control input-lg" required maxlength="50">
                                     </div>
                                 </div>
                                 <div class="form-group">

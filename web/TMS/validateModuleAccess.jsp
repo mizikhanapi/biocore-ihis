@@ -25,7 +25,7 @@
 <script type="text/javascript">
      setTimeout(function () {
        window.location.href = "Tenant"; //will redirect to your blog page (an ex: blog.html)
-    }, 2000); //will call the function after 3 secs.
+    }, 2000); //will call the function after 2 secs.
 </script>
 <%
         return;
