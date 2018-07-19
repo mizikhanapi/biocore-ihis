@@ -149,7 +149,7 @@
                             <div class="form-group">
                                 <div class="col-md-12"><label class="control-label" for="company_name">Provider Name:</label></div>
                                 <div class="col-md-12">
-                                    <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                    <input id="inputProviderName" type="text" class="form-control input-lg" name="provider" maxlength="200" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -157,7 +157,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12"><label class="control-label" for="company_name">Building Number:</label></div>
                                         <div class="col-md-12">
-                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                            <input id="inputBuildingNo" type="text" class="form-control input-lg" name="building" maxlength="40" required>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +165,7 @@
                                     <div class="form-group">
                                         <div class="col-md-12"><label class="control-label" for="company_name">Street Name:</label></div>
                                         <div class="col-md-12">
-                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                            <input id="inputStreet" type="text" class="form-control input-lg" name="street" maxlength="40" required>
                                         </div>
                                     </div>
                                 </div>
@@ -176,15 +176,17 @@
                                     <div class="form-group">
                                         <div class="col-md-12"><label class="control-label" for="company_name">Postcode:</label></div>
                                         <div class="col-md-12">
-                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                            <input id="inputPostcode" type="text" class="form-control input-lg" name="inputUserID" required autocomplete="off">
+                                            <div id="inputPostcodeMatch"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <div class="col-md-12"><label class="control-label" for="company_name">Town / District:</label></div>
+                                        <div class="col-md-12"><label class="control-label" for="company_name">Town:</label></div>
                                         <div class="col-md-12">
-                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                            <input id="inputTown" type="text" class="form-control input-lg" name="inputUserID" required autocomplete="off">
+                                            <div id="inputTownMatch"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -192,32 +194,68 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <div class="col-md-12"><label class="control-label" for="company_name">Sate:</label></div>
+                                        <div class="col-md-12"><label class="control-label" for="company_name">District:</label></div>
                                         <div class="col-md-12">
-                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                            <input id="inputDistrict" type="text" class="form-control input-lg" name="inputUserID" required autocomplete="off">
+                                            <div id="inputDistrictMatch"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <div class="col-md-12"><label class="control-label" for="company_name">Country:</label></div>
+                                        <div class="col-md-12"><label class="control-label" for="company_name">State:</label></div>
                                         <div class="col-md-12">
-                                            <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                            <input id="inputState" type="text" class="form-control input-lg" name="inputUserID" required autocomplete="off">
+                                            <div id="inputStateMatch"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-12"><label class="control-label" for="company_name">Mobile Number:</label></div>
+                                <div class="col-md-12"><label class="control-label" for="company_name">Country:</label></div>
                                 <div class="col-md-12">
-                                    <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+                                    <input id="inputCountry" type="text" class="form-control input-lg" required autocomplete="off">
+                                    <div id="inputCountryMatch"></div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><label class="control-label" for="company_name">E-mail:</label></div>
-                                <div class="col-md-12">
-                                    <input id="inputUserID" type="text" class="form-control input-lg" name="inputUserID">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12"><label class="control-label" for="company_name">Mobile:</label></div>
+                                        <div class="col-md-12">
+                                            <input id="inputMobile" type="text" class="form-control input-lg" name="mobile" maxlength="20" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12"><label class="control-label" for="company_name">E-mail:</label></div>
+                                        <div class="col-md-12">
+                                            <input id="inputEmail" type="text" class="form-control input-lg" name="inputUserID" maxlength="100" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12"><label class="control-label" for="company_name">Bank:</label></div>
+                                        <div class="col-md-12">
+                                            <select id="inputBank" class="form-control input-lg"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12"><label class="control-label" for="company_name">Bank Account No:</label></div>
+                                        <div class="col-md-12">
+                                            <input id="inputAccount" type="text" class="form-control input-lg" name="bank" maxlength="10" required>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -226,46 +264,12 @@
 
                     <fieldset class="steps step2 activate" data-number='2'>
                         <h2>Package</h2>
+                        <input type="hidden" id="inputPackage" />
                         <div class="row">
                             <div class="col-md-12">
                                 <h3>Select a package</h3>
                                 <div id="serviceList" class="row">
-                                    <div class="col-md-4">
-                                        <div class="service-box">
-                                            <i class="fa fa-times"></i>
-                                            <h4>General Medicine</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="service-box">
-                                            <i class="fa fa-times"></i>
-                                            <h4>General Medicine</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="service-box">
-                                            <i class="fa fa-times"></i>
-                                            <h4>General Medicine</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="service-box">
-                                            <i class="fa fa-times"></i>
-                                            <h4>CLOUD ONE</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="service-box">
-                                            <i class="fa fa-times"></i>
-                                            <h4>CLOUD TWO</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="service-box">
-                                            <i class="fa fa-times"></i>
-                                            <h4>CLOUD THREE</h4>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -273,6 +277,7 @@
                     </fieldset>
 
                     <fieldset class="steps step3 activate" data-number='3'>
+                        <h2>Upload Documents</h2>
                         <div class="row">
                             <div class="col-md-12">
                                 <form id="file-upload-form" class="uploader">
@@ -359,19 +364,31 @@
                 e.stopPropagation();
             });
 
-            $(function () {
 
-                $("#serviceList .service-box").hover(
-                        function () {
-                            $(this).addClass("alert-warning");
-                        },
-                        function () {
-                            $(this).removeClass("alert-warning")
-                        }
-                );
+            $(function () {
 
                 initDropzone("file-drag1", "file-upload-btn1");
                 initDropzone("file-drag2", "file-upload-btn2");
+
+                populateSelectList($("#inputBank"), "0097");
+
+                initFlexData("inputPostcode", "inputPostcodeMatch", "control/getDetailFlexList.jsp", "0079");
+                initFlexData("inputTown", "inputTownMatch", "control/getDetailFlexList.jsp", "0003");
+                initFlexData("inputDistrict", "inputDistrictMatch", "control/getDetailFlexList.jsp", "0078");
+                initFlexData("inputState", "inputStateMatch", "control/getDetailFlexList.jsp", "0002");
+                initFlexData("inputCountry", "inputCountryMatch", "control/getDetailFlexList.jsp", "0001");
+
+                getPackageOption();
+
+                $("#serviceList").on("click", ".service-box", function () {
+                    $(".service-box").removeClass("alert-success");
+                    $(".service-box").removeClass("alert-warning");
+                    $(this).addClass("alert-success");
+                    var input = $(this).find("#pack_cd").val();
+                    $("#inputPackage").val(input);
+                    console.log(input);
+
+                });
 
 
             });//end ready...
@@ -395,6 +412,98 @@
                             bootbox.alert(error);
                         }
 
+                    }
+                });
+            }
+
+            //init felx-data-list
+            function initFlexData(elemInputID, elemDivID, url, objData) {
+                $('#' + elemInputID).flexdatalist({
+                    minLength: 1,
+                    searchIn: 'name',
+                    searchDelay: 1000,
+                    selectionRequired: true,
+                    url: url,
+                    visibleProperties: 'name',
+                    cache: false,
+                    valueProperty: 'value',
+                    searchContain: false,
+                    searchByWord: true,
+                    params: {
+                        master_cd: objData
+                    }
+                });
+
+                $('#' + elemInputID).on('before:flexdatalist.data', function (response) {
+                    $('#' + elemDivID).html('<img src="../assets/img/LoaderIcon.gif" />');
+                });
+                $('#' + elemInputID).on('after:flexdatalist.data', function (response) {
+                    $('#' + elemDivID).html('');
+                });
+                $('#' + elemInputID+'-flexdatalist').on('keyup', function (event) {
+                    if($(this).val().trim()===""){
+                        $('#' + elemDivID).html('');
+                    }                    
+                });
+            }
+
+            function populateSelectList($select, master_cd) {
+                var input = {
+                    master_cd: master_cd,
+                    keyword: ""
+                };
+                $.ajax({
+                    type: 'POST',
+                    data: input,
+                    dataType: 'json',
+                    timeout: 60000,
+                    url: "control/getDetailFlexList.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        for (var i in data) {
+                            $select.append("<option value='" + data[i].value + "'>" + data[i].name + "</option>");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Failed to populate " + master_cd);
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        console.log("Success laod: " + $select.attr("id"));
+                    }
+                });
+            }
+
+            function getPackageOption() {
+                var $package = $("#serviceList");
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: 60000,
+                    url: "control/getPackage.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        for (var i in data) {
+
+                            var strInfo = '';
+
+                            for (var j in data[i].html) {
+                                strInfo += '<h4>' + data[i].html[j] + '</h4>';
+                            }
+
+                            var strDiv = '<div class="col-md-4"> <div class="service-box"> <i class="fa fa-thumbs-up"></i>' + strInfo + '<input type="hidden" id="pack_cd" value="' + data[i].code + '"/></div> </div>';
+                            $package.append(strDiv);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('Cannot get package list:' + errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        $("#serviceList .service-box").hover(
+                                function () {
+                                    $(this).addClass("alert-warning");
+                                },
+                                function () {
+                                    $(this).removeClass("alert-warning");
+                                }
+                        );
                     }
                 });
             }
