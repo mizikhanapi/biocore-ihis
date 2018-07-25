@@ -93,7 +93,7 @@
         return;
     }
 
-    query = "UPDATE adm_tenant set business_license='" + file2 + "', practicing_certificate='" + file1 + "', account_no='" + account_no + "', user_id='" + created_by + "', tnt_type='" + user_group + "' WHERE tnt_cd='" + tenant_code + "';";
+    query = "UPDATE adm_tenant set business_license='" + file2 + "', practicing_certificate='" + file1 + "', account_no='" + account_no + "', user_id='" + created_by + "', tnt_type='" + user_group + "', `status`='0' WHERE tnt_cd='" + tenant_code + "';";
     isInsert = rmi.setQuerySQL(con.HOST, con.PORT, query);
     if (!isInsert) {
         json.put("isValid", isInsert);
