@@ -17,9 +17,12 @@ public class TenantHelper {
     Conn con;
     final String WEIGHT= "0850850850";
     final int DIVIDER = 12;
+    
+    String created_by;
 
-    public  TenantHelper(){
+    public  TenantHelper(String creator){
         con = new Conn();
+        created_by = creator;
     }
     
     public String getAccountNo(){
@@ -58,21 +61,22 @@ public class TenantHelper {
     }
     
     private String getLastSequenceNo(){
-        String query = "SELECT ifnull(max(last_no),0) from adm_last_seq_no_accno;";
+        String query = "Select MAX(convert(last_seq, unsigned)) from adm_last_seq_no_accno;";
         String last_no="";
         RMIConnector rmi = new RMIConnector();
         try{
-            last_no = rmi.getQuerySQL("10.73.32.200", 1098, query).get(0).get(0);
+//            last_no = rmi.getQuerySQL("10.73.32.200", 1098, query).get(0).get(0);
+            last_no = rmi.getQuerySQL(con.HOST, con.PORT, query).get(0).get(0);
         }catch(Exception e){
             e.printStackTrace();
             last_no = "0";
         }
          
+       query = "Insert into adm_last_seq_no_accno(last_seq, created_by, created_date) "
+                + "Select convert( MAX(convert(last_seq, unsigned)+ 1), char), '"+created_by+"', now() from adm_last_seq_no_accno;";
         
-        query = "insert into adm_last_seq_no_accno(last_no) VALUES (null);";
-        
-        
-        rmi.setQuerySQL("10.73.32.200", 1098, query);
+//        rmi.setQuerySQL("10.73.32.200", 1098, query);
+        rmi.setQuerySQL(con.HOST, con.PORT, query);
         
         return last_no;
     }
@@ -108,7 +112,7 @@ public class TenantHelper {
     }
     
     public static void main(String args[]){
-        TenantHelper th = new TenantHelper();
+        TenantHelper th = new TenantHelper("iHIS_99");
         
         System.out.println(th.getAccountNo());
     }

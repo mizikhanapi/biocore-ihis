@@ -284,7 +284,6 @@
                                     <input id="file-upload1" class="file-upload" type="file" name="fileUpload" style="display: none;" accept="image/*" />
 
                                     <label for="file-upload" id="file-drag1" class="upload-box">
-                                        <img id="file-image1" src="#" alt="Preview" class="hidden">
                                         <div id="start">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                             <h4>Upload Annual Practicing Certificate</h4>
@@ -303,7 +302,6 @@
                                     <input id="file-upload2" class="file-upload" type="file" name="fileUpload" style="display: none;" accept="image/*" />
 
                                     <label for="file-upload" id="file-drag2" class="upload-box">
-                                        <img id="file-image2" src="#" alt="Preview" class="hidden">
                                         <div id="start">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                             <h4>Upload Business Licence Certificate </h4>
@@ -317,8 +315,8 @@
                         </div>
 
                         <div class="text-right">
-                            <button id="btnSign" class="next btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-power-off fa-lg pull-left"></i> Log Out</button>
-                            <button id="btnSign" class="sixth btn btn-rounded btn-mkag btn-lg login-btn">Submit <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                            <button id="btnLogout1" class="next btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-power-off fa-lg pull-left"></i> Log Out</button>
+                            <button id="btnSubmit" class="sixth btn btn-rounded btn-mkag btn-lg login-btn">Submit <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
                         </div>
                     </fieldset>
 
@@ -329,7 +327,7 @@
             <div class="login_row login_panel">
                 <div class="direction_numbering">
                     <ul>
-                        <li class="directory"><i class="fa fa-power-off"></i></li>
+                        <li id="btnLogout2" class="directory"><i class="fa fa-power-off"></i></li>
                     </ul>
                 </div>
                 <div class="login_logo text-center">
@@ -367,6 +365,8 @@
 
             $(function () {
 
+                getEmailPhone();
+
                 initDropzone("file-drag1", "file-upload-btn1");
                 initDropzone("file-drag2", "file-upload-btn2");
 
@@ -390,8 +390,196 @@
 
                 });
 
+                $("#btnLogout1").on("click", function () {
+                    logOut()
+                });
+                $("#btnLogout2").on("click", function () {
+                    logOut()
+                });
+
+                $("#btnSubmit").on("click", function () {
+                    if (validateInput()) {
+
+                        var $provider = $("#inputProviderName"),
+                                $buildingNo = $("#inputBuildingNo"),
+                                $street = $("#inputStreet"),
+                                $postcode = $("#inputPostcode"),
+                                $town = $("#inputTown"),
+                                $district = $("#inputDistrict"),
+                                $state = $("#inputState"),
+                                $country = $("#inputCountry"),
+                                $bankName = $("#inputBank"),
+                                $bankAcc = $("#inputAccount"),
+                                $phone = $("#inputMobile"),
+                                $email = $("#inputEmail"),
+                                $package = $("#inputPackage"),
+                                $file1 = $("#file-drag1"),
+                                $file2 = $("#file-drag2");
+
+                        var input = {
+                            provider: $provider.val(),
+                            buildingNo: $buildingNo.val(),
+                            street: $street.val(),
+                            postcode: $postcode.val(),
+                            town: $town.val(),
+                            district: $district.val(),
+                            state: $state.val(),
+                            country: $country.val(),
+                            bankName: $bankName.val(),
+                            bankAcc: $bankAcc.val(),
+                            phone: $phone.val(),
+                            email: $email.val(),
+                            package: $package.val(),
+                            file1: $file1.find("img").attr("src"),
+                            file2: $file2.find("img").attr("src")
+                        };
+                        
+                        console.log(input.file1);
+                        var dialog = bootbox.dialog({
+                            title: 'Processing your data',
+                            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+                        });
+                        $.ajax({
+                            type: 'POST',
+                            url: "control/insertTenant.jsp",
+                            timeout: 60000,
+                            data: input,
+                            dataType: 'json',
+                            success: function (data, textStatus, jqXHR) {
+                                bootbox.alert(data.msg, function(){
+                                    if(!data.isValid){
+                                        console.log(data.sql);
+                                    }
+                                    else{
+                                        window.location = data.url;
+                                    }
+                                });
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log("Error :"+errorThrown);
+                            },
+                            complete: function (jqXHR, textStatus) {
+                                dialog.modal('hide');
+                            }
+                        });
+                    }
+                });
+
 
             });//end ready...
+
+            function validateInput() {
+                var $provider = $("#inputProviderName"),
+                        $buildingNo = $("#inputBuildingNo"),
+                        $street = $("#inputStreet"),
+                        $postcode = $("#inputPostcode"),
+                        $town = $("#inputTown"),
+                        $district = $("#inputDistrict"),
+                        $state = $("#inputState"),
+                        $country = $("#inputCountry"),
+                        $bankName = $("#inputBank"),
+                        $bankAcc = $("#inputAccount"),
+                        $phone = $("#inputMobile"),
+                        $email = $("#inputEmail"),
+                        $package = $("#inputPackage"),
+                        $file1 = $("#file-drag1"),
+                        $file2 = $("#file-drag2");
+
+                if ($provider.val() === "") {
+                    bootbox.alert("Please enter provider name!");
+                    return false;
+                }
+
+                if ($buildingNo.val() === "") {
+                    bootbox.alert("Please enter building number!");
+                    return false;
+                }
+
+                if ($street.val() === "") {
+                    bootbox.alert("Please enter street name!");
+                    return false;
+                }
+
+                if ($postcode.val() === "" || $postcode.val() == null) {
+                    bootbox.alert("Please search and choose existing postcode!");
+                    $("#inputPostcode-flexdatalist").val("");
+                    return false;
+                }
+
+                if ($town.val() === "" || $town.val() == null) {
+                    bootbox.alert("Please search and choose existing town!");
+                    $("#inputTown-flexdatalist").val("");
+                    return false;
+                }
+
+                if ($district.val() === "" || $district.val() == null) {
+                    bootbox.alert("Please search and choose existing district!");
+                    $("#inputDistrict-flexdatalist").val("");
+                    return false;
+                }
+
+                if ($state.val() === "" || $state.val() == null) {
+                    bootbox.alert("Please search and choose existing state!");
+                    $("#inputState-flexdatalist").val("");
+                    return false;
+                }
+
+                if ($country.val() === "" || $country.val() == null) {
+                    bootbox.alert("Please search and choose existing country!");
+                    $("#inputCountry-flexdatalist").val("");
+                    return false;
+                }
+
+                if ($bankAcc.val() === "") {
+                    bootbox.alert("Please enter the bank account number!");
+                    return false;
+                }
+
+                if ($phone.val() === "" || !validatePhonenumber($phone.val())) {
+                    bootbox.alert("Please enter the phone number with valid phone number!");
+                    return false;
+                }
+
+                if ($email.val() === "" || !ValidateEmail($email.val())) {
+                    bootbox.alert("Please enter the email with valid email!");
+                    return false;
+                }
+
+                if ($package.val() === "" || $package.val() == null) {
+                    bootbox.alert("Please select a package!");
+                    return false;
+                }
+
+                if (!$file1.find("img").length) {
+                    bootbox.alert("Please upload your annual practicing certificate!");
+                    return false;
+                }
+
+                if (!$file2.find("img").length) {
+                    bootbox.alert("Please upload your business license certificate!");
+                    return false;
+                }
+
+                return true;
+
+            }
+
+            function getEmailPhone() {
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: 60000,
+                    url: 'control/getBasicInfo.jsp',
+                    success: function (data, textStatus, jqXHR) {
+                        console.log("Data: " + JSON.stringify(data));
+                        $("#inputEmail").val(data.email);
+                        $("#inputMobile").val(data.phone);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Fail get basic info: " + errorThrown);
+                    }
+                });
+            }
 
             function initDropzone(boxID, btnID) {
                 $("#" + boxID).dropzone({
@@ -440,10 +628,10 @@
                 $('#' + elemInputID).on('after:flexdatalist.data', function (response) {
                     $('#' + elemDivID).html('');
                 });
-                $('#' + elemInputID+'-flexdatalist').on('keyup', function (event) {
-                    if($(this).val().trim()===""){
+                $('#' + elemInputID + '-flexdatalist').on('keyup', function (event) {
+                    if ($(this).val().trim() === "") {
                         $('#' + elemDivID).html('');
-                    }                    
+                    }
                 });
             }
 
@@ -467,7 +655,7 @@
                         console.log("Failed to populate " + master_cd);
                     },
                     complete: function (jqXHR, textStatus) {
-                        console.log("Success laod: " + $select.attr("id"));
+                        console.log("Success load: " + $select.attr("id"));
                     }
                 });
             }
@@ -508,6 +696,26 @@
                 });
             }
 
+            function logOut() {
+                bootbox.confirm({
+                    message: "Are sure you want to logout now? Data will not be saved.",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            window.location = "../Entrance/destroySession.jsp";
+                        }
+                    }
+                });
+            }
 
         </script>
     </body>

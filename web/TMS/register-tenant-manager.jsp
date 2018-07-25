@@ -149,10 +149,10 @@
                             <fieldset class="steps step0 activate">
                                 <h2>You are signing up for which product?</h2>
                                 <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">HIS-CARE or JOMLAH:</label></div>
+                                    <div class="col-md-12"><label class="control-label" for="company_name">HIS-CARE or JOMLOKA:</label></div>
                                     <div class="col-md-12">
                                         <button class="btn btn-default btn-lg btn-product-option">HIS-CARE</button>
-                                        <button class="btn btn-default btn-lg btn-product-option">JOMLAH</button>
+                                        <button class="btn btn-default btn-lg btn-product-option">JOMLOKA</button>
                                         <input type="hidden" id="inputProduct">
                                         <input type="hidden" id="inputPrevProduct">
                                     </div>

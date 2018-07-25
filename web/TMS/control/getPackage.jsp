@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="org.json.JSONArray"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,7 +13,9 @@
 <%
     Conn con = new Conn();
     
-    String query = "Select package_type, package_name from adm_package_type;";
+    String user_group = (String) session.getAttribute(MySessionKey.USER_GROUP);
+    
+    String query = "Select package_type, package_name from adm_package_type WHERE system_cd='"+user_group+"';";
     
     ArrayList<ArrayList<String>> arrData = con.getData(query);
     
