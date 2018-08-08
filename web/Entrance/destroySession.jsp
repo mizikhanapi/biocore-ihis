@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%
@@ -11,6 +12,7 @@
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
     String user_id = (String) session.getAttribute("USER_ID");
+    String user_group = (String) session.getAttribute(MySessionKey.USER_GROUP);
     
     String query = "Update adm_users set login_status = '0', REMOTE_LOGOUT_DATE = now() where user_id = '"+user_id+"'";
     
@@ -19,8 +21,12 @@
     
     session.invalidate();
     HttpSession newSession = request.getSession(false);
-
-    response.sendRedirect("../index.jsp");
+    
+    String url = "../index.jsp";
+    if("JOMLOKA".equals(user_group)){
+        url = "../JOMLOKA/";
+    }
+    response.sendRedirect(url);
   
 
 %>

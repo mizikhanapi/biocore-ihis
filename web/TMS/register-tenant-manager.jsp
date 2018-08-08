@@ -9,6 +9,12 @@
 <%
     Config.getBase_url(request);
     Config.getFile_url(session);
+    
+    String fromPage = "x";
+    if(request.getParameter("page") != null){
+        fromPage = request.getParameter("page");
+    }
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -137,7 +143,8 @@
             history.forward();
         </script>
     </head>
-    <body class="">
+    <body>
+        <input type="hidden" id="fromPage" value="<%=fromPage%>"/>
         <div class="login_container col-md-8">
             <div class="login_row panel login_panel">
 
@@ -306,7 +313,7 @@
                 <div class="login_logo text-center">
                     <div class="keterangan keterangan0 activate">
                         <h3>Welcome</h3>
-                        <p>Your JOMLOKA OR HIS-CARE ID is the username and password you will need to access your JOMLOKA or HIS-CARE account online and the My JOMLOKA App. You'll need a valid email address as your JOMLOKA or HIS-CARE ID.</p>
+                        <p>Your <span class="txtProduct"></span> ID is the username and password you will need to access your <span class="txtProduct"></span> account online and the My JOMLOKA App. You'll need a valid email address as your <span class="txtProduct"></span> ID.</p>
                     </div>
                     <div class="keterangan keterangan1 ">
                         <img class="keterangan-logo" src="../assets/mail.svg">
@@ -362,6 +369,25 @@
                         $dir1 = $(".directory1"),
                         $dir2 = $(".directory2"),
                         $dir3 = $(".directory3");
+                        
+                //check from which page
+                var fromPage = $("#fromPage").val();
+                if(fromPage !=="x"){
+                    var product = fromPage;
+                    $(".txtProduct").text(product);
+
+                    $("#inputProduct").val(product);
+                    
+                    document.title = product;
+                    
+                    //hide prev button
+                    $btnPrev1.hide();
+                    
+                    //show next page
+                    $ctr0.removeClass("activate");
+                    $ctr1.addClass("activate");
+                    
+                }
 
                 $(".btn-product-option").button();
 
@@ -429,7 +455,16 @@
                                         console.log("Fail to quit registration.");
                                     },
                                     complete: function (jqXHR, textStatus) {
-                                        location.reload();
+                                        if(fromPage==="HIS-CARE"){
+                                           window.location="http://staging.mkagtechnologies.com/his-care/";
+                                        }
+                                        else if(fromPage==="JOMLOKA"){
+                                            window.location="http://staging.mkagtechnologies.com/jomloka/";
+                                        }
+                                        else{
+                                            location.reload();
+                                        }
+                                        
                                     }
                                 });
 

@@ -20,6 +20,7 @@
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="side-menu">
         <li><a href="Admin"><i class="fa fa-hospital-o sideIcon" aria-hidden="true" ></i>Manage Tenant Application</a></li>   
+        <li><a href="admin_tenant_manager.jsp"><i class="fa fa-user sideIcon" aria-hidden="true" ></i>Manage Tenant Manager</a></li>   
         
     </ul>  
 </div>

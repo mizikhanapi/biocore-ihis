@@ -38,7 +38,7 @@
             if("HIS-CARE".equals(data[2].trim())){
                 url = "../../Entrance/Sign-in";
             }
-            else if("JOMLAH".equals(data[2].trim())){
+            else if("JOMLOKA".equals(data[2].trim())){
                 url = "../../JOMLOKA/";
             }
 
