@@ -378,6 +378,8 @@
 
                     $("#inputProduct").val(product);
                     
+                    document.title = product;
+                    
                     //hide prev button
                     $btnPrev1.hide();
                     

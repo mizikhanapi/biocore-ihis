@@ -143,7 +143,7 @@
 
                 <div id="mainBody" class="panel-body login_body" style="max-height: 100vh; overflow: auto;">
 
-                    <form id="tenant-form" class="form-horizontal">
+                    <form id="tenant-form" class="form-horizontal" autocomplete="off">
                         <fieldset class="steps step1 activate" data-number='1'>
                             <h2>Provider Info</h2>
                             <div class="form-group">

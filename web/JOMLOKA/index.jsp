@@ -328,7 +328,7 @@
                     var input = {
                         userIC: $nric.val(),
                         password: $password.val(),
-                        user_group: "HIS-CARE"
+                        user_group: "JOMLOKA"
                     };
 
                     $formLogin.prop("disabled", true);
