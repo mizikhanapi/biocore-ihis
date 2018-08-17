@@ -4,7 +4,6 @@
     Author     : Shammugam
 --%>
 
-<%@page import="JOMLOKAHelper.CustomerNotificationSender"%>
 <%@page import="ADM_helper.Emailer"%>
 <%@page import="ADM_helper.MySession"%>
 <%@page import="Formatter.FormatTarikh"%>
@@ -31,10 +30,6 @@
 
     Emailer em = new Emailer(user_id, subject, message);
     em.sendTextEmail();
-
-    String sender = "biocore@utem.edu.my";
-    CustomerNotificationSender noti = new CustomerNotificationSender(sender, user_id, subject, message);
-    noti.sendCustomerInboxNotification();
 
     // Return Object With Required Detail
     JSONObject obj = new JSONObject();

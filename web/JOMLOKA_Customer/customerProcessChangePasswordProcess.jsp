@@ -3,7 +3,7 @@
     Created on : Aug 12, 2018, 8:17:38 PM
     Author     : Shammugam
 --%>
-<%@page import="JOMLOKAHelper.CustomerNotificationSender"%>
+
 <%@page import="ADM_helper.Emailer"%>
 <%@page import="ADM_helper.MySession"%>
 <%@page import="Formatter.FormatTarikh"%>
@@ -47,14 +47,9 @@
 
         String subject = "Account Change Password Successful";
 
-        String sender = "biocore@utem.edu.my";
-
         Emailer em = new Emailer(user_id, subject, message);
         em.sendTextEmail();
-
-        CustomerNotificationSender noti = new CustomerNotificationSender(sender, user_id, subject, message);
-        noti.sendCustomerInboxNotification();
-
+        
         status = SUCCESS;
 
     } else {
