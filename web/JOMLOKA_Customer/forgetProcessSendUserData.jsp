@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="JOMLOKAHelper.CustomerNotificationSender"%>
 <%@page import="ADM_helper.Emailer"%>
 <%@page import="ADM_helper.MySession"%>
 <%@page import="Formatter.FormatTarikh"%>
@@ -29,10 +30,13 @@
     String subject = "Request Password Successful";
 
     Emailer em = new Emailer(user_id, subject, message);
-
     em.sendTextEmail();
 
-   // Return Object With Required Detail
+    String sender = "biocore@utem.edu.my";
+    CustomerNotificationSender noti = new CustomerNotificationSender(sender, user_id, subject, message);
+    noti.sendCustomerInboxNotification();
+
+    // Return Object With Required Detail
     JSONObject obj = new JSONObject();
 
     obj.put("message", SUCCESS);
