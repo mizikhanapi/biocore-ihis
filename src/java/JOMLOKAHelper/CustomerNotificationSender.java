@@ -35,7 +35,7 @@ public class CustomerNotificationSender {
 
         String sqlInsert = "INSERT INTO jlk_notification "
                 + " (send_time, user_id, sender_id, receiver_id, title, message, type, status, created_by, created_date)  "
-                + " VALUES('now()','" + receiver + "','" + sender + "','" + receiver + "','" + title + "','" + message + "', 'inbox', '0', '" + sender + "','now()') ";
+                + " VALUES(now(),'" + receiver + "','" + sender + "','" + receiver + "','" + title + "','" + message + "', 'inbox', '0', '" + sender + "',now()) ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
@@ -49,7 +49,7 @@ public class CustomerNotificationSender {
 
         String sqlInsert = "INSERT INTO jlk_notification "
                 + " (send_time, user_id, sender_id, receiver_id, title, message, type, status, created_by, created_date)  "
-                + " VALUES('now()','" + receiver + "','" + sender + "','" + receiver + "','" + title + "','" + message + "', 'outbox', '0', '" + sender + "','now()') ";
+                + " VALUES(now(),'" + receiver + "','" + sender + "','" + receiver + "','" + title + "','" + message + "', 'outbox', '0', '" + sender + "',now()) ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
