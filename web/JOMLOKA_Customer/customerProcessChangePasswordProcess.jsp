@@ -39,27 +39,30 @@
     // Status To Get As Return
     if (isUpdate) {
 
-        String message = "<h3>Good Day Dear " + user_name + "!</h3> "
+        String subject = "Account Change Password Successful";
+        
+        String sender = "mkagtech@gmail.com";
+        
+        String messageEmail = "<h3>Good Day Dear " + user_name + "!</h3> "
                 + "<br/><p>You have requested for change of password.</p>"
                 + "<br/><br/><p>Following are your new ID information...</p>"
                 + "<p>User ID : " + user_id + "</p>"
                 + "<p>IC Number : " + user_ic + "</p>"
                 + "<p>Your New Password : " + user_pass + "</p><br/>";
-
-        String subject = "Account Change Password Successful";
-        String sender = "mkagtech@gmail.com";
-        Emailer em = new Emailer(user_id, subject, message);
+        
+        String messageNotify = "Good Day Dear " + user_name + ". "
+                + "You have requested for change of password.\n\n"
+                + "Following are your new ID information...\n"
+                + "User ID : " + user_id + "\n"
+                + "IC Number : " + user_ic + "\n"
+                + "Your New Password : " + user_pass + "";
+        
+        Emailer em = new Emailer(user_id, subject, messageEmail);
         em.sendTextEmail();
 
-//        Boolean sql = false;
-//        String sqlInsert = "INSERT INTO jlk_notification "
-//                + " (send_time, user_id, sender_id, receiver_id, title, message, type, status, created_by, created_date)  "
-//                + " VALUES(now(),'" + user_id + "','mkagtech@gmail.com','" + user_id + "','" + subject + "','You have requested for change of password. "
-//                + " Following are your new ID information... User ID : " + user_id + " IC Number : " + user_ic + " Your New Password : " + user_pass + " ', 'inbox', '0', 'mkagtech@gmail.com',now()) ";
-//        sql = rmi.setQuerySQL(con.HOST, con.PORT, sqlInsert);
-        CustomerNotificationSender notify = new CustomerNotificationSender(sender, user_id, subject, message);
+        CustomerNotificationSender notify = new CustomerNotificationSender(sender, user_id, subject, messageNotify);
         notify.sendCustomerInboxNotification();
-        
+
         status = SUCCESS;
 
     } else {

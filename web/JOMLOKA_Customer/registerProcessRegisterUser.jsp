@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="JOMLOKAHelper.CustomerNotificationSender"%>
 <%@page import="ADM_helper.Emailer"%>
 <%@page import="ADM_helper.MySession"%>
 <%@page import="Formatter.FormatTarikh"%>
@@ -39,6 +40,7 @@
     String random = mys.getRandomSessionID();
 
     RMIConnector rmi = new RMIConnector();
+
     String query = "INSERT INTO adm_users "
             + " ( user_id, user_name, status, user_type, user_group, id_category_code, new_icno, birth_date, sex_code, mobile_phone, email, password, title, "
             + " question , answer , created_date, created_by , health_facility_code, start_date, end_date, user_status, occupation_code, home_phone, "
@@ -49,23 +51,29 @@
 
     if (rmi.setQuerySQL(con.HOST, con.PORT, query)) {
 
-        String message = "<h3>Good Day Dear " + user_name + "!</h3> "
+        String subject = "Account Registration Successful";
+
+        String sender = "mkagtech@gmail.com";
+
+        String messageNotify = "Good Day Dear " + user_name + ". "
+                + "Thank you for registering with us.\n\n"
+                + "Following are your ID information...\n"
+                + "User ID : " + user_id + "\n"
+                + "IC Number : " + user_ic + "\n"
+                + "Password : " + user_pass + "";
+
+        String messageEmail = "<h3>Good Day Dear " + user_name + "!</h3> "
                 + "<br/><p>Thank you for registering with us.</p>"
                 + "<br/><br/><p>Following are your ID information...</p>"
                 + "<p>User ID : " + user_id + "</p>"
                 + "<p>IC Number : " + user_ic + "</p>"
                 + "<p>Password : " + user_pass + "</p><br/>";
 
-        String subject = "Account Registration Successful";
-
-        Emailer em = new Emailer(user_id, subject, message);
+        Emailer em = new Emailer(user_id, subject, messageEmail);
         em.sendTextEmail();
 
-        Boolean sql = false;
-        String sqlInsert = "INSERT INTO jlk_notification "
-                + " (send_time, user_id, sender_id, receiver_id, title, message, type, status, created_by, created_date)  "
-                + " VALUES(now(),'" + user_id + "','mkagtech@gmail.com','" + user_id + "','" + subject + "','Thank you for registering with us.Following are your ID information...User ID : " + user_id + "Password : " + user_pass + "', 'inbox', '0', 'mkagtech@gmail.com',now()) ";
-        sql = rmi.setQuerySQL(con.HOST, con.PORT, sqlInsert);
+        CustomerNotificationSender notify = new CustomerNotificationSender(sender, user_id, subject, messageNotify);
+        notify.sendCustomerInboxNotification();
 
         status = SUCCESS;
 
