@@ -53,7 +53,8 @@
         Boolean sql = false;
         String sqlInsert = "INSERT INTO jlk_notification "
                 + " (send_time, user_id, sender_id, receiver_id, title, message, type, status, created_by, created_date)  "
-                + " VALUES(now(),'" + user_id + "','mkagtech@gmail.com','" + user_id + "','Testing','Testing', 'inbox', '0', 'mkagtech@gmail.com',now()) ";
+                + " VALUES(now(),'" + user_id + "','mkagtech@gmail.com','" + user_id + "','" + subject + "','You have requested for change of password. "
+                + " Following are your new ID information... User ID : " + user_id + " IC Number : " + user_ic + " Your New Password : " + user_pass + " ', 'inbox', '0', 'mkagtech@gmail.com',now()) ";
         sql = rmi.setQuerySQL(con.HOST, con.PORT, sqlInsert);
 
         status = SUCCESS;
@@ -67,7 +68,7 @@
     // Return Object With Required Detail
     JSONObject obj = new JSONObject();
 
-    obj.put("message", query);
+    obj.put("message", status);
 
     out.print(obj);
 

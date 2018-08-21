@@ -64,7 +64,7 @@
         Boolean sql = false;
         String sqlInsert = "INSERT INTO jlk_notification "
                 + " (send_time, user_id, sender_id, receiver_id, title, message, type, status, created_by, created_date)  "
-                + " VALUES('now()','" + user_id + "','mkagtech@gmail.com','" + user_id + "','" + subject + "','" + message + "', 'inbox', '0', 'mkagtech@gmail.com','now()') ";
+                + " VALUES(now(),'" + user_id + "','mkagtech@gmail.com','" + user_id + "','" + subject + "','Thank you for registering with us.Following are your ID information...User ID : " + user_id + "Password : " + user_pass + "', 'inbox', '0', 'mkagtech@gmail.com',now()) ";
         sql = rmi.setQuerySQL(con.HOST, con.PORT, sqlInsert);
 
         status = SUCCESS;
