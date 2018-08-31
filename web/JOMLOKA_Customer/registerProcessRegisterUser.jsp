@@ -41,7 +41,7 @@
 
     RMIConnector rmi = new RMIConnector();
 
-    String query = "INSERT INTO adm_users "
+    String queryUserTable = "INSERT INTO adm_users "
             + " ( user_id, user_name, status, user_type, user_group, id_category_code, new_icno, birth_date, sex_code, mobile_phone, email, password, title, "
             + " question , answer , created_date, created_by , health_facility_code, start_date, end_date, user_status, occupation_code, home_phone, "
             + " office_phone, fax_no, user_classification_code, mother_name, nationality_code, room_no ) "
@@ -49,11 +49,21 @@
             + " '" + user_gender + "', '" + user_phone + "', '" + user_id + "', '" + user_pass + "', '" + user_title + "', '" + user_question + "', "
             + " '" + user_answer + "', now(), '" + user_id + "' , '', now(), '9999-12-31 00:00:00', '" + random + "','','','','','','','','' );";
 
-    if (rmi.setQuerySQL(con.HOST, con.PORT, query)) {
+    String queryCustomerTable = "INSERT INTO far_customer "
+            + " ( customer_id, customer_name, address1, address2, address3, town_cd, district_cd, state_cd, country_cd, postcode, telephone_no, fax_no, email, "
+            + " customer_account_no, customer_bank_acc_no, customer_bank_name, debit_card_no, debit_card_expire, jomloka_wallet_no, status, created_by, created_date ) "
+            + " VALUES('" + user_id + "', '" + user_name + "', '', '', '', '', '', '', '', '', '" + user_phone + "', '', '" + user_id + "', '', '', '', '', '', '', '0',  "
+            + " '" + user_id + "' , now() ); ";
+
+    boolean isInsert = false;
+    isInsert = rmi.setQuerySQL(con.HOST, con.PORT, queryUserTable);
+    isInsert = rmi.setQuerySQL(con.HOST, con.PORT, queryCustomerTable);
+
+    if (isInsert) {
 
         String subject = "Account Registration Successful";
 
-        String sender = "mkagtech@gmail.com";
+        String sender = "mkagtech@mkagtechnologies.com";
 
         String messageNotify = "Good Day Dear " + user_name + ". "
                 + "Thank you for registering with us.\n\n"
@@ -86,7 +96,7 @@
     // Return Object With Required Detail
     JSONObject obj = new JSONObject();
 
-    obj.put("message", status);
+    obj.put("message", queryCustomerTable);
 
     out.print(obj);
 
