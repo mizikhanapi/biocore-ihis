@@ -373,7 +373,7 @@
 
             // do something after the div content has changed
             $('#patientOrderDetailsListTable').DataTable({
-                "paging": true,
+                "paging": false,
                 "searching": false,
                 "info": false,
                 "lengthChange": false,
