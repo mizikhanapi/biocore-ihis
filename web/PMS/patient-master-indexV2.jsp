@@ -206,7 +206,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Name *</label>
                         <div class="col-md-6">
-                            <input id="PMIpname" name="PMIpname" type="text" placeholder="" class="form-control input-md" required maxlength="80">
+                            <input id="PMIpname" name="PMIpname" type="text" placeholder="" class="form-control input-md" required maxlength="80" style="text-transform:uppercase">
                         </div>
                     </div>  
 
@@ -493,7 +493,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Home Address *</label>
                         <div class="col-md-6">
-                            <textarea  id="PMIhadd" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
+                            <textarea  id="PMIhadd" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase"></textarea>
                         </div>
                     </div>
 
@@ -570,7 +570,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Email Address</label>
                         <div class="col-md-6">
-                            <input id="PMIemail" name="textinput" type="text" placeholder="" class="form-control input-md">
+                            <input id="PMIemail" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase">
                         </div>
                     </div>
 
@@ -581,7 +581,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Postal Address</label>
                         <div class="col-md-6">
-                            <textarea  id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
+                            <textarea  id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase"></textarea>
                         </div>
                     </div>
 

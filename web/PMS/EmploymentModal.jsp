@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Employer Code *</label>  
                             <div class="col-md-6">
-                                <input id="EMPempcode" name="EMPempcode" type="text"  class="form-control input-md">
+                                <input id="EMPempcode" name="EMPempcode" type="text"  class="form-control input-md" style="text-transform:uppercase">
 
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Employer Name *</label>  
                             <div class="col-md-6">
-                                <input id="EMPempname" name="EMPempname" type="text"  class="form-control input-md" maxlength="80">
+                                <input id="EMPempname" name="EMPempname" type="text"  class="form-control input-md" maxlength="80" style="text-transform:uppercase">
 
                             </div>
                         </div>

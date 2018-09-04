@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Name of Next of Kin *</label>  
                                     <div class="col-md-7">
-                                        <input id="KINname" name="KINname" type="text"  class="form-control input-md" maxlength="80">
+                                        <input id="KINname" name="KINname" type="text"  class="form-control input-md" maxlength="80" style="text-transform:uppercase">
 
                                     </div>
                                 </div>
@@ -110,14 +110,14 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Email</label>
                                     <div class="col-md-7">
-                                        <input id="KINemail" name="KINemail" type="text" class="form-control input-md">
+                                        <input id="KINemail" name="KINemail" type="text" class="form-control input-md" style="text-transform:uppercase">
                                     </div>
                                 </div>
                                 <!-- Text input-->
                                 <div class="form-group hidden">
                                     <label class="col-md-4 control-label" for="textinput">Old IC</label>  
                                     <div class="col-md-7">
-                                        <input id="KINoldic" name="KINoldic" type="text" class="form-control input-md" maxlength="8">
+                                        <input id="KINoldic" name="KINoldic" type="text" class="form-control input-md" maxlength="8" style="text-transform:uppercase">
 
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Address</label>
                                     <div class="col-md-7">
-                                        <input id="KINaddress" name="KINaddress" type="text" class="form-control input-md">
+                                        <input id="KINaddress" name="KINaddress" type="text" class="form-control input-md" style="text-transform:uppercase">
                                     </div>
                                 </div>
 

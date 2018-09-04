@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">IC / ID No. *</label>  
                             <div class="col-md-8">
-                                <input id="FAMpmifam" name="FAMpmifam" type="text" placeholder="Search IC / ID No.."  class="form-control input-md" maxlength="12">
+                                <input id="FAMpmifam" name="FAMpmifam" type="text" placeholder="Search IC / ID No.."  class="form-control input-md" maxlength="12" style="text-transform:uppercase">
                                 <div id="matcFampmifam" class="search-drop" style="max-height: 500px; overflow: auto; height: 100%"></div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Name *</label>  
                             <div class="col-md-8">
-                                <input id="FAMname" name="FAMname" type="text"  class="form-control input-md" maxlength="80">
+                                <input id="FAMname" name="FAMname" type="text"  class="form-control input-md" maxlength="80" style="text-transform:uppercase">
 
                             </div>
                         </div>

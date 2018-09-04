@@ -1038,7 +1038,7 @@
         } else {
 
             bootbox.confirm({
-                message: "Are you sure that you want to dispense this order ?",
+                message: "Please make sure all the order are correct. Are you sure that you want to dispense this order ?",
                 title: "Dispense Item ?",
                 buttons: {
                     confirm: {

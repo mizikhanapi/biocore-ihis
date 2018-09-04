@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Policy No. *</label>  
                             <div class="col-md-8">
-                                <input id="MEDpolicy" name="MEDpolicy" type="text"  class="form-control input-md" maxlength="15">
+                                <input id="MEDpolicy" name="MEDpolicy" type="text"  class="form-control input-md" maxlength="15" style="text-transform:uppercase">
 
                             </div>
                         </div>
