@@ -43,7 +43,8 @@
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
     <thead>
-    <th>IC Number </th>
+    <th>PMI No.</th>
+    <th>IC Number</th>
     <th>Name </th>
     <th>Episode Date/Time </th>
     <th class="hidden-xs">Queue Name </th>
@@ -57,7 +58,8 @@
     <%
                                         for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr >
-        <td id="pmiNumber"><%=dataQueue.get(i).get(8)%></td>
+        <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
+        <td><%=dataQueue.get(i).get(8)%></td>
         <td style="text-transform: uppercase;"><%=dataQueue.get(i).get(1)%></td>
         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
         <td class="hidden-xs" ><%=dataQueue.get(i).get(3)%></td>
