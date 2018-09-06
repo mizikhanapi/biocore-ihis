@@ -20,7 +20,7 @@
                         <form role="form" id="formQueueSaya" style=" height: 100%; overflow: auto;">
                             <table class="table table-filter table-striped table-responsive" style="width: 100% " id="listQueue">
                                 <thead>
-                                <th>PMI no. </th>
+                                <th>IC Number </th>
                                 <th>Name </th>
                                 <th>Episode Time </th>
                                 <th class="hidden-xs">Queue Name </th>

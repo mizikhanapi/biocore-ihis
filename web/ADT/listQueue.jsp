@@ -41,7 +41,7 @@
 <div id="QueueTable">
     <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="ADTQueue">
         <thead>
-        <th>PMI no. </th>
+        <th>IC Number </th>
         <th>Name </th>
         <th>Episode Date/Time </th>
 
@@ -68,7 +68,7 @@
         <input type="hidden" value="<%=hfc%>" id="Rhfc">
 
 
-        <td id="pmiNumber"><%=dataQ.get(i).get(0)%></td>
+        <td id="pmiNumber"><%=dataQ.get(i).get(11)%></td>
         <td><%=dataQ.get(i).get(1)%></td>
         <td id="epiDate"><%=dataQ.get(i).get(2)%></td>
 

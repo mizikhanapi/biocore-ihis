@@ -31,7 +31,7 @@
     String sql2 = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,u.user_name,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l,adm_users u where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='" + hfc + "' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and q.patient_category='1' order by q.queue_name  ;";
     
                                //0    //1            //2                //3        //4         //5         //6                //7    
-    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,l.description,q.patient_category,x.description"
+    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,l.description,q.patient_category,x.description,b.new_ic_no"
             + " from pms_patient_queue q"
             + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
@@ -43,7 +43,7 @@
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
     <thead>
-    <th>PMI no. </th>
+    <th>IC Number </th>
     <th>Name </th>
     <th>Episode Date/Time </th>
     <th class="hidden-xs">Queue Name </th>
@@ -57,7 +57,7 @@
     <%
                                         for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr >
-        <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
+        <td id="pmiNumber"><%=dataQueue.get(i).get(8)%></td>
         <td style="text-transform: uppercase;"><%=dataQueue.get(i).get(1)%></td>
         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
         <td class="hidden-xs" ><%=dataQueue.get(i).get(3)%></td>
