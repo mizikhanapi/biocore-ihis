@@ -32,7 +32,7 @@
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
                                 <thead>
-                                <th>PMI no. </th>
+                                <th>IC No. </th>
                                 <th>Name </th>
                                 <th>Episode Date/Time </th>
 <!--                                <th>Episode Time </th>-->

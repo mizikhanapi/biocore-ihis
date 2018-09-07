@@ -33,7 +33,7 @@
     String sql = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,e.doctor,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l where l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and l.`hfc_cd` = '" + hfc + "' and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' AND (q.queue_type = 'CM' OR q.queue_name = '" + doctor + "') LIMIT 5";
 
                              //0    //1            //2                //3        //4         //5      //6           //7       //8
-    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,u.room_no,q.patient_category,x.description "
+    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,u.room_no,q.patient_category,x.description,b.new_ic_no "
             + " from pms_patient_queue q "
             + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
@@ -44,7 +44,7 @@
             + "and q.hfc_cd='" + hfc + "' and "
             + "((queue_type='PN' and queue_name='" + doctor + "') OR queue_type!='PN')  ORDER BY q.episode_date DESC";
     
-    String sqlV4 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,q.hfc_cd,q.patient_category,x.description "
+    String sqlV4 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,q.hfc_cd,q.patient_category,x.description,b.new_ic_no "
             + "FROM pms_patient_queue q "
             + "JOIN pms_patient_biodata b ON b.pmi_no = q.pmi_no "
             + "JOIN adm_lookup_detail l ON l.`Master_Reference_code` ='0069' "
@@ -75,7 +75,8 @@
 
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;  " id="listQueue">
     <thead>
-    <th>PMI no. <%//out.print(sqlV4);%></th>
+    <th>PMI No. <%//out.print(sqlV4);%></th>
+    <th>IC Number</th>
     <th>Name </th>
     <th>Episode Date/Time </th>
 
@@ -93,6 +94,7 @@
         for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr>
         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
+        <td><%=dataQueue.get(i).get(10)%></td>
         <td style="text-transform: uppercase;"><%=dataQueue.get(i).get(1)%></td>
         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
 <!--        <td id="epiTime" hidden="hidden"><% //dataQueue.get(i).get(3)%></td>-->
