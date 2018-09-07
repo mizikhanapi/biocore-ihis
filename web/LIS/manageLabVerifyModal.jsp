@@ -383,7 +383,7 @@
 
             $.ajax({
                 url: "controllerProcessVerifySpecimen/verifySpecimenOrderGetSeqNo.jsp",
-                type: "post",
+                type: "get",
                 timeout: 10000,
                 success: function (seq) {
 

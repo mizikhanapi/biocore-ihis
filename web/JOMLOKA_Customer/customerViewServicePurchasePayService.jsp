@@ -4,6 +4,8 @@
     Author     : Shammugam
 --%>
 
+<%@page import="JOMLOKAHelper.CustomerNotificationSender"%>
+<%@page import="ADM_helper.Emailer"%>
 <%@page import="BILLING_helper.MonthCreditDebitController"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -17,6 +19,7 @@
 
     // Getting Parameter
     String customer_id = request.getParameter("customer_id");
+    String customer_name = request.getParameter("customer_name");
     String account_no = request.getParameter("account_no");
     String tenant_code = request.getParameter("tenant_code");
     String tenant_service = request.getParameter("tenant_service");
@@ -124,6 +127,34 @@
     isSucribePayJOMLOKA = rmi.setQuerySQL(con.HOST, con.PORT, creditQuery);
 
     if (isSucribePayJOMLOKA == true) {
+
+        String subject = "Service Is Subscribed";
+
+        String sender = "mkagtech@mkagtechnologies.com";
+
+        String messageNotify = "Good Day Dear " + customer_name + ". "
+                + "Thank you for purchasing our service.\n\n"
+                + "Following are your transaction information...\n"
+                + "User ID : " + customer_id + "\n"
+                + "Service Type : " + tenant_service + "\n"
+                + "Service Provider : " + tenant_code + "\n"
+                + "Service Name : " + service_name + "\n"
+                + "Service Price : RM " + service_fee + "";
+
+        String messageEmail = "<h3>Good Day Dear " + customer_name + "!</h3> "
+                + "<br/><p>Thank you for purchasing our service.</p>"
+                + "<br/><br/><p>Following are your transaction information...</p>"
+                + "<p>User ID : " + customer_id + "</p>"
+                + "<p>Service Type : " + tenant_service + "</p>"
+                + "<p>Service Provider : " + tenant_code + "</p>"
+                + "<p>Service Name : " + service_name + "</p>"
+                + "<p>Service Price : RM " + service_fee + "</p><br/>";
+
+        Emailer em = new Emailer(customer_id, subject, messageEmail);
+        em.sendTextEmail();
+
+        CustomerNotificationSender notify = new CustomerNotificationSender(sender, customer_id, subject, messageNotify);
+        notify.sendCustomerInboxNotification();
 
         status = SUCCESS;
 
