@@ -43,6 +43,9 @@
     <th> ICD10 Code </th>
     <th> Description</th>
     <th> Total Case </th>
+    <th>Total Male</th>
+    <th>Total Female</th>
+    <th>Total Others</th>
 
     <%        
         String where = "";
@@ -51,19 +54,28 @@
         ArrayList<String> chapter = new ArrayList<String>();
         ArrayList<Integer> indexToDelete = new ArrayList<Integer>();
         if (disp.equals("All")) {
-            where = " WHERE Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND HFC_Cd='" + my_1_hfc_cd + "' GROUP BY diagnosis_cd ORDER BY diagnosis_cd ASC";
+            //where = " WHERE Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND HFC_Cd='" + my_1_hfc_cd + "' GROUP BY diagnosis_cd ORDER BY diagnosis_cd ASC";
+            where = "WHERE l.Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND l.HFC_Cd='" + my_1_hfc_cd + "' and l.pmi_no = p.pmi_no GROUP BY diagnosis_cd order by l.pmi_no";
 
         } else {
-            where = " WHERE Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND HFC_Cd='" + my_1_hfc_cd + "' AND Centre_Code = '" + disp + "' GROUP BY diagnosis_cd ORDER BY diagnosis_cd ASC";
+            //where = " WHERE Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND HFC_Cd='" + my_1_hfc_cd + "' AND Centre_Code = '" + disp + "' GROUP BY diagnosis_cd ORDER BY diagnosis_cd ASC";
+            where = "WHERE l.Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND l.HFC_Cd='" + my_1_hfc_cd + "' AND l.Centre_Code = '" + disp + "' and l.pmi_no = p.pmi_no GROUP BY diagnosis_cd order by l.pmi_no;";
 
         }
         //                          0               1           2
         String sql = "SELECT Diagnosis_Cd, count(PMI_no), Centre_Code "
                 + "FROM `lhr_diagnosis` "
                 + where;
+        //                        0                1                    2                                             3                                  4                                                         5      
+        String sql2 = "SELECT l.Diagnosis_Cd, count(l.PMI_no), l.Centre_Code,IFNULL(SUM(case when p.sex_code = 001 then 001 END) , '0') as male,IFNULL(SUM(case when p.sex_code = 002 then 002 END),'0')  as female ,IFNULL(SUM(case when p.sex_code = 003 then 003 END) ,'0')as other FROM `lhr_diagnosis` l,pms_patient_biodata p "+where;
 
+        //get PMIno for total;
+        String sqlGetPmi = "SELECT PMI_NO from lhr_diagnosis" +where;
+        ArrayList<ArrayList<String>> PMINO = conn.getData(sqlGetPmi);
+        //out.print(sql);
+        
         //get the code first from one table
-        ArrayList<ArrayList<String>> ICD10 = conn.getData(sql);
+        ArrayList<ArrayList<String>> ICD10 = conn.getData(sql2);
         for (int i = 0; i < ICD10.size(); i++) {
             
             //get the description later from other table;
@@ -109,6 +121,26 @@
 //        out.print(indexToDelete.toString());
         int size = ICD10.size();
         for (int i = 0; i < size; i++) {
+            
+//        String male="",female="",others = "";
+//        if(ICD10.get(i).get(3).toString().equalsIgnoreCase("null")){
+//            male = "0";
+//        }else{
+//            male = ICD10.get(i).get(3);
+//        }
+//        
+//        if(ICD10.get(i).get(4).toString().equalsIgnoreCase("null")){
+//            female = "0";
+//        }else{
+//            female =ICD10.get(i).get(4);
+//        } 
+//
+//
+//        if(ICD10.get(i).get(5).toString().equalsIgnoreCase("null")){
+//            others = "0";
+//        }else{
+//        others = ICD10.get(i).get(5);
+//    }
     %>
 </thead>
 <tr>
@@ -120,6 +152,9 @@
     <td id="ICD10Code"><%= ICD10.get(i).get(0)%></td>
     <td id="icd10Name"><%= icd10.get(i).get(2)%></td>
     <td id="total"><%= ICD10.get(i).get(1)%></td>
+    <td id="male"><%=ICD10.get(i).get(3)%></td>
+    <td id="female"><%=ICD10.get(i).get(4)  %></td>
+    <td id="others"><%=ICD10.get(i).get(5) %></td>
 
 
 </tr>
