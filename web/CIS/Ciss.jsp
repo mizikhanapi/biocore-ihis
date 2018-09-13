@@ -209,7 +209,8 @@
     <%@ include file="CIS02/CIS020009.jsp" %> 
     <%@ include file="CIS02/CIS020010.jsp" %> 
     <%@ include file="CIS02/CIS020011.jsp" %> 
-    <%@ include file="CIS02/CIS020012.jsp" %> 
+    <%@ include file="CIS02/CIS020012.jsp" %>
+    <%@ include file="CIS02/CIS020017.jsp" %>
                     
     
 <!--<div w3-include-html=""></div>

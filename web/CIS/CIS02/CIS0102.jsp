@@ -10,6 +10,7 @@
         <jsp:include page="CIS020009.jsp"/> 
         <jsp:include page="CIS020010.jsp"/> 
         <jsp:include page="CIS020011.jsp"/> 
-        <jsp:include page="CIS020012.jsp"/> 
+        <jsp:include page="CIS020012.jsp"/>
+        <jsp:include page="CIS020017.jsp"/>
         
        

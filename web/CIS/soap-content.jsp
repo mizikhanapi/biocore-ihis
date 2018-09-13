@@ -130,7 +130,7 @@
             <li><a href="#ortho-notes" class="panelito ortho-notes"> <i class="fa fa-eye fa-li"></i> Orthopedic Notes</a></li>
                 <%
                     }
-
+                        
                 %>
         </ul>
 
@@ -165,6 +165,12 @@
                         if (myCIS.hasMenuAccess("CIS_01.2.1.11")) {
                     %>
                 <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> BMI</a></li>
+                    <%
+                        }
+
+                        if (myCIS.hasMenuAccess("CIS_01.2.1.12")) {
+                    %>
+                <li><a data-toggle="modal" data-target="#CIS020017" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> Cholesterol</a></li>
                     <%
                         }
                     %>
