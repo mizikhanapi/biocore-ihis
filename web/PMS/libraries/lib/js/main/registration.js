@@ -345,7 +345,19 @@ $('#btnclear').click(function () {
     $('#select-1').hide();
     $('select[id=select-2]').hide();
     document.getElementById("dym2").innerHTML = "";
+    findCommonQueue(hfc,dis);
 });
+
+//    function findCommonQueue(hfc,dis){
+//        $.ajax({
+//            type:"post",
+//            url:"search/searchCommonQueue.jsp",
+//            data : {hfc:hfc,dis:dis},
+//            success:function(databack){
+//                $("#selectQPMS").html(databack);
+//            }
+//        });
+//    }
 
 //appointment edit button
 $('#modalSaya').on('click', '#appointmentModal #listAppointment #APPedit', function () {

@@ -325,6 +325,21 @@
 </div>
 
 <div class="modalLoad"></div>
-
+<script>
+    var hfc = "<%out.print(hfc);%>";
+    var dis = "<%out.print(dis);%>";
+    function findCommonQueue(hfc,dis){
+        $.ajax({
+            type:"post",
+            url:"search/searchQueueList.jsp",
+            data : {hfc:hfc,dis:dis},
+            success:function(databack){
+                console.log(databack);
+                $("#selectQPMS").html(databack);
+            }
+        });
+    }
+    
+</script>
 
 

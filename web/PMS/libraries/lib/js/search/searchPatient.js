@@ -149,6 +149,7 @@ $(function () {
         $('#formMed')[0].reset();
         $("table tbody").remove();
         document.getElementById("dym2").innerHTML = "";
+        findCommonQueue(hfc,dis);
     });
 
 });
