@@ -334,7 +334,7 @@
             url:"search/searchQueueList.jsp",
             data : {hfc:hfc,dis:dis},
             success:function(databack){
-                console.log(databack);
+                //console.log(databack);
                 $("#selectQPMS").html(databack);
             }
         });
