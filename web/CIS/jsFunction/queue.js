@@ -721,6 +721,47 @@ function convertEHR(ehr) {
 
                 displayVision(objVision);
             }
+            
+            if (VTSData[45] === "" && VTSData[46] === "" && VTSData[47] === ""&& VTSData[48] === "" && VTSData[49] === ""&& VTSData[50] === "" && VTSData[51] === ""&& VTSData[52] === "" && VTSData[53] === ""&& VTSData[54] === "" && VTSData[55] === ""&& VTSData[56] === "") {
+
+            } else {
+                var CholeLDL = VTSData[46];
+                var CholeTotal = VTSData[44];
+                var CholeHDL = VTSData[48];
+                var CholeTri = VTSData[50];
+                var CholeNon = VTSData[52];
+                var CholeRatio = VTSData[54];
+
+                var CholeLDLUnit = VTSData[47];
+                var CholeTotalUnit = VTSData[45];
+                var CholeHDLUnit = VTSData[49];
+                var CholeTriUnit = VTSData[51];
+                var CholeNonUnit = VTSData[53];
+                var CholeRatioUnit = VTSData[55];
+
+
+                var objCholesterol = {
+                    Acode: "VTS",
+                    cholesterolTotal: CholeTotal,
+                    cholesterolLDL: CholeLDL,
+                    cholesterolHDL: CholeHDL,
+                    cholesterolTri: CholeTri,
+                    cholesterolNon: CholeNon,
+                    cholesterolRatio: CholeRatio,
+                    cholesterolTotalUnit: CholeTotalUnit,
+                    cholesterolLDLUnit: CholeLDLUnit,
+                    cholesterolHDLUnit: CholeHDLUnit,
+                    cholesterolTriUnit: CholeTriUnit,
+                    cholesterolNonUnit: CholeNonUnit,
+                    cholesterolRatioUnit: CholeRatioUnit
+                };
+
+                console.log(VTSData);
+                console.log(objCholesterol);
+                _data.push(objCholesterol);
+                displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, CholeRatio,CholeLDLUnit,CholeTotalUnit,CholeHDLUnit,CholeTriUnit,CholeNonUnit,CholeRatioUnit);
+
+            }
 
         } else if (header === "PEM") {
             PEM = EHRArry[i];
