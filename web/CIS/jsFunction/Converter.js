@@ -140,6 +140,10 @@ function getObjectMEC(msg){
     return objMEC;
 }
 
+function getObjectCHOLE(msg){
+    
+}
+
 
 function getObjectVTS(msg) {
     VTS = disSumNote;
@@ -292,6 +296,47 @@ function getObjectVTS(msg) {
         dataObj = objOther;
 
     }
+    
+    if (VTSData[45] === "" && VTSData[46] === "" && VTSData[47] === ""&& VTSData[48] === "" && VTSData[49] === ""&& VTSData[50] === "" && VTSData[51] === ""&& VTSData[52] === "" && VTSData[53] === ""&& VTSData[54] === "" && VTSData[55] === ""&& VTSData[56] === "") {
+
+    } else {
+         var CholeLDL = VTSData[47].split("");
+        var CholeTotal = VTSData[45].split("");
+        var CholeHDL = VTSData[49].split("");
+        var CholeTri = VTSData[51].split("");
+        var CholeNon = VTSData[53].split("");
+        var CholeRatio = VTSData[55].split("");
+        
+        var CholeLDLUnit = VTSData[48].split("");
+        var CholeTotalUnit = VTSData[46].split("");
+        var CholeHDLUnit = VTSData[50].split("");
+        var CholeTriUnit = VTSData[51].split("");
+        var CholeNonUnit = VTSData[54].split("");
+        var CholeRatioUnit = VTSData[56].split("");
+
+
+        var objCholesterol = {
+            Acode: "VTS",
+            cholesterolTotal: CholeTotal,
+            cholesterolLDL: CholeLDL,
+            cholesterolHDL: CholeHDL,
+            cholesterolTri: CholeTri,
+            cholesterolNon: CholeNon,
+            cholesterolRatio: CholeRatio,
+            cholesterolTotalUnit: CholeTotalUnit,
+            cholesterolLDLUnit: CholeLDLUnit,
+            cholesterolHDLUnit: CholeHDLUnit,
+            cholesterolTriUnit: CholeTriUnit,
+            cholesterolNonUnit: CholeNonUnit,
+            cholesterolRatioUnit: CholeRatioUnit
+        };
+
+
+        dataObj = objCholesterol;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+
+    }
 
 }
 
@@ -303,6 +348,10 @@ function getMSH(receiveApp, receiveHF) {
     var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "|" + receiveApp + "|" + hfc_cd + "^" + discipline + "^" + subdis + "|" + getDate() + "||||||||||||<cr>\n";
     return msh;
 }
+//// this for cholesterol
+//function convertCLS(obj){
+//    var msg = "CLS|" + episodeDate + "|" + encounterDate + "|" +hfc_cd+"|"+discipline+"|"+subdis;
+//}
 
 function convertCCN(obj) {
     var msg = "CCN|" + episodeDate + "|" + obj.ccnCode + "^" + obj.problem + "^^" + obj.Mild + "^" + obj.duration + " " + obj.sdur + "^^^^" + obj.Site + "^^" + obj.Laterality + "^" + obj.Comment + "^" + getDate() + "^^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
@@ -569,6 +618,42 @@ function convertVTS(VTSData) {
     }
         if (d.right_reactivity === undefined) {
         d.right_reactivity = "";
+    }    
+    if (d.cholesterolTotal === undefined) {
+        d.cholesterolTotal = "";
+    }
+     if (d.cholesterolLDL === undefined) {
+        d.cholesterolLDL = "";
+    }
+     if (d.cholesterolHDL === undefined) {
+        d.cholesterolHDL = "";
+    }
+     if (d.cholesterolTri === undefined) {
+        d.cholesterolTri = "";
+    }
+     if (d.cholesterolNon === undefined) {
+        d.cholesterolNon = "";
+    }
+     if (d.cholesterolRatio === undefined) {
+        d.cholesterolRatio = "";
+    }
+     if (d.cholesterolTotalUnit === undefined) {
+        d.cholesterolTotalUnit = "";
+    }
+     if (d.cholesterolLDLUnit === undefined) {
+        d.cholesterolLDLUnit = "";
+    }
+     if (d.cholesterolHDLUnit === undefined) {
+        d.cholesterolHDLUnit = "";
+    }
+     if (d.cholesterolTriUnit === undefined) {
+        d.cholesterolTriUnit = "";
+    }
+     if (d.cholesterolNonUnit === undefined) {
+        d.cholesterolNonUnit = "";
+    }
+     if (d.cholesterolRatioUnit === undefined) {
+        d.cholesterolRatioUnit = "";
     }
 
 
@@ -577,14 +662,16 @@ function convertVTS(VTSData) {
     // <Left pupil size (ST)> ^ <left light reflex (ST)> ^ <Right light reflex (ST)> ^ <left accom reflex (ST)> ^ <Right accom reflex (ST)> ^ <Heart rate (ST)> ^ <encounter date (TS)> ^
     //  <hfc cd (ST)> ^ <doctor id (ST)> ^ <doctor name (ST)> ^ <gcs point> ^ <gcs result> ^ <pgcs point> ^ <pgcs result> ^ <so2> ^ <pain scale> ^ <blood glucose> ^ <sitting-pulse> ^ 
     //  <supine-pulse> ^ <standing-pulse> ^ <right-pupil-condition> ^ <right-pupil-option> ^ <right-pupil-size> ^ <vision-type> ^ <left-eye-score> ^ <right-eye-score> ^ <colour-vision> ^ 
-    //  <vision comment> ^ <pain scale result>
+    //  <vision comment> ^ <pain scale result> ^ <total cholesterol> ^ <total cholesterol unit> ^ <LDL cholesterol> ^ <LDL unit> ^ <HDL cholesterol> ^ <HDL unit> ^ <Triglycerides> ^ <triglycerides unit> 
+    // ^ <non HDL-c> ^ <non hdl unit> ^ <tg to hdl ratio > ^ < tg to hdl unit>
 
     var vtsNotes = "";  //                      0               1               2               3               4               5               6               7                       8                   9               10              11           121314 15       16       17 181920    21                    22             23               24                   25                   26                   27                       28                    29                30                    31                32              33               34      35 36      37         38      39                        40                         41          42                   43                        
     vtsNotes += "VTS|" + episodeDate + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate ;
     vtsNotes +="^" + d.pointMain + "^^^^" + d.left_pupil + "^" + d.left_reactivity + "^" + d.right_reactivity + "^^^";
     vtsNotes +="^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale;
-    vtsNotes +="^" + d.CIS020016_glucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "^^^" + d.right_pupil + "^^" + d.left_eye_score + "^" + d.right_eye_score + "^^" + d.vision_comment + "^" + d.resultPanScale + "|<cr>\n";
-
+    vtsNotes +="^" + d.CIS020016_glucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "^^^" + d.right_pupil + "^^" + d.left_eye_score + "^" + d.right_eye_score + "^^" + d.vision_comment + "^" + d.resultPanScale;
+    vtsNotes +="^" + d.cholesterolTotal + "^" + d.cholesterolTotalUnit + "^" + d.cholesterolLDL + "^" + d.cholesterolLDLUnit + "^" + d.cholesterolHDL + "^" + d.cholesterolHDLUnit + "^" + d.cholesterolTri + "^" + d.cholesterolTriUnit;
+    vtsNotes +="^" + d.cholesterolNon + "^" + d.cholesterolNonUnit + "^" + d.cholesterolRatio + "^" + d.cholesterolRatioUnit + "|<cr>\n";
 
     return vtsNotes;
 }

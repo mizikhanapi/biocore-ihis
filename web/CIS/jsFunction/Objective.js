@@ -690,7 +690,142 @@ $(document).ready(function () {
         $('#sum' + rowId).html(sum);
         $("#CIS020008").modal('hide');
     });
+    
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+/// -------------------------------------------------------------CHOLESTEROL MODAL----------------------------------------------------------/////;
+/// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
+    $('#acceptCholesterolBtn').click(function (e) {
+        var title = "Cholesterol";
+        var CholeLDL = $('#cholesterolLDL').val();
+        var CholeTotal = $('#cholesterolTotal').val();
+        var CholeHDL = $('#cholesterolHDL').val();
+        var CholeTri = $('#cholesterolTrigly').val();
+        var CholeNon = $('#cholesterolNonHDL').val();
+        var CholeRatio = $('#cholesterolRatio').val();
+        
+        var CholeLDLUnit = $('#LDLCunit').val();
+        var CholeTotalUnit = $('#totalCUnit').val();
+        var CholeHDLUnit = $('#HDLCunit').val();
+        var CholeTriUnit = $('#TriCunit').val();
+        var CholeNonUnit = $('#nonHDLCunit').val();
+        var CholeRatioUnit = $('#RatioCunit').val();
+
+        var items = $('#cholesterolLDL,#cholesterolTotal,#cholesterolHDL,#cholesterolTrigly,#cholesterolNonHDL,#cholesterolRatio,#LDLCunit,#totalCUnit,#HDLCunit,#TriCunit,#nonHDLCunit,#RatioCunit');
+
+        var obj = {
+            Acode: "VTS",
+            cholesterolTotal: CholeTotal,
+            cholesterolLDL: CholeLDL,
+            cholesterolHDL: CholeHDL,
+            cholesterolTri: CholeTri,
+            cholesterolNon: CholeNon,
+            cholesterolRatio: CholeRatio,
+            cholesterolTotalUnit: CholeTotalUnit,
+            cholesterolLDLUnit: CholeLDLUnit,
+            cholesterolHDLUnit: CholeHDLUnit,
+            cholesterolTriUnit: CholeTriUnit,
+            cholesterolNonUnit: CholeNonUnit,
+            cholesterolRatioUnit: CholeRatioUnit
+        }
+
+//        var obj1 = {Acode: "VTS"};
+//        items.each(function () {
+//            obj1[this.id] = $(this).val();
+//        });
+        _data.push(obj);
+
+        displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, CholeRatio,CholeLDLUnit,CholeTotalUnit,CholeHDLUnit,CholeTriUnit,CholeNonUnit,CholeRatioUnit);
+        console.log(_data);
+        $("#CIS020017").modal('hide');
+//        
+//        $('#cholesterolLDL').val("");
+//        $('#cholesterolTotal').val("");
+//        $('#cholesterolHDL').val("");
+//        $('#cholesterolTrigly').val("");
+//        $('#cholesterolNonHDL').val("");
+//        $('#cholesterolRatio').val("");
+//        
+//        $('#LDLCunit').val("mg/dL");
+//        $('#totalCUnit').val("mg/dL");
+//        $('#HDLCunit').val("mg/dL");
+//        $('#TriCunit').val("mg/dL");
+//        $('#nonHDLCunit').val("mg/dL");
+//        $('#RatioCunit').val("mg/dL");
+    });
+
+
+    $('#tblCIS_Consultation_Table').on('click', '.updateCholesterol', function () {
+
+        $('#CIS020017').modal('show');
+        $('#actionCholesterol').hide();
+        $('#updateCholesterol').show();
+
+        var idName = $(this).get(0).id;
+        var id = idName.split('|');
+        var updateObj = _data[id[1]];
+
+        $('#cholesterolId').val(id[1]);
+        
+        $('#cholesterolLDL').val(updateObj.cholesterolLDL);
+        $('#cholesterolTotal').val(updateObj.cholesterolTotal);
+        $('#cholesterolHDL').val(updateObj.cholesterolHDL);
+        $('#cholesterolTrigly').val(updateObj.cholesterolTri);
+        $('#cholesterolNonHDL').val(updateObj.cholesterolNon);
+        $('#cholesterolRatio').val(updateObj.cholesterolRatio);
+        
+        $('#LDLCunit').val(updateObj.cholesterolLDLUnit);
+        $('#totalCUnit').val(updateObj.cholesterolTotalUnit);
+        $('#HDLCunit').val(updateObj.cholesterolHDLUnit);
+        $('#TriCunit').val(updateObj.cholesterolTriUnit);
+        $('#nonHDLCunit').val(updateObj.cholesterolNonUnit);
+        $('#RatioCunit').val(updateObj.cholesterolRatioUnit);
+    });
+
+    $('#updateCholesterolBtn').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#cholesterolId').val()];
+        var rowId = $('#cholesterolId').val();
+        
+        upObject.cholesterolLDL = $('#cholesterolLDL').val();
+        upObject.cholesterolTotal = $('#cholesterolTotal').val();
+        upObject.cholesterolHDL = $('#cholesterolHDL').val();
+        upObject.cholesterolTri = $('#cholesterolTrigly').val();
+        upObject.cholesterolNon = $('#cholesterolNonHDL').val();
+        upObject.cholesterolRatio = $('#cholesterolRatio').val();
+        
+        upObject.cholesterolLDLUnit = $('#LDLCunit').val();
+        upObject.cholesterolTotalUnit = $('#totalCUnit').val();
+        upObject.cholesterolHDLUnit = $('#HDLCunit').val();
+        upObject.cholesterolTriUnit = $('#TriCunit').val();
+        upObject.cholesterolNonUnit = $('#nonHDLCunit').val();
+        upObject.cholesterolRatioUnit = $('#RatioCunit').val();
+
+        var sum = 'Total Cholesterol:' + upObject.cholesterolTotal + ' '+upObject.cholesterolTotalUnit+' </br> LDL Cholesterol:' + upObject.cholesterolLDL + ' '+upObject.cholesterolLDLUnit+' </br> HDL Cholesterol:' + upObject.cholesterolHDL + ' '+upObject.cholesterolHDLUnit+' </br> Triglycerides:' + upObject.cholesterolTri + ' '+upObject.cholesterolTriUnit+' </br> Non-HDL-C:' + upObject.cholesterolNon + ' '+upObject.cholesterolNonUnit+' </br> TG to HDL ratio:' + upObject.cholesterolRatio + ' '+upObject.cholesterolRatioUnit;
+        $('#sum' + rowId).html(sum);
+        
+        
+        $("#CIS020017").modal('hide');
+        
+        
+    });
+    $("#CIS020017").on("hidden.bs.modal", function () {
+        $('#cholesterolLDL').val("");
+        $('#cholesterolTotal').val("");
+        $('#cholesterolHDL').val("");
+        $('#cholesterolTrigly').val("");
+        $('#cholesterolNonHDL').val("");
+        $('#cholesterolRatio').val("");
+        
+        $('#LDLCunit').val("mg/dL");
+        $('#totalCUnit').val("mg/dL");
+        $('#HDLCunit').val("mg/dL");
+        $('#TriCunit').val("mg/dL");
+        $('#nonHDLCunit').val("mg/dL");
+        $('#RatioCunit').val("mg/dL");
+        $('#actionCholesterol').show();
+        $('#updateCholesterol').hide();
+    });
     /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------PUPIL CHECK MODAL-----------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -1330,6 +1465,13 @@ function displayBGlucose(_BGlu) {
 function displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#OTRNotes').append(_tr);
+
+    i = i + 1;
+}
+
+function displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, CholeRatio,CholeLDLUnit,CholeTotalUnit,CholeHDLUnit,CholeTriUnit,CholeNonUnit,CholeRatioUnit) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Cholesterol :<p class="summary" id="sum' + i + '">Total Cholesterol:' + CholeTotal + ' '+CholeTotalUnit+' </br> LDL Cholesterol:' + CholeLDL + ' '+CholeLDLUnit+' </br> HDL Cholesterol:' + CholeHDL + ' '+CholeHDLUnit+' </br> Triglycerides:' + CholeTri + ' '+CholeTriUnit+' </br> Non-HDL-C:' + CholeNon + ' '+CholeNonUnit+'</br> TG to HDL ratio:'+CholeRatio+' '+CholeRatioUnit+'</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateCholesterol" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#CHOLENotes').append(_tr);
 
     i = i + 1;
 }

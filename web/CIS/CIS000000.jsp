@@ -254,6 +254,7 @@
                                             <tbody id="PSCNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="BTEMPNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="OTRNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="CHOLENotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="PupilNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="PEMNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="BLOODGLUCOSENotes"   class="O ConsultationNotes"> </tbody>
