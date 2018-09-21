@@ -20,6 +20,7 @@ public class lhr_VTS {
         boolean status_vts_lhr_bp = false;
         boolean status_vts_lhr_bg = false;
         boolean status_vts_lhr_spo2 = false;
+        boolean status_vts_lhr_cholesterol = false;
         boolean status_vts_lhr_pupil = false;
         boolean status_vts_lhr_temperature = false;
         boolean status_vts_lhr_circum = false;
@@ -923,6 +924,127 @@ public class lhr_VTS {
                                 ERRCOUNT.msgErr("SPO2|");
                             } else {
                                 System.out.println("done extract vts SPO2");
+                            }
+                        }
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
+                    //check whether spo2 data is null or empty
+                    if (alVts.get(2).get(44) != null && !alVts.get(2).get(44).isEmpty() && !alVts.get(2).get(44).equals("") 
+                            && alVts.get(2).get(45) != null && !alVts.get(2).get(45).isEmpty() && !alVts.get(2).get(45).equals("")
+                            && alVts.get(2).get(46) != null && !alVts.get(2).get(46).isEmpty() && !alVts.get(2).get(46).equals("")
+                            && alVts.get(2).get(47) != null && !alVts.get(2).get(47).isEmpty() && !alVts.get(2).get(47).equals("")
+                            && alVts.get(2).get(48) != null && !alVts.get(2).get(48).isEmpty() && !alVts.get(2).get(48).equals("")
+                            && alVts.get(2).get(49) != null && !alVts.get(2).get(49).isEmpty() && !alVts.get(2).get(49).equals("")
+                            && alVts.get(2).get(50) != null && !alVts.get(2).get(50).isEmpty() && !alVts.get(2).get(50).equals("")
+                            && alVts.get(2).get(51) != null && !alVts.get(2).get(51).isEmpty() && !alVts.get(2).get(51).equals("")
+                            && alVts.get(2).get(52) != null && !alVts.get(2).get(52).isEmpty() && !alVts.get(2).get(52).equals("")
+                            && alVts.get(2).get(53) != null && !alVts.get(2).get(53).isEmpty() && !alVts.get(2).get(53).equals("")
+                            && alVts.get(2).get(54) != null && !alVts.get(2).get(54).isEmpty() && !alVts.get(2).get(54).equals("")
+                            && alVts.get(2).get(55) != null && !alVts.get(2).get(55).isEmpty() && !alVts.get(2).get(55).equals("")) {
+                        vts_Obj.setTotalCholesterol(alVts.get(2).get(44));
+                        vts_Obj.setTotalUnit(alVts.get(2).get(45));
+                        vts_Obj.setLDLCholesterol(alVts.get(2).get(46));
+                        vts_Obj.setLDLUnit(alVts.get(2).get(47));
+                        vts_Obj.setHDLCholesterol(alVts.get(2).get(48));
+                        vts_Obj.setHDLUnit(alVts.get(2).get(49));
+                        vts_Obj.setTriglycerides(alVts.get(2).get(50));
+                        vts_Obj.setTriUnit(alVts.get(2).get(51));
+                        vts_Obj.setNonHDLUnit(alVts.get(2).get(53));
+                        vts_Obj.setNonHDL(alVts.get(2).get(52));
+                        vts_Obj.setTGtoHDLRatio(alVts.get(2).get(54));
+                        vts_Obj.setTGtoHDLUnit(alVts.get(2).get(55));
+                    } else {
+                        vts_Obj.setTotalCholesterol("x");
+                        vts_Obj.setTotalUnit("x");
+                        vts_Obj.setLDLCholesterol("x");
+                        vts_Obj.setLDLUnit("x");
+                        vts_Obj.setHDLCholesterol("x");
+                        vts_Obj.setHDLUnit("x");
+                        vts_Obj.setTriglycerides("x");
+                        vts_Obj.setTriUnit("x");
+                        vts_Obj.setNonHDLUnit("x");
+                        vts_Obj.setNonHDL("x");
+                        vts_Obj.setTGtoHDLRatio("x");
+                        vts_Obj.setTGtoHDLUnit("x");
+                    }
+
+                    // insert into lhr_spo2 table for VTS
+                    String query_vts_lhr_cholesterol2 = "insert into lhr_cholesterol "
+                            + "(PMI_no, "
+                            + "HFC_Cd, "
+                            + "Episode_Date, "
+                            + "Encounter_Date, "
+                            + "discipline_cd, "
+                            + "subdiscipline_cd, "
+                            + "total_cholesterol, "
+                            + "date_taken, "
+                            + "doctor_id, "
+                            + "national_id_no, "
+                            + "person_id_no,"
+                            + "person_status,"
+                            + "centre_code,"
+                            + "LDL_cholesterol,"
+                            + "HDL_cholesterol,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "triglycerides,"
+                            + "non_hdl_c,"
+                            + "tg_to_hdl,"
+                            + "total_unit,"
+                            + "LDL_unit,"
+                            + "hdl_unit,"
+                            + "triglycerides_unit,"
+                            + "non_hdl_c_unit,"
+                            + "tg_to_hdl_ratio_unit )"
+                            + "values ('" + vts_Obj.getPMI_no() + "',"
+                            + "'" + vts_Obj.getHFC_Cd() + "',"
+                            + "'" + vts_Obj.getEpisode_Date() + "',"
+                            + "" + vts_Obj.getEncounter_Date() + ","
+                            + "'" + vts_Obj.getDiscipline()+ "',"
+                            + "'" + vts_Obj.getSubdiscipline() + "',"
+                            + "'" + vts_Obj.getTotalCholesterol()+ "',"
+                            + "" + vts_Obj.getEncounter_Date() + ","
+                            + "'" + vts_Obj.getDoctor_ID() + "',"
+                            + "'" + a + "',"
+                            + "'" + c + "',"
+                            + "'" + b + "',"
+                            + "'" + d + "',"
+                            + "'" + vts_Obj.getLDLCholesterol() + "',"
+                            + "'" + vts_Obj.getHDLCholesterol() + "',"
+                            + "'"+ vts_Obj.getDoctor_ID()+"',"
+                            + "'"+ msh.getDateTime()+"',"
+                            + "'"+ vts_Obj.getTriglycerides()+"',"
+                            + "'"+ vts_Obj.getNonHDL()+"',"
+                            + "'"+ vts_Obj.getTGtoHDLRatio()+"',"
+                            + "'"+ vts_Obj.getTotalUnit()+"',"
+                            + "'"+ vts_Obj.getLDLUnit()+"',"
+                            + "'"+ vts_Obj.getHDLUnit()+"',"
+                            + "'"+ vts_Obj.getTriUnit()+"',"
+                            + "'"+ vts_Obj.getNonHDLUnit()+"',"
+                            + "'"+ vts_Obj.getTGtoHDLUnit()+"')";
+
+                    try {
+                        if(vts_Obj.getTotalCholesterol().equalsIgnoreCase("x") || vts_Obj.getTotalUnit().equalsIgnoreCase("x") 
+                                || vts_Obj.getLDLUnit().equalsIgnoreCase("x") || vts_Obj.getLDLCholesterol().equalsIgnoreCase("x") 
+                                || vts_Obj.getHDLCholesterol().equalsIgnoreCase("x") || vts_Obj.getHDLUnit().equalsIgnoreCase("x")
+                                || vts_Obj.getTriglycerides().equalsIgnoreCase("x") || vts_Obj.getTriUnit().equalsIgnoreCase("x")
+                                || vts_Obj.getNonHDL().equalsIgnoreCase("x") || vts_Obj.getNonHDLUnit().equalsIgnoreCase("x")
+                                || vts_Obj.getTGtoHDLRatio().equalsIgnoreCase("x") || vts_Obj.getTGtoHDLUnit().equalsIgnoreCase("x")){
+                            System.out.println("Skip extract vts CHOLESTEROL");
+                        }else {
+                            status_vts_lhr_cholesterol = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_cholesterol2);
+                            if (status_vts_lhr_cholesterol == false) {
+                                total_fail_insert++;
+                                System.out.println("false extract vts cholesterol");
+                                System.out.println(query_vts_lhr_cholesterol2);
+                                ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("CHOLES|");
+                            } else {
+                                System.out.println("done extract vts CHOLESTEROL");
                             }
                         }
                         

@@ -62,6 +62,114 @@ public class VTS {
     private String right_eye_score;
     private String color_vision;
     private String comment;
+    private String totalCholesterol;
+    private String totalUnit;
+    private String LDLCholesterol;
+    private String LDLUnit;
+    private String HDLCholesterol;
+    private String HDLUnit;
+    private String triglycerides;
+    private String triUnit;
+    private String nonHDL;
+    private String nonHDLUnit;
+    private String TGtoHDLRatio;
+    private String TGtoHDLUnit;
+
+    public String getTotalCholesterol() {
+        return totalCholesterol;
+    }
+
+    public void setTotalCholesterol(String totalCholesterol) {
+        this.totalCholesterol = totalCholesterol;
+    }
+
+    public String getTotalUnit() {
+        return totalUnit;
+    }
+
+    public void setTotalUnit(String totalUnit) {
+        this.totalUnit = totalUnit;
+    }
+
+    public String getLDLCholesterol() {
+        return LDLCholesterol;
+    }
+
+    public void setLDLCholesterol(String LDLCholesterol) {
+        this.LDLCholesterol = LDLCholesterol;
+    }
+
+    public String getLDLUnit() {
+        return LDLUnit;
+    }
+
+    public void setLDLUnit(String LDLUnit) {
+        this.LDLUnit = LDLUnit;
+    }
+
+    public String getHDLCholesterol() {
+        return HDLCholesterol;
+    }
+
+    public void setHDLCholesterol(String HDLCholesterol) {
+        this.HDLCholesterol = HDLCholesterol;
+    }
+
+    public String getHDLUnit() {
+        return HDLUnit;
+    }
+
+    public void setHDLUnit(String HDLUnit) {
+        this.HDLUnit = HDLUnit;
+    }
+
+    public String getTriglycerides() {
+        return triglycerides;
+    }
+
+    public void setTriglycerides(String triglycerides) {
+        this.triglycerides = triglycerides;
+    }
+
+    public String getTriUnit() {
+        return triUnit;
+    }
+
+    public void setTriUnit(String triUnit) {
+        this.triUnit = triUnit;
+    }
+
+    public String getNonHDL() {
+        return nonHDL;
+    }
+
+    public void setNonHDL(String nonHDL) {
+        this.nonHDL = nonHDL;
+    }
+
+    public String getNonHDLUnit() {
+        return nonHDLUnit;
+    }
+
+    public void setNonHDLUnit(String nonHDLUnit) {
+        this.nonHDLUnit = nonHDLUnit;
+    }
+
+    public String getTGtoHDLRatio() {
+        return TGtoHDLRatio;
+    }
+
+    public void setTGtoHDLRatio(String TGtoHDLRatio) {
+        this.TGtoHDLRatio = TGtoHDLRatio;
+    }
+
+    public String getTGtoHDLUnit() {
+        return TGtoHDLUnit;
+    }
+
+    public void setTGtoHDLUnit(String TGtoHDLUnit) {
+        this.TGtoHDLUnit = TGtoHDLUnit;
+    }
 
     public String getDiscipline() {
         return discipline;
