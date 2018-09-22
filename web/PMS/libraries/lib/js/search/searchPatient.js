@@ -7,6 +7,7 @@ $(function () {
     //validate max length of input
     $('#idType').on('change', function (e) {
         var id = $('#idType').val();
+        clearAllPMS();
         console.log(id);
         if (id === "001") {
             $('#idInput').attr('maxlength', '13');
@@ -140,6 +141,10 @@ $(function () {
 
     //event on click clear buton
     $('#clearSearch').click(function () {
+        clearAllPMS();
+    });
+    
+    function clearAllPMS(){
         $('#myForm2')[0].reset();
         $('#myForm')[0].reset();
         $('#formPMI')[0].reset();
@@ -150,7 +155,7 @@ $(function () {
         $("table tbody").remove();
         document.getElementById("dym2").innerHTML = "";
         findCommonQueue(hfc,dis);
-    });
+    }
 
 });
 
