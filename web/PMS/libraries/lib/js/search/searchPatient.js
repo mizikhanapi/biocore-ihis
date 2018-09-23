@@ -6,8 +6,9 @@ $(function () {
 });
     //validate max length of input
     $('#idType').on('change', function (e) {
+        clearNotAllPMS();
         var id = $('#idType').val();
-        clearAllPMS();
+        
         console.log(id);
         if (id === "001") {
             $('#idInput').attr('maxlength', '13');
@@ -147,6 +148,19 @@ $(function () {
     function clearAllPMS(){
         $('#myForm2')[0].reset();
         $('#myForm')[0].reset();
+        $('#formPMI')[0].reset();
+        $('#kinform')[0].reset();
+        $('#empform')[0].reset();
+        $('#famForm')[0].reset();
+        $('#formMed')[0].reset();
+        $("table tbody").remove();
+        document.getElementById("dym2").innerHTML = "";
+        findCommonQueue(hfc,dis);
+    }
+    
+    function clearNotAllPMS(){
+        $('#myForm2')[0].reset();
+        //$('#myForm')[0].reset();
         $('#formPMI')[0].reset();
         $('#kinform')[0].reset();
         $('#empform')[0].reset();

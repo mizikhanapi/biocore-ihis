@@ -315,7 +315,7 @@ $('#registerQueue').click(function () {
                                     }
                                 });
 
-
+                                findCommonQueue(hfc,dis);  
                             } else if ($.trim(array_list[0]) === "already") {
                                 bootbox.alert("Patient is already registered");
                             } else if ($.trim(array_list[0]) === "outQuota") {
