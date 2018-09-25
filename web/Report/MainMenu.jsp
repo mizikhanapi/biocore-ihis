@@ -176,6 +176,7 @@
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
                                                 <li class="list-group-item"><a href="UTeMMedicalCertificateReport.jsp">Medical Certificate List</a></li>
+                                                <li class="list-group-item"><a href="UTeMTypeOfPatientListReport.jsp">Type Of Patient List</a></li>
                                             </ul>
                                         </div>
                                         <!-- Default panel contents -->
@@ -193,6 +194,8 @@
                                                 <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
                                                 <li class="list-group-item"><a href="medicalReportMain.jsp">Reprint Medical Report</a></li>
                                                 <li class="list-group-item"><a href="timeSlipMain.jsp">Reprint Time Slip</a></li>
+                                                <li class="list-group-item"><a href="ConsultationListReport.jsp">Consultation List</a></li>
+                                                <li class="list-group-item"><a href="DiagnosisList.jsp">Diagnosis List</a></li>
                                             </ul>
                                         </div>
                                         <!-- Default panel contents -->
