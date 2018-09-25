@@ -21,7 +21,7 @@
      
      query = "Select  e.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
-            +" e.DOCTOR, adm_users.`USER_NAME`, e.EPISODE_DATE,d.icd10_description "
+            +" e.DOCTOR, adm_users.`USER_NAME`, e.EPISODE_DATE,d.icd10_description,ty.description "
             +" FROM pms_episode e INNER JOIN pms_patient_biodata b"
             +" ON e.`PMI_NO` = b.`PMI_NO`"
             
@@ -38,6 +38,11 @@
              + "ON d.pmi_no = e.pmi_no "
              + "and d.episode_date = e.episode_date"
              + " and d.hfc_cd = e.HEALTH_FACILITY_CODE"
+             
+             +" INNER join adm_lookup_detail ty "
+             + "ON ty.detail_reference_code = e.patient_category_code "
+             + "and ty.master_reference_code = '0033'"
+             + " and ty.hfc_cd = e.HEALTH_FACILITY_CODE"
             
             + " WHERE cast(e.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "'"
             + " AND e.`HEALTH_FACILITY_CODE`='"+hfc+"' ;";
@@ -46,7 +51,7 @@
          
       query = "Select  we.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
-            +" we.order_by, we.EPISODE_DATE, e.EPISODE_DATE,d.icd10_description "
+            +" we.order_by, we.EPISODE_DATE, e.EPISODE_DATE,d.icd10_description,ty.description "
             +" FROM wis_inpatient_episode we INNER JOIN pms_patient_biodata b"
             +" ON we.`PMI_NO` = b.`PMI_NO` "
             
@@ -59,6 +64,11 @@
              + "ON d.pmi_no = e.pmi_no "
              + "and d.episode_date = we.episode_date"
              + " and d.hfc_cd = we.HEALTH_FACILITY_CODE"
+             
+              +" INNER join adm_lookup_detail ty "
+             + "ON ty.detail_reference_code = e.patient_category_code "
+             + "and ty.master_reference_code = '0033'"
+             + " and ty.hfc_cd = e.HEALTH_FACILITY_CODE"
               
             + " WHERE cast(we.EPISODE_DATE as date) BETWEEN '"+startDate + "' AND '" + endDate + "' "
             + " AND we.hfc_cd='"+hfc+"' ;";
