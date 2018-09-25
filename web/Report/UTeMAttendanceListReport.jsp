@@ -187,6 +187,7 @@
                                 <th style="text-align: center;">Patient Gander</th>
                                 <th style="text-align: center;">Consulting Doctor</th>
                                 <th style="text-align: center;">Episode Date</th>
+                                <th style="text-align: center;">Diagnosis</th>
                                 </thead>
                                 <tbody>
 
@@ -429,6 +430,7 @@
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
                     };
+                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "UTeMAttendanceListReportControler.jsp",
@@ -446,11 +448,11 @@
                                     var datas = dataRow[i].split("|");
                                     if (patientType === "Outpatient") {
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
-                                    <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td></tr>';
+                                    <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td><td>' + datas[7] + '</td></tr>';
                                     } else if (patientType === "Inpatient") {
 
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
-                                    <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td></tr>';
+                                    <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td><td>' + datas[7] + '</td></tr>';
 
                                     }
 

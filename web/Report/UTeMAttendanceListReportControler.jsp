@@ -21,7 +21,7 @@
      
      query = "Select  e.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
-            +" e.DOCTOR, adm_users.`USER_NAME`, e.EPISODE_DATE "
+            +" e.DOCTOR, adm_users.`USER_NAME`, e.EPISODE_DATE,d.icd10_description "
             +" FROM pms_episode e INNER JOIN pms_patient_biodata b"
             +" ON e.`PMI_NO` = b.`PMI_NO`"
             
@@ -33,6 +33,11 @@
             +" INNER join adm_users adm_users"
             +" ON e.`HEALTH_FACILITY_CODE` = adm_users.`HEALTH_FACILITY_CODE`"
             +" AND adm_users.`USER_ID` =  e.`DOCTOR`"
+             
+            +" INNER join lhr_diagnosis d "
+             + "ON d.pmi_no = e.pmi_no "
+             + "and d.episode_date = e.episode_date"
+             + " and d.hfc_cd = e.HEALTH_FACILITY_CODE"
             
             + " WHERE cast(e.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "'"
             + " AND e.`HEALTH_FACILITY_CODE`='"+hfc+"' ;";
@@ -41,7 +46,7 @@
          
       query = "Select  we.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
-            +" we.order_by, we.EPISODE_DATE "
+            +" we.order_by, we.EPISODE_DATE, e.EPISODE_DATE,d.icd10_description "
             +" FROM wis_inpatient_episode we INNER JOIN pms_patient_biodata b"
             +" ON we.`PMI_NO` = b.`PMI_NO` "
             
@@ -49,7 +54,12 @@
             +" on adm_lookup_det.`Detail_Reference_code` =  b.SEX_CODE"
             +" and adm_lookup_det.`hfc_cd` = we.hfc_cd"
             +" AND adm_lookup_det.`Master_Reference_code` like '0041'"
-           
+             
+            +" INNER join lhr_diagnosis d "
+             + "ON d.pmi_no = e.pmi_no "
+             + "and d.episode_date = we.episode_date"
+             + " and d.hfc_cd = we.HEALTH_FACILITY_CODE"
+              
             + " WHERE cast(we.EPISODE_DATE as date) BETWEEN '"+startDate + "' AND '" + endDate + "' "
             + " AND we.hfc_cd='"+hfc+"' ;";
      }

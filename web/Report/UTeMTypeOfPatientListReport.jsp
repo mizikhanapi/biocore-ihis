@@ -241,67 +241,6 @@
 //                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
-            viewPAGraph();
-
-            $("#patientAttandanceViewReportBtn").click(function () {
-                viewPAGraph();
-            });
-
-            function viewPAGraph() {
-
-                getDateNow();
-                var startDate, endDate, hfc, dis = "", sortBy = "", discipline = "", occupation, url;
-                startDate = curYear + '-01-01';
-                endDate = yyyyMMdd;
-                hfc = "<%=hfc%>";
-                sortBy = $("input[name='radioSortBY']:checked").val();
-                occupation = $("input[name='radioOccupation']:checked").val();
-                discipline = $("input[name='radioDiscipline']:checked").val();
-
-                var result = [];
-                if (disciplineData.length > 0 && discipline !== "")
-                {
-                    result = disciplineData.filter(function (obj) {
-
-//                        console.log((obj.name.toLowerCase().search(discipline.toLowerCase())) > -1);
-                        return (obj.name.toLowerCase().search(discipline.toLowerCase())) > -1;
-                    });
-//                    console.log(result);
-                }
-                dis = result[0].code;
-
-                if (sortBy === "gender") {
-                    url = "UTeMAttendanceListGraphByGender.jsp";
-                } else if (sortBy === "ageRange") {
-                    url = "UTeMAttendanceListGraphByAgeRange.jsp";
-                } else if (sortBy === "centerCode") {
-                    url = "UTeMAttendanceListGraphByCenterCode.jsp";
-                } else {
-                    alert("Uncorrect Type of Sort");
-                }
-
-                var data = {
-                    startDate: startDate,
-                    endDate: endDate,
-                    hfc: hfc,
-                    dis: dis,
-                    patientType: occupation
-                };
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: data,
-                    timeout: 10000,
-                    success: function (reply) {
-                        $("#ALGraph").html(reply.trim());
-                    },
-                    error: function (err) {
-                        console.log("ERROR: " + err);
-                    }
-
-                });
-
-            }
 
             $("#dateFrom").datepicker({
                 dateFormat: 'dd/mm/yy',
