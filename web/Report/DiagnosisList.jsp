@@ -285,7 +285,7 @@
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
                     };
-                    
+                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "DiagnosisListController.jsp",
@@ -310,13 +310,13 @@
                                 }
                                 $('#UTemDReport tbody').empty();
                                 $('#UTemDReport').append(trHTML);
-                                $('#UTemDReport').destroy();
+                                //$('#UTemDReport').destroy();
                                 $('#UTemDReport').DataTable({
                                     pageLength: 15,
                                     initComplete: function (settings, json) {
                                         $('.loading').hide();
                                     },
-                                    "order": [[4, "asc"]],
+                                    "order": [[3, "asc"]],
                                     dom: 'Bfrtip',
                                     buttons: [
                                         {

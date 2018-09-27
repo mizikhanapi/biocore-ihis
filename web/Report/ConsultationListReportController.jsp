@@ -42,18 +42,18 @@
 //            + " WHERE cast(e.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "'"
 //            + " AND e.`HEALTH_FACILITY_CODE`='"+hfc+"' ;";
     if(patientType.equalsIgnoreCase("all")){
-        query = "select p.doctor,u.user_name as name, count(p.pmi_no) as total "
-             + "from pms_episode p,adm_users u where p.health_facility_code = '"+hfc+"' "
-             + "and p.health_facility_code = u.health_facility_code "
+        query = "select u.user_id,u.user_name as name, count(p.pmi_no) as total "
+             + "from adm_users u , pms_episode p,adm_user_access_role ac where p.health_facility_code = '"+hfc+"' "
+             + "and p.health_facility_code = u.health_facility_code and ac.discipline_code = p.discipline_code and ac.user_id = u.user_id "
              + "and cast(p.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "' "
-             + "and u.user_id = p.doctor group by doctor;";
+             + "and u.user_id = p.doctor group by user_id order by total desc;";
     }else{
         query = "select p.doctor,u.user_name as name, count(p.pmi_no) as total "
-             + "from pms_episode p,adm_users u where p.health_facility_code = '"+hfc+"' "
+             + "from adm_users u , pms_episode p,adm_user_access_role ac where p.health_facility_code = '"+hfc+"' "
              + "and p.health_facility_code = u.health_facility_code "
-             + "and p.discipline_code = '"+patientType+"' "
+             + "and p.discipline_code = '"+patientType+"' and ac.discipline_code = p.discipline_code and ac.user_id = u.user_id "
              + "and cast(p.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "' "
-             + "and u.user_id = p.doctor group by doctor;";
+             + "and u.user_id = p.doctor group by u.user_id order by total desc;";
     }
      
     ArrayList<ArrayList<String>> medicalInfo = conn.getData(query);

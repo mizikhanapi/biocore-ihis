@@ -465,7 +465,7 @@
                                     initComplete: function (settings, json) {
                                         $('.loading').hide();
                                     },
-                                    "order": [[4, "asc"]],
+                                    "order": [[6, "asc"]],
                                     dom: 'Bfrtip',
                                     buttons: [
                                         {

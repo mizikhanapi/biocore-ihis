@@ -118,9 +118,11 @@
 
                             <table  id="UTemCLReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
-                                <th style="text-align: center;">no.</th>
-                                <th style="text-align: center;">Name</th>
-                                <th style="text-align: center;">Total</th>
+                                    <tr>
+                                        <th style="text-align: center;">no.</th>
+                                        <th style="text-align: center;">Name</th>
+                                        <th style="text-align: center;">Total</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
@@ -133,7 +135,7 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <!--<script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script> -->
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
@@ -285,7 +287,7 @@
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
                     };
-                    
+                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "ConsultationListReportController.jsp",
@@ -310,13 +312,14 @@
                                 }
                                 $('#UTemCLReport tbody').empty();
                                 $('#UTemCLReport').append(trHTML);
-                                $('#UTemCLReport').destroy();
+                                
+                                //$('#UTemCLReport').destroy();
                                 $('#UTemCLReport').DataTable({
                                     pageLength: 15,
                                     initComplete: function (settings, json) {
                                         $('.loading').hide();
                                     },
-                                    "order": [[4, "asc"]],
+                                    "order": [[2, "desc"]],
                                     dom: 'Bfrtip',
                                     buttons: [
                                         {
@@ -349,7 +352,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Consultation List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PMS-001</strong></dd>\n\
+                                        <dd>Report No: <strong>CIS-001</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\

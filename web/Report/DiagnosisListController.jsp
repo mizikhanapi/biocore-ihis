@@ -45,7 +45,7 @@
                 + "from lhr_diagnosis d,pms_episode p where d.hfc_cd = '"+hfc+"' "
              + "and cast(d.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "' and d.pmi_no = p.pmi_no and d.episode_date = p.episode_date group by (icd10_cd)";
     }else{
-        query = "select d.icd10_cd,d.icd10_description,count(d.pmi_no) from lhr_diagnosis d where "
+        query = "select d.icd10_cd,d.icd10_description,count(d.pmi_no) from lhr_diagnosis d,pms_episode p where "
                 + "d.hfc_cd = '"+hfc+"' "
                 + "and d.discipline_cd = '"+patientType+"' "
                 + "and cast(d.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "' and d.pmi_no = p.pmi_no and d.episode_date = p.episode_date group by (icd10_cd)";
