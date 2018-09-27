@@ -1847,7 +1847,7 @@
 
                     $.ajax({
                         url: "patientOrderListTable.jsp",
-                        type: 'POST',
+                        type: 'GET',
                         timeout: 3000,
                         success: function (data) {
 
