@@ -35,6 +35,7 @@
 
     <%
         String year = request.getParameter("year");
+        String month = request.getParameter("month");
         String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
         Conn conn = new Conn();
@@ -58,7 +59,7 @@
                 // JOIN USERS SQL
                 + " LEFT JOIN adm_users phar ON disp.`DISPENSED_BY`=phar.`USER_ID` AND que.hfc_cd=phar.`HEALTH_FACILITY_CODE` "
                 // WHERE SQL
-                + " WHERE que.hfc_cd='" + hfc + "' AND YEAR(que.episode_date)=" + year + " "
+                + " WHERE que.hfc_cd='" + hfc + "' AND YEAR(que.episode_date)='" + year + "' AND MONTH(que.episode_date)='" + month + "' "
                 + " GROUP BY Bulan, que.episode_date "
                 + " ORDER BY que.episode_date; ";
 
