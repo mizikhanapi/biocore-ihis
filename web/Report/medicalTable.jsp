@@ -243,7 +243,7 @@
             success: function (getData) {
                 if (getData.trim() === "1") {
 
-                    alert("Past Medical Records for the episode is not available !!!");
+                    alert("Past Medical Records for the episode is not available!");
                     $('#outpatientProblem').html("");
                 } else {
                     $('#outpatientProblem').html(getData);
@@ -254,6 +254,6 @@
 
 <%
     } else {
-        out.print("error");
+out.print("error");
     }
 %>

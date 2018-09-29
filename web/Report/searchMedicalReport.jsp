@@ -105,13 +105,17 @@
                 data: {'mcType': mcType, 'mcInput': mcInput},
                 timeout: 10000,
                 success: function (list) {
-
+                    
                     //split the data into an array
                     //function when the value that returned either empty/null or has value.
                     //customize this part only
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                    $('#mcTableDivision').html(list);
+                    if(list.trim() !== "error"){
+                        $('#mcTableDivision').html(list);
+                    }else{
+                        alert("Patient not found");
+                    }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 },
