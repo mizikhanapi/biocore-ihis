@@ -438,6 +438,7 @@
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
+                            console.log(reply);
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
@@ -449,11 +450,11 @@
                                     var datas = dataRow[i].split("|");
                                     if (patientType === "Outpatient") {
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
-                                    <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td><td>' + datas[7] + '</td><td>' + datas[8] + '</td></tr>';
+                                    <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
                                     } else if (patientType === "Inpatient") {
 
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
-                                    <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td><td>' + datas[7] + '</td><td>' + datas[8] + '</td></tr>';
+                                    <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
 
                                     }
 
