@@ -17,7 +17,6 @@
 
 <table  id="WaitingTimeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Month</th>
     <th style="text-align: center;">PMI NO</th>
     <th style="text-align: center;">Patient Name</th>
     <th style="text-align: center;">Register Date</th>
@@ -34,36 +33,71 @@
 
 
     <%
+        String filter = request.getParameter("filter");
         String year = request.getParameter("year");
         String month = request.getParameter("month");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+
         String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
         Conn conn = new Conn();
 
-        //                                          0                                1            2                           3                               4
-        String sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS Bulan, que.pmi_no, bio.`PATIENT_NAME`, que.episode_date AS 'Register Date', que.user_id AS 'Doctor ID', "
-                //                  5                                       6                           7                     8                         9
-                + " doc.`USER_NAME` AS 'Doctor Name', pis.`ENCOUNTER_DATE` AS 'Consult Date', pis.`ORDER_DATE`, disp.`DISPENSED_DATE`, disp.`DISPENSED_BY` AS 'Nurse ID', "
-                //                  10                                                          11                                            
-                + " phar.`USER_NAME` AS 'Nurse Name', TIMESTAMPDIFF(MINUTE, que.episode_date, disp.`DISPENSED_DATE`) AS 'Duration in minutes' "
-                // FROM PMS SQL
-                + " FROM pms_patient_queue que "
-                // JOIN PMS BIODATA SQL
-                + " JOIN pms_patient_biodata bio on que.pmi_no=bio.`PMI_NO` "
-                // JOIN USERS SQL
-                + " LEFT JOIN adm_users doc on que.user_id=doc.`USER_ID` AND que.hfc_cd=doc.`HEALTH_FACILITY_CODE` "
-                // JOIN PIS ORDER MASTER SQL
-                + " JOIN pis_order_master pis on que.pmi_no=pis.`PMI_NO` AND que.episode_date=pis.`EPISODE_DATE` AND pis.`HFC_TO`=que.hfc_cd "
-                // JOIN PIS DISPENSE MASTER SQL
-                + " JOIN pis_dispense_master disp ON pis.`ORDER_NO`=disp.`ORDER_NO` "
-                // JOIN USERS SQL
-                + " LEFT JOIN adm_users phar ON disp.`DISPENSED_BY`=phar.`USER_ID` AND que.hfc_cd=phar.`HEALTH_FACILITY_CODE` "
-                // WHERE SQL
-                + " WHERE que.hfc_cd='" + hfc + "' AND YEAR(que.episode_date)='" + year + "' AND MONTH(que.episode_date)='" + month + "' "
-                + " GROUP BY Bulan, que.episode_date "
-                + " ORDER BY que.episode_date; ";
+        String sql = "";
 
-        ArrayList<ArrayList<String>> dataReport = conn.getData(sql);
+        if (filter.equals("month")) {
+
+            //                                          0                                1            2                           3                               4
+            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS Bulan, que.pmi_no, bio.`PATIENT_NAME`, que.episode_date AS 'Register Date', que.user_id AS 'Doctor ID', "
+                    //                  5                                       6                           7                     8                         9
+                    + " doc.`USER_NAME` AS 'Doctor Name', pis.`ENCOUNTER_DATE` AS 'Consult Date', pis.`ORDER_DATE`, disp.`DISPENSED_DATE`, disp.`DISPENSED_BY` AS 'Nurse ID', "
+                    //                  10                                                          11                                            
+                    + " phar.`USER_NAME` AS 'Nurse Name', TIMESTAMPDIFF(MINUTE, que.episode_date, disp.`DISPENSED_DATE`) AS 'Duration in minutes' "
+                    // FROM PMS SQL
+                    + " FROM pms_patient_queue que "
+                    // JOIN PMS BIODATA SQL
+                    + " JOIN pms_patient_biodata bio on que.pmi_no=bio.`PMI_NO` "
+                    // JOIN USERS SQL
+                    + " LEFT JOIN adm_users doc on que.user_id=doc.`USER_ID` AND que.hfc_cd=doc.`HEALTH_FACILITY_CODE` "
+                    // JOIN PIS ORDER MASTER SQL
+                    + " JOIN pis_order_master pis on que.pmi_no=pis.`PMI_NO` AND que.episode_date=pis.`EPISODE_DATE` AND pis.`HFC_TO`=que.hfc_cd "
+                    // JOIN PIS DISPENSE MASTER SQL
+                    + " JOIN pis_dispense_master disp ON pis.`ORDER_NO`=disp.`ORDER_NO` "
+                    // JOIN USERS SQL
+                    + " LEFT JOIN adm_users phar ON disp.`DISPENSED_BY`=phar.`USER_ID` AND que.hfc_cd=phar.`HEALTH_FACILITY_CODE` "
+                    // WHERE SQL
+                    + " WHERE que.hfc_cd='" + hfc + "' AND YEAR(que.episode_date)='" + year + "' AND MONTH(que.episode_date)='" + month + "' "
+                    + " GROUP BY que.episode_date "
+                    + " ORDER BY que.episode_date; ";
+
+        } else {
+
+            //                                          0                                1            2                           3                               4
+            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS Bulan, que.pmi_no, bio.`PATIENT_NAME`, que.episode_date AS 'Register Date', que.user_id AS 'Doctor ID', "
+                    //                  5                                       6                           7                     8                         9
+                    + " doc.`USER_NAME` AS 'Doctor Name', pis.`ENCOUNTER_DATE` AS 'Consult Date', pis.`ORDER_DATE`, disp.`DISPENSED_DATE`, disp.`DISPENSED_BY` AS 'Nurse ID', "
+                    //                  10                                                          11                                            
+                    + " phar.`USER_NAME` AS 'Nurse Name', TIMESTAMPDIFF(MINUTE, que.episode_date, disp.`DISPENSED_DATE`) AS 'Duration in minutes' "
+                    // FROM PMS SQL
+                    + " FROM pms_patient_queue que "
+                    // JOIN PMS BIODATA SQL
+                    + " JOIN pms_patient_biodata bio on que.pmi_no=bio.`PMI_NO` "
+                    // JOIN USERS SQL
+                    + " LEFT JOIN adm_users doc on que.user_id=doc.`USER_ID` AND que.hfc_cd=doc.`HEALTH_FACILITY_CODE` "
+                    // JOIN PIS ORDER MASTER SQL
+                    + " JOIN pis_order_master pis on que.pmi_no=pis.`PMI_NO` AND que.episode_date=pis.`EPISODE_DATE` AND pis.`HFC_TO`=que.hfc_cd "
+                    // JOIN PIS DISPENSE MASTER SQL
+                    + " JOIN pis_dispense_master disp ON pis.`ORDER_NO`=disp.`ORDER_NO` "
+                    // JOIN USERS SQL
+                    + " LEFT JOIN adm_users phar ON disp.`DISPENSED_BY`=phar.`USER_ID` AND que.hfc_cd=phar.`HEALTH_FACILITY_CODE` "
+                    // WHERE SQL
+                    + " WHERE que.hfc_cd='" + hfc + "' AND que.episode_date BETWEEN '" + startDate + "' AND '" + endDate + "' "
+                    + " GROUP BY que.episode_date "
+                    + " ORDER BY que.episode_date; ";
+
+        }
+
+        ArrayList< ArrayList< String>> dataReport = conn.getData(sql);
 
         int sizeMain = dataReport.size();
         for (int s = 0; s < sizeMain; s++) {
@@ -72,7 +106,6 @@
 
     <tr style="text-align: center;">
 
-        <td><%= dataReport.get(s).get(0)%></td>                                            <!-- Month -->
         <td><%= dataReport.get(s).get(1)%></td>                                            <!-- PMI NO -->
         <td><%= dataReport.get(s).get(2)%></td>                                            <!-- Patient Name -->
         <td><%= dataReport.get(s).get(3)%></td>                                            <!-- Register Date -->
@@ -114,7 +147,7 @@
             pageLength: 15,
             dom: 'Bfrtip',
             columnDefs: [
-                {targets: [0, 1, 2, 3, 5, 6, 8, 10, 11], visible: true},
+                {targets: [0, 1, 2, 3, 5, 6, 8, 10], visible: true},
                 {targets: '_all', visible: false}
             ],
             buttons: [
