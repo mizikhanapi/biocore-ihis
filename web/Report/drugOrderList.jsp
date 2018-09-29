@@ -54,7 +54,7 @@
                             </div>
                             <hr/>
                             <div class="text-right">
-                                <button type="reset" id="PrintReset" class="btn btn-link" data-dismiss="modal" role="button" >Cancel</button>
+                                <button type="reset" id="PrintReset" class="btn btn-link" data-dismiss="modal" role="button" >Clear</button>
                                 <button type="submit" class="btn btn-success" role="button" id="printDrugOrder">Generate Report</button>
                             </div>
 
@@ -116,6 +116,14 @@
                             console.log("ERROR: " + errorThrown);
                         }
                     });
+
+                });
+                
+                $('#PrintReset').on('click', function () {
+
+                    $('#startDate').val('');
+                    $('#endDate').val('');
+                    $('#totalDrugs').html('');
 
                 });
             });

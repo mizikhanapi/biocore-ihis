@@ -66,7 +66,7 @@
                             <hr/>
 
                             <div class="text-right" >
-                                <button type="reset" id="PrintReset" class="btn btn-link" data-dismiss="modal" role="button" >Cancel</button>
+                                <button type="reset" id="PrintReset" class="btn btn-link" data-dismiss="modal" role="button" >Clear</button>
                                 <button type="submit" class="btn btn-success" role="button" id="printLaporanKosPerubatan">Generate Report</button>
                             </div>
                         </div>
@@ -134,6 +134,14 @@
                             }
                         });
                     }
+                });
+                
+                $('#PrintReset').on('click', function () {
+
+                    $('#startDate').val('');
+                    $('#endDate').val('');
+                    $('#cost').html('');
+
                 });
             });
 
