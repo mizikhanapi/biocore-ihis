@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.LinkedList"%>
@@ -16,9 +18,15 @@
 <%
     Config.getBase_url(request);
     Config.getFile_url(session);
+
     Conn conn = new Conn();
+
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
+    String filterBy = request.getParameter("filterBy");
+
+    String hfccd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+
 
 %>
 
@@ -41,8 +49,23 @@
         </tr>
     </thead>
     <tbody>
-        <%        String sql = "";
-            sql = "select count(m.drug_cd),count(distinct(m.pmi_no)),m.drug_cd,m.drug_name,pmd2.`D_SELL_PRICE` from lhr_medication m, pis_mdc2 pmd2 where m.drug_cd = pmd2.`UD_MDC_CODE` and m.episode_date between '" + startDate + "' and '" + endDate + "' group by m.drug_cd";
+        <%            String sql = "";
+
+            if (filterBy.equals("0")) {
+
+                sql = "SELECT COUNT(m.drug_cd), COUNT(distinct(m.pmi_no)), m.drug_cd, m.drug_name, pmd2.`D_SELL_PRICE`, m.hfc_cd, m.discipline_cd "
+                        + " FROM lhr_medication m, pis_mdc2 pmd2 "
+                        + " WHERE m.drug_cd = pmd2.`UD_MDC_CODE` AND m.hfc_cd = '" + hfccd + "' AND m.episode_date between '" + startDate + "' AND '" + endDate + "' "
+                        + " group by m.discipline_cd, m.drug_cd; ";
+
+            } else {
+
+                sql = "SELECT COUNT(m.drug_cd), COUNT(distinct(m.pmi_no)), m.drug_cd, m.drug_name, pmd2.`D_SELL_PRICE`, m.hfc_cd, m.discipline_cd "
+                        + " FROM lhr_medication m, pis_mdc2 pmd2 "
+                        + " WHERE m.drug_cd = pmd2.`UD_MDC_CODE` AND m.hfc_cd = '" + hfccd + "' AND m.episode_date between '" + startDate + "' AND '" + endDate + "' "
+                        + " group by m.drug_cd; ";
+
+            }
 
             ArrayList<ArrayList<String>> ps = conn.getData(sql);
             List empdetails = new LinkedList();
@@ -102,14 +125,14 @@
             </td>
 
         </tr>
- 
 
 
-<%
-    }
-    String strGrand = String.format("%.02f", grandAmount);
-%>
-   </tbody>
+
+        <%
+            }
+            String strGrand = String.format("%.02f", grandAmount);
+        %>
+    </tbody>
 </table>
 <div class="row" id="data">
     <!-- content goes here -->
@@ -142,13 +165,72 @@
         </div>
     </form>
 </div>
+
+<%
+    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfccd + "'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    LocalDate localDate = LocalDate.now();
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+%>
+
 <script>
 
     $(document).ready(function () {
+
         $('#drugListTable').DataTable({
+            initComplete: function (settings, json) {
+                $('.loading').hide();
+            },
+            pageLength: 15,
             dom: 'Bfrtip',
+            columnDefs: [
+                {targets: [0, 1, 2, 3, 4, 5, 6], visible: true},
+                {targets: '_all', visible: false}
+            ],
             buttons: [
-                'csv', 'excel', 'pdf', 'print'
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export To Excel',
+                    title: 'Total Drug Cost List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'csvHtml5',
+                    text: 'Export To Excel CSV',
+                    title: 'Total Drug Cost List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'print',
+                    text: 'Print List',
+                    title: $('h1').text(),
+                    message: '<br><br>',
+                    className: 'btn btn-primary',
+                    customize: function (win) {
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .prepend(
+                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Total Drug Cost List</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        </div> '
+                                        );
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                    },
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }
             ]
         });
 

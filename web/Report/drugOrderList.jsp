@@ -40,6 +40,15 @@
                             <hr class="pemisah"/>
                             <div class="form-horizontal">
                                 <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Filter By</label>
+                                    <div class="col-md-4">
+                                        <select id="filterBy" name="filterBy" class="form-control">
+                                            <option value="1" selected>All</option>
+                                            <option value="0">Discipline</option>     
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Start Date</label>
                                     <div class="col-md-4">
                                         <input id="startDate" name="startDate"  type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
@@ -93,22 +102,28 @@
                     changeYear: true,
                     dateFormat: 'yy-mm-dd',
                 });
+
                 $("#endDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
                     dateFormat: 'yy-mm-dd',
                 });
+
                 $('#printDrugOrder').on('click', function () {
+
+                    $('<div class="loading">Loading</div>').appendTo('body');
 
                     var startDate = $('#startDate').val();
                     var endDate = $('#endDate').val();
+                    var filterBy = $('#filterBy').val();
+
                     $.ajax({
                         type: "post",
                         url: "drugOrderListReport.jsp",
-                        data: {startDate: startDate, endDate: endDate},
+                        data: {startDate: startDate, endDate: endDate, filterBy: filterBy},
                         timeout: 3000,
                         success: function (returnHtml) {
-                            //console.log(returnHtml);
+
                             $('#totalDrugs').html(returnHtml);
 
                         }, error: function () {
@@ -118,7 +133,7 @@
                     });
 
                 });
-                
+
                 $('#PrintReset').on('click', function () {
 
                     $('#startDate').val('');
