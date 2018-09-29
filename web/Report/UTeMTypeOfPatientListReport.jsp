@@ -79,7 +79,7 @@
                             <h4 style="margin: 0px; padding: 0;">Type Of Patient List</h4>
                             <hr class="pemisah"/>
                             <div class="form-group col-md-12" id="ReportFilturediv">
-                                <lebal class="col-md-4 control-label">BY:</lebal>
+                                <lebal class="col-md-4 control-label">Discipline:</lebal>
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
                                         <option value="all">All</option>
@@ -96,11 +96,11 @@
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength=""/>
+                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength="" readonly=""/>
                                 </div>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength=""/>
+                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength="" readonly=""/>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -325,13 +325,13 @@
                                 }
                                 $('#UTemPTLReport tbody').empty();
                                 $('#UTemPTLReport').append(trHTML);
-                                $('#UTemPTLReport').destroy();
+                                //$('#UTemPTLReport').destroy();
                                 $('#UTemPTLReport').DataTable({
                                     pageLength: 15,
                                     initComplete: function (settings, json) {
                                         $('.loading').hide();
                                     },
-                                    "order": [[4, "asc"]],
+                                    "order": [[2, "asc"]],
                                     dom: 'Bfrtip',
                                     buttons: [
                                         {
