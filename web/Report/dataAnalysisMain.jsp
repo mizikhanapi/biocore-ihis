@@ -54,15 +54,15 @@
                                         <label class="col-md-4 control-label" for="textinput">From:</label>
                                         <div class="form-inline col-md-4">
                                             <div class="form-group">
-                                                <div class="col-md-4">
+                                                <div class="col-md-8">
                                                     <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="textinput">To:</label>
-                                                <div class="col-md-4">
-                                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
+                                                <div class="col-md-8">
+                                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
                                                 </div>
                                             </div>
                                         </div>

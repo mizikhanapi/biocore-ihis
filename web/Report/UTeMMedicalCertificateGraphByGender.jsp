@@ -150,7 +150,7 @@
             type: 'column'
         },
         title: {
-            text: 'Statistics of Patient Attendance'
+            text: 'Statistics of Medical Certificate'
         },
         subtitle: {
             text: 'By Gender, From '+'<%=displayFormatStartDate%>'+' To '+'<%=displayFormatEndDate%>'
