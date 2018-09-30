@@ -1002,11 +1002,13 @@ function convertEHR(ehr) {
                 DateFromMEC: MECData[5],
                 DateToMEC: MECData[6],
                 num1MEC: MECData[3],
-                num2MEC: MECData[4]
+                num2MEC: MECData[4],
+                typeMEC: MECData[7],
+                commentMEC: MECData[8]
             };
             _data.push(objMEC);
 
-            displayMCTS(objMEC.DateFromMEC, objMEC.DateToMEC, objMEC.num1MEC, objMEC.num2MEC);
+            displayMCTS(objMEC.DateFromMEC, objMEC.DateToMEC, objMEC.num1MEC, objMEC.num2MEC,objMEC.typeMEC,objMEC.commentMEC);
         } else if (header === "PRI") {
             PRI = EHRArry[i];
             var PRIData = convertNoteToData(PRI);

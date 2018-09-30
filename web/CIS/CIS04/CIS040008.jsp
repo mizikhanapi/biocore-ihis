@@ -51,6 +51,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Leave Type</label>
+                            <div class="col-md-12">
+                                <select class="form-control input-lg" name="leavetypeMEC" id="leavetypeMEC">
+                                    <option value="MC">MC</option>
+                                    <option value="TS">TIME SLIP</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Comments</label>
+                            <div class="col-md-12">
+                                <textarea class="form-control input-lg" name="commentMEC" id="commentMEC"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -128,6 +151,29 @@
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                             <input class="form-control input-lg num2MEC" type="text" name="num2" id="Unum2MEC"   placeholder="End End">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Leave Type</label>
+                            <div class="col-md-12">
+                                <select class="form-control input-lg" name="UleavetypeMEC" id="UleavetypeMEC">
+                                    <option value="MC">MC</option>
+                                    <option value="TS">TIME SLIP</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Comments</label>
+                            <div class="col-md-12">
+                                <textarea class="form-control input-lg" name="UcommentMEC" id="UcommentMEC"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

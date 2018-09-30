@@ -134,7 +134,9 @@ function getObjectMEC(msg){
         DateFromMEC: MECData[5],
         DateToMEC: MECData[6],
         num1MEC: MECData[3],
-        num2MEC: MECData[4]
+        num2MEC: MECData[4],
+        typeMEC: MECData[7],
+        commentMEC: MECData[8]
     };
 
     return objMEC;
@@ -410,8 +412,8 @@ function convertPNT(obj) {
 
 function convertMEC(obj, ccnProblem, dgsProblem) {
 
-    var msg = "MEC|" + episodeDate + "|" + dgsProblem + "ICD10^^" + ccnProblem + "ICD10^^^" + obj.num1MEC + "^" + obj.num2MEC + "^" + obj.DateFromMEC + "^" + obj.DateToMEC + "^^^^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
-    return msg
+    var msg = "MEC|" + episodeDate + "|" + dgsProblem + "ICD10^^" + ccnProblem + "ICD10^^^" + obj.num1MEC + "^" + obj.num2MEC + "^" + obj.DateFromMEC + "^" + obj.DateToMEC + "^"+obj.typeMEC +"^"+obj.commentMEC+"^^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+    return msg;
 }
 
 function convertARQ(obj) {

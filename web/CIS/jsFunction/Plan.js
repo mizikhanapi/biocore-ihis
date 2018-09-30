@@ -492,9 +492,11 @@ $(document).ready(function () {
             var DateTo = $('#DateToMEC').val();
             var num1 = $('#num1MEC').val();
             var num2 = $('#num2MEC').val();
+            var typeMEC = $('#leavetypeMEC').val();
+            var commentMEC = $('#commentMEC').val();
 
 
-            var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC');
+            var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC,#leavetypeMEC,#commentMEC');
             var obj1 = {
                 Acode: "MEC"
             };
@@ -504,12 +506,13 @@ $(document).ready(function () {
             });
 
             _data.push(obj1);
-            displayMCTS(DateFrom, DateTo, num1, num2);
+            displayMCTS(DateFrom, DateTo, num1, num2,typeMEC,commentMEC);
             $("#DateFromMEC").val("");
             $("#DateToMEC").val("");
             $("#num1MEC").val("");
             $("#num2MEC").val("");
-
+            $('#leavetypeMEC').val("");
+            $('#commentMEC').val("");
             $("#CIS040008").modal('toggle');
             // $(".modal-backdrop").hide();
         }else {
@@ -530,6 +533,8 @@ $(document).ready(function () {
         $('#UDateToMEC').val(updateObj.DateToMEC);
         $('#Unum1MEC').val(updateObj.num1MEC);
         $('#Unum2MEC').val(updateObj.num2MEC);
+        $('#UleavetypeMEC').val(updateObj.typeMEC);
+        $('#UcommentMEC').text(updateObj.commentMEC);
 
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
@@ -544,13 +549,17 @@ $(document).ready(function () {
         var _DDateTo = $('#UDateToMEC').val();
         var _nnum1 = $('#Unum1MEC').val();
         var _nnum2 = $('#Unum2MEC').val();
+        var _typeMEC = $('#UleavetypeMEC').val();
+        var _commentMEC = $('#UcommentMEC').val();
 
         upObject.DateFromMEC = _DDateFrom;
         upObject.DateToMEC = _DDateTo;
         upObject.num1MEC = _nnum1;
         upObject.num2MEC = _nnum2;
+        upObject.typeMEC = _typeMEC;
+        upObject.commentMEC = _commentMEC;
 
-        var sum = "Date Start : " + _DDateFrom + '</br> Date End: ' + _DDateTo + ' </br> Time Start : ' + _nnum1 + '</br> Time End:  ' + _nnum2;
+        var sum = "Date Start : " + _DDateFrom + '</br> Date End: ' + _DDateTo + ' </br> Time Start : ' + _nnum1 + '</br> Time End:  ' + _nnum2 + '</br> Leave Type:  ' + _typeMEC + '</br> Comments:  ' + _commentMEC;
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040008").modal('toggle');
@@ -1492,8 +1501,8 @@ function displayPOS(Problem18, proType, procedure_cd) {
     i = i + 1;
 }
 
-function displayMCTS(DateFrom, DateTo, num1, num2) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + DateFrom + '</br> Date End :' + DateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayMCTS(DateFrom, DateTo, num1, num2,typeMEC,commentMEC) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + DateFrom + '</br> Date End :' + DateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</br> Leave Type :' + typeMEC+ '</br> Comments :' + commentMEC +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#MCTSNotes').append(_tr);
     i = i + 1;
 }
