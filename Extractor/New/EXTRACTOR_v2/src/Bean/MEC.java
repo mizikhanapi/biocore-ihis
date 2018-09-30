@@ -22,6 +22,7 @@ public class MEC {
     private String Complaint_Code_ICD10;
     private String Complaint_Desc_ICD10;
     private String Comments;
+    private String typeLeave;
     private String Time_From;
     private String Time_To;
     private String Date_From;
@@ -344,5 +345,16 @@ public class MEC {
     public void setDoctor_Name(String Doctor_Name) {
         this.Doctor_Name = Doctor_Name;
     }
+
+    public String getTypeLeave() {
+        return typeLeave;
+    }
+
+    public void setTypeLeave(String typeLeave) {
+        this.typeLeave = typeLeave;
+    }
+    
+    
+    
 
 }

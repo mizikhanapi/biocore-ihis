@@ -68,8 +68,10 @@ public class lhr_MEC {
                     mecBean.setTime_To(alMec.get(2).get(total + 2));
                     mecBean.setDate_From(alMec.get(2).get(total + 3));
                     mecBean.setDate_To(alMec.get(2).get(total + 4));
-                    mecBean.setTxn_Date(alMec.get(2).get(total + 5));
-                    mecBean.setStatus(alMec.get(2).get(total + 6));
+                    //mecBean.setTxn_Date(alMec.get(2).get(total + 5));
+                    //mecBean.setStatus(alMec.get(2).get(total + 6));
+                    mecBean.setComments(alMec.get(2).get(total + 6));
+                    mecBean.setTypeLeave(alMec.get(2).get(total + 5));
 
 //                            //                            
                     if (alMec.get(2).get(total + 7).isEmpty() || alMec.get(2).get(total + 7).equalsIgnoreCase("-") || alMec.get(2).get(total + 7).equalsIgnoreCase(" ")) {
@@ -102,7 +104,8 @@ public class lhr_MEC {
                             + "discipline_cd,"
                             + "subdiscipline_cd,"
                             + "created_by,"
-                            + "created_date)"
+                            + "created_date,"
+                            + "leave_type)"
                             + "values ('" + mecBean.getPMI_No() + "',"
                             + "'" + mecBean.getHFC() + "',"
                             + "'" + mecBean.getEpisode_Date() + "',"
@@ -121,7 +124,8 @@ public class lhr_MEC {
                             + "'"+msh.getSendingFacilityDis()+"',"
                             + "'"+msh.getSendingFacilitySubDis()+"',"
                             + "'"+mecBean.getDoctor_ID()+"',"
-                            + "'"+msh.getDateTime()+"')";
+                            + "'"+msh.getDateTime()+"',"
+                            + "'"+mecBean.getTypeLeave()+"')";
 
                     try {
                         status_lhr_ml = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_ml);
