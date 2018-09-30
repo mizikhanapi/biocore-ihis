@@ -68,7 +68,9 @@
             $(document).ready(function () {
                 $("#SearchPatientTCdiv").load("searchTs.jsp");
                 //$("#tsTableDivision").load("tsTable.jsp");
-
+                
+                
+                
                 $(document).ready(function () {
                     $.ajax({
                         type: "post",

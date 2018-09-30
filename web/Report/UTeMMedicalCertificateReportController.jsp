@@ -27,7 +27,7 @@
                 + " adm_lookup_det.`Description` AS Gender_name,"
                 + " ml.start_date,ml.end_date,ml.centre_code,"
                 + " b.`NATIONALITY`, adm_lookup_det1.`Description` AS Nationality_name,"
-                + " s.symptom_name, ml.doctor_name, ml.EPISODE_DATE "
+                + " s.symptom_name, ml.doctor_name, DATE_FORMAT(ml.EPISODE_DATE,'%d/%m/%Y %H:%i:%s') "
                 + " FROM lhr_med_leave ml INNER JOIN lhr_signs s"
                 + " ON ml.`PMI_NO` = s.pmi_no"
                 + " AND ml.episode_date = s.episode_date"

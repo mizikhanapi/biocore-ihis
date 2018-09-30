@@ -14,6 +14,7 @@
     Conn conn = new Conn();
     String tsType = request.getParameter("tsType");
     String tsInput = request.getParameter("tsInput");
+    String tsDate = request.getParameter("tsDate");
 //    String episodeDate2 = request.getParameter("episodeDate2");
 
 %>

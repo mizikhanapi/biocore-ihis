@@ -50,6 +50,12 @@
             <input type="text" class="form-control input-md" id="tsInput" name="tsInput" placeholder="ID" maxlength=""/>
         </div>
     </div>
+    <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Date:</label>
+                                <div class="col-md-4">
+                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
+                                </div>
+                            </div>
     <div class="text-center">
         <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
 
@@ -80,7 +86,19 @@
     $('#searchPatient').on('click', function () {
         searchPatient();
     });
+    
+    $("#startDate").datepicker({
+                dateFormat: 'yy-mm-dd',
+                yearRange: '1999:c+1',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1999, 10 - 1, 25),
+                maxDate: '+30Y',
+                onSelect: function (selected) {
+                    $("#startDate").datepicker("option", "minDate", selected);
 
+                }
+            });
 
     //seaching patient function   
     function searchPatient() {
@@ -95,19 +113,23 @@
         } else if (opt === "-") {
             //if the select box is not selected
             alert('Please select ID Type first.');
+        } else if ($("#startDate").val()==="" || $("#startDate").val()===" ") {
+            //if the select box is not selected
+            alert('Please select date first');
         } else {
             //if the select box is choosen and the input in key-in.
 
             //get value from text box and select box
             var tsType = $('#tsType').find(":selected").val();
             var tsInput = $('#tsInput').val();
+            var tsdate = $("#startDate").val();
 
             //run the MAIN ajax function
             $.ajax({
                 async: true,
                 type: "POST",
                 url: "tsTable.jsp",
-                data: {'tsType': tsType, 'tsInput': tsInput},
+                data: {'tsType': tsType, 'tsInput': tsInput,'tsDate':tsdate},
                 timeout: 10000,
                 success: function (list) {
 

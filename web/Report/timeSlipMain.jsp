@@ -102,25 +102,37 @@
 
 <script>
 
-    $(document).ready(function ()) {
 
+//        $("#startDate").datepicker({
+//            changeMonth: true,
+//            changeYear: true,
+//            dateFormat: 'yy-mm-dd'
+//        });
+        
         $("#startDate").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'yy-mm-dd',
-        });
+                dateFormat: 'yy-mm-dd',
+                yearRange: '1999:c+1',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1999, 10 - 1, 25),
+                maxDate: '+30Y',
+                onSelect: function (selected) {
+                    $("#startDate").datepicker("option", "minDate", selected);
+
+                }
+            });
 
         $('#printTimeSlip').on('click', function (e) {
 
             e.preventDefault();
 
             var tsType = $("#tsType").val();
-            var tsInput = $("#tsInput").val();
+            var tsInput = $("#startDate").val();
             console.log(tsType);
             console.log(tsInput);
 
             window.open("timeslip.jsp?tsType=" + tsType + "&tsInput=" + tsInput);
 
         });
-    });
+ 
 </script>

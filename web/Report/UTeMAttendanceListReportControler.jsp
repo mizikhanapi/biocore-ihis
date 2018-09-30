@@ -21,7 +21,7 @@
      
      query = "Select  e.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
-            +" e.DOCTOR, adm_users.`USER_NAME`, e.EPISODE_DATE,d.icd10_description,ty.description,IF(STRCMP(ssi.person_type,1) = 0, 'Student', 'Staff') "
+            +" e.DOCTOR, adm_users.`USER_NAME`, DATE_FORMAT(e.EPISODE_DATE,'%d/%m/%Y %H:%i:%s'),d.icd10_description,ty.description,IF(STRCMP(ssi.person_type,1) = 0, 'Student', 'Staff') "
             +" FROM pms_episode e INNER JOIN pms_patient_biodata b"
             +" ON e.`PMI_NO` = b.`PMI_NO`"
             
@@ -54,7 +54,7 @@
          
       query = "Select  we.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
-            +" we.order_by, we.EPISODE_DATE, e.EPISODE_DATE,d.icd10_description,ty.description,IF(STRCMP(ssi.person_type,1) = 0, 'Student', 'Staff') "
+            +" we.order_by, DATE_FORMAT(we.EPISODE_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(e.EPISODE_DATE,'%d/%m/%Y %H:%i:%s'),d.icd10_description,ty.description,IF(STRCMP(ssi.person_type,1) = 0, 'Student', 'Staff') "
             +" FROM wis_inpatient_episode we INNER JOIN pms_patient_biodata b"
             +" ON we.`PMI_NO` = b.`PMI_NO` "
             
@@ -91,8 +91,8 @@
             }
         }
     } else {
-        out.print(query);
-        //out.print("No Data");
+        //out.print(query);
+        out.print("No Data");
     }
 
 %>

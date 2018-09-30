@@ -184,7 +184,7 @@
                                 <thead >
                                 <th style="text-align: center;">Patient Name</th>
                                 <th style="text-align: center;">Patient IC No.</th>
-                                <th style="text-align: center;">Patient Gander</th>
+                                <th style="text-align: center;">Patient Gender</th>
                                 <th style="text-align: center;">Consulting Doctor</th>
                                 <th style="text-align: center;">Episode Date</th>
                                 <th style="text-align: center;">Diagnosis</th>
