@@ -310,6 +310,8 @@
 //                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
+            
+           
             viewPAGraph();
 
             $("#patientAttandanceViewReportBtn").click(function () {
@@ -403,12 +405,13 @@
 
 
             $("#searchPatientAttendance").click(function () {
-                var patientType, startDate, endDate;
+                var patientType, startDate, endDate,startDateori,endDateori;
 
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
-
+                startDateori = $("#dateFrom").val();
+                endDateori = $("#dateTo").val();    
 
                 if (startDate === "") {
                     alert("Select Start Date.");
@@ -438,7 +441,7 @@
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
-                            console.log(reply);
+                            //console.log(reply);
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
@@ -472,7 +475,7 @@
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Patient Attendance List, From ' + startDate + ' To ' + endDate,
+                                            title: 'Patient Attendance List, From ' + startDateori + ' To ' + endDateori,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -480,7 +483,7 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Patient Attendance List, From ' + startDate + ' To ' + endDate,
+                                            title: 'Patient Attendance List, From ' + startDateori + ' To ' + endDateori,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -504,7 +507,7 @@
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
                                         <p>Discipline: <strong>' + patientType + '</strong></p>\n\
-                                        <p>Date: From <strong>' + startDate + ' </strong>  To <strong>' + endDate + '</strong> </p>\n\
+                                        <p>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

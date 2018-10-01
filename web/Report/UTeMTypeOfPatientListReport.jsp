@@ -278,6 +278,9 @@
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
+                
+                var startDateori = $("#dateFrom").val();
+                var endDateori = $("#dateTo").val();
 
 
                 if (startDate === "") {
@@ -307,6 +310,7 @@
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
+                            //console.log(reply);
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
@@ -337,7 +341,7 @@
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Patient Type List, From ' + startDate + ' To ' + endDate,
+                                            title: 'Patient Type List, From ' + startDateori + ' To ' + endDateori,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -345,7 +349,7 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Patient Type List, From ' + startDate + ' To ' + endDate,
+                                            title: 'Patient Type List, From ' + startDateori + ' To ' + endDateori,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -369,7 +373,7 @@
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
                                         <p>Discipline: <strong>' + patientType + '</strong></p>\n\
-                                        <p>Date: From <strong>' + startDate + ' </strong>  To <strong>' + endDate + '</strong> </p>\n\
+                                        <p>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

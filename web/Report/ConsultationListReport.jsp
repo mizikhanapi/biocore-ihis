@@ -264,6 +264,9 @@
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
+                
+                 var startDateori = $("#dateFrom").val();
+                var endDateori = $("#dateTo").val();
 
 
                 if (startDate === "") {
@@ -325,7 +328,7 @@
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Consultation List, From ' + startDate + ' To ' + endDate,
+                                            title: 'Consultation List, From ' + startDateori + ' To ' + endDateori,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -333,14 +336,14 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Consultation List, From ' + startDate + ' To ' + endDate,
+                                            title: 'Consultation List, From ' + startDateori + ' To ' + endDateori,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
                                             }
                                         }, {
                                             extend: 'print',
-                                            text: 'Consultation List',
+                                            text: 'Print Consultation List',
                                             title: '',
                                             message: '<br><br>',
                                             className: 'btn btn-primary',
@@ -356,7 +359,7 @@
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
-                                        <p>Date: From <strong>' + startDate + ' </strong>  To <strong>' + endDate + '</strong> </p>\n\
+                                        <p>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

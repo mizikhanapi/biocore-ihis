@@ -57,7 +57,7 @@
                 + "and a.master_reference_code ='0033' "
                 + "and p.health_facility_code = '"+hfc+"' "
                 + "and p.health_facility_code = a.hfc_cd "
-                + "and p.discipline_cd = '"+patientType+"' "
+                + "and p.discipline_code = '"+patientType+"' "
                 + "and cast(p.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "' "
                 + "group by p.patient_category_code;";
     }   
@@ -74,7 +74,6 @@
             }
         }
     } else {
-        
         out.print("No Data");
     }
 
