@@ -16,8 +16,7 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String hfc_name = session.getAttribute("HFC_NAME").toString();
     String dis_names = "";
-    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'"
-            + " and (discipline_name like '%Inpatient%' or discipline_name like '%Outpatient%')  ";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
     ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
     for (int x = 0; x < mysqldis_name.size(); x++) {
         dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
@@ -151,8 +150,12 @@
                                 <lebal class="col-md-4 control-label">By:</lebal>
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
-                                        <option>Inpatient</option>
-                                        <option>Outpatient</option>
+                                        <option value="all">All</option>
+                                        <%
+                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                            }
+                                        %>
                                     </select>
                                 </div>
                             </div>
@@ -441,7 +444,7 @@
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
-                            //console.log(reply);
+                            console.log(reply);
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
@@ -451,14 +454,17 @@
                                 for (i = 0; i < dataRow.length; i++)
                                 {
                                     var datas = dataRow[i].split("|");
-                                    if (patientType === "Outpatient") {
+                                    if (patientType === "all") {
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
                                     <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
-                                    } else if (patientType === "Inpatient") {
+                                    } else if (patientType === "002") {
 
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
                                     <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
 
+                                    }else{
+                                        trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
+                                    <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
                                     }
 
 
@@ -499,15 +505,13 @@
                                                         .css('font-size', '10pt')
                                                         .prepend(
                                                                 '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Patient Attendance List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Patient Attendance List<br/><h5>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </h5>\n\</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>PMS-001</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
-                                        <p>Facility: <strong><%=hfc_name%></strong></p>\n\
                                         <p>Discipline: <strong>' + patientType + '</strong></p>\n\
-                                        <p>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

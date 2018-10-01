@@ -18,12 +18,14 @@
     startDate = request.getParameter("startDate").toString();
     endDate = request.getParameter("endDate").toString();
     hfc = request.getParameter("hfc").toString();
+    String dis = request.getParameter("dis");
 //    startDate = "2017-08-01";
 //    endDate = "2017-08-28";
 //    hfc = "04010101";
 
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
-        query = "Select distinct b.`NEW_IC_NO`, b.`PATIENT_NAME`, b.SEX_CODE ,"
+        if(dis.equalsIgnoreCase("all")){
+            query = "Select distinct b.`NEW_IC_NO`, b.`PATIENT_NAME`, b.SEX_CODE ,"
                 + " adm_lookup_det.`Description` AS Gender_name,"
                 + " ml.start_date,ml.end_date,ml.centre_code,"
                 + " b.`NATIONALITY`, adm_lookup_det1.`Description` AS Nationality_name,"
@@ -32,6 +34,7 @@
                 + " ON ml.`PMI_NO` = s.pmi_no"
                 + " AND ml.episode_date = s.episode_date"
                 + " AND ml.hfc_cd = s.hfc_cd"
+                + " AND ml.discipline_cd = s.discipline_cd"
                 + " INNER JOIN pms_patient_biodata b"
                 + " ON b.`PMI_NO` = ml.`PMI_NO`"
                 + " INNER join adm_lookup_detail adm_lookup_det "
@@ -44,6 +47,31 @@
                 + " AND adm_lookup_det1.`Master_Reference_code` like '0011' "
                 + " WHERE cast(ml.EPISODE_DATE as date) BETWEEN '" + startDate + "' AND '" + endDate + "'"
                 + " AND s.hfc_cd = '" + hfc + "'";
+        }else{
+            query = "Select distinct b.`NEW_IC_NO`, b.`PATIENT_NAME`, b.SEX_CODE ,"
+                + " adm_lookup_det.`Description` AS Gender_name,"
+                + " ml.start_date,ml.end_date,ml.centre_code,"
+                + " b.`NATIONALITY`, adm_lookup_det1.`Description` AS Nationality_name,"
+                + " s.symptom_name, ml.doctor_name, DATE_FORMAT(ml.EPISODE_DATE,'%d/%m/%Y %H:%i:%s') "
+                + " FROM lhr_med_leave ml INNER JOIN lhr_signs s"
+                + " ON ml.`PMI_NO` = s.pmi_no"
+                + " AND ml.episode_date = s.episode_date"
+                + " AND ml.hfc_cd = s.hfc_cd"
+                + " AND ml.discipline_cd = s.discipline_cd"
+                + " INNER JOIN pms_patient_biodata b"
+                + " ON b.`PMI_NO` = ml.`PMI_NO`"
+                + " INNER join adm_lookup_detail adm_lookup_det "
+                + " ON adm_lookup_det.`Detail_Reference_code` = b.SEX_CODE "
+                + " AND adm_lookup_det.`hfc_cd` = ml.`hfc_cd` "
+                + " AND adm_lookup_det.`Master_Reference_code` like '0041' "
+                + " INNER join adm_lookup_detail adm_lookup_det1 "
+                + " ON adm_lookup_det1.`Detail_Reference_code` = b.`NATIONALITY` "
+                + " AND adm_lookup_det1.`hfc_cd` = ml.`hfc_cd` "
+                + " AND adm_lookup_det1.`Master_Reference_code` like '0011' "
+                + " WHERE cast(ml.EPISODE_DATE as date) BETWEEN '" + startDate + "' AND '" + endDate + "'"
+                + " AND s.hfc_cd = '" + hfc + "' and ml.discipline_cd = '"+dis+"'";
+        }
+        
 
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
         ArrayList<ArrayList<String>> medicalCertificateInfo = conn.getData(query);
@@ -58,7 +86,7 @@
                 }
             }
         } else {
-
+                
             out.print("No Data");
         }
 
