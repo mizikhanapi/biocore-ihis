@@ -352,7 +352,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Diagnosis List<br/><h5>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </h5></div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PMS-001</strong></dd>\n\
+                                        <dd>Report No: <strong>CIS-002</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Discipline: <strong>'+disnama+'</strong></p>\n\
