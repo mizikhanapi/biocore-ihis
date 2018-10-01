@@ -81,7 +81,7 @@
                                 <div class="text-center h3" style="margin: 0;">
                                     Statistic of <span id="REP_statTitle"></span> 
                                     <span class="pull-left" >
-                                        <a href="UTeMAttendanceListReport.jsp"><button class="btn btn-primary btn-block" >Produce Report</button> </a>                                 
+                                        <a href="UTeMAttendanceListReport.jsp"><button id="waitingTimeReportBtn" type="submit" class="btn btn-default btn-block" >Produce Report</button> </a>                                 
                                     </span>
                                     <span class="pull-right" >
                                         <a id="REP_btnRefresh" title="Refresh the statistic.">
@@ -157,7 +157,93 @@
 
                         </div>
                     </div>
-                        
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default panel-report">
+                                        <div class="panel-heading">
+                                            Module Reports
+                                        </div>
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#OUTPATIENT">OUTPATIENT REGISTRATION</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#OUTPATIENT">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="OUTPATIENT" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
+                                                <li class="list-group-item"><a href="UTeMMedicalCertificateReport.jsp">Medical Certificate List</a></li>
+                                                <li class="list-group-item"><a href="UTeMTypeOfPatientListReport.jsp">Type Of Patient List</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#CONSULTATION">PATIENT CONSULTATION</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#CONSULTATION">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="CONSULTATION" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
+                                                <li class="list-group-item"><a href="medicalReportMain.jsp">Reprint Medical Report</a></li>
+                                                <li class="list-group-item"><a href="timeSlipMain2.jsp">Reprint Time Slip</a></li>
+                                                <li class="list-group-item"><a href="ConsultationListReport.jsp">Consultation List</a></li>
+                                                <li class="list-group-item"><a href="DiagnosisList.jsp">Diagnosis List</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- 
+                                            <div class="panel-heading">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">PHARMACY INFO SYSTEM</a>
+                                                <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">
+                                                    <i class="glyphicon glyphicon-chevron-down"></i>
+                                                </span>
+                                            </div>
+
+                                            <div id="PHARMACY" class="panel-collapse panel-collapse collapse">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
+                                                    <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
+                                                </ul>
+                                            </div>
+                                        -->
+                                        
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#ADMINISTRATOR">SYSTEM ADMINISTRATOR</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#ADMINISTRATOR">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="ADMINISTRATOR" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="WaitingTime.jsp">Waiting Time Report (KPI Report)</a></li>
+                                                <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
+                                                <li class="list-group-item"><a href="laporanKosPerubatan.jsp">Report Health Cost </a></li>
+                                                <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
+                                                <!-- <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li> -->
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                            
+                                            
                                             
                 </div>
             </div>

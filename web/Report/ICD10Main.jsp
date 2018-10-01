@@ -40,11 +40,11 @@
                             <div class="form-inline" style="text-align: center;">
                                 <div class="form-group">
                                     <label for="exampleInputName2">Start Date</label>
-                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly >
+                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="Select Start Date" readonly >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">to</label>
-                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly >
+                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="Select End Date" readonly >
                                 </div>
 
                             </div>
