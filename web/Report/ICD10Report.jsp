@@ -68,7 +68,7 @@
 
         } else {
             //where = " WHERE Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND HFC_Cd='" + my_1_hfc_cd + "' AND Centre_Code = '" + disp + "' GROUP BY diagnosis_cd ORDER BY diagnosis_cd ASC";
-            where = "WHERE l.Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND l.HFC_Cd='" + my_1_hfc_cd + "' AND l.Centre_Code = '" + disp + "' and l.pmi_no = p.pmi_no GROUP BY diagnosis_cd order by l.pmi_no;";
+            where = "WHERE l.Episode_Date BETWEEN '" + startDate + "' AND '" + endDate + "' AND l.HFC_Cd='" + my_1_hfc_cd + "' AND l.discipline_cd = '" + disp + "' and l.pmi_no = p.pmi_no GROUP BY diagnosis_cd order by l.pmi_no;";
 
         }
         //                          0               1           2
