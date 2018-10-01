@@ -14,7 +14,6 @@
     Conn conn = new Conn();
     String tsType = request.getParameter("tsType");
     String tsInput = request.getParameter("tsInput");
-    String tsDate = request.getParameter("tsDate");
 //    String episodeDate2 = request.getParameter("episodeDate2");
 
 %>
@@ -34,13 +33,13 @@
 </thead>
 <%  String sql = "";
     if (tsType.equals("001")) {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "' and b.leave_type='TS'";
     } else if (tsType.equals("002")) {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + tsInput + "' and b.leave_type='TS'";
     } else if (tsType.equals("003")) {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + tsInput + "' and b.leave_type='TS'";
     } else {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + tsInput + "' and b.leave_type='TS'";
     }
     ArrayList<ArrayList<String>> ts = conn.getData(sql);
 
@@ -70,7 +69,8 @@
                            'start_time': "<%=ts.get(i).get(3)%>",
                            'end_time': "<%=ts.get(i).get(4)%>",
                            'comment': "<%=ts.get(i).get(5)%>",
-                           'ic': "<%=ts.get(i).get(6)%>"},
+                           'ic': "<%=ts.get(i).get(6)%>",
+                            'id': "<%=ts.get(i).get(7)%>"},
                            
                     timeout: 10000,
                     success: function (list) {

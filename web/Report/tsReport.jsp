@@ -55,6 +55,7 @@
     String end_time = request.getParameter("end_time");
     String comment = request.getParameter("comment");
     String ic = request.getParameter("ic");
+    String idNo = request.getParameter("id");
 
     //out.print(start_date+" "+end_date);
     //27-04-2017 23-05-2017
@@ -79,7 +80,7 @@
     <div class="col-md-12">
         <p>Kepada:&nbsp;<strong>....................................................................................................................<%%></strong></p>
         <p> Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
-        <p>No. STAFF/MATRIKS:&nbsp;<strong><%=pmi%></strong>&nbsp;&nbsp;&nbsp;&nbsp; No. KP:&nbsp;<strong><%=ic%></strong></p>
+        <p>No. STAFF/MATRIKS:&nbsp;<strong><%=idNo%></strong>&nbsp;&nbsp;&nbsp;&nbsp; No. KP:&nbsp;<strong><%=ic%></strong></p>
     </div>
 </div>
 
