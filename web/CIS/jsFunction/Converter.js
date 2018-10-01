@@ -412,7 +412,7 @@ function convertPNT(obj) {
 
 function convertMEC(obj, ccnProblem, dgsProblem) {
 
-    var msg = "MEC|" + episodeDate + "|" + dgsProblem + "ICD10^^" + ccnProblem + "ICD10^^^" + obj.num1MEC + "^" + obj.num2MEC + "^" + obj.DateFromMEC + "^" + obj.DateToMEC + "^"+obj.typeMEC +"^"+obj.commentMEC+"^^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+    var msg = "MEC|" + episodeDate + "|" + dgsProblem + "ICD10^^" + ccnProblem + "ICD10^^^" + obj.num1MEC + "^" + obj.num2MEC + "^" + obj.DateFromMEC + "^" + obj.DateToMEC + "^"+ obj.typeMEC +"^"+obj.commentMEC+"^^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
     return msg;
 }
 

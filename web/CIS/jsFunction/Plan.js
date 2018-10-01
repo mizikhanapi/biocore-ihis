@@ -496,15 +496,15 @@ $(document).ready(function () {
             var commentMEC = $('#commentMEC').val();
 
 
-            var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC,#leavetypeMEC,#commentMEC');
+            var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC,#commentMEC');
             var obj1 = {
-                Acode: "MEC"
+                Acode: "MEC",typeMEC:typeMEC
             };
 
             $items.each(function () {
                 obj1[this.id] = $(this).val();
             });
-
+            
             _data.push(obj1);
             displayMCTS(DateFrom, DateTo, num1, num2,typeMEC,commentMEC);
             $("#DateFromMEC").val("");
