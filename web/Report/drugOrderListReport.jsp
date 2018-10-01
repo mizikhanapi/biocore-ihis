@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="org.json.JSONObject"%>
@@ -26,8 +27,14 @@
     String filterBy = request.getParameter("filterBy");
 
     String hfccd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-
-
+    String discipline ="";
+    if(!filterBy.equalsIgnoreCase("all")){
+        String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfccd + "' and discipline_cd = '"+filterBy+"'";
+        ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+        discipline = mysqldis_name.get(0).get(1);
+    }else{
+        discipline = "ALL";
+    }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -51,7 +58,7 @@
     <tbody>
         <%            String sql = "";
 
-            if (filterBy.equals("0")) {
+            if (filterBy.equalsIgnoreCase("all")) {
 
                 sql = "SELECT COUNT(m.drug_cd), COUNT(distinct(m.pmi_no)), m.drug_cd, m.drug_name, pmd2.`D_SELL_PRICE`, m.hfc_cd, m.discipline_cd "
                         + " FROM lhr_medication m, pis_mdc2 pmd2 "
@@ -62,7 +69,7 @@
 
                 sql = "SELECT COUNT(m.drug_cd), COUNT(distinct(m.pmi_no)), m.drug_cd, m.drug_name, pmd2.`D_SELL_PRICE`, m.hfc_cd, m.discipline_cd "
                         + " FROM lhr_medication m, pis_mdc2 pmd2 "
-                        + " WHERE m.drug_cd = pmd2.`UD_MDC_CODE` AND m.hfc_cd = '" + hfccd + "' AND m.episode_date between '" + startDate + "' AND '" + endDate + "' "
+                        + " WHERE m.drug_cd = pmd2.`UD_MDC_CODE` AND m.hfc_cd = '" + hfccd + "' AND m.episode_date between '" + startDate + "' AND '" + endDate + "' and m.discipline_cd = '"+filterBy+"' "
                         + " group by m.drug_cd; ";
 
             }
@@ -74,6 +81,7 @@
             int size = ps.size();
             float totalUsage = 0f;
             float grandAmount = 0f;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
             for (int i = 0; i < size; i++) {
 
                 String drug_name = ps.get(i).get(4);
@@ -84,9 +92,11 @@
                 String price = ps.get(i).get(4);
                 float pri = Float.parseFloat(price);
                 float total_amt = drug * totPatient * pri;
+                total_amt = Float.valueOf(decimalFormat.format(total_amt));
 
                 totalUsage += drug;
                 grandAmount += total_amt;
+                grandAmount = Float.valueOf(decimalFormat.format(grandAmount));
 
                 //                empObj = new JSONObject();
                 //                empObj.put("drug_name", drug_name);
@@ -158,7 +168,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label" for="textinput">Grand Total (RM)</label>
                 <div class="col-md-4">
-                    <input id="reportYearlyGrandTotal" name="reportYearlyGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%= strGrand%>" readonly>
+                    <input id="reportYearlyGrandTotal" name="reportYearlyGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%=strGrand%>" readonly="">
                 </div>
             </div>
 
@@ -174,8 +184,16 @@
 %>
 
 <script>
+    var startdate,enddate;
+            startdate="<%=startDate%>";
+            enddate="<%=endDate%>";
+            var temp = startdate.split("-");
+             startdate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
+             temp = enddate.split("-");
+             enddate = temp[2] + "-" + temp[1] + "-" + temp[0];
     $(document).ready(function () {
+            
 
         $('#drugListTable').DataTable({
             initComplete: function (settings, json) {
@@ -215,7 +233,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Total Drug Cost List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Total Drug Cost List</div><p>Date: From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </p><p>Discipline:<strong><%=discipline%></strong></p>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         </div> '

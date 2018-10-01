@@ -3,10 +3,35 @@
     Created on : Feb 24, 2017, 9:11:25 PM
     Author     : user
 --%>
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.*"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="Config.Config"%>
+<%@page import="main.RMIConnector"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
+
+<%    Config.getBase_url(request);
+    Config.getFile_url(session);
+    Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = (String) session.getAttribute("DISCIPLINE_CODE");
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfc_name = session.getAttribute("HFC_NAME").toString();
+    String dis_names = "";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+    for (int x = 0; x < mysqldis_name.size(); x++) {
+        dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
+        if (x < mysqldis_name.size() - 1) {
+            dis_names += "^";
+        }
+    }
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +56,7 @@
         <!--<link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
         <%@include file = "../assets/header.html" %>
 
-        <title>Drug Order List and Total Amount</title>
+        <title>Health Cost Report</title>
     </head>
     <body>
         <!-- side bar -->
@@ -47,20 +72,31 @@
 
                     <div class="col-md-12">
                         <div class="thumbnail">
-                            <h2 style="margin: 0px;"> Laporan Kos Perubatan </h2>
+                            <h2 style="margin: 0px;"> Health Cost report </h2>
                             <hr class="pemisah" />
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Start Date</label>
-                                    <div class="col-md-4">
-                                        <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
-                                    </div>
+                            <div class="form-group col-md-12" id="ReportFilturediv">
+                                <lebal class="col-md-4 control-label">Discipline:</lebal>
+                                <div class="col-md-4">
+                                    <select id="patientType" class="form-control">
+                                        <option value="all">All</option>
+                                        <%
+                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                            }
+                                        %>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label  class="col-md-4 control-label" for="textinput">To</label>
-                                    <div class="col-md-4">
-                                        <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
-                                    </div>
+                            </div>
+                            
+                            <div class="form-group col-md-12">
+                                <label class="col-md-1 control-label" for="textinput">Date:</label>
+                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength="" readonly=""/>
+                                </div>
+                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength="" readonly=""/>
                                 </div>
                             </div>
                             <hr/>
@@ -98,32 +134,57 @@
 
             $(document).ready(function () {
 
-                $("#startDate").datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    dateFormat: 'yy-mm-dd'
-                });
-                $("#endDate").datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    dateFormat: 'yy-mm-dd'
-                });
+                $("#dateFrom").datepicker({
+                dateFormat: 'dd/mm/yy',
+                yearRange: '1999:c+1',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1999, 10 - 1, 25),
+                maxDate: '+30Y',
+                onSelect: function (selected) {
+
+                    $("#dateTo").datepicker("option", "minDate", selected);
+
+                }
+            });
+
+            $("#dateTo").datepicker({
+                dateFormat: 'dd/mm/yy',
+                yearRange: '1999:c+1',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1999, 10 - 1, 25),
+                maxDate: '+30Y',
+                onSelect: function (selected) {
+
+                    $("#dateFrom").datepicker("option", "maxDate", selected);
+
+                }
+            });
+            
                 $('#printLaporanKosPerubatan').on('click', function () {
 
-                    if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
+                    if ($('#dateFrom').val() === "" || $('#dateTo').val() === " ") {
                         //if the id/ic input is empty
                         alert('Please choose date to prooceed');
                     } else {
+                            
+                        var startDate = document.getElementById("dateFrom").value;
+                        var endDate = document.getElementById("dateTo").value;
+                        var disciplilne = $('#patientType').val();
+                        var temp = startDate.split("/");
+                        startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
-                        var startDate = document.getElementById("startDate").value;
-                        var endDate = document.getElementById("endDate").value;
+                        temp = endDate.split("/");
+                        endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
                         //alert(startDate+" / "+startDate);
                         createScreenLoading();
                         $.ajax({
                             async: true,
                             type: "POST",
                             url: "laporanKosPerubatanReport.jsp",
-                            data: {'startDate': startDate, 'endDate': endDate},
+                            data: {'startDate': startDate, 'endDate': endDate,'dis':disciplilne},
                             timeout: 10000,
                             success: function (list) {
                                 $('#cost').html(list);
@@ -138,8 +199,8 @@
                 
                 $('#PrintReset').on('click', function () {
 
-                    $('#startDate').val('');
-                    $('#endDate').val('');
+                    $('#dateFrom').val('');
+                    $('#dateTo').val('');
                     $('#cost').html('');
 
                 });

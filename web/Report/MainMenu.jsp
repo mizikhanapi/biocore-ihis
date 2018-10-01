@@ -229,7 +229,7 @@
                                                 <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
                                                 <li class="list-group-item"><a href="laporanKosPerubatan.jsp">Report Health Cost </a></li>
                                                 <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
-                                                <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li>
+                                                <!-- <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li> -->
                                             </ul>
                                         </div>
 
