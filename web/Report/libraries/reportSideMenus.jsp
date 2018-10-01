@@ -47,15 +47,15 @@
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="menu-content" >
         <li><a href="MainMenu.jsp"><i class="fa fa-home fa-lg" aria-hidden="true" ></i>Dashboard</a></li>
-        <li><a href="UTeMAttendanceListReport.jsp"><i class="fa fa-print fa-lg" aria-hidden="true" ></i>Patient Attendance List</a></li>
-        <li><a href="UTeMMedicalCertificateReport.jsp"><i class="fa fa-clock-o fa-lg" aria-hidden="true" ></i>Medical Certificate List</a></li>
-        <li><a href="UTeMTypeOfPatientListReport.jsp"><i class="fa fa-list-ul fa-lg" aria-hidden="true" ></i>Type Of Patient List</a></li>
+        <li><a href="UTeMAttendanceListReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Patient Attendance List</a></li>
+        <li><a href="UTeMMedicalCertificateReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Medical Certificate List</a></li>
+        <li><a href="UTeMTypeOfPatientListReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Type Of Patient List</a></li>
         <li><a href="mcMain2.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint MC</a></li>
-        <li><a href="medicalReportMain.jsp"><i class="fa fa-stethoscope fa-lg" aria-hidden="true" ></i>Reprint Medical Report</a></li>   
-        <li><a href="timeSlipMain2.jsp"><i class="fa fa-bar-chart fa-lg" aria-hidden="true" ></i>Reprint Time Slip</a></li>
-        <li><a href="ConsultationListReport.jsp"><i class="fa fa-money fa-lg" aria-hidden="true" ></i>Consultation List</a></li>
+        <li><a href="medicalReportMain.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint Medical Report</a></li>   
+        <li><a href="timeSlipMain2.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint Time Slip</a></li>
+        <li><a href="ConsultationListReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Consultation List</a></li>
         <li><a href="DiagnosisList.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Diagnosis List</a></li>
-        <li><a href="WaitingTime.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Waiting Time Report (KPI Report</a></li>
+        <li><a href="WaitingTime.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Waiting Time (KPI Report)</a></li>
         <li><a href="ICD10Main.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>ICD10</a></li>
         <li><a href="laporanKosPerubatan.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Report Health Cost </a></li>
         <li><a href="drugOrderList.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Total Drug Cost</a></li>
