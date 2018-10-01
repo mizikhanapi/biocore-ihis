@@ -200,21 +200,22 @@
                                         </div>
                                         <!-- Default panel contents -->
 
-                                        <!-- Default panel contents -->
-                                        <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">PHARMACY INFO SYSTEM</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">
-                                                <i class="glyphicon glyphicon-chevron-down"></i>
-                                            </span>
-                                        </div>
-                                        <!-- List group -->
-                                        <div id="PHARMACY" class="panel-collapse panel-collapse collapse">
-                                            <ul class="list-group">
-                                                <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
-                                                <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
-                                            </ul>
-                                        </div>
+                                        <!-- 
+                                            <div class="panel-heading">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">PHARMACY INFO SYSTEM</a>
+                                                <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">
+                                                    <i class="glyphicon glyphicon-chevron-down"></i>
+                                                </span>
+                                            </div>
 
+                                            <div id="PHARMACY" class="panel-collapse panel-collapse collapse">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
+                                                    <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
+                                                </ul>
+                                            </div>
+                                        -->
+                                        
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#ADMINISTRATOR">SYSTEM ADMINISTRATOR</a>

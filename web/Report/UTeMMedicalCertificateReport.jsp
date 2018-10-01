@@ -351,7 +351,8 @@
                 var startDate, endDate;
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
-
+                var startDateori = $("#dateFrom").val();
+                var endDateori = $("#dateTo").val();
                
 
                 if (startDate === "") {
@@ -452,7 +453,7 @@
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
-\n\                                     <p>Date: From <strong>' + startDate + ' </strong>  To <strong>' + endDate + '</strong> </p>\n\
+\n\                                     <p>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')
