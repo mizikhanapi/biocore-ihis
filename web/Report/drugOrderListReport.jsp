@@ -188,10 +188,10 @@
             startdate="<%=startDate%>";
             enddate="<%=endDate%>";
             var temp = startdate.split("-");
-             startdate = temp[2] + "-" + temp[1] + "-" + temp[0];
+             startdate = temp[2] + "/" + temp[1] + "/" + temp[0];
 
              temp = enddate.split("-");
-             enddate = temp[2] + "-" + temp[1] + "-" + temp[0];
+             enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
     $(document).ready(function () {
             
 
@@ -233,9 +233,10 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Total Drug Cost List</div><p>Date: From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </p><p>Discipline:<strong><%=discipline%></strong></p>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Total Drug Cost List<br/><h5>From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </h5></div><p>Discipline : <strong><%=discipline%></strong></p>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
+\n\                                     <dd>Report Id: <strong>SAM-0004</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')

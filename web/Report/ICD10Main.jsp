@@ -59,12 +59,12 @@
                                                 <option value="All">All</option>
                                                 <%  Conn conn = new Conn();
                                                     String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-                                                    String sql = "SELECT DISTINCT Centre_Code FROM lhr_diagnosis WHERE HFC_Cd = '" + my_1_hfc_cd + "' ";
+                                                    String sql = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + my_1_hfc_cd + "'  ";
                                                     ArrayList<ArrayList<String>> ICD10 = conn.getData(sql);
                                                     int size = ICD10.size();
                                                     for (int i = 0; i < size; i++) {
                                                 %>
-                                                <option value="<%= ICD10.get(i).get(0)%>"><%= ICD10.get(i).get(0)%></option>
+                                                <option value="<%= ICD10.get(i).get(0)%>"><%= ICD10.get(i).get(1)%></option>
 
                                                 <%
                                                     }

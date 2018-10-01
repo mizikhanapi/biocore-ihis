@@ -189,10 +189,10 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Health Cost Report<br/><h5>Date : From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </h5></div><p>Discipline :<strong><%=discipline%></strong></p>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Health Cost Report<br/><h5>From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </h5></div><p>Discipline : <strong><%=discipline%></strong></p>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-\n\                                     <dd>Report Id: <strong><%=reportid%></strong></dd>\n\
+\n\                                     <dd>Report Id: <strong>SAM-0003</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
