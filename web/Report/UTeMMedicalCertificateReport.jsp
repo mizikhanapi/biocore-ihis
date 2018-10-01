@@ -20,10 +20,16 @@
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String hfc_name = session.getAttribute("HFC_NAME").toString();
-//    
-//     String dis_name_query = "SELECT discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' AND discipline_cd='" + dis + "'";
-//    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
-//    String dis_name = mysqldis_name.get(0).get(0);
+    
+    String dis_names = "";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+    for (int x = 0; x < mysqldis_name.size(); x++) {
+        dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
+        if (x < mysqldis_name.size() - 1) {
+            dis_names += "^";
+        }
+    }
 %>
 
 <%    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -133,7 +139,19 @@
                         <form>
                             <h4 style="margin: 0px; padding: 0;">Medical Certificate List</h4>
                             <hr class="pemisah"/>
-
+                            <div class="form-group col-md-12" id="ReportFilturediv">
+                                <lebal class="col-md-4 control-label">Discipline:</lebal>
+                                <div class="col-md-4">
+                                    <select id="patientType" class="form-control">
+                                        <option value="all">All</option>
+                                        <%
+                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group col-md-12">
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
@@ -348,12 +366,12 @@
             });
 
             $("#searchMedicalCertificate").click(function () {
-                var startDate, endDate;
+                var startDate, endDate,filterby;
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
                 var startDateori = $("#dateFrom").val();
                 var endDateori = $("#dateTo").val();
-               
+               var filterby = $('#patientType').val();
 
                 if (startDate === "") {
                     alert("Select Start Date.");
@@ -361,6 +379,8 @@
                     alert("Select End Date.");
                 } else if (convfertDate(startDate) > convfertDate(endDate)) {
                     alert("Incorrect date range, Start-Date Should be before End-Date.");
+                } else if (filterby==="") {
+                    alert("Select discipline first.");
                 } else {
 
                     var temp = startDate.split("/");
@@ -372,7 +392,8 @@
                     var data = {
                         "startDate": startDate,
                         "endDate": endDate,
-                        "hfc": "<%=hfc%>"
+                        "hfc": "<%=hfc%>",
+                        "dis":filterby
                     };
 //                    console.log(data);
                     $.ajax({
