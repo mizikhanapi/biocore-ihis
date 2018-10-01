@@ -19,6 +19,7 @@
     endDate = request.getParameter("endDate").toString();
     hfc = request.getParameter("hfc").toString();
     String dis = request.getParameter("dis");
+    String discipline ="";
 //    startDate = "2017-08-01";
 //    endDate = "2017-08-28";
 //    hfc = "04010101";
@@ -72,7 +73,13 @@
                 + " AND s.hfc_cd = '" + hfc + "' and ml.discipline_cd = '"+dis+"'";
         }
         
-
+        if(!dis.equalsIgnoreCase("all")){
+         String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' and discipline_cd = '"+dis+"'";
+                    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+                    discipline = mysqldis_name.get(0).get(1);
+     }else{
+         discipline = "ALL";
+     }
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
         ArrayList<ArrayList<String>> medicalCertificateInfo = conn.getData(query);
 
