@@ -36,6 +36,7 @@
         String filter = request.getParameter("filter");
         String year = request.getParameter("year");
         String month = request.getParameter("month");
+        String monthString = request.getParameter("monthString");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
 
@@ -138,6 +139,44 @@
 
 <script type="text/javascript" charset="utf-8">
 
+    var prepend = "";
+
+    if ('<%=filter%>' === 'month') {
+
+        var detailyear, detailmonth;
+        detailyear = "<%=year%>";
+        detailmonth = "<%=monthString%>";
+
+        prepend = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report<br/><h5>For <strong>' + detailmonth + ' ' + detailyear + '</strong> </h5></div>\n\
+                    <div class="info_kecik">\n\
+                    <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                    <dd>Report Id: <strong>SAM-0001</strong></dd>\n\
+                    </div> ';
+
+    } else {
+
+        var startdate, enddate;
+        startdate = "<%=startDate%>";
+        enddate = "<%=endDate%>";
+        var temp = startdate.split("-");
+        startdate = temp[2] + "/" + temp[1] + "/" + temp[0];
+
+        temp = enddate.split("-");
+        enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
+
+        prepend = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div>\n\
+                    <div class="info_kecik">\n\
+                    <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                    <dd>Report Id: <strong>SAM-0001</strong></dd>\n\
+                    </div> ';
+
+    }
+
+
+
+
     $(document).ready(function () {
 
         $('#WaitingTimeTable').DataTable({
@@ -176,13 +215,7 @@
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
-                                .prepend(
-                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time List</div>\n\
-                                        <div class="info_kecik">\n\
-                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        </div> '
-                                        );
+                                .prepend(prepend);
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');

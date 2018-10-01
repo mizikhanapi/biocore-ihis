@@ -150,6 +150,7 @@
             var reportYear = document.getElementById("waitingTimeReportYear").value;
             var startDate = document.getElementById("waitingTimeReportStartDate").value;
             var endDate = document.getElementById("waitingTimeReportYearEndDate").value;
+            var monthString = $("#waitingTimeReportMonth option:selected").text();
 
             var data = {
                 filter: filter,
@@ -157,6 +158,7 @@
                 year: reportYear,
                 startDate: startDate,
                 endDate: endDate,
+                monthString: monthString
             };
 
             $.ajax({

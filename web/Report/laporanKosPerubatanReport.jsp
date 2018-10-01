@@ -152,6 +152,7 @@
 
              temp = enddate.split("-");
              enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
+             
     $(document).ready(function () {
 
 
