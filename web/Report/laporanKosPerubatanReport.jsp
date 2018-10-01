@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="javax.print.DocFlavor.STRING"%>
+<%@page import="java.util.Random"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="dBConn.Conn"%>
@@ -29,28 +31,33 @@
                 String filterBy = request.getParameter("dis");
                 //out.print(startDate);
                 String sql ="";
-//                String discipline ="";
-//                if(!filterBy.equalsIgnoreCase("all")){
-//                    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + my_1_hfc_cd + "' and discipline_cd = '"+filterBy+"'";
-//                    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
-//                    discipline = mysqldis_name.get(0).get(1);
-//                    sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,DATE_FORMAT(led.txn_date,'%d/%m/%Y %H:%i:%s') ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
-//                        + "FROM `far_customer_ledger` led "
-//                        + "INNER JOIN `pms_patient_biodata` pat ON led.`customer_id` = pat.`PMI_NO` "
-//                        + "inner join pms_episode pe on pat.pmi_no = pe.pmi_no and pe.discipline_code = '"+filterBy+"' "
-//                        + "WHERE led.hfc_cd='"+my_1_hfc_cd+"' AND led.`txn_date` BETWEEN '"+startDate+"' AND '"+endDate+"';";
-//                }else{
-//                    discipline = "ALL";
-//                    sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,DATE_FORMAT(led.txn_date,'%d/%m/%Y %H:%i:%s') ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
-//                        + "FROM `far_customer_ledger` led "
-//                        + "INNER JOIN `pms_patient_biodata` pat ON led.`customer_id` = pat.`PMI_NO` "
-//                        + "WHERE led.hfc_cd='"+my_1_hfc_cd+"' AND led.`txn_date` BETWEEN '"+startDate+"' AND '"+endDate+"';";
-//                }
+                String discipline ="";
                 
-                sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,DATE_FORMAT(led.txn_date,'%d/%m/%Y %H:%i:%s') ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
+                Random rand = new Random();
+                int numbersreport = rand.nextInt(99999) + 1;
+                String reportid = "HCR"+  String.valueOf(numbersreport);
+                
+                if(!filterBy.equalsIgnoreCase("all")){
+                    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + my_1_hfc_cd + "' and discipline_cd = '"+filterBy+"'";
+                    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+                    discipline = mysqldis_name.get(0).get(1);
+                    sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,DATE_FORMAT(led.txn_date,'%d/%m/%Y %H:%i:%s') ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
+                        + "FROM `far_customer_ledger` led "
+                        + "INNER JOIN `pms_patient_biodata` pat ON led.`customer_id` = pat.`PMI_NO` "
+                        + "inner join far_customer_hdr hd on hd.customer_id = led.customer_id and hd.discipline_cd = '"+filterBy+"' and hd.bill_no = led.bill_no "
+                        + "WHERE led.hfc_cd='"+my_1_hfc_cd+"' AND led.`txn_date` BETWEEN '"+startDate+"' AND '"+endDate+"';";
+                }else{
+                    discipline = "ALL";
+                    sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,DATE_FORMAT(led.txn_date,'%d/%m/%Y %H:%i:%s') ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
                         + "FROM `far_customer_ledger` led "
                         + "INNER JOIN `pms_patient_biodata` pat ON led.`customer_id` = pat.`PMI_NO` "
                         + "WHERE led.hfc_cd='"+my_1_hfc_cd+"' AND led.`txn_date` BETWEEN '"+startDate+"' AND '"+endDate+"';";
+                }
+                
+//                sql = "SELECT pat.`PMI_NO`, pat.`NEW_IC_NO`, pat.`ID_NO`, pat.`OLD_IC_NO`, led.`customer_id` ,DATE_FORMAT(led.txn_date,'%d/%m/%Y %H:%i:%s') ,led.`bill_amt` ,led.`bill_desc`, pat.`PATIENT_NAME` "
+//                        + "FROM `far_customer_ledger` led "
+//                        + "INNER JOIN `pms_patient_biodata` pat ON led.`customer_id` = pat.`PMI_NO` "
+//                        + "WHERE led.hfc_cd='"+my_1_hfc_cd+"' AND led.`txn_date` BETWEEN '"+startDate+"' AND '"+endDate+"';";
                 
                 //AND diagnosis.`HFC_Cd`='"+my_1_hfc_cd+"'
                 ArrayList<ArrayList<String>> cost = conn.getData(sql);
@@ -59,7 +66,7 @@
                 ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd_logo);
                 LocalDate localDate = LocalDate.now();
                 String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-                //out.print(sql);
+               // out.print(sql);
             %>
                 
             <div class="pull-right hidden"><input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print "></div><br>
@@ -141,10 +148,10 @@
             startdate="<%=startDate%>";
             enddate="<%=endDate%>";
             var temp = startdate.split("-");
-             startdate = temp[2] + "-" + temp[1] + "-" + temp[0];
+             startdate = temp[2] + "/" + temp[1] + "/" + temp[0];
 
              temp = enddate.split("-");
-             enddate = temp[2] + "-" + temp[1] + "-" + temp[0];
+             enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
     $(document).ready(function () {
 
 
@@ -182,9 +189,10 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Health Cost Report</div><p>Date: From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </p>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Health Cost Report<br/><h5>Date : From <strong>'+startdate+'</strong>  To <strong>'+enddate+'</strong> </h5></div><p>Discipline :<strong><%=discipline%></strong></p>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
+\n\                                     <dd>Report Id: <strong><%=reportid%></strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
