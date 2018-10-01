@@ -414,7 +414,8 @@
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
                 startDateori = $("#dateFrom").val();
-                endDateori = $("#dateTo").val();    
+                endDateori = $("#dateTo").val();
+                var namaDis = $('#patientType option:selected').text();
 
                 if (startDate === "") {
                     alert("Select Start Date.");
@@ -511,7 +512,7 @@
                                         <dd>Report No: <strong>PMS-001</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
-                                        <p>Discipline: <strong>' + patientType + '</strong></p>\n\
+                                        <p>Discipline: <strong>' + namaDis + '</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

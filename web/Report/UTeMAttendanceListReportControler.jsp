@@ -17,6 +17,7 @@
     startDate = request.getParameter("startDate");
     endDate = request.getParameter("endDate");
     hfc = request.getParameter("hfc");
+    String discipline="";
      if (patientType.equalsIgnoreCase("all")){
      
      query = "Select  e.NEW_IC_NO, b.`PATIENT_NAME`,"
@@ -110,6 +111,14 @@
             
             + " WHERE cast(e.EPISODE_DATE as date)  BETWEEN '"+startDate + "' AND '" + endDate + "'"
             + " AND e.`HEALTH_FACILITY_CODE`='"+hfc+"' ;";
+     }
+     
+     if(!patientType.equalsIgnoreCase("all")){
+         String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' and discipline_cd = '"+patientType+"'";
+                    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+                    discipline = mysqldis_name.get(0).get(1);
+     }else{
+         discipline = "ALL";
      }
     ArrayList<ArrayList<String>> medicalInfo = conn.getData(query);
     
