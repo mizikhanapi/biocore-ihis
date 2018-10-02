@@ -81,7 +81,7 @@
                                 <div class="text-center h3" style="margin: 0;">
                                     Statistic of <span id="REP_statTitle"></span> 
                                     <span class="pull-left" >
-                                        <a href="UTeMAttendanceListReport.jsp"><button class="btn btn-primary btn-block" >Produce Report</button> </a>                                 
+                                        <a href="UTeMAttendanceListReport.jsp"><button class="btn btn-primary btn-block" >Produce Report (View Report)</button> </a>                                 
                                     </span>
                                     <span class="pull-right" >
                                         <a id="REP_btnRefresh" title="Refresh the statistic.">
