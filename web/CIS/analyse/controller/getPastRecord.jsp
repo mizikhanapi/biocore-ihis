@@ -20,7 +20,7 @@
     LookupHelper lookH = new LookupHelper(hfc_cd);
 
     String sql = "";
-    String selectSame = " date(episode_date), date_format(encounter_date, '%H:%i'), hfc_cd ";
+    String selectSame = " date_format(date(episode_date), '%d/%m/%Y'), date_format(encounter_date, '%H:%i'), hfc_cd ";
 
     String whenCondition = "";
     String whenConditionLIS = "";
@@ -145,10 +145,19 @@
 
     sql = "SELECT " + selectSame + ", circumference_size, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_head_circumference WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
     ArrayList<ArrayList<String>> dataHead = con.getData(sql);
-
+    
+    sql = "SELECT " + selectSame + ", total_cholesterol,total_unit,"
+            + "ldl_cholesterol,ldl_unit,"
+            + "hdl_cholesterol,hdl_unit"
+            + ",triglycerides,triglycerides_unit"
+            + ",non_hdl_c,non_hdl_c_unit"
+            + ",tg_to_hdl,tg_to_hdl_ratio_unit"
+            + ", date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    ArrayList<ArrayList<String>> dataCholesterol = con.getData(sql);
+    //out.print(sql);
     //========================================= end vital signs ==================================================================
     boolean isVtsExist = (dataBP.size() > 0 || dataSPO.size() > 0 || dataTemper.size() > 0 || dataHtWt.size() > 0 || dataGlucose.size() > 0 || dataGCS.size() > 0 || dataPGCS.size() > 0 || dataPain.size() > 0
-            || dataRespiratory.size() > 0 || dataHead.size() > 0);
+            || dataRespiratory.size() > 0 || dataHead.size() > 0 || dataCholesterol.size() > 0);
 
     boolean isLHRExist = (dataDiag.size() > 0 || dataChiefComplaint.size() > 0 || dataMed.size() > 0 || dataPreIll.size() > 0 || dataPastMed.size() > 0 || dataFamHis.size() > 0 || dataImmun.size() > 0
             || dataMedLeav.size() > 0 || dataAllergy.size() > 0 || dataDisable.size() > 0 || dataProg.size() > 0 || dataPro.size() > 0 || dataBloType.size() > 0 || dataPhyExam.size() > 0 || dataRad.size() > 0
@@ -199,7 +208,7 @@
                                 <td style="width: 5%;"><%=dataDiag.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataDiag.get(i).get(2))%></td>
                                 <td><strong><%=dataDiag.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataDiag.get(i).get(4)%></td>
+                                <td><%=dataDiag.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -252,8 +261,8 @@
                                 <td style="width: 5%;"><%=dataChiefComplaint.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataChiefComplaint.get(i).get(2))%></td>
                                 <td><strong><%=dataChiefComplaint.get(i).get(3)%></strong></td>
-                                <td>Severity: <%=dataChiefComplaint.get(i).get(4)%></td>
-                                <td>Comment: <%=dataChiefComplaint.get(i).get(5)%></td>
+                                <td><%=dataChiefComplaint.get(i).get(4)%></td>
+                                <td><%=dataChiefComplaint.get(i).get(5)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -305,7 +314,7 @@
                                 <td style="width: 5%;"><%=dataAllergy.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataAllergy.get(i).get(2))%></td>
                                 <td><strong><%=dataAllergy.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataAllergy.get(i).get(4)%></td>
+                                <td><%=dataAllergy.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -359,9 +368,9 @@
                                 <td style="width: 5%;"><%=dataMed.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataMed.get(i).get(2))%></td>
                                 <td><strong><%=dataMed.get(i).get(3)%></strong></td>
-                                <td>Frequency: <%=dataMed.get(i).get(4)%></td>
-                                <td>Strength: <%=dataMed.get(i).get(5)%></td>
-                                <td>Dose: <%=dataMed.get(i).get(6)%></td>
+                                <td><%=dataMed.get(i).get(4)%></td>
+                                <td><%=dataMed.get(i).get(5)%></td>
+                                <td><%=dataMed.get(i).get(6)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -455,7 +464,7 @@
                                 <td style="width: 5%;"><%=dataPastMed.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataPastMed.get(i).get(2))%></td>
                                 <td><strong><%=dataPastMed.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataPastMed.get(i).get(4)%></td>
+                                <td><%=dataPastMed.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -507,7 +516,7 @@
                                 <td style="width: 5%;"><%=dataFamHis.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataFamHis.get(i).get(2))%></td>
                                 <td><strong><%=dataFamHis.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataFamHis.get(i).get(4)%></td>
+                                <td><%=dataFamHis.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -559,7 +568,7 @@
                                 <td style="width: 5%;"><%=dataSocHis.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataSocHis.get(i).get(2))%></td>
                                 <td><strong><%=dataSocHis.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataSocHis.get(i).get(4)%></td>
+                                <td><%=dataSocHis.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -1119,6 +1128,58 @@
             </td>
         </tr>
         <%            }//end head
+                if (dataCholesterol.size() > 0) {
+
+        %>
+        <tr class="bg-info summary text-center">
+            <td>
+                <span id="ANL_chartTitle">Cholesterol History</span>
+
+            </td>
+        </tr>
+
+        <tr data-status="pagado">
+            <td>
+                <div style="overflow-x: auto;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Date</td>
+                                <td>Time</td>
+                                <td>Venue</td>
+                                <td>Total Cholesterol</td>
+                                <td>LDL Cholesterol</td>
+                                <td>HDL Cholesterol</td>
+                                <td>Triglycerides</td>
+                                <td>Non HDL-C</td>
+                                <td>TG to HDL Ratio</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%            for (int i = 0; i < dataCholesterol.size(); i++) {
+
+                            %>
+                            <tr>
+                                <td style="width: 7%;"><%=dataCholesterol.get(i).get(0)%></td>
+                                <td style="width: 5%;"><%=dataCholesterol.get(i).get(1)%></td>
+                                <td style="width: 10%;"><%=lookH.getHFCName(dataCholesterol.get(i).get(2))%></td>
+                                <td><%=dataCholesterol.get(i).get(3) + " "+dataCholesterol.get(i).get(4) %></td>
+                                <td><%=dataCholesterol.get(i).get(5) + " "+dataCholesterol.get(i).get(6) %></td>
+                                <td><%=dataCholesterol.get(i).get(7) + " "+dataCholesterol.get(i).get(8) %></td>
+                                <td><%=dataCholesterol.get(i).get(9) + " "+dataCholesterol.get(i).get(10) %></td>
+                                <td><%=dataCholesterol.get(i).get(11) + " "+dataCholesterol.get(i).get(12) %></td>
+                                <td><%=dataCholesterol.get(i).get(13) + " "+dataCholesterol.get(i).get(14) %></td>
+                            </tr>
+                            <%
+                                }// end for
+
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <%            }//end cholesterol
 //===================================================================== end vital sign ==========================================================================
 
             if (dataBloType.size() > 0) {
@@ -1153,7 +1214,7 @@
                                 <td style="width: 5%;"><%=dataBloType.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataBloType.get(i).get(2))%></td>
                                 <td><strong><%=dataBloType.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataBloType.get(i).get(4)%></td>
+                                <td><%=dataBloType.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -1198,7 +1259,7 @@
                                 <td style="width: 5%;"><%=dataDisable.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataDisable.get(i).get(2))%></td>
                                 <td><strong><%=dataDisable.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataDisable.get(i).get(4)%></td>
+                                <td><%=dataDisable.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -1243,7 +1304,7 @@
                                 <td style="width: 5%;"><%=dataPhyExam.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataPhyExam.get(i).get(2))%></td>
                                 <td><strong><%=dataPhyExam.get(i).get(3)%></strong></td>
-                                <td>Comment: <%=dataPhyExam.get(i).get(4)%></td>
+                                <td><%=dataPhyExam.get(i).get(4)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -1505,6 +1566,7 @@
             </td>
         </tr>
         <%            }//end opt
+
         %>
     </tbody>
 </table>

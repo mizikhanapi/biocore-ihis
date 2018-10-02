@@ -281,16 +281,27 @@
     }
 
     $('#ANL_btnSearch').on('click', function () {
-        var idType = $('#ANL_idType').val();
-        var id = $('#ANL_idInputApp').val();
-
-        if (idType == null || idType === "" || id === "") {
-            bootbox.alert("Please complete all inputs.");
-        } else {
-            ANL_searchPatient(idType, id);
+        searchPatientlaheh();
+    });
+    
+    $("#ANL_idInputApp").on("keydown", function (e) {
+        var code = e.keyCode;
+        if (code === 13) {
+            e.preventDefault();
+            searchPatientlaheh();
         }
     });
 
+    function searchPatientlaheh(){
+        var idType = $('#ANL_idType').val();
+            var id = $('#ANL_idInputApp').val();
+
+            if (idType === null || idType === "" || id === "") {
+                bootbox.alert("Please complete all inputs.");
+            } else {
+                ANL_searchPatient(idType, id);
+            }
+    }
 
     //------------------ retrieve data
     function ANL_loadData() {

@@ -1158,7 +1158,7 @@
                 //                    0                         1                                       2                               3                                                       4    
                 var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromMCode + "^" + drugMDCFromRCode + "^" + drugMDCFromDesc +
                         //                                  5                                                                                   6
-                        "|" + drugMDCRouteMCode + "^" + drugMDCRouteRCode + "^" + drugMDCRouteDesc + "|" + drugMDCFrequencyMCode + "^" + drugMDCFrequencyRCode + "^" + drugMDCFrequencyDesc + "|" +
+                        "|" + drugMDCRouteMCode + "^" + drugMDCRouteRCode + "^" + drugMDCRouteDesc + "|" + drugMDCFrequencyMCode + "^" + drugMDCFrequencyDesc + "^" + drugMDCFrequencyRCode + "|" +
                         //          7                          8                 9                   10        
                         drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
                         //          11                          12                              13                      14                      15        
