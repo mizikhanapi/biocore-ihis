@@ -114,7 +114,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
                     
                     $("#ong #ONG_1 #PIdiv").html("<div class='row'><div class='col-xs-3'><dt style='font-size: 18px;'>Personal Info</dt></div><div class='col-xs-3'><dt style='font-size: 18px;'>Gravida: </dt><dd >Gravida: <strong>-</strong></dd><dd >Parity: <strong>-</strong> </dd><dd >LMP  <strong>-</strong></dd><dd>EDD  <strong>-</strong> </dd><dd >Scan EDD  <strong>-</strong></dd><dd >Period Cycle  <strong>-</strong></dd></div><div class='col-xs-3'><dt style='font-size: 18px;'>Past History: </dt><dd>Past gynaelogical History: <strong>-</strong></dd><dd>Past Medical History: <strong>-</strong></dd><dd>Past Surgical History: <strong>-</strong></dd></div></div>");
                     $('#ong #ONG_1 #divPIpreg #tblPreg tbody').empty();
-                    
+                    $('#div_CIS_PATIENT_DASHBOARD #pName2').html("");
                     //$('.main .tab-content').hide();
                     $('#tabContent div.none').hide();
                     $('#tabContent div.none').removeClass("active in");
@@ -227,7 +227,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
                     $("#ong #ONG_1 #PIdiv").html("<div class='row'><div class='col-xs-3'><dt style='font-size: 18px;'>Personal Info</dt></div><div class='col-xs-3'><dt style='font-size: 18px;'>Gravida: </dt><dd >Gravida: <strong>-</strong></dd><dd >Parity: <strong>-</strong> </dd><dd >LMP  <strong>-</strong></dd><dd>EDD  <strong>-</strong> </dd><dd >Scan EDD  <strong>-</strong></dd><dd >Period Cycle  <strong>-</strong></dd></div><div class='col-xs-3'><dt style='font-size: 18px;'>Past History: </dt><dd>Past gynaelogical History: <strong>-</strong></dd><dd>Past Medical History: <strong>-</strong></dd><dd>Past Surgical History: <strong>-</strong></dd></div></div>");
                     $('#ong #ONG_1 #divPIpreg #tblPreg tbody').empty();
                     
-                    
+                    $('#div_CIS_PATIENT_DASHBOARD #pName2').html("");
                     //$('.main .tab-content').hide();
                     $('#tabContent div.none').hide();
                     $('#tabContent div.none').removeClass("active in");
