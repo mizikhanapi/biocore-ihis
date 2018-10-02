@@ -22,7 +22,7 @@
                             <div class="col-xs-4 col-sm-4 col-md-4"><h4>Total Cholesterol</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="cholesterolTotal" id="cholesterolTotal" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="cholesterolTotal" id="cholesterolTotal" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -36,7 +36,7 @@
                             <div class="col-xs-4 col-sm-4 col-md-4"><h4>LDL Cholesterol</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="cholesterolLDL" id="cholesterolLDL" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="cholesterolLDL" id="cholesterolLDL" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -50,7 +50,7 @@
                             <div class="col-xs-4 col-sm-4 col-md-4"><h4>HDL Cholesterol</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="cholesterolHDL" id="cholesterolHDL" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="cholesterolHDL" id="cholesterolHDL" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -64,7 +64,7 @@
                             <div class="col-xs-4 col-sm-4 col-md-4"><h4>Triglycerides</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="cholesterolTrigly" id="cholesterolTrigly" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="cholesterolTrigly" id="cholesterolTrigly" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -78,7 +78,7 @@
                             <div class="col-xs-4 col-sm-4 col-md-4"><h4>non-HDL-C</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="cholesterolNonHDL" id="cholesterolNonHDL" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="cholesterolNonHDL" id="cholesterolNonHDL" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -92,7 +92,7 @@
                             <div class="col-xs-4 col-sm-4 col-md-4"><h4>TG to HDL ratio</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="cholesterolRatio" id="cholesterolRatio" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="cholesterolRatio" id="cholesterolRatio" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
