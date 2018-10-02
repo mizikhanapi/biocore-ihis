@@ -18,7 +18,7 @@
                                 <i class="fa fa-info-circle fa-lg"></i> Analyse Patient </a>
                         </li>
                         <li class="pull-right">
-                            <a href="#generic-soap" class="panelito general-exam">
+                            <a href="#generic-soap" class="panelito general-exam" id="backtodashboardhahahahadem">
                                 <i class="fa fa-chevron-left"></i> Back to General Examination </a>
                         </li>
 
@@ -250,7 +250,21 @@
             idType: idType,
             id: id
         };
-
+        
+        function clearAll(){
+            $('#ANL_div_patientBiodata').html(" ");
+            $('#ANL_viewDiv').html("");
+            $('.ANL-toggle').show();
+            $("#ANL_idInputApp").val("");
+            $('#ANL_idType option').prop('selected', function() {
+                return this.defaultSelected;
+            });
+        }
+        
+        $('#backtodashboardhahahahadem').on('click',function(){
+            clearAll();
+        });
+        
         $.ajax({
             type: 'POST',
             timeout: 60000,
