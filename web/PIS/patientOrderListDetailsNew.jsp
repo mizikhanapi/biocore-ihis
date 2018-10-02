@@ -41,7 +41,7 @@
             + " LEFT join adm_lookup_detail lForm on (pis_mdc2.d_form_code = lForm.Detail_Reference_code) AND lForm.master_reference_code = '0067' AND lForm.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join adm_lookup_detail lRoute on (pis_mdc2.d_route_code = lRoute.Detail_Reference_code) AND lRoute.master_reference_code = '0066' AND lRoute.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             //  + " LEFT join adm_lookup_detail lFreq on (pis_mdc2.D_FREQUENCY = lFreq.Detail_Reference_code) AND lFreq.master_reference_code = '0088' AND lFreq.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
-            + " LEFT join adm_lookup_detail lDose on (pis_mdc2.D_QTYT = lDose.Detail_Reference_code) AND lDose.master_reference_code = '0025' AND lDose.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
+            + " LEFT join adm_lookup_detail lDose on (pis_mdc2.D_QTYT = lDose.Description) AND lDose.master_reference_code = '0025' AND lDose.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join adm_lookup_detail lDura on (pis_mdc2.D_DURATIONT = lDura.Detail_Reference_code) AND lDura.master_reference_code = '0089' AND lDura.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join pis_drug_frequency lFreq on (pis_mdc2.D_FREQUENCY = lFreq.frequency_desc) AND lFreq.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND lFreq.discipline_cd = '" + DISCIPLINE_CODE + "' "
             + " WHERE pis_order_detail.ORDER_NO = '" + orderNo + "' AND (ORDER_STATUS='0' OR ORDER_STATUS='1') "

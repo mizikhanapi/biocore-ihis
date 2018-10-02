@@ -1031,7 +1031,7 @@
         });
         var checkedDispense = cars.indexOf(true);
         console.log(cars);
-        console.log(checkedDispense);
+        //console.log(checkedDispense);
 
         if (checkedDispense === -1) {
             bootbox.alert("Please Select A Order To Be Dispense");
@@ -1172,6 +1172,7 @@
 
 
                 console.log("Ok : " + drugCode);
+                console.log("Dosage : " + drugMDCDosage);
 
                 if (drugStatus === "New") {
 
