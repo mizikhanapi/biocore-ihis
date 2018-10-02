@@ -76,58 +76,58 @@
 
                 if (myCIS.hasMenuAccess("CIS_01.2.1.1")) {
             %>
-            <li><a data-toggle="modal" data-target="#CIS020001" href="" ><i class="flaticon flaticon-tool fa-li" style="display: inline"></i> Glasgow Coma Scale</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020001" href="" ><i class="flaticon flaticon-tool fa-li soap-select" style="display: inline"></i> Glasgow Coma Scale</a></li>
                 <%
                     }
                     if (myCIS.hasMenuAccess("CIS_01.2.1.2")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020002" href="" ><i class="flaticon flaticon-file fa-li" style="display: inline"></i> Pediatric Glasgow Coma Scale</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020002" href="" ><i class="flaticon flaticon-file fa-li soap-select" style="display: inline"></i> Pediatric Glasgow Coma Scale</a></li>
                 <%
                     }
                     if (myCIS.hasMenuAccess("CIS_01.2.1.8")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pain Scale</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li soap-select" style="display: block"></i> Pain Scale</a></li>
                 <%
                     }
                     if (myCIS.hasMenuAccess("CIS_01.2.1.9")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020013" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Pupil</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020013" href=""><i class="fa fa-line-chart fa-li soap-select" style="display: block"></i> Pupil</a></li>
                 <%
                     }
                     if (myCIS.hasMenuAccess("CIS_01.2.1.10")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020014" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Vision</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020014" href=""><i class="fa fa-line-chart fa-li soap-select" style="display: block"></i> Vision</a></li>
             <!--<li><a data-toggle="modal" data-target="#CIS020015" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Height and Weight</a></li>-->
             <%
                 }
 
                 if (myCIS.hasMenuAccess("CIS_01.2.2")) {
             %>
-            <li id="modalPE"><a data-toggle="modal" data-target="#CIS020009" href=""  class="soap-select" ><span class="fa fa-sticky-note fa-li"></span> Physical Exam</a></li>
+            <li id="modalPE" class="soap-select"><a data-toggle="modal" data-target="#CIS020009" href=""  class="soap-select" ><span class="fa fa-sticky-note fa-li"></span> Physical Exam</a></li>
                 <%
                     }
 
                     if (myCIS.hasMenuAccess("CIS_01.2.3")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020010" href="" id="RISResult"> <i class="fa fa-bolt fa-li"></i> Radiology Result</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020010" href="" id="RISResult"> <i class="fa fa-bolt fa-li soap-select"></i> Radiology Result</a></li>
                 <%
                     }
 
                     if (myCIS.hasMenuAccess("CIS_01.2.4")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020011" href=""  id="LISResult"> <i class="fa fa-thermometer-empty fa-li"></i> Laboratory Result</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020011" href=""  id="LISResult"> <i class="fa fa-thermometer-empty fa-li soap-select"></i> Laboratory Result</a></li>
                 <%
                     }
 
                     if (myCIS.hasMenuAccess("CIS_01.2.5")) {
                 %>
-            <li><a data-toggle="modal" data-target="#CIS020012" href="" id="OPResult"> <i class="fa fa-eye fa-li"></i> Observation Procedure</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020012" href="" id="OPResult"> <i class="fa fa-eye fa-li soap-select"></i> Observation Procedure</a></li>
                 <%
                     }
 
                     if (myCIS.hasMenuAccess("CIS_01.2.6")) {
                 %>
-            <li><a href="#ortho-notes" class="panelito ortho-notes"> <i class="fa fa-eye fa-li"></i> Orthopedic Notes</a></li>
+            <li class="soap-select"><a href="#ortho-notes" class="panelito ortho-notes"> <i class="fa fa-eye fa-li soap-select"></i> Orthopedic Notes</a></li>
                 <%
                     }
                         
@@ -138,39 +138,39 @@
             <ul class="sub-soap collapse fa-ul" id="vital-tab">
                 <%                    if (myCIS.hasMenuAccess("CIS_01.2.1.3")) {
                 %>
-                <li><a data-toggle="modal" data-target="#CIS020003" href="" ><i class="flaticon flaticon-arrows fa-li" style="display: inline"></i> Blood Pressure</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020003" href="" ><i class="flaticon flaticon-arrows fa-li " style="display: inline"></i> Blood Pressure</a></li>
                     <%
                         }
                         if (myCIS.hasMenuAccess("CIS_01.2.1.4")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020004" href="" ><i class="flaticon flaticon-medical fa-li" style="display: inline"></i> Respiratory Rate</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020004" href="" ><i class="flaticon flaticon-medical fa-li soap-select" style="display: inline"></i> Respiratory Rate</a></li>
                     <%
                         }
                         if (myCIS.hasMenuAccess("CIS_01.2.1.5")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020005" href=""><i class="flaticon flaticon-science fa-li" style="display: block"></i> Oxygen Saturation</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020005" href=""><i class="flaticon flaticon-science fa-li soap-select" style="display: block"></i> Oxygen Saturation</a></li>
                     <%
                         }
                         if (myCIS.hasMenuAccess("CIS_01.2.1.6")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020006" href="" ><i class="fa fa-thermometer-half fa-li" style="display: block"></i> Body Temperature</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020006" href="" ><i class="fa fa-thermometer-half fa-li soap-select" style="display: block"></i> Body Temperature</a></li>
                     <%
                         }
                         if (myCIS.hasMenuAccess("CIS_01.2.1.7")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020016" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i>Blood Glucose</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020016" href=""><i class="fa fa-line-chart fa-li soap-select" style="display: block"></i>Blood Glucose</a></li>
                     <%
                         }
 
                         if (myCIS.hasMenuAccess("CIS_01.2.1.11")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> BMI</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li soap-select" style="display: block"></i> BMI</a></li>
                     <%
                         }
 
                         if (myCIS.hasMenuAccess("CIS_01.2.1.12")) {
                     %>
-                <li><a data-toggle="modal" data-target="#CIS020017" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> Cholesterol</a></li>
+                <li class="soap-select"><a data-toggle="modal" data-target="#CIS020017" href="" ><i class="fa fa-bars fa-li soap-select" style="display: block"></i> Cholesterol</a></li>
                     <%
                         }
                     %>
