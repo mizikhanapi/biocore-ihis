@@ -129,6 +129,20 @@
                         </div>
 
                     </div>
+                                    <div class="row" id="data">
+                            <!-- content goes here -->
+                            <form class="form-horizontal" id="addForm">
+
+                                <!-- Text input-->
+                                <div class="form-group" id="reportTotalPatientTypeDiv" style="display: none; margin: 20px 20px 0 0;">
+                                    <label class="col-md-5 control-label" for="textinput">Total Patients</label>
+                                    <div class="col-md-4">
+                                        <input id="reportPatientTypeTotalPatient" name="reportPatientTypeTotalPatient" type="number" placeholder="Total Patients" class="form-control input-md" maxlength="50" value="" readonly>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
                 </div>
             </div>
 
@@ -298,7 +312,7 @@
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
-                                
+                                var totalPatient = 0;
                                 var trHTML = '';
                                 var i;
                                 for (i = 0; i < dataRow.length; i++)
@@ -307,7 +321,7 @@
                                     
                                         trHTML += '<tr><td>' + (i+1) + '</td><td>' + datas[0] + '</td>\n\
                                     <td>' + datas[1] + '</td><td>' + datas[2] + '</td></tr>';
-                                    
+                                    totalPatient += parseInt(datas[2]);
 
 
                                 }
@@ -363,6 +377,10 @@
                                                         .css('font-size', 'inherit');
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
+                                                        .css('font-weight', 'bolder')
+                                                        .append('<div style="text-align: right;padding-top:10px;"><br> Patient Total = ' + totalPatient + ' </div>');
+                                                $(win.document.body)
+                                                        .css('font-size', '10pt')
                                                         .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
 
                                             },
@@ -377,6 +395,8 @@
                                         }
                                     ]
                                 });
+                                $('#reportTotalPatientTypeDiv').css("display", "block");
+                                $("#reportPatientTypeTotalPatient").val(totalPatient);
                                 $("#searchDiagnosisList").prop("disabled", true);
                                 
                             } else if (reply.trim() === "No Data") {

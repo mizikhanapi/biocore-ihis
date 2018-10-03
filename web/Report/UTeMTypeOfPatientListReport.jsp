@@ -44,7 +44,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <title>Attendance List Report</title>
+        <title>Type Of Patient List</title>
 
 
         <script src="../assets/js/jquery.min.js"></script>
@@ -164,7 +164,7 @@
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
-
+            var sumPatientIntable = 0;
             var disciplineData = [];
             if ("<%=dis_names%>" !== "")
             {
@@ -270,8 +270,6 @@
                 }
             });
 
-
-
             $("#searchPatientTypeList").click(function () {
                 var patientType, startDate, endDate;
 
@@ -315,7 +313,8 @@
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
-
+                                var totalPatient = 0;
+                                
                                 var trHTML = '';
                                 var i;
                                 for (i = 0; i < dataRow.length; i++)
@@ -323,10 +322,9 @@
                                     var datas = dataRow[i].split("|");
                                    
                                         trHTML += '<tr><td>' + (i+1) + '</td><td>' + datas[1] + '</td>\n\
-                                    <td>' + datas[2] + '</td></tr>';
+                                    <td id="totalPatient">' + datas[2] + '</td></tr>';
+                                    totalPatient += parseInt(datas[2]);
                                     
-
-
                                 }
                                 $('#UTemPTLReport tbody').empty();
                                 $('#UTemPTLReport').append(trHTML);
@@ -380,7 +378,7 @@
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
                                                         .css('font-weight', 'bolder')
-                                                        .append('<div style="text-align: right;padding-top:10px;"><br> Patient Total = ' + dataRow.length + ' </div>');
+                                                        .append('<div style="text-align: right;padding-top:10px;"><br> Patient Total = ' + totalPatient + ' </div>');
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
                                                         .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
@@ -398,7 +396,7 @@
                                     ]
                                 });
                                 $('#reportTotalPatientTypeDiv').css("display", "block");
-                                $("#reportPatientTypeTotalPatient").val(dataRow.length);
+                                $("#reportPatientTypeTotalPatient").val(totalPatient);
                                 $("#searchPatientTypeList").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
                                 alert("There is no patient in this time range !!");
