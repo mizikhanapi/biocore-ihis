@@ -933,44 +933,115 @@ public class lhr_VTS {
                     
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
                     //check whether spo2 data is null or empty
-                    if (alVts.get(2).get(44) != null && !alVts.get(2).get(44).isEmpty() && !alVts.get(2).get(44).equals("") 
-                            && alVts.get(2).get(45) != null && !alVts.get(2).get(45).isEmpty() && !alVts.get(2).get(45).equals("")
-                            && alVts.get(2).get(46) != null && !alVts.get(2).get(46).isEmpty() && !alVts.get(2).get(46).equals("")
-                            && alVts.get(2).get(47) != null && !alVts.get(2).get(47).isEmpty() && !alVts.get(2).get(47).equals("")
-                            && alVts.get(2).get(48) != null && !alVts.get(2).get(48).isEmpty() && !alVts.get(2).get(48).equals("")
-                            && alVts.get(2).get(49) != null && !alVts.get(2).get(49).isEmpty() && !alVts.get(2).get(49).equals("")
-                            && alVts.get(2).get(50) != null && !alVts.get(2).get(50).isEmpty() && !alVts.get(2).get(50).equals("")
-                            && alVts.get(2).get(51) != null && !alVts.get(2).get(51).isEmpty() && !alVts.get(2).get(51).equals("")
-                            && alVts.get(2).get(52) != null && !alVts.get(2).get(52).isEmpty() && !alVts.get(2).get(52).equals("")
-                            && alVts.get(2).get(53) != null && !alVts.get(2).get(53).isEmpty() && !alVts.get(2).get(53).equals("")
-                            && alVts.get(2).get(54) != null && !alVts.get(2).get(54).isEmpty() && !alVts.get(2).get(54).equals("")
-                            && alVts.get(2).get(55) != null && !alVts.get(2).get(55).isEmpty() && !alVts.get(2).get(55).equals("")) {
+                    if(alVts.get(2).get(44).equals("-") || alVts.get(2).get(44) == null || alVts.get(2).get(44).isEmpty() || alVts.get(2).get(44).equals("")){
+                        vts_Obj.setTotalCholesterol("0.0");
+                        vts_Obj.setTotalUnit("-");
+                    }else{
                         vts_Obj.setTotalCholesterol(alVts.get(2).get(44));
                         vts_Obj.setTotalUnit(alVts.get(2).get(45));
+                        
+                    }
+                    
+                    if(alVts.get(2).get(46).equals("-") || alVts.get(2).get(46) == null || alVts.get(2).get(46).isEmpty() || alVts.get(2).get(46).equals("")){
+                        vts_Obj.setLDLCholesterol("0.0");
+                        vts_Obj.setLDLUnit("-");
+                    }else{
+                        
                         vts_Obj.setLDLCholesterol(alVts.get(2).get(46));
                         vts_Obj.setLDLUnit(alVts.get(2).get(47));
-                        vts_Obj.setHDLCholesterol(alVts.get(2).get(48));
-                        vts_Obj.setHDLUnit(alVts.get(2).get(49));
+                        
+                    }
+                    
+                    if(alVts.get(2).get(50).equals("-") || alVts.get(2).get(50) == null || alVts.get(2).get(50).isEmpty() || alVts.get(2).get(50).equals("")){
+                        vts_Obj.setTriglycerides("0.0");
+                        vts_Obj.setTriUnit("-");
+                    }else{
+                      
                         vts_Obj.setTriglycerides(alVts.get(2).get(50));
                         vts_Obj.setTriUnit(alVts.get(2).get(51));
+                       
+                        
+                    }
+                    
+                    if(alVts.get(2).get(48).equals("-") || alVts.get(2).get(48) == null || alVts.get(2).get(48).isEmpty() || alVts.get(2).get(48).equals("")){
+                        vts_Obj.setHDLCholesterol("0.0");
+                        vts_Obj.setHDLUnit("-");
+                    }else{
+                        
+                        vts_Obj.setHDLCholesterol(alVts.get(2).get(48));
+                        vts_Obj.setHDLUnit(alVts.get(2).get(49));
+                        
+                    }
+                    
+                    if(alVts.get(2).get(52).equals("-") || alVts.get(2).get(52) == null || alVts.get(2).get(52).isEmpty() || alVts.get(2).get(52).equals("")){
+                        vts_Obj.setNonHDLUnit("-");
+                        vts_Obj.setNonHDL("0.0");
+                    }else{
+                        
                         vts_Obj.setNonHDLUnit(alVts.get(2).get(53));
                         vts_Obj.setNonHDL(alVts.get(2).get(52));
+                        
+                    }
+                    
+          
+                    if(alVts.get(2).get(54).equals("-") || alVts.get(2).get(54) == null || alVts.get(2).get(54).isEmpty() || alVts.get(2).get(54).equals("")){
+                        vts_Obj.setTGtoHDLRatio("0.0");
+                        vts_Obj.setTGtoHDLUnit("-");
+                    }else{
+                        
                         vts_Obj.setTGtoHDLRatio(alVts.get(2).get(54));
                         vts_Obj.setTGtoHDLUnit(alVts.get(2).get(55));
-                    } else {
-                        vts_Obj.setTotalCholesterol("x");
-                        vts_Obj.setTotalUnit("x");
-                        vts_Obj.setLDLCholesterol("x");
-                        vts_Obj.setLDLUnit("x");
-                        vts_Obj.setHDLCholesterol("x");
-                        vts_Obj.setHDLUnit("x");
-                        vts_Obj.setTriglycerides("x");
-                        vts_Obj.setTriUnit("x");
-                        vts_Obj.setNonHDLUnit("x");
-                        vts_Obj.setNonHDL("x");
-                        vts_Obj.setTGtoHDLRatio("x");
-                        vts_Obj.setTGtoHDLUnit("x");
                     }
+                    
+//                    if (alVts.get(2).get(44) != null && !alVts.get(2).get(44).isEmpty() && !alVts.get(2).get(44).equals("") 
+//                            && alVts.get(2).get(45) != null && !alVts.get(2).get(45).isEmpty() && !alVts.get(2).get(45).equals("")
+//                            && alVts.get(2).get(46) != null && !alVts.get(2).get(46).isEmpty() && !alVts.get(2).get(46).equals("")
+//                            && alVts.get(2).get(47) != null && !alVts.get(2).get(47).isEmpty() && !alVts.get(2).get(47).equals("")
+//                            && alVts.get(2).get(48) != null && !alVts.get(2).get(48).isEmpty() && !alVts.get(2).get(48).equals("")
+//                            && alVts.get(2).get(49) != null && !alVts.get(2).get(49).isEmpty() && !alVts.get(2).get(49).equals("")
+//                            && alVts.get(2).get(50) != null && !alVts.get(2).get(50).isEmpty() && !alVts.get(2).get(50).equals("")
+//                            && alVts.get(2).get(51) != null && !alVts.get(2).get(51).isEmpty() && !alVts.get(2).get(51).equals("")
+//                            && alVts.get(2).get(52) != null && !alVts.get(2).get(52).isEmpty() && !alVts.get(2).get(52).equals("")
+//                            && alVts.get(2).get(53) != null && !alVts.get(2).get(53).isEmpty() && !alVts.get(2).get(53).equals("")
+//                            && alVts.get(2).get(54) != null && !alVts.get(2).get(54).isEmpty() && !alVts.get(2).get(54).equals("")
+//                            && alVts.get(2).get(55) != null && !alVts.get(2).get(55).isEmpty() && !alVts.get(2).get(55).equals("")) {
+//                        vts_Obj.setTotalCholesterol(alVts.get(2).get(44));
+//                        vts_Obj.setTotalUnit(alVts.get(2).get(45));
+//                        vts_Obj.setLDLCholesterol(alVts.get(2).get(46));
+//                        vts_Obj.setLDLUnit(alVts.get(2).get(47));
+//                        vts_Obj.setHDLCholesterol(alVts.get(2).get(48));
+//                        vts_Obj.setHDLUnit(alVts.get(2).get(49));
+//                        vts_Obj.setTriglycerides(alVts.get(2).get(50));
+//                        vts_Obj.setTriUnit(alVts.get(2).get(51));
+//                        vts_Obj.setNonHDLUnit(alVts.get(2).get(53));
+//                        vts_Obj.setNonHDL(alVts.get(2).get(52));
+//                        vts_Obj.setTGtoHDLRatio(alVts.get(2).get(54));
+//                        vts_Obj.setTGtoHDLUnit(alVts.get(2).get(55));
+//                    }else if(alVts.get(2).get(44) == null || alVts.get(2).get(44).isEmpty() || alVts.get(2).get(44).equals("") 
+//                            && alVts.get(2).get(45) == null || alVts.get(2).get(45).isEmpty() || alVts.get(2).get(45).equals("")
+//                            && alVts.get(2).get(46) == null || alVts.get(2).get(46).isEmpty() || alVts.get(2).get(46).equals("")
+//                            && alVts.get(2).get(47) == null || alVts.get(2).get(47).isEmpty() || alVts.get(2).get(47).equals("")
+//                            && alVts.get(2).get(48) == null || alVts.get(2).get(48).isEmpty() || alVts.get(2).get(48).equals("")
+//                            && alVts.get(2).get(49) == null || alVts.get(2).get(49).isEmpty() || alVts.get(2).get(49).equals("")
+//                            && alVts.get(2).get(50) == null || alVts.get(2).get(50).isEmpty() || alVts.get(2).get(50).equals("")
+//                            && alVts.get(2).get(51) == null || alVts.get(2).get(51).isEmpty() || alVts.get(2).get(51).equals("")
+//                            && alVts.get(2).get(52) == null || alVts.get(2).get(52).isEmpty() || alVts.get(2).get(52).equals("")
+//                            && alVts.get(2).get(53) == null || alVts.get(2).get(53).isEmpty() || alVts.get(2).get(53).equals("")
+//                            && alVts.get(2).get(54) == null || alVts.get(2).get(54).isEmpty() || alVts.get(2).get(54).equals("")
+//                            && alVts.get(2).get(55) == null || alVts.get(2).get(55).isEmpty() || alVts.get(2).get(55).equals("")){
+//                        vts_Obj.setTotalCholesterol("x");
+//                        vts_Obj.setTotalUnit("x");
+//                        vts_Obj.setLDLCholesterol("x");
+//                        vts_Obj.setLDLUnit("x");
+//                        vts_Obj.setHDLCholesterol("x");
+//                        vts_Obj.setHDLUnit("x");
+//                        vts_Obj.setTriglycerides("x");
+//                        vts_Obj.setTriUnit("x");
+//                        vts_Obj.setNonHDLUnit("x");
+//                        vts_Obj.setNonHDL("x");
+//                        vts_Obj.setTGtoHDLRatio("x");
+//                        vts_Obj.setTGtoHDLUnit("x");
+//                    }
 
                     // insert into lhr_spo2 table for VTS
                     String query_vts_lhr_cholesterol2 = "insert into lhr_cholesterol "
@@ -1028,14 +1099,14 @@ public class lhr_VTS {
                             + "'"+ vts_Obj.getTGtoHDLUnit()+"')";
 
                     try {
-                        if(vts_Obj.getTotalCholesterol().equalsIgnoreCase("x") || vts_Obj.getTotalUnit().equalsIgnoreCase("x") 
-                                || vts_Obj.getLDLUnit().equalsIgnoreCase("x") || vts_Obj.getLDLCholesterol().equalsIgnoreCase("x") 
-                                || vts_Obj.getHDLCholesterol().equalsIgnoreCase("x") || vts_Obj.getHDLUnit().equalsIgnoreCase("x")
-                                || vts_Obj.getTriglycerides().equalsIgnoreCase("x") || vts_Obj.getTriUnit().equalsIgnoreCase("x")
-                                || vts_Obj.getNonHDL().equalsIgnoreCase("x") || vts_Obj.getNonHDLUnit().equalsIgnoreCase("x")
-                                || vts_Obj.getTGtoHDLRatio().equalsIgnoreCase("x") || vts_Obj.getTGtoHDLUnit().equalsIgnoreCase("x")){
-                            System.out.println("Skip extract vts CHOLESTEROL");
-                        }else {
+//                        if(vts_Obj.getTotalCholesterol().equalsIgnoreCase("-") && vts_Obj.getTotalUnit().equalsIgnoreCase("-") 
+//                                && vts_Obj.getLDLUnit().equalsIgnoreCase("-") && vts_Obj.getLDLCholesterol().equalsIgnoreCase("-") 
+//                                && vts_Obj.getHDLCholesterol().equalsIgnoreCase("-") && vts_Obj.getHDLUnit().equalsIgnoreCase("-")
+//                                && vts_Obj.getTriglycerides().equalsIgnoreCase("-") && vts_Obj.getTriUnit().equalsIgnoreCase("-")
+//                                && vts_Obj.getNonHDL().equalsIgnoreCase("-") && vts_Obj.getNonHDLUnit().equalsIgnoreCase("-")
+//                                && vts_Obj.getTGtoHDLRatio().equalsIgnoreCase("-") && vts_Obj.getTGtoHDLUnit().equalsIgnoreCase("-")){
+//                            System.out.println("Skip extract vts CHOLESTEROL");
+//                        }else {
                             status_vts_lhr_cholesterol = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_cholesterol2);
                             if (status_vts_lhr_cholesterol == false) {
                                 total_fail_insert++;
@@ -1046,7 +1117,7 @@ public class lhr_VTS {
                             } else {
                                 System.out.println("done extract vts CHOLESTEROL");
                             }
-                        }
+                        //}
                         
                     } catch (Exception e) {
                         e.printStackTrace();
