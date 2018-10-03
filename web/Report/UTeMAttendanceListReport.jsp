@@ -16,7 +16,7 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String hfc_name = session.getAttribute("HFC_NAME").toString();
     String dis_names = "";
-    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' order by discipline_name desc";
     ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
     for (int x = 0; x < mysqldis_name.size(); x++) {
         dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
@@ -52,9 +52,9 @@
 
 <!--        <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
-        
-        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
+        
         
     </head>
     <body>
@@ -75,8 +75,16 @@
                             <hr class="pemisah"/>
                             <div class="col-md-3">
                                 <label class="control-label">Discipline</label>
-                                <div class="form-inline"> 
-                                    <div class="radio radio-primary">
+                                <div class="form-inline">
+                                    <select id="radioDiscipline" name="radioDiscipline" class="form-control">
+                                        <%
+                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                            }
+                                        %>
+                                    </select>
+                                    <!--<div class="radio radio-primary">
+                                        
                                         <input type="radio" name="radioDiscipline" id="RadioOutpatient" value="outpatient" checked>
                                         <label for="RadioOutpatient">
                                             Outpatient
@@ -87,7 +95,7 @@
                                         <label for="RadioInpatient">
                                             Inpatient
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -220,7 +228,7 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <!--<script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>-->
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
@@ -251,7 +259,7 @@
                         code: splitTemp[0]
                     };
 
-//                    console.log(newObj);
+                    console.log(newObj);
                     disciplineData.push(newObj);
                 }
             }
@@ -330,8 +338,8 @@
                 hfc = "<%=hfc%>";
                 sortBy = $("input[name='radioSortBY']:checked").val();
                 occupation = $("input[name='radioOccupation']:checked").val();
-                discipline = $("input[name='radioDiscipline']:checked").val();
-
+                discipline = $("#radioDiscipline option:selected").text();
+                 
                 var result = [];
                 if (disciplineData.length > 0 && discipline !== "")
                 {
@@ -340,7 +348,7 @@
 //                        console.log((obj.name.toLowerCase().search(discipline.toLowerCase())) > -1);
                         return (obj.name.toLowerCase().search(discipline.toLowerCase())) > -1;
                     });
-//                    console.log(result);
+                    console.log(result);
                 }
                 dis = result[0].code;
 
@@ -361,6 +369,7 @@
                     dis: dis,
                     patientType: occupation
                 };
+                console.log(data);
                 $.ajax({
                     type: "POST",
                     url: url,
