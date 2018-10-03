@@ -16,6 +16,9 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String role = session.getAttribute("ROLE_CODE").toString();
+    
+    //String selectDiscipline = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' order by discipline_name desc";
 %>
 
 <h2>
@@ -33,3 +36,13 @@
         <button id="addNewOrderStockItemButton" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#orderNewStockOrder" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK ITEM</button>
     </span>
 </h4>
+<script>
+    $(document).ready(function(){
+        var role = "<%=role%>";
+        if(role==="001"){
+            $('#divCentralisedStore').show();
+        }else{
+            $('#divCentralisedStore').hide();
+        }
+    });
+</script>

@@ -3,7 +3,11 @@
     Created on : Dec 13, 2017, 3:44:04 PM
     Author     : Shammugam
 --%>
-
+<%
+    String hfcori = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String disori = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdisori = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+%>
 <br><br>
 
 <table class="table table-filter table-striped table-bordered" id="orderNewStockOrderItemDetailsTable">
@@ -15,6 +19,7 @@
     <th>Item Quantity</th>
     <th>Total Price</th>
     <th>Comment</th>
+   
 </thead>
 <tbody style="height: 120px;overflow-y: auto;">
 
@@ -123,16 +128,24 @@
         // Search Item Code Function Start
         //JS Search in Add Item Start
         $(function () {
-
+            
             $("#orderNewStockOrderSearchItemInput").on('keyup', function () { // everytime keyup event
-
+                var itemType = $('#orderNewStockOrderItemType').val();
                 var input = $(this).val(); // We take the input value
+                var checkboxCS = $('#checkboxCS').is(':checked');
+                var dataCS;
 
+                if(checkboxCS){
+                    dataCS = $('#checkboxCS').val();
+                }else{
+                    dataCS="nope";
+                }
+            
                 if (input.length >= 1) { // Minimum characters = 2 (you can change)
 
                     $('#orderNewStockOrderSearchItemInputDisplayResult').html('<img src="libraries/LoaderIcon.gif"/>');
 
-                    var dataFields = {'input': input}; // We pass input argument in Ajax
+                    var dataFields = {'input': input,'itemtype':itemType,'dataCS':dataCS}; // We pass input argument in Ajax
 
                     console.log(dataFields);
 
@@ -179,20 +192,27 @@
             var id = $('#orderNewStockOrderSearchItemInput').val();
 
             var arrayData = $('#orderNewStockOrderSearchItemInput').val().split("|");
-
+            var itemType = $('#orderNewStockOrderItemType').val();
             id = arrayData[0];
+            var checkboxCS = $('#checkboxCS').is(':checked');
+                var dataCS;
 
+                if(checkboxCS){
+                    dataCS = $('#checkboxCS').val();
+                }else{
+                    dataCS="nope";
+                }
             var data = {
-                id: id
+                id: id,itemType:itemType,'dataCS':dataCS
             };
-
+            
 
             $.ajax({
                 type: 'post',
                 url: '../GNL/StockOrder/controllerProcess/orderStockSearchItemResult.jsp',
                 data: data,
                 success: function (reply_data) {
-
+                    console.log(reply_data);
                     var array_data = String(reply_data.trim()).split("|");
 
                     var itemCode = array_data[0];
@@ -200,13 +220,24 @@
                     var itemName = array_data[2];
                     var itemPrice = array_data[3];
                     var itemStock = array_data[4];
+                    var hfc = array_data[5];
+                    var dis = array_data[6];
+                    var orderhfc = "<%=hfcori%>";
+                    var orderdis = "<%=disori%>";
+                    var temtype = array_data[7];
 
 
                     $('#orderNewStockOrderItemDisplayItemCode').val(itemCode);
                     $('#orderNewStockOrderItemDisplayItemName').val(itemName);
                     $('#orderNewStockOrderItemDisplayItemStockQuantity').val(itemStock);
                     $('#orderNewStockOrderItemDisplayItemPrice').val(itemPrice);
-
+                   
+                    $('#disciplineStock').val(dis);
+                    $('#subdisciplineStock').val(dis);
+                    $('#disciplineStockOrdering').val(orderdis);
+                    $('#subdisciplineStockOrdering').val("<%=subdisori%>");        
+                    $('#stockitemtype').val(temtype);
+                    
                     $('#orderNewStockOrderSearchItemInput').val('');
 
                     $('.loading').hide();
@@ -248,7 +279,12 @@
             var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
             var itemComment = $('#orderNewStockOrderItemInputComment').val();
             var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
-
+            var disrec = $('#disciplineStock').val();
+            var subdusrec = $('#subdisciplineStock').val();
+            var disorder = $('#disciplineStockOrdering').val();
+            var subdisorder = $('#subdisciplineStockOrdering').val();
+            var temtype = $('#stockitemtype').val();
+            
 
 
             if (itemCode === "" || itemCode === null) {
@@ -286,7 +322,9 @@
                         <td>' + itemStock + '</td>\n\
                         <td>' + itemQuantity + '</td>\n\
                         <td>' + newTotal + '</td>\n\
-                        <td>' + itemComment + '</td>\n\
+                        <td>' + itemComment + '<input type="hidden" id="disciplineStockA" value="'+disrec+'"><input type="hidden" id="subdisciplineStockA" value="'+subdusrec+'">\n\
+                        <input type="hidden" id="disciplineStockOrderingA" value="'+disorder+'">\n\
+                        <input type="hidden" id="subdisciplineStockOrderingA" value="'+subdisorder+'"></td><input type="hidden" id="stockitemtypeA" value="'+temtype+'">\n\
                     </tr>');
 
                     // datatableTable();
@@ -347,6 +385,12 @@
             var itemStock = row.find('td').eq(3).text();
             var itemQuantity = row.find('td').eq(4).text();
             var itemComment = row.find('td').eq(6).text();
+            
+            var disrec = $('#disciplineStockA').val();
+            var subdusrec = $('#subdisciplineStockA').val();
+            var disorder = $('#disciplineStockOrderingA').val();
+            var subdisorder = $('#subdisciplineStockOrderingA').val();
+            var temtype = $('#stockitemtypeA').val();
 
             $('#orderNewStockOrderItemDisplayItemCode').val(itemCode);
             $('#orderNewStockOrderItemDisplayItemName').val(itemName);
@@ -354,7 +398,12 @@
             $('#orderNewStockOrderItemDisplayItemStockQuantity').val(itemStock);
             $('#orderNewStockOrderItemInputQuantity').val(itemQuantity);
             $('#orderNewStockOrderItemInputComment').val(itemComment);
-
+            
+            $('#disciplineStock').val(disrec);
+            $('#subdisciplineStock').val(subdusrec);
+            $('#disciplineStockOrdering').val(disorder);
+            $('#subdisciplineStockOrdering').val(subdisorder);
+            $('#stockitemtype').val(temtype);
 
         });
         // Fetch Data For Update And Delete Function End
@@ -371,7 +420,13 @@
             var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
             var itemComment = $('#orderNewStockOrderItemInputComment').val();
             var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
-
+            
+            var disrec = $('#disciplineStock').val();
+            var subdusrec = $('#subdisciplineStock').val();
+            var disorder = $('#disciplineStockOrdering').val();
+            var subdisorder = $('#subdisciplineStockOrdering').val();
+            var temtype = ('#stockitemtype').val();
+            
             var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
 
             row.find('td').eq(0).text(itemCode);
@@ -381,7 +436,12 @@
             row.find('td').eq(4).text(itemQuantity);
             row.find('td').eq(5).text(newTotal);
             row.find('td').eq(6).text(itemComment);
-
+            row.find('#disciplineStockA').val(disrec);
+            row.find('#subdisciplineStockA').val(subdusrec);
+            row.find('#disciplineStockOrderingA').val(disorder);
+            row.find('#subdisciplineStockOrderingA').val(subdisorder);
+            row.find('#stockitemtypeA').val(temtype);
+            
             $('#orderNewStockOrder').modal('hide');
 
             datatableTableCreate();
@@ -443,10 +503,23 @@
                 var table = $("#orderNewStockOrderItemDetailsTable tbody");
 
                 // Setting Variable For Overall Dispense
-                var itemCode, itemName, itemComment, stringDetail = "";
-                var itemPrice, itemQty, product;
+                var itemCode, itemName, itemComment, stringDetail = "",stringDetailCentral = "";
+                var itemPrice, itemQty, product,temtype;
+                var disrec;
+                var subdusrec;
+                var disorder ;
+                var subdisorder;
 
                 var stockOrderList = [];
+                var stocCentralized = [];
+                
+                var grandTotalpricerec=0;
+                var grandTotalpriceorder=0;
+                
+                var grandTotalqtyrec=0;
+                var grandTotalqtyorder=0;
+                
+                
 
                 // Calculating Data For Overall Dispense
                 table.find('tr').each(function (i) {
@@ -458,30 +531,38 @@
                     itemPrice = parseFloat($tds.eq(2).text());
                     itemQty = parseFloat($tds.eq(4).text());
                     itemComment = $tds.eq(6).text();
+                    disrec = $(this).find('#disciplineStockA').val();
+                    subdusrec = $(this).find('#subdisciplineStockA').val();
+                    disorder = $(this).find('#disciplineStockOrderingA').val();
+                    subdisorder = $(this).find('#subdisciplineStockOrderingA').val();
+                    temtype = $(this).find('#stockitemtypeA').val();
                     product = itemPrice * itemQty;
-
+                    
 
                     if (isNaN(itemPrice) === true || isNaN(itemQty) === true || isNaN(product) === true) {
 
                         console.log("NaN");
 
                     } else {
-
-                        stockOrderList.push(itemCode + "^" + itemName + "^" + itemPrice + "^" + product + "^" + itemQty + "^" + itemComment);
-                        stringDetail = stockOrderList.join("|");
+                        
+                        if(disrec === "CS"){
+                            stocCentralized.push(itemCode + "^" + itemName + "^" + itemPrice + "^" + product + "^" + itemQty + "^" + itemComment + "^" + disrec + "^" + subdusrec + "^" + disorder + "^" +subdisorder + "^" +temtype);
+                            stringDetailCentral = stocCentralized.join("|");
+                            grandTotalpricerec += parseFloat(product);
+                            grandTotalqtyrec += parseInt(itemQty);
+                        }else{
+                            stockOrderList.push(itemCode + "^" + itemName + "^" + itemPrice + "^" + product + "^" + itemQty + "^" + itemComment + "^" + disrec + "^" + subdusrec + "^" + disorder + "^" +subdisorder + "^" +temtype);
+                            stringDetail = stockOrderList.join("|");
+                            grandTotalpriceorder += parseFloat(product);
+                            grandTotalqtyorder += parseInt(itemQty);
+                        }
+                        
 
                     }
 
                 });
-
-
-                $.ajax({
-                    url: '../GNL/StockOrder/controllerProcess/orderStockGetSeqNo.jsp',
-                    type: "get",
-                    timeout: 3000,
-                    success: function (returnSeqNo) {
-
-                        bootbox.confirm({
+                
+                bootbox.confirm({
                             message: "Are you sure want to add stock order for this items ?",
                             title: "Add Stock Order ?",
                             buttons: {
@@ -497,67 +578,206 @@
                             callback: function (result) {
 
                                 if (result === true) {
-
                                     $('.loading').show();
+                                    if(stocCentralized.length > 0){
+                                            $.ajax({
+                                            url: '../GNL/StockOrder/controllerProcess/orderStockGetSeqNo.jsp',
+                                            type: "get",
+                                            timeout: 3000,
+                                            success: function (returnSeqNo) {
+                                               var data = {
+                                                order_no: returnSeqNo.trim(),
+                                                total_amt: grandTotalpricerec,
+                                                quantity: grandTotalqtyrec,
+                                                stringDetail: stringDetailCentral
+                                            };
 
-                                    var total_amt = $('#orderNewStockOrderItemDetailsFormGrandTotal').val();
-                                    var quantity = $('#orderNewStockOrderItemDetailsFormTotalQuantity').val();
+                                            //console.log(data);
 
-                                    var data = {
-                                        order_no: returnSeqNo.trim(),
-                                        total_amt: total_amt,
-                                        quantity: quantity,
-                                        stringDetail: stringDetail
-                                    };
+                                            $.ajax({
+                                                url: "../GNL/StockOrder/controllerProcess/orderStockOverall.jsp",
+                                                type: "post",
+                                                data: data,
+                                                timeout: 3000,
+                                                success: function (returnMessage) {
 
-                                    console.log(data);
+                                                    $('.loading').hide();
 
-                                    $.ajax({
-                                        url: "../GNL/StockOrder/controllerProcess/orderStockOverall.jsp",
-                                        type: "post",
-                                        data: data,
-                                        timeout: 3000,
-                                        success: function (returnMessage) {
+                                                    console.log(returnMessage);
 
-                                            $('.loading').hide();
+                                                    if (returnMessage.trim() === 'Success') {
 
-                                            console.log(returnMessage);
+                                                        bootbox.alert({
+                                                            message: "Adding Stock Order Is Successfully",
+                                                            title: "Process Result",
+                                                            backdrop: true
+                                                        });
 
-                                            if (returnMessage.trim() === 'Success') {
+                                                        $("#orderStockContentAddMaster").load("../GNL/StockOrder/orderStockBasicInfo.jsp");
+                                                        $("#orderStockContentAddDetail").load("../GNL/StockOrder/orderStockDetailTable.jsp");
 
-                                                bootbox.alert({
-                                                    message: "Adding Stock Order Is Successfully",
-                                                    title: "Process Result",
-                                                    backdrop: true
-                                                });
+                                                        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
-                                                $("#orderStockContentAddMaster").load("../GNL/StockOrder/orderStockBasicInfo.jsp");
-                                                $("#orderStockContentAddDetail").load("../GNL/StockOrder/orderStockDetailTable.jsp");
+                                                    } else if (returnMessage.trim() === 'Failed') {
 
-                                                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+                                                        bootbox.alert({
+                                                            message: "Adding Stock Order Failed",
+                                                            title: "Process Result",
+                                                            backdrop: true
+                                                        });
 
-                                            } else if (returnMessage.trim() === 'Failed') {
-
-                                                bootbox.alert({
-                                                    message: "Adding Stock Order Failed",
-                                                    title: "Process Result",
-                                                    backdrop: true
-                                                });
-
+                                                    }
+                                                }
+                                            });
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
 
+                                    if(stockOrderList.length > 0){
+                                        $.ajax({
+                                            url: '../GNL/StockOrder/controllerProcess/orderStockGetSeqNo.jsp',
+                                            type: "get",
+                                            timeout: 3000,
+                                            success: function (returnSeqNo) {
+                                                var data = {
+                                                order_no: returnSeqNo.trim(),
+                                                total_amt: grandTotalpriceorder,
+                                                quantity: grandTotalqtyorder,
+                                                stringDetail: stringDetail
+                                            };
+
+                                            //console.log(data);
+
+                                            $.ajax({
+                                                url: "../GNL/StockOrder/controllerProcess/orderStockOverall.jsp",
+                                                type: "post",
+                                                data: data,
+                                                timeout: 3000,
+                                                success: function (returnMessage) {
+
+                                                    $('.loading').hide();
+
+                                                    console.log(returnMessage);
+
+                                                    if (returnMessage.trim() === 'Success') {
+
+                                                        bootbox.alert({
+                                                            message: "Adding Stock Order Is Successfully",
+                                                            title: "Process Result",
+                                                            backdrop: true
+                                                        });
+
+                                                        $("#orderStockContentAddMaster").load("../GNL/StockOrder/orderStockBasicInfo.jsp");
+                                                        $("#orderStockContentAddDetail").load("../GNL/StockOrder/orderStockDetailTable.jsp");
+
+                                                        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                                                    } else if (returnMessage.trim() === 'Failed') {
+
+                                                        bootbox.alert({
+                                                            message: "Adding Stock Order Failed",
+                                                            title: "Process Result",
+                                                            backdrop: true
+                                                        });
+
+                                                    }
+                                                }
+                                            });
+                                            }
+                                        });
+                                    }
                                 } else {
                                     console.log("Process Is Canceled");
                                 }
 
                             }
                         });
+                
+                
 
-
-                    }
-                });
+//                $.ajax({
+//                    url: '../GNL/StockOrder/controllerProcess/orderStockGetSeqNo.jsp',
+//                    type: "get",
+//                    timeout: 3000,
+//                    success: function (returnSeqNo) {
+//
+//                        bootbox.confirm({
+//                            message: "Are you sure want to add stock order for this items ?",
+//                            title: "Add Stock Order ?",
+//                            buttons: {
+//                                confirm: {
+//                                    label: 'Yes',
+//                                    className: 'btn-success'
+//                                },
+//                                cancel: {
+//                                    label: 'No',
+//                                    className: 'btn-danger'
+//                                }
+//                            },
+//                            callback: function (result) {
+//
+//                                if (result === true) {
+//
+//                                    $('.loading').show();
+//
+//                                    var total_amt = $('#orderNewStockOrderItemDetailsFormGrandTotal').val();
+//                                    var quantity = $('#orderNewStockOrderItemDetailsFormTotalQuantity').val();
+//
+//                                    var data = {
+//                                        order_no: returnSeqNo.trim(),
+//                                        total_amt: total_amt,
+//                                        quantity: quantity,
+//                                        stringDetail: stringDetail
+//                                    };
+//
+//                                    //console.log(data);
+//
+//                                    $.ajax({
+//                                        url: "../GNL/StockOrder/controllerProcess/orderStockOverall.jsp",
+//                                        type: "post",
+//                                        data: data,
+//                                        timeout: 3000,
+//                                        success: function (returnMessage) {
+//
+//                                            $('.loading').hide();
+//
+//                                            console.log(returnMessage);
+//
+//                                            if (returnMessage.trim() === 'Success') {
+//
+//                                                bootbox.alert({
+//                                                    message: "Adding Stock Order Is Successfully",
+//                                                    title: "Process Result",
+//                                                    backdrop: true
+//                                                });
+//
+//                                                $("#orderStockContentAddMaster").load("../GNL/StockOrder/orderStockBasicInfo.jsp");
+//                                                $("#orderStockContentAddDetail").load("../GNL/StockOrder/orderStockDetailTable.jsp");
+//
+//                                                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+//
+//                                            } else if (returnMessage.trim() === 'Failed') {
+//
+//                                                bootbox.alert({
+//                                                    message: "Adding Stock Order Failed",
+//                                                    title: "Process Result",
+//                                                    backdrop: true
+//                                                });
+//
+//                                            }
+//                                        }
+//                                    });
+//
+//                                } else {
+//                                    console.log("Process Is Canceled");
+//                                }
+//
+//                            }
+//                        });
+//
+//
+//                    }
+//                });
 
 
 

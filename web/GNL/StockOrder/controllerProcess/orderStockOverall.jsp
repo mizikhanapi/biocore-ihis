@@ -42,19 +42,12 @@
     String quantity = request.getParameter("quantity");
 
     boolean isInsertMaster = true;
-
-    String sqlInsertMaster = "INSERT INTO stk_order_master (customer_id,order_no,txt_date,item_amt,quantity,location,hfc_cd,"
-            + "discipline_cd,subdiscipline_cd,ordering_hfc_cd,ordering_discipline_cd,ordering_subdiscipline_cd,status,created_by,created_date)"
-            + " VALUES ('" + created_by + "','" + order_no + "','" + created_date + "','" + total_amt + "','" + quantity + "','" + hfc + "'"
-            + " ,'" + hfc + "','" + dis + "' ,'" + sub + "','" + hfc + "' ,'" + dis + "','" + sub + "','0','" + created_by + "','" + created_date + "' )";
-
-    isInsertMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertMaster);
-
-    if (isInsertMaster == false) {
-
-        falseCount = falseCount + 1;
-
-    }
+    String disrec="";
+    String subdisrec="";
+    String disorder="";
+    String subdisorder="";
+    String temtype="";
+    String sqlInsertStockDetail="";
 
     // PARAMATER FOR DETAIL
     String stringDetail = request.getParameter("stringDetail");
@@ -73,20 +66,39 @@
         String item_amt = detailsStockS[3];
         String item_quantity = detailsStockS[4];
         String item_comment = detailsStockS[5];
+         disrec = detailsStockS[6];
+         subdisrec = detailsStockS[7];
+         disorder = detailsStockS[8];
+         subdisorder = detailsStockS[9];
+         temtype = detailsStockS[10];
 
         // Details
-        String sqlInsertStockDetail = "INSERT INTO stk_order_detail (order_no,txn_date,item_cd,item_desc,item_amt,ordered_quantity,released_quantity,location,"
-                + "customer_id,order_by,comment,order_status,created_by,created_date)"
+         sqlInsertStockDetail = "INSERT INTO stk_order_detail (order_no,txn_date,item_cd,item_desc,item_amt,quantity,location,"
+                + "customer_id,order_by,created_by,created_date)"
                 + " VALUES ('" + order_no + "','" + created_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "','" + item_quantity + "',"
-                + "'0','" + hfc + "','" + created_by + "','" + created_by + "','" + item_comment + "','0','" + created_by + "','" + created_date + "' )";
+                + "'" + hfc + "','" + created_by + "','" + created_by + "','" + created_by + "','" + created_date + "' )";
 
         isInsertStockDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertStockDetail);
 
         if (isInsertStockDetail == false) {
 
             falseCount = falseCount + 1;
+            
 
         }
+
+    }
+    
+    String sqlInsertMaster = "INSERT INTO stk_order_master (customer_id,order_no,txt_date,item_amt,quantity,location,hfc_cd,"
+            + "discipline_cd,subdiscipline_cd,ordering_hfc_cd,ordering_discipline_cd,ordering_subdiscipline_cd,status,created_by,created_date,item_type)"
+            + " VALUES ('" + created_by + "','" + order_no + "','" + created_date + "','" + total_amt + "','" + quantity + "','" + hfc + "'"
+            + " ,'" + hfc + "','" + disorder + "' ,'" + subdisorder + "','" + hfc + "' ,'" + disrec + "','" + subdisrec + "','0','" + created_by + "','" + created_date + "','"+temtype+"' )";
+
+    isInsertMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertMaster);
+
+    if (isInsertMaster == false) {
+
+        falseCount = falseCount + 1;
 
     }
     // Item Details Part End //
@@ -97,6 +109,8 @@
         out.print("Success");
     } else {
         out.print("Failed");
+//        out.print(sqlInsertStockDetail);
+//        out.print(sqlInsertMaster);
     }
 
 %>
