@@ -1321,7 +1321,7 @@
             product = drugDispensedQty * drugPrice;
 
             if (isNaN(drugTotalOrder) === true || isNaN(drugPrice) === true || isNaN(drugDispensedQty) === true || isNaN(product) === true) {
-                console.log("NaN");
+                //console.log("NaN");
             } else {
                 grandTotal = grandTotal + product;
                 drugDispensedQtyTotal = drugDispensedQtyTotal + drugDispensedQty;
@@ -1342,7 +1342,7 @@
                 productChecked = drugDispensedQtyChecked * drugPriceChecked;
 
                 if (isNaN(drugTotalOrderChecked) === true || isNaN(drugPriceChecked) === true || isNaN(drugDispensedQtyChecked) === true || isNaN(productChecked) === true) {
-                    console.log("NaN Checked");
+                    //console.log("NaN Checked");
                 } else {
                     grandTotalDispenseChecked = grandTotalDispenseChecked + productChecked;
                     drugDispensedQtyTotalChecked = drugDispensedQtyTotalChecked + drugDispensedQtyChecked;
