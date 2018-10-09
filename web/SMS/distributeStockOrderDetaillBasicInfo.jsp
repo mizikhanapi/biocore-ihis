@@ -14,6 +14,11 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String role = session.getAttribute("ROLE_CODE").toString();
+    
+    String hfcori = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String disori = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdisori = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
     String locationcode = hfc + "|" + dis + "|" + subdis;
 %>
@@ -213,11 +218,17 @@
 
 <hr/>
 
-<div style="float: left;" id="distributeStockOrderDetailsReleaseButtonDiv" > 
+<div style="float: left;" id="distributeStockOrderDetailsBackButtonDiv" > 
     <button class="btn btn-default " type="button" id="btnClearOrderDetailRelease" name="btnClearOrderDetailRelease" >&nbsp; Back &nbsp;</button>
 </div>
+<div class="text-right" id="distributeStockOrderDetailsTransferButtonDiv" > 
+        <button class="btn btn-success " type="button" id="btnStockPrintSlip" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Print Slip &nbsp;</button>
 
+    <button class="btn btn-success " type="button" id="btnStockOrderTransfer" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Transfer Stock &nbsp;</button>
+</div>
 <div class="text-right" id="distributeStockOrderDetailsReleaseButtonDiv" > 
+        <button class="btn btn-success " type="button" id="btnStockPrintSlip" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Print Slip &nbsp;</button>
+
     <button class="btn btn-success " type="button" id="btnStockOrderRelease" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Release Stock &nbsp;</button>
 </div>
 
@@ -230,10 +241,23 @@
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-
+        var role = "<%=role%>";
+        var currentDis = "<%=dis%>";
         var episodeDate;
         var encounterDate;
-
+        var hfc;
+        var dis,status;
+        var grand ;
+        
+        if(role ==="001" && currentDis ==="CS"){
+            $('#distributeStockOrderDetailsTransferButtonDiv').show();
+            $('#distributeStockOrderDetailsReleaseButtonDiv').hide();
+        }else{
+            $('#distributeStockOrderDetailsTransferButtonDiv').hide();
+            $('#distributeStockOrderDetailsReleaseButtonDiv').show();
+        }
+        
+        
         // Move to Order Details Fetch Details Start
         $('#distributeStockOrderMasterContent').off('click', '#distributeStockOrderMasterTable #moveToOrderDetailsTButton').on('click', '#distributeStockOrderMasterTable #moveToOrderDetailsTButton', function (e) {
 
@@ -259,6 +283,10 @@
             var stockEncounterDate = arrayData[2];
             var stockEpisodeDate = arrayData[2];
             var stockOrderLocationCodeName = arrayData[20];
+            hfc = arrayData[6];
+            dis = arrayData[7];
+            status = arrayData[12]; 
+            
 
 
             // Set value to the Second Tab 
@@ -290,7 +318,7 @@
 
 
             var dataOrder = {
-                orderNo: orderNo
+                orderNo: orderNo,hfc:hfc,dis:dis,status:status
             };
 
 
@@ -300,11 +328,25 @@
                 data: dataOrder,
                 timeout: 3000,
                 success: function (returnOrderDetailsTableHTML) {
-
+                    
                     $('#distributeStockOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                    
                     datatablesDestroyAndRecreate();
                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                     $('.loading').hide();
+                    
+//                    function Calculate() {
+//                        var table = document.getElementById('distributeStockOrderDetailsListTable');
+//                        var items = table.getElementsById('totalprice');
+//                        var sum = 0;
+//                        for(var i=0; i<items.length; i++){
+//                           sum += parseDouble(items[i].value); 
+//                        }
+//                            
+//                        $('#releaseGrandTotal').val(sum);
+//                    }
+                    
+                    //Calculate();
 
                 }
             });
@@ -387,7 +429,7 @@
 
 
                 if (isNaN(totalOrder) === true || isNaN(stockPrice) === true || isNaN(stockReleaseQty) === true || isNaN(product) === true) {
-                    console.log("NaN");
+                    //console.log("NaN");
                 } else {
                     grandTotal = grandTotal + product;
 
@@ -411,7 +453,7 @@
 
 
                     if (isNaN(totalOrderChecked) === true || isNaN(stockPriceChecked) === true || isNaN(stockReleaseQtyChecked) === true || isNaN(productChecked) === true) {
-                        console.log("NaN Checked");
+                        //console.log("NaN Checked");
                     } else {
                         grandTotalChecked = grandTotalChecked + productChecked;
                         stockReleaseQtyTotalChecked = stockReleaseQtyTotalChecked + stockReleaseQtyChecked;
@@ -479,13 +521,22 @@
 
             $("#orderStockDetailsSearchItemInput").on('keyup', function () { // everytime keyup event
 
+                var itemType = $('#orderNewStockOrderItemType').val();
                 var input = $(this).val(); // We take the input value
+                var checkboxCS = $('#checkboxCS').is(':checked');
+                var dataCS;
+                
+                if(checkboxCS){
+                    dataCS = $('#checkboxCS').val();
+                }else{
+                    dataCS="nope";
+                }
 
                 if (input.length >= 1) { // Minimum characters = 2 (you can change)
 
                     $('#orderStockDetailsSearchItemInputDisplayResult').html('<img src="libraries/LoaderIcon.gif"/>');
 
-                    var dataFields = {'input': input}; // We pass input argument in Ajax
+                    var dataFields = {'input': input,'itemtype':itemType,'dataCS':dataCS}; // We pass input argument in Ajax
 
                     console.log(dataFields);
 
@@ -531,11 +582,18 @@
             var id = $('#orderStockDetailsSearchItemInput').val();
 
             var arrayData = $('#orderStockDetailsSearchItemInput').val().split("|");
-
+            var itemType = $('#orderNewStockOrderItemType').val();
             id = arrayData[0];
+            var checkboxCS = $('#checkboxCS').is(':checked');
+                var dataCS;
 
+                if(checkboxCS){
+                    dataCS = $('#checkboxCS').val();
+                }else{
+                    dataCS="nope";
+                }
             var data = {
-                id: id
+                id: id,itemType:itemType,'dataCS':dataCS
             };
 
 
@@ -554,12 +612,23 @@
                     var itemName = array_data[2];
                     var itemPrice = array_data[3];
                     var itemStock = array_data[4];
+                    var hfc = array_data[5];
+                    var dis = array_data[6];
+                    var orderhfc = "<%=hfcori%>";
+                    var orderdis = "<%=disori%>";
+                    var temtype = array_data[7];
 
 
                     $('#orderStockItemDisplayItemCode').val(itemCode);
                     $('#orderStockItemDisplayItemName').val(itemName);
                     $('#orderStockItemDisplayItemStockQuantity').val(itemStock);
                     $('#orderStockItemDisplayItemPrice').val(itemPrice);
+                    
+                    $('#disciplineStock').val(dis);
+                    $('#subdisciplineStock').val(dis);
+                    $('#disciplineStockOrdering').val(orderdis);
+                    $('#subdisciplineStockOrdering').val("<%=subdisori%>");        
+                    $('#stockitemtype').val(temtype);
 
                     $('#orderStockDetailsSearchItemInput').val('');
 
@@ -575,17 +644,32 @@
         $('#orderStockAddButton').on('click', function (e) {
 
             e.preventDefault();
+            var checkboxCS = $('#checkboxCS').is(':checked');
+                var dataCS;
 
+                if(checkboxCS){
+                    dataCS = $('#checkboxCS').val();
+                }else{
+                    dataCS="nope";
+                }
             var order_no = $('#orderStockDetailsID').val();
             var txn_date = $('#orderStockDetailsDate').val();
-
+            
+            
             var item_cd = $('#orderStockItemDisplayItemCode').val();
             var item_desc = $('#orderStockItemDisplayItemName').val();
             var ordered_quantity = $('#orderStockItemInputQuantity').val();
             var itemPrice = $('#orderStockItemDisplayItemPrice').val();
             var comment = $('#orderStockItemInputComment').val();
-
-            var customer_id = $('#patientpmino').val();
+            
+            var disrec = $('#disciplineStock').val();
+            var subdisrec = $('#subdisciplineStock').val();
+            var disorder = $('#disciplineStockOrdering').val();
+            var subdisorder = $('#subdisciplineStockOrdering').val();
+            var itemType = $('#stockitemtype').val();
+            var hfc = "<%=hfcori%>";
+            
+            var customer_id = $('#requestorUserID').val();
 
             var qtyCheck = document.getElementById("orderStockItemInputQuantity").checkValidity();
 
@@ -606,7 +690,12 @@
                     item_amt: item_amt,
                     ordered_quantity: ordered_quantity,
                     customer_id: customer_id,
-                    comment: comment
+                    comment: comment,
+                    disrec : disrec,
+                    subdisrec : subdisrec,
+                    disorder : disorder,
+                    subdisorder : subdisorder,
+                    temtype : itemType
                 };
 
                 console.log(datas);
@@ -616,16 +705,16 @@
                     type: "post",
                     data: datas,
                     timeout: 10000,
-                    success: function (datas) {
-
-                        if (datas.trim() === 'Success') {
+                    success: function (datasreturn) {
+                        console.log(datasreturn);
+                        if (datasreturn.trim() === 'Success') {
 
                             $('#addStockOrder').modal('hide');
 
                             var dataRefres = {
-                                orderNo: order_no
+                                orderNo: order_no,hfc : hfc,dis: disrec
                             };
-
+                            console.log(dataRefres);
                             $.ajax({
                                 url: "distributeStockOrderDetailsTable.jsp",
                                 type: "post",
@@ -652,7 +741,7 @@
 
 
 
-                        } else if (datas.trim() === 'Duplicate') {
+                        } else if (datasreturn.trim() === 'Duplicate') {
 
                             bootbox.alert({
                                 message: "Order Stock Code Duplication Detected. Please Order diffrent stock item as the data already there",
@@ -661,7 +750,7 @@
                             });
 
 
-                        } else if (datas.trim() === 'Failed') {
+                        } else if (datasreturn.trim() === 'Failed') {
 
                             bootbox.alert({
                                 message: "Order Add Failed",
@@ -676,7 +765,8 @@
 
                     },
                     error: function (err) {
-                        console.log("Ajax Is Not Success");
+                        console.log("Ajax Is Not Success :");
+                        console.log(err);
                     }
 
                 });

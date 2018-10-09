@@ -15,25 +15,51 @@
 <%
     Conn conn = new Conn();
     String orderNo = request.getParameter("orderNo");
+    String hfc = request.getParameter("hfc");
+    String dis = request.getParameter("dis");
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
-
+   //String status = request.getParameter("status");
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
+    Double grandtotal = 0.0;
+    String selectadditionalinfo = "";
+    //                               0      1       2           3       4       5           6       7       8           9               10      11       12      13
+    String selectType = "Select order_no,txn_date,item_cd,item_desc,item_amt,location,customer_id,order_by,created_by,created_date,quantity,item_type,comment,status "
+            + "FROM stk_order_detail where order_no = '"+orderNo+"'";
     //                                  0                 1           2               3               4                 5                   6                       7
-    String orderList = "SELECT stkod.order_no, stkod.txn_date, stkod.item_cd, stkod.item_desc, stkod.item_amt, stkod.ordered_quantity, stkod.released_quantity, stkod.location, "
-            //             8             9                10                 11               12            13                      14                      15                  16              17
-            + " stkod.customer_id, stkod.order_by, stkod.order_status, stksi.item_cd, stksi.item_name, stksi.selling_price, stksi.physical_stock, stksi.item_condition, stksi.item_grade,stkod.comment  "
+    String orderList = "SELECT stkod.order_no, stkod.txn_date, stkod.item_cd, stkod.item_desc, stkod.item_amt, stkod.location,stkod.customer_id, stkod.order_by "
             // FROM DETAIL TABLE
             + " FROM stk_order_detail stkod "
             // LEFT JOIN ITEM TABLE
-            + " LEFT JOIN stk_stock_item stksi ON (stkod.item_cd = stksi.item_cd)  "
+            + " INNER JOIN stk_stock_item stksi ON (stkod.item_cd = stksi.item_cd) AND stksi.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND stksi.discipline_cd = '" + DISCIPLINE_CODE + "'  "
+            + " INNER JOIN pis_mdc2 mdc ON (stkod.item_cd = mdc.ud_mdc_code) AND mdc.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND mdc.discipline_cd = '" + DISCIPLINE_CODE + "' "
             // WHERE CONDITION
             + " WHERE stkod.order_no = '" + orderNo + "' AND (stkod.order_status = '0' OR stkod.order_status = '1') "
-            + " AND stksi.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND stksi.discipline_cd = '" + DISCIPLINE_CODE + "' ";
+            + "  ";
 
-    ArrayList<ArrayList<String>> dataOrderList;
-    dataOrderList = conn.getData(orderList);
+    ArrayList<ArrayList<String>> dataOrderList,dataOrderNew,dataAdditional;
+    //dataOrderList = conn.getData(orderList);
+    
+    dataOrderNew = conn.getData(selectType);
+    if(dataOrderNew.size() > 0){
+        
+        for(int i = 0;i <dataOrderNew.size();i++){
+            
+            if(dataOrderNew.get(i).get(11).equalsIgnoreCase("drug")){
+               selectadditionalinfo = "Select d_stock_qty,d_sell_price from pis_mdc2 where ud_mdc_code = '"+dataOrderNew.get(i).get(2)+"' "
+                       + "and hfc_cd = '"+hfc+"' and discipline_cd = '"+dis+"'";
+            }else{
+                selectadditionalinfo = "Select physical_stock,selling_price from stk_stock_item where item_cd = '"+dataOrderNew.get(i).get(2)+"' "
+                       + "and hfc_cd = '"+hfc+"' and discipline_cd = '"+dis+"'";
+            }
+            dataAdditional = conn.getData(selectadditionalinfo);
+            //out.print(selectadditionalinfo);
+            dataOrderNew.get(i).add(dataAdditional.get(0).get(0));
+            dataOrderNew.get(i).add(dataAdditional.get(0).get(1));
+        }
+        
+    }
 
 
 %>
@@ -46,61 +72,59 @@
     <th style="text-align: left;">Item Name</th>
     <th style="text-align: left;">Stock Qty</th>
     <th style="text-align: left;">Order Qty</th>
-    <th style="text-align: left;">Released Qty</th>
-    <th style="text-align: left;">Qty To Released</th>
     <th style="text-align: left;">Price/Unit</th>
     <th style="text-align: left;">Total (RM)</th>
     <th style="text-align: left;">Comment</th>
     <th style="text-align: left;">Status</th>
 </thead>
 <tbody>
-    <%        for (int i = 0; i < dataOrderList.size(); i++) {
+    <%        for (int i = 0; i < dataOrderNew.size(); i++) {
 
             NumberOrDecimalChecker check = new NumberOrDecimalChecker();
 
-            boolean stockCheck = check.isInteger(dataOrderList.get(i).get(14));
-            boolean orderedCheck = check.isInteger(dataOrderList.get(i).get(5));
-            boolean releaseCheck = check.isInteger(dataOrderList.get(i).get(6));
-            boolean priceCheck = check.isDouble(dataOrderList.get(i).get(13));
+            boolean stockCheck = check.isInteger(dataOrderNew.get(i).get(14));
+            boolean orderedCheck = check.isInteger(dataOrderNew.get(i).get(10));
+            //boolean releaseCheck = check.isInteger(dataOrderNew.get(i).get(6));
+            boolean priceCheck = check.isDouble(dataOrderNew.get(i).get(15));
 
-            if (stockCheck && orderedCheck && releaseCheck && priceCheck) {
+            if (stockCheck && orderedCheck  && priceCheck) {
 
                 /* Stock */
-                String stock = dataOrderList.get(i).get(14);
+                String stock = dataOrderNew.get(i).get(14);
 
 
                 /* Ordered */
-                String ordered = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(5)));
+                String ordered = formatterInt.format(Double.parseDouble(dataOrderNew.get(i).get(10)));
 
 
                 /* Released */
-                String released = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(6)));
+                //String released = formatterInt.format(Double.parseDouble(dataOrderNew.get(i).get(6)));
 
 
                 /* ToReleased */
-                String toReleased = formatterInt.format(Double.parseDouble(ordered) - Double.parseDouble(released));
+                //String toReleased = formatterInt.format(Double.parseDouble(ordered) - Double.parseDouble(released));
 
 
                 /* Price */
-                String price = formatter.format(Double.parseDouble(dataOrderList.get(i).get(13)));
+                String price = formatter.format(Double.parseDouble(dataOrderNew.get(i).get(15)));
 
 
                 /* Check Dispensed */
                 String checkReleased = "0";
 
                 /* Assign Dispensed */
-                if ((Double.parseDouble(toReleased)) > (Double.parseDouble(stock))) {
-                    checkReleased = stock;
-                } else {
-                    checkReleased = toReleased;
-                }
+//                if ((Double.parseDouble(toReleased)) > (Double.parseDouble(stock))) {
+//                    checkReleased = stock;
+//                } else {
+//                    checkReleased = toReleased;
+//                }
 
                 /* Total Price */
-                String totalPrice = formatter.format(Double.parseDouble(checkReleased) * Double.parseDouble(price));
-
+                String totalPrice = dataOrderNew.get(i).get(4);
+                grandtotal += Double.valueOf(totalPrice);
                 /* Status */
-                String status = dataOrderList.get(i).get(10);
-
+               String status = dataOrderNew.get(i).get(13);
+//
                 if (status.equalsIgnoreCase("0")) {
                     status = "New";
                 } else if (status.equalsIgnoreCase("1")) {
@@ -113,30 +137,26 @@
 
     %>
 
-    <%            if (((Double.parseDouble(toReleased)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0)) {    %>
+    <%            if ( ((Double.parseDouble(ordered)) > ((Double.parseDouble(stock))) )) {    %>
     <tr style="font-weight:bolder; color: #FFD700;text-align: center;" >
         <% } else if (Integer.parseInt(stock) == 0) {   %>
     <tr style="font-weight:bolder; color: red;text-align: center;">
         <% } else {   %>
     <tr style="text-align: left;">
         <%   }%>
-<input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
-<td align="center"><input type="checkbox" id="drugDistributeChecked" checked></td> <!-- Checked -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center" ><%= dataOrderList.get(i).get(11)%></td> <!-- Code -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= dataOrderList.get(i).get(12)%></td> <!-- Name -->
+
+<td align="center"><input type="checkbox" id="drugDistributeChecked" checked><input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderNew.get(i))%>"></td> <!-- Checked -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center" style="display: none"><%= dataOrderNew.get(i).get(0)%></td> <!-- Order No -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center" ><%= dataOrderNew.get(i).get(2)%></td> <!-- Code -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= dataOrderNew.get(i).get(3)%></td> <!-- Name -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= stock%></td> <!-- Stock -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= ordered%></td> <!-- Ordered -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= released%></td> <!-- Supplied -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= checkReleased%></td> <!-- Dispensed -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= price%></td> <!-- Price -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= totalPrice%></td> <!--  Total -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= dataOrderList.get(i).get(17)%></td> <!--  Comment -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= status%></td> <!-- Status -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= totalPrice%><input type="hidden" id="totalprice" value="<%=totalPrice%>"></td> <!--  Total -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= dataOrderNew.get(i).get(12)%></td> <!--  comment -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=status%></td> <!--  status -->
 
 </tr>
-
-
 <%  } else {
 
         }// end else
@@ -145,5 +165,3 @@
 
 </tbody>
 </table>
-
-

@@ -41,6 +41,7 @@
     String ordered_quantity = request.getParameter("ordered_quantity");
     String customer_id = request.getParameter("customer_id");
     String comment = request.getParameter("comment");
+    String temtype = request.getParameter("temtype");
 
     String sqlCheck = "SELECT order_no from stk_order_detail"
             + " WHERE order_no = '" + order_no + "' AND item_cd = '" + item_cd + "' LIMIT 1 ";
@@ -50,18 +51,17 @@
         out.print("Duplicate");
     } else {
 
-        String sqlInsert = "INSERT INTO stk_order_detail (order_no, txn_date,item_cd, item_desc, item_amt, ordered_quantity, "
-                + " released_quantity, location, customer_id, order_by, comment, order_status, created_by, created_date) "
-                + " VALUES ('" + order_no + "','" + txn_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "', "
-                + " '" + ordered_quantity + "','0','" + hfc + "','" + customer_id + "','" + created_by + "','" + comment + "', "
-                + " '0','" + created_by + "' ,'" + created_date + "')";
+        String sqlInsert = "INSERT INTO stk_order_detail (order_no,txn_date,item_cd,item_desc,item_amt,quantity,location,"
+                + "customer_id,order_by,created_by,created_date,item_type,comment,status)"
+                + " VALUES ('" + order_no + "','" + created_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "','" + ordered_quantity + "',"
+                + "'" + hfc + "','" + created_by + "','" + created_by + "','" + created_by + "','" + created_date + "','"+temtype+"','"+comment+"','0'  )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
 
-            String sqlCheckTotalOrder = "SELECT SUM(item_amt),SUM(ordered_quantity) FROM stk_order_detail  "
-                    + " WHERE order_no = '" + order_no + "' AND (order_status = '0' OR order_status = '1')";
+            String sqlCheckTotalOrder = "SELECT SUM(item_amt),SUM(quantity) FROM stk_order_detail  "
+                    + " WHERE order_no = '" + order_no + "' AND (status = '0' OR status = '1')";
             ArrayList<ArrayList<String>> getOrderSummary = conn.getData(sqlCheckTotalOrder);
 
             String totalOrderAmount = String.valueOf(getOrderSummary.get(0).get(0));

@@ -77,6 +77,21 @@
                     </div>
 
                     <div class="row">
+                        <div class="form-group" id="divCentralisedStore">
+                                <label class="col-md-4 control-label" for="textinput">Ordering to</label>
+                                <div class="col-md-6">
+                                    <input type="checkbox" name="CS" value="CS" class="" id="checkboxCS">Centralized Store<br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Item Type *</label>
+                                <div class="col-md-6">
+                                    <select id="orderNewStockOrderItemType" class="form-control input-md">
+                                        <option value="drug">Drug Items</option>
+                                        <option value="other" >Others</option>
+                                    </select>
+                                </div>
+                            </div>
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
@@ -98,6 +113,11 @@
                                 <label class="col-md-4 control-label" for="textinput">Item Code</label>
                                 <div class="col-md-8">
                                     <input id="orderStockItemDisplayItemCode" name="orderStockItemDisplayItemCode" type="text" placeholder="Item Code"  class="form-control input-md" readonly>
+                                    <input type="hidden" id="disciplineStock">
+                                    <input type="hidden" id="subdisciplineStock">
+                                    <input type="hidden" id="disciplineStockOrdering">
+                                    <input type="hidden" id="subdisciplineStockOrdering">
+                                    <input type="hidden" id="stockitemtype">
                                 </div>
                             </div>                           
                             <!-- Text input-->

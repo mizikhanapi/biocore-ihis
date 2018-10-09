@@ -74,9 +74,9 @@
 
         // Details
          sqlInsertStockDetail = "INSERT INTO stk_order_detail (order_no,txn_date,item_cd,item_desc,item_amt,quantity,location,"
-                + "customer_id,order_by,created_by,created_date)"
+                + "customer_id,order_by,created_by,created_date,item_type,comment,status)"
                 + " VALUES ('" + order_no + "','" + created_date + "','" + item_cd + "','" + item_desc + "','" + item_amt + "','" + item_quantity + "',"
-                + "'" + hfc + "','" + created_by + "','" + created_by + "','" + created_by + "','" + created_date + "' )";
+                + "'" + hfc + "','" + created_by + "','" + created_by + "','" + created_by + "','" + created_date + "','"+temtype+"','"+item_comment+"','0'  )";
 
         isInsertStockDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertStockDetail);
 
@@ -92,7 +92,7 @@
     String sqlInsertMaster = "INSERT INTO stk_order_master (customer_id,order_no,txt_date,item_amt,quantity,location,hfc_cd,"
             + "discipline_cd,subdiscipline_cd,ordering_hfc_cd,ordering_discipline_cd,ordering_subdiscipline_cd,status,created_by,created_date,item_type)"
             + " VALUES ('" + created_by + "','" + order_no + "','" + created_date + "','" + total_amt + "','" + quantity + "','" + hfc + "'"
-            + " ,'" + hfc + "','" + disorder + "' ,'" + subdisorder + "','" + hfc + "' ,'" + disrec + "','" + subdisrec + "','0','" + created_by + "','" + created_date + "','"+temtype+"' )";
+            + " ,'" + hfc + "','" + disrec + "' ,'" + subdisrec + "','" + hfc + "' ,'" + disorder + "','" + subdisorder + "','0','" + created_by + "','" + created_date + "','"+temtype+"' )";
 
     isInsertMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertMaster);
 
