@@ -236,13 +236,13 @@
                                 </div>
                             </div>
 
-                            <!-- Text input-->
+<!--                             Text input
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Released Quantity</label>
                                 <div class="col-md-8">
                                     <input id="updateStockOrderReleasedQuantity" name="updateSuppliedDrugQuantity" type="number" placeholder="Released Quantity" class="form-control input-md" maxlength="50" readonly>
                                 </div>
-                            </div>
+                            </div>-->
 
                         </div>
 

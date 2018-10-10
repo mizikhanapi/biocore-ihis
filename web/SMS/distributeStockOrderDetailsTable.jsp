@@ -24,8 +24,8 @@
     NumberFormat formatterInt = new DecimalFormat("#0");
     Double grandtotal = 0.0;
     String selectadditionalinfo = "";
-    //                               0      1       2           3       4       5           6       7       8           9               10      11       12      13
-    String selectType = "Select order_no,txn_date,item_cd,item_desc,item_amt,location,customer_id,order_by,created_by,created_date,quantity,item_type,comment,status "
+    //                               0      1       2           3       4       5           6       7       8           9               10      11       12      13    14
+    String selectType = "Select order_no,txn_date,item_cd,item_desc,item_amt,location,customer_id,order_by,created_by,created_date,quantity,item_type,comment,status,released_quantity "
             + "FROM stk_order_detail where order_no = '"+orderNo+"'";
     //                                  0                 1           2               3               4                 5                   6                       7
     String orderList = "SELECT stkod.order_no, stkod.txn_date, stkod.item_cd, stkod.item_desc, stkod.item_amt, stkod.location,stkod.customer_id, stkod.order_by "
@@ -76,21 +76,23 @@
     <th style="text-align: left;">Total (RM)</th>
     <th style="text-align: left;">Comment</th>
     <th style="text-align: left;">Status</th>
+    <th style="text-align: left;">Released Quantity</th>
+    <th style="text-align: left;">To release Quantity</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderNew.size(); i++) {
 
             NumberOrDecimalChecker check = new NumberOrDecimalChecker();
 
-            boolean stockCheck = check.isInteger(dataOrderNew.get(i).get(14));
+            boolean stockCheck = check.isInteger(dataOrderNew.get(i).get(15));
             boolean orderedCheck = check.isInteger(dataOrderNew.get(i).get(10));
             //boolean releaseCheck = check.isInteger(dataOrderNew.get(i).get(6));
-            boolean priceCheck = check.isDouble(dataOrderNew.get(i).get(15));
+            boolean priceCheck = check.isDouble(dataOrderNew.get(i).get(16));
 
             if (stockCheck && orderedCheck  && priceCheck) {
 
                 /* Stock */
-                String stock = dataOrderNew.get(i).get(14);
+                String stock = dataOrderNew.get(i).get(15);
 
 
                 /* Ordered */
@@ -98,15 +100,19 @@
 
 
                 /* Released */
-                //String released = formatterInt.format(Double.parseDouble(dataOrderNew.get(i).get(6)));
-
+                String released = "";
+                if(dataOrderNew.get(i).get(14).equalsIgnoreCase("") || dataOrderNew.get(i).get(14).isEmpty() || dataOrderNew.get(i).get(14) == null){
+                    released = "0";
+                }else{
+                    released = dataOrderNew.get(i).get(14);
+                }
 
                 /* ToReleased */
                 //String toReleased = formatterInt.format(Double.parseDouble(ordered) - Double.parseDouble(released));
 
 
                 /* Price */
-                String price = formatter.format(Double.parseDouble(dataOrderNew.get(i).get(15)));
+                String price = formatter.format(Double.parseDouble(dataOrderNew.get(i).get(16)));
 
 
                 /* Check Dispensed */
@@ -155,6 +161,8 @@
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= totalPrice%><input type="hidden" id="totalprice" value="<%=totalPrice%>"></td> <!--  Total -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= dataOrderNew.get(i).get(12)%></td> <!--  comment -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=status%></td> <!--  status -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=released%></td> <!--  released quantity -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=ordered%></td> <!--  to release released quantity -->
 
 </tr>
 <%  } else {

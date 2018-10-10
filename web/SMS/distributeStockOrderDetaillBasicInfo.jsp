@@ -423,8 +423,8 @@
 
                 var $tds = $(this).find('td');
                 totalOrder = totalOrder + 1;
-                stockPrice = parseFloat($tds.eq(8).text());
-                stockReleaseQty = parseFloat($tds.eq(7).text());
+                stockPrice = parseFloat($tds.eq(6).text());
+                stockReleaseQty = parseFloat($tds.eq(11).text());
                 product = stockReleaseQty * stockPrice;
 
 
@@ -447,8 +447,8 @@
 
                     var $tds = $(this).find('td');
                     totalOrderChecked = totalOrderChecked + 1;
-                    stockPriceChecked = parseFloat($tds.eq(8).text());
-                    stockReleaseQtyChecked = parseFloat($tds.eq(7).text());
+                    stockPriceChecked = parseFloat($tds.eq(6).text());
+                    stockReleaseQtyChecked = parseFloat($tds.eq(11).text());
                     productChecked = stockReleaseQtyChecked * stockPriceChecked;
 
 
@@ -817,31 +817,31 @@
 
             var updateStockOrderNo = arrayData[0];
             var updateStockOrderCode = arrayData[2];
-            var updateStockOrderStockQuantity = parseInt(arrayData[14]);
-            var updateStockOrderOrderedQuantity = arrayData[5];
-            var updateStockOrderReleasedQuantity = arrayData[6];
-            var updateStockOrderQtyToRelease = row.find('td').eq(7).text();
-            var updateStockOrderComment = row.find('td').eq(10).text();
-            var updateStockOrderStatus = row.find('td').eq(11).text();
+            var updateStockOrderStockQuantity = parseInt(arrayData[15]);
+            var updateStockOrderOrderedQuantity = arrayData[10];
+            //var updateStockOrderReleasedQuantity = arrayData[6];
+            //var updateStockOrderQtyToRelease = row.find('td').eq(7).text();
+            var updateStockOrderComment = row.find('td').eq(12).text();
+            var updateStockOrderStatus = row.find('td').eq(13).text();
 
             $("#updateStockOrderNo").val(updateStockOrderNo);
             $("#updateStockOrderCode").val(updateStockOrderCode);
             $("#updateStockOrderStockQuantity").val(updateStockOrderStockQuantity);
             $("#updateStockOrderOrderedQuantity").val(updateStockOrderOrderedQuantity);
-            $("#updateStockOrderReleasedQuantity").val(updateStockOrderReleasedQuantity);
+            //$("#updateStockOrderReleasedQuantity").val(updateStockOrderReleasedQuantity);
             $("#updateStockOrderComment").val(updateStockOrderComment);
             $("#updateStockOrderStatus").val(updateStockOrderStatus);
 
 
-            if (updateStockOrderQtyToRelease === "0") {
-
-                $("#updateStockOrderQtyToReleaseQuantity").val("");
-
-            } else {
-
-                $("#updateStockOrderQtyToReleaseQuantity").val(updateStockOrderQtyToRelease);
-
-            }
+//            if (updateStockOrderQtyToRelease === "0") {
+//
+//                $("#updateStockOrderQtyToReleaseQuantity").val("");
+//
+//            } else {
+//
+//                $("#updateStockOrderQtyToReleaseQuantity").val(updateStockOrderQtyToRelease);
+//
+//            }
 
         });
         // Get Data For Delete And Update To Load On the Modal End
@@ -862,16 +862,16 @@
             var updateStockOrderComment = $("#updateStockOrderComment").val();
             var updateStockOrderStatus = $("#updateStockOrderStatus").val();
 
-            var updateStockOrderPrice = row.find('td').eq(8).text();
+            var updateStockOrderPrice = row.find('td').eq(6).text();
 
-
+            console.log(updateStockOrderPrice);
             var orderTotal = parseFloat(updateStockOrderPrice) * parseFloat(updateStockOrderQtyToRelease);
             var orderStockTotalFloat = parseFloat(orderTotal).toFixed(2);
 
 
             if (updateStockOrderQtyToRelease === "" || updateStockOrderQtyToRelease === null || parseInt(updateStockOrderQtyToRelease) < 1) {
 
-                bootbox.alert("Please Insert The Value For Quantity To Be Released That Is More That 0 !!!");
+                bootbox.alert("Please Insert The Value For Quantity To Be Released That Is More That 0");
 
             } else if (updateStockOrderStatus === "New" || updateStockOrderStatus === null) {
 
@@ -889,10 +889,10 @@
 
             } else {
 
-                var updateStockOrderNewReleaseQuantity = row.find('td').eq(7).text(updateStockOrderQtyToRelease);
-                var updateStockOrderNewTotalPrice = row.find('td').eq(9).text(orderStockTotalFloat);
-                var updateStockOrderNewStatus = row.find('td').eq(11).text(updateStockOrderStatus);
-                var updateStockOrderNewComment = row.find('td').eq(10).text(updateStockOrderComment);
+                var updateStockOrderNewReleaseQuantity = row.find('td').eq(11).text(updateStockOrderQtyToRelease);
+                var updateStockOrderNewTotalPrice = row.find('td').eq(7).text(orderStockTotalFloat);
+                var updateStockOrderNewStatus = row.find('td').eq(9).text(updateStockOrderStatus);
+                var updateStockOrderNewComment = row.find('td').eq(8).text(updateStockOrderComment);
 
 
                 $('#updateStockOrder').modal('hide');
@@ -1014,7 +1014,7 @@
 
 
 
-        $('#distributeStockOrderDetailContent').off('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease', function (e) {
+        $('#distributeStockOrderDetailContent').off('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockOrderTransfer', function (e) {
 
             var customer_id = $("#requestorUserID").val();
             var order_no = $("#distributeStockOrderNo").val();
@@ -1027,42 +1027,46 @@
 
             var table = $("#distributeStockOrderDetailsListTable tbody");
 
-            var drugChecked, item_cd, item_desc, item_amt, item_quantity, orderQuantity, releasedQuantity, drugStockQty, comment, status;
+            var drugChecked, item_cd, item_desc, item_amt, item_quantity, orderQuantity, releasedQuantity, comment, status,torelease;
 
             var releaseOrderList = [];
 
             table.find('tr').each(function (i) {
-
+                var rowData = $(this).find("#dataPatientOrderDetailsListhidden").val();
+                var arrayData = rowData.split("|");
+                var itemtype = arrayData[11];
+                var customer = arrayData[6];
+                var location = arrayData[5];
                 var $tds = $(this).find('td');
 
                 // Get The Data
                 drugChecked = $(this).find("#drugDistributeChecked").is(':checked');
                 item_cd = $tds.eq(2).text();
                 item_desc = $tds.eq(3).text();
-                item_amt = $tds.eq(9).text();
-                item_quantity = $tds.eq(7).text();
+                item_amt = $tds.eq(7).text();
+                item_quantity = $tds.eq(4).text();
                 orderQuantity = $tds.eq(5).text();
-                releasedQuantity = $tds.eq(6).text();
-                drugStockQty = $tds.eq(4).text();
-                comment = $tds.eq(10).text();
-                status = $tds.eq(11).text();
+                releasedQuantity = $tds.eq(10).text();
+                torelease = $tds.eq(11).text();
+                comment = $tds.eq(8).text();
+                status = $tds.eq(9).text();
 
                 if (drugChecked === true) {
 
 
                     if (status === "New") {
 
-                        if (parseInt(item_quantity) >= parseInt(orderQuantity)) {
+                        if (parseInt(torelease) >= parseInt(orderQuantity)) {
                             status = "4";
-                        } else if (parseInt(item_quantity) < parseInt(orderQuantity)) {
+                        } else if (parseInt(torelease) < parseInt(orderQuantity)) {
                             status = "1";
                         }
 
                     } else if (status === "Partial") {
 
-                        if ((parseInt(item_quantity) + parseInt(releasedQuantity)) === parseInt(orderQuantity)) {
+                        if ((parseInt(torelease) + parseInt(releasedQuantity)) === parseInt(orderQuantity)) {
                             status = "4";
-                        } else if ((parseInt(item_quantity) + parseInt(releasedQuantity)) < parseInt(orderQuantity)) {
+                        } else if ((parseInt(torelease) + parseInt(releasedQuantity)) < parseInt(orderQuantity)) {
                             status = "1";
                         }
 
@@ -1080,11 +1084,11 @@
 
                     }
 
-                    var updatedQtyReleased = String(parseInt(item_quantity) + parseInt(releasedQuantity));
-                    var updateQtyStock = parseInt(drugStockQty) - parseInt(item_quantity);
+                    var updatedQtyReleased = String(parseInt(torelease) + parseInt(releasedQuantity));
+                    var updateQtyStock = parseInt(item_quantity) - parseInt(torelease);
 
                     releaseOrderList.push(item_cd + "^" + item_desc + "^" + updateQtyStock + "^" + orderQuantity + "^" + releasedQuantity + "^" + updatedQtyReleased + "^"
-                            + item_amt + "^" + item_quantity + "^" + comment + "^" + status);
+                            + item_amt + "^" + item_quantity + "^" + comment + "^" + status+"^"+torelease+"^"+itemtype+"^"+location+"^"+customer);
                     stringDetail = releaseOrderList.join("|");
 
                 }
@@ -1123,14 +1127,14 @@
                         if (result === true) {
 
                             $('#myLoadingModal').modal('show');
-
+                            console.log(data);
                             $.ajax({
                                 url: "controllerProcessDistributeStockOrder/distrubuteStockOrderReleaseItems.jsp",
                                 type: "post",
                                 data: data,
                                 timeout: 10000, // 10 seconds
                                 success: function (datas) {
-
+                                    console.log(datas);
                                     $('#myLoadingModal').modal('hide');
 
                                     if (datas.trim() === "Success") {

@@ -30,7 +30,8 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String created_by = session.getAttribute("USER_ID").toString();
     String created_date = format.format(now);
-
+    String  sqlUpdateItemDetail = "";
+    String sqlUpdateOrderMasterPartialData = "";
     // RMI AND CONN
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
@@ -52,7 +53,7 @@
     // Check Master Data Release
     String sqlFetchMasterReleaseData = " SELECT item_amt,quantity FROM stk_distribition_master WHERE order_no = '" + order_no + "' LIMIT 1 ";
     ArrayList<ArrayList<String>> checkDistributeMaster = conn.getData(sqlFetchMasterReleaseData);
-
+    String sqlUpdateOrderDetail = "";
     // Process Master Release Start
     if (checkDistributeMaster.size() == 0) {
 
@@ -106,7 +107,7 @@
     // String String Detail Part Start //
     // Get The Data And Split
     String stockDetailD[] = stringDetail.split("\\|");
-
+    String sqlInsertDustributeDetail = "";
     for (int i = 0; i < stockDetailD.length; i++) {
 
         String smallData = stockDetailD[i];
@@ -122,6 +123,10 @@
         String item_quantityD = detailsStockS[7];
         String commentD = detailsStockS[8];
         String order_statusD = detailsStockS[9];
+        String itemtype = detailsStockS[11];
+        String torelesed = detailsStockS[10];
+        String location = detailsStockS[12];
+        String customerId = detailsStockS[13];
 
         // Release Master Table Part Start //
         // Check Master Data Release
@@ -135,10 +140,10 @@
             boolean isInsertDistrubiteMaster = true;
 
             // Insert Master Distribute
-            String sqlInsertDustributeDetail = "INSERT INTO stk_distribition_detail "
-                    + " (order_no, txt_date, item_cd, item_desc, item_amt, item_quantity, order_by, created_date, created_by) "
+             sqlInsertDustributeDetail = "INSERT INTO stk_distribition_detail "
+                    + " (order_no, txt_date, item_cd, item_desc, item_amt, item_quantity, order_by, created_date, created_by,item_type,location,customer_id) "
                     + " VALUES ('" + order_no + "','" + txt_date + "','" + item_cdD + "','" + item_descD + "','" + item_amtD + "',"
-                    + " '" + item_quantityD + "','" + created_by + "','" + created_date + "','" + created_by + "' )";
+                    + " '" + torelesed + "','" + created_by + "','" + created_date + "','" + created_by + "','"+itemtype+"','"+location+"','"+customerId+"' )";
 
             isInsertDistrubiteMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDustributeDetail);
 
@@ -177,9 +182,9 @@
         // Update Order Detail Table
         boolean isUpdateOrderMaster = true;
 
-        String sqlUpdateOrderDetail = "UPDATE stk_order_detail "
+         sqlUpdateOrderDetail = "UPDATE stk_order_detail "
                 + " SET released_quantity = '" + released_quantityUpdatedD + "', "
-                + " comment = '" + commentD + "',order_status = '" + order_statusD + "' "
+                + " comment = '" + commentD + "',status = '" + order_statusD + "' "
                 + " WHERE order_no = '" + order_no + "' AND item_cd = '" + item_cdD + "' ";
 
         isUpdateOrderMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderDetail);
@@ -197,10 +202,19 @@
         // Item Table Part Start //
         boolean isUpdateItem = true;
         // Update Item Detail Table
-        String sqlUpdateItemDetail = "UPDATE stk_stock_item "
+        
+        if(itemtype.equalsIgnoreCase("other")){
+            sqlUpdateItemDetail = "UPDATE stk_stock_item "
                 + " SET physical_stock = '" + item_StockD + "'"
                 + " WHERE item_cd = '" + item_cdD + "' "
                 + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
+        }else if(itemtype.equalsIgnoreCase("drug")){
+            sqlUpdateItemDetail = "UPDATE pis_mdc2 "
+                + " SET d_stock_qty = '" + item_StockD + "'"
+                + " WHERE ud_mdc_code = '" + item_cdD + "' "
+                + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
+        }
+        
 
         isUpdateItem = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateItemDetail);
 
@@ -222,14 +236,14 @@
     // Order Master Table Part Start //
     // Update Master Order
     String sqlCheckMasterData = "SELECT * FROM stk_order_detail  "
-            + " WHERE order_no = '" + order_no + "' AND (order_status = '0' OR order_status = '1')";
+            + " WHERE order_no = '" + order_no + "' AND (status = '0' OR status = '1')";
     ArrayList<ArrayList<String>> getOrderSummary = conn.getData(sqlCheckMasterData);
 
     if (getOrderSummary.size() == 0) {
 
         boolean isUpdateOrderMasterData = true;
 
-        String sqlUpdateOrderMasterPartialData = "UPDATE stk_order_master "
+         sqlUpdateOrderMasterPartialData = "UPDATE stk_order_master "
                 + " SET status = '1' "
                 + " WHERE order_no = '" + order_no + "' ";
 
@@ -252,6 +266,9 @@
         out.print("Success");
     } else {
         out.print("Failed");
+//        out.print(sqlUpdateOrderDetail);
+//        out.print(sqlUpdateItemDetail);
+//        out.print(sqlUpdateOrderMasterPartialData);
     }
 
 %>
