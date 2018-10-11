@@ -607,6 +607,17 @@
     </servlet-mapping>
     <!-- mapping for SMS HIS220005 -->
     
+    <!-- mapping for SMS HIS220011 -->
+    <servlet>
+        <servlet-name>Stock_Adjustment</servlet-name>
+        <jsp-file>/SMS/HIS220011.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Stock_Adjustment</servlet-name>
+        <url-pattern>/SMS/Stock_Adjustment</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220011 -->
+    
     
     
     <!-- mapping for SMS HIS220006 -->

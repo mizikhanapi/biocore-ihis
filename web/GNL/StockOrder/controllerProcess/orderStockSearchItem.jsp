@@ -19,8 +19,12 @@
     String searchProblem = "";
     String dataCS = request.getParameter("dataCS");
     
-    if(!dataCS.equalsIgnoreCase("nope")){
+    if(dataCS.equalsIgnoreCase("CS")){
         dis = "CS";
+    }else if(dataCS.equalsIgnoreCase("nope")){
+        
+    }else{
+        dis = dataCS;
     }
     
     if(itemType.equalsIgnoreCase("other")){
