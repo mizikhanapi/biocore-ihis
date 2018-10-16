@@ -40,6 +40,7 @@
     // PARAMATER
     String stringMaster = request.getParameter("stringMaster");
     String stringDetail = request.getParameter("stringDetail");
+    String stringbutton = request.getParameter("button");
 
     String stockMasterD[] = stringMaster.split("\\|");
 
@@ -48,7 +49,7 @@
     String txt_date = stockMasterD[2];
     String item_amt = stockMasterD[3];
     String quantity = stockMasterD[4];
-
+    String updateOrdering = "";
     // Release Master Table Part Start //
     // Check Master Data Release
     String sqlFetchMasterReleaseData = " SELECT item_amt,quantity FROM stk_distribition_master WHERE order_no = '" + order_no + "' LIMIT 1 ";
@@ -127,6 +128,8 @@
         String torelesed = detailsStockS[10];
         String location = detailsStockS[12];
         String customerId = detailsStockS[13];
+        String orderingdis = detailsStockS[14];
+        String orderingsub = detailsStockS[15];
 
         // Release Master Table Part Start //
         // Check Master Data Release
@@ -219,6 +222,27 @@
         isUpdateItem = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateItemDetail);
 
         if (isUpdateItem == false) {
+
+            falseCount = falseCount + 1;
+
+        }
+        boolean isupdateOrdering = true;
+        if(stringbutton.equalsIgnoreCase("transfer")){
+            if(itemtype.equalsIgnoreCase("other")){
+                updateOrdering = "UPDATE stk_stock_item "
+                    + " SET physical_stock = physical_stock+" + torelesed + ""
+                    + " WHERE item_cd = '" + item_cdD + "' "
+                    + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + orderingdis + "' ";
+            }else if(itemtype.equalsIgnoreCase("drug")){
+                updateOrdering = "UPDATE pis_mdc2 "
+                    + " SET d_stock_qty = d_stock_qty+" + torelesed + ""
+                    + " WHERE ud_mdc_code = '" + item_cdD + "' "
+                    + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + orderingdis + "' ";
+            }
+        }
+        isupdateOrdering = rmic.setQuerySQL(conn.HOST, conn.PORT, updateOrdering);
+
+        if (isupdateOrdering == false) {
 
             falseCount = falseCount + 1;
 

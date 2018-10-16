@@ -224,12 +224,12 @@
 <div class="text-right" id="distributeStockOrderDetailsTransferButtonDiv" > 
         <button class="btn btn-success " type="button" id="btnStockPrintSlip" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Print Slip &nbsp;</button>
 
-    <button class="btn btn-success " type="button" id="btnStockOrderTransfer" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Transfer Stock &nbsp;</button>
+    <button class="btn btn-success buttonactionnn" type="button" id="btnStockOrderTransfer" name="btnOrderDispense" value="transfer"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Transfer Stock &nbsp;</button>
 </div>
 <div class="text-right" id="distributeStockOrderDetailsReleaseButtonDiv" > 
         <button class="btn btn-success " type="button" id="btnStockPrintSlip" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Print Slip &nbsp;</button>
 
-    <button class="btn btn-success " type="button" id="btnStockOrderRelease" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Release Stock &nbsp;</button>
+    <button class="btn btn-success buttonactionnn" type="button" id="btnStockOrderRelease" name="btnOrderDispense" value="release"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Release Stock &nbsp;</button>
 </div>
 
 
@@ -1014,14 +1014,23 @@
 
 
 
-        $('#distributeStockOrderDetailContent').off('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockOrderTransfer', function (e) {
-
+        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockOrderTransfer', function (e) {
+            
+            mainfuctionrelease($(this).val());
+        });
+        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease', function (e) {
+            
+            mainfuctionrelease($(this).val());
+        });
+        
+        function mainfuctionrelease(e){
+            
             var customer_id = $("#requestorUserID").val();
             var order_no = $("#distributeStockOrderNo").val();
             var txt_date = $("#distributeStockOrderDate").val();
             var item_amt = $("#releaseGrandTotalChecked").val();
             var quantity = $("#releaseTotalQuantityChecked").val();
-
+            var typebutton = e;
             var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
             var stringDetail = "";
 
@@ -1037,6 +1046,8 @@
                 var itemtype = arrayData[11];
                 var customer = arrayData[6];
                 var location = arrayData[5];
+                var orderingdis = arrayData[17];
+                var orderingsubdis = arrayData[18];
                 var $tds = $(this).find('td');
 
                 // Get The Data
@@ -1088,7 +1099,7 @@
                     var updateQtyStock = parseInt(item_quantity) - parseInt(torelease);
 
                     releaseOrderList.push(item_cd + "^" + item_desc + "^" + updateQtyStock + "^" + orderQuantity + "^" + releasedQuantity + "^" + updatedQtyReleased + "^"
-                            + item_amt + "^" + item_quantity + "^" + comment + "^" + status+"^"+torelease+"^"+itemtype+"^"+location+"^"+customer);
+                            + item_amt + "^" + item_quantity + "^" + comment + "^" + status+"^"+torelease+"^"+itemtype+"^"+location+"^"+customer+"^"+orderingdis+"^"+orderingsubdis);
                     stringDetail = releaseOrderList.join("|");
 
                 }
@@ -1104,7 +1115,8 @@
 
                 var data = {
                     stringMaster: stringMaster,
-                    stringDetail: stringDetail
+                    stringDetail: stringDetail,
+                    button : typebutton
                 };
 
                 console.log(data);
@@ -1165,8 +1177,7 @@
                     }
                 });
             }
-        });
-
+        }
 
 
 //-------------------------------------------------------------------------------  Release Stock End  --------------------------------------------------------------------------------//

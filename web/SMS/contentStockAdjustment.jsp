@@ -51,7 +51,7 @@
                     <div class="col-md-6">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Store</label>
+                            <label class="col-md-4 control-label" for="textinput">Store *</label>
                             <div class="col-md-6">
                                 <select id="selectStore" class="form-control input-md">
                                     <%
@@ -69,7 +69,7 @@
                     <div class="col-md-6">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Item Type</label>
+                            <label class="col-md-4 control-label" for="textinput">Item Type *</label>
                             <div class="col-md-4">
                                 <select id="selectItemType" class="form-control input-md">
                                     <option value="drug">Drug</option>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group" id="divCentralisedStore">
-                        <label class="col-md-4 control-label" for="textinput">Mode of Adjustment</label>
+                        <label class="col-md-4 control-label" for="textinput">Mode of Adjustment *</label>
                         <div class="col-md-4">
                             <select id="radioMode" class="form-control input-md">
                                     <option value="QA">Quantity Adjustment</option>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Reference Number</label>
+                        <label class="col-md-4 control-label" for="textinput">Reference Number *</label>
                         <div class="col-md-4">
                             <input id="referenceNumber" name="referenceNumber" type="text" placeholder="reference number"  class="form-control input-md">
 
@@ -100,7 +100,7 @@
                     <div class="col-md-12">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Date</label>
+                            <label class="col-md-4 control-label" for="textinput">Date *</label>
                             <div class="col-md-4">
                                 <input id="stockadjustdate" name="stockadjustdate" type="text" placeholder="DD/MM/YYYY"  class="form-control input-md" readonly="">
                             </div>
@@ -155,10 +155,10 @@
                     <div class="col-md-6">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Item Code</label>
+                            <label class="col-md-4 control-label" for="textinput">Item Code *</label>
                             <div class="col-md-8">
-                                <input id="stockadjustitemcode" name="orderStockItemDisplayItemCode" type="text" placeholder="Item Code"  class="form-control input-md" readonly>
-                                <input type="hidden" id="othervalue">
+                                <input id="stockadjustitemcode" name="stockadjustitemcode" type="text" placeholder="Item Code"  class="form-control input-md" readonly>
+                                <input type="hidden" id="othervalue" value="">
 
                             </div>
                         </div>                           
@@ -166,14 +166,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Item Name</label>
                             <div class="col-md-8">
-                                <input id="stockadjustitemname" name="orderStockItemDisplayItemName" type="text" placeholder="Item Name" class="form-control input-md" readonly>
+                                <input id="stockadjustitemname" name="stockadjustitemname" type="text" placeholder="Item Name" class="form-control input-md" readonly>
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Stock on hand/current value</label>
                             <div class="col-md-8">
-                                <input id="stockadjustcurrent" name="orderStockItemDisplayItemStackQuantity" type="text" placeholder="Stock Quantity"  class="form-control input-md" readonly>
+                                <input id="stockadjustcurrent" name="stockadjustcurrent" type="text" placeholder="Stock Quantity"  class="form-control input-md" readonly>
                             </div>
                         </div>
 
@@ -183,21 +183,24 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Quantity Adjusted/Adjusted value *</label>
                             <div class="col-md-8">
-                                <input id="stockadjustadjusted" name="stockchangedval" type="text" placeholder="Please Insert Quantity adjusted/adjusted value" class="form-control input-md" >
+                                <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity adjusted/adjusted value" class="form-control input-md" >
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">New quantity on hand/changed value *</label>
                             <div class="col-md-8">
-                                <input id="stockadjustnewqty" name="stockadjustnewquantity" type="text" placeholder="Please Insert Quantity on hand/changed value" class="form-control input-md">
+                                <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="Please Insert Quantity on hand/changed value" class="form-control input-md">
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-
+                <div class="text-right">
+                    <button class="btn btn-default" type="button" id="stockadjustcancel"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Cancel  &nbsp;</button>
+                    <button type="button" class="btn btn-success" id="stockadjustupdate"><i class="fa fa-edit fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Update &nbsp;</button>
+                </div>
             </form>
         </div>
     </div>
@@ -336,8 +339,10 @@
 
                 if (radiomode === 'QA') {
                     $('#stockadjustcurrent').val(itemStock);
+                    $('#othervalue').val(itemPrice);
                 } else if (radiomode === 'VA') {
                     $('#stockadjustcurrent').val(itemPrice);
+                    $('#othervalue').val(itemStock);
                 }
 
                 $('#stockadjustitemcode').val(itemCode);
@@ -349,6 +354,116 @@
 
             }
         });
+    });
+    
+    $('#stockadjustupdate').on('click',function(){
+        var store,itemtype,mode,referenceno,date,account,reason,description,itemcode,itemname,qtyonhand,adjustedval,newonhandval,valonhand,xqtyA,xvalA,ynewqtyA,ynewvalA;
+        store = $('#selectStore').val();
+        itemtype = $('#selectItemType').val();
+        mode = $("#radioMode").val();
+        date = $("#stockadjustdate").val();
+        itemcode = $('#stockadjustitemcode').val();
+        itemname = $('#stockadjustitemname').val();
+        referenceno = $('#referenceNumber').val();
+        account = $('#stockadjustaccount').val();
+        reason = $('#selectreason').val();
+        description = $('#textdesctiption').val();
+        adjustedval = $('#stockadjustadjusted').val();
+        newonhandval = $('#stockadjustnewqty').val();
+        var dt = new Date();
+        var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        
+        var dtarr = date.split("/");
+        var newdate = dtarr[2]+"-"+dtarr[1]+"-"+dtarr[0]+" "+time;
+        
+        if(store === "" || store === null || store ==='undefined'){
+            bootbox.alert(" please choose store");
+        }else if(itemtype === "" || itemtype === null || itemtype ==='undefined'){
+            bootbox.alert(" please choose item type");
+        }else if(mode === "" || mode === null || mode ==='undefined'){
+            bootbox.alert(" please choose mode adjustment");
+        }else if(date === "" || date === null || date ==='undefined'){
+            bootbox.alert(" please choose date");
+        }else if(itemcode === "" || itemcode === null || itemcode ==='undefined'){
+            bootbox.alert(" please choose item");
+        }else if(reason === "" || reason === null || reason ==='undefined'){
+            bootbox.alert(" please choose reason to adjust");
+        }else if(description === "" || description === null || description ==='undefined'){
+            bootbox.alert(" please fill in the description of adjustment");
+        }else if(adjustedval === "" || adjustedval === null || adjustedval ==='undefined'){
+            bootbox.alert(" please insert the adjusted quantity/value");
+        }else if(newonhandval === "" || newonhandval === null || newonhandval ==='undefined'){
+            bootbox.alert(" please insert new on hand quantity/on hand value");
+        }else if(referenceno === "" || referenceno === null || referenceno ==='undefined'){
+            bootbox.alert(" please insert the reference number");
+        }else{
+            if (mode === 'QA') {
+                qtyonhand = $('#stockadjustcurrent').val();
+                valonhand = $('#othervalue').val();
+                xqtyA = adjustedval;
+                ynewqtyA = newonhandval;
+                xvalA = "0";
+                ynewvalA = valonhand;
+            } else if (mode === 'VA') {
+                valonhand = $('#stockadjustcurrent').val();
+                qtyonhand = $('#othervalue').val();
+                xqtyA = "0";
+                ynewqtyA = qtyonhand;
+                xvalA = adjustedval;
+                ynewvalA = newonhandval;
+            }
+            
+            var data = {store : store,
+                itemtype : itemtype,
+                mode : mode,
+                date : newdate,
+                referenceno : referenceno,
+                account : account,
+                reason : reason,
+                description : description,
+                quantityonhand : qtyonhand,
+                valueonhand : valonhand,
+                adjustedquantity : xqtyA,
+                newonhandquantity : ynewqtyA,
+                adjustedvalue : xvalA,
+                newonhandvalue : ynewvalA,
+                itemcode : itemcode
+            };
+            
+            console.log(data);
+            
+            $.ajax({
+               type:"post",
+               url:"controllerProcessAdjustmentStock/adjustStockProcess.jsp",
+               data : data,
+               success:function(returndata){
+                   if(returndata.trim()==="success"){
+                       bootbox.alert("Updating success");
+                        //$('#selectStore').val('');
+                        //$('#selectItemType').val('');
+                        //$("#radioMode").val('');
+                        $("#stockadjustdate").val('');
+                        $('#stockadjustitemcode').val('');
+                        $('#stockadjustitemname').val('');
+                        $('#referenceNumber').val('');
+                        $('#stockadjustaccount').val('');
+                        $('#selectreason').val('');
+                        $('#textdesctiption').val('');
+                        $('#stockadjustadjusted').val('');
+                        $('#stockadjustnewqty').val('');
+                        $('#stockadjustitemname').val('');
+                        $('#stockadjustcurrent').val('');
+                   }else if(returndata.trim()==="fail"){
+                       bootbox.alert("Updating failed");
+                   }
+               }
+            });
+        }
+        
+        
+        
+        
+        
     });
 
     });

@@ -17,6 +17,7 @@
     String orderNo = request.getParameter("orderNo");
     String hfc = request.getParameter("hfc");
     String dis = request.getParameter("dis");
+    String selectanotheradditionaldata = "";
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
    //String status = request.getParameter("status");
@@ -38,7 +39,7 @@
             + " WHERE stkod.order_no = '" + orderNo + "' AND (stkod.order_status = '0' OR stkod.order_status = '1') "
             + "  ";
 
-    ArrayList<ArrayList<String>> dataOrderList,dataOrderNew,dataAdditional;
+    ArrayList<ArrayList<String>> dataOrderList,dataOrderNew,dataAdditional,dataAdditionalanother;
     //dataOrderList = conn.getData(orderList);
     
     dataOrderNew = conn.getData(selectType);
@@ -57,7 +58,14 @@
             //out.print(selectadditionalinfo);
             dataOrderNew.get(i).add(dataAdditional.get(0).get(0));
             dataOrderNew.get(i).add(dataAdditional.get(0).get(1));
+            
+            selectanotheradditionaldata = "SELECT ordering_discipline_cd,ordering_subdiscipline_cd from stk_order_master where order_no = '"+orderNo+"'";
+            dataAdditionalanother = conn.getData(selectanotheradditionaldata);
+            dataOrderNew.get(i).add(dataAdditionalanother.get(0).get(0));
+            dataOrderNew.get(i).add(dataAdditionalanother.get(0).get(1));
         }
+        
+       
         
     }
 
