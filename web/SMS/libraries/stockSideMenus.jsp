@@ -19,7 +19,7 @@
         <li><a href="Order_Stock"><i class="fa fa-plus fa-lg" aria-hidden="true" ></i>Order Stock</a></li>
         <li><a href="Distribution_Stock_Order"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Stock Distribution</a></li>
         <li><a href="Manage_Stock_Code"><i class="fa fa-table fa-lg" aria-hidden="true" ></i>Manage Stock Code</a></li>
-        <li><a href="Manage_Stock_Quantity"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Stock Quantity</a></li>
+        <li><a href="Manage_Stock_Quantity"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Stock Reimbursement</a></li>
         <li><a href="Manage_VendorS"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Manage Vendor</a></li>
         <!-- Menu without dropdown -->
         <!-- Menu with dropdown 2 -->
