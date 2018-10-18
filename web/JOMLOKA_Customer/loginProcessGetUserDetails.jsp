@@ -47,6 +47,7 @@
     String userJomlokaWalletNo = "";
     String userDebitNo = "";
     String userDebitExpire = "";
+    String userSearchCoverage = "";
 
     //                          0               1          2               3                                 4                       
     String sql = " SELECT adm.user_id, adm.password, adm.user_name, adm.health_facility_code, ifnull(convert(adm.picture using utf8), ''),  "
@@ -54,8 +55,8 @@
             + " ifnull(adm.login_status, '0'), adm.new_icno, ifnull(adm.user_status, ''), adm.user_type , adm.status, "
             //        10                11          12          13            14            15          16              17              18
             + " fc.customer_name, fc.address1, fc.address2, fc.town_cd, fc.district_cd, fc.state_cd, fc.country_cd, fc.postcode, fc.telephone_no,  "
-            //     19               20                      21                      22                     23                   24                  25
-            + " fc.email, fc.customer_account_no, fc.customer_bank_acc_no, fc.customer_bank_name, fc.jomloka_wallet_no, fc.debit_card_no, fc.debit_card_expire "
+            //     19               20                      21                      22                     23                   24                  25                      26
+            + " fc.email, fc.customer_account_no, fc.customer_bank_acc_no, fc.customer_bank_name, fc.jomloka_wallet_no, fc.debit_card_no, fc.debit_card_expire, fc.jomloka_search_coverage "
             // FROM SQL
             + " FROM adm_users adm "
             // JOIN SQL
@@ -93,6 +94,7 @@
                 userJomlokaWalletNo = dataUser.get(0).get(23);
                 userDebitNo = dataUser.get(0).get(24);
                 userDebitExpire = dataUser.get(0).get(25);
+                userSearchCoverage = dataUser.get(0).get(26);
 
             } else {
 
@@ -124,8 +126,8 @@
             + "|" + userAddress1 + "|" + userAddress2 + "|" + userTown + "|" + userDistrict + "|" + userState + "|" + userCountry
             //           14                   15                  16                  17                    18                     
             + "|" + userPostcode + "|" + userTelephone + "|" + userEmail + "|" + userAccountNo + "|" + userBankAccountNo
-            //             19                           20                      21                      22       
-            + "|" + userBankAccountName + "|" + userJomlokaWalletNo + "|" + userDebitNo + "|" + userDebitExpire
+            //             19                           20                      21                      22                  23     
+            + "|" + userBankAccountName + "|" + userJomlokaWalletNo + "|" + userDebitNo + "|" + userDebitExpire + "|" + userSearchCoverage
     );
 
     out.print(obj);

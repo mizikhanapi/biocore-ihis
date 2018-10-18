@@ -61,9 +61,9 @@
 
     String queryCustomerTable = "INSERT INTO far_customer "
             + " ( customer_id, customer_name, address1, address2, address3, town_cd, district_cd, state_cd, country_cd, postcode, telephone_no, fax_no, email, "
-            + " customer_account_no, customer_bank_acc_no, customer_bank_name, debit_card_no, debit_card_expire, jomloka_wallet_no, status, created_by, created_date ) "
+            + " customer_account_no, customer_bank_acc_no, customer_bank_name, debit_card_no, debit_card_expire, jomloka_wallet_no, status, created_by, created_date, jomloka_search_coverage ) "
             + " VALUES('" + user_id + "', '" + user_name + "', '', '', '', '', '', '', '', '', '" + user_phone + "', '', '" + user_id + "', '" + account_no + "',  "
-            + " '', '', '', '', '', '0','" + user_id + "', now()); ";
+            + " '', '', '', '', '', '0','" + user_id + "', now(), '10'); ";
 
     String queryLeggerTable = "INSERT into far_customer_ledger "
             + " (customer_id, txn_date, hfc_cd, bill_no) "
