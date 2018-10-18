@@ -4,6 +4,8 @@
     Author     : Shammugam
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -15,12 +17,26 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String role = session.getAttribute("ROLE_CODE").toString();
-    
+
     String hfcori = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String disori = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdisori = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
     String locationcode = hfc + "|" + dis + "|" + subdis;
+    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    LocalDate localDate = LocalDate.now();
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+    String dis_names = "";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' and discipline_cd = '"+dis+"' order by discipline_name desc";
+        ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+        for (int x = 0; x < mysqldis_name.size(); x++) {
+            dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
+            if (x < mysqldis_name.size() - 1) {
+                dis_names += "^";
+            }
+        }
+        
 %>
 
 <h4>Requester Info</h4>
@@ -221,14 +237,13 @@
 <div style="float: left;" id="distributeStockOrderDetailsBackButtonDiv" > 
     <button class="btn btn-default " type="button" id="btnClearOrderDetailRelease" name="btnClearOrderDetailRelease" >&nbsp; Back &nbsp;</button>
 </div>
-<div class="text-right" id="distributeStockOrderDetailsTransferButtonDiv" > 
-        <button class="btn btn-success " type="button" id="btnStockPrintSlip" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Print Slip &nbsp;</button>
+<div class="text-right" id="distributeStockOrderDetailsTransferButtonDiv" >
+    <div class="btn print-assets text-right"></div>
 
     <button class="btn btn-success buttonactionnn" type="button" id="btnStockOrderTransfer" name="btnOrderDispense" value="transfer"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Transfer Stock &nbsp;</button>
 </div>
 <div class="text-right" id="distributeStockOrderDetailsReleaseButtonDiv" > 
-        <button class="btn btn-success " type="button" id="btnStockPrintSlip" name="btnOrderDispense" > <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Print Slip &nbsp;</button>
-
+    <div class="btn print-assets text-right"></div>
     <button class="btn btn-success buttonactionnn" type="button" id="btnStockOrderRelease" name="btnOrderDispense" value="release"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Release Stock &nbsp;</button>
 </div>
 
@@ -246,18 +261,18 @@
         var episodeDate;
         var encounterDate;
         var hfc;
-        var dis,status;
-        var grand ;
-        
-        if(role ==="001" && currentDis ==="CS"){
+        var dis, status;
+        var grand;
+
+        if (role === "001" && currentDis === "CS") {
             $('#distributeStockOrderDetailsTransferButtonDiv').show();
             $('#distributeStockOrderDetailsReleaseButtonDiv').hide();
-        }else{
+        } else {
             $('#distributeStockOrderDetailsTransferButtonDiv').hide();
             $('#distributeStockOrderDetailsReleaseButtonDiv').show();
         }
-        
-        
+
+
         // Move to Order Details Fetch Details Start
         $('#distributeStockOrderMasterContent').off('click', '#distributeStockOrderMasterTable #moveToOrderDetailsTButton').on('click', '#distributeStockOrderMasterTable #moveToOrderDetailsTButton', function (e) {
 
@@ -285,8 +300,8 @@
             var stockOrderLocationCodeName = arrayData[20];
             hfc = arrayData[6];
             dis = arrayData[7];
-            status = arrayData[12]; 
-            
+            status = arrayData[12];
+
 
 
             // Set value to the Second Tab 
@@ -318,7 +333,7 @@
 
 
             var dataOrder = {
-                orderNo: orderNo,hfc:hfc,dis:dis,status:status
+                orderNo: orderNo, hfc: hfc, dis: dis, status: status
             };
 
 
@@ -328,25 +343,13 @@
                 data: dataOrder,
                 timeout: 3000,
                 success: function (returnOrderDetailsTableHTML) {
-                    
+
                     $('#distributeStockOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                    
-                    datatablesDestroyAndRecreate();
+
+
                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                     $('.loading').hide();
-                    
-//                    function Calculate() {
-//                        var table = document.getElementById('distributeStockOrderDetailsListTable');
-//                        var items = table.getElementsById('totalprice');
-//                        var sum = 0;
-//                        for(var i=0; i<items.length; i++){
-//                           sum += parseDouble(items[i].value); 
-//                        }
-//                            
-//                        $('#releaseGrandTotal').val(sum);
-//                    }
-                    
-                    //Calculate();
+                    datatablesDestroyAndRecreate();
 
                 }
             });
@@ -368,9 +371,9 @@
 
 
             console.log("Creating Datatable");
-
+            //var totalOrder = $("#distributeStockOrderDetailsListTable").DataTable();
             // do something after the div content has changed
-            $('#distributeStockOrderDetailsListTable').DataTable({
+            var dt = $('#distributeStockOrderDetailsListTable').DataTable({
                 "paging": true,
                 "searching": false,
                 "info": false,
@@ -378,9 +381,38 @@
                 "pageLength": 5,
                 "language": {
                     "emptyTable": "No Order Available To Display"
-                }
+                },
+                buttons: [
+                    {
+                        extend: 'print',
+                        text: 'Print Receipt',
+                        title: '',
+                        message: '<br><br>',
+                        className: 'btn btn-success',
+                        customize: function (win) {
+                            $(win.document.body).css('font-size', '10pt').prepend(
+                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%;"/></div> <div class="mesej"><br>Orders List<br/><h5>Date: From <strong><%=newdate%></strong></h5>\n\</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>STK-001</strong></dd>\n\
+                                        </div>\n\
+                                        <div style="margin: 30px 0 0 0; font-size: 15px;">\n\
+                                        <p>Discipline: <strong><%=mysqldis_name.get(0).get(1)%></strong></p>\n\
+                                        </div>');
+                            $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                            //$(win.document.body).css('font-size', '10pt').css('font-weight', 'bolder').append('<div style="text-align: right;padding-top:10px;"><br> Order Total = '+$(this).data().count()+' </div>');
+                            $(win.document.body).css('font-size', '10pt').append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+
+                        },
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
             });
-            
+            dt.buttons( 0, null ).container().appendTo( '.print-assets' );
+
 
         }
         // Destroy And Create Datatable End
@@ -525,18 +557,18 @@
                 var input = $(this).val(); // We take the input value
                 var checkboxCS = $('#checkboxCS').is(':checked');
                 var dataCS;
-                
-                if(checkboxCS){
+
+                if (checkboxCS) {
                     dataCS = $('#checkboxCS').val();
-                }else{
-                    dataCS="nope";
+                } else {
+                    dataCS = "nope";
                 }
 
                 if (input.length >= 1) { // Minimum characters = 2 (you can change)
 
                     $('#orderStockDetailsSearchItemInputDisplayResult').html('<img src="libraries/LoaderIcon.gif"/>');
 
-                    var dataFields = {'input': input,'itemtype':itemType,'dataCS':dataCS}; // We pass input argument in Ajax
+                    var dataFields = {'input': input, 'itemtype': itemType, 'dataCS': dataCS}; // We pass input argument in Ajax
 
                     console.log(dataFields);
 
@@ -585,15 +617,15 @@
             var itemType = $('#orderNewStockOrderItemType').val();
             id = arrayData[0];
             var checkboxCS = $('#checkboxCS').is(':checked');
-                var dataCS;
+            var dataCS;
 
-                if(checkboxCS){
-                    dataCS = $('#checkboxCS').val();
-                }else{
-                    dataCS="nope";
-                }
+            if (checkboxCS) {
+                dataCS = $('#checkboxCS').val();
+            } else {
+                dataCS = "nope";
+            }
             var data = {
-                id: id,itemType:itemType,'dataCS':dataCS
+                id: id, itemType: itemType, 'dataCS': dataCS
             };
 
 
@@ -623,11 +655,11 @@
                     $('#orderStockItemDisplayItemName').val(itemName);
                     $('#orderStockItemDisplayItemStockQuantity').val(itemStock);
                     $('#orderStockItemDisplayItemPrice').val(itemPrice);
-                    
+
                     $('#disciplineStock').val(dis);
                     $('#subdisciplineStock').val(dis);
                     $('#disciplineStockOrdering').val(orderdis);
-                    $('#subdisciplineStockOrdering').val("<%=subdisori%>");        
+                    $('#subdisciplineStockOrdering').val("<%=subdisori%>");
                     $('#stockitemtype').val(temtype);
 
                     $('#orderStockDetailsSearchItemInput').val('');
@@ -645,30 +677,30 @@
 
             e.preventDefault();
             var checkboxCS = $('#checkboxCS').is(':checked');
-                var dataCS;
+            var dataCS;
 
-                if(checkboxCS){
-                    dataCS = $('#checkboxCS').val();
-                }else{
-                    dataCS="nope";
-                }
+            if (checkboxCS) {
+                dataCS = $('#checkboxCS').val();
+            } else {
+                dataCS = "nope";
+            }
             var order_no = $('#orderStockDetailsID').val();
             var txn_date = $('#orderStockDetailsDate').val();
-            
-            
+
+
             var item_cd = $('#orderStockItemDisplayItemCode').val();
             var item_desc = $('#orderStockItemDisplayItemName').val();
             var ordered_quantity = $('#orderStockItemInputQuantity').val();
             var itemPrice = $('#orderStockItemDisplayItemPrice').val();
             var comment = $('#orderStockItemInputComment').val();
-            
+
             var disrec = $('#disciplineStock').val();
             var subdisrec = $('#subdisciplineStock').val();
             var disorder = $('#disciplineStockOrdering').val();
             var subdisorder = $('#subdisciplineStockOrdering').val();
             var itemType = $('#stockitemtype').val();
             var hfc = "<%=hfcori%>";
-            
+
             var customer_id = $('#requestorUserID').val();
 
             var qtyCheck = document.getElementById("orderStockItemInputQuantity").checkValidity();
@@ -691,11 +723,11 @@
                     ordered_quantity: ordered_quantity,
                     customer_id: customer_id,
                     comment: comment,
-                    disrec : disrec,
-                    subdisrec : subdisrec,
-                    disorder : disorder,
-                    subdisorder : subdisorder,
-                    temtype : itemType
+                    disrec: disrec,
+                    subdisrec: subdisrec,
+                    disorder: disorder,
+                    subdisorder: subdisorder,
+                    temtype: itemType
                 };
 
                 console.log(datas);
@@ -712,7 +744,7 @@
                             $('#addStockOrder').modal('hide');
 
                             var dataRefres = {
-                                orderNo: order_no,hfc : hfc,dis: disrec
+                                orderNo: order_no, hfc: hfc, dis: disrec
                             };
                             console.log(dataRefres);
                             $.ajax({
@@ -1015,16 +1047,16 @@
 
 
         $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockOrderTransfer', function (e) {
-            
+
             mainfuctionrelease($(this).val());
         });
         $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockOrderRelease', function (e) {
-            
+
             mainfuctionrelease($(this).val());
         });
-        
-        function mainfuctionrelease(e){
-            
+
+        function mainfuctionrelease(e) {
+
             var customer_id = $("#requestorUserID").val();
             var order_no = $("#distributeStockOrderNo").val();
             var txt_date = $("#distributeStockOrderDate").val();
@@ -1036,7 +1068,7 @@
 
             var table = $("#distributeStockOrderDetailsListTable tbody");
 
-            var drugChecked, item_cd, item_desc, item_amt, item_quantity, orderQuantity, releasedQuantity, comment, status,torelease;
+            var drugChecked, item_cd, item_desc, item_amt, item_quantity, orderQuantity, releasedQuantity, comment, status, torelease;
 
             var releaseOrderList = [];
 
@@ -1099,7 +1131,7 @@
                     var updateQtyStock = parseInt(item_quantity) - parseInt(torelease);
 
                     releaseOrderList.push(item_cd + "^" + item_desc + "^" + updateQtyStock + "^" + orderQuantity + "^" + releasedQuantity + "^" + updatedQtyReleased + "^"
-                            + item_amt + "^" + item_quantity + "^" + comment + "^" + status+"^"+torelease+"^"+itemtype+"^"+location+"^"+customer+"^"+orderingdis+"^"+orderingsubdis);
+                            + item_amt + "^" + item_quantity + "^" + comment + "^" + status + "^" + torelease + "^" + itemtype + "^" + location + "^" + customer + "^" + orderingdis + "^" + orderingsubdis);
                     stringDetail = releaseOrderList.join("|");
 
                 }
@@ -1116,7 +1148,7 @@
                 var data = {
                     stringMaster: stringMaster,
                     stringDetail: stringDetail,
-                    button : typebutton
+                    button: typebutton
                 };
 
                 console.log(data);
@@ -1177,6 +1209,38 @@
                     }
                 });
             }
+        }
+
+
+        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockPrintSlip', function (e) {
+            printSlip();
+
+        });
+
+        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockPrintSlip', function (e) {
+            printSlip();
+
+        });
+
+        function printSlip() {
+            bootbox.alert("button di ketik");
+            var myWindow = window.open();
+            var html = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Patient Attendance List<br/><h5>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </h5>\n\</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>PMS-001</strong></dd>\n\
+                                        </div> \n\
+                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
+                                        <p>Discipline: <strong><%=dis%></strong></p>\n\
+                                        </div> ';
+            $(myWindow.document.body).html(html);
+            //myWindow.document.write();
+
+            myWindow.document.close();
+            myWindow.focus();
+            myWindow.print();
+            myWindow.close();
         }
 
 
