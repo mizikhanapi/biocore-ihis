@@ -630,6 +630,17 @@
         <url-pattern>/SMS/List_Of_Category</url-pattern>
     </servlet-mapping>
     <!-- mapping for SMS HIS220006 -->
+    
+    <!-- mapping for SMS HIS220012 -->
+    <servlet>
+        <servlet-name>Stock_adjust_report</servlet-name>
+        <jsp-file>/SMS/HIS220012.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Stock_adjust_report</servlet-name>
+        <url-pattern>/SMS/Stock_adjust_report</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for SMS HIS220012 -->
         
         
     <!-- mapping for SMS HIS220007 -->
