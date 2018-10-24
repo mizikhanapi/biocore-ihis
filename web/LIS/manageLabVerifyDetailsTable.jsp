@@ -4,6 +4,8 @@
     Author     : Shammugam
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -17,7 +19,13 @@
     String specimenNo = request.getParameter("specimenNo");
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
-
+    String user = session.getAttribute("USER_ID").toString();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfcori = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String disori = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdisori = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
     //                                  0             1                 2               3                       4                   5                  6                   7
@@ -36,6 +44,20 @@
 
     ArrayList<ArrayList<String>> dataOrderList;
     dataOrderList = conn.getData(orderList);
+    
+String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    LocalDate localDate = LocalDate.now();
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+    String dis_names = "";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' and discipline_cd = '"+dis+"' order by discipline_name desc";
+        ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+        for (int x = 0; x < mysqldis_name.size(); x++) {
+            dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
+            if (x < mysqldis_name.size() - 1) {
+                dis_names += "^";
+            }
+        }
 
 
 %>
@@ -82,7 +104,8 @@
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(11)%></td> <!--  Volume -->
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(5)%></td> <!--  Comment -->
 <td  align="center">
-    <button class="btn btn-primary " type="button" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i>&nbsp; Enter Result &nbsp;</button>
+    <button id="MOD_btnPrepare" class="btn btn-default" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
+    <button class="btn btn-primary " type="button" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult" disabled><i class="fa fa-database fa-lg"></i>&nbsp; Enter Result &nbsp;</button>
     &nbsp;
     <button class="btn btn-success " type="button" id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-id="1" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i>&nbsp; Verify Result &nbsp;</button>
 </td> <!--  Action -->
@@ -94,5 +117,4 @@
 
 </tbody>
 </table>
-
 

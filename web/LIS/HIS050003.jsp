@@ -74,6 +74,7 @@
                                                 <div id="lisLabRequestVerifyDetailContent">
                                                 </div>
                                                 <%@include file="manageLabVerifyModal.jsp" %>
+                                                <%@include file="../POM/procedure_modal/procedure_prepare_item.jsp" %>
                                             </div>
 
                                         </div>
