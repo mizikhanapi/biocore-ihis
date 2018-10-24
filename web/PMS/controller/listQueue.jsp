@@ -29,26 +29,29 @@
     String sql = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,e.doctor,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l where l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "'";
 
     String sql2 = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,u.user_name,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l,adm_users u where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='" + hfc + "' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and q.patient_category='1' order by q.queue_name  ;";
+
+    //                         0          1                 2               3           4           5               6                   7               8           9
+    String sqlV3 = "SELECT q.pmi_no, b.patient_name, q.episode_date, q.queue_name, q.queue_no, l.description, q.patient_category, x.description, b.new_ic_no, IFNULL(adm.USER_NAME,'-') "
+            + " FROM pms_patient_queue q"
+            + " JOIN pms_patient_biodata b ON b.pmi_no = q.pmi_no"
+            + " JOIN adm_lookup_detail l ON l.`Master_Reference_code` ='0069' AND l.`Detail_Reference_code` = q.status AND l.`hfc_cd` = '" + hfc + "'"
+            + " LEFT JOIN adm_lookup_detail x ON x.`Master_Reference_code` ='0033' AND x.`Detail_Reference_code` = q.patient_category AND x.`hfc_cd` = '" + hfc + "' "
+            + " LEFT JOIN adm_users adm ON (q.user_id = adm.`USER_ID`)"
+            + " WHERE q.episode_date like '%" + now + "%' AND q.status !='1' AND q.hfc_cd='" + hfc + "'";
     
-                               //0    //1            //2                //3        //4         //5         //6                //7    
-    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,l.description,q.patient_category,x.description,b.new_ic_no"
-            + " from pms_patient_queue q"
-            + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
-            + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
-            + " left join adm_lookup_detail x on x.`Master_Reference_code` ='0033' and x.`Detail_Reference_code` = q.patient_category and x.`hfc_cd` = '" + hfc + "'"
-            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "'";
     ArrayList<ArrayList<String>> dataQueue;
     dataQueue = conn.getData(sqlV3);
-    //out.print(dataQueue);
+    //out.print(sqlV3);
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
     <thead>
     <th>PMI No.</th>
-    <th>IC Number</th>
-    <th>Name </th>
+    <th>IC/ID Number</th>
+    <th>Patient Name</th>
+    <th>Queue no.</th>
     <th>Episode Date/Time </th>
     <th class="hidden-xs">Queue Name </th>
-    <th>Queue no.</th>
+    <th class="hidden-xs">Consulting Doctor</th>
     <th class="hidden-xs">Patient Category</th>
     <th>Status</th>
     <th>Action </th>
@@ -56,20 +59,21 @@
 </thead>
 <tbody>
     <%
-                                        for (int i = 0; i < dataQueue.size(); i++) {%>
+        for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr >
         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
         <td><%=dataQueue.get(i).get(8)%></td>
         <td style="text-transform: uppercase;"><%=dataQueue.get(i).get(1)%></td>
+        <td><%=dataQueue.get(i).get(4)%></td>
         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
         <td class="hidden-xs" ><%=dataQueue.get(i).get(3)%></td>
-        <td><%=dataQueue.get(i).get(4)%></td>
-        <td class="hidden-xs"><%=dataQueue.get(i).get(5)%></td>
-        <td><%=dataQueue.get(i).get(7)%></td>        
+        <td class="hidden-xs" ><%=dataQueue.get(i).get(9)%></td>
+        <td><%=dataQueue.get(i).get(7)%></td>    
+        <td class="hidden-xs"><%=dataQueue.get(i).get(5)%></td>  
         <td>
-           <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button>
+            <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button>
         </td>
- </tr>    
+    </tr>    
     <%    }
     %>
 
