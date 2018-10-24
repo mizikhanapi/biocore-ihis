@@ -16,9 +16,10 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
 //                                      0                       1                   2                   3                          4                        5                   6
-    String allergyList = "select lhr_allergy.pmi_no,lhr_allergy.hfc_cd,lhr_allergy.episode_date,lhr_allergy.encounter_cd,lhr_allergy.allergy_cd,icd10_codes.icd10_desc,lhr_allergy.comment"
-            + " FROM lhr_allergy JOIN icd10_codes ON (lhr_allergy.allergy_cd = icd10_codes.icd10_code)"
-            + " where lhr_allergy.pmi_no = '" + pmino + "' ";
+    String allergyList = "SELECT alg.pmi_no, alg.hfc_cd, alg.episode_date, alg.encounter_cd, alg.allergy_cd, alg.icd10_description, alg.comment, adm_health_facility.hfc_name "
+            + " FROM lhr_allergy alg"
+            + " JOIN adm_health_facility ON (alg.hfc_cd = adm_health_facility.hfc_cd) "
+            + " where alg.pmi_no = '" + pmino + "' ORDER BY alg.episode_date DESC ";
 
     ArrayList<ArrayList<String>> dataAllergyList;
     dataAllergyList = conn.getData(allergyList);
