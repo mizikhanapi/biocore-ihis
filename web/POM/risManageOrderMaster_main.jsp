@@ -45,6 +45,7 @@
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                         $('#risOrderListContent').html(data);
+                        
                     },
                 error: function (jqXHR, textStatus, errorThrown) {
                         bootbox.alert('Opps! '+ errorThrown);

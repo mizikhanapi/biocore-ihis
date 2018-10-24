@@ -111,6 +111,7 @@
 </table>
 
 <script>
+    
     $('#risManageOrderDetailsListTable').DataTable({
         "paging": false,
         "searching": false,
@@ -428,8 +429,6 @@
 
         }
     });
-
-
 
 //-------------------------------------------------------------------------------  Update And Delete Part Start  --------------------------------------------------------------------------------//
 
