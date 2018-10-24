@@ -122,12 +122,12 @@
 
                         <div class="col-md-6">
                             <!-- Text input-->
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Comment</label>
                                 <div class="col-md-8">
                                     <textarea id="orderNewStockOrderItemInputComment" class="form-control" rows="2" placeholder="Please Insert Comment" maxlength="200"></textarea>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
 

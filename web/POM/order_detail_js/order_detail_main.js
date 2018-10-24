@@ -100,20 +100,28 @@ function loadAllergyDiagnosisOrder(orderNo, pmino) {
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
                     });
+
                     //console.log(orderNo);
                     //datatableTableDestroy();
                     $.ajax({
                         url: "procedure_controller/procedure_select.jsp",
                         type: "post",
                         data: dataOrder,
-                        success:function(databack){
+                        success: function (databack) {
                             $('#tablepositemprepare tbody').empty();
-                            if(databack.trim()!== "NO"){
-                                
+                            if (databack.trim() !== "NO") {
+
                                 $('#tablepositemprepare').append(databack.trim());
+
                                 //datatableTableCreate();
                             }
-                            
+                            var rows = $('#tablepositemprepare tbody tr').length;
+                            if (rows > 0) {
+                                $('#risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', false);
+                            } else {
+                                $('#risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', true);
+                            }
+
                         }
                     });
 
@@ -501,7 +509,7 @@ $('#PR_btnSubmit').on('click', function () {
 // Clear Button Function Start
 $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', function (e) {
     reloadOrderMasterList();
-    
+
     document.getElementById("risManageOrderDetailContentBasicInfoForm").reset();
     document.getElementById("risManageOrderDetailContentOrderInfoForm").reset();
     $("#risOrderDetailContent #risManageAllergyListTableDiv").load("risManageOrderListBasicInfoNew.jsp #risManageAllergyListTableDiv");

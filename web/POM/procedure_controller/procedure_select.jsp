@@ -43,10 +43,9 @@
                                             +"<td>" + dataselectItem.get(i).get(8) + "</td>"
                                             +"<td>" +dataselectItem.get(i).get(7) + "</td>"
                                             +"<td>" + dataselectItem.get(i).get(4) + "</td>"
-                                            +"<td>" + dataselectItem.get(i).get(5) + "</td>"
-                                            +"<td><input type='hidden' id='disciplineStockA' value='" + disori + "'><input type='hidden' id='subdisciplineStockA' value='" + subdisori + "'>"
+                                            +"<td>" + dataselectItem.get(i).get(5) + "<input type='hidden' id='disciplineStockA' value='" + disori + "'><input type='hidden' id='subdisciplineStockA' value='" + subdisori + "'>"
                                             +"<input type='hidden' id='disciplineStockOrderingA' value='" + disori + "'>"
-                                            +"<input type='hidden' id='subdisciplineStockOrderingA' value='" + subdisori +"'></td><input type='hidden' id='stockitemtypeA' value='" + dataselectItem.get(i).get(6) + "'>"
+                                            +"<input type='hidden' id='subdisciplineStockOrderingA' value='" + subdisori +"'><input type='hidden' id='stockitemtypeA' value='" + dataselectItem.get(i).get(6) + "'></td>"
                                         +"</tr>";
         }
         out.print(output);

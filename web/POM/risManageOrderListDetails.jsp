@@ -111,6 +111,14 @@
 </table>
 
 <script>
+    function gettblerow(){
+        var rows = $('#tablepositemprepare tbody tr').length;
+        if(rows > 0){
+            $('#MOD_btnPerform').prop('disabled', false);
+        }else{
+            $('#MOD_btnPerform').prop('disabled', true);
+        }
+    }
     
     $('#risManageOrderDetailsListTable').DataTable({
         "paging": false,
@@ -126,6 +134,7 @@
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
         $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
+        gettblerow();
         $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
 
@@ -272,7 +281,7 @@
         var itemName = $('#orderNewStockOrderItemDisplayItemName').val();
         var itemPrice = $('#orderNewStockOrderItemDisplayItemPrice').val();
         var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
-        var itemComment = $('#orderNewStockOrderItemInputComment').val();
+        var itemComment = "-";
         var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
         var disrec = $('#disciplineStock').val();
         var subdusrec = $('#subdisciplineStock').val();
@@ -289,10 +298,6 @@
         } else if (itemQuantity === "" || itemQuantity === null) {
 
             bootbox.alert("Please Insert Order Quantity !!!");
-
-        } else if (itemComment === "" || itemComment === null) {
-
-            bootbox.alert("Please Insert Order Comment !!!");
 
         } else if (parseInt(itemQuantity) > parseInt(itemStock)) {
 
@@ -366,8 +371,8 @@
                     success: function (returnMessage) {
 
                         //$('.loading').hide();
-                        console.log(dataorder);
-                        console.log(returnMessage);
+                        //console.log(dataorder);
+                        //console.log(returnMessage);
 
                         if (returnMessage.trim() === 'Success') {
                             console.log(data);
@@ -393,18 +398,18 @@
                                             <td>' + itemPrice + '</td>\n\
                                             <td>' + itemStock + '</td>\n\
                                             <td>' + itemQuantity + '</td>\n\
-                                            <td>' + newTotal + '</td>\n\
-                                            <td>' + itemComment + '<input type="hidden" id="disciplineStockA" value="' + disrec + '"><input type="hidden" id="subdisciplineStockA" value="' + subdusrec + '">\n\
+                                            <td>' + newTotal + '<input type="hidden" id="disciplineStockA" value="' + disrec + '"><input type="hidden" id="subdisciplineStockA" value="' + subdusrec + '">\n\
                                             <input type="hidden" id="disciplineStockOrderingA" value="' + disorder + '">\n\
-                                            <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"></td><input type="hidden" id="stockitemtypeA" value="' + temtype + '">\n\
+                                            <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"><input type="hidden" id="stockitemtypeA" value="' + temtype + '"></td>\n\
                                         </tr>');
                                         datatableTableCreate();
+                                        
                                     } else if (datas.trim() === "Failed") {
 
                                         bootbox.alert("Item failed to add!");
 
                                     }
-
+                                    gettblerow();
                                     //resetPage();
 
                                 },
@@ -449,32 +454,38 @@
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
 
         $('#orderNewStockOrderSearchItemInput').prop('disabled', true);
-
+        
+        var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
+        var orivaluqty = parseInt(row.find('td').eq(4).text());
+        var changedqty = parseInt(itemQuantity) - orivaluqty;
+        
         var itemCode = row.find('td').eq(0).text();
         var itemName = row.find('td').eq(1).text();
         var itemPrice = row.find('td').eq(2).text();
         var itemStock = row.find('td').eq(3).text();
         var itemQuantity = row.find('td').eq(4).text();
-        var itemComment = row.find('td').eq(6).text();
+        //var itemComment = row.find('td').eq(6).text();
 
         var disrec = $('#disciplineStockA').val();
         var subdusrec = $('#subdisciplineStockA').val();
         var disorder = $('#disciplineStockOrderingA').val();
         var subdisorder = $('#subdisciplineStockOrderingA').val();
         var temtype = $('#stockitemtypeA').val();
-
+        
         $('#orderNewStockOrderItemDisplayItemCode').val(itemCode);
         $('#orderNewStockOrderItemDisplayItemName').val(itemName);
         $('#orderNewStockOrderItemDisplayItemPrice').val(itemPrice);
         $('#orderNewStockOrderItemDisplayItemStockQuantity').val(itemStock);
         $('#orderNewStockOrderItemInputQuantity').val(itemQuantity);
-        $('#orderNewStockOrderItemInputComment').val(itemComment);
+        //$('#orderNewStockOrderItemInputComment').val(itemComment);
 
         $('#disciplineStock').val(disrec);
         $('#subdisciplineStock').val(subdusrec);
         $('#disciplineStockOrdering').val(disorder);
         $('#subdisciplineStockOrdering').val(subdisorder);
         $('#stockitemtype').val(temtype);
+        
+        
 
     });
     // Fetch Data For Update And Delete Function End
@@ -489,9 +500,9 @@
         var itemName = $('#orderNewStockOrderItemDisplayItemName').val();
         var itemPrice = $('#orderNewStockOrderItemDisplayItemPrice').val();
         var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
-        var itemComment = $('#orderNewStockOrderItemInputComment').val();
+        //var itemComment = $('#orderNewStockOrderItemInputComment').val();
         var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
-
+        var order_no = $("#risOrderNo").val();
         var disrec = $('#disciplineStock').val();
         var subdusrec = $('#subdisciplineStock').val();
         var disorder = $('#disciplineStockOrdering').val();
@@ -499,14 +510,15 @@
         var temtype = $('#stockitemtype').val();
 
         var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
-
+        var orivaluqty = parseInt(row.find('td').eq(4).text());
+        var changedqty = parseInt(itemQuantity) - orivaluqty;
         row.find('td').eq(0).text(itemCode);
         row.find('td').eq(1).text(itemName);
         row.find('td').eq(2).text(itemPrice);
         row.find('td').eq(3).text(itemStock);
         row.find('td').eq(4).text(itemQuantity);
         row.find('td').eq(5).text(newTotal);
-        row.find('td').eq(6).text(itemComment);
+        //row.find('td').eq(6).text(itemComment);
         row.find('#disciplineStockA').val(disrec);
         row.find('#subdisciplineStockA').val(subdusrec);
         row.find('#disciplineStockOrderingA').val(disorder);
@@ -516,7 +528,35 @@
         $('#POSorderNewStockOrder').modal('hide');
 
         datatableTableCreate();
-
+        var datasupdate = {orderno:order_no,
+            changeqty:changedqty,
+            amount:newTotal,
+            totalqty:itemQuantity,
+            itemcode:itemCode,
+            itemtype:temtype            
+        };
+        console.log(datasupdate);
+        $.ajax({
+           type: "post",
+           url: "procedure_controller/item_update.jsp",
+           data :datasupdate ,
+           success:function(databack){
+               console.log(databack);
+               if(databack.trim()==="OK"){
+                   bootbox.alert({
+                        message: "Item is Updated Successfully",
+                        title: "Process Result",
+                        backdrop: true
+                    });
+                }else{
+                    bootbox.alert({
+                        message: "Item is Fail to update",
+                        title: "Process Result",
+                        backdrop: true
+                    });
+                }
+           }
+        });
         bootbox.alert({
             message: "Item is Updated Successfully",
             title: "Process Result",
@@ -525,6 +565,120 @@
 
     });
     // Delivery Update Function End        
+
+        // Delete Order Data 
+        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
+
+            var itemCode = $('#orderNewStockOrderItemDisplayItemCode').val();
+            var itemName = $('#orderNewStockOrderItemDisplayItemName').val();
+            var itemPrice = $('#orderNewStockOrderItemDisplayItemPrice').val();
+            var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
+            //var itemComment = $('#orderNewStockOrderItemInputComment').val();
+            var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
+            var order_no = $("#risOrderNo").val();
+            var disrec = $('#disciplineStock').val();
+            var subdusrec = $('#subdisciplineStock').val();
+            var disorder = $('#disciplineStockOrdering').val();
+            var subdisorder = $('#subdisciplineStockOrdering').val();
+            var temtype = $('#stockitemtype').val();
+
+            var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
+            var orivaluqty = parseInt(row.find('td').eq(4).text());
+            var changedqty = parseInt(itemQuantity) - orivaluqty;
+            
+            var datasdelete = {orderno:order_no,
+                changeqty:changedqty,
+                amount:newTotal,
+                totalqty:itemQuantity,
+                itemcode:itemCode,
+                itemtype:temtype            
+            };
+        
+                var dataOrder = {
+                orderNo: order_no
+            };
+
+            console.log(datasdelete);
+
+            $('#updateStockOrder').modal('hide');
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this item ?",
+                title: "Delete Item?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            url: "procedure_controller/item_delete.jsp",
+                            type: "post",
+                            data: datasdelete,
+                            timeout: 10000, // 10 seconds
+                            success: function (datas) {
+
+                                if (datas.trim() === 'OK') {
+                                  
+                                    $.ajax({
+                                    url: "procedure_controller/procedure_select.jsp",
+                                    type: "post",
+                                    data: dataOrder,
+                                    success:function(databack){
+                                        $('#tablepositemprepare tbody').empty();
+                                        if(databack.trim()!== "NO"){
+
+                                            $('#tablepositemprepare').append(databack.trim());
+                                            bootbox.alert({
+                                                message: "Item is Deleted Successfully",
+                                                title: "Process Result",
+                                                backdrop: true
+                                            });
+                                            datatableTableCreate();
+                                            
+                                        }
+                                        gettblerow();
+
+                                    }
+                                });
+
+                                } else {
+
+                                    bootbox.alert({
+                                        message: "Item Delete Failed",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+
+
+                                }
+
+                            },
+                            error: function (err) {
+                                alert("Error! Deletion Ajax failed!!");
+                            }
+
+                        });
+
+
+
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
+
+                }
+            });
+
+        });
+        // Delete Order Data End
 
     function datatableTableDestroy() {
 

@@ -207,7 +207,6 @@
         <th style="width: 20%">Quantity On hand</th>
         <th style="width: 5%">Request Quantity</th>
         <th style="width: 5%">Total Value</th>
-        <th style="width: 5%">Description</th>
 
         </thead>
         <tbody>
