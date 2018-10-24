@@ -38,7 +38,7 @@
             var data = {
                 process: process
             };
-            
+            //datatableTableDestroy();
             $.ajax({
                 type: 'POST',
                 url: "risManageOrderListTable.jsp",

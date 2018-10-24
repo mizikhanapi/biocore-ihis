@@ -425,7 +425,7 @@
             var subdusrec = $('#subdisciplineStock').val();
             var disorder = $('#disciplineStockOrdering').val();
             var subdisorder = $('#subdisciplineStockOrdering').val();
-            var temtype = ('#stockitemtype').val();
+            var temtype = $('#stockitemtype').val();
             
             var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
 

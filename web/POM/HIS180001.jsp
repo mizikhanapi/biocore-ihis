@@ -70,6 +70,7 @@
                                                 </div>
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
                                                 <%@include file="order_modal/prepareResult_modal.jsp" %>
+                                                <%@include file="procedure_modal/procedure_prepare_item.jsp" %>
 
                                             </div>
 
