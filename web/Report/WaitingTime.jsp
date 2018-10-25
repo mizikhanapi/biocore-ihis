@@ -35,7 +35,7 @@
 
                         <div class="thumbnail">
 
-                            <h3 style="margin: 0px;"> Waiting Time Report </h3>
+                            <h3 style="margin: 0px;"> Waiting Time Report (Overall Process)</h3>
                             <hr class="pemisah" />
 
                             <div id="reportWaitingTimeMainDIV">
