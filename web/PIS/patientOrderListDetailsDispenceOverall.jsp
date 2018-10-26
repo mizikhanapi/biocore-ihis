@@ -35,8 +35,8 @@
     String ARRIVAL_DATE = request.getParameter("arrivalDate"); // Data 11
     String DISPENSED_DATE = format.format(now); // Data 12
     String DISPENSED_BY = (String) session.getAttribute("USER_ID"); // Data 13
-    String FILLED_BY = (String) session.getAttribute("USER_ID"); // Data 14
-    String SCREENED_BY = (String) session.getAttribute("USER_ID"); // Data 15
+//    String FILLED_BY = (String) session.getAttribute("USER_ID"); // Data 14
+//    String SCREENED_BY = (String) session.getAttribute("USER_ID"); // Data 15
     String ASSIGNED_BY = (String) session.getAttribute("USER_ID"); // Data 16
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
@@ -45,6 +45,11 @@
     int STATUS = 1;
 
     String COMMENT = request.getParameter("drugComment"); // Data 8
+
+    String screenedBy = request.getParameter("scrennedBy");
+    String person[] = screenedBy.split("\\|");
+    String FILLED_BY = person[0]; // Data 14
+    String SCREENED_BY = person[0]; // Data 15
 
     QTY_DISPENSED = "0";
 

@@ -260,6 +260,36 @@
 
 <hr/>
 
+
+
+<div class="row">
+    <!-- content goes here -->
+    <form class="form-horizontal" id="addForm">
+
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-8">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Screened/Filled By *</label>
+                <div class="col-md-8">
+                    <input id="dispenseFilledOrScrennedBy" name="dispenseFilledOrScrennedBy" type="text" placeholder=" Search Screened/Filled By" class="form-control input-md">
+                    <div id="dispenseFilledOrScrennedByDisplayResult" class="search-drop"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+        </div>
+
+    </form>
+</div>
+
+<hr/>
+
 <div style="float: left;" id="patientOrderDispenseButtonDiv" > 
     <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense" >&nbsp; Back &nbsp;</button>
 </div>
@@ -281,6 +311,46 @@
     var episodeDate;
     var encounterDate;
 
+
+
+    $(function () {
+        $("#dispenseFilledOrScrennedBy").on('keyup', function () { // everytime keyup event
+
+            var input = $(this).val(); // We take the input value
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+
+                $('#dispenseFilledOrScrennedByDisplayResult').html('<img src="libraries/LoaderIcon.gif"/>'); // Loader icon apprears in the <div id="match"></div>
+
+                var dataFields = {'input': input}; // We pass input argument in Ajax
+
+                $.ajax({
+                    type: "POST",
+                    url: "patientOrderListDispenseFillerDetails.jsp", // call the jsp file ajax/auto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+
+                        $('#dispenseFilledOrScrennedByDisplayResult').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+
+                        $('#dispenseFilledOrScrennedByDisplayResult li').on('click', function () { // When click on an element in the list
+
+                            $('#dispenseFilledOrScrennedBy').val($(this).text()); // Update the field with the new element
+                            $('#dispenseFilledOrScrennedByDisplayResult').text(''); // Clear the <div id="match"></div>
+
+                        });
+                    },
+                    error: function () { // if error
+                        $('#dispenseFilledOrScrennedByDisplayResult').text('No Eecord Found !');
+                    }
+                });
+            } else {
+                $('#dispenseFilledOrScrennedByDisplayResult').text('Problem!'); // If less than 2 characters, clear the <div id="match"></div>
+            }
+        });
+    });
+
+
     // Move to Order Details Fetch Details Start
     $('#patientOrderListContent').off('click', '#patientOrderListTable #moveToOrderDetailsTButton').on('click', '#patientOrderListTable #moveToOrderDetailsTButton', function (e) {
 
@@ -291,6 +361,8 @@
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
         document.getElementById("btnOrderDispenseDeclineCallPatient").disabled = true;
+        document.getElementById("dispenseFilledOrScrennedBy").disabled = false;
+        document.getElementById("dispenseFilledOrScrennedBy").value = '';
 
         e.preventDefault();
 
@@ -1080,7 +1152,8 @@
         var orderNo, drugCode, drugDesc, drugStrength, drugFrequency, drugDuration, drugDose,
                 drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus, drugComment, drugChecked;
 
-        var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
+        var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked,
+                dispenseFarMasterTotalChecked, dispenseScreenedBy;
 
         var drugATCCode, drugATCDesc, drugMDCDesc, drugMDCStrength, drugMDCFromMCode, drugMDCFromRCode, drugMDCFromDesc, drugMDCRouteMCode, drugMDCRouteRCode, drugMDCRouteDesc,
                 drugMDCFrequencyMCode, drugMDCFrequencyRCode, drugMDCFrequencyDesc, drugMDCFrequencyUnitCode, drugMDCDosage, drugMDCOUM,
@@ -1101,6 +1174,7 @@
         dispenseFarMasterTotal = $("#dispenseGrandTotal").val();
         dispenseFarMasterQuantityChecked = $("#dispenseTotalQuantityChecked").val();
         dispenseFarMasterTotalChecked = $("#dispenseGrandTotalChecked").val();
+        dispenseScreenedBy = $("#dispenseFilledOrScrennedBy").val();
 
 
         table.find('tr').each(function (i) {
@@ -1223,7 +1297,8 @@
                     dispenseDrugMasterQuantityChecked: dispenseFarMasterQuantityChecked,
                     dispenseDrugMasterTotalChecked: dispenseFarMasterTotalChecked,
                     drugChecked: drugChecked,
-                    drugComment: drugComment
+                    drugComment: drugComment,
+                    scrennedBy: dispenseScreenedBy
                 };
 
                 console.log(dataAjax);
@@ -1458,6 +1533,7 @@
         var orderNo = $("#patientOrderNo").val();
         var patientPMI = $("#patientpmino").val();
         var patientName = $("#patientName").val();
+        var screenedBy = $("#dispenseFilledOrScrennedBy").val();
 
         var drugChecked;
         var drugStock;
@@ -1498,6 +1574,10 @@
         if (checkedDispense === -1) {
 
             bootbox.alert("Please At least Select A Order To Generate Label");
+
+        } else if (screenedBy === '') {
+
+            bootbox.alert("Please Search Screened/Filled By Person !!!");
 
         } else {
 
@@ -1553,6 +1633,7 @@
                                                 success: function (result) {
 
                                                     $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", "disabled");
+                                                    document.getElementById("dispenseFilledOrScrennedBy").disabled = true;
                                                     document.getElementById("btnOrderDispenseCallPatient").disabled = false;
                                                     document.getElementById("btnOrderDispensePrescribe").disabled = true;
 
@@ -1881,6 +1962,8 @@
         $("#patientOrderDetailContent #patientAllergyListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientAllergyListTableDiv");
         $("#patientOrderDetailContent #patientDiagnosisListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientDiagnosisListTableDiv");
         $("#patientOrderDetailContent #patientOrderDetailsListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientOrderDetailsListTableDiv");
+        document.getElementById("dispenseFilledOrScrennedBy").disabled = false;
+        document.getElementById("dispenseFilledOrScrennedBy").value = '';
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
     }
@@ -1892,6 +1975,7 @@
 
         // Disable And Enable Button Start
         $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", false);
+        document.getElementById("dispenseFilledOrScrennedBy").disabled = false;
         document.getElementById("btnOrderDispensePrescribe").disabled = false;
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
