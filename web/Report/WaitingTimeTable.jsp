@@ -148,7 +148,7 @@
         detailmonth = "<%=monthString%>";
 
         prepend = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report  (Overall Process)<br/><h5>For <strong>' + detailmonth + ' ' + detailyear + '</strong> </h5></div>\n\
+                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Overall Process)<br/><h5>For <strong>' + detailmonth + ' ' + detailyear + '</strong> </h5></div>\n\
                     <div class="info_kecik">\n\
                     <dd>Date: <strong><%=newdate%></strong></dd>\n\
                     <dd>Report ID: <strong>SAM-0001</strong></dd>\n\
@@ -166,7 +166,7 @@
         enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
 
         prepend = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report  (Overall Process)<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div>\n\
+                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Overall Process)<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div>\n\
                     <div class="info_kecik">\n\
                     <dd>Date: <strong><%=newdate%></strong></dd>\n\
                     <dd>Report ID: <strong>SAM-0001</strong></dd>\n\

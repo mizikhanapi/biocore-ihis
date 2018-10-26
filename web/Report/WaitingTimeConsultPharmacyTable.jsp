@@ -155,7 +155,7 @@
                     <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Consultation -> Pharmacy)<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div>\n\
                     <div class="info_kecik">\n\
                     <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                    <dd>Report ID: <strong>SAM-0002</strong></dd>\n\
+                    <dd>Report ID: <strong>SAM-0003</strong></dd>\n\
                     </div> ';
 
     }
