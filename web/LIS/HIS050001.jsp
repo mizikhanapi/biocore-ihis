@@ -76,6 +76,8 @@
                                                 <%@include file="manageLabOrderModal.jsp" %>
                                             </div>
 
+                                            <%@include file = "patientOrderListModal.jsp" %>
+
                                         </div>
                                     </div>
                                 </div>

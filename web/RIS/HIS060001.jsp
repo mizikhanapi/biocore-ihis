@@ -80,6 +80,8 @@
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
                                                 <%@include file="order_modal/setExamDate_modal.jsp" %>
                                                 <%@include file="order_modal/prepareResult_modal.jsp" %>
+                                                <%@include file = "patientOrderListModal.jsp" %>
+
                                             </div>
 
                                         </div>
@@ -104,12 +106,12 @@
 
         <script>
 
-            $('<div class="loading">&nbsp;</div>').appendTo('body');
+                                                    $('<div class="loading">&nbsp;</div>').appendTo('body');
 
 
-            $("#risOrderMain").load("risManageOrderMaster_main.jsp");
-            $("#risOrderListContent").load("risManageOrderListTable.jsp");
-            $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
+                                                    $("#risOrderMain").load("risManageOrderMaster_main.jsp");
+                                                    $("#risOrderListContent").load("risManageOrderListTable.jsp");
+                                                    $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
 
         </script>
 

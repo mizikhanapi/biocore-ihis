@@ -71,6 +71,7 @@
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
                                                 <%@include file="order_modal/prepareResult_modal.jsp" %>
                                                 <%@include file="procedure_modal/procedure_prepare_item.jsp" %>
+                                                <%@include file = "patientOrderListModal.jsp" %>
 
                                             </div>
 
@@ -97,20 +98,20 @@
 
         <script>
 
-            // createScreenLoading();
-            $(function () {
-                preventPipeKeyPress(document);
-                preventPipeKeyUp("input");
-                codeValidityKeyUp(".code-input");
-            });
+                                                    // createScreenLoading();
+                                                    $(function () {
+                                                        preventPipeKeyPress(document);
+                                                        preventPipeKeyUp("input");
+                                                        codeValidityKeyUp(".code-input");
+                                                    });
 
 
 
-            $("#risOrderMain").load("risManageOrderMaster_main.jsp");
-            $("#risOrderListContent").load("risManageOrderListTable.jsp");
-            $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
+                                                    $("#risOrderMain").load("risManageOrderMaster_main.jsp");
+                                                    $("#risOrderListContent").load("risManageOrderListTable.jsp");
+                                                    $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
 
-            // destroyScreenLoading();
+                                                    // destroyScreenLoading();
 
         </script>
 
