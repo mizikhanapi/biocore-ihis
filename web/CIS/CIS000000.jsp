@@ -37,6 +37,7 @@
         <%@ include file="libraries/header.jsp" %> 
         <%@ include file="../assets/header.html" %> 
         <link href="../assets/css/toggleButton.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
         <!-- header -->
         <style>
             .modal-dialog-gra{
@@ -368,6 +369,7 @@
 
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
         <script src="../assets/js/swapping-tab.js?v1.1" type="text/javascript"></script>
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
         <script>
 
             (function ($) {
@@ -403,6 +405,43 @@
                     step:"0.1"
                 });
             });
+            
+            // Queue Validator Start
+            !function calculateAllTotal() {
+
+                var pmiNoForWarner = $('#pPMINo').text();
+
+                if (pmiNoForWarner === '-' || pmiNoForWarner === '') {
+
+                    $.ajax({
+                        url: "queue/queueValidatorForNew.jsp",
+                        type: "get",
+                        timeout: 10000,
+                        success: function (datas) {
+
+                            var dataPaient = datas.trim();
+
+                            if (dataPaient === "Got") {
+
+                                alertify.set('notifier', 'position', 'top-left');
+                                alertify.error('You Have A New Patient in The Queue !!!!!!');
+
+                            }
+
+                        },
+                        error: function (err) {
+                        }
+
+                    });
+
+                } else {
+
+                }
+
+                setTimeout(calculateAllTotal, 30000);
+
+            }();
+            // Queue Validator End
             
 //            $('#menu-content #LinkOngGeneral').on('click',function(){
 //                console.log('xxx');

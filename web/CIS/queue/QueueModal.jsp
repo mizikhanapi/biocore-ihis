@@ -6,28 +6,7 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
-<!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
 
-<!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
-
-<!-- 
-    RTL version
--->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.rtl.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.rtl.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.rtl.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.rtl.min.css"/>
 
 
 <!-- Modal -->
@@ -70,85 +49,6 @@
     $(document).ready(function () {
 
         $('#listQueue').load('queue/listQueue.jsp');
-
-        // Queue Validator Start
-        !function calculateAllTotal() {
-
-            var pmiNoForWarner = $('#pPMINo').text();
-
-            if (pmiNoForWarner === '-' || pmiNoForWarner === '') {
-
-                $.ajax({
-                    url: "queue/queueValidatorForNew.jsp",
-                    type: "get",
-                    timeout: 10000,
-                    success: function (datas) {
-
-                        var dataPaient = datas.trim();
-
-                        if (dataPaient === "Got") {
-
-                            alertify.set('notifier', 'position', 'top-left');
-                            alertify.error('You Have A New Patient in The Queue !!!!!!');
-
-                        }
-
-                    },
-                    error: function (err) {
-                    }
-
-                });
-
-            } else {
-
-            }
-
-            setTimeout(calculateAllTotal, 60000);
-
-        }();
-        // Queue Validator End
-
-
-
-//        $('#menu-content').off('click', '#btnCIS_MAIN_QUEUE').on('click', '#btnCIS_MAIN_QUEUE', function (e) {
-//
-//            setTimeout(function () {
-//
-//                var pmiNoForWarner = $('#pPMINo').text();
-//
-//                if (pmiNoForWarner === '-' || pmiNoForWarner === '') {
-//
-//                    $.ajax({
-//                        url: "queue/queueValidatorForNew.jsp",
-//                        type: "get",
-//                        timeout: 10000,
-//                        success: function (datas) {
-//
-//                            var dataPaient = datas.trim();
-//
-//                            if (dataPaient === "Got") {
-//
-//                                alertify.set('notifier', 'position', 'top-left');
-//                                alertify.error('You Have A New Patient in The Queue !!!!!!');
-//
-//                            } else {
-//
-//                            }
-//
-//                        },
-//                        error: function (err) {
-//                        }
-//
-//                    });
-//
-//                } else {
-//
-//                }
-//
-//            }, 3000);
-//
-//        });
-
 
         //yyyy-MM-dd HH:mm:ss
         var nowDate = new Date();
