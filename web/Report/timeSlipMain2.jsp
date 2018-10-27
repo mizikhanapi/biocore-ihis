@@ -68,24 +68,24 @@
             $(document).ready(function () {
                 $("#SearchPatientTCdiv").load("searchTs.jsp");
                 //$("#tsTableDivision").load("tsTable.jsp");
-                
-                
-                
-                $(document).ready(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "tsTable.jsp",
-                        timeout: 3000,
-                        success: function (returnHtml) {
-                            //console.log(returnHtml);
-                            $('#tsTableDivision').html(returnHtml);
-
-                        }, error: function (jqXHR, textStatus, errorThrown) {
-
-                            console.log("ERROR: " + errorThrown);
-                        }
-                    });
-                });
+//                
+//                
+//                
+//                $(document).ready(function () {
+//                    $.ajax({
+//                        type: "post",
+//                        url: "tsTable.jsp",
+//                        timeout: 3000,
+//                        success: function (returnHtml) {
+//                            //console.log(returnHtml);
+//                            $('#tsTableDivision').html(returnHtml);
+//
+//                        }, error: function (jqXHR, textStatus, errorThrown) {
+//
+//                            console.log("ERROR: " + errorThrown);
+//                        }
+//                    });
+//                });
 
             });
         </script>

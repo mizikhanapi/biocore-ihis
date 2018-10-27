@@ -4,6 +4,9 @@
     Author     : user
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="dBConn.Conn"%>
@@ -45,7 +48,8 @@
         my_1_sub_name = (String) session.getAttribute("SUB_DISCIPLINE_NAME");
 
     }
-    String sql = "SELECT address1 FROM adm_health_facility WHERE hfc_cd = '" + my_1_hfc_cd + "'";
+
+    String sql = "SELECT address1, logo FROM adm_health_facility WHERE hfc_cd = '" + my_1_hfc_cd + "'";
     ArrayList<ArrayList<String>> add = conn.getData(sql);
     String name = request.getParameter("name");
     String episode = request.getParameter("episode");
@@ -58,7 +62,11 @@
     String dateStart = start_date;
     String dateStop = end_date;
 
+    LocalDateTime now = LocalDateTime.now();
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(now);
+    DateTimeFormatter formatOrderTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+    String seq = formatOrderTime.format(now);
 
     Date d1 = format.parse(dateStart);
     Date d2 = format.parse(dateStop);
@@ -67,17 +75,20 @@
 
 
 %>
+
 <div style="text-align: center; margin-bottom: 30px;">
-    <h1><%=my_1_hfcName%></h1>
-    <h4 style="padding: 0px;"><%=add.get(0).get(0)%></h4>
+    <img src="<%=add.get(0).get(1)%>" height="70" width="150" />
+    <h3><%=my_1_hfcName%></h3>
+    <h5><%=add.get(0).get(0)%></h5>
 </div>
 
 <div class="row">
-    <div class="col-md-12" style="text-align: right;">
-        <p>Tarikh: <strong><%=episode%></strong></p>
+    <div class="pull-right" style="padding-right: 20px;">
+        <p> <strong> Tarikh : <%=newdate%></strong> </p>
     </div>
 </div>
 <br/>
+
 <div class="row">
     <div class="col-md-12">
         <p>Dengan ini saya mengesahkan bahawa saya telah memriksa: 
@@ -90,11 +101,9 @@
 <div class="row">
     <div class="col-md-12">
         <ol type="a">
-            <li>Tidak sihat untuk menjalankan tugasanya dengan sempurna selama <strong><%=diffDays%> hari</strong>
-                <br/>daripada <strong><%=start_date%></strong> hingga <strong><%=end_date%></strong>
-            </li>
-            <li>Boleh bertugas semula pada </li>
-            <li>Komen: <strong><%=comment%></strong></li>
+            <li>Tidak sihat untuk menjalankan tugasanya dengan sempurna selama <strong><%=diffDays%> hari</strong>.</li>
+            <li>Daripada <strong><%=start_date%></strong> hingga <strong><%=end_date%></strong>.</li>
+            <li>Komen Dari Dr : <strong><%=comment%></strong></li>
         </ol>
     </div>
 </div>
