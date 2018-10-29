@@ -468,6 +468,7 @@ $(document).ready(function () {
                 $('input[id=FAMpmi]').val($.trim(list));
                 // set value in MEDICAL page
                 $('input[id=MEDpmino]').val($.trim(list));
+                document.getElementById("PMI_btnGenerate").disabled = true;
             },
             complete: function (jqXHR, textStatus) {
                 $body.removeClass("loading");

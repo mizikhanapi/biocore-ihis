@@ -76,22 +76,22 @@
             $(document).ready(function () {
                 $("#SearchPatientdiv").load("searchMc.jsp");
                 //$("#mcTableDivision").load("mcTable.jsp");
-
-                $(document).ready(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "mcTable.jsp",
-                        timeout: 3000,
-                        success: function (returnHtml) {
-                            //console.log(returnHtml);
-                            $('#mcTableDivision1').html(returnHtml);
-
-                        }, error: function (jqXHR, textStatus, errorThrown) {
-
-                            console.log("ERROR: " + errorThrown);
-                        }
-                    });
-                });
+//
+//                $(document).ready(function () {
+////                    $.ajax({
+////                        type: "post",
+////                        url: "mcTable.jsp",
+////                        timeout: 3000,
+////                        success: function (returnHtml) {
+////                            //console.log(returnHtml);
+////                            $('#mcTableDivision1').html(returnHtml);
+////
+////                        }, error: function (jqXHR, textStatus, errorThrown) {
+////
+////                            console.log("ERROR: " + errorThrown);
+////                        }
+////                    });
+//                });
 
             });
         </script>

@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="dBConn.Conn"%>
@@ -46,7 +48,8 @@
         my_1_sub_name = (String) session.getAttribute("SUB_DISCIPLINE_NAME");
 
     }
-    String sql = "SELECT address1 FROM adm_health_facility WHERE hfc_cd = '" + my_1_hfc_cd + "'";
+
+    String sql = "SELECT address1, logo FROM adm_health_facility WHERE hfc_cd = '" + my_1_hfc_cd + "'";
     ArrayList<ArrayList<String>> add = conn.getData(sql);
     String name = request.getParameter("name");
     String episode = request.getParameter("episode");
@@ -56,6 +59,12 @@
     String comment = request.getParameter("comment");
     String ic = request.getParameter("ic");
     String idNo = request.getParameter("id");
+
+    LocalDateTime now = LocalDateTime.now();
+    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(now);
+    DateTimeFormatter formatOrderTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+    String seq = formatOrderTime.format(now);
 
     //out.print(start_date+" "+end_date);
     //27-04-2017 23-05-2017
@@ -70,24 +79,31 @@
 //    long diffDays = diff/(24 * 60 * 60 * 1000) + 1;
     //out.print("      /"+diffDays);
 %>
+
 <div style="text-align: center; margin-bottom: 30px;">
-    <h1><%=my_1_hfcName%></h1>
-    <h4 style="padding: 0px;"><%=add.get(0).get(0)%></h4>
+    <img src="<%=add.get(0).get(1)%>" height="70" width="150" />
+    <h3><%=my_1_hfcName%></h3>
+    <h5><%=add.get(0).get(0)%></h5>
 </div>
 
+<div class="row">
+    <div class="pull-right" style="padding-right: 20px;">
+        <p> <strong> Tarikh : <%=newdate%></strong> </p>
+    </div>
+</div>
 <br/>
+
 <div class="row">
     <div class="col-md-12">
         <p>Kepada:&nbsp;<strong>....................................................................................................................<%%></strong></p>
-        <p> Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
+        <p>Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
         <p>No. STAFF/MATRIKS:&nbsp;<strong><%=idNo%></strong>&nbsp;&nbsp;&nbsp;&nbsp; No. KP:&nbsp;<strong><%=ic%></strong></p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <p>Mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;&nbsp;&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
-        <p>Diagnosa:&nbsp;</p>
+        <p>Telah mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
         <p>Tarikh:&nbsp;<strong><%=episode%></strong></p>
     </div>
 </div>

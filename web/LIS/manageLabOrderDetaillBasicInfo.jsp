@@ -18,7 +18,12 @@
     String locationcode = hfc + "|" + dis + "|" + subdis;
 %>
 
-<h4>Basic Info</h4>
+<h4>
+    Basic Info
+    <div class="pull-right">
+        <button id="patientOrderShowVitalSign" name="patientOrderShowVitalSign" class="btn btn-default" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
+    </div>
+</h4>
 <form class="form-horizontal" name="patientOrderDetailContentBasicInfoForm" id="patientOrderDetailContentBasicInfoForm">
     <div class="row">
 
@@ -1064,6 +1069,52 @@
 
 
 //=================================================================================  Reset Part End  ==================================================================================//
+
+
+
+
+
+        // Getting Order Id And Date Start
+        $('#lisLabRequestOrderDetailContent').off('click', '#patientOrderShowVitalSign').on('click', '#patientOrderShowVitalSign', function (e) {
+
+            e.preventDefault();
+
+            var patientPMINo = $("#patientpmino").val();
+
+            if (patientPMINo === "" || patientPMINo === null) {
+
+                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+                bootbox.alert("Please Select A Order First");
+
+            } else {
+
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                var data = {
+                    patientPMINo: patientPMINo
+                };
+
+                $.ajax({
+                    url: "patientGetAllVitalSigns.jsp",
+                    type: 'POST',
+                    data: data,
+                    timeout: 3000,
+                    success: function (data) {
+
+                        console.log(data);
+                        $("#patientOrderDetailsVitalSignContent").html(data);
+                        $('#patientOrderDetailsVitalSignModal').modal('show');
+                        $('.loading').hide();
+
+                    }
+                });
+
+
+
+            }
+
+        });
+        // Getting Order Id And Date End
 
 
 

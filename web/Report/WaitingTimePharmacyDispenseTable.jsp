@@ -1,7 +1,7 @@
 <%-- 
-    Document   : WaitingTimeTable
-    Created on : Sep 27, 2018, 10:01:54 AM
-    Author     : user
+    Document   : WaitingTimePharmacyDispenseTable
+    Created on : Oct 26, 2018, 1:47:21 AM
+    Author     : Shammugam
 --%>
 
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -49,21 +49,21 @@
         if (filter.equals("month")) {
 
             //                                          0                         1            2                     3                               4
-            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name', "
-                    //                  5                                       6                                       7                           8                         
-                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', "
-                    //                  9                                           10                                              11                                    
-                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE) AS 'Duration in minutes'  "
+            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name',  "
+                    //                  5                                6                                   7                                          8
+                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date',  "
+                    //                  9                                             10                                    11
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes'   "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
                     + " JOIN pms_patient_biodata bio ON (que.pmi_no = bio.PMI_NO) "
                     // JOIN PIS ORDER MASTER SQL
-                    + " JOIN pis_order_master pis ON (que.pmi_no = pis.PMI_NO AND que.episode_date = pis.EPISODE_DATE AND pis.HFC_TO = que.hfc_cd)  "
+                    + " JOIN pis_order_master pis ON (que.pmi_no = pis.PMI_NO AND que.episode_date = pis.EPISODE_DATE AND pis.HFC_TO = que.hfc_cd) "
                     // JOIN PIS DISPENSE MASTER SQL
                     + " JOIN pis_dispense_master disp ON (pis.ORDER_NO = disp.ORDER_NO)  "
                     // JOIN USERS SQL
-                    + " LEFT JOIN adm_users phar ON (disp.DISPENSED_BY = phar.USER_ID AND que.hfc_cd = phar.HEALTH_FACILITY_CODE) "
+                    + " LEFT JOIN adm_users phar ON (disp.DISPENSED_BY = phar.USER_ID AND que.hfc_cd = phar.HEALTH_FACILITY_CODE)  "
                     // JOIN USERS SQL
                     + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE) "
                     // WHERE SQL
@@ -73,24 +73,24 @@
 
         } else {
 
-            //                                          0                                1            2                           3                               4
-            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name', "
-                    //                  5                                       6                                       7                           8                         
-                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', "
-                    //                  9                                           10                                              11                                    
-                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE) AS 'Duration in minutes' "
+            //                                          0                         1            2                     3                               4
+            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name',  "
+                    //                  5                                6                                   7                                          8
+                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date',  "
+                    //                  9                                             10                                    11
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes'   "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
                     + " JOIN pms_patient_biodata bio ON (que.pmi_no = bio.PMI_NO) "
                     // JOIN PIS ORDER MASTER SQL
-                    + " JOIN pis_order_master pis ON (que.pmi_no = pis.PMI_NO AND que.episode_date = pis.EPISODE_DATE AND pis.HFC_TO = que.hfc_cd)  "
+                    + " JOIN pis_order_master pis ON (que.pmi_no = pis.PMI_NO AND que.episode_date = pis.EPISODE_DATE AND pis.HFC_TO = que.hfc_cd) "
                     // JOIN PIS DISPENSE MASTER SQL
                     + " JOIN pis_dispense_master disp ON (pis.ORDER_NO = disp.ORDER_NO)  "
                     // JOIN USERS SQL
                     + " LEFT JOIN adm_users phar ON (disp.DISPENSED_BY = phar.USER_ID AND que.hfc_cd = phar.HEALTH_FACILITY_CODE)  "
                     // JOIN USERS SQL
-                    + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE)  "
+                    + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE) "
                     // WHERE SQL
                     + " WHERE que.hfc_cd='" + hfc + "' AND que.episode_date BETWEEN '" + startDate + "' AND '" + endDate + "' "
                     + " GROUP BY que.episode_date "
@@ -112,7 +112,7 @@
         <td><%= dataReport.get(s).get(3)%></td>                                            <!-- DR ID -->
         <td><%= dataReport.get(s).get(4)%></td>                                            <!-- DR Nmae -->
         <td><%= dataReport.get(s).get(5)%></td>                                            <!-- Nurse ID -->
-        <td><%= dataReport.get(s).get(6)%></td>                                           <!-- Nurse Name -->
+        <td><%= dataReport.get(s).get(6)%></td>                                            <!-- Nurse Nmae -->
         <td><%= dataReport.get(s).get(7)%></td>                                            <!-- Register Date -->
         <td><%= dataReport.get(s).get(8)%></td>                                            <!-- Consult Date -->
         <td><%= dataReport.get(s).get(9)%></td>                                            <!-- Order Date -->
@@ -148,10 +148,10 @@
         detailmonth = "<%=monthString%>";
 
         prepend = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Overall Process)<br/><h5>For <strong>' + detailmonth + ' ' + detailyear + '</strong> </h5></div>\n\
+                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Pharmacy -> Dispense)<br/><h5>For <strong>' + detailmonth + ' ' + detailyear + '</strong> </h5></div>\n\
                     <div class="info_kecik">\n\
                     <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                    <dd>Report ID: <strong>SAM-0001</strong></dd>\n\
+                    <dd>Report ID: <strong>SAM-0007</strong></dd>\n\
                     </div> ';
 
     } else {
@@ -166,10 +166,10 @@
         enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
 
         prepend = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Overall Process)<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div>\n\
+                    <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Waiting Time Report (Pharmacy -> Dispense)<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div>\n\
                     <div class="info_kecik">\n\
                     <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                    <dd>Report ID: <strong>SAM-0001</strong></dd>\n\
+                    <dd>Report ID: <strong>SAM-0007</strong></dd>\n\
                     </div> ';
 
     }
@@ -186,14 +186,14 @@
             pageLength: 15,
             dom: 'Bfrtip',
             columnDefs: [
-                {targets: [0, 1, 3, 5, 6, 9, 10], visible: true},
+                {targets: [0, 1, 3, 8, 9, 10], visible: true},
                 {targets: '_all', visible: false}
             ],
             buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Waiting Time List (Overall Process)',
+                    title: 'Waiting Time List (Pharmacy -> Dispense)',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
@@ -201,7 +201,7 @@
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Waiting Time List (Overall Process)',
+                    title: 'Waiting Time List (Pharmacy -> Dispense)',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'

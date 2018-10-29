@@ -55,7 +55,18 @@
         <li><a href="timeSlipMain2.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint Time Slip</a></li>
         <li><a href="ConsultationListReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Consultation List</a></li>
         <li><a href="DiagnosisList.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Diagnosis List</a></li>
-        <li><a href="WaitingTime.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Waiting Time (KPI Report)</a></li>
+        <li  data-toggle="collapse" data-target="#WaitingReport" class="collapsed active">
+            <a href="#"><i class="fa fa-file-text fa-lg"></i> Waiting Time (KPI Report) <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="WaitingReport">
+            <li><a data-toggle="modal" data-target="#" href="WaitingTime.jsp">Overall Process</a></li>
+            <li><a data-toggle="modal" data-target="#" href="WaitingTimeRegisterConsult.jsp">Registration -> Consultation</a></li>
+            <li><a data-toggle="modal" data-target="#" href="WaitingTimeConsultPharmacy.jsp">Consultation -> Pharmacy</a></li>
+            <li><a data-toggle="modal" data-target="#" href="WaitingTimeConsultLaboratory.jsp">Consultation -> Laboratory</a></li>
+            <li><a data-toggle="modal" data-target="#" href="WaitingTimeConsultProcedure.jsp">Consultation -> Procedure</a></li>
+            <li><a data-toggle="modal" data-target="#" href="WaitingTimeConsultRadiology.jsp">Consultation -> Radiology</a></li>
+            <li><a data-toggle="modal" data-target="#" href="WaitingTimePharmacyDispense.jsp">Pharmacy -> Dispense</a></li>
+        </ul> 
         <li><a href="ICD10Main.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>ICD10</a></li>
         <li><a href="laporanKosPerubatan.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Report Health Cost </a></li>
         <li><a href="drugOrderList.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Total Drug Cost</a></li>

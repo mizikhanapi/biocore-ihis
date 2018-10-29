@@ -1,7 +1,7 @@
 <%-- 
-    Document   : WaitingTime
-    Created on : Sep 27, 2018, 9:20:49 AM
-    Author     : user
+    Document   : WaitingTimeConsultLaboratory
+    Created on : Oct 26, 2018, 11:48:18 PM
+    Author     : Shammugam
 --%>
 
 <%@page import="dBConn.Conn"%>
@@ -35,7 +35,7 @@
 
                         <div class="thumbnail">
 
-                            <h3 style="margin: 0px;"> Waiting Time Report (Overall Process)</h3>
+                            <h3 style="margin: 0px;"> Waiting Time Report (Consultation -> Laboratory) </h3>
                             <hr class="pemisah" />
 
                             <div id="reportWaitingTimeMainDIV">
@@ -64,7 +64,7 @@
 
         <script>
 
-            $("#reportWaitingTimeMainDIV").load("WaitingTimeMain.jsp");
+            $("#reportWaitingTimeMainDIV").load("WaitingTimeConsultLaboratoryMain.jsp");
 
         </script>
 

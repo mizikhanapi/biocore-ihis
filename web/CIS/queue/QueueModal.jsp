@@ -6,6 +6,9 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 20000000;">
     <div class="modal-dialog modal-lg" >
@@ -15,25 +18,25 @@
                 <h3 class="modal-title" id="lineModalLabel">Queue List</h3>
             </div>
             <div class="modal-body" >
-                    <div class="row"id="modalBodyQueue" >
-                        <!-- content goes here -->
-                        <form role="form" id="formQueueSaya" style=" height: 100%; overflow: auto;">
-                            <table class="table table-filter table-striped table-responsive" style="width: 100% " id="listQueue">
-                                <thead>
-                                <th>IC Number </th>
-                                <th>Name </th>
-                                <th>Episode Time </th>
-                                <th class="hidden-xs">Queue Name </th>
-                                <th>Queue no.</th>
-                                <th class="hidden-xs">Doctor </th>
-                                <th>Status</th>
-                                <th>Action </th>
+                <div class="row"id="modalBodyQueue" >
+                    <!-- content goes here -->
+                    <form role="form" id="formQueueSaya" style=" height: 100%; overflow: auto;">
+                        <table class="table table-filter table-striped table-responsive" style="width: 100% " id="listQueue">
+                            <thead>
+                            <th>IC Number </th>
+                            <th>Name </th>
+                            <th>Episode Time </th>
+                            <th class="hidden-xs">Queue Name </th>
+                            <th>Queue no.</th>
+                            <th class="hidden-xs">Doctor </th>
+                            <th>Status</th>
+                            <th>Action </th>
 
-                                </thead>
-                                
-                            </table>
-                        </form>
-                    </div>
+                            </thead>
+
+                        </table>
+                    </form>
+                </div>
 
             </div>
         </div>
@@ -44,9 +47,8 @@
 
 
     $(document).ready(function () {
-        
+
         $('#listQueue').load('queue/listQueue.jsp');
-        
 
         //yyyy-MM-dd HH:mm:ss
         var nowDate = new Date();

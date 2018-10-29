@@ -83,6 +83,9 @@
                                                 </div>
                                             </div>
 
+
+                                            <%@include file = "patientOrderListModal.jsp" %>
+
                                         </div>
                                     </div>
                                 </div>
