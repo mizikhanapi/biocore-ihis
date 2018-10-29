@@ -113,6 +113,35 @@
                                                     $("#risOrderListContent").load("risManageOrderListTable.jsp");
                                                     $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
 
+                                                    // Queue Validator Start
+                                                    !function validateForNewPatient() {
+
+                                                        $.ajax({
+                                                            url: "queue/queueValidatorForNew.jsp",
+                                                            type: "get",
+                                                            timeout: 10000,
+                                                            success: function (datas) {
+
+                                                                var dataPaient = datas.trim();
+
+                                                                if (dataPaient === "Got") {
+
+                                                                    alertify.set('notifier', 'position', 'bottom-right');
+                                                                    alertify.error('You Have A New Patient in The Queue !!!!!!');
+
+                                                                }
+
+                                                            },
+                                                            error: function (err) {
+                                                            }
+
+                                                        });
+
+                                                        setTimeout(validateForNewPatient, 30000);
+
+                                                    }();
+                                                    // Queue Validator End
+
         </script>
 
     </body>
