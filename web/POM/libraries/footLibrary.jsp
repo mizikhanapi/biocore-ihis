@@ -17,3 +17,4 @@
 <script src="libraries/js/buttons.html5.min.js" type="text/javascript"></script>
 <script src="libraries/js/papaparse.min.js"></script>
 <script src="libraries/js/create_destroy_loading.js" type="text/javascript"></script>
+<script src="../assets/js/Chart.bundle.js"></script>
