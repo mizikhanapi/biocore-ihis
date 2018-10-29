@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
@@ -72,19 +72,19 @@
                 
                 
                 $(document).ready(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "tsTable.jsp",
-                        timeout: 3000,
-                        success: function (returnHtml) {
-                            //console.log(returnHtml);
-                            $('#tsTableDivision').html(returnHtml);
-
-                        }, error: function (jqXHR, textStatus, errorThrown) {
-
-                            console.log("ERROR: " + errorThrown);
-                        }
-                    });
+//                    $.ajax({
+//                        type: "post",
+//                        url: "tsTable.jsp",
+//                        timeout: 3000,
+//                        success: function (returnHtml) {
+//                            //console.log(returnHtml);
+//                            $('#tsTableDivision').html(returnHtml);
+//
+//                        }, error: function (jqXHR, textStatus, errorThrown) {
+//
+//                            console.log("ERROR: " + errorThrown);
+//                        }
+//                    });
                 });
 
             });

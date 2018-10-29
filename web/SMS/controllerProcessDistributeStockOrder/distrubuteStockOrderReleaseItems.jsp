@@ -145,8 +145,8 @@
             // Insert Master Distribute
             sqlInsertDustributeDetail = "INSERT INTO stk_distribition_detail "
                     + " (order_no, txt_date, item_cd, item_desc, item_amt, item_quantity, order_by, created_date, created_by,item_type,location,customer_id) "
-                    + " VALUES ('" + order_no + "','" + txt_date + "','" + item_cdD + "','" + item_descD + "','" + item_amtD + "',"
-                    + " '" + torelesed + "','" + created_by + "','" + created_date + "','" + created_by + "','" + itemtype + "','" + location + "','" + customerId + "' )";
+                    + " VALUES ('" + order_no + "','" + txt_date + "','" + item_cdD + "','" + item_descD + "','" + item_amtD + "'"
+                    + ",'" + torelesed + "','" + created_by + "','" + created_date + "','" + created_by + "','" + itemtype + "','" + location + "','" + customerId + "' )";
 
         } else {
 
@@ -157,15 +157,8 @@
             // Update Master Distribute
             sqlInsertDustributeDetail = "UPDATE stk_distribition_detail "
                     + " SET item_amt = '" + item_amtD + "', item_quantity = '" + item_quantityD + "' "
-                    + " WHERE order_no = '" + order_no + "' ";
+                    + " WHERE order_no = '" + order_no + "' and item_cd = '"+item_cdD+"'";
 
-//            isUpdateDistrubiteMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateDustributeDetail);
-//            if (isUpdateDistrubiteMaster == false) {
-//
-//                falseCount = falseCount + 1;
-//                errorsql = errorsql + sqlUpdateDustributeDetail;
-//
-//            }
         }
         isInsertDistrubiteMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDustributeDetail);
 
@@ -238,7 +231,7 @@
         if (stringbutton.equalsIgnoreCase("transfer")) {
             //
             if (itemtype.equalsIgnoreCase("other")) {
-                selitem = "SELECT * FROM stk_stok_item WHERE item_cd = '" + item_cdD + "'"
+                selitem = "SELECT * FROM stk_stock_item WHERE item_cd = '" + item_cdD + "'"
                         + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + orderingdis + "' ";
                 datanumrow = conn.getData(selitem);
                 //                      0           1           2       3    4          5       6       7       8       9       10              11              
@@ -373,8 +366,8 @@
     if (falseCount == 0) {
         out.print("Success");
     } else {
-        //out.print(erroralpah);
-        out.print("Failed");
+        
+        out.print("Failed|"+erroralpah);
         //out.print(sqlUpdateDustributeMaster);
         //out.print(sqlUpdateOrderMasterPartialData);
         //out.print(sqlFetchMasterReleaseData);

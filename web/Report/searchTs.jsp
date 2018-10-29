@@ -81,18 +81,18 @@
         searchPatient();
     });
     
-    $("#startDate").datepicker({
-                dateFormat: 'yy-mm-dd',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
-                    $("#startDate").datepicker("option", "minDate", selected);
-
-                }
-            });
+//    $("#startDate").datepicker({
+//                dateFormat: 'yy-mm-dd',
+//                yearRange: '1999:c+1',
+//                changeMonth: true,
+//                changeYear: true,
+//                minDate: new Date(1999, 10 - 1, 25),
+//                maxDate: '+30Y',
+//                onSelect: function (selected) {
+//                    $("#startDate").datepicker("option", "minDate", selected);
+//
+//                }
+//            });
 
     //seaching patient function   
     function searchPatient() {

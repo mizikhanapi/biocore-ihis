@@ -1185,7 +1185,7 @@
 
                                         bootbox.alert("Order Release Is Successfull !!!");
 
-                                    } else if (datas.trim() === "Failed") {
+                                    } else{
 
                                         bootbox.alert("Order Release Failed !!!");
 

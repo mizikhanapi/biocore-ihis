@@ -58,19 +58,21 @@
         
         <script>
             $('#b_print<%=i%>').click(function () {
-
-                $.ajax({
-                    async: true,
-                    type: "POST",
-                    url: "tsReport.jsp",
-                    data: {'name': "<%=ts.get(i).get(0)%>",
+                var datas =  {'name': "<%=ts.get(i).get(0)%>",
                            'episode': "<%=ts.get(i).get(1)%>", 
                            'pmi': "<%=ts.get(i).get(2)%>", 
                            'start_time': "<%=ts.get(i).get(3)%>",
                            'end_time': "<%=ts.get(i).get(4)%>",
                            'comment': "<%=ts.get(i).get(5)%>",
                            'ic': "<%=ts.get(i).get(6)%>",
-                            'id': "<%=ts.get(i).get(7)%>"},
+                            'id': "<%=ts.get(i).get(7)%>"};
+                
+                console.log(datas);
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    url: "tsReport.jsp",
+                    data:datas,
                            
                     timeout: 10000,
                     success: function (list) {
