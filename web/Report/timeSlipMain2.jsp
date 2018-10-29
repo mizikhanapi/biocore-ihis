@@ -66,37 +66,10 @@
 
         <script>
             $(document).ready(function () {
+                
                 $("#SearchPatientTCdiv").load("searchTs.jsp");
                 //$("#tsTableDivision").load("tsTable.jsp");
-<<<<<<< HEAD
-                
-                
-                
-                $(document).ready(function () {
-=======
-//                
-//                
-//                
-//                $(document).ready(function () {
->>>>>>> fa768da0ff62e98116e9a8d5b5d1c603b1c3803d
-//                    $.ajax({
-//                        type: "post",
-//                        url: "tsTable.jsp",
-//                        timeout: 3000,
-//                        success: function (returnHtml) {
-//                            //console.log(returnHtml);
-//                            $('#tsTableDivision').html(returnHtml);
-//
-//                        }, error: function (jqXHR, textStatus, errorThrown) {
-//
-//                            console.log("ERROR: " + errorThrown);
-//                        }
-//                    });
-<<<<<<< HEAD
-                });
-=======
-//                });
->>>>>>> fa768da0ff62e98116e9a8d5b5d1c603b1c3803d
+
 
             });
         </script>
