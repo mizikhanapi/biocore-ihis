@@ -121,19 +121,6 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>                  
 
                     <!-- Select Basic -->
                     <div class="form-group">
@@ -489,6 +476,9 @@
 
             <div class="row">
                 <div class="col-md-6">
+
+
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Home Address *</label>
@@ -496,6 +486,64 @@
                             <textarea  id="PMIhadd" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase"></textarea>
                         </div>
                     </div>
+
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Postal Address</label>
+                        <div class="col-md-6">
+                            <textarea  id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase"></textarea>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Phone</label>
+                        <div class="col-md-6">
+                            <input id="PMIhphone" name="textinput" type="text" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Email Address</label>
+                        <div class="col-md-6">
+                            <input id="PMIemail" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase">
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Mobile *</label>
+                        <div class="col-md-6">
+                            <input id="PMIhandphone" name="textinput" type="text" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>  
+
+
+                </div>
+
+
+                <div class="col-md-6">
+
 
                     <!-- Select Basic -->
                     <div class="form-group">
@@ -552,38 +600,7 @@
                         </div>
                     </div>
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Phone</label>
-                        <div class="col-md-6">
-                            <input id="PMIhphone" name="textinput" type="text" placeholder="" class="form-control input-md">
-                        </div>
-                    </div>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Mobile *</label>
-                        <div class="col-md-6">
-                            <input id="PMIhandphone" name="textinput" type="text" placeholder="" class="form-control input-md">
-                        </div>
-                    </div>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Email Address</label>
-                        <div class="col-md-6">
-                            <input id="PMIemail" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase">
-                        </div>
-                    </div>
 
-                </div>
-                <div class="col-md-6">
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Postal Address</label>
-                        <div class="col-md-6">
-                            <textarea  id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md" style="text-transform:uppercase"></textarea>
-                        </div>
-                    </div>
 
                     <!-- Select Basic -->
                     <div class="form-group">
