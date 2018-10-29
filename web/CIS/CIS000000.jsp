@@ -314,7 +314,14 @@
                             <jsp:include page="analyse/analyse.jsp"/>
                         </div> 
 
+                        <div class="none swapping-tab" id="CIS-PrintMCTab">
+                            <jsp:include page="mcandtc/searchMCMain.jsp"/>
+                        </div> 
 
+                        <div class="none swapping-tab" id="CIS-PrintTCTab">
+                            <jsp:include page="mcandtc/searchTCMain.jsp"/>
+                        </div> 
+                        
                     </div>
                 </div>
                 <!-- main -->		

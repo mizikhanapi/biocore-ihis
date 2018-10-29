@@ -25,7 +25,7 @@ $(document).ready(function () {
 //        $("#orthopedic-con").hide();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
-        
+
     });
 
     //Order-Entry
@@ -38,7 +38,7 @@ $(document).ready(function () {
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
         $('#div_CIS_PATIENT_DASHBOARD').show();
-        
+
     });
 
     //Ortho-Consultation
@@ -51,13 +51,13 @@ $(document).ready(function () {
         $('#div_CIS_PATIENT_DASHBOARD').show();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
-     
+
 
     });
 
     //Ortho-Nursing
     $(".ortho-niward").click(function () {
-         $('.swapping-tab').hide();
+        $('.swapping-tab').hide();
 //        $("#generic-soap").hide();
 //        $("#order-entry").hide();
         $("#orthopedic-niw").show(400);
@@ -65,13 +65,13 @@ $(document).ready(function () {
 //        $("#orthopedic-con").hide();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
-       
+
 
     });
 
     //Ortho-OTheather
     $(".ortho-opthe").click(function () {
-         $('.swapping-tab').hide();
+        $('.swapping-tab').hide();
 //        $("#generic-soap").hide();
 //        $("#order-entry").hide();
 //        $("#orthopedic-niw").hide();
@@ -79,13 +79,13 @@ $(document).ready(function () {
         $("#orthopedic-ot").show(400);
         $('#div_CIS_PATIENT_DASHBOARD').show();
 //        $("#ong").hide();
-        
+
 
     });
-    
+
     //ong-general
     $(".ong-general").click(function () {
-         $('.swapping-tab').hide();
+        $('.swapping-tab').hide();
 //        $("#generic-soap").hide();
 //        $("#order-entry").hide();
 //        $("#orthopedic-niw").hide();
@@ -93,33 +93,49 @@ $(document).ready(function () {
 //        $("#orthopedic-ot").hide();
         $("#ong").show(400);
         $('#div_CIS_PATIENT_DASHBOARD').show();
-       
+
 
     });
-    
+
     //ong-ward
-    $('#LinkOngCareWard').click(function(){
+    $('#LinkOngCareWard').click(function () {
         $('.swapping-tab').hide();
         $('#ong-ward').show(400);
         $('#div_CIS_PATIENT_DASHBOARD').show();
     });
-    
+
     //analyse
-    $('#btnAnalysePatient').click(function(){
+    $('#btnAnalysePatient').click(function () {
         $('.swapping-tab').hide();
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-analyseTab").show(400);
-        
+
         var ic_no = $('#patient-detail-dashboard #pIC_2').text().trim();
-        if(ic_no !=="-"){
+        if (ic_no !== "-") {
             var anl_pmi = $('#ANL_idInputApp').val().trim();
-            if(anl_pmi ===""){
+            if (anl_pmi === "") {
                 $('#ANL_idInputApp').val(ic_no);
                 $('#ANL_idType').val("002");
             }
         }
     });
-    
+
+    // MC
+    $('#btnPrintMcPatient').click(function () {
+        $('.swapping-tab').hide();
+        $('#div_CIS_PATIENT_DASHBOARD').hide();
+        $("#CIS-PrintMCTab").show(400);
+
+    });
+
+    // TC
+    $('#btnPrintTcPatient').click(function () {
+        $('.swapping-tab').hide();
+        $('#div_CIS_PATIENT_DASHBOARD').hide();
+        $("#CIS-PrintTCTab").show(400);
+
+    });
+
 //    $('#CIS-analyseTab').on('hide', function(event) {
 //        event.stopPropagation();
 //        $('#div_CIS_PATIENT_DASHBOARD').show(400);
