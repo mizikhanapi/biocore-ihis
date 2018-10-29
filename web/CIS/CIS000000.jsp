@@ -423,7 +423,7 @@
 
                             if (dataPaient === "Got") {
 
-                                alertify.set('notifier', 'position', 'top-left');
+                                alertify.set('notifier', 'position', 'bottom-right');
                                 alertify.error('You Have A New Patient in The Queue !!!!!!');
 
                             }

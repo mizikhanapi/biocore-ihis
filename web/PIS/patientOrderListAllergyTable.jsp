@@ -37,8 +37,8 @@
     <th style="text-align: left;">HFC NAME</th>
     <th style="text-align: left;">EPISODE DATE</th>
     <th style="text-align: left;">ENCOUNTER DATE</th>
-    <th style="text-align: left;">DIAGNOSIS CODE</th>
-    <th style="text-align: left; width: 50%;">DIAGNOSIS DESCRIPTION</th>
+    <th style="text-align: left;">ALLERGY CODE</th>
+    <th style="text-align: left; width: 50%;">ALLERGY DESCRIPTION</th>
     <th style="text-align: left; width: 20%;">COMMENT</th>
 </thead>
 <tbody>

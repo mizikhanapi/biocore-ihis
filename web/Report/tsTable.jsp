@@ -118,7 +118,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <input name="b_print" id="b_print" type="button" class="btn btn-success btn-lg" value=" Approve ">        
+                        <input name="b_print" id="b_print" type="button" class="btn btn-success btn-lg" value="Print">        
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>     

@@ -93,20 +93,17 @@
 </div>
 <br/>
 
-
-<br/>
 <div class="row">
     <div class="col-md-12">
         <p>Kepada:&nbsp;<strong>....................................................................................................................<%%></strong></p>
-        <p> Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
+        <p>Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
         <p>No. STAFF/MATRIKS:&nbsp;<strong><%=idNo%></strong>&nbsp;&nbsp;&nbsp;&nbsp; No. KP:&nbsp;<strong><%=ic%></strong></p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <p>Mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;&nbsp;&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
-        <p>Diagnosa:&nbsp;</p>
+        <p>Telah mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
         <p>Tarikh:&nbsp;<strong><%=episode%></strong></p>
     </div>
 </div>

@@ -91,19 +91,19 @@
 
 <div class="row">
     <div class="col-md-12">
-        <p>Dengan ini saya mengesahkan bahawa saya telah memriksa: 
+        <p>Dengan ini saya mengesahkan bahawa saya telah memeriksa: 
             <strong><%=name%></strong>
         </p>
-        <p> No. K/P: <strong><%=ic%></strong> dan mendapati yang beliau:</p>
+        <p> No. K/P: <strong><%=ic%></strong> dan mendapati bahawa beliau:</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
         <ol type="a">
-            <li>Tidak sihat untuk menjalankan tugasanya dengan sempurna selama <strong><%=diffDays%> hari</strong>.</li>
+            <li>Tidak sihat untuk menjalankan tugasnya dengan sempurna selama <strong><%=diffDays%> hari</strong>.</li>
             <li>Daripada <strong><%=start_date%></strong> hingga <strong><%=end_date%></strong>.</li>
-            <li>Komen Dari Dr : <strong><%=comment%></strong></li>
+            <li>Komen dari doktor : <strong><%=comment%></strong></li>
         </ol>
     </div>
 </div>
