@@ -24,11 +24,11 @@
 
     <!-- Select Basic -->
     <div class="form-group">
-        <label class="col-md-4 control-label" for="selectbasic">Deliver order for : </label>
+        <label class="col-md-4 control-label" for="selectbasic">Item Type : </label>
         <div class="col-md-5">
-            <select id="invoiceOrderFor" name="" class="form-control" required="" disabled>
-                <option value="04">Pharmacy</option>
-                <option value="22">Stock</option>
+            <select id="invoiceOrderFor" name="" class="form-control" required="" >
+                <option value="04">Drugs</option>
+                <option value="22">Other</option>
             </select>
         </div>
     </div>

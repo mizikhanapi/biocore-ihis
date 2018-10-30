@@ -113,7 +113,7 @@
             e.preventDefault();
 
             var data = {
-                moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                moduleCode: $("#invoiceOrderFor").val()
             };
 
             $.ajax({

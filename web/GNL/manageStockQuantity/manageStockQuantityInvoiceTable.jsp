@@ -229,10 +229,10 @@
 
                     var dataFields = {
                         input: input,
-                        moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                        moduleCode: $("#invoiceOrderFor").val()
                     }; // We pass input argument in Ajax
 
-
+                    console.log(dataFields);
                     $.ajax({
                         type: "POST",
                         url: "../GNL/manageStockQuantity/controllerProcess/manageStockQuantitySearchCommon.jsp", // call the jsp file ajax/auto-autocomplete.php
@@ -283,7 +283,7 @@
 
             var data = {
                 id: id,
-                moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                moduleCode: $("#invoiceOrderFor").val()
             };
 
 
@@ -633,7 +633,7 @@
                                     if (returnDate.trim() === 'Success') {
 
                                         var data = {
-                                            moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                                            moduleCode: $("#invoiceOrderFor").val()
                                         };
 
                                         $.ajax({
@@ -756,7 +756,7 @@
         $('#invoiceContentAddDetail').off('click', '#invoiceAddOrderCancelBtn').on('click', '#invoiceAddOrderCancelBtn', function (e) {
 
             var data = {
-                moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+                moduleCode: $("#invoiceOrderFor").val()
             };
 
             $.ajax({
