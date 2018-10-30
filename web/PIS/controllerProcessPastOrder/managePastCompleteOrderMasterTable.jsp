@@ -47,7 +47,7 @@
             // JOIN PATIENT TABLE
             + "JOIN pms_patient_biodata bio ON bio.PMI_NO = om.pmi_no "
             // WHERE CONDITION
-            + "WHERE om.hfc_to = '" + hfc_cd + "' AND om.DISCIPLINE_CODE = '" + dis_cd + "' AND om.order_status = '1' " + whereClause;
+            + "WHERE om.hfc_to = '" + hfc_cd + "' AND om.DISCIPLINE_CODE = '" + dis_cd + "' AND om.order_status = '2' " + whereClause;
 
     ArrayList<ArrayList<String>> dataOm = conn.getData(query);
 

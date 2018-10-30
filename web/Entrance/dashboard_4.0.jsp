@@ -300,7 +300,7 @@
                                             %>
 
                                             <div class="col-xs-6 col-sm-6 col-md-3">
-                                                <a href="../PIS/Dispense_Drug_Order" class="thumbnail">
+                                                <a href="../PIS/Screening_Drug_Order" class="thumbnail">
                                                     <span class="icon_contain">
                                                         <i class="iconsmind-Medicine-2" aria-hidden="true" style="color: #9A67A0;font-size: 4em;"></i>
                                                     </span>

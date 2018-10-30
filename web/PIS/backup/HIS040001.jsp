@@ -69,22 +69,22 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
 
-                                                <div id="patientDispenseListMain">
-                                                </div>
-                                                <div id="patientDispenseListContent">
-                                                </div>
+                                                <div id="patientOrderListMain">
 
+                                                </div>
+                                                <div id="patientOrderListContent">
+
+                                                </div>
                                             </div>
 
                                             <div class="tab-pane" id="tab_default_2">
+                                                <div id="patientOrderDetailContent">
 
-                                                <div id="patientDispenseDetailContent">
                                                 </div>
-
                                             </div>
 
 
-                                            <%@include file = "patientOrderListModal.jsp" %>
+                                            <%//@include file = "patientOrderListModal.jsp" %>
 
                                         </div>
                                     </div>
@@ -100,106 +100,6 @@
 
         </div>
 
-
-        <!-- Update Dispense Start -->
-        <div class="modal fade" id="updateOrder" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                        <h3 class="modal-title" id="lineModalLabel">Update Order Detail</h3>
-                    </div>
-                    <div class="modal-body">
-
-                        <!-- content goes here -->
-                        <form class="form-horizontal" id="addForm" autocomplete="off">
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Order No</label>
-                                <div class="col-md-8">
-                                    <input id="updateOrderNo" name="updateOrderNo" type="text" placeholder="Order No" class="form-control input-md" maxlength="15" readonly>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Drug Code</label>
-                                <div class="col-md-8">
-                                    <input id="updateDrugCode" name="updateDrugCode" type="text" placeholder="Drug Code" class="form-control input-md" maxlength="15" readonly>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Stock Quantity</label>
-                                <div class="col-md-8">
-                                    <input id="updateStockQuantity" name="updateStockQuantity" type="text" placeholder="Ordered Drug Quantity" class="form-control input-md" maxlength="50" readonly>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ordered Drug Quantity</label>
-                                <div class="col-md-8">
-                                    <input id="updateOrderedDrugQuantity" name="updateOrderedDrugQuantity" type="text" placeholder="Ordered Drug Quantity" class="form-control input-md" maxlength="50" readonly>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Supplied Drug Quantity</label>
-                                <div class="col-md-8">
-                                    <input id="updateSuppliedDrugQuantity" name="updateSuppliedDrugQuantity" type="number" placeholder="Supplied Drug Quantity" class="form-control input-md" maxlength="50" readonly>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Dispensed Drug Quantity</label>
-                                <div class="col-md-8">
-                                    <input id="updateDispensedDrugQuantity" name="updateDispensedDrugQuantity" type="number" placeholder="Dispensed Drug Quantity" class="form-control input-md" maxlength="50" required>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Comment</label>
-                                <div class="col-md-8">
-                                    <input id="updateOrderComment" name="updateOrderComment" type="text" placeholder="Order Comment" class="form-control input-md" maxlength="200" required>
-                                </div>
-                            </div>
-
-
-                            <!-- Select input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Status</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="tstatus" id="updatestatus">
-                                        <option value="New" selected="selected">-- Select Order Status --</option>
-                                        <option value="Partial" >Partial</option>
-                                        <option value="Complete Partial" >Complete Partial</option>
-                                        <option value="Full Complete" >Full Complete</option>
-                                        <option value="Full" >Full</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                        </form>
-                        <!-- content goes here -->
-                    </div>
-                    <div class="modal-footer">
-                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                            <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateOrderMButton">Update</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Update Dispense End -->                    
 
         <!-- Dispense Start -->
         <div class="modal fade" id="dispenseOrder" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -275,8 +175,6 @@
         <!-- Loading End -->
 
 
-
-
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
@@ -285,9 +183,9 @@
 
             $('<div class="loading">Loading</div>').appendTo('body');
 
-            $("#patientDispenseListMain").load("patientDispenseListMain.jsp");
-            $("#patientDispenseListContent").load("patientDispenseListTable.jsp");
-            $("#patientDispenseDetailContent").load("patientDispenseListBasicInfo.jsp");
+          //  $("#patientOrderListMain").load("patientOrderListMain.jsp");
+          //  $("#patientOrderListContent").load("patientOrderListTable.jsp");
+          //  $("#patientOrderDetailContent").load("patientOrderListBasicInfoNew.jsp");
 
 
         </script>

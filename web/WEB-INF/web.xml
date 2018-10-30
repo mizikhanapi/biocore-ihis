@@ -485,6 +485,21 @@
     <!-- Mapping for PIS HIS040014 -->
     
     
+    <!-- Mapping for PIS HIS040015 -->
+
+    <servlet>
+        <servlet-name>Screening_Drug_Order</servlet-name>
+        <jsp-file>/PIS/HIS040015.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Screening_Drug_Order</servlet-name>
+        <url-pattern>/PIS/Screening_Drug_Order</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for PIS HIS040015 -->
+    
+    
+    
     <!-- Mapping For PIS Hidding URL End -->
 
     <servlet>
