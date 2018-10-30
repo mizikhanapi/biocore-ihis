@@ -48,7 +48,7 @@
                 + " LEFT JOIN adm_module adm ON (adm.module_code = vh.subledger_type) "
                 // WHERE CONDITION
                 + " WHERE vh.hfc_cd = '" + hfc + "' AND vh.discipline = '" + dis + "' "
-                + " AND v.hfc_cd = '" + hfc + "' AND vh.subledger_type = '" + moduleCode + "' ";
+                + " AND v.hfc_cd = '" + hfc + "' AND vh.subledger_type IN (" + moduleCode + ") ";
 
         ArrayList<ArrayList<String>> dataInvoiceList = conn.getData(sql);
 

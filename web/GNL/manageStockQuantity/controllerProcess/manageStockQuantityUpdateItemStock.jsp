@@ -30,6 +30,7 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String created_by = session.getAttribute("USER_ID").toString();
     String created_date = format.format(now);
+    String alphaerror = "";
 
     // RMI AND CONN
     RMIConnector rmic = new RMIConnector();
@@ -46,7 +47,7 @@
     String description = request.getParameter("description");
     String total_amt = request.getParameter("total_amt");
     String quantity = request.getParameter("quantity");
-
+    String sqlerror = "";
     boolean isInsertMaster = true;
 
     String sqlInsertMaster = "INSERT INTO fap_vendor_header (vendor_id,invoice_no,txt_date,hfc_cd,discipline,sub_discipline,location,"
@@ -60,6 +61,8 @@
     if (isInsertMaster == false) {
 
         falseCount = falseCount + 1;
+        alphaerror += "A";
+        sqlerror += sqlInsertMaster;
 
     }
 
@@ -92,6 +95,8 @@
         if (isInsertStockDetail == false) {
 
             falseCount = falseCount + 1;
+            alphaerror += "B";
+            sqlerror += sqlInsertStockDetail;
 
         }
 
@@ -120,6 +125,8 @@
         if (isUpdateStockDetail == false) {
 
             falseCount = falseCount + 1;
+            alphaerror += "C";
+            sqlerror += sqlUpdateStockDetail;
 
         }
 
@@ -132,6 +139,8 @@
         out.print("Success");
     } else {
         out.print("Failed");
+//        out.print(alphaerror);
+//        out.print(sqlerror);
     }
 
 %>

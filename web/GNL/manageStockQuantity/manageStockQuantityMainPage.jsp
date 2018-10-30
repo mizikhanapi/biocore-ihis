@@ -65,9 +65,9 @@
     $(document).ready(function () {
 
         var data = {
-            moduleCode: $("#invoiceOrderFor").val()
+            moduleCode: "04,22"
         };
-
+        
         $.ajax({
             type: "POST",
             url: "../GNL/manageStockQuantity/manageStockQuantityMasterTable.jsp", // call the jsp file ajax/auto-autocomplete.php

@@ -629,11 +629,11 @@
                                 data: data,
                                 timeout: 3000,
                                 success: function (returnDate) {
-
+                                    //console.log(returnDate);
                                     if (returnDate.trim() === 'Success') {
 
                                         var data = {
-                                            moduleCode: $("#invoiceOrderFor").val()
+                                            moduleCode: "04,22"
                                         };
 
                                         $.ajax({
@@ -756,7 +756,7 @@
         $('#invoiceContentAddDetail').off('click', '#invoiceAddOrderCancelBtn').on('click', '#invoiceAddOrderCancelBtn', function (e) {
 
             var data = {
-                moduleCode: $("#invoiceOrderFor").val()
+                moduleCode: "04,22"
             };
 
             $.ajax({
