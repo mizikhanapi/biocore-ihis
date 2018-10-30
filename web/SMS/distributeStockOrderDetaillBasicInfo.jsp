@@ -38,7 +38,19 @@
         }
         
 %>
-
+<h4>Provider Info</h4>
+<form class="form-horizontal" name="distributeStockOrderDetaillBasicInfoForm2" id="distributeStockOrderDetaillBasicInfoForm2">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Provider Info</label>
+                <div class="col-md-7">
+                    <input id="providerLocation" name="providerLocation" type="text" placeholder="" readonly class="form-control input-md">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <h4>Requester Info</h4>
 <form class="form-horizontal" name="distributeStockOrderDetaillBasicInfoForm" id="distributeStockOrderDetaillBasicInfoForm">
     <div class="row">
@@ -46,15 +58,15 @@
         <div class="col-md-6">
 
             <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">User ID.</label>
+            <div class="form-group hidden">
+                <label class="col-md-3 control-label " for="textinput">User ID.</label>
                 <div class="col-md-7">
                     <input id="requestorUserID" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">
                 </div>
             </div>
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">Name</label>
+                <label class="col-md-3 control-label" for="textinput">Order By</label>
                 <div class="col-md-7">
                     <input id="requestorName" name="patientName" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
@@ -70,17 +82,22 @@
         </div>
 
         <div class="col-md-6">
-
-            <!--Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">Gender</label>
+                <label class="col-md-3 control-label " for="textinput">Location</label>
+                <div class="col-md-7">
+                    <input id="requestorLocation" name="requestorLocation" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+            <!--Text input-->
+            <div class="form-group hidden">
+                <label class="col-md-3 control-label " for="textinput">Gender</label>
                 <div class="col-md-7">
                     <input id="requestorGender" name="patientGender" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
             <!--Text input-->
-            <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">D.O.B</label>
+            <div class="form-group hidden">
+                <label class="col-md-3 control-label " for="textinput">D.O.B</label>
                 <div class="col-md-7">
                     <input id="requestorBDate" name="patientBdate" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
@@ -115,7 +132,7 @@
 <form class="form-horizontal" name="distributeStockOrderDetaillNewContentOrderInfoForm" id="distributeStockOrderDetaillNewContentOrderInfoForm">
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <!-- Text input-->
             <div class="form-group">
@@ -128,7 +145,7 @@
         </div>
 
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <!-- Text input-->
             <div class="form-group">
@@ -141,7 +158,7 @@
         </div>
 
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <!-- Text input-->
             <div class="form-group">
@@ -149,6 +166,18 @@
                 <div class="col-md-7">
                     <input id="distributeStockOrderLocationCode" name="distributeStockOrderLocationCode" type="text" readonly placeholder="" class="form-control input-md">
                     <input id="distributeStockOrderLocationCodeFull" name="distributeStockOrderLocationCodeFull" type="hidden" readonly placeholder="" class="form-control input-md" value="<%= locationcode%>">
+                </div>
+            </div>
+
+        </div>
+                
+                <div class="col-md-3">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Item Type</label>
+                <div class="col-md-7">
+                    <input id="distributeStockOrderItemType" name="distributeStockOrderItemType" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
 
@@ -298,10 +327,54 @@
             var stockEncounterDate = arrayData[2];
             var stockEpisodeDate = arrayData[2];
             var stockOrderLocationCodeName = arrayData[20];
+            
+            var providerHFCDIS = arrayData[6] +"|"+arrayData[7];
+            var requestorHFCDIS = arrayData[9] +"|"+arrayData[10]+"|"+arrayData[11];
             hfc = arrayData[6];
             dis = arrayData[7];
             status = arrayData[12];
-
+            
+            var datashfc = {
+              hfc:arrayData[9],
+              dis : arrayData[10],
+              sub : arrayData[11]
+            };
+            //console.log(datashfc);
+            $.ajax({
+               type:"post",
+               data:datashfc,
+               url:"controllerProcessDistributeStockOrder/getHFCname.jsp",
+               success:function(databack){
+                   console.log(databack);
+                   if(databack.trim() ==="nope"){
+                       $("#requestorLocation").val(requestorHFCDIS);
+                   }else{
+                       //var arrayda = databack.split("|");
+                       $("#requestorLocation").val(arrayData[9]+"|"+databack);
+                   }
+               }
+            });
+            
+            var dataitemtype = {
+              hfc:arrayData[9],
+              dis : arrayData[10],
+              sub : arrayData[11],
+              orderno : stockOrderNo
+            };
+            $.ajax({
+               type:"post",
+               data: dataitemtype,
+               url:"controllerProcessDistributeStockOrder/getItemtype.jsp",
+               success:function(databack){
+                   console.log(databack);
+                   if(databack.trim() ==="nope"){
+                       $("#distributeStockOrderItemType").val("-");
+                   }else{
+                       //var arrayda = databack.split("|");
+                       $("#distributeStockOrderItemType").val(databack);
+                   }
+               }
+            });
 
 
             // Set value to the Second Tab 
@@ -311,12 +384,14 @@
             $("#requestorGender").val(requestorGender);
             $("#requestorBDate").val(requestorBDate);
             $("#requestorOType").val(requestorOType);
-
+            //$("#requestorLocation").val(requestorHFCDIS);
             $("#distributeStockOrderNo").val(stockOrderNo);
             $("#distributeStockOrderDate").val(stockOrderDate);
             $("#distributeStockEpisodeDate").val(stockEncounterDate);
             $("#distributeStockEncounterDate").val(stockEpisodeDate);
             $("#distributeStockOrderLocationCode").val(stockOrderLocationCodeName);
+            
+            $("#providerLocation").val(providerHFCDIS);
 
 
             // Load Table

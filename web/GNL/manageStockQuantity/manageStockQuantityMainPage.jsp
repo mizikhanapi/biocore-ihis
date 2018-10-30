@@ -15,11 +15,11 @@
                     <ul class="nav nav-tabs ">
                         <li class="active">
                             <a href="#tab_default_1" data-toggle="tab">
-                                LIST OF INVOICE</a>
+                                PREVIOUS RECEIPT</a>
                         </li>
                         <li>
                             <a href="#tab_default_2" data-toggle="tab">
-                                NEW INVOICE ORDER </a>
+                                STOCK RECEIPT </a>
                         </li>
                     </ul>
 
