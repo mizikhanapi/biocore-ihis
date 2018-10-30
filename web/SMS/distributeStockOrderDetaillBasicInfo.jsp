@@ -1138,7 +1138,9 @@
             var item_amt = $("#releaseGrandTotalChecked").val();
             var quantity = $("#releaseTotalQuantityChecked").val();
             var typebutton = e;
-            var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
+            var convertdate = txt_date.split("/");
+            var newdate = convertdate[2]+"-"+convertdate[1]+"-"+convertdate[0];
+            var stringMaster = customer_id + "|" + order_no + "|" + newdate + "|" + item_amt + "|" + quantity;
             var stringDetail = "";
 
             var table = $("#distributeStockOrderDetailsListTable tbody");

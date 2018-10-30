@@ -368,6 +368,7 @@
     } else {
         
         out.print("Failed|"+erroralpah);
+        //out.print(errorsql);
         //out.print(sqlUpdateDustributeMaster);
         //out.print(sqlUpdateOrderMasterPartialData);
         //out.print(sqlFetchMasterReleaseData);
