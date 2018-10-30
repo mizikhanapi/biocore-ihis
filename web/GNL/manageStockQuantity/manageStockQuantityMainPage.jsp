@@ -65,7 +65,7 @@
     $(document).ready(function () {
 
         var data = {
-            moduleCode: $("#mainModuleCodeForGeberalPagesUsage").val()
+            moduleCode: $("#invoiceOrderFor").val()
         };
 
         $.ajax({

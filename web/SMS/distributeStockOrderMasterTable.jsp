@@ -18,10 +18,12 @@
 <table  id="distributeStockOrderMasterTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
     <th style="text-align: left;">Order No.</th>
+    <th style="text-align: left;">Item Type</th>
     <th style="text-align: left;">User ID.</th>
     <th style="text-align: left;">IC No.</th>
     <th style="text-align: left;">Name</th>
     <th style="text-align: left;">Order Date</th>
+    <th style="text-align: left;">Location</th>
 </thead>
 <tbody>
 
@@ -61,8 +63,8 @@
                 + " stkom.ordering_subdiscipline_cd,stkom.status,aus.USER_NAME,aus.NEW_ICNO, "
                 //              15                      16                      17
                 + " IFNULL(DATE_FORMAT(aus.birth_date, '%d/%m/%Y'),'-'),IFNULL(aus.SEX_CODE,'-'),IFNULL(aus.OCCUPATION_CODE,'-'), "
-                //          18                          19                    20
-                + " IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name "
+                //          18                          19                    20           21
+                + " IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,stkom.item_type "
                 // FROM ORDER TABLE
                 + " FROM stk_order_master stkom  "
                 // LEFT JOIN USER TABLE
@@ -89,10 +91,12 @@
     <tr id="moveToOrderDetailsTButton" style="text-align: left;">
 <input id="dataDistributeStockOrderMasterListhidden" type="hidden" value="<%=String.join("|", dataDistributeStockOrderMaster.get(i))%>">
 <td><%= dataDistributeStockOrderMaster.get(i).get(1)%></td> <!-- Order No -->
+<td><%= dataDistributeStockOrderMaster.get(i).get(21)%></td> <!-- Item type -->
 <td><%= dataDistributeStockOrderMaster.get(i).get(0)%></td> <!-- PMI No -->
 <td><%= dataDistributeStockOrderMaster.get(i).get(14)%></td> <!-- IC No -->
 <td style="font-weight: 500;"><%= dataDistributeStockOrderMaster.get(i).get(13)%></td> <!-- Name -->
 <td><%= dataDistributeStockOrderMaster.get(i).get(2)%></td> <!-- Order Date -->
+<td><%= dataDistributeStockOrderMaster.get(i).get(9)+"|"+dataDistributeStockOrderMaster.get(i).get(10)%></td> <!-- location -->
 </tr>
 <%
     }
