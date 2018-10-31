@@ -1608,22 +1608,6 @@
                 yAxisID: "y-axis-1"
             };
 
-            var dataHeight = {
-                label: "Height(cm)",
-                data: heightArr,
-                lineTension: 0.3,
-                fill: false,
-                borderColor: lhrColour[1],
-                backgroundColor: 'transparent',
-                pointBorderColor: lhrColour[1],
-                pointBackgroundColor: lhrColour[1],
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointHitRadius: 30,
-                pointBorderWidth: 2,
-                yAxisID: "y-axis-1"
-            };
-
 
             var chartOptions = {
                 legend: {
@@ -1659,7 +1643,7 @@
 
             var chartData = {
                 labels: dateArr,
-                datasets: [dataWeight, dataHeight]
+                datasets: [dataWeight]
             };
 
 
