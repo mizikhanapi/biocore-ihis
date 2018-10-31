@@ -1040,7 +1040,7 @@
         var subdusrec = $('#subdisciplineStockA').val();
         var disorder = $('#disciplineStockOrderingA').val();
         var subdisorder = $('#subdisciplineStockOrderingA').val();
-        var temtype = $('#stockitemtypeA').val();
+        var temtype = row.find('td').eq(5).find('#stockitemtypeA').val();;
         
         $('#orderNewStockOrderItemDisplayItemCode').val(itemCode);
         $('#orderNewStockOrderItemDisplayItemName').val(itemName);
