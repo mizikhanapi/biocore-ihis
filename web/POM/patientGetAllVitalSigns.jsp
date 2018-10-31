@@ -21,35 +21,35 @@
 
     //================================ vital signs =============================================================================
     //              0 1 2               3               4                   5               6                   7               8               9                   10              11          12 
-    sql = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') FROM lhr_bp WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
+    sql = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_bp WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataBP = con.getData(sql);
 
-    sql = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') from lhr_temperature where pmi_no = '" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataTemper = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_blood_glucose WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataGlucose = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_spo2 WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataSPO = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_weight_height WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataHtWt = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", gcs_point, date_format(encounter_date,'%d/%m/%Y %H:%i'), gcs_result FROM lhr_gcs WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataGCS = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", pgcs_point, date_format(encounter_date,'%d/%m/%Y %H:%i'), pgcs_result FROM lhr_pgcs WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataPGCS = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", point, date_format(encounter_date,'%d/%m/%Y %H:%i'), result FROM lhr_pain_scale WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataPain = con.getData(sql);
-
-    sql = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_respiratory_rate WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
+    sql = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_respiratory_rate WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataRespiratory = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", circumference_size, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_head_circumference WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
-    ArrayList<ArrayList<String>> dataHead = con.getData(sql);
+    sql = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_spo2 WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
+    ArrayList<ArrayList<String>> dataSPO = con.getData(sql);
+
+    sql = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * from lhr_temperature where pmi_no = '" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
+    ArrayList<ArrayList<String>> dataTemper = con.getData(sql);
+
+    sql = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_blood_glucose WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
+    ArrayList<ArrayList<String>> dataGlucose = con.getData(sql);
+
+    sql = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_weight_height WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
+    ArrayList<ArrayList<String>> dataHtWt = con.getData(sql);
 
     sql = "SELECT " + selectSame + ", total_cholesterol,total_unit,"
             + "ldl_cholesterol,ldl_unit,"
@@ -57,12 +57,14 @@
             + ",triglycerides,triglycerides_unit"
             + ",non_hdl_c,non_hdl_c_unit"
             + ",tg_to_hdl,tg_to_hdl_ratio_unit"
-            + ", date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' order by encounter_date desc limit 5;";
+            + ", date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataCholesterol = con.getData(sql);
 
     // ================================================================== end vital signs ================================================================== //
-    boolean isVtsExist = (dataBP.size() > 0 || dataSPO.size() > 0 || dataTemper.size() > 0 || dataHtWt.size() > 0 || dataGlucose.size() > 0 || dataGCS.size() > 0
-            || dataPGCS.size() > 0 || dataPain.size() > 0 || dataRespiratory.size() > 0 || dataHead.size() > 0 || dataCholesterol.size() > 0);
+    boolean isVtsExist = (dataBP.size() > 0 || dataSPO.size() > 0 || dataTemper.size() > 0 || dataHtWt.size() > 0 || dataGlucose.size() > 0
+            || dataRespiratory.size() > 0 || dataCholesterol.size() > 0);
 
     if (isVtsExist) {
 
@@ -310,7 +312,7 @@
             %>
             <tr class="bg-info summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Height & Weight</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphHtWt" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle">Weight</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphHtWt" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataHtWt.size(); i++) {
 
                         %>
@@ -331,7 +333,6 @@
                                     <td width="15%">Time</td>
                                     <td width="20%">Venue</td>
                                     <td width="25%">Weight(kg)</td>
-                                    <td width="25%">Height(cm)</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -344,7 +345,6 @@
                                     <td style="width: 5%;"><%=dataHtWt.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataHtWt.get(i).get(2))%></td>
                                     <td><strong><%=dataHtWt.get(i).get(3)%></strong></td>
-                                    <td><strong><%=dataHtWt.get(i).get(4)%></strong></td>
                                 </tr>
                                 <%
                                     }// end for
@@ -356,162 +356,6 @@
                 </td>
             </tr>
             <%            }//end height weight
-
-                if (dataGCS.size() > 0) {
-
-            %>
-            <tr class="bg-info summary text-center">
-                <td>
-                    <span id="ANL_chartTitle">Glasgow Coma Scale</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
-                        <%                    for (int i = 0; i < dataGCS.size(); i++) {
-
-                        %>
-                    <p class="hidden"><%=String.join("|", dataGCS.get(i))%></p>
-                    <%
-                        }//end for
-                    %>
-                </td>
-            </tr>
-
-            <tr data-status="pagado">
-                <td>
-                    <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <td width="15%">Date</td>
-                                    <td width="15%">Time</td>
-                                    <td width="20%">Venue</td>
-                                    <td width="25%">Point</td>
-                                    <td width="25%">Result</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    for (int i = 0; i < dataGCS.size(); i++) {
-
-                                %>
-                                <tr>
-                                    <td style="width: 7%;"><%=dataGCS.get(i).get(0)%></td>
-                                    <td style="width: 5%;"><%=dataGCS.get(i).get(1)%></td>
-                                    <td style="width: 10%;"><%=lookH.getHFCName(dataGCS.get(i).get(2))%></td>
-                                    <td><strong><%=dataGCS.get(i).get(3)%></strong></td>
-                                    <td><%=dataGCS.get(i).get(5)%></td>
-                                </tr>
-                                <%
-                                    }// end for
-
-                                %>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <%            }//end gcs
-
-                if (dataPGCS.size() > 0) {
-
-            %>
-            <tr class="bg-info summary text-center">
-                <td>
-                    <span id="ANL_chartTitle">Pediatric Glasgow Coma Scale</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
-                        <%                    for (int i = 0; i < dataPGCS.size(); i++) {
-
-                        %>
-                    <p class="hidden"><%=String.join("|", dataPGCS.get(i))%></p>
-                    <%
-                        }//end for
-                    %>
-                </td>
-            </tr>
-
-            <tr data-status="pagado">
-                <td>
-                    <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <td width="15%">Date</td>
-                                    <td width="15%">Time</td>
-                                    <td width="20%">Venue</td>
-                                    <td width="25%">Point</td>
-                                    <td width="25%">Result</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    for (int i = 0; i < dataPGCS.size(); i++) {
-
-                                %>
-                                <tr>
-                                    <td style="width: 7%;"><%=dataPGCS.get(i).get(0)%></td>
-                                    <td style="width: 5%;"><%=dataPGCS.get(i).get(1)%></td>
-                                    <td style="width: 10%;"><%=lookH.getHFCName(dataPGCS.get(i).get(2))%></td>
-                                    <td><strong><%=dataPGCS.get(i).get(3)%></strong></td>
-                                    <td><%=dataPGCS.get(i).get(5)%></td>
-                                </tr>
-                                <%
-                                    }// end for
-
-                                %>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <%            }//end pgcs
-
-                if (dataPain.size() > 0) {
-
-            %>
-            <tr class="bg-info summary text-center">
-                <td>
-                    <span id="ANL_chartTitle">Pain Scale</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
-                        <%                    for (int i = 0; i < dataPain.size(); i++) {
-
-                        %>
-                    <p class="hidden"><%=String.join("|", dataPain.get(i))%></p>
-                    <%
-                        }//end for
-                    %>
-                </td>
-            </tr>
-
-            <tr data-status="pagado">
-                <td>
-                    <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <td width="15%">Date</td>
-                                    <td width="15%">Time</td>
-                                    <td width="20%">Venue</td>
-                                    <td width="25%">Point</td>
-                                    <td width="25%">Result</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    for (int i = 0; i < dataPain.size(); i++) {
-
-                                %>
-                                <tr>
-                                    <td style="width: 7%;"><%=dataPain.get(i).get(0)%></td>
-                                    <td style="width: 5%;"><%=dataPain.get(i).get(1)%></td>
-                                    <td style="width: 10%;"><%=lookH.getHFCName(dataPain.get(i).get(2))%></td>
-                                    <td><strong><%=dataPain.get(i).get(3)%></strong></td>
-                                    <td><%=dataPain.get(i).get(5)%></td>
-                                </tr>
-                                <%
-                                    }// end for
-
-                                %>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <%            }//end pain scale
 
                 if (dataRespiratory.size() > 0) {
 
@@ -563,55 +407,6 @@
             </tr>
             <%            }//end respiratory
 
-                if (dataHead.size() > 0) {
-
-            %>
-            <tr class="bg-info summary text-center">
-                <td>
-                    <span class="hidden" id="ANL_chartTitle">Head Circumference(cm)</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
-                        <%                    for (int i = 0; i < dataHead.size(); i++) {
-
-                        %>
-                    <p class="hidden"><%=String.join("|", dataHead.get(i))%></p>
-                    <%
-                        }//end for
-                    %>
-                </td>
-            </tr>
-
-            <tr data-status="pagado">
-                <td>
-                    <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <td width="15%">Date</td>
-                                    <td width="15%">Time</td>
-                                    <td width="20%">Venue</td>
-                                    <td width="50%">Size</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    for (int i = 0; i < dataHead.size(); i++) {
-
-                                %>
-                                <tr>
-                                    <td style="width: 7%;"><%=dataHead.get(i).get(0)%></td>
-                                    <td style="width: 5%;"><%=dataHead.get(i).get(1)%></td>
-                                    <td style="width: 10%;"><%=lookH.getHFCName(dataHead.get(i).get(2))%></td>
-                                    <td><strong><%=dataHead.get(i).get(3)%></strong></td>
-                                </tr>
-                                <%
-                                    }// end for
-
-                                %>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <%            }//end head
                 if (dataCholesterol.size() > 0) {
 
             %>
