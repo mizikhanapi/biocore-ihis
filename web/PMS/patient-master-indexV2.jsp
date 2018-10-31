@@ -122,6 +122,16 @@
             <div class="row">
                 <div class="col-md-6">
 
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
+                        <div class="col-md-6">
+                            <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
+                        </div>
+                    </div>  
+
+
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Nationality *</label>
@@ -479,6 +489,9 @@
 
 
 
+
+
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Home Address *</label>
@@ -522,21 +535,6 @@
                             <input id="PMIhandphone" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
                     </div>
-
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <input id="PMIpmino" name="PMIpmino" type="text" placeholder="Generate the PMI number manually" class="form-control input-md" readonly>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary form-control" id="PMI_btnGenerate">Generate PMI</button>
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>  
 
 
                 </div>
@@ -666,6 +664,7 @@
 
                 <!--                    <button class="btn btn-default " type="button"> Appointment List</button>-->
                 <button class="btn btn-link btn-lg" type="button" id="clearPMI">Clear</button>
+                <button class="btn btn-success btn-lg" type="button" id="PMI_btnGenerate">Generate PMI</button>
                 <button class="btn btn-primary btn-lg " type="button" id="updatePatient">Save</button>
             </div>
         </form>
