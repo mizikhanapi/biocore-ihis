@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+
 <div class="row">
     <div class="col-md-12">
 
@@ -40,6 +41,6 @@
 
 <script>
     $(document).ready(function () {
-        $("#PrintMC_tab").load("mcandtc/searchMc.jsp");
+        $("#PrintMC_tab").load("mcandtc/mcSearch.jsp");
     });
 </script>

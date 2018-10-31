@@ -40,6 +40,6 @@
 
 <script>
     $(document).ready(function () {
-        $("#PrintTC_tab").load("mcandtc/searchTs.jsp");
+        $("#PrintTC_tab").load("mcandtc/tsSearch.jsp");
     });
 </script>

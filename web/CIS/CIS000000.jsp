@@ -316,10 +316,12 @@
 
                         <div class="none swapping-tab" id="CIS-PrintMCTab">
                             <jsp:include page="mcandtc/searchMCMain.jsp"/>
+                            <%@include file = "mcandtc/mcModal.jsp" %>
                         </div> 
 
                         <div class="none swapping-tab" id="CIS-PrintTCTab">
                             <jsp:include page="mcandtc/searchTCMain.jsp"/>
+                            <jsp:include page="mcandtc/tsModal.jsp"/>
                         </div> 
                         
                     </div>

@@ -66,7 +66,6 @@
     DateTimeFormatter formatOrderTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     String seq = formatOrderTime.format(now);
 
-
 %>
 
 <div style="text-align: center; margin-bottom: 30px;">
@@ -80,6 +79,7 @@
         <p> <strong> Tarikh : <%=newdate%></strong> </p>
     </div>
 </div>
+    
 <br/>
 
 <div class="row">
