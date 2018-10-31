@@ -52,7 +52,7 @@
         <li><a href="UTeMTypeOfPatientListReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Type Of Patient List</a></li>
         <li><a href="mcMain2.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint MC</a></li>
         <li><a href="medicalReportMain.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint Medical Report</a></li>   
-        <li><a href="timeSlipMain2.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint Time Slip</a></li>
+        <li><a href="tsMain.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Reprint Time Slip</a></li>
         <li><a href="ConsultationListReport.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Consultation List</a></li>
         <li><a href="DiagnosisList.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Diagnosis List</a></li>
         <li  data-toggle="collapse" data-target="#WaitingReport" class="collapsed active">

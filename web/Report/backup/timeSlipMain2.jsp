@@ -44,14 +44,11 @@
                             <h3 style="margin: 0px;">Time Slip </h3>
                             <hr class="pemisah"/>
 
-                            <div id="tsSearchPatientDiv">
+                            <div id="SearchPatientTCdiv">
                             </div>
 
-                            <div id="tsTableDivisionDiv">
+                            <div id="tsTableDivision">
                             </div>
-
-                            <%@include file = "tsModal.jsp" %>
-                            
                         </div>
                     </div>
                 </div>
@@ -69,7 +66,11 @@
 
         <script>
             $(document).ready(function () {
-                $("#tsSearchPatientDiv").load("tsSearch.jsp");
+                
+                $("#SearchPatientTCdiv").load("searchTs.jsp");
+                //$("#tsTableDivision").load("tsTable.jsp");
+
+
             });
         </script>
     </body>

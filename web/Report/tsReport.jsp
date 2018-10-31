@@ -66,18 +66,6 @@
     DateTimeFormatter formatOrderTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     String seq = formatOrderTime.format(now);
 
-    //out.print(start_date+" "+end_date);
-    //27-04-2017 23-05-2017
-//    String dateStart = start_date;
-//    String dateStop = end_date;
-//
-//    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-//    
-//    Date d1 = format.parse(dateStart);
-//    Date d2 = format.parse(dateStop);
-//    long diff = d2.getTime() - d1.getTime();
-//    long diffDays = diff/(24 * 60 * 60 * 1000) + 1;
-    //out.print("      /"+diffDays);
 %>
 
 <div style="text-align: center; margin-bottom: 30px;">
@@ -91,6 +79,7 @@
         <p> <strong> Tarikh : <%=newdate%></strong> </p>
     </div>
 </div>
+    
 <br/>
 
 <div class="row">
