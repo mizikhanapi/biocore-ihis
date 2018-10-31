@@ -105,54 +105,76 @@
 
     sql = "SELECT " + selectSame + ", details FROM lhr_health_of_present_illness WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
     ArrayList<ArrayList<String>> dataPreIll = con.getData(sql);
-    
+
     //                                  0                                                   1                               2            3                   4                       5           6               7
     sql = "SELECT date_format(res.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(res.`endDateTime`,'%d/%m/%Y %H:%i'), res.hfc_cd,  res.ot_room_no, pro.`procedure_shortName`, res.comments, res.order_no, res.procedure_cd, res.`pmiNo` "
             + "FROM opt_result res "
             + "JOIN opt_procedure pro ON pro.procedure_cd=res.procedure_cd AND pro.hfc_cd=res.hfc_cd AND pro.category_cd=res.category_cd "
-            + "WHERE res.`pmiNo`='"+pmi_no+"' "+whenCondition+" ORDER BY res.episode_date desc;";
+            + "WHERE res.`pmiNo`='" + pmi_no + "' " + whenCondition + " ORDER BY res.episode_date desc;";
     ArrayList<ArrayList<String>> dataOpt = con.getData(sql);
 
     //================================== end LHR general ===================================================================
     //================================ vital signs =============================================================================
     //              0 1 2               3               4                   5               6                   7               8               9                   10              11          12 
-    sql = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') FROM lhr_bp WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_bp WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataBP = con.getData(sql);
 
-    sql = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') from lhr_temperature where pmi_no = '" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * from lhr_temperature where pmi_no = '" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataTemper = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_blood_glucose WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_blood_glucose WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataGlucose = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_spo2 WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_spo2 WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataSPO = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_weight_height WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_weight_height WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataHtWt = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", gcs_point, date_format(encounter_date,'%d/%m/%Y %H:%i'), gcs_result FROM lhr_gcs WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", gcs_point, date_format(encounter_date,'%d/%m/%Y %H:%i'), gcs_result "
+            + " FROM (SELECT * FROM lhr_gcs WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataGCS = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", pgcs_point, date_format(encounter_date,'%d/%m/%Y %H:%i'), pgcs_result FROM lhr_pgcs WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", pgcs_point, date_format(encounter_date,'%d/%m/%Y %H:%i'), pgcs_result "
+            + " FROM (SELECT * FROM lhr_pgcs WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataPGCS = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", point, date_format(encounter_date,'%d/%m/%Y %H:%i'), result FROM lhr_pain_scale WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", point, date_format(encounter_date,'%d/%m/%Y %H:%i'), result "
+            + " FROM (SELECT * FROM lhr_pain_scale WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataPain = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_respiratory_rate WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_respiratory_rate WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataRespiratory = con.getData(sql);
 
-    sql = "SELECT " + selectSame + ", circumference_size, date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_head_circumference WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+    sql = "SELECT " + selectSame + ", circumference_size, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_head_circumference WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataHead = con.getData(sql);
-    
+
     sql = "SELECT " + selectSame + ", total_cholesterol,total_unit,"
             + "ldl_cholesterol,ldl_unit,"
             + "hdl_cholesterol,hdl_unit"
             + ",triglycerides,triglycerides_unit"
             + ",non_hdl_c,non_hdl_c_unit"
             + ",tg_to_hdl,tg_to_hdl_ratio_unit"
-            + ", date_format(encounter_date,'%d/%m/%Y %H:%i') FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' " + whenCondition + " order by encounter_date desc;";
+            + ", date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' " + whenCondition + " ORDER BY encounter_date DESC) "
+            + " SUB ORDER BY episode_date ASC; ";
     ArrayList<ArrayList<String>> dataCholesterol = con.getData(sql);
     //out.print(sql);
     //========================================= end vital signs ==================================================================
@@ -1128,7 +1150,7 @@
             </td>
         </tr>
         <%            }//end head
-                if (dataCholesterol.size() > 0) {
+            if (dataCholesterol.size() > 0) {
 
         %>
         <tr class="bg-info summary text-center">
@@ -1163,12 +1185,12 @@
                                 <td style="width: 7%;"><%=dataCholesterol.get(i).get(0)%></td>
                                 <td style="width: 5%;"><%=dataCholesterol.get(i).get(1)%></td>
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataCholesterol.get(i).get(2))%></td>
-                                <td><%=dataCholesterol.get(i).get(3) + " "+dataCholesterol.get(i).get(4) %></td>
-                                <td><%=dataCholesterol.get(i).get(5) + " "+dataCholesterol.get(i).get(6) %></td>
-                                <td><%=dataCholesterol.get(i).get(7) + " "+dataCholesterol.get(i).get(8) %></td>
-                                <td><%=dataCholesterol.get(i).get(9) + " "+dataCholesterol.get(i).get(10) %></td>
-                                <td><%=dataCholesterol.get(i).get(11) + " "+dataCholesterol.get(i).get(12) %></td>
-                                <td><%=dataCholesterol.get(i).get(13) + " "+dataCholesterol.get(i).get(14) %></td>
+                                <td><%=dataCholesterol.get(i).get(3) + " " + dataCholesterol.get(i).get(4)%></td>
+                                <td><%=dataCholesterol.get(i).get(5) + " " + dataCholesterol.get(i).get(6)%></td>
+                                <td><%=dataCholesterol.get(i).get(7) + " " + dataCholesterol.get(i).get(8)%></td>
+                                <td><%=dataCholesterol.get(i).get(9) + " " + dataCholesterol.get(i).get(10)%></td>
+                                <td><%=dataCholesterol.get(i).get(11) + " " + dataCholesterol.get(i).get(12)%></td>
+                                <td><%=dataCholesterol.get(i).get(13) + " " + dataCholesterol.get(i).get(14)%></td>
                             </tr>
                             <%
                                 }// end for
@@ -1514,7 +1536,7 @@
             </td>
         </tr>
         <%            }//end test
-                if (dataOpt.size() > 0) {
+            if (dataOpt.size() > 0) {
 
         %>
         <tr class="bg-primary summary text-center">
