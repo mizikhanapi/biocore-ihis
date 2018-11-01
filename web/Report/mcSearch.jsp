@@ -59,7 +59,7 @@
     $('#mcType').on('change', function () {
 
         var id = $('#mcType').val();
-        
+
         if (id === "001") {
             $('#mcInput').attr('maxlength', '13');
         } else if (id === "002") {
@@ -89,6 +89,8 @@
             alert('Please select ID Type first.');
         } else {
 
+            $('<div class="loading">Loading</div>').appendTo('body');
+
             //if the select box is choosen and the input in key-in.
 
             //get value from text box and select box
@@ -107,6 +109,7 @@
                 timeout: 10000,
                 success: function (list) {
                     $('#mcTableDivisionDiv').html(list);
+                    $('.loading').hide();
                 },
                 error: function (xhr, status, error) {
                     var err = eval("(" + xhr.responseText + ")");

@@ -98,6 +98,8 @@
         } else {
             //if the select box is choosen and the input in key-in.
 
+            $('<div class="loading">Loading</div>').appendTo('body');
+
             //get value from text box and select box
             var tsType = $('#tsType').find(":selected").val();
             var tsInput = $('#tsInput').val();
@@ -115,6 +117,7 @@
                 timeout: 10000,
                 success: function (list) {
                     $('#tsTableDivisionDiv').html(list);
+                    $('.loading').hide();
                 },
                 error: function (xhr, status, error) {
                     var err = eval("(" + xhr.responseText + ")");
