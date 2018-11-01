@@ -500,6 +500,21 @@
     
     
     
+    <!-- Mapping for PIS HIS040016 -->
+
+    <servlet>
+        <servlet-name>Dispense_Drug_Order_Disabled</servlet-name>
+        <jsp-file>/PIS/HIS040016.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dispense_Drug_Order_Disabled</servlet-name>
+        <url-pattern>/PIS/Dispense_Drug_Order_Disabled</url-pattern>
+    </servlet-mapping>
+
+    <!-- Mapping for PIS HIS040015 -->
+    
+    
+    
     <!-- Mapping For PIS Hidding URL End -->
 
     <servlet>

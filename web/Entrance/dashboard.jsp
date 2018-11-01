@@ -252,10 +252,21 @@
                             }
 
                             if (mod04) {
+
+                                String parameterPIS = session.getAttribute("PIS_PARAM").toString();
+                                String PISPath = "";
+
+                                if (parameterPIS.equalsIgnoreCase("2")) {
+                                    PISPath = "../PIS/Screening_Drug_Order";
+                                }
+
+                                if (parameterPIS.equalsIgnoreCase("1")) {
+                                    PISPath = "../PIS/Dispense_Drug_Order_Disabled";
+                                }
                         %>
 
                         <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../PIS/Screening_Drug_Order" class="thumbnail">
+                            <a href="<%=PISPath%>" class="thumbnail">
                                 <div class="kotak text-center">
                                     <i class="fa fa-medkit" aria-hidden="true" style="color: #9A67A0;font-size: 4em;"></i>
                                     <h3>Pharmacy Info System</h3>
@@ -263,6 +274,7 @@
                             </a>
                         </div>
                         <%
+                                                          
                             }
 
                             if (mod05) {

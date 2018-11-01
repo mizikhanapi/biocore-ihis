@@ -1,6 +1,23 @@
 <%@page import="ADM_helper.MySession"%>
 <%@page import="Config.Config"%>	
 
+
+<%
+
+        String roleCode = session.getAttribute("ROLE_CODE").toString();
+        String hfcCD = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        String userID = session.getAttribute("USER_ID").toString();
+
+        String pharmacy = "007";
+        String systemAdmin = "001";
+
+        MySession superUser = new MySession(userID, hfcCD);
+        
+        String parameterPIS = session.getAttribute("PIS_PARAM").toString();
+
+
+%>
+
 <div class="col-sm-3 col-md-2 sidebar" id="style-3">
     <div class="brand"></div>
     <!-- logo -->
@@ -16,8 +33,33 @@
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="side-menu">
         <!-- Menu without dropdown -->
-        <li><a href="Screening_Drug_Order"><i class="fa fa-filter fa-lg" aria-hidden="true" ></i>Screening Drug Order</a></li>
-        <li><a href="Dispense_Drug_Order"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a></li>
+        
+        <%    
+        
+            if (parameterPIS.equalsIgnoreCase("2")) {
+                
+        %>
+        <li>
+            <a href="Screening_Drug_Order"><i class="fa fa-filter fa-lg" aria-hidden="true" ></i>Screening Drug Order</a>
+        </li>
+        <li>
+            <a href="Dispense_Drug_Order"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a>
+        </li>
+        
+        <%            }%>
+
+        
+        <%    
+        
+            if (parameterPIS.equalsIgnoreCase("1")) {
+                
+        %>
+        <li>
+            <a href="Dispense_Drug_Order_Disabled"><i class="fa fa-filter fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a>
+        </li>           
+        
+        <%            }%>
+        
         <li><a href="Manage_Drug_Code"><i class="fa fa-table fa-lg" aria-hidden="true" ></i>Manage Drug Code </a></li>
         <li><a href="Manage_Drug_Stock"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Drug Stock </a></li>
         <li><a href="Manage_Vendor"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Manage Vendor</a></li>
@@ -41,14 +83,7 @@
         <li><a href="Pharmacy_Past_Order"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
 
 
-        <%            String roleCode = session.getAttribute("ROLE_CODE").toString();
-            String hfcCD = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-            String userID = session.getAttribute("USER_ID").toString();
-
-            String pharmacy = "007";
-            String systemAdmin = "001";
-
-            MySession superUser = new MySession(userID, hfcCD);
+        <%            
 
             if (roleCode.equalsIgnoreCase(systemAdmin) || roleCode.equalsIgnoreCase(pharmacy) || superUser.isSuperUser() == true) {
 
