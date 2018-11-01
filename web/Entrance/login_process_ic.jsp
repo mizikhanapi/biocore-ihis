@@ -28,9 +28,11 @@
             + "Join adm_health_facility on health_facility_code = hfc_cd "
             + "where user_id = '" + user_id + "' AND status = '0' limit 1";
     String sql4 = "select status from adm_system_parameter where system_code = 'IT' and parameter_code ='1';";
+    String sql5 = "select status from adm_system_parameter where system_code = 'PISS' and parameter_code ='1';";
     
     ArrayList<ArrayList<String>> dataStaff = conn.getData(sql);
     ArrayList<ArrayList<String>> dataSysPara = conn.getData(sql4);
+    ArrayList<ArrayList<String>> dataPISPara = conn.getData(sql5);
 
 //    out.print(dataPatient.size());
 //    out.print(dataStaff.size());
@@ -111,8 +113,11 @@
                 //session.setAttribute("HFC", hfc);
                 session.setAttribute("SYSTEMSTAT", dataSystemStatus);
                 
-                String sysParaIT = dataSysPara.get(0).get(0);
+                String sysParaIT = dataPISPara.get(0).get(0);
                 session.setAttribute("SYSTEM_PARAMETER", sysParaIT);
+                
+                String PISParaPISS = dataSysPara.get(0).get(0);
+                session.setAttribute("PIS_PARAM", PISParaPISS);
                 
                 status = LOGIN;
 

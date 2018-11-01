@@ -238,6 +238,16 @@
                     sysParaCS = dataSysPara.get(0).get(0);
                 }
                 //==================================================
+                
+                
+                //-------------- getting PIS param -----------------
+                String sql5 = "select status from adm_system_parameter where system_code = 'PISS' and parameter_code ='1' and hfc_cd='"+hfc_cd+"';";
+                ArrayList<ArrayList<String>> dataPISPara = conn.getData(sql5);
+                String PISParaPISS = "1";
+                if(dataPISPara.size()>0){
+                    PISParaPISS = dataPISPara.get(0).get(0);
+                }
+                //==================================================
 
                 //setting the session;
                 session.setAttribute("USER_ID", user_id);
@@ -265,6 +275,8 @@
                 session.setAttribute("SYSTEMSTAT", dataSystemStatus);
 
                 session.setAttribute("SYSTEM_PARAMETER", sysParaIT);
+                
+                session.setAttribute("PIS_PARAM", PISParaPISS);
 
                 session.setAttribute("CIS_PARAM", CISLongString);
                 session.setAttribute("USER_TYPE", "STAFF");

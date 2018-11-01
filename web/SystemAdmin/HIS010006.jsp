@@ -70,7 +70,10 @@
                                                 <a href="#HM_tab3" data-toggle="tab">
                                                     Calling System Setting </a>
                                             </li>
-
+                                            <li>
+                                                <a href="#HM_tab4" data-toggle="tab">
+                                                    PIS Setting </a>
+                                            </li>
 
                                         </ul>
                                         <!-- tab content -->
@@ -101,6 +104,16 @@
 
                                                 <div id="CS">
                                                     <div id="CSMain">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="HM_tab4">
+
+                                                <div id="CS">
+                                                    <div id="PISMain">
                                                     </div>
 
                                                 </div>
@@ -148,8 +161,8 @@
             $("#CSMain").load("setting/setting_CS.jsp");
 
 
-
-
+            $("#PISMain").load("setting/setting_PIS.jsp");
+            
 
 
         </script>
