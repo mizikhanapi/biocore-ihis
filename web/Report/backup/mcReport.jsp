@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -20,7 +21,6 @@
 
 
 <%
-
     Conn conn = new Conn();
     String my_1_gamba = "";
     String my_1_nama = "";
@@ -54,18 +54,25 @@
     String name = request.getParameter("name");
     String episode = request.getParameter("episode");
     String pmi = request.getParameter("pmi");
-    String start_time = request.getParameter("start_time");
-    String end_time = request.getParameter("end_time");
+    String start_date = request.getParameter("start_date");
+    String end_date = request.getParameter("end_date");
     String comment = request.getParameter("comment");
     String ic = request.getParameter("ic");
-    String idNo = request.getParameter("id");
-    String episodeDate = request.getParameter("episodeDate");
+
+    String dateStart = start_date;
+    String dateStop = end_date;
 
     LocalDateTime now = LocalDateTime.now();
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(now);
     DateTimeFormatter formatOrderTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     String seq = formatOrderTime.format(now);
+
+    Date d1 = format.parse(dateStart);
+    Date d2 = format.parse(dateStop);
+    long diff = d2.getTime() - d1.getTime();
+    long diffDays = diff / (24 * 60 * 60 * 1000) + 1;
+
 
 %>
 
@@ -80,21 +87,24 @@
         <p> <strong> Tarikh : <%=newdate%></strong> </p>
     </div>
 </div>
-    
 <br/>
 
 <div class="row">
     <div class="col-md-12">
-        <p>Kepada:&nbsp;<strong>....................................................................................................................<%%></strong></p>
-        <p>Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
-        <p>No. STAFF/MATRIKS:&nbsp;<strong><%=idNo%></strong>&nbsp;&nbsp;&nbsp;&nbsp; No. KP:&nbsp;<strong><%=ic%></strong></p>
+        <p>Dengan ini saya mengesahkan bahawa saya telah memeriksa: 
+            <strong><%=name%></strong>
+        </p>
+        <p> No. K/P: <strong><%=ic%></strong> dan mendapati bahawa beliau:</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <p>Telah mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
-        <p>Tarikh:&nbsp;<strong><%=episodeDate%></strong></p>
+        <ol type="a">
+            <li>Tidak sihat untuk menjalankan tugasnya dengan sempurna selama <strong><%=diffDays%> hari</strong>.</li>
+            <li>Daripada <strong><%=start_date%></strong> hingga <strong><%=end_date%></strong>.</li>
+            <li>Komen dari doktor : <strong><%=comment%></strong></li>
+        </ol>
     </div>
 </div>
 
@@ -103,7 +113,7 @@
         <br>
         <br>
         <br>
-        <label for="">...............................................</label><br>
+        <label for="">................................................</label><br>
         <p style="text-align: center;"><%=my_1_hfcName%></p>
     </div>
 </div>

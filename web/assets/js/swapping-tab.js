@@ -125,7 +125,7 @@ $(document).ready(function () {
         $('.swapping-tab').hide();
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-PrintMCTab").show(400);
-
+        $("#PrintMC_tab").load("mcandtc/mcSearch.jsp");
     });
 
     // TC
@@ -133,7 +133,7 @@ $(document).ready(function () {
         $('.swapping-tab').hide();
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-PrintTCTab").show(400);
-
+        $("#PrintTC_tab").load("mcandtc/tsSearch.jsp");
     });
 
 //    $('#CIS-analyseTab').on('hide', function(event) {

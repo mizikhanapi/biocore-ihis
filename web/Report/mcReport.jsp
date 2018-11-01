@@ -22,6 +22,7 @@
 
 <%
     Conn conn = new Conn();
+    
     String my_1_gamba = "";
     String my_1_nama = "";
     String my_1_role = "";
@@ -51,6 +52,7 @@
 
     String sql = "SELECT address1, logo FROM adm_health_facility WHERE hfc_cd = '" + my_1_hfc_cd + "'";
     ArrayList<ArrayList<String>> add = conn.getData(sql);
+    
     String name = request.getParameter("name");
     String episode = request.getParameter("episode");
     String pmi = request.getParameter("pmi");
@@ -63,13 +65,16 @@
     String dateStop = end_date;
 
     LocalDateTime now = LocalDateTime.now();
+    
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(now);
+    
     DateTimeFormatter formatOrderTime = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
     String seq = formatOrderTime.format(now);
 
     Date d1 = format.parse(dateStart);
     Date d2 = format.parse(dateStop);
+    
     long diff = d2.getTime() - d1.getTime();
     long diffDays = diff / (24 * 60 * 60 * 1000) + 1;
 
@@ -87,11 +92,13 @@
         <p> <strong> Tarikh : <%=newdate%></strong> </p>
     </div>
 </div>
+    
 <br/>
 
 <div class="row">
     <div class="col-md-12">
-        <p>Dengan ini saya mengesahkan bahawa saya telah memeriksa: 
+        <p>
+            Dengan ini saya mengesahkan bahawa saya telah memeriksa: 
             <strong><%=name%></strong>
         </p>
         <p> No. K/P: <strong><%=ic%></strong> dan mendapati bahawa beliau:</p>

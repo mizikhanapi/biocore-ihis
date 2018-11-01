@@ -26,7 +26,7 @@
     if(itemtype.equalsIgnoreCase("drug")){
         updateitem = "UPDATE pis_mdc2 SET d_stock_qty = d_stock_qty + "+totalqty+" WHERE UD_MDC_CODE = '"+itemcd+"' AND hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+dis+"'";
     }else if(itemtype.equalsIgnoreCase("other")){
-        updateitem = "UPDATE stk_stock_item SET physical_item= physical_item + "+totalqty+" WHERE item_cd = '"+itemcd+"' AND hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+dis+"'";
+        updateitem = "UPDATE stk_stock_item SET physical_stock= physical_stock + "+totalqty+" WHERE item_cd = '"+itemcd+"' AND hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+dis+"'";
     }
     
     boolean isupdatedistributedetail = true;
@@ -45,6 +45,7 @@
     }else if(!isupdatedistributedetail && isupdateitem){
         out.print("1OK");
         //out.print(updatedistributiondetail);
+        //out.print(updateitem);
     }else if(isupdatedistributedetail && !isupdateitem){
         out.print("2OK");
         //out.print(updateitem);

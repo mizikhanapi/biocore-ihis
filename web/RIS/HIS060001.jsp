@@ -81,6 +81,7 @@
                                                 <%@include file="order_modal/setExamDate_modal.jsp" %>
                                                 <%@include file="order_modal/prepareResult_modal.jsp" %>
                                                 <%@include file = "patientOrderListModal.jsp" %>
+                                                <%@include file="../POM/procedure_modal/procedure_prepare_item.jsp" %>
 
                                             </div>
 

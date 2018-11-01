@@ -199,6 +199,26 @@
 </div>
 
 <hr/>
+
+<h4>
+    Item Preparation
+</h4>
+<div id="posItemPreparation" class="form-group table-guling">
+    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="tablepositemprepare">
+        <thead>
+        <th style="width: 5%">Item Code</th>
+        <th style="width: 20%">Item Name</th>
+        <th style="width: 5%">Current Value</th>
+        <th style="width: 20%">Quantity On hand</th>
+        <th style="width: 5%">Request Quantity</th>
+        <th style="width: 5%">Total Value</th>
+
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<hr/>
 <div class="pull-left" id="patientOrderDispenseButtonDiv" > 
     <!--<button class="btn btn-success " type="button" id="btnRISOrderSave" name="btnRISOrderSave" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Save &nbsp;</button>-->
     <!--<button class="btn btn-primary " type="button" id="btnRISOrderSendResults" name="btnRISOrderSendResults" > <i class="fa fa-print fa-lg" ></i>&nbsp; Send Result &nbsp;</button>-->
@@ -750,22 +770,6 @@
             yAxisID: "y-axis-1"
         };
 
-        var dataHeight = {
-            label: "Height(cm)",
-            data: heightArr,
-            lineTension: 0.3,
-            fill: false,
-            borderColor: lhrColour[1],
-            backgroundColor: 'transparent',
-            pointBorderColor: lhrColour[1],
-            pointBackgroundColor: lhrColour[1],
-            pointRadius: 5,
-            pointHoverRadius: 10,
-            pointHitRadius: 30,
-            pointBorderWidth: 2,
-            yAxisID: "y-axis-1"
-        };
-
 
         var chartOptions = {
             legend: {
@@ -801,7 +805,7 @@
 
         var chartData = {
             labels: dateArr,
-            datasets: [dataWeight, dataHeight]
+            datasets: [dataWeight]
         };
 
 
@@ -816,3 +820,4 @@
     });
 
 </script>
+

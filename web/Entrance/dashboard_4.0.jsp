@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ADM_helper.MySession" %>
 
+
 <%@include file="validateSession.jsp" %>
 <%    try {
         //------------------- Checking whether super user or not ------------------------------

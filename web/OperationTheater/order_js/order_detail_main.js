@@ -96,6 +96,27 @@ function loadAllergyDiagnosisOrder(orderNo, pmino) {
                         success: function (returnOrderDetailsTableHTML) {
                             $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
                             //$('#risManageOrderDetailsListTable').trigger('contentchanged');
+                            $.ajax({
+                                url: "../POM/procedure_controller/procedure_select.jsp",
+                                type: "post",
+                                data: dataOrder,
+                                success: function (databack) {
+                                    $('#tablepositemprepare tbody').empty();
+                                    if (databack.trim() !== "NO") {
+
+                                        $('#tablepositemprepare').append(databack.trim());
+
+                                        //datatableTableCreate();
+                                    }
+                                    var rows = $('#tablepositemprepare tbody tr').length;
+                                    if (rows > 0) {
+                                        $('#risManageOrderDetailsListTableDiv #risManageOrderDetailsListTable_wrapper #risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', false);
+                                    } else {
+                                        $('#risManageOrderDetailsListTableDiv #risManageOrderDetailsListTable_wrapper #risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', true);
+                                    }
+
+                                }
+                            });
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
                     });
