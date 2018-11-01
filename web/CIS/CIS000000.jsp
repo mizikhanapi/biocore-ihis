@@ -111,7 +111,7 @@
                     <div class="row" id="div_CIS_PATIENT_DASHBOARD">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h4 style="margin: 0px; padding: 0px;">Patient Info <span id="pName2"></span></h4>
+                                <h4 style="margin: 0px; padding: 0px; text-transform: uppercase;">Patient Info <span id="pName2"></span></h4>
                                 <hr class="pemisah"/>
                                 
                                 <table class="p-table" style="width: 100%; color: #999;font-weight: bolder;" id="patient-detail-dashboard">
