@@ -32,13 +32,13 @@
 
     <%  String sql = "";
         if (mcType.equals("001")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + mcInput + "' and b.leave_type='MC'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`, B.start_date, B.end_date, B.comment, A.`NEW_IC_NO`, A.ID_NO, DATE_FORMAT(DATE(B.EPISODE_DATE),'%d/%m/%Y') FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + mcInput + "' and b.leave_type='MC'";
         } else if (mcType.equals("002")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + mcInput + "' and b.leave_type='MC'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`, B.start_date, B.end_date, B.comment, A.`NEW_IC_NO`,A.ID_NO , DATE_FORMAT(DATE(B.EPISODE_DATE),'%d/%m/%Y') FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + mcInput + "' and b.leave_type='MC'";
         } else if (mcType.equals("003")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + mcInput + "' and b.leave_type='MC'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`, B.start_date, B.end_date, B.comment, A.`NEW_IC_NO`, A.ID_NO, DATE_FORMAT(DATE(B.EPISODE_DATE),'%d/%m/%Y') FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + mcInput + "' and b.leave_type='MC'";
         } else {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO`,A.ID_NO FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + mcInput + "' and b.leave_type='MC'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`, B.start_date, B.end_date, B.comment, A.`NEW_IC_NO`, A.ID_NO, DATE_FORMAT(DATE(B.EPISODE_DATE),'%d/%m/%Y') FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + mcInput + "' and b.leave_type='MC'";
         }
         ArrayList<ArrayList<String>> mc = conn.getData(sql);
 
@@ -49,7 +49,7 @@
 <tr>
     <input id="dataMCListhidden" type="hidden" value="<%=String.join("|", mc.get(i))%>">
     <td ><%= mc.get(i).get(0)%></td>
-    <td ><%= mc.get(i).get(1)%></td>
+    <td ><%= mc.get(i).get(8)%></td>
     <td id="pmino"><%= mc.get(i).get(2)%></td>
     <td>
         <button id="MC_btnPrint" class="btn btn-default" data-toggle="modal" ><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Print</button>
@@ -74,6 +74,6 @@
             ]
         });
     });
-    
+
 </script>
 

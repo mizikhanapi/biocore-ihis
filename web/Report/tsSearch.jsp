@@ -150,7 +150,8 @@
             'end_time': arrayData[4],
             'comment': arrayData[5],
             'ic': arrayData[6],
-            'id': arrayData[7]
+            'id': arrayData[7],
+            'episodeDate': arrayData[8]
         };
 
 

@@ -50,7 +50,7 @@
                     <div class="col-md-12">
                         <div class="thumbnail">
                             
-                            <h3 style="margin: 0px;">Print MC </h3>
+                            <h3 style="margin: 0px;">Print Time Slip </h3>
                             
                             <hr class="pemisah"/>
                             

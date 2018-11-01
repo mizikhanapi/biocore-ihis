@@ -59,6 +59,7 @@
     String comment = request.getParameter("comment");
     String ic = request.getParameter("ic");
     String idNo = request.getParameter("id");
+    String episodeDate = request.getParameter("episodeDate");
 
     LocalDateTime now = LocalDateTime.now();
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -93,7 +94,7 @@
 <div class="row">
     <div class="col-md-12">
         <p>Telah mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
-        <p>Tarikh:&nbsp;<strong><%=episode%></strong></p>
+        <p>Tarikh:&nbsp;<strong><%=episodeDate%></strong></p>
     </div>
 </div>
 
