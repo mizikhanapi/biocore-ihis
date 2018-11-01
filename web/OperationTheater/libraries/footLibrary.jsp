@@ -18,3 +18,4 @@
 <script src="libraries/js/papaparse.min.js"></script>
 <script src="libraries/js/create_destroy_loading.js" type="text/javascript"></script>
 <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
+<script src="../assets/js/Chart.bundle.js"></script>
