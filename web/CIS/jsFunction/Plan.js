@@ -487,7 +487,7 @@ $(document).ready(function () {
         e.preventDefault();
         var stat = checkCCNnDGS(_data);
         
-        if(stat.ccnV === true && stat.dgsV === true){
+        if(stat.ccnV === true && stat.dgsV === true && stat.mcV === false){
             var DateFrom = $('#DateFromMEC').val();
             var DateTo = $('#DateToMEC').val();
             var num1 = $('#num1MEC').val();
@@ -500,7 +500,7 @@ $(document).ready(function () {
             var obj1 = {
                 Acode: "MEC",typeMEC:typeMEC
             };
-
+            
             $items.each(function () {
                 obj1[this.id] = $(this).val();
             });
@@ -516,7 +516,7 @@ $(document).ready(function () {
             $("#CIS040008").modal('toggle');
             // $(".modal-backdrop").hide();
         }else {
-            bootbox.alert("You need to enter at least one Chief Complain and one diagnosis before add the Medical Certification (MC) and Time Slip");
+            bootbox.alert("You need to enter at least one Chief Complain and one diagnosis before add the Medical Certification (MC) and Time Slip and make sure only one Medical Certificate(MC) or Time Slip can be inserted");
         }
         
         
@@ -1673,6 +1673,7 @@ function getObjectORCHFCDetailMON(OrderingHFC, ProviderHFC, obj1) {
 function checkCCNnDGS(data){
     var ccnV = false;
     var dgsV = false;
+    var mcV = false;
     for (var key in data){
         if(data[key].Acode === "CCN"){
             ccnV = true
@@ -1681,10 +1682,15 @@ function checkCCNnDGS(data){
                 dgsV = true;
             }
         }
+        
+        if(data[key].Acode === "MEC"){
+            mcV = true;
+        }
     }
    var objReturn = {
        ccnV:ccnV,
-       dgsV:dgsV
+       dgsV:dgsV,
+       mcV:mcV
    }
    return objReturn;
 }
