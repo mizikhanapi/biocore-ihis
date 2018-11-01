@@ -82,11 +82,22 @@
                         </div>
                     </div>
 
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Quantity To Dispense</label>
+                        <div class="col-md-7">
+                            <input id="deleteScreenDispenseQuantity" name="deleteScreenDispenseQuantity" type="number" placeholder="Order Dispense Quantity" class="form-control input-md" maxlength="4">
+                        </div>
+                    </div>
+
                 </form>
                 <!-- content goes here -->
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateScreenMButton">Update</button>
+                    </div>
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="deleteScreenMButton">Delete</button>
                     </div>

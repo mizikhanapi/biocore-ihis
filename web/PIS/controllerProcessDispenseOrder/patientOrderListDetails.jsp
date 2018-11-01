@@ -113,7 +113,7 @@
 
 
                 /* Dispensed */
-                String dispensed = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(11)) - Double.parseDouble(dataOrderList.get(i).get(12)));
+                String dispensed = dataOrderList.get(i).get(14);;
 
 
                 /* Price */

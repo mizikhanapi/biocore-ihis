@@ -4,6 +4,8 @@
     Author     : Shammugam
 --%>
 
+<%@page import="org.json.JSONObject"%>
+<%@page import="org.json.JSONArray"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -24,8 +26,9 @@
     String ARRIVAL_DATE = request.getParameter("arrivalDate"); // Data 3
     String TOTAL_QUANTITY = request.getParameter("totalQuantity"); // Data 4
     String TOTAL_PRICE = request.getParameter("totalPrice"); // Data 5
-    String PMI_NO = request.getParameter("pmino"); // Data 5
-    String P_NAME = request.getParameter("pname"); // Data 5
+    String PMI_NO = request.getParameter("pmino"); // Data 6
+    String P_NAME = request.getParameter("pname"); // Data 7
+    String tableItem = request.getParameter("tableItem"); // Data 8
     String USER_ID = (String) session.getAttribute("USER_ID");
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
@@ -46,6 +49,27 @@
 
         // Order Table Part End //
         String masterStatus = "1";
+
+        //This parses the bill item json and save to far_customer_dtl
+        JSONArray jArr = new JSONArray(tableItem);
+
+        for (int i = 0; i < jArr.length(); i++) {
+
+            JSONObject jObj = jArr.getJSONObject(i);
+            String drugCode = jObj.get("drugCode").toString();
+            String drugDesc = jObj.get("drugDesc").toString();
+            String drugOrderedQty = jObj.get("drugOrderedQty").toString();
+            String drugDispenseQty = jObj.get("drugDispenseQty").toString();
+            String comment = jObj.get("comment").toString();
+
+            String sqlUpdateDetails = ""
+                    + " UPDATE pis_order_detail  "
+                    + " SET QTY_DISPENSED = '" + drugDispenseQty + "' "
+                    + " WHERE ORDER_NO = '" + ORDER_NO + "' AND DRUG_ITEM_CODE = '" + drugCode + "' ";
+
+            isScreeningProcess = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateDetails);
+
+        }
 
         // Insert Master Dispense
         String sqlInsertDispenseMaster = ""

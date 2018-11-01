@@ -729,6 +729,7 @@
         var deleteDrugOrdered = parseInt(arrayData[11]);
         var deleteDrugStockQty = arrayData[18];
         var deleteDrugComment = arrayData[38];
+        var updateOrderDrugDispensed = row.find('td').eq(9).text();
 
         $("#deleteScreenOrderNo").val(deleteOrderNo);
         $("#deleteScreenDrugCode").val(deleteDrugCode);
@@ -736,6 +737,7 @@
         $("#deleteScreenStockQuantity").val(deleteDrugStockQty);
         $("#deleteScreenOrderedQuantity").val(deleteDrugOrdered);
         $("#deleteScreenComment").val(deleteDrugComment);
+        $("#deleteScreenDispenseQuantity").val(updateOrderDrugDispensed);
 
 
     });
@@ -828,6 +830,47 @@
     // Delete Order Data End
 
 
+    // Update Order Data 
+    $('#deleteScreenItem').on('click', '#updateScreenMButton', function (e) {
+
+        var updateStockQty = $("#deleteScreenStockQuantity").val();
+        var updateOrderedQty = $("#deleteScreenOrderedQuantity").val();
+        var updateDispensedQuantity = $("#deleteScreenDispenseQuantity").val();
+        var updateOrderPrice = row.find('td').eq(10).text();
+
+        var orderTotal = parseFloat(updateOrderPrice) * parseFloat(updateDispensedQuantity);
+        var orderTotalFloat = parseFloat(orderTotal).toFixed(2);
+
+
+        if (updateDispensedQuantity === "" || updateDispensedQuantity === null || parseInt(updateDispensedQuantity) < 1) {
+
+            bootbox.alert("Please Insert The Dispense Quantity Than Is More That 0 !!!");
+
+        } else if ((parseInt(updateDispensedQuantity) > parseInt(updateStockQty))) {
+
+            bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number !!!");
+            $("#updateDispensedDrugQuantity").val("");
+
+        } else {
+
+            var updateOrderDrugDispensed = row.find('td').eq(9).text(updateDispensedQuantity);
+            var updateOrderTotalPrice = row.find('td').eq(11).text(orderTotalFloat);
+
+
+            $('#deleteScreenItem').modal('hide');
+
+            bootbox.alert({
+                message: "Drug Order Detail is Updated Successfully",
+                title: "Process Result",
+                backdrop: true
+            });
+
+        }
+
+    });
+    // Update Order Data End
+
+
 
     // =====================================================================  Delete Part End  ===================================================================== //
 
@@ -849,6 +892,24 @@
         var arrivalDate = $("#patientOrderDate").val();
         var totalQuantity = $("#screenTotalOrder").val();
         var totalPrice = $("#screenGrandTotal").val();
+
+
+        var tableItem;
+        tableItem = new Array();
+
+        $('#patientScreenDetailsListTable tr').each(function (row, tr) {
+            tableItem[row] = {
+                "drugCode": $(tr).find('td:eq(1)').text(),
+                "drugDesc": $(tr).find('td:eq(2)').text(),
+                "drugOrderedQty": $(tr).find('td:eq(8)').text(),
+                "drugDispenseQty": $(tr).find('td:eq(9)').text(),
+                "comment": $(tr).find('td:eq(12)').text()
+            };
+        });
+
+        tableItem.shift();  // first row will be empty - so remove
+        tableItem = JSON.stringify(tableItem);
+        
 
         if (pmino === "" || pmino === null || orderNo === "" || orderNo === null) {
 
@@ -881,7 +942,8 @@
                             totalQuantity: totalQuantity,
                             totalPrice: totalPrice,
                             pmino: pmino,
-                            pname: pname
+                            pname: pname,
+                            tableItem: tableItem
                         };
 
                         $.ajax({
@@ -981,8 +1043,8 @@
 
             var $tds = $(this).find('td');
             drugTotalOrder = drugTotalOrder + 1;
-            drugPrice = parseFloat($tds.eq(9).text());
-            drugDispensedQty = parseFloat($tds.eq(8).text());
+            drugPrice = parseFloat($tds.eq(10).text());
+            drugDispensedQty = parseFloat($tds.eq(9).text());
             product = drugDispensedQty * drugPrice;
 
             if (isNaN(drugTotalOrder) === true || isNaN(drugPrice) === true || isNaN(drugDispensedQty) === true || isNaN(product) === true) {

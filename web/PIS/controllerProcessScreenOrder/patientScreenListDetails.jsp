@@ -63,6 +63,7 @@
     <th style="text-align: left;">Dose</th>
     <th style="text-align: left;" title="Stock Qty">S.Qty</th>
     <th style="text-align: left;" title="Order Qty">O.Qty</th>
+    <th style="text-align: left;" title="Qty To Dis">Qty To Dis</th>
     <th style="text-align: left;" title="Price Per Unit">P/U</th>
     <th style="text-align: left;" >Total</th>
     <th style="text-align: left;">Comment</th>
@@ -75,7 +76,7 @@
 
             boolean stockCheck = check.isInteger(dataOrderList.get(i).get(18));
             boolean orderedCheck = check.isInteger(dataOrderList.get(i).get(11));
-            boolean priceCheck = check.isDouble(dataOrderList.get(i).get(19));
+            boolean priceCheck = check.isDouble(dataOrderList.get(i).get(19));       
 
             if (stockCheck && orderedCheck && priceCheck) {
 
@@ -84,12 +85,15 @@
 
                 /* Ordered */
                 String ordered = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(11)));
+                
+                 /* Quantity To Dispense */
+                String quantityToDispense = ordered;
 
                 /* Price */
                 String price = formatter.format(Double.parseDouble(dataOrderList.get(i).get(19)));
 
                 /* Total Price */
-                String totalPrice = formatter.format(Double.parseDouble(ordered) * Double.parseDouble(price));
+                String totalPrice = formatter.format(Double.parseDouble(quantityToDispense) * Double.parseDouble(price));              
 
     %>
 
@@ -111,6 +115,7 @@
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(7)%></td> <!-- Dose -->
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= stock%></td> <!-- Stock -->
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= ordered%></td> <!-- Ordered -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= quantityToDispense%></td> <!-- Qty To Dispense -->
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= price%></td> <!-- Price -->
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= totalPrice%></td> <!--  Total -->
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(38)%></td> <!-- Comment -->
