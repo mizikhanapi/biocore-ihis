@@ -53,7 +53,11 @@
                     //                  5                                6                                   7                                          8
                     + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date',  "
                     //                  9                                             10                                    11
-                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes'   "
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes',   "
+                    //                  12                                                                          13                                            
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
+                    //              14                                                                          15           
+                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s') "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -78,7 +82,11 @@
                     //                  5                                6                                   7                                          8
                     + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date',  "
                     //                  9                                             10                                    11
-                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes'   "
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes',   "
+                    //                  12                                                                          13                                            
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
+                    //              14                                                                          15           
+                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s') "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -113,10 +121,10 @@
         <td><%= dataReport.get(s).get(4)%></td>                                            <!-- DR Nmae -->
         <td><%= dataReport.get(s).get(5)%></td>                                            <!-- Nurse ID -->
         <td><%= dataReport.get(s).get(6)%></td>                                            <!-- Nurse Nmae -->
-        <td><%= dataReport.get(s).get(7)%></td>                                            <!-- Register Date -->
-        <td><%= dataReport.get(s).get(8)%></td>                                            <!-- Consult Date -->
-        <td><%= dataReport.get(s).get(9)%></td>                                            <!-- Order Date -->
-        <td><%= dataReport.get(s).get(10)%></td>                                            <!-- Dispense Date -->
+        <td><%= dataReport.get(s).get(12)%></td>                                            <!-- Register Date -->
+        <td><%= dataReport.get(s).get(13)%></td>                                            <!-- Consult Date -->
+        <td><%= dataReport.get(s).get(14)%></td>                                            <!-- Order Date -->
+        <td><%= dataReport.get(s).get(15)%></td>                                            <!-- Dispense Date -->
         <td><%= dataReport.get(s).get(11)%></td>                                           <!-- Duration -->
 
     </tr>

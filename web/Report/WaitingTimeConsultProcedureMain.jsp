@@ -109,14 +109,15 @@
         $("#waitingTimeReportStartDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd/mm/yy'
         });
 
         $("#waitingTimeReportYearEndDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd/mm/yy'
         });
+
 
         $('#waitingTimeReportMonthHolder').show();
         $('#waitingTimeReportDateHolder').hide();
@@ -151,6 +152,12 @@
             var startDate = document.getElementById("waitingTimeReportStartDate").value;
             var endDate = document.getElementById("waitingTimeReportYearEndDate").value;
             var monthString = $("#waitingTimeReportMonth option:selected").text();
+
+            var temp = startDate.split("/");
+            startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
+            temp = endDate.split("/");
+            endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
             var data = {
                 filter: filter,

@@ -47,7 +47,9 @@
             //                                          0                         1            2                     3                               4
             sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name',  "
                     //                  5                                       6                                       7                                                   
-                    + " que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE) AS 'Duration in minutes'  "
+                    + " que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE) AS 'Duration in minutes',"
+                    //                      8                                   9
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s') "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -66,7 +68,9 @@
             //                                          0                         1            2                     3                               4
             sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name',  "
                     //                  5                                       6                                       7                                                   
-                    + " que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE) AS 'Duration in minutes'  "
+                    + " que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE) AS 'Duration in minutes',"
+                    //                      8                                   9
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s') "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -95,8 +99,8 @@
         <td><%= dataReport.get(s).get(2)%></td>                                            <!-- Patient Name -->
         <td><%= dataReport.get(s).get(3)%></td>                                            <!-- DR ID -->
         <td><%= dataReport.get(s).get(4)%></td>                                            <!-- DR Nmae -->
-        <td><%= dataReport.get(s).get(5)%></td>                                            <!-- Register Date -->
-        <td><%= dataReport.get(s).get(6)%></td>                                            <!-- Consult Date -->
+        <td><%= dataReport.get(s).get(8)%></td>                                            <!-- Register Date -->
+        <td><%= dataReport.get(s).get(9)%></td>                                            <!-- Consult Date -->
         <td><%= dataReport.get(s).get(7)%></td>                                           <!-- Duration -->
 
     </tr>

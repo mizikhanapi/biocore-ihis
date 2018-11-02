@@ -50,7 +50,9 @@
                     //                  5                                       6                                   7                
                     + " que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', pis.ORDER_DATE AS 'Pharmacy Get Order', "
                     //                  8                                                                         
-                    + " TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE) AS 'Duration in minutes'  "
+                    + " TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE) AS 'Duration in minutes',"
+                    //                              9                                       10                                      11
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s') "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -71,7 +73,9 @@
                     //                  5                                       6                                    7                
                     + " que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', pis.ORDER_DATE AS 'Pharmacy Get Order', "
                     //                  8                                                                        
-                    + " TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE) AS 'Duration in minutes'  "
+                    + " TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE) AS 'Duration in minutes',"
+                    //                              9                                       10                                      11
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s') "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -100,9 +104,9 @@
         <td><%= dataReport.get(s).get(2)%></td>                                            <!-- Patient Name -->
         <td><%= dataReport.get(s).get(3)%></td>                                            <!-- DR ID -->
         <td><%= dataReport.get(s).get(4)%></td>                                            <!-- DR Nmae -->
-        <td><%= dataReport.get(s).get(5)%></td>                                            <!-- Register Date -->
-        <td><%= dataReport.get(s).get(6)%></td>                                            <!-- Consult Date -->
-        <td><%= dataReport.get(s).get(7)%></td>                                            <!-- Order Date -->
+        <td><%= dataReport.get(s).get(9)%></td>                                            <!-- Register Date -->
+        <td><%= dataReport.get(s).get(10)%></td>                                            <!-- Consult Date -->
+        <td><%= dataReport.get(s).get(11)%></td>                                            <!-- Order Date -->
         <td><%= dataReport.get(s).get(8)%></td>                                           <!-- Duration -->
 
     </tr>
