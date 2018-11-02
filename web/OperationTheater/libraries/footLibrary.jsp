@@ -19,3 +19,4 @@
 <script src="libraries/js/create_destroy_loading.js" type="text/javascript"></script>
 <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
 <script src="../assets/js/Chart.bundle.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
