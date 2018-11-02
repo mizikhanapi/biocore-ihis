@@ -45,7 +45,10 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
+                                <h3>SCREENING DRUG ORDER</h3>
 
+                                <hr/>
+                                
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">

@@ -52,6 +52,10 @@
                             <div  class="thumbnail">
 
 
+                                <h3>DISPENSE DRUG ORDER</h3>
+
+                                <hr/>
+
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">

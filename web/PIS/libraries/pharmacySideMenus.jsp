@@ -55,7 +55,7 @@
                 
         %>
         <li>
-            <a href="Dispense_Drug_Order_Disabled"><i class="fa fa-filter fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a>
+            <a href="Dispense_Drug_Order_Disabled"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a>
         </li>           
         
         <%            }%>
