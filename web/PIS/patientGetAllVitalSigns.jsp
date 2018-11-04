@@ -17,41 +17,71 @@
     LookupHelper lookH = new LookupHelper(hfc_cd);
 
     String sql = "";
+    String sqlGraph = "";
     String selectSame = " date_format(date(episode_date), '%d/%m/%Y'), date_format(encounter_date, '%H:%i'), hfc_cd ";
 
     //================================ vital signs =============================================================================
     //              0 1 2               3               4                   5               6                   7               8               9                   10              11          12 
-    sql = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') "
+    sqlGraph = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') "
             + " FROM (SELECT * FROM lhr_bp WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    //              0 1 2               3               4                   5               6                   7               8               9                   10              11          12 
+    sql = "SELECT " + selectSame + ", systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse, date_format(encounter_date, '%d/%m/%Y %H:%i') "
+            + " FROM lhr_bp WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataBP = con.getData(sql);
+    ArrayList<ArrayList<String>> dataBPGraph = con.getData(sqlGraph);
 
-    sql = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+    //                  0 1 2           3                   4
+    sqlGraph = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') "
             + " FROM (SELECT * FROM lhr_respiratory_rate WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    //                  0 1 2           3                   4
+    sql = "SELECT " + selectSame + ", rate, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM lhr_respiratory_rate WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataRespiratory = con.getData(sql);
+    ArrayList<ArrayList<String>> dataRespiratoryGraph = con.getData(sqlGraph);
 
-    sql = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+    //                  0 1 2               3                           4
+    sqlGraph = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
             + " FROM (SELECT * FROM lhr_spo2 WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    //                  0 1 2               3                           4
+    sql = "SELECT " + selectSame + ", spo2_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM lhr_spo2 WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataSPO = con.getData(sql);
+    ArrayList<ArrayList<String>> dataSPOGraph = con.getData(sqlGraph);
 
-    sql = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
-            + " FROM (SELECT * from lhr_temperature where pmi_no = '" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
+    //                  0 1 2                   3                           4
+    sqlGraph = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM (SELECT * FROM lhr_temperature where pmi_no = '" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    //                  0 1 2                   3                           4
+    sql = "select " + selectSame + ", temperature_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM lhr_temperature where pmi_no = '" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataTemper = con.getData(sql);
+    ArrayList<ArrayList<String>> dataTemperGraph = con.getData(sqlGraph);
 
-    sql = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+    //                  0 1 2               3                               4
+    sqlGraph = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') "
             + " FROM (SELECT * FROM lhr_blood_glucose WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    //                  0 1 2               3                               4
+    sql = "SELECT " + selectSame + ", blood_glucose_level, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM lhr_blood_glucose WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataGlucose = con.getData(sql);
+    ArrayList<ArrayList<String>> dataGlucoseGraph = con.getData(sqlGraph);
 
-    sql = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+    //                  0 1 2               3               4                                 5
+    sqlGraph = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
             + " FROM (SELECT * FROM lhr_weight_height WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    //                  0 1 2               3               4                                 5
+    sql = "SELECT " + selectSame + ", weight_reading, height_reading, date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM lhr_weight_height WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataHtWt = con.getData(sql);
+    ArrayList<ArrayList<String>> dataHtWtGraph = con.getData(sqlGraph);
 
-    sql = "SELECT " + selectSame + ", total_cholesterol,total_unit,"
+    sqlGraph = "SELECT " + selectSame + ", total_cholesterol,total_unit,"
             + "ldl_cholesterol,ldl_unit,"
             + "hdl_cholesterol,hdl_unit"
             + ",triglycerides,triglycerides_unit"
@@ -60,7 +90,16 @@
             + ", date_format(encounter_date,'%d/%m/%Y %H:%i') "
             + " FROM (SELECT * FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7) "
             + " SUB ORDER BY episode_date ASC; ";
+    sql = "SELECT " + selectSame + ", total_cholesterol,total_unit,"
+            + "ldl_cholesterol,ldl_unit,"
+            + "hdl_cholesterol,hdl_unit"
+            + ",triglycerides,triglycerides_unit"
+            + ",non_hdl_c,non_hdl_c_unit"
+            + ",tg_to_hdl,tg_to_hdl_ratio_unit"
+            + ", date_format(encounter_date,'%d/%m/%Y %H:%i') "
+            + " FROM lhr_cholesterol WHERE pmi_no='" + pmi_no + "' ORDER BY encounter_date DESC LIMIT 7; ";
     ArrayList<ArrayList<String>> dataCholesterol = con.getData(sql);
+    ArrayList<ArrayList<String>> dataCholesterolGraph = con.getData(sqlGraph);
 
     // ================================================================== end vital signs ================================================================== //
     boolean isVtsExist = (dataBP.size() > 0 || dataSPO.size() > 0 || dataTemper.size() > 0 || dataHtWt.size() > 0 || dataGlucose.size() > 0
@@ -87,7 +126,7 @@
                         <%                    for (int i = 0; i < dataBP.size(); i++) {
 
                         %>
-                    <p class="hidden"><%=String.join("|", dataBP.get(i))%></p>
+                    <p class="hidden"><%=String.join("|", dataBPGraph.get(i))%></p>
                     <%
                         }//end for
                     %>
@@ -166,7 +205,7 @@
                         <%                    for (int i = 0; i < dataTemper.size(); i++) {
 
                         %>
-                    <p class="hidden"><%=String.join("|", dataTemper.get(i))%></p>
+                    <p class="hidden"><%=String.join("|", dataTemperGraph.get(i))%></p>
                     <%
                         }//end for
                     %>
@@ -216,7 +255,7 @@
                         <%                    for (int i = 0; i < dataSPO.size(); i++) {
 
                         %>
-                    <p class="hidden"><%=String.join("|", dataSPO.get(i))%></p>
+                    <p class="hidden"><%=String.join("|", dataSPOGraph.get(i))%></p>
                     <%
                         }//end for
                     %>
@@ -266,7 +305,7 @@
                         <%                    for (int i = 0; i < dataGlucose.size(); i++) {
 
                         %>
-                    <p class="hidden"><%=String.join("|", dataGlucose.get(i))%></p>
+                    <p class="hidden"><%=String.join("|", dataGlucoseGraph.get(i))%></p>
                     <%
                         }//end for
                     %>
@@ -316,7 +355,7 @@
                         <%                    for (int i = 0; i < dataHtWt.size(); i++) {
 
                         %>
-                    <p class="hidden"><%=String.join("|", dataHtWt.get(i))%></p>
+                    <p class="hidden"><%=String.join("|", dataHtWtGraph.get(i))%></p>
                     <%
                         }//end for
                     %>
@@ -366,7 +405,7 @@
                         <%                    for (int i = 0; i < dataRespiratory.size(); i++) {
 
                         %>
-                    <p class="hidden"><%=String.join("|", dataRespiratory.get(i))%></p>
+                    <p class="hidden"><%=String.join("|", dataRespiratoryGraph.get(i))%></p>
                     <%
                         }//end for
                     %>
