@@ -157,8 +157,8 @@
 
                         </div>
                     </div>
-                        
-                                            
+
+
                 </div>
             </div>
         </div>
@@ -338,7 +338,7 @@
                     dateFrom: $('#REP_dateFrom').val(),
                     dateTo: $('#REP_dateTo').val()
                 };
-                
+
                 $.ajax({
                     timeout: 60000,
                     type: 'POST',
@@ -359,14 +359,14 @@
             }
 
             function MM_getDiagnosisStatistic() {
-                
-                 var data = {
-                        how: $('#REP_viewBy').val(),
-                        leDate: $('#REP_date').val(),
-                        dateFrom: $('#REP_dateFrom').val(),
-                        dateTo: $('#REP_dateTo').val()
-                    };
-                
+
+                var data = {
+                    how: $('#REP_viewBy').val(),
+                    leDate: $('#REP_date').val(),
+                    dateFrom: $('#REP_dateFrom').val(),
+                    dateTo: $('#REP_dateTo').val()
+                };
+
                 $.ajax({
                     timeout: 120000,
                     data: data,
@@ -386,17 +386,17 @@
             }
 
             function MM_getChiefComolaintStatistic() {
-                
+
                 var data = {
-                        how: $('#REP_viewBy').val(),
-                        leDate: $('#REP_date').val(),
-                        dateFrom: $('#REP_dateFrom').val(),
-                        dateTo: $('#REP_dateTo').val()
-                    };
-                    
+                    how: $('#REP_viewBy').val(),
+                    leDate: $('#REP_date').val(),
+                    dateFrom: $('#REP_dateFrom').val(),
+                    dateTo: $('#REP_dateTo').val()
+                };
+
                 $.ajax({
                     timeout: 60000,
-                    data:data,
+                    data: data,
                     type: 'POST',
                     url: "MainMenu_control/getCheifComplaintStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
@@ -414,14 +414,14 @@
             }
 
             function MM_getDrugStatistic() {
-                
-                 var data = {
-                        how: $('#REP_viewBy').val(),
-                        leDate: $('#REP_date').val(),
-                        dateFrom: $('#REP_dateFrom').val(),
-                        dateTo: $('#REP_dateTo').val()
-                    };
-                    
+
+                var data = {
+                    how: $('#REP_viewBy').val(),
+                    leDate: $('#REP_date').val(),
+                    dateFrom: $('#REP_dateFrom').val(),
+                    dateTo: $('#REP_dateTo').val()
+                };
+
                 $.ajax({
                     timeout: 60000,
                     data: data,
@@ -590,16 +590,36 @@
                     var title = "";
 
                     if (how === "d") {
-                        title = "Date " + $('#REP_date').val();
+
+                        var dataFormInput = $('#REP_date').val();
+                        var temp = dataFormInput.split("-");
+                        dataFormInput = temp[2] + "/" + temp[1] + "/" + temp[0];
+                        title = "Date " + dataFormInput;
+
                     } else if (how === "m") {
+                        
                         title = "Month " + monthNames[tarikh.getMonth()] + " " + tarikh.getFullYear();
+                        
                     } else if (how === "y") {
+                        
                         title = "Year " + tarikh.getFullYear();
+                        
                     } else {
-                        title = $('#REP_dateFrom').val() + " until " + $('#REP_dateTo').val();
+
+                        var dataFormInputFrom = $('#REP_dateFrom').val();
+                        var tempFrom = dataFormInputFrom.split("-");
+                        dataFormInputFrom = tempFrom[2] + "/" + tempFrom[1] + "/" + tempFrom[0];
+
+                        var dataFormInputTo = $('#REP_dateTo').val();
+                        var tempTo = dataFormInputTo.split("-");
+                        dataFormInputTo = tempTo[2] + "/" + tempTo[1] + "/" + tempTo[0];
+
+                        title = dataFormInputFrom + " until " + dataFormInputTo;
+                        
                     }
 
                     $('#REP_statTitle').text(title);
+                    
                 }
             });
 
