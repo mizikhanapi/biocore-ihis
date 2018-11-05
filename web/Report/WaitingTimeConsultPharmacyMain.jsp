@@ -64,11 +64,11 @@
             <div class="form-group">
                 <label class="col-md-2 control-label" for="textinput">Start Date</label>
                 <div class="col-md-4">
-                    <input id="waitingTimeReportStartDate" name="startDate"  type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
+                    <input id="waitingTimeReportStartDate" name="startDate"  type="text" class="form-control datepicker" placeholder="DD/MM/YYYY" readonly>
                 </div>
                 <label class="col-md-2 control-label" for="textinput">To</label>
                 <div class="col-md-4">
-                    <input id="waitingTimeReportYearEndDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
+                    <input id="waitingTimeReportYearEndDate" name="endDate" type="text" class="form-control datepicker" placeholder="DD/MM/YYYY" readonly>
                 </div>
             </div>
         </div>
