@@ -53,7 +53,7 @@
                     //                  5                                6                                   7                                          8
                     + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date',  "
                     //                  9                                             10                                    11
-                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes',   "
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE),0) AS 'Duration in minutes',   "
                     //                  12                                                                          13                                            
                     + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
                     //              14                                                                          15           
@@ -72,6 +72,7 @@
                     + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE) "
                     // WHERE SQL
                     + " WHERE que.hfc_cd='" + hfc + "' AND YEAR(que.episode_date)='" + year + "' AND MONTH(que.episode_date)='" + month + "' "
+                    + " AND disp.DISPENSED_DATE != '0000-00-00 00:00:00' "
                     + " GROUP BY que.episode_date "
                     + " ORDER BY que.episode_date; ";
 
@@ -82,7 +83,7 @@
                     //                  5                                6                                   7                                          8
                     + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date',  "
                     //                  9                                             10                                    11
-                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE) AS 'Duration in minutes',   "
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE),0) AS 'Duration in minutes',   "
                     //                  12                                                                          13                                            
                     + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
                     //              14                                                                          15           
@@ -101,6 +102,7 @@
                     + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE) "
                     // WHERE SQL
                     + " WHERE que.hfc_cd='" + hfc + "' AND que.episode_date BETWEEN '" + startDate + "' AND '" + endDate + "' "
+                    + " AND disp.DISPENSED_DATE != '0000-00-00 00:00:00' "
                     + " GROUP BY que.episode_date "
                     + " ORDER BY que.episode_date; ";
 
