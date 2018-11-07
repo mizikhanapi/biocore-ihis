@@ -170,21 +170,21 @@
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Stock on hand/current value</label>
+                            <label class="col-md-4 control-label" for="textinput" id="currentstkval">Stock On Hand</label>
                             <div class="col-md-4">
                                 <input id="stockadjustcurrent" name="stockadjustcurrent" type="text" placeholder="Stock Quantity"  class="form-control input-md" readonly>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Quantity Adjusted/Adjusted value *</label>
+                            <label class="col-md-4 control-label" for="textinput" id="adjustedstkval">Quantity Adjusted *</label>
                             <div class="col-md-4">
                                 <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity adjusted/adjusted value" class="form-control input-md numbersOnly" >
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">New quantity on hand/changed value *</label>
+                            <label class="col-md-4 control-label" for="textinput" id="newstkval">New quantity on hand *</label>
                             <div class="col-md-4">
                                 <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="Please Insert Quantity on hand/changed value" class="form-control input-md numbersOnly">
                             </div>
@@ -205,7 +205,18 @@
 
 <script>
     $(document).ready(function () {
-        
+        $("#radioMode").on('change',function(){
+           var val = $(this).val();
+           if(val ==="QA"){
+               $("#currentstkval").text("Stock On Hand");
+               $("#adjustedstkval").text("Quantity Adjusted *");
+               $("#newstkval").text("New quantity on hand *");
+           }else if(val==="VA"){
+               $("#currentstkval").text("Current Value");
+               $("#adjustedstkval").text("Adjusted value *");
+               $("#newstkval").text("New Changed Value *");
+           }
+        });
             //function for validate numbersonly
     $('.numbersOnly').keyup(function () {
         if (this.value !== this.value.replace(/[^0-9\.-]/g, '')) {

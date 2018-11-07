@@ -23,10 +23,11 @@
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
 
-    //                                      0            1            2         3            4           5           6        
-    String invoiceDetailList = "SELECT vd.invoice_no,vd.txt_date,vd.item_cd,vd.item_desc,vd.item_amt,vd.quantity,vd.created_by "
+    //                                      0            1            2         3            4           5           6           7
+    String invoiceDetailList = "SELECT vd.invoice_no,vd.txt_date,vd.item_cd,vd.item_desc,vd.item_amt,vd.quantity,vd.created_by,u.user_name "
             + " FROM fap_vendor_detail vd  "
             + " LEFT JOIN fap_vendor_header vh ON (vh.invoice_no = vd.invoice_no) "
+            + " LEFT JOIN adm_users u ON (vd.created_by = u.user_id) "
             + " WHERE  vd.invoice_no = '" + invoiceNo + "' "
             + " AND vh.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " AND vh.discipline = '" + DISCIPLINE_CODE + "'  ";
@@ -59,7 +60,7 @@
 <td ><%= formatter.format(Double.parseDouble(dataInvoiceDetailList.get(i).get(4)) / Double.parseDouble(dataInvoiceDetailList.get(i).get(5)))%></td> <!-- Item Price (RM) -->
 <td ><%= dataInvoiceDetailList.get(i).get(5)%></td> <!-- Item Quantity (UNIT) -->
 <td ><%= dataInvoiceDetailList.get(i).get(4)%></td> <!-- Total Price (RM) -->
-<td ><%= dataInvoiceDetailList.get(i).get(6)%> </td> <!-- Created By -->
+<td ><%= dataInvoiceDetailList.get(i).get(7)%> </td> <!-- Created By -->
 </tr>
 
 <%  }

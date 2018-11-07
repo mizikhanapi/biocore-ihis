@@ -96,8 +96,8 @@
         <td><%= dataOrderList.get(i).get(5)%></td><!-- date -->
         <td><%= status%></td> <!-- status -->
         <td>
-            <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
-            <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
+            <button id="MOD_btnPrepare" class="btn btn-default btn-danger" <%out.print(prepareDisabled);%>  data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
+            <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
             <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
         </td><!-- perform -->
 
@@ -111,14 +111,7 @@
 </table>
 
 <script>
-    function gettblerow(){
-        var rows = $('#tablepositemprepare tbody tr').length;
-        if(rows > 0){
-            $('#MOD_btnPerform').prop('disabled', false);
-        }else{
-            $('#MOD_btnPerform').prop('disabled', true);
-        }
-    }
+
     
     $('#risManageOrderDetailsListTable').DataTable({
         "paging": false,
@@ -134,7 +127,6 @@
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
         $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
-        gettblerow();
         $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
 
@@ -324,11 +316,14 @@
                 var customer_id = "<%=user%>";
                 var order_no = $("#risOrderNo").val();
                 var txt_date = $("#risOrderDate").val();
+                var dt = new Date(txt_date);
+                var newdt = dt.getDate()+"/"+dt.getMonth()+"/"+dt.getFullYear()+" "+dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds();
+                console.log(newdt);
                 var item_amt = newTotal;
                 var quantity = itemQuantity;
                 var typebutton = "release";
                 var stockOrderListorder = [];
-                var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
+                var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
                 var stringDetail = "";
                 var grandTotalpriceorder = 0;
                 var grandTotalqtyorder = 0, stringDetailorder;
@@ -409,7 +404,6 @@
                                         bootbox.alert("Item failed to add!");
 
                                     }
-                                    gettblerow();
                                     //resetPage();
 
                                 },
@@ -512,22 +506,25 @@
         var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
         var orivaluqty = parseInt(row.find('td').eq(4).text());
         var changedqty = parseInt(itemQuantity) - orivaluqty;
-        row.find('td').eq(0).text(itemCode);
-        row.find('td').eq(1).text(itemName);
-        row.find('td').eq(2).text(itemPrice);
-        row.find('td').eq(3).text(itemStock);
-        row.find('td').eq(4).text(itemQuantity);
-        row.find('td').eq(5).text(newTotal);
-        //row.find('td').eq(6).text(itemComment);
-        row.find('#disciplineStockA').val(disrec);
-        row.find('#subdisciplineStockA').val(subdusrec);
-        row.find('#disciplineStockOrderingA').val(disorder);
-        row.find('#subdisciplineStockOrderingA').val(subdisorder);
-        row.find('#stockitemtypeA').val(temtype);
+//        row.find('td').eq(0).text(itemCode);
+//        row.find('td').eq(1).text(itemName);
+//        row.find('td').eq(2).text(itemPrice);
+//        row.find('td').eq(3).text(itemStock);
+//        row.find('td').eq(4).text(itemQuantity);
+//        row.find('td').eq(5).text(newTotal);
+//        //row.find('td').eq(6).text(itemComment);
+//        row.find('#disciplineStockA').val(disrec);
+//        row.find('#subdisciplineStockA').val(subdusrec);
+//        row.find('#disciplineStockOrderingA').val(disorder);
+//        row.find('#subdisciplineStockOrderingA').val(subdisorder);
+//        row.find('#stockitemtypeA').val(temtype);
 
         $('#POSorderNewStockOrder').modal('hide');
 
-        datatableTableCreate();
+        //datatableTableCreate();
+        var dataOrder = {
+            orderNo: order_no
+        };
         var datasupdate = {orderno:order_no,
             changeqty:changedqty,
             amount:newTotal,
@@ -543,10 +540,25 @@
            success:function(databack){
                console.log(databack);
                if(databack.trim()==="OK"){
-                   bootbox.alert({
-                        message: "Item is Updated Successfully",
-                        title: "Process Result",
-                        backdrop: true
+                   $.ajax({
+                        url: "../POM/procedure_controller/procedure_select.jsp",
+                        type: "post",
+                        data: dataOrder,
+                        success: function (databack) {
+                            datatableTableDestroy();
+                            $('#tablepositemprepare tbody').empty();
+                            if (databack.trim() !== "NO") {
+
+                                $('#tablepositemprepare').append(databack.trim());
+                                bootbox.alert({
+                                    message: "Item is Updated Successfully",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
+                                datatableTableCreate();
+                            }
+
+                        }
                     });
                 }else{
                     bootbox.alert({
@@ -557,11 +569,7 @@
                 }
            }
         });
-        bootbox.alert({
-            message: "Item is Updated Successfully",
-            title: "Process Result",
-            backdrop: true
-        });
+
 
     });
     // Delivery Update Function End        
@@ -633,6 +641,7 @@
                                     type: "post",
                                     data: dataOrder,
                                     success:function(databack){
+                                        datatableTableDestroy();
                                         $('#tablepositemprepare tbody').empty();
                                         if(databack.trim()!== "NO"){
 
@@ -645,7 +654,6 @@
                                             datatableTableCreate();
                                             
                                         }
-                                        gettblerow();
 
                                     }
                                 });

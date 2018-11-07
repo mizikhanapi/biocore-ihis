@@ -27,16 +27,14 @@
     Conn conn = new Conn();
     String orderNo = request.getParameter("orderNo");
 
-  
 //                                                   0                                              1                                   2                        3                  4               5        6              7               8             9            10
     String orderList = "select date_format(d.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(d.`endDateTime`, '%d/%m/%Y %H:%i'), pro.procedure_cd, pro.`procedure_longName`, d.ot_room_no, rm.room_name, u.`USER_ID`, u.`USER_NAME`, d.order_status, d.comments, d.order_no "
             + "FROM opt_order_detail d "
-            + "left join opt_room rm on rm.hfc_cd ='"+hfc_cd+"' and rm.room_no=d.ot_room_no "
-            + "left join opt_procedure pro on pro.hfc_cd='"+hfc_cd+"' and pro.category_cd=d.category_cd and pro.procedure_cd = d.procedure_cd "
+            + "left join opt_room rm on rm.hfc_cd ='" + hfc_cd + "' and rm.room_no=d.ot_room_no "
+            + "left join opt_procedure pro on pro.hfc_cd='" + hfc_cd + "' and pro.category_cd=d.category_cd and pro.procedure_cd = d.procedure_cd "
             + "left join adm_users u on u.`USER_ID` = d.consultant_id "
             + "where d.order_status in ('0', '1', '2', '3') AND d.order_no = '" + orderNo + "' "
             + "order by d.`startDateTime`, d.`endDateTime`;";
-           
 
     ArrayList<ArrayList<String>> dataOrderList;
     dataOrderList = conn.getData(orderList);
@@ -70,20 +68,18 @@
                 status = "In progress. Please write the report to complete this order.";
                 performDisabled = "disabled";
                 cancelDisabled = "disabled";
-            }else if (status.equalsIgnoreCase("2")) {
+            } else if (status.equalsIgnoreCase("2")) {
                 status = "Completed";
                 performDisabled = "disabled";
                 prepareDisabled = "disabled";
                 cancelDisabled = "disabled";
-            
-            }else if(status.equalsIgnoreCase("3")){
+
+            } else if (status.equalsIgnoreCase("3")) {
                 status = "Result Rejected. Please redo.";
-               // prepareDisabled = "disabled";
+                // prepareDisabled = "disabled";
             }
-            
-                       
+
 //            String test = String.join("|", dataOrderList.get(i));
-            
 //            out.print(dataOrderList.get(i).toString());
 //            out.print(test);
 
@@ -99,12 +95,12 @@
         <td><%= dataOrderList.get(i).get(9)%></td> <!-- comment -->
         <td><%= status%></td> <!-- status -->
         <td>
-        <button id="MOD_btnPrepareItem" class="btn btn-default" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
-        <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
-        <button id="MOD_btnReport" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #00dd1c;" ></i>&nbsp;&nbsp;&nbsp;Write Report</button><!-- report -->
-        <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
+            <button id="MOD_btnPrepareItem" class="btn btn-default btn-danger" data-toggle="modal"   data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
+            <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
+            <button id="MOD_btnReport" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #00dd1c;" ></i>&nbsp;&nbsp;&nbsp;Write Report</button><!-- report -->
+            <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
         </td><!-- perform -->
-       
+
     </tr>
 
 
@@ -118,7 +114,7 @@
     $('#risManageOrderDetailsListTable').DataTable({
         "paging": false,
         "searching": false,
-       // "scrollX": true,
+        // "scrollX": true,
         "info": false,
         "language": {
             "emptyTable": "No Request Available To Display"
@@ -127,21 +123,12 @@
 
 </script>
 <script>
-    function gettblerow(){
-        var rows = $('#tablepositemprepare tbody tr').length;
-        if(rows > 0){
-            $('#risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', false);
-        }else{
-            $('#risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', true);
-        }
-    }
-    
+
 
     $('#risManageOrderDetailsListTable').on('click', '#MOD_btnPrepareItem', function () {
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
         $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
-        gettblerow();
         $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
 
@@ -331,11 +318,15 @@
                 var customer_id = "<%=user%>";
                 var order_no = $("#risOrderNo").val();
                 var txt_date = $("#risOrderDate").val();
+
+                var dt = new Date(txt_date);
+                var newdt = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
                 var item_amt = newTotal;
                 var quantity = itemQuantity;
                 var typebutton = "release";
                 var stockOrderListorder = [];
-                var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
+                var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
                 var stringDetail = "";
                 var grandTotalpriceorder = 0;
                 var grandTotalqtyorder = 0, stringDetailorder;
@@ -410,13 +401,12 @@
                                             <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"><input type="hidden" id="stockitemtypeA" value="' + temtype + '"></td>\n\
                                         </tr>');
                                         datatableTableCreate();
-                                        
+
                                     } else if (datas.trim() === "Failed") {
 
                                         bootbox.alert("Item failed to add!");
 
                                     }
-                                    gettblerow();
                                     //resetPage();
 
                                 },
@@ -429,7 +419,7 @@
                         }
                     }
                 });
-                
+
 
             } else {
 
@@ -461,11 +451,11 @@
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
 
         $('#orderNewStockOrderSearchItemInput').prop('disabled', true);
-        
+
         var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
         var orivaluqty = parseInt(row.find('td').eq(4).text());
         var changedqty = parseInt(itemQuantity) - orivaluqty;
-        
+
         var itemCode = row.find('td').eq(0).text();
         var itemName = row.find('td').eq(1).text();
         var itemPrice = row.find('td').eq(2).text();
@@ -478,7 +468,7 @@
         var disorder = $('#disciplineStockOrderingA').val();
         var subdisorder = $('#subdisciplineStockOrderingA').val();
         var temtype = row.find('td').eq(5).find('#stockitemtypeA').val();
-        
+
         $('#orderNewStockOrderItemDisplayItemCode').val(itemCode);
         $('#orderNewStockOrderItemDisplayItemName').val(itemName);
         $('#orderNewStockOrderItemDisplayItemPrice').val(itemPrice);
@@ -491,8 +481,8 @@
         $('#disciplineStockOrdering').val(disorder);
         $('#subdisciplineStockOrdering').val(subdisorder);
         $('#stockitemtype').val(temtype);
-        
-        
+
+
 
     });
     // Fetch Data For Update And Delete Function End
@@ -519,130 +509,144 @@
         var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
         var orivaluqty = parseInt(row.find('td').eq(4).text());
         var changedqty = parseInt(itemQuantity) - orivaluqty;
-        row.find('td').eq(0).text(itemCode);
-        row.find('td').eq(1).text(itemName);
-        row.find('td').eq(2).text(itemPrice);
-        row.find('td').eq(3).text(itemStock);
-        row.find('td').eq(4).text(itemQuantity);
-        row.find('td').eq(5).text(newTotal);
-        //row.find('td').eq(6).text(itemComment);
-        row.find('#disciplineStockA').val(disrec);
-        row.find('#subdisciplineStockA').val(subdusrec);
-        row.find('#disciplineStockOrderingA').val(disorder);
-        row.find('#subdisciplineStockOrderingA').val(subdisorder);
-        row.find('#stockitemtypeA').val(temtype);
+//        row.find('td').eq(0).text(itemCode);
+//        row.find('td').eq(1).text(itemName);
+//        row.find('td').eq(2).text(itemPrice);
+//        row.find('td').eq(3).text(itemStock);
+//        row.find('td').eq(4).text(itemQuantity);
+//        row.find('td').eq(5).text(newTotal);
+//        //row.find('td').eq(6).text(itemComment);
+//        row.find('#disciplineStockA').val(disrec);
+//        row.find('#subdisciplineStockA').val(subdusrec);
+//        row.find('#disciplineStockOrderingA').val(disorder);
+//        row.find('#subdisciplineStockOrderingA').val(subdisorder);
+//        row.find('#stockitemtypeA').val(temtype);
 
         $('#POSorderNewStockOrder').modal('hide');
 
-        datatableTableCreate();
-        var datasupdate = {orderno:order_no,
-            changeqty:changedqty,
-            amount:newTotal,
-            totalqty:itemQuantity,
-            itemcode:itemCode,
-            itemtype:temtype            
+        //datatableTableCreate();
+        var dataOrder = {
+            orderNo: order_no
+        };
+        var datasupdate = {orderno: order_no,
+            changeqty: changedqty,
+            amount: newTotal,
+            totalqty: itemQuantity,
+            itemcode: itemCode,
+            itemtype: temtype
         };
         console.log(datasupdate);
         $.ajax({
-           type: "post",
-           url: "../POM/procedure_controller/item_update.jsp",
-           data :datasupdate ,
-           success:function(databack){
-               console.log(databack);
-               if(databack.trim()==="OK"){
-                   bootbox.alert({
-                        message: "Item is Updated Successfully",
-                        title: "Process Result",
-                        backdrop: true
+            type: "post",
+            url: "../POM/procedure_controller/item_update.jsp",
+            data: datasupdate,
+            success: function (databack) {
+                console.log(databack);
+                if (databack.trim() === "OK") {
+                    $.ajax({
+                        url: "../POM/procedure_controller/procedure_select.jsp",
+                        type: "post",
+                        data: dataOrder,
+                        success: function (databack) {
+                            datatableTableDestroy();
+                            $('#tablepositemprepare tbody').empty();
+                            if (databack.trim() !== "NO") {
+
+                                $('#tablepositemprepare').append(databack.trim());
+                                bootbox.alert({
+                                    message: "Item is Updated Successfully",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
+                                datatableTableCreate();
+                            }
+
+                        }
                     });
-                }else{
+                    
+                } else {
                     bootbox.alert({
                         message: "Item is Fail to update",
                         title: "Process Result",
                         backdrop: true
                     });
                 }
-           }
-        });
-        bootbox.alert({
-            message: "Item is Updated Successfully",
-            title: "Process Result",
-            backdrop: true
+            }
         });
 
     });
     // Delivery Update Function End        
 
-        // Delete Order Data 
-        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
+    // Delete Order Data 
+    $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
 
-            var itemCode = $('#orderNewStockOrderItemDisplayItemCode').val();
-            var itemName = $('#orderNewStockOrderItemDisplayItemName').val();
-            var itemPrice = $('#orderNewStockOrderItemDisplayItemPrice').val();
-            var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
-            //var itemComment = $('#orderNewStockOrderItemInputComment').val();
-            var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
-            var order_no = $("#risOrderNo").val();
-            var disrec = $('#disciplineStock').val();
-            var subdusrec = $('#subdisciplineStock').val();
-            var disorder = $('#disciplineStockOrdering').val();
-            var subdisorder = $('#subdisciplineStockOrdering').val();
-            var temtype = $('#stockitemtype').val();
+        var itemCode = $('#orderNewStockOrderItemDisplayItemCode').val();
+        var itemName = $('#orderNewStockOrderItemDisplayItemName').val();
+        var itemPrice = $('#orderNewStockOrderItemDisplayItemPrice').val();
+        var itemQuantity = $('#orderNewStockOrderItemInputQuantity').val();
+        //var itemComment = $('#orderNewStockOrderItemInputComment').val();
+        var itemStock = $('#orderNewStockOrderItemDisplayItemStockQuantity').val();
+        var order_no = $("#risOrderNo").val();
+        var disrec = $('#disciplineStock').val();
+        var subdusrec = $('#subdisciplineStock').val();
+        var disorder = $('#disciplineStockOrdering').val();
+        var subdisorder = $('#subdisciplineStockOrdering').val();
+        var temtype = $('#stockitemtype').val();
 
-            var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
-            var orivaluqty = parseInt(row.find('td').eq(4).text());
-            var changedqty = parseInt(itemQuantity) - orivaluqty;
-            
-            var datasdelete = {orderno:order_no,
-                changeqty:changedqty,
-                amount:newTotal,
-                totalqty:itemQuantity,
-                itemcode:itemCode,
-                itemtype:temtype            
-            };
-        
-                var dataOrder = {
-                orderNo: order_no
-            };
+        var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
+        var orivaluqty = parseInt(row.find('td').eq(4).text());
+        var changedqty = parseInt(itemQuantity) - orivaluqty;
 
-            console.log(datasdelete);
+        var datasdelete = {orderno: order_no,
+            changeqty: changedqty,
+            amount: newTotal,
+            totalqty: itemQuantity,
+            itemcode: itemCode,
+            itemtype: temtype
+        };
 
-            $('#updateStockOrder').modal('hide');
+        var dataOrder = {
+            orderNo: order_no
+        };
 
-            bootbox.confirm({
-                message: "Are you sure want to delete this item ?",
-                title: "Delete Item?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
+        console.log(datasdelete);
+
+        $('#updateStockOrder').modal('hide');
+
+        bootbox.confirm({
+            message: "Are you sure want to delete this item ?",
+            title: "Delete Item?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
                 },
-                callback: function (result) {
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
 
-                    if (result === true) {
+                if (result === true) {
 
-                        $.ajax({
-                            url: "../POM/procedure_controller/item_delete.jsp",
-                            type: "post",
-                            data: datasdelete,
-                            timeout: 10000, // 10 seconds
-                            success: function (datas) {
-                                console.log(datas);
-                                if (datas.trim() === 'OK') {
-                                  
-                                    $.ajax({
+                    $.ajax({
+                        url: "../POM/procedure_controller/item_delete.jsp",
+                        type: "post",
+                        data: datasdelete,
+                        timeout: 10000, // 10 seconds
+                        success: function (datas) {
+                            console.log(datas);
+                            if (datas.trim() === 'OK') {
+
+                                $.ajax({
                                     url: "../POM/procedure_controller/procedure_select.jsp",
                                     type: "post",
                                     data: dataOrder,
-                                    success:function(databack){
-                                        
+                                    success: function (databack) {
+                                        datatableTableDestroy();
                                         $('#tablepositemprepare tbody').empty();
-                                        if(databack.trim()!== "NO"){
+                                        if (databack.trim() !== "NO") {
 
                                             $('#tablepositemprepare').append(databack.trim());
                                             bootbox.alert({
@@ -651,42 +655,41 @@
                                                 backdrop: true
                                             });
                                             datatableTableCreate();
-                                            
+
                                         }
-                                        gettblerow();
 
                                     }
                                 });
 
-                                } else {
+                            } else {
 
-                                    bootbox.alert({
-                                        message: "Item Delete Failed",
-                                        title: "Process Result",
-                                        backdrop: true
-                                    });
+                                bootbox.alert({
+                                    message: "Item Delete Failed",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
 
 
-                                }
-
-                            },
-                            error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
                             }
 
-                        });
+                        },
+                        error: function (err) {
+                            alert("Error! Deletion Ajax failed!!");
+                        }
+
+                    });
 
 
 
-                    } else {
-                        console.log("Process Is Canceled");
-                    }
-
+                } else {
+                    console.log("Process Is Canceled");
                 }
-            });
 
+            }
         });
-        // Delete Order Data End
+
+    });
+    // Delete Order Data End
 
     function datatableTableDestroy() {
 

@@ -115,12 +115,7 @@ function loadAllergyDiagnosisOrder(orderNo, pmino) {
 
                                 //datatableTableCreate();
                             }
-                            var rows = $('#tablepositemprepare tbody tr').length;
-                            if (rows > 0) {
-                                $('#risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', false);
-                            } else {
-                                $('#risManageOrderDetailsListTable #MOD_btnPerform').prop('disabled', true);
-                            }
+                            
 
                         }
                     });
