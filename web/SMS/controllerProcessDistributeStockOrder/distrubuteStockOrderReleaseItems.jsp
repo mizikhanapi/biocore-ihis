@@ -68,7 +68,7 @@
                 + " (customer_id, order_no, txt_date, item_amt, quantity, location, hfc_cd, "
                 + " discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_discipline_cd, "
                 + " ordering_subdiscipline_cd, status, created_by, created_date) "
-                + " VALUES ('" + customer_id + "','" + order_no + "','" + txt_date + "','" + item_amt + "','" + quantity + "', "
+                + " VALUES ('" + customer_id + "','" + order_no + "',STR_TO_DATE('" + txt_date + "', '%d/%m/%Y %H:%i:%s'),'" + item_amt + "','" + quantity + "', "
                 + " '" + hfc + "','" + hfc + "','" + dis + "','" + sub + "','" + hfc + "','" + dis + "', "
                 + " '" + sub + "','0','" + created_by + "','" + created_date + "' ) ";
 
@@ -145,7 +145,7 @@
             // Insert Master Distribute
             sqlInsertDustributeDetail = "INSERT INTO stk_distribition_detail "
                     + " (order_no, txt_date, item_cd, item_desc, item_amt, item_quantity, order_by, created_date, created_by,item_type,location,customer_id) "
-                    + " VALUES ('" + order_no + "','" + txt_date + "','" + item_cdD + "','" + item_descD + "','" + item_amtD + "'"
+                    + " VALUES ('" + order_no + "',STR_TO_DATE('" + txt_date + "', '%d/%m/%Y %H:%i:%s'),'" + item_cdD + "','" + item_descD + "','" + item_amtD + "'"
                     + ",'" + torelesed + "','" + created_by + "','" + created_date + "','" + created_by + "','" + itemtype + "','" + location + "','" + customerId + "' )";
 
         } else {

@@ -152,11 +152,10 @@
                     </div> 
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Item Code *</label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <input id="stockadjustitemcode" name="stockadjustitemcode" type="text" placeholder="Item Code"  class="form-control input-md" readonly>
                                 <input type="hidden" id="othervalue" value="">
 
@@ -165,36 +164,33 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Item Name</label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <input id="stockadjustitemname" name="stockadjustitemname" type="text" placeholder="Item Name" class="form-control input-md" readonly>
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Stock on hand/current value</label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <input id="stockadjustcurrent" name="stockadjustcurrent" type="text" placeholder="Stock Quantity"  class="form-control input-md" readonly>
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="col-md-6">
+                        
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Quantity Adjusted/Adjusted value *</label>
-                            <div class="col-md-8">
-                                <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity adjusted/adjusted value" class="form-control input-md" >
+                            <div class="col-md-4">
+                                <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity adjusted/adjusted value" class="form-control input-md numbersOnly" >
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">New quantity on hand/changed value *</label>
-                            <div class="col-md-8">
-                                <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="Please Insert Quantity on hand/changed value" class="form-control input-md">
+                            <div class="col-md-4">
+                                <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="Please Insert Quantity on hand/changed value" class="form-control input-md numbersOnly">
                             </div>
                         </div>
 
-                    </div>
+
                 </div>
 
                 <div class="text-right">
@@ -209,6 +205,14 @@
 
 <script>
     $(document).ready(function () {
+        
+            //function for validate numbersonly
+    $('.numbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9\.-]/g, '')) {
+            this.value = this.value.replace(/[^0-9\.-]/g, '');
+        }
+    });
+    
         $('.loading').hide();
         $("#stockadjustdate").datepicker({
             dateFormat: 'dd/mm/yy',
@@ -219,25 +223,14 @@
             maxDate: '+30Y'
         });
         
-        $("#stockadjustadjusted").on('keyup keydown',function (e) {
+        $("#stockadjustadjusted").on('keyup keydown keypressed',function (e) {
             var current = parseFloat($('#stockadjustcurrent').val());
-            var input = $(this).val(); 
-            if (input.length >= 1) {
-                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190,110]) !== -1 ||
-             // Allow: Ctrl+A, Command+A
-            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
-             // Allow: home, end, left, right, down, up
-            (e.keyCode >= 35 && e.keyCode <= 40)) {
-                 // let it happen, don't do anything
-                 $('#stockadjustnewqty').val(parseFloat($(this).val()) + current);
-                 return;
-        }
-        // Ensure that it is a number and stop the keypress
-//        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-//            e.preventDefault();
-//        }
+            var resulttotal = parseFloat($(this).val()) + current;
+            if(isNaN(resulttotal)){
+                resulttotal = 0;
             }
-        // Allow: backspace, delete, tab, escape, enter and .
+            $('#stockadjustnewqty').val(resulttotal);
+        
         
     });
         

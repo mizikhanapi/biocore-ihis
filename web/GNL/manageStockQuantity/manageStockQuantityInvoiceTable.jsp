@@ -535,7 +535,7 @@
 
                 bootbox.alert("Invoice Detail is not Complete !!!");
 
-            } else if (itemCheck === "" || itemCheck === null || itemCheck === "0.00") {
+            } else if (itemCheck === "" || itemCheck === null) {
 
                 bootbox.alert("Please add at least an item to update the stock !!!");
 

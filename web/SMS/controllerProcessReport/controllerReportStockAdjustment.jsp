@@ -65,8 +65,8 @@
         }
     } else {
         out.print("No Data");
-        out.print(query);
-        out.print(itemname);
+        //out.print(query);
+        //out.print(itemname);
     }
     
     

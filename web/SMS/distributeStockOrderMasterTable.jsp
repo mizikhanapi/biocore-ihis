@@ -55,8 +55,8 @@
             whereClause = " AND stkom.hfc_cd = '" + hfc + "' AND stkom.discipline_cd = '" + dis + "' ";
         }
 
-        //                          0               1               2               3               4            5
-        String sql = "SELECT stkom.customer_id,stkom.order_no,DATE_FORMAT(stkom.txt_date, '%d/%m/%Y'),stkom.item_amt,stkom.quantity,stkom.location,  "
+        //                          0               1               2                                        3               4            5
+        String sql = "SELECT stkom.customer_id,stkom.order_no,DATE_FORMAT(stkom.txt_date, '%d/%m/%Y %H:%i:%s'),stkom.item_amt,stkom.quantity,stkom.location,  "
                 //         6            7                       8                    9                      10
                 + " stkom.hfc_cd,stkom.discipline_cd,stkom.subdiscipline_cd,stkom.ordering_hfc_cd,stkom.ordering_discipline_cd, "
                 //              11                      12               13             14

@@ -48,7 +48,7 @@
 </ul>
 
 <%} else {%>
-<span>No Record Found!<%=searchProblem%></span>
+<span>No Record Found!</span>
 <%
    
     }

@@ -116,7 +116,7 @@
                 }
 
                 /* ToReleased */
-                //String toReleased = formatterInt.format(Double.parseDouble(ordered) - Double.parseDouble(released));
+                String toReleased = formatterInt.format(Double.parseDouble(ordered) - Double.parseDouble(released));
 
 
                 /* Price */
@@ -170,7 +170,7 @@
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%= dataOrderNew.get(i).get(12)%></td> <!--  comment -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=status%></td> <!--  status -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=released%></td> <!--  released quantity -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=ordered%></td> <!--  to release released quantity -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateStockOrder" align="center"><%=toReleased%></td> <!--  to release released quantity -->
 
 </tr>
 <%  } else {

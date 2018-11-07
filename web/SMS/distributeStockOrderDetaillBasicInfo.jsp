@@ -72,7 +72,7 @@
                 </div>
             </div>
             <!-- Text input-->
-            <div class="form-group">
+            <div class="form-group hidden">
                 <label class="col-md-3 control-label" for="textinput">New IC No.</label>
                 <div class="col-md-7">
                     <input id="requestorIC" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
@@ -345,12 +345,32 @@
                data:datashfc,
                url:"controllerProcessDistributeStockOrder/getHFCname.jsp",
                success:function(databack){
-                   console.log(databack);
+                   //console.log(databack);
                    if(databack.trim() ==="nope"){
                        $("#requestorLocation").val(requestorHFCDIS);
                    }else{
                        //var arrayda = databack.split("|");
-                       $("#requestorLocation").val(arrayData[9]+"|"+databack);
+                       $("#requestorLocation").val(databack);
+                   }
+               }
+            });
+            
+            var dataprovider = {
+              hfc:arrayData[6],
+              dis : arrayData[7],
+              sub : arrayData[8]
+            };
+            $.ajax({
+               type:"post",
+               data:dataprovider,
+               url:"controllerProcessDistributeStockOrder/getHFCname.jsp",
+               success:function(databack){
+                   //console.log(databack);
+                   if(databack.trim() ==="nope"){
+                       $("#providerLocation").val(providerHFCDIS);
+                   }else{
+                       //var arrayda = databack.split("|");
+                       $("#providerLocation").val(databack);
                    }
                }
             });
@@ -391,7 +411,7 @@
             $("#distributeStockEncounterDate").val(stockEpisodeDate);
             $("#distributeStockOrderLocationCode").val(stockOrderLocationCodeName);
             
-            $("#providerLocation").val(providerHFCDIS);
+            
 
 
             // Load Table
@@ -440,9 +460,9 @@
 
 
             console.log("Destroying Datatable");
-
+            $('.print-assets').empty();
             $('#distributeStockOrderDetailsListTable').DataTable().destroy();
-
+            
 
 
             console.log("Creating Datatable");
@@ -487,8 +507,6 @@
                 ]
             });
             dt.buttons( 0, null ).container().appendTo( '.print-assets' );
-
-
         }
         // Destroy And Create Datatable End
 
@@ -1140,7 +1158,7 @@
             var typebutton = e;
             var convertdate = txt_date.split("/");
             var newdate = convertdate[2]+"-"+convertdate[1]+"-"+convertdate[0];
-            var stringMaster = customer_id + "|" + order_no + "|" + newdate + "|" + item_amt + "|" + quantity;
+            var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
             var stringDetail = "";
 
             var table = $("#distributeStockOrderDetailsListTable tbody");
@@ -1231,7 +1249,7 @@
                 console.log(data);
 
                 bootbox.confirm({
-                    message: "Are you sure want to release this order ?",
+                    message: "Are you sure want to release this order ? Please make sure you have print the receipt before releasing/transfer the stock",
                     title: "Release Item?",
                     buttons: {
                         confirm: {
@@ -1260,11 +1278,11 @@
 
                                     if (datas.trim() === "Success") {
 
-                                        bootbox.alert("Order Release Is Successfull !!!");
+                                        bootbox.alert("Stock is released successfully!");
 
                                     } else{
 
-                                        bootbox.alert("Order Release Failed !!!");
+                                        bootbox.alert("Stock is FAILED to release!");
 
                                     }
 
@@ -1272,7 +1290,7 @@
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Deletion Ajax failed!!");
+                                    alert("Error! Release Ajax failed!!");
                                 }
 
                             });
