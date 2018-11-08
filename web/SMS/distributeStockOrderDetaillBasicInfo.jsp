@@ -487,7 +487,7 @@
                         customize: function (win) {
                             $(win.document.body).css('font-size', '10pt').prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%;"/></div> <div class="mesej"><br>Orders List<br/><h5>Date: From <strong><%=newdate%></strong></h5>\n\</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%;"/></div> <div class="mesej"><br>Distribute Stock<br/><h5>Date: From <strong><%=newdate%></strong></h5>\n\</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>STK-001</strong></dd>\n\
