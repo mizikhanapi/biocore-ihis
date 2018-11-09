@@ -32,6 +32,7 @@
             <li><a data-toggle="modal" data-target="#" href="List_Of_Vendor">List Of Vendor</a></li>
             <li><a data-toggle="modal" data-target="#" href="Sales_For_Stock">Sales For Stock</a></li>
             <li><a data-toggle="modal" data-target="#" href="Stock_adjust_report">Stock Adjustment Report</a></li>
+            <li><a data-toggle="modal" data-target="#" href="Stock_distribute_report">Stock Distribution Report</a></li> 
         </ul> 
         <!-- Menu with dropdown 2 -->
         <li><a href="Stock_Past_Order"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
