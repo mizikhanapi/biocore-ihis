@@ -15,8 +15,8 @@
     String orderno = request.getParameter("orderno");
 
     ArrayList<ArrayList<String>> data;
-    //                            0              1            2            3            4
-    String sqlquery = "SELECT sdd.order_no,sdd.txt_date,sdd.item_cd,sdd.item_desc,sdd.item_amt,"
+    //                            0                        1                         2            3            4
+    String sqlquery = "SELECT sdd.order_no,DATE_FORMAT(sdd.txt_date, '%d/%m/%Y'),sdd.item_cd,sdd.item_desc,sdd.item_amt,"
             //        5                  6          7               8            9           10
             + "sdd.item_quantity,sdd.order_by,sdd.created_by,sdd.item_type,sdd.location,sdd.customer_id,"
             //       11                12                     13

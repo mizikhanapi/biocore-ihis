@@ -55,7 +55,7 @@
         int size = dataInvoiceList.size();
         for (int i = 0; i < size; i++) {
     %>
-    <tr id="moveToInvoiceDetailsTButton" style="text-align: left;">
+    <tr id="moveToInvoiceDetailsTButton" style="text-align: left;cursor: pointer;">
 <input id="dataInvoiceListhidden" type="hidden" value="<%=String.join("|", dataInvoiceList.get(i))%>">
 
 <td><%= dataInvoiceList.get(i).get(1)%></td> <!-- Invoice No -->

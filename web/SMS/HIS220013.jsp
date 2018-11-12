@@ -477,7 +477,8 @@
                                 $('#distributedetailreporttable').DataTable({
                                     pageLength: 15,
                                     dom: 'Bfrtip',
-                                    "scrollX": true,
+                                    "sScrollX": "100%",
+                                    "bScrollCollapse": true,
                                     buttons: [
                                         {
                                             extend: 'print',
@@ -521,9 +522,9 @@
                                         }
                                     ]
                                 });
-                                $('#reportTotalPatientTypeDiv').css("display", "block");
-                                $("#reportPatientTypeTotalPatient").val(rowCount);
-                                $("#searchPatientTypeList").prop("disabled", true);
+                                //$('#reportTotalPatientTypeDiv').css("display", "block");
+                                //$("#reportPatientTypeTotalPatient").val(rowCount);
+                                //$("#searchPatientTypeList").prop("disabled", true);
                                 
                             } else if (reply.trim() === "No Data") {
                                 alert("There is no record in this time range !!");

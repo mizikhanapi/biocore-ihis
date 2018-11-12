@@ -179,14 +179,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput" id="adjustedstkval">Quantity Adjusted *</label>
                             <div class="col-md-4">
-                                <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity adjusted/adjusted value" class="form-control input-md numbersOnly" >
+                                <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity or value (+999/-999)" class="form-control input-md numbersOnly" >
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput" id="newstkval">New quantity on hand *</label>
                             <div class="col-md-4">
-                                <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="Please Insert Quantity on hand/changed value" class="form-control input-md numbersOnly">
+                                <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="" class="form-control input-md numbersOnly" readonly="">
                             </div>
                         </div>
 
