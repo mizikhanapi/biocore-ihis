@@ -694,7 +694,6 @@
     </servlet-mapping>
     <!-- mapping for SMS HIS220014 -->
         
-        
     <!-- mapping for SMS HIS220007 -->
     <servlet>
         <servlet-name>List_Of_Items</servlet-name>
