@@ -399,7 +399,7 @@
                                             <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"><input type="hidden" id="stockitemtypeA" value="' + temtype + '"></td>\n\
                                         </tr>');
                                         datatableTableCreate();
-                                        
+                                        $('#POSorderNewStockOrder').modal('hide');
                                     } else if (datas.trim() === "Failed") {
 
                                         bootbox.alert("Item failed to add!");
@@ -556,7 +556,15 @@
                                     backdrop: true
                                 });
                                 datatableTableCreate();
+                            }else{
+                                bootbox.alert({
+                                    message: "Item is Updated Successfully",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
+                                datatableTableCreate();
                             }
+                            $('#POSorderNewStockOrder').modal('hide');
 
                         }
                     });
@@ -653,8 +661,15 @@
                                             });
                                             datatableTableCreate();
                                             
+                                        }else{
+                                            bootbox.alert({
+                                                message: "Item is Deleted Successfully",
+                                                title: "Process Result",
+                                                backdrop: true
+                                            });
+                                            datatableTableCreate();
                                         }
-
+                                        $('#POSorderNewStockOrder').modal('hide');
                                     }
                                 });
 
