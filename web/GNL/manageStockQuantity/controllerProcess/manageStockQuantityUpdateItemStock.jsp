@@ -80,9 +80,11 @@
 
         String item_cd = detailsStockS[0];
         String item_desc = detailsStockS[1];
+        String itemselprice = detailsStockS[2];
         String item_amt = detailsStockS[3];
         String item_quantity = detailsStockS[4];
         String quantityStockNew = detailsStockS[5];
+        String itemcost = detailsStockS[6];
 
         // Details
         String sqlInsertStockDetail = "INSERT INTO fap_vendor_detail (invoice_no,txt_date,item_cd,item_desc,item_amt,quantity,location,"
@@ -106,7 +108,7 @@
 
             // Update Item Detail Table (Pharmacy)
             sqlUpdateStockDetail = "UPDATE pis_mdc2 "
-                    + " SET d_stock_qty = '" + quantityStockNew + "'"
+                    + " SET d_stock_qty = '" + quantityStockNew + "' ,d_sell_price = '"+itemselprice+"',d_cost_price='"+itemcost+"'"
                     + " WHERE ud_mdc_code = '" + item_cd + "' "
                     + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
 
@@ -114,7 +116,7 @@
 
             // Update Item Detail Table (Stock)
             sqlUpdateStockDetail = "UPDATE stk_stock_item "
-                    + " SET physical_stock = '" + quantityStockNew + "'"
+                    + " SET physical_stock = '" + quantityStockNew + "',selling_price = '"+itemselprice+"',purchase_price='"+itemcost+"'"
                     + " WHERE item_cd = '" + item_cd + "' "
                     + " AND hfc_cd = '" + hfc + "'  AND discipline_cd = '" + dis + "' ";
 
