@@ -41,7 +41,6 @@
         var role = "<%=role%>";
         if(role==="001"){
             $('#divCentralisedStore').show();
-             $('#orderNewStockOrder #orderNewStockOrderModalFrom #divCentralisedStore #checkboxCS').attr('checked','checked'); 
         }else{
             $('#divCentralisedStore').hide();
         }

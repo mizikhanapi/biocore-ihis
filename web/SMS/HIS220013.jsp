@@ -22,7 +22,6 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String hfc_name = session.getAttribute("HFC_NAME").toString();
     String dis_names = "";
-    String username = session.getAttribute("USER_NAME").toString();
     String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
     ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
     for (int x = 0; x < mysqldis_name.size(); x++) {
@@ -273,18 +272,17 @@
 
                 }
             });
-            var startDateori;
-            var endDateori;
+
             $("#searchPatientTypeList").click(function () {
-                var patientType;
-                var startDate, endDate;
+                var patientType, startDate, endDate;
+
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
                 var namaDis = $("#patientType option:selected").text();
 
-                 startDateori = $("#dateFrom").val();
-                 endDateori = $("#dateTo").val();
+                var startDateori = $("#dateFrom").val();
+                var endDateori = $("#dateTo").val();
 
 
                 if (startDate === "") {
@@ -317,10 +315,92 @@
                             //console.log(reply);
                             if (reply.trim() !== "No Data")
                             {
+//                                var dataRow = reply.trim().split("^");
+//                                var totalPatient = 0;
+//
+//                                var trHTML = '';
+//                                var i;
+//                                for (i = 0; i < dataRow.length; i++)
+//                                {
+//                                    var datas = dataRow[i].split("|");
+//
+//                                    trHTML += '<tr id="rowtablebtn" class="clickable_tr"><input id="datarow" type="hidden" value="'+dataRow[i]+'">\n\
+//                                                        <td>' + datas[1] + '</td>\n\
+//                                                        <td>' + datas[2] + '</td>\n\
+//                                                        <td>' + datas[15] + '|'+datas[16]+'</td>\n\
+//                                                        </tr>';
+//                                    totalPatient += 1;
+//
+//                                }
+                                //$('#UTemPTLReport tbody').empty();
+                                //$('#UTemPTLReport').append(trHTML);
+                                //$('#UTemPTLReport').destroy();
                                 
                                 $('#UTeMPatientTypeListReportTable').html(reply);
                                 var rowCount = parseInt($('#UTeMPatientTypeListReportTable #UTemPTLReport tr').length) - 1 ;
-
+                                //$('#UTemPTLReport').DataTable();
+//                                $('#UTemPTLReport').DataTable({
+//                                    pageLength: 15,
+//                                    dom: 'Bfrtip',
+//                                    buttons: [
+//                                        {
+//                                            extend: 'excelHtml5',
+//                                            text: 'Export To Excel',
+//                                            title: 'Stock Distribution List, From ' + startDateori + ' To ' + endDateori,
+//                                            className: 'btn btn-primary',
+//                                            exportOptions: {
+//                                                columns: ':visible'
+//                                            }
+//                                        }, {
+//                                            extend: 'csvHtml5',
+//                                            text: 'Export To Excel CSV',
+//                                            title: 'Stock Distribution List, From ' + startDateori + ' To ' + endDateori,
+//                                            className: 'btn btn-primary',
+//                                            exportOptions: {
+//                                                columns: ':visible'
+//                                            }
+//                                        }, {
+//                                            extend: 'print',
+//                                            text: 'Print Stock Distribution List',
+//                                            title: '',
+//                                            message: '<br><br>',
+//                                            className: 'btn btn-primary',
+//                                            customize: function (win) {
+//                                                $(win.document.body)
+//                                                        .css('font-size', '10pt')
+//                                                        .prepend(
+//                                                                '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+//                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Stock Distribution List<br/><h5>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </h5></div>\n\
+//                                        <div class="info_kecik">\n\
+//                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+//                                        <dd>Report No: <strong>STK-005</strong></dd>\n\
+//                                        </div> \n\
+//                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\<p>Discipline: <strong>' + namaDis + '</strong></p>\n\
+//                                        </div> '
+//                                                                );
+//                                                $(win.document.body).find('table')
+//                                                        .addClass('compact')
+//                                                        .css('font-size', 'inherit');
+//                                                $(win.document.body)
+//                                                        .css('font-size', '10pt')
+//                                                        .css('font-weight', 'bolder')
+//                                                        .append('<div style="text-align: right;padding-top:10px;"><br>Total Distribution = ' + rowCount + ' </div>');
+//                                                $(win.document.body)
+//                                                        .css('font-size', '10pt')
+//                                                        .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+//
+//                                            },
+//                                            exportOptions: {
+//                                                columns: ':visible'
+//                                            }
+//                                        },
+//                                        {
+//                                            extend: 'colvis',
+//                                            text: 'Filter Table Columns',
+//                                            className: 'btn btn-success'
+//                                        }
+//                                    ]
+//                                });
                                 $('#reportTotalPatientTypeDiv').css("display", "block");
                                 $("#reportPatientTypeTotalPatient").val(rowCount);
                                 $("#searchPatientTypeList").prop("disabled", true);
@@ -366,8 +446,7 @@
                                 
                                 var dataRow = reply.trim().split("^");
                                 var totalPatient = 0;
-                                var orderby,orderno,orderingsub,orderingdis,orderdate;
-                                var totalreleased = 0;
+                                
                                 var trHTML = '';
                                 var i;
                                 for (i = 0; i < dataRow.length; i++)
@@ -388,13 +467,7 @@
                                                         <td>' + datas[18] +'</td>\n\
                                                         </tr>';
                                     totalPatient += 1;
-                                    namaDis = datas[15];
-                                    orderby = datas[19];
-                                    orderno = datas[0];
-                                    orderingsub = datas[18];
-                                    orderingdis = datas[17];
-                                    orderdate = datas[1];
-                                    totalreleased +=parseInt(datas[5]);
+                                    namaDis = datas[15]; 
                                 }
                                 $("#distributedetailreporttable").DataTable().destroy();
                                 $('#disdetail #tbldetailmodal #distributedetailreporttable tbody').empty();
@@ -418,12 +491,12 @@
                                                         .css('font-size', '10pt')
                                                         .prepend(
                                                                 '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Stock Distribution List<br/>From :'+startDateori+' To : '+endDateori+'</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Stock Distribution List<br/></div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>STK-005</strong></dd>\n\
                                         </div> \n\
-                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\<p>Order No: <strong>'+orderno+'</strong><br>Order Date:<strong> '+orderdate+'</strong><br>Order By: <strong>' + orderby + ' | '+orderingdis+' | '+orderingsub+'</strong></p>\n\
+                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\<p>Discipline: <strong>' + namaDis + '</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')
@@ -432,10 +505,10 @@
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
                                                         .css('font-weight', 'bolder')
-                                                        .append('<div style="text-align: left;padding-top:10px;"><br>Total Order = ' + totalPatient + '<br>Total Released = ' + totalreleased + ' </div>');
+                                                        .append('<div style="text-align: right;padding-top:10px;"><br>Total Distribution = ' + totalPatient + ' </div>');
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
-                                                        .append('<div style="text-align: center;"><div style="text-align: left;padding-top:30px;">Receive By:<br><br>-------------------<br>(Name: '+orderby+')</div><div style="text-align: right;">Released By:<br><%=username%><br>'+namaDis+'</div></div>');
+                                                        .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
 
                                             },
                                             exportOptions: {

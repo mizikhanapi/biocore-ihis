@@ -52,15 +52,60 @@
     String updateOrdering = "";
     String sqlInsertDustributeMaster = "";
     String sqlUpdateDustributeMaster = "";
-    String orderingdisG="";
-    String orderingsubG = "";
     boolean isUpdateDistrubiteMasterx = true;
     // Release Master Table Part Start //
     // Check Master Data Release
     String sqlFetchMasterReleaseData = " SELECT item_amt,quantity FROM stk_distribition_master WHERE order_no = '" + order_no + "' LIMIT 1 ";
     ArrayList<ArrayList<String>> checkDistributeMaster = conn.getData(sqlFetchMasterReleaseData);
     String sqlUpdateOrderDetail = "";
-    
+    // Process Master Release Start
+    if (checkDistributeMaster.size() == 0) {
+
+        //boolean isInsertDistrubiteMaster = true;
+
+        // Insert Master Distribute
+        sqlUpdateDustributeMaster = "INSERT INTO stk_distribition_master "
+                + " (customer_id, order_no, txt_date, item_amt, quantity, location, hfc_cd, "
+                + " discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_discipline_cd, "
+                + " ordering_subdiscipline_cd, status, created_by, created_date) "
+                + " VALUES ('" + customer_id + "','" + order_no + "',STR_TO_DATE('" + txt_date + "', '%d/%m/%Y %H:%i:%s'),'" + item_amt + "','" + quantity + "', "
+                + " '" + hfc + "','" + hfc + "','" + dis + "','" + sub + "','" + hfc + "','" + dis + "', "
+                + " '" + sub + "','0','" + created_by + "','" + created_date + "' ) ";
+
+//        isInsertDistrubiteMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDustributeMaster);
+//
+//        if (isInsertDistrubiteMaster == false) {
+//
+//            falseCount = falseCount + 1;
+//            errorsql += sqlInsertDustributeMaster;
+//
+//        }
+    } else if (checkDistributeMaster.size() > 0) {
+
+        item_amt = String.valueOf(Double.parseDouble(item_amt) + Double.parseDouble(checkDistributeMaster.get(0).get(0)));
+        quantity = String.valueOf(Integer.parseInt(quantity) + Integer.parseInt(checkDistributeMaster.get(0).get(1)));
+
+        // Update Master Distribute
+        sqlUpdateDustributeMaster = "UPDATE stk_distribition_master "
+                + " SET item_amt = '" + item_amt + "', quantity = '" + quantity + "' "
+                + " WHERE order_no = '" + order_no + "' ";
+
+    }
+    isUpdateDistrubiteMasterx = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateDustributeMaster);
+
+    if (isUpdateDistrubiteMasterx == false) {
+
+        falseCount = falseCount + 1;
+        errorsql = errorsql + sqlUpdateDustributeMaster;
+        erroralpah = erroralpah + "A";
+    }
+    // Process Master Release End
+    // Release Master Table Part End //
+    //
+    //
+    //
+    //
+    //
     // String String Detail Part Start //
     // Get The Data And Split
     String stockDetailD[] = stringDetail.split("\\|");
@@ -87,9 +132,6 @@
         String customerId = detailsStockS[13];
         String orderingdis = detailsStockS[14];
         String orderingsub = detailsStockS[15];
-        
-        orderingdisG = detailsStockS[14];
-        orderingsubG = detailsStockS[15];
         boolean isInsertDistrubiteMaster = true;
         // Release Master Table Part Start //
         // Check Master Data Release
@@ -290,58 +332,6 @@
     //
     //
     //
-    
-    // Process Master Release Start
-    if (checkDistributeMaster.size() == 0) {
-
-        //boolean isInsertDistrubiteMaster = true;
-
-        // Insert Master Distribute
-        sqlUpdateDustributeMaster = "INSERT INTO stk_distribition_master "
-                + " (customer_id, order_no, txt_date, item_amt, quantity, location, hfc_cd, "
-                + " discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_discipline_cd, "
-                + " ordering_subdiscipline_cd, status, created_by, created_date) "
-                + " VALUES ('" + customer_id + "','" + order_no + "',STR_TO_DATE('" + txt_date + "', '%d/%m/%Y %H:%i:%s'),'" + item_amt + "','" + quantity + "', "
-                + " '" + hfc + "','" + hfc + "','" + dis + "','" + sub + "','" + hfc + "','" + orderingdisG + "', "
-                + " '" + orderingsubG + "','0','" + created_by + "','" + created_date + "' ) ";
-
-//        isInsertDistrubiteMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDustributeMaster);
-//
-//        if (isInsertDistrubiteMaster == false) {
-//
-//            falseCount = falseCount + 1;
-//            errorsql += sqlInsertDustributeMaster;
-//
-//        }
-    } else if (checkDistributeMaster.size() > 0) {
-
-        item_amt = String.valueOf(Double.parseDouble(item_amt) + Double.parseDouble(checkDistributeMaster.get(0).get(0)));
-        quantity = String.valueOf(Integer.parseInt(quantity) + Integer.parseInt(checkDistributeMaster.get(0).get(1)));
-
-        // Update Master Distribute
-        sqlUpdateDustributeMaster = "UPDATE stk_distribition_master "
-                + " SET item_amt = '" + item_amt + "', quantity = '" + quantity + "' "
-                + " WHERE order_no = '" + order_no + "' ";
-
-    }
-    isUpdateDistrubiteMasterx = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateDustributeMaster);
-
-    if (isUpdateDistrubiteMasterx == false) {
-
-        falseCount = falseCount + 1;
-        errorsql = errorsql + sqlUpdateDustributeMaster;
-        erroralpah = erroralpah + "A";
-    }
-    // Process Master Release End
-    // Release Master Table Part End //
-    //
-    //
-    //
-    //
-    //
-    
-    
-    
     // Order Master Table Part Start //
     // Update Master Order
     String sqlCheckMasterData = "SELECT * FROM stk_order_detail  "

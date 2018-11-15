@@ -80,7 +80,7 @@
                         <div class="form-group" id="divCentralisedStore">
                                 <label class="col-md-4 control-label" for="textinput">Ordering to</label>
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="CS" value="CS" class="" id="checkboxCS" checked="true">Centralized Store<br>
+                                    <input type="checkbox" name="CS" value="CS" class="" id="checkboxCS">Centralized Store<br>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -15,11 +15,10 @@
     <thead>
     <th>Item code</th>
     <th>Item name</th>
-    <th>Item Amount (RM)</th>
+    <th>Item Amount</th>
     <th>Item Stock Quantity</th>
     <th>Item Quantity To Be Added</th>
     <th>New Item Quantity</th>
-    <th>Item Cost Price (RM)</th>
 </thead>
 <tbody style="height: 120px;overflow-y: auto;">
 
@@ -301,14 +300,12 @@
                     var itemName = array_data[2];
                     var itemPrice = array_data[3];
                     var itemStock = array_data[4];
-                    var itemcos = array_data[5];
 
 
                     $('#invoiceAddCode').val(itemCode);
                     $('#invoiceAddName').val(itemName);
                     $('#invoiceAddPriceStockQty').val(itemStock);
                     $('#invoiceAddPrice').val(itemPrice);
-                    $('#invoiceAddcostPrice').val(itemcos);
 
                     $('#invoiceAddItemSearchInput').val('');
 
@@ -350,7 +347,6 @@
             var itemPrice = $('#invoiceAddPrice').val();
             var itemStock = $('#invoiceAddPriceStockQty').val();
             var itemQuantity = $('#invoiceAddPriceNewQty').val();
-            var itemCostprice = $('#invoiceAddcostPrice').val();
 
 
 
@@ -378,7 +374,6 @@
                         <td>' + itemStock + '</td>\n\
                         <td>' + itemQuantity + '</td>\n\
                         <td>' + newQuantity + '</td>\n\
-                        <td>' + itemCostprice + '</td>\n\
                     </tr>');
 
                     datatableTableCreate();
@@ -443,7 +438,6 @@
             var itemPrice = row.find('td').eq(2).text();
             var itemStock = row.find('td').eq(3).text();
             var itemQuantity = row.find('td').eq(4).text();
-            var itemCost = row.find('td').eq(6).text();
 
 
             $('#invoiceAddCode').val(itemCode);
@@ -451,21 +445,18 @@
             $('#invoiceAddPrice').val(itemPrice);
             $('#invoiceAddPriceStockQty').val(itemStock);
             $('#invoiceAddPriceNewQty').val(itemQuantity);
-            $('#invoiceAddcostPrice').val(itemCost);
-            
+
             $('#invoiceAddItemSearchInput').prop('disabled', true);
             $('#invoiceAddCode').prop('disabled', true);
             $('#invoiceAddName').prop('disabled', true);
-            $('#invoiceAddPrice').prop('disabled', false);
+            $('#invoiceAddPrice').prop('disabled', true);
             $('#invoiceAddPriceStockQty').prop('disabled', true);
             $('#invoiceAddPriceNewQty').prop('disabled', false);
 
 
         });
         // Fetch Data For Update And Delete Function End
-        $('#invoiceAddOrderModal').on('hidden.bs.modal', function () {
-            $('#invoiceAddOrderModal form#invoiceAddOrderDetailForm')[0].reset();
-        });
+
 
         // Delivery Update Function Start
         $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').on('click', '#invoiceAddOrderDetailUpdateItemBtn', function (e) {
@@ -478,7 +469,6 @@
             var itemStock = $('#invoiceAddPriceStockQty').val();
             var itemQuantity = $('#invoiceAddPriceNewQty').val();
             var newQuan = parseInt(itemStock) + parseInt(itemQuantity);
-            var itemcost = $('#invoiceAddcostPrice').val();
 
             row.find('td').eq(0).text(itemCode);
             row.find('td').eq(1).text(itemName);
@@ -486,7 +476,6 @@
             row.find('td').eq(3).text(itemStock);
             row.find('td').eq(4).text(itemQuantity);
             row.find('td').eq(5).text(newQuan);
-            row.find('td').eq(6).text(itemcost);
 
             $('#invoiceAddOrderModal').modal('hide');
 
@@ -557,7 +546,7 @@
 
                 // Setting Variable For Overall Dispense
                 var itemCode, itemName, stringDetail = "";
-                var itemPrice, itemNewQty, itemNewQtyOver, product,itemcost;
+                var itemPrice, itemNewQty, itemNewQtyOver, product;
                 var grandTotal = 0.0;
                 var itemQtyTotal = 0;
 
@@ -573,7 +562,6 @@
                     itemPrice = parseFloat($tds.eq(2).text());
                     itemNewQty = parseFloat($tds.eq(4).text());
                     itemNewQtyOver = parseFloat($tds.eq(5).text());
-                    itemcost = parseFloat($tds.eq(6).text());
                     product = itemPrice * itemNewQty;
 
 
@@ -583,7 +571,7 @@
 
                     } else {
 
-                        releaseOrderList.push(itemCode + "^" + itemName + "^" + itemPrice + "^" + product + "^" + itemNewQty + "^" + itemNewQtyOver + "^" + itemcost);
+                        releaseOrderList.push(itemCode + "^" + itemName + "^" + itemPrice + "^" + product + "^" + itemNewQty + "^" + itemNewQtyOver);
                         stringDetail = releaseOrderList.join("|");
                         grandTotal = grandTotal + product;
                         itemQtyTotal = itemQtyTotal + itemNewQty;
@@ -619,7 +607,6 @@
                             var description = $('#invoiceDescription').val();
                             var total_amt = $('#invoiceAddOrderGrandTotal').val();
                             var quantity = $('#invoiceAddOrderTotalOrder').val();
-                            var price = $('#invoiceAddPrice').val();
 
                             var data = {
                                 invoiceOrderFor: invoiceOrderFor,

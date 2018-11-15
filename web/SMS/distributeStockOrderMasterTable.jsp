@@ -19,9 +19,9 @@
     <thead>
     <th style="text-align: left;">Order No.</th>
     <th style="text-align: left;">Item Type</th>
-    <th style="text-align: left;" class="hidden">User ID.</th>
-    <th style="text-align: left;" class="hidden">IC No.</th>
-    <th style="text-align: left;">Order By</th>
+    <th style="text-align: left;">User ID.</th>
+    <th style="text-align: left;">IC No.</th>
+    <th style="text-align: left;">Name</th>
     <th style="text-align: left;">Order Date</th>
     <th style="text-align: left;">Location</th>
 </thead>
@@ -63,8 +63,8 @@
                 + " stkom.ordering_subdiscipline_cd,stkom.status,aus.USER_NAME,aus.NEW_ICNO, "
                 //              15                      16                      17
                 + " IFNULL(DATE_FORMAT(aus.birth_date, '%d/%m/%Y'),'-'),IFNULL(aus.SEX_CODE,'-'),IFNULL(aus.OCCUPATION_CODE,'-'), "
-                //          18                          19                    20           21             22
-                + " IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,stkom.item_type,ad.discipline_name "
+                //          18                          19                    20           21
+                + " IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,stkom.item_type "
                 // FROM ORDER TABLE
                 + " FROM stk_order_master stkom  "
                 // LEFT JOIN USER TABLE
@@ -77,9 +77,6 @@
                 // LEFT LOOKUP BLOOD TABLE
                 + " LEFT JOIN adm_lookup_detail b ON aus.OCCUPATION_CODE = b.detail_reference_code "
                 + " AND b.master_reference_code = '0050' AND b.hfc_cd = stkom.hfc_cd "
-                //LEFT adm discipline
-                + " LEFT JOIN adm_discipline ad ON ad.discipline_hfc_cd = stkom.ordering_hfc_cd "
-                + " AND ad.discipline_cd = stkom.ordering_discipline_cd "
                 // WHERE CONDITION
                 + " WHERE stkom.status = '0'   "
                 + orderWhereClause
@@ -95,11 +92,11 @@
 <input id="dataDistributeStockOrderMasterListhidden" type="hidden" value="<%=String.join("|", dataDistributeStockOrderMaster.get(i))%>">
 <td><%= dataDistributeStockOrderMaster.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataDistributeStockOrderMaster.get(i).get(21)%></td> <!-- Item type -->
-<td class="hidden"><%= dataDistributeStockOrderMaster.get(i).get(0)%></td> <!-- PMI No -->
-<td class="hidden"><%= dataDistributeStockOrderMaster.get(i).get(14)%></td> <!-- IC No -->
+<td><%= dataDistributeStockOrderMaster.get(i).get(0)%></td> <!-- PMI No -->
+<td><%= dataDistributeStockOrderMaster.get(i).get(14)%></td> <!-- IC No -->
 <td style="font-weight: 500;"><%= dataDistributeStockOrderMaster.get(i).get(13)%></td> <!-- Name -->
 <td><%= dataDistributeStockOrderMaster.get(i).get(2)%></td> <!-- Order Date -->
-<td><%= dataDistributeStockOrderMaster.get(i).get(20)+"|"+dataDistributeStockOrderMaster.get(i).get(22)%></td> <!-- location -->
+<td><%= dataDistributeStockOrderMaster.get(i).get(9)+"|"+dataDistributeStockOrderMaster.get(i).get(10)%></td> <!-- location -->
 </tr>
 <%
     }

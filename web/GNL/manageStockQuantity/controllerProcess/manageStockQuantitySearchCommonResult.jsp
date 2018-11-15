@@ -21,8 +21,8 @@
 
     if (moduleCode.equalsIgnoreCase("04")) {
 
-        //                               0           1          2             3              4         5                     
-        searchProblem = "SELECT ud_mdc_code, ud_atc_code, d_trade_name, d_sell_price, d_stock_qty,d_cost_price"
+        //                               0           1          2             3              4                           
+        searchProblem = "SELECT ud_mdc_code, ud_atc_code, d_trade_name, d_sell_price, d_stock_qty"
                 //            FROM CONDITION        
                 + " FROM pis_mdc2 "
                 //            WHERE CONDITION        
@@ -31,8 +31,8 @@
 
     } else if (moduleCode.equalsIgnoreCase("22")) {
 
-        //                               0           1          2             3              4       5                    
-        searchProblem = "SELECT item_cd, category_cd, item_name, selling_price, physical_stock,purchase_price"
+        //                               0           1          2             3              4                           
+        searchProblem = "SELECT item_cd, category_cd, item_name, selling_price, physical_stock"
                 //            FROM CONDITION        
                 + " FROM stk_stock_item "
                 //            WHERE CONDITION        

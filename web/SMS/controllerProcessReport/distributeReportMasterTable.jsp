@@ -19,7 +19,7 @@
     String whereClause = "";
     ArrayList<ArrayList<String>> data;
     if (!discipline.equalsIgnoreCase("all")) {
-        whereClause = " AND stkdis.hfc_cd = '" + hfc + "' AND stkdis.ordering_discipline_cd = '" + discipline + "' ";
+        whereClause = " AND stkdis.hfc_cd = '" + hfc + "' AND stkdis.discipline_cd = '" + discipline + "' ";
     } else {
         whereClause = " AND stkdis.hfc_cd = '" + hfc + "' ";
     }
@@ -31,7 +31,7 @@
             + "stkdis.status,stkdis.created_by,stkdis.created_date,ahf.hfc_name,ad.discipline_name "
             + "FROM stk_distribition_master stkdis "
             + "JOIN adm_health_facility ahf ON ahf.hfc_cd = stkdis.hfc_cd "
-            + "JOIN adm_discipline ad ON ad.discipline_hfc_cd = stkdis.hfc_cd AND ad.discipline_cd = stkdis.ordering_discipline_cd "
+            + "JOIN adm_discipline ad ON ad.discipline_hfc_cd = stkdis.hfc_cd AND ad.discipline_cd = stkdis.discipline_cd "
             + " WHERE cast(stkdis.txt_date as date) BETWEEN '" + startdate + "' AND '" + enddate + "'"
             + whereClause + " ;";
 

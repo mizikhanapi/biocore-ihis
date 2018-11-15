@@ -3,9 +3,6 @@
     Created on : Dec 13, 2017, 4:17:23 PM
     Author     : Shammugam
 --%>
-<%
-    //String roleCode = session.getAttribute("ROLE_CODE").toString();
-%>
 <!-- menu top -->
 <div class="row">
     <div class="col-md-12">
@@ -29,7 +26,6 @@
         // $('<div class="loading">Loading</div>').appendTo('body');
         $("#orderStockContentAddMaster").load("../GNL/StockOrder/orderStockBasicInfo.jsp");
         $("#orderStockContentAddDetail").load("../GNL/StockOrder/orderStockDetailTable.jsp");
-        
 
     });
 

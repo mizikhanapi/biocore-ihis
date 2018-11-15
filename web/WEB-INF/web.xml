@@ -682,17 +682,6 @@
         <url-pattern>/SMS/Stock_distribute_report</url-pattern>
     </servlet-mapping>
     <!-- mapping for SMS HIS220013 -->
-    
-    <!-- mapping for SMS HIS220014 -->
-    <servlet>
-        <servlet-name>Manage_Drug_Stock_Code</servlet-name>
-        <jsp-file>/SMS/HIS220014.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Manage_Drug_Stock_Code</servlet-name>
-        <url-pattern>/SMS/Manage_Drug_Stock_Code</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for SMS HIS220014 -->
         
         
     <!-- mapping for SMS HIS220007 -->

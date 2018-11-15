@@ -55,20 +55,12 @@
                                 <input id="invoiceAddName" type="text" class="form-control" maxlength="100" disabled>
                             </div>
                         </div>
-                        
+
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">Item Cost Price &nbsp; *</label>
+                            <label class="col-md-5 control-label" for="textinput">Item Price &nbsp; *</label>
                             <div class="col-md-6">
-                                <input id="invoiceAddcostPrice" type="text" class="form-control" >
-                            </div>
-                        </div>
-                        
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-5 control-label" for="textinput">Item Sell Price &nbsp; *</label>
-                            <div class="col-md-6">
-                                <input id="invoiceAddPrice" type="text" class="form-control" >
+                                <input id="invoiceAddPrice" type="text" class="form-control" disabled>
                             </div>
                         </div>
 
