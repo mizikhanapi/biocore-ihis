@@ -49,7 +49,7 @@
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
-                                            <li class="active">
+                                            <li class="active" onclick="location.reload()">
                                                 <a href="#tab_default_1" data-toggle="tab">
                                                     SPECIMEN LIST
                                                 </a>

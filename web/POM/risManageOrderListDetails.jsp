@@ -259,6 +259,8 @@
         var table = $("#tablepositemprepare tbody");
 
         var arrayItemCode = [];
+        var stockOrderListorder = [];
+        var releaseOrderList = [];
 
         // Calculating Data For Overall Dispense
         table.find('tr').each(function (i) {
@@ -322,7 +324,6 @@
                 var item_amt = newTotal;
                 var quantity = itemQuantity;
                 var typebutton = "release";
-                var stockOrderListorder = [];
                 var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
                 var stringDetail = "";
                 var grandTotalpriceorder = 0;
@@ -330,7 +331,6 @@
 
 
 
-                var releaseOrderList = [];
                 var updateQtyStock = parseInt(itemStock) - parseInt(itemQuantity);
                 var status = "4";
                 var location = "<%=hfcori%>";
@@ -382,23 +382,56 @@
 
                                     if (datas.trim() === "Success") {
 
-                                        bootbox.alert({
-                                            message: "Item is Added Successful",
-                                            title: "Process Result",
-                                            backdrop: true
+//                                        bootbox.alert({
+//                                            message: "Item is Added Successful",
+//                                            title: "Process Result",
+//                                            backdrop: true
+//                                        });
+//                                        $('#tablepositemprepare').append('<tr id="addNewStockOrderDetailsUpdateDeleteBtn">\n\
+//                                            <td>' + itemCode + '</td>\n\
+//                                            <td>' + itemName + '</td>\n\
+//                                            <td>' + itemPrice + '</td>\n\
+//                                            <td>' + itemStock + '</td>\n\
+//                                            <td>' + itemQuantity + '</td>\n\
+//                                            <td>' + newTotal + '<input type="hidden" id="disciplineStockA" value="' + disrec + '"><input type="hidden" id="subdisciplineStockA" value="' + subdusrec + '">\n\
+//                                            <input type="hidden" id="disciplineStockOrderingA" value="' + disorder + '">\n\
+//                                            <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"><input type="hidden" id="stockitemtypeA" value="' + temtype + '"></td>\n\
+//                                        </tr>');
+//                                        datatableTableCreate();
+//                                        $('#POSorderNewStockOrder').modal('hide');
+                                        var dataOrder = {
+                                            orderNo: order_no
+                                        };
+                                        $.ajax({
+                                            url: "../POM/procedure_controller/procedure_select.jsp",
+                                            type: "post",
+                                            data: dataOrder,
+                                            success: function (databack) {
+                                                datatableTableDestroy();
+                                                $('#tablepositemprepare tbody').empty();
+                                                if (databack.trim() !== "NO") {
+
+                                                    $('#tablepositemprepare').append(databack.trim());
+                                                    bootbox.alert({
+                                                        message: "Item is Added Successful",
+                                                        title: "Process Result",
+                                                        backdrop: true
+                                                    });
+                                                    datatableTableCreate();
+                                                }else{
+                                                    bootbox.alert({
+                                                        message: "Item is Added Successful",
+                                                        title: "Process Result",
+                                                        backdrop: true
+                                                    });
+                                                    datatableTableCreate();
+                                                }
+                                                $('#POSorderNewStockOrder').modal('hide');
+                                                arrayItemCode.length = 0;
+                                                stockOrderListorder.length = 0;
+                                                releaseOrderList.length = 0;
+                                            }
                                         });
-                                        $('#tablepositemprepare').append('<tr id="addNewStockOrderDetailsUpdateDeleteBtn">\n\
-                                            <td>' + itemCode + '</td>\n\
-                                            <td>' + itemName + '</td>\n\
-                                            <td>' + itemPrice + '</td>\n\
-                                            <td>' + itemStock + '</td>\n\
-                                            <td>' + itemQuantity + '</td>\n\
-                                            <td>' + newTotal + '<input type="hidden" id="disciplineStockA" value="' + disrec + '"><input type="hidden" id="subdisciplineStockA" value="' + subdusrec + '">\n\
-                                            <input type="hidden" id="disciplineStockOrderingA" value="' + disorder + '">\n\
-                                            <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"><input type="hidden" id="stockitemtypeA" value="' + temtype + '"></td>\n\
-                                        </tr>');
-                                        datatableTableCreate();
-                                        $('#POSorderNewStockOrder').modal('hide');
                                     } else if (datas.trim() === "Failed") {
 
                                         bootbox.alert("Item failed to add!");

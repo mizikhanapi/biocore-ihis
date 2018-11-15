@@ -41,7 +41,7 @@
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab" onclick="reloadOrderMasterList()">
+                                                <a href="#tab_default_1" data-toggle="tab" onclick="location.reload()">
                                                     ORDER LIST</a>
                                             </li>
                                             <li>

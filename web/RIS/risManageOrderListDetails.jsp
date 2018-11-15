@@ -260,6 +260,8 @@
         var table = $("#tablepositemprepare tbody");
 
         var arrayItemCode = [];
+        var stockOrderListorder = [];
+        var releaseOrderList = [];
 
         // Calculating Data For Overall Dispense
         table.find('tr').each(function (i) {
@@ -309,9 +311,6 @@
                 var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
 
 
-
-                // datatableTable();
-
                 $('#orderNewStockOrder').modal('hide');
 
                 var customer_id = "<%=user%>";
@@ -319,19 +318,15 @@
                 var txt_date = $("#risOrderDate").val();
                 var dt = new Date(txt_date);
                 var newdt = dt.getDate()+"/"+dt.getMonth()+"/"+dt.getFullYear()+" "+dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds();
-                console.log(newdt);
+                //console.log(newdt);
                 var item_amt = newTotal;
                 var quantity = itemQuantity;
                 var typebutton = "release";
-                var stockOrderListorder = [];
                 var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
                 var stringDetail = "";
                 var grandTotalpriceorder = 0;
                 var grandTotalqtyorder = 0, stringDetailorder;
 
-
-
-                var releaseOrderList = [];
                 var updateQtyStock = parseInt(itemStock) - parseInt(itemQuantity);
                 var status = "4";
                 var location = "<%=hfcori%>";
@@ -366,10 +361,6 @@
                     timeout: 3000,
                     success: function (returnMessage) {
 
-                        //$('.loading').hide();
-                        //console.log(dataorder);
-                        //console.log(returnMessage);
-
                         if (returnMessage.trim() === 'Success') {
                             console.log(data);
                             $.ajax({
@@ -379,27 +370,43 @@
                                 timeout: 10000, // 10 seconds
                                 success: function (datas) {
                                     console.log(datas);
-                                    //$('#myLoadingModal').modal('hide');
 
                                     if (datas.trim() === "Success") {
 
-                                        bootbox.alert({
-                                            message: "Item is Added Successful",
-                                            title: "Process Result",
-                                            backdrop: true
+                                        var dataOrder = {
+                                            orderNo: order_no
+                                        };
+                                        $.ajax({
+                                            url: "../POM/procedure_controller/procedure_select.jsp",
+                                            type: "post",
+                                            data: dataOrder,
+                                            success: function (databack) {
+                                                datatableTableDestroy();
+                                                $('#tablepositemprepare tbody').empty();
+                                                if (databack.trim() !== "NO") {
+
+                                                    $('#tablepositemprepare').append(databack.trim());
+                                                    bootbox.alert({
+                                                        message: "Item is Added Successful",
+                                                        title: "Process Result",
+                                                        backdrop: true
+                                                    });
+                                                    datatableTableCreate();
+                                                }else{
+                                                    bootbox.alert({
+                                                        message: "Item is Added Successful",
+                                                        title: "Process Result",
+                                                        backdrop: true
+                                                    });
+                                                    datatableTableCreate();
+                                                }
+                                                $('#POSorderNewStockOrder').modal('hide');
+                                                arrayItemCode.length = 0;
+                                                stockOrderListorder.length = 0;
+                                                releaseOrderList.length = 0;
+                                                stringDetail = "";
+                                            }
                                         });
-                                        $('#tablepositemprepare').append('<tr id="addNewStockOrderDetailsUpdateDeleteBtn">\n\
-                                            <td>' + itemCode + '</td>\n\
-                                            <td>' + itemName + '</td>\n\
-                                            <td>' + itemPrice + '</td>\n\
-                                            <td>' + itemStock + '</td>\n\
-                                            <td>' + itemQuantity + '</td>\n\
-                                            <td>' + newTotal + '<input type="hidden" id="disciplineStockA" value="' + disrec + '"><input type="hidden" id="subdisciplineStockA" value="' + subdusrec + '">\n\
-                                            <input type="hidden" id="disciplineStockOrderingA" value="' + disorder + '">\n\
-                                            <input type="hidden" id="subdisciplineStockOrderingA" value="' + subdisorder + '"><input type="hidden" id="stockitemtypeA" value="' + temtype + '"></td>\n\
-                                        </tr>');
-                                        datatableTableCreate();
-                                        $('#POSorderNewStockOrder').modal('hide');
                                     } else if (datas.trim() === "Failed") {
 
                                         bootbox.alert("Item failed to add!");

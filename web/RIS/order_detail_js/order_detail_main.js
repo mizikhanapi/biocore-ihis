@@ -795,7 +795,8 @@ $('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSendResults', funct
 
 // Clear Button Function Start
 $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', function (e) {
-    reloadOrderMasterListTable();
+    //reloadOrderMasterListTable();
+    location.reload();
     document.getElementById("risManageOrderDetailContentBasicInfoForm").reset();
     document.getElementById("risManageOrderDetailContentOrderInfoForm").reset();
     $("#risOrderDetailContent #risManageAllergyListTableDiv").load("risManageOrderListBasicInfoNew.jsp #risManageAllergyListTableDiv");
