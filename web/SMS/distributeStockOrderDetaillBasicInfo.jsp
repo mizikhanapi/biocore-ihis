@@ -17,7 +17,7 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String role = session.getAttribute("ROLE_CODE").toString();
-
+    String username = session.getAttribute("USER_NAME").toString();
     String hfcori = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String disori = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdisori = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
@@ -282,9 +282,13 @@
 
     $(document).ready(function () {
 
-
+        var requestorDiscipline;
+        var requestorSubdiscipline;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
+        var orderby,orderno,orderingdis,orderdate;
+        var totalreleased = 0;
+        var totalPatient = 0;
+        var namaDis = "";
         var role = "<%=role%>";
         var currentDis = "<%=dis%>";
         var episodeDate;
@@ -333,7 +337,8 @@
             hfc = arrayData[6];
             dis = arrayData[7];
             status = arrayData[12];
-            
+            requestorDiscipline = arrayData[10];
+            requestorSubdiscipline = arrayData[11];
             var datashfc = {
               hfc:arrayData[9],
               dis : arrayData[10],
@@ -348,9 +353,12 @@
                    //console.log(databack);
                    if(databack.trim() ==="nope"){
                        $("#requestorLocation").val(requestorHFCDIS);
+                       orderingdis = requestorHFCDIS;
                    }else{
                        //var arrayda = databack.split("|");
                        $("#requestorLocation").val(databack);
+                       var splitdata = databack.split("|");
+                       orderingdis = splitdata[1]+" | "+splitdata[2];
                    }
                }
             });
@@ -368,9 +376,13 @@
                    //console.log(databack);
                    if(databack.trim() ==="nope"){
                        $("#providerLocation").val(providerHFCDIS);
+                       namaDis = providerHFCDIS;
                    }else{
                        //var arrayda = databack.split("|");
                        $("#providerLocation").val(databack);
+                       
+                       var splitdata = databack.split("|");
+                       namaDis = splitdata[1];
                    }
                }
             });
@@ -400,6 +412,8 @@
             // Set value to the Second Tab 
             $("#requestorUserID").val(requestorUserID);
             $("#requestorName").val(requestorName);
+            orderby = requestorName;
+            orderdate = stockOrderDate;
             $("#requestorIC").val(requestorIC);
             $("#requestorGender").val(requestorGender);
             $("#requestorBDate").val(requestorBDate);
@@ -430,7 +444,7 @@
             var dataOrder = {
                 orderNo: orderNo, hfc: hfc, dis: dis, status: status
             };
-
+            orderno = orderNo;
 
             $.ajax({
                 url: "distributeStockOrderDetailsTable.jsp",
@@ -452,7 +466,7 @@
 
         }
         // Move to Order Details And Load All Table Data End
-
+        
 
 
         // Destroy And Create Datatable Start
@@ -487,17 +501,22 @@
                         customize: function (win) {
                             $(win.document.body).css('font-size', '10pt').prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%;"/></div> <div class="mesej"><br>Distribute Stock<br/><h5>Date: From <strong><%=newdate%></strong></h5>\n\</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%;"/></div> <div class="mesej"><br>Distribute Stock<br/><h5>Date: <strong><%=newdate%></strong></h5>\n\</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>STK-001</strong></dd>\n\
                                         </div>\n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;">\n\
-                                        <p>Discipline: <strong><%=mysqldis_name.get(0).get(1)%></strong></p>\n\
+                                        <p>Order No: <strong>'+orderno+'</strong><br>Order Date:<strong> '+orderdate+'</strong><br>Order By: <strong>' + orderby + ' | '+orderingdis+'</strong></p>\n\
                                         </div>');
                             $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
-                            //$(win.document.body).css('font-size', '10pt').css('font-weight', 'bolder').append('<div style="text-align: right;padding-top:10px;"><br> Order Total = '+$(this).data().count()+' </div>');
-                            $(win.document.body).css('font-size', '10pt').append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                            $(win.document.body)
+                                                        .css('font-size', '10pt')
+                                                        .css('font-weight', 'bolder')
+                                                        .append('<div style="text-align: left;padding-top:10px;"><br>Total Order = ' + totalPatient + '<br>Total Released = ' + totalreleased + ' </div>');
+                                                $(win.document.body)
+                                                        .css('font-size', '10pt')
+                                                        .append('<div style="text-align: center;"><div style="text-align: left;padding-top:30px;">Receive By:<br><br>-------------------<br>(Name: '+orderby+')</div><div style="text-align: right;">Released By:<br><%=username%><br>'+namaDis+'</div></div>');
 
                         },
                         exportOptions: {
@@ -591,7 +610,8 @@
             $("#releaseTotalOrder").val(totalOrder);
             $("#releaseTotalQuantity").val(stockReleaseQtyTotal);
             $("#releaseGrandTotal").val(grandTotal.toFixed(2));
-
+            totalPatient = totalOrderChecked;
+            totalreleased = stockReleaseQtyTotal;
             // Assigining Value For Selected Dispense
             $("#releaseTotalOrderChecked").val(totalOrderChecked);
             $("#releaseTotalQuantityChecked").val(stockReleaseQtyTotalChecked);
@@ -751,8 +771,8 @@
 
                     $('#disciplineStock').val(dis);
                     $('#subdisciplineStock').val(dis);
-                    $('#disciplineStockOrdering').val(orderdis);
-                    $('#subdisciplineStockOrdering').val("<%=subdisori%>");
+                    $('#disciplineStockOrdering').val(requestorDiscipline);
+                    $('#subdisciplineStockOrdering').val(requestorSubdiscipline);
                     $('#stockitemtype').val(temtype);
 
                     $('#orderStockDetailsSearchItemInput').val('');
@@ -1278,7 +1298,7 @@
 
                                     if (datas.trim() === "Success") {
 
-                                        bootbox.alert("Stock is released successfully!");
+                                        bootbox.alert("STOCK IS RELEASED SUCCESSFULLY!");
 
                                     } else{
 
@@ -1307,36 +1327,36 @@
         }
 
 
-        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockPrintSlip', function (e) {
-            printSlip();
-
-        });
-
-        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockPrintSlip', function (e) {
-            printSlip();
-
-        });
-
-        function printSlip() {
-            bootbox.alert("button di ketik");
-            var myWindow = window.open();
-            var html = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Patient Attendance List<br/><h5>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </h5>\n\</div>\n\
-                                        <div class="info_kecik">\n\
-                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PMS-001</strong></dd>\n\
-                                        </div> \n\
-                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
-                                        <p>Discipline: <strong><%=dis%></strong></p>\n\
-                                        </div> ';
-            $(myWindow.document.body).html(html);
-            //myWindow.document.write();
-
-            myWindow.document.close();
-            myWindow.focus();
-            myWindow.print();
-            myWindow.close();
-        }
+//        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsReleaseButtonDiv #btnStockPrintSlip', function (e) {
+//            printSlip();
+//
+//        });
+//
+//        $('#distributeStockOrderDetailContent').on('click', '#distributeStockOrderDetailsTransferButtonDiv #btnStockPrintSlip', function (e) {
+//            printSlip();
+//
+//        });
+//
+//        function printSlip() {
+//            //bootbox.alert("button di ketik");
+//            var myWindow = window.open();
+//            var html = '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+//                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Patient Attendance List<br/><h5>Date: From <strong>' + startDateori + ' </strong>  To <strong>' + endDateori + '</strong> </h5>\n\</div>\n\
+//                                        <div class="info_kecik">\n\
+//                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+//                                        <dd>Report No: <strong>STK-001</strong></dd>\n\
+//                                        </div> \n\
+//                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
+//                                        <p>Discipline: <strong><%=dis%></strong></p>\n\
+//                                        </div> ';
+//            $(myWindow.document.body).html(html);
+//            //myWindow.document.write();
+//
+//            myWindow.document.close();
+//            myWindow.focus();
+//            myWindow.print();
+//            myWindow.close();
+//        }
 
 
 //-------------------------------------------------------------------------------  Release Stock End  --------------------------------------------------------------------------------//
@@ -1383,47 +1403,6 @@
 
 
 
-//            var pmiNo = patientpmino;
-//            var orderNo = patientOrderNo;
-//            var orderDate = patientOrderDate;
-//            episodeDate = patientEpisodeDate;
-//            encounterDate = patientEncounterDate;
-//
-//
-//        var data = {
-//            pmiNo: pmiNo,
-//            orderNo: orderNo,
-//            orderDate: orderDate,
-//            episodeDate: episodeDate,
-//            encounterDate: encounterDate
-//        };
-//
-//        $.ajax({
-//            url: "controllerProcess/distributeStockOrderGetMSH_PDI_ORC_Single_File.jsp",
-//            type: "post",
-//            timeout: 3000,
-//            data: data,
-//            success: function (returnDataMSH_PDI_ORCFull) {
-//
-//
-//                console.log(returnDataMSH_PDI_ORCFull.trim());
-//
-//                //Set value to the Second Tab 
-//                $("#patientpmino").val(patientpmino);
-//                $("#patientName").val(patientName);
-//                $("#patientnic").val(patientnic);
-//                $("#patientGender").val(patientGender);
-//                $("#patientBdate").val(patientBdate);
-//                $("#patientBtype").val(patientBtype);
-//                $("#distributeStockOrderNo").val(patientOrderNo);
-//                $("#distributeStockOrderDate").val(patientOrderDate);
-//                $("#distributeStockOrderLocationCode").val(patientOrderLocationCodeName);
-//
-//
-//                loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
-//
-//
-//            }
-//        });
+
 
 </script>

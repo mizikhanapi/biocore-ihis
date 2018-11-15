@@ -20,4 +20,6 @@
 <script src="libraries/js/buttons.colVis.min.js" type="text/javascript"></script>
 <script src="libraries/js/papaparse.min.js"></script>
 <script src="libraries/js/jquery.multi-select.js" type="text/javascript"></script>
+<script src="../assets/js/Chart.bundle.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
 

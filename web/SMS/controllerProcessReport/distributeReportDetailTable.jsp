@@ -21,16 +21,17 @@
             + "sdd.item_quantity,sdd.order_by,sdd.created_by,sdd.item_type,sdd.location,sdd.customer_id,"
             //       11                12                     13
             + "sdm.discipline_cd,sdm.subdiscipline_cd,sdm.ordering_discipline_cd,"
-            //           14                            15                16
+            //           14                            15                16                 
             + "sdm.ordering_subdiscipline_cd,ad.discipline_name,asd.subdiscipline_name,"
-            //       17                     18
-            + "x.discipline_name,asdd.subdiscipline_name "
+            //       17                     18               19
+            + "x.discipline_name,asdd.subdiscipline_name,admuser.user_name "
             + "FROM stk_distribition_detail sdd "
             + "JOIN stk_distribition_master sdm ON sdm.order_no = sdd.order_no "
             + "JOIN adm_discipline ad ON ad.discipline_hfc_cd = sdd.location AND ad.discipline_cd = sdm.discipline_cd "
             + "JOIN adm_subdiscipline asd ON asd.subdiscipline_hfc_cd = sdd.location AND asd.discipline_cd = sdm.discipline_cd AND asd.subdiscipline_cd = sdm.subdiscipline_cd "
             + "JOIN adm_discipline x ON x.discipline_hfc_cd = sdd.location AND x.discipline_cd = sdm.ordering_discipline_cd "
             + "JOIN adm_subdiscipline asdd ON asdd.subdiscipline_hfc_cd = sdd.location AND asdd.discipline_cd = sdm.ordering_discipline_cd AND asdd.subdiscipline_cd = sdm.ordering_subdiscipline_cd "
+            + "JOIN adm_users admuser ON admuser.user_id = sdm.customer_id "
             + "WHERE sdd.order_no = '"+orderno+"'";
 
     data = conn.getData(sqlquery);
@@ -48,7 +49,7 @@
             }
         }
     }else{
-        out.print(sqlquery);
+        //out.print(sqlquery);
     }
 
     %>
