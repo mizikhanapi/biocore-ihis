@@ -25,7 +25,6 @@
                             <h4>Distribute Stock Details</h4>
                         </div>
                     </div>
-                    <hr>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
@@ -55,10 +54,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="thumbnail">
+                    <div class="">
+                        <div class="">
                         <div id="tbldetailmodal">
-                            <table  id="distributedetailreporttable"  class="table table-striped table-bordered" cellspacing="0" width="50%">
+                            <table  id="distributedetailreporttable"  class="table table-striped table-bordered" style="margin:40px;">
                                 <thead >
                                 <th style="text-align: left;">Order No</th>
                                 <th style="text-align: left;">Txn Date</th>

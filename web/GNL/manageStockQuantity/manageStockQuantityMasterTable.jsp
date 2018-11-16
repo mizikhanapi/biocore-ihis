@@ -37,7 +37,7 @@
         String dis = (String) session.getAttribute("DISCIPLINE_CODE");
 
         //                      0               1           2                                             3           4               5               6           7           8
-        String sql = "SELECT vh.vendor_id,vh.invoice_no,DATE_FORMAT(vh.txt_date, '%d/%m/%Y %H:%i:%s'),vh.hfc_cd,vh.discipline,vh.sub_discipline,vh.location,vh.total_amt,vh.quantity,"
+        String sql = "SELECT vh.vendor_id,vh.invoice_no,DATE_FORMAT(vh.txt_date, '%d/%m/%Y'),vh.hfc_cd,vh.discipline,vh.sub_discipline,vh.location,vh.total_amt,vh.quantity,"
                 //       9            10               11           12          13              14
                 + " vh.order_no,vh.subledger_type,vh.do_number,v.vendor_name,adm.module_code,adm.module_name "
                 // FROM TABLE

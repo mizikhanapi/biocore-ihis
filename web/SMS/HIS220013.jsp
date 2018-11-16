@@ -308,13 +308,14 @@
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
                     };
+                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "controllerProcessReport/distributeReportMasterTable.jsp",
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
-                            //console.log(reply);
+                            console.log(reply);
                             if (reply.trim() !== "No Data")
                             {
                                 
@@ -329,8 +330,8 @@
                                 alert("There is no record in this time range !!");
                             }
                         },
-                        error: function (err) {
-                            console.log("ERROR: " + err);
+                        error: function (request, status, error) {
+                            console.log("ERROR: " + request.responseText);
                         }
                     });
                 }

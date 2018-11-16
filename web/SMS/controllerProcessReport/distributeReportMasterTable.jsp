@@ -33,7 +33,8 @@
             + "JOIN adm_health_facility ahf ON ahf.hfc_cd = stkdis.hfc_cd "
             + "JOIN adm_discipline ad ON ad.discipline_hfc_cd = stkdis.hfc_cd AND ad.discipline_cd = stkdis.ordering_discipline_cd "
             + " WHERE cast(stkdis.txt_date as date) BETWEEN '" + startdate + "' AND '" + enddate + "'"
-            + whereClause + " ;";
+            + whereClause + " "
+            + "ORDER BY stkdis.txt_date desc ;";
 
     data = conn.getData(sqlquery);
     if (data.size() > 0) { %>
@@ -47,20 +48,24 @@
 <tbody>
 
 
-<% for (int i = 0; i < data.size(); i++) {
-            ArrayList<String> medicalInforow = data.get(i);
-%>
-<tr style="text-align: left;">
+    <% for (int i = 0; i < data.size(); i++) {
+        String joinRow = "";
+                ArrayList<String> medicalInforow = data.get(i);
+                for(int x = 0; x < medicalInforow.size(); x++){
+                     joinRow = String.join("|", medicalInforow.get(x));
+                }
+    %>
+    <tr style="text-align: left;">
 
-<td id="orderno"><%= medicalInforow.get(1)%></td> <!-- Order No -->
-<td><%= medicalInforow.get(2)%><input id="dataRISOrderListhidden" type="hidden" value="<%=String.join("|", medicalInforow.get(i))%>"></td> <!-- PMI No -->
-<td style="font-weight: 500;"><%= medicalInforow.get(15)+"|"+medicalInforow.get(16)%></td> <!-- Name -->
-<td><button class="btn btn-default" id="btnPrint" data-toggle="modal" data-target="#disdetail"><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;"></i>   Print</button></td>
-</tr>
-<%    }
-    } else {
+    <td id="orderno"><%= medicalInforow.get(1)%></td> <!-- Order No -->
+    <td><%= medicalInforow.get(2)%><input id="dataRISOrderListhidden" type="hidden" value="<%=joinRow%>"></td>
+    <td style="font-weight: 500;"><%= medicalInforow.get(15)+"|"+medicalInforow.get(16)%></td> <!-- Name -->
+    <td><button class="btn btn-default" id="btnPrint" data-toggle="modal" data-target="#disdetail"><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;"></i>   Print</button></td>
+    </tr>
+    <%    }
+} else {
 
-    }
+}
 
 %>
 </tbody>
