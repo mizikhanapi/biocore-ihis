@@ -48,11 +48,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
                         <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Store *</label>
-                            <div class="col-md-6">
+                        <div class="form-group" style="margin-top: 1.5%;">
+                            <label class="col-md-4 control-label" for="textinput" >Store *</label>
+                            <div class="col-md-4">
                                 <select id="selectStore" class="form-control input-md">
                                     <%
                                         if (dataDiscipline.size() > 0) {
@@ -64,12 +63,9 @@
                                 </select>
                             </div>
                         </div> 
-
-                    </div>
-                    <div class="col-md-6">
                         <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Item Type *</label>
+                        <div class="form-group" style="margin-top: 1.5%;">
+                            <label class="col-md-4 control-label" for="textinput" >Item Type *</label>
                             <div class="col-md-4">
                                 <select id="selectItemType" class="form-control input-md">
                                     <option value="drug">Drug</option>
@@ -77,11 +73,9 @@
                                 </select>
                             </div>
                         </div>
-
-                    </div>
                 </div>
                 <div class="row">
-                    <div class="form-group" id="divCentralisedStore">
+                    <div class="form-group" id="divCentralisedStore" style="margin-top: 1.5%;">
                         <label class="col-md-4 control-label" for="textinput">Mode of Adjustment *</label>
                         <div class="col-md-4">
                             <select id="radioMode" class="form-control input-md">
@@ -90,14 +84,14 @@
                                 </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 1.5%;">
                         <label class="col-md-4 control-label" for="textinput">Reference Number *</label>
                         <div class="col-md-4">
                             <input id="referenceNumber" name="referenceNumber" type="text" placeholder="reference number"  class="form-control input-md">
 
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="margin-top: 1.5%;">
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Date *</label>
@@ -106,13 +100,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 1.5%;">
                         <label class="col-md-4 control-label" for="textinput">Account</label>
                         <div class="col-md-4">
                             <input id="stockadjustaccount" name="stockadjustaccount" type="text" placeholder=""  class="form-control input-md">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 1.5%;">
                         <label class="col-md-4 control-label" for="textinput">Reason *</label>
                         <div class="col-md-4">
                             <select id="selectreason" class="form-control input-md">
@@ -126,7 +120,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 1.5%;">
                         <label class="col-md-4 control-label" for="textinput">Description *</label>
                         <div class="col-md-4">
                             <textarea id="textdesctiption" class="form-control input-md"></textarea>
@@ -143,7 +137,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 1.5%;">
                         <label class="col-md-4 control-label" for="textinput">Search Item</label>
                         <div class="col-md-4">
                             <input id="stockadjustsearch" name="stockadjustsearch" type="text" placeholder="please search item"  class="form-control input-md">
@@ -153,7 +147,7 @@
                 </div>
                 <div class="row">
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 1.5%;">
                             <label class="col-md-4 control-label" for="textinput">Item Code *</label>
                             <div class="col-md-4">
                                 <input id="stockadjustitemcode" name="stockadjustitemcode" type="text" placeholder="Item Code"  class="form-control input-md" readonly>
@@ -162,28 +156,28 @@
                             </div>
                         </div>                           
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 1.5%;">
                             <label class="col-md-4 control-label" for="textinput">Item Name</label>
                             <div class="col-md-4">
                                 <input id="stockadjustitemname" name="stockadjustitemname" type="text" placeholder="Item Name" class="form-control input-md" readonly>
                             </div>
                         </div>
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 1.5%;">
                             <label class="col-md-4 control-label" for="textinput" id="currentstkval">Stock On Hand</label>
                             <div class="col-md-4">
                                 <input id="stockadjustcurrent" name="stockadjustcurrent" type="text" placeholder="Stock Quantity"  class="form-control input-md" readonly>
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 1.5%;">
                             <label class="col-md-4 control-label" for="textinput" id="adjustedstkval">Quantity Adjusted *</label>
                             <div class="col-md-4">
                                 <input id="stockadjustadjusted" name="stockadjustadjusted" type="text" placeholder="Please Insert Quantity or value (+999/-999)" class="form-control input-md numbersOnly" >
                             </div>
                         </div>
                         <!-- Text input-->
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 1.5%;">
                             <label class="col-md-4 control-label" for="textinput" id="newstkval">New quantity on hand *</label>
                             <div class="col-md-4">
                                 <input id="stockadjustnewqty" name="stockadjustnewqty" type="text" placeholder="" class="form-control input-md numbersOnly" readonly="">

@@ -39,6 +39,7 @@
         <li><a href="Manage_VendorS"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Manage Vendor</a></li>
             <% } %>
         <li><a href="Stock_Past_Order"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
+        <li><a href="Stock_Adjustment"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Stock Adjustment</a></li>
         <li  data-toggle="collapse" data-target="#Report" class="collapsed active">
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
         </li>

@@ -62,7 +62,7 @@
             var cateName = $('#stockCateName').val();
             var cateGLCode = $('#stockCateGLCode').val();
             var cateStatus = $('#stockCateStatus').val();
-
+            
 
             if (cateCode === "" || cateCode === null) {
 
@@ -168,6 +168,8 @@
             $('#stockCateName').val(arrayData[1]);
             $('#stockCateGLCode').val(arrayData[5]);
             $('#stockCateStatus').val(arrayData[6]);
+            
+            
 
 
 

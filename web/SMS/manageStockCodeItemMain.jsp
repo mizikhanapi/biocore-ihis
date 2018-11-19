@@ -35,7 +35,8 @@
 
         // Cate Add Modal Button Function Start
         $('#addNewStockItemButton').on('click', function () {
-
+            $("#stockItemModal #stockItemForm #stockItemSellingPrice").removeAttr('disabled');
+            $("#stockItemModal #stockItemForm #stockItemPhysicalStock").removeAttr('disabled');
             $('#stockItemModalTitle').text("Add New Stock Item");
             $('#stockItemCode').prop('disabled', false);
             $('#stockItemCatCode').prop('disabled', false);
@@ -92,7 +93,7 @@
             var newMatCostPrice = parseFloat(stockItemStdMaterialCost).toFixed(2);
             var newLabCostPrice = parseFloat(stockItemStdLaborCost).toFixed(2);
             var newExpensesPrice = parseFloat(stockItemStdExpenses).toFixed(2);
-
+            
             stockItemSellingPrice = newSellPrice;
             stockItemPurchasePrice = newPurPrice;
             stockItemWholesalePrice = newWholePrice;
@@ -300,7 +301,9 @@
             $('#stockItemCondition').val(arrayData[21]);
             $('#stockItemGrade').val(arrayData[22]);
             $('#stockItemStatus').val(arrayData[23]);
-
+            
+            $("#stockItemModal #stockItemForm #stockItemSellingPrice").attr('disabled','disabled');
+            $("#stockItemModal #stockItemForm #stockItemPhysicalStock").attr('disabled','disabled');
 
 
         });

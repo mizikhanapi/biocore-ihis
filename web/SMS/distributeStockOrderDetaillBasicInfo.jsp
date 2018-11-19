@@ -297,7 +297,7 @@
         var dis, status;
         var grand;
 
-        if (role === "001" && currentDis === "CS") {
+        if (role === "CS01" && currentDis === "CS") {
             $('#distributeStockOrderDetailsTransferButtonDiv').show();
             $('#distributeStockOrderDetailsReleaseButtonDiv').hide();
         } else {
@@ -1169,7 +1169,7 @@
         });
 
         function mainfuctionrelease(e) {
-
+            var role = "<%=role%>";
             var customer_id = $("#requestorUserID").val();
             var order_no = $("#distributeStockOrderNo").val();
             var txt_date = $("#distributeStockOrderDate").val();
