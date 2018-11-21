@@ -30,7 +30,7 @@
             + " LEFT JOIN adm_users u ON (vd.created_by = u.user_id) "
             + " WHERE  vd.invoice_no = '" + invoiceNo + "' "
             + " AND vh.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
-            + " AND vh.discipline = '" + DISCIPLINE_CODE + "'  ";
+            + " AND vh.discipline = '" + DISCIPLINE_CODE + "'  order by vd.txt_date desc";
 
     ArrayList<ArrayList<String>> dataInvoiceDetailList;
 

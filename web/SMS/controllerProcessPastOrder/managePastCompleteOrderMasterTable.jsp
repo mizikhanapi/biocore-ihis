@@ -24,15 +24,15 @@
 
     if (type.equalsIgnoreCase("User")) {
 
-        whereClause = "AND om.customer_id = '" + inputID + "' ;";
+        whereClause = "AND om.customer_id = '" + inputID + "' ORDER BY om.txt_date DESC;";
 
     } else if (type.equalsIgnoreCase("Order")) {
 
-        whereClause = "AND om.order_no = '" + inputID + "' ;";
+        whereClause = "AND om.order_no = '" + inputID + "' ORDER BY om.txt_date DESC;";
 
     } else if (type.equalsIgnoreCase("Date")) {
 
-        whereClause = "AND (date(om.txt_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') ) ;";
+        whereClause = "AND (date(om.txt_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') ) ORDER BY om.txt_date DESC;";
 
     }
 
