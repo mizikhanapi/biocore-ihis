@@ -29,15 +29,30 @@
         <li><a href="Distribution_Stock_Order"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Stock Distribution</a></li>
         <li><a href="Stock_Adjustment"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Stock Adjustment</a></li>
         <li><a href="Manage_Stock_Quantity"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Stock Receipt</a></li>
-        <li  data-toggle="collapse" data-target="#ManageCode" class="collapsed active">
-            <a href="#"><i class="fa fa-table fa-lg" aria-hidden="true" ></i> Manage Code <span class="arrow"></span></a>
-        </li>
-        <ul class="sub-menu collapse" id="ManageCode">
-            <li><a href="Manage_Stock_Code">Manage Stock Code</a></li>
-            <li><a href="Manage_Drug_Stock_Code">Manage Drug Code</a></li>
-        </ul>
+        
         <li><a href="Manage_VendorS"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Manage Vendor</a></li>
             <% } %>
+        
+        <%
+            if (roleCode.equalsIgnoreCase(adminCS) || superUser.isSuperUser() == true) { %>
+                <li  data-toggle="collapse" data-target="#ManageCode" class="collapsed active">
+                    <a href="#"><i class="fa fa-table fa-lg" aria-hidden="true" ></i> Manage Code <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="ManageCode">
+                    <li><a href="Manage_Stock_Code">Manage Stock Code</a></li>
+                    <li><a href="Manage_Drug_Stock_Code">Manage Drug Code</a></li>
+                </ul>
+        <%    }else{ %>
+                <li  data-toggle="collapse" data-target="#ManageCode" class="collapsed active">
+                    <a href="#"><i class="fa fa-table fa-lg" aria-hidden="true" ></i> View Code <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="ManageCode">
+                    <li><a href="Manage_Stock_Code">View Stock Code</a></li>
+                    <li><a href="Manage_Drug_Stock_Code">View Drug Code</a></li>
+                </ul>
+        <%     }
+        %>
+        
         <li><a href="Stock_Past_Order"><i class="fa fa-history sideIcon" aria-hidden="true"></i>Past Completed Order</a></li>
         <li><a href="Stock_Adjustment"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Stock Adjustment</a></li>
         <li  data-toggle="collapse" data-target="#Report" class="collapsed active">

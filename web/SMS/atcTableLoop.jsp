@@ -25,8 +25,8 @@
     <th style="text-align: center; display: none">DISCIPLINE CODE</th>
     <th style="text-align: center; display: none">SUBDISCIPLINE CODE</th>
     <th style="text-align: center;">STATUS</th>
-    <th style="text-align: center;">UPDATE</th>
-    <th style="text-align: center;">DELETE</th>
+    <th style="text-align: center;" class="mrsembunyi">UPDATE</th>
+    <th style="text-align: center;" class="mrsembunyi">DELETE</th>
 </thead>
 <tbody>
 
@@ -55,12 +55,12 @@
     } else {
         out.print("Inactive");
     } %></td> <!--status 3 --> 
-<td>
+<td class="mrsembunyi">
     <!-- Update Part Start -->
     <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
-<td>
+<td class="mrsembunyi">
     <!-- Delete Button Start -->
     <a id="deleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
@@ -396,7 +396,12 @@
 <script type="text/javascript" charset="utf-8">
 
     $(document).ready(function () {
-
+        
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         $('#atcTable').DataTable({
             pageLength: 15,
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],

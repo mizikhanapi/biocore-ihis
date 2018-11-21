@@ -37,7 +37,7 @@
     }
 
     //                          1             2             3           4
-    String query = "SELECT om.order_no, om.txt_date, om.customer_id, aus.USER_NAME "
+    String query = "SELECT om.order_no, DATE_FORMAT(om.txt_date, '%d/%m/%Y'), om.customer_id, aus.USER_NAME "
             // FROM ORDER MASTER TABLE
             + "FROM stk_order_master om "
             // LEFT JOIN USER TABLE

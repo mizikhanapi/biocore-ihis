@@ -3,21 +3,27 @@
     Created on : Nov 14, 2017, 10:05:47 AM
     Author     : Shammugam
 --%>
-
+<%
+    String roleCode2 = session.getAttribute("ROLE_CODE").toString();
+%>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     STOCK ITEM MANAGEMENT
-    <span class="pull-right">
-        <button id="addNewStockItemButton" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK ITEM</button>
-        <button id="STOCKITEMClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK ITEM</button>
-        <button id="STOCKITEM_btnSummary" class="btn btn-danger" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>STOCK ITEM INVENTORY SUMMARY</button>    </span>
+    <span class="pull-right ">
+        <button id="addNewStockItemButton" class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK ITEM</button>
+        <button id="STOCKITEMClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK ITEM</button>
+        <button id="STOCKITEM_btnSummary" class="btn btn-danger mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>STOCK ITEM INVENTORY SUMMARY</button>    </span>
 </h4>
 
 <script>
-
+    var adminrole = "<%=roleCode2%>";
     $(document).ready(function () {
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         $('.decimalNumbersOnly').keyup(function () {
             if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
                 this.value = this.value.replace(/[^0-9\.]/g, '');

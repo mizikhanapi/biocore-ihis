@@ -25,8 +25,8 @@
     <th style="text-align: center;">Physical Stock</th>
     <th style="text-align: center;">Selling Price</th>
     <th style="text-align: center;">Condition</th>
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Update</th>
+    <th style="text-align: center;" class="mrsembunyi">Delete</th>
 </thead>
 <tbody>
 
@@ -64,14 +64,14 @@
 
 
 <!-- Button Part Start -->
-<td>
+<td class="mrsembunyi">
     <!-- Update Button Start -->
     <a id="stockItemUpdateTButton" data-toggle="modal" data-target="#stockItemModal">
         <i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
     </a>
     <!-- Update Button End -->
 </td>
-<td>
+<td class="mrsembunyi">
     <!-- Delete Button Start -->
     <a id="stockItemDeleteTButton" class="testing">
         <i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
@@ -97,7 +97,11 @@
         // $('#mdcUpdateModal').css('overflow', 'auto');
 
         $('#stockItemTable').DataTable().destroy();
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         $('#stockItemTable').DataTable({
             pageLength: 15,
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],

@@ -281,3 +281,19 @@
 </div>
 <!-- Modal Add Supplier End -->
 <!-- Add Part End -->
+<script>
+    $("#vendor_Telephone_No").keydown(function (e) {
+        checkNumericOnly(e);
+    });
+    $("#vendor_Fax_No").keydown(function (e) {
+        checkNumericOnly(e);
+    });
+    $("#vendor_Bank_Acc").keydown(function (e) {
+        checkNumericOnly(e);
+    });
+    
+    $("#vendor_Postcode").keydown(function (e) {
+        checkNumericOnly(e);
+    });
+    
+</script>

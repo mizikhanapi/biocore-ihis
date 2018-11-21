@@ -6,18 +6,25 @@
 
 <!-- Add Part Start -->
 <!-- Add Button Start -->
+<%
+    String roleCode2 = session.getAttribute("ROLE_CODE").toString();
+%>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     STOCK CATEGORY MANAGEMENT
     <span class="pull-right">
-        <button id="addNewStockCateButton" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK CATEGORY</button>
-        <button id="STOCKCATEClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK CATEGORY</button>
+        <button id="addNewStockCateButton" class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK CATEGORY</button>
+        <button id="STOCKCATEClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK CATEGORY</button>
     </span>
 </h4>
 
 <script>
-
+    var adminrole = "<%=roleCode2%>";
     $(document).ready(function () {
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         $('.decimalNumbersOnly').keyup(function () {
             if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
                 this.value = this.value.replace(/[^0-9\.]/g, '');

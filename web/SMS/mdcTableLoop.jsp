@@ -50,8 +50,8 @@
     <th style="display: none">SUB-DISCIPLINE</th>
     <th style="display: none">SUPPLIER</th>
 
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Update</th>
+    <th style="text-align: center;" class="mrsembunyi">Delete</th>
 </thead>
 <tbody>
 
@@ -113,14 +113,14 @@
 
 
 <!-- Button Part Start -->
-<td>
+<td class="mrsembunyi">
     <!-- Update Button Start -->
     <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal">
         <i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
     </a>
     <!-- Update Button End -->
 </td>
-<td>
+<td class="mrsembunyi">
     <!-- Delete Button Start -->
     <a id="mdcDeleteTButton" class="testing">
         <i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
@@ -1017,7 +1017,11 @@
     $(document).ready(function () {
 
         $('#mdcUpdateModal').css('overflow', 'auto');
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         $('#mdcTable').DataTable({
             pageLength: 15,
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],

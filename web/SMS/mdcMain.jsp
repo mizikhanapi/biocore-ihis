@@ -18,16 +18,18 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
-
+<%
+    String roleCode2 = session.getAttribute("ROLE_CODE").toString();
+%>
 
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     DRUG CODE MANAGEMENT
-    <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG CODE</button>
-        <button id="MDCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE DRUG CODE</button>
-        <button id="MDCClone_btnSummary" class="btn btn-danger" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>DRUG INVENTORY SUMMARY</button>
+    <span class="pull-right ">
+        <button class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG CODE</button>
+        <button id="MDCClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE DRUG CODE</button>
+        <button id="MDCClone_btnSummary" class="btn btn-danger mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>DRUG INVENTORY SUMMARY</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -583,9 +585,13 @@
 
 
 <script>
-
+    var adminrole = "<%=roleCode2%>";
     $(document).ready(function () {
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         $('#mdcAddModal').css('overflow', 'auto');
 
 

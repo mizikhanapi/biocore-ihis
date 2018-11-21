@@ -24,8 +24,8 @@
     <th style="text-align: center;">Category Name</th>
     <th style="text-align: center;">GL Code</th>
     <th style="text-align: center;">Status</th>
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Update</th>
+    <th style="text-align: center;" class="mrsembunyi">Delete</th>
 </thead>
 <tbody>
 
@@ -51,12 +51,12 @@
     } else {
         out.print("Inactive");
     }%></td> <!-- Status -->
-<td>
+<td class="mrsembunyi">
     <!-- Update Part Start -->
     <a id="stockCateUpdateTButton" data-toggle="modal" data-target="#stockCateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
-<td>
+<td class="mrsembunyi">
     <!-- Delete Button Start -->
     <a id="stockCateDeleteTButton" ><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
@@ -76,7 +76,11 @@
     $(document).ready(function () {
 
         $('#stockCateTable').DataTable().destroy();
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         // Supplier DataTables Start
         $('#stockCateTable').DataTable({
             pageLength: 15,

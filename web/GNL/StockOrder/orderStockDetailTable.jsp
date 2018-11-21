@@ -7,6 +7,7 @@
     String hfcori = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String disori = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdisori = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String roleuser = session.getAttribute("ROLE_CODE").toString();
 %>
 <br><br>
 
@@ -77,7 +78,7 @@
 
     $(document).ready(function () {
 
-
+        var roleuser = "<%=roleuser%>";
         datatableTableDestroy();
         datatableTableCreate();
 
@@ -118,9 +119,14 @@
             $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
             $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
             $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
-
+            
+            
             $('#orderNewStockOrderModalFrom')[0].reset();
-
+            console.log(roleuser);
+            if(roleuser !== "CS01"){
+                $("#checkboxCS").prop('checked','checked');
+                $("#checkboxCS").prop('disabled','disabled');
+            }
         });
         // Add Add Modal Function Start
 
@@ -134,11 +140,16 @@
                 var input = $(this).val(); // We take the input value
                 var checkboxCS = $('#checkboxCS').is(':checked');
                 var dataCS;
-
+                
                 if(checkboxCS){
                     dataCS = $('#checkboxCS').val();
                 }else{
-                    dataCS="nope";
+                    if(roleuser !== "CS01"){
+                        dataCS = "CS";
+                    }else{
+                       dataCS="nope"; 
+                    }
+                    
                 }
             
                 if (input.length >= 1) { // Minimum characters = 2 (you can change)

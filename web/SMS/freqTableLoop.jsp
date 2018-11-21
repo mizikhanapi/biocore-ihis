@@ -24,8 +24,8 @@
     <th style="text-align: center;">Frequency Description</th>
     <th style="text-align: center;">Frequency Value</th>
     <th style="text-align: center;">STATUS</th>
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Update</th>
+    <th style="text-align: center;" class="mrsembunyi">Delete</th>
 </thead>
 <tbody>
 
@@ -49,12 +49,12 @@
     } else {
         out.print("Inactive");
     }%></td> <!-- Status -->
-<td>
+<td class="mrsembunyi">
     <!-- Update Part Start -->
     <a id="freqUpdateTButton" data-toggle="modal" data-target="#freqModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
-<td>
+<td class="mrsembunyi">
     <!-- Delete Button Start -->
     <a id="freqDeleteTButton" ><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
@@ -72,7 +72,11 @@
 <script type="text/javascript" charset="utf-8">
 
     $(document).ready(function () {
-
+        if(adminrole==="001"){
+        $('.mrsembunyi').addClass('hidden'); // hides
+        }else{
+            $('.mrsembunyi').removeClass('hidden'); // Shows
+        }
         // Supplier DataTables Start
         $('#freqTable').DataTable({
             pageLength: 15,
