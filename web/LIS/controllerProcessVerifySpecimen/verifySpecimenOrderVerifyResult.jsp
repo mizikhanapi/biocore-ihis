@@ -85,6 +85,26 @@
     //
     //
     //
+    // Update order Detail Part Start //
+    String sqlUpdateOrderDetail = "UPDATE lis_order_detail "
+            + " SET verification = '" + status + "',detail_status = '3' "
+            + " WHERE order_no = '" + order_no + "' AND item_cd = '" + item_cd + "'  ";
+
+    boolean isUpdateOrderDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderDetail);
+
+    if (isUpdateOrderDetail == false) {
+
+        falseCount = falseCount + 1;
+
+    }
+    
+    // Update order Detail Part End //
+    //
+    //
+    //
+    //
+    //
+    //
     // Specimen Master Table Part Start //
     String sqlCheckMasterSpecimenData = "SELECT * FROM lis_specimen_detail  "
             + " WHERE specimen_no = '" + specimen_no + "' AND (specimen_status = 'Newly Assigned Specimen')";
@@ -115,7 +135,7 @@
     //
     // Order Master Table Part Start //
     String sqlCheckMasterData = "SELECT * FROM lis_order_detail  "
-            + " WHERE order_no = '" + order_no + "' AND (detail_status = '0' OR detail_status = '1')";
+            + " WHERE order_no = '" + order_no + "' AND (detail_status = '0' OR detail_status = '1' OR detail_status = '2')";
     ArrayList<ArrayList<String>> getOrderSummary = conn.getData(sqlCheckMasterData);
 
     if (getOrderSummary.size() == 0) {
