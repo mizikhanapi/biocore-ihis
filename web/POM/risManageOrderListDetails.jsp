@@ -86,7 +86,7 @@
 //            out.print(test);
 
     %>
-    <tr>
+    <tr class="clickable_tr">
 
         <td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
         <td><%= procedure_cd%></td> <!-- code -->
@@ -96,8 +96,8 @@
         <td><%= dataOrderList.get(i).get(5)%></td><!-- date -->
         <td><%= status%></td> <!-- status -->
         <td>
-            <button id="MOD_btnPrepare" class="btn btn-default btn-danger" <%out.print(prepareDisabled);%>  data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
-            <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
+            <button id="MOD_btnPrepare" class="btn btn-default btn-danger" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
+            <button id="MOD_btnPerform" class="btn btn-default"  <%out.print(cancelDisabled);%>><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
             <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
         </td><!-- perform -->
 

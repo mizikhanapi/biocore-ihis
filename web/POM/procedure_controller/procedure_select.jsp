@@ -37,7 +37,7 @@
                 dataselectItem.get(i).add("-");
                 dataselectItem.get(i).add("-");
             }
-            output += "<tr id='addNewStockOrderDetailsUpdateDeleteBtn'>"
+            output += "<tr id='addNewStockOrderDetailsUpdateDeleteBtn' class='clickable_tr'>"
                     +"<td>" + dataselectItem.get(i).get(2) + "</td>"
                                             +"<td>" + dataselectItem.get(i).get(3) + "</td>"
                                             +"<td>" + dataselectItem.get(i).get(8) + "</td>"

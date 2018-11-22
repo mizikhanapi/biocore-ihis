@@ -55,7 +55,7 @@
                      joinRow = String.join("|", medicalInforow.get(x));
                 }
     %>
-    <tr style="text-align: left;">
+    <tr style="text-align: left;" class="clickable_tr">
 
     <td id="orderno"><%= medicalInforow.get(1)%></td> <!-- Order No -->
     <td><%= medicalInforow.get(2)%><input id="dataRISOrderListhidden" type="hidden" value="<%=joinRow%>"></td>

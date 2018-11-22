@@ -55,4 +55,13 @@ and open the template in the editor.
     margin-left:2px;
 }
 
+.clickable_tr {
+    cursor: pointer;
+}
+
+.clickable_tr:hover, .clickable_tr.odd:hover, .clickable_tr.even:hover {
+    background: #2196F3;
+    color: #fff;
+}
+
 /* Animation  For Import Input */

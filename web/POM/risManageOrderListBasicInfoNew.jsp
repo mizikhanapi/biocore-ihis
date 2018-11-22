@@ -80,7 +80,7 @@
 </h5>
 
 <div id="risManageAllergyListTableDiv" class="form-group">
-    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageAllergyListTable">
+    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%;cursor: pointer;" id="risManageAllergyListTable">
         <thead>
         <th style="display: none">PMI NO</th>
         <th>HFC CODE</th>
@@ -101,7 +101,7 @@
 <h4>Diagnosis Info</h4>
 <!--<hr/>-->
 <div id="risManageDiagnosisListTableDiv" class="form-group">
-    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageDiagnosisListTable">
+    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%;cursor: pointer;" id="risManageDiagnosisListTable">
         <thead>
         <th style="display: none">PMI NO</th>
         <th>HFC CODE</th>
@@ -183,7 +183,7 @@
 
 
 <div id="risManageOrderDetailsListTableDiv" class="form-group table-guling">
-    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageOrderDetailsListTable">
+    <table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%;cursor: pointer;" id="risManageOrderDetailsListTable">
         <thead>
         <th style="display: none">Hidden</th>    
         <th style="width: 5%">Procedure Code</th>
@@ -206,7 +206,7 @@
     Item Preparation
 </h4>
 <div id="posItemPreparation" class="form-group table-guling">
-    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="tablepositemprepare">
+    <table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%;cursor: pointer;" id="tablepositemprepare">
         <thead>
         <th style="width: 5%">Item Code</th>
         <th style="width: 20%">Item Name</th>

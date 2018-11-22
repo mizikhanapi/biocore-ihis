@@ -375,7 +375,7 @@
                                 {
                                     var datas = dataRow[i].split("|");
                                     console.log(datas);
-                                    trHTML += '<tr style="text-align: left;">\n\
+                                    trHTML += '<tr style="text-align: left;" class="clickable_tr">\n\
                                                         <td>' + datas[0] + '</td>\n\
                                                         <td>' + datas[1] + '</td>\n\
                                                         <td>' + datas[2] + '</td>\n\

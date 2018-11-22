@@ -43,7 +43,7 @@
     String user = session.getAttribute("USER_ID").toString();
 %>
 
-<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="risManageOrderDetailsListTable">
+<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left;cursor: pointer;" id="risManageOrderDetailsListTable">
     <thead>
         <tr>
             <th style="display: none">Hidden</th>    
@@ -81,7 +81,7 @@
             }
 
     %>
-    <tr>
+    <tr class="clickable_tr">
 
         <td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
         <td><%= dataOrderList.get(i).get(11)%></td> <!-- body -->
@@ -92,7 +92,7 @@
         <td><%= dataOrderList.get(i).get(10)%></td><!-- exam date -->
         <td><%= status%></td> <!-- status -->
         <td> 
-        <button id="MOD_btnModalDate" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-calendar fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Set Exam Date</button><!-- set date -->
+        <button id="MOD_btnModalDate" class="btn btn-default"  ><i class="fa fa-calendar fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Set Exam Date</button><!-- set date -->
         <button id="MOD_btnPrepareItem" class="btn btn-default btn-danger"  data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
         <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Exam</button><!-- perform -->
         <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Report</button><!-- prepare -->

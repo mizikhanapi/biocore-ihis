@@ -326,7 +326,7 @@
 
                     var newTotal = (parseFloat(itemPrice) * parseInt(itemQuantity)).toFixed(2);
 
-                    $('#orderNewStockOrderItemDetailsTable').append('<tr id="addNewStockOrderDetailsUpdateDeleteBtn">\n\
+                    $('#orderNewStockOrderItemDetailsTable').append('<tr id="addNewStockOrderDetailsUpdateDeleteBtn" class="clickable_tr">\n\
                         <td>' + itemCode + '</td>\n\
                         <td>' + itemName + '</td>\n\
                         <td>' + itemPrice + '</td>\n\

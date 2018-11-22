@@ -84,7 +84,7 @@
 //            out.print(test);
 
     %>
-    <tr>
+    <tr class="clickable_tr">
 
         <td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
         <td><%= dataOrderList.get(i).get(0)%></td> <!-- start -->
