@@ -367,7 +367,54 @@ $(document).ready(function () {
     });
 
 
+    $('#bmiHeightSlider').slider({
+        value: 0,
+        min: 140,
+        max: 220,
+        step: 1,
+        slide: function (event, ui) {
+            $('#bmiHeight').val(ui.value + "");
+        }
+    });
     
+    $('#bmiHeight').on('change', function (e) {
+        var bmiInput = parseInt($('#bmiHeight').val());
+        $('#bmiHeightSlider').slider("option", "value", bmiInput);
+        $('#bmiHeight').val(bmiInput + "");
+    });
+    
+    $('#bmiWeightSlider').slider({
+        value: 0,
+        min: 0,
+        max: 150,
+        step: 1,
+        slide: function (event, ui) {
+            $('#bmiWeight').val(ui.value + "");
+        }
+    });
+    
+    $('#bmiWeight').on('change', function (e) {
+        var bmiWInput = parseInt($('#bmiWeight').val());
+        $('#bmiWeightSlider').slider("option", "value", bmiWInput);
+        $('#bmiWeight').val(bmiWInput + "");
+    });
+    
+    $('#calcBMI').on('click', function (e) {
+        var height = $('#bmiHeight').val().split(" ");
+        height = parseFloat(height[0]) / 100;
+        height = height * height;
+
+        var weight = $('#bmiWeight').val().split(" ");
+        weight = parseFloat(weight[0]);
+
+        // result = weight/height;
+        //result = parseInt(result)
+        var result = calcBMI(height, weight);
+        $('#bmi').val(result[0]);
+        $('#bmiStatus').val((result[1]));
+
+
+    });
 
 });
 
@@ -428,8 +475,8 @@ function displayBTemp(_BTemp) {
     i = i + 1;
 }
 
-function displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, CholeRatio,CholeLDLUnit,CholeTotalUnit,CholeHDLUnit,CholeTriUnit,CholeNonUnit,CholeRatioUnit) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Cholesterol :<p class="summary" id="sum' + i + '">Total Cholesterol:' + CholeTotal + ' '+CholeTotalUnit+' </br> LDL Cholesterol:' + CholeLDL + ' '+CholeLDLUnit+' </br> HDL Cholesterol:' + CholeHDL + ' '+CholeHDLUnit+' </br> Triglycerides:' + CholeTri + ' '+CholeTriUnit+' </br> Non-HDL-C:' + CholeNon + ' '+CholeNonUnit+'</br> TG to HDL ratio:'+CholeRatio+' '+CholeRatioUnit+'</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateCholesterol" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, CholeRatio, CholeLDLUnit, CholeTotalUnit, CholeHDLUnit, CholeTriUnit, CholeNonUnit, CholeRatioUnit) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Cholesterol :<p class="summary" id="sum' + i + '">Total Cholesterol:' + CholeTotal + ' ' + CholeTotalUnit + ' </br> LDL Cholesterol:' + CholeLDL + ' ' + CholeLDLUnit + ' </br> HDL Cholesterol:' + CholeHDL + ' ' + CholeHDLUnit + ' </br> Triglycerides:' + CholeTri + ' ' + CholeTriUnit + ' </br> Non-HDL-C:' + CholeNon + ' ' + CholeNonUnit + '</br> TG to HDL ratio:' + CholeRatio + ' ' + CholeRatioUnit + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateCholesterol" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     //$('#CHOLENotes').append(_tr);
 
     //i = i + 1;
