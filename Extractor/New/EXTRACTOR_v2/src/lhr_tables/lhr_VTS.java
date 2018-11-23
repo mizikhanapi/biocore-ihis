@@ -1099,14 +1099,14 @@ public class lhr_VTS {
                             + "'"+ vts_Obj.getTGtoHDLUnit()+"')";
 
                     try {
-//                        if(vts_Obj.getTotalCholesterol().equalsIgnoreCase("-") && vts_Obj.getTotalUnit().equalsIgnoreCase("-") 
-//                                && vts_Obj.getLDLUnit().equalsIgnoreCase("-") && vts_Obj.getLDLCholesterol().equalsIgnoreCase("-") 
-//                                && vts_Obj.getHDLCholesterol().equalsIgnoreCase("-") && vts_Obj.getHDLUnit().equalsIgnoreCase("-")
-//                                && vts_Obj.getTriglycerides().equalsIgnoreCase("-") && vts_Obj.getTriUnit().equalsIgnoreCase("-")
-//                                && vts_Obj.getNonHDL().equalsIgnoreCase("-") && vts_Obj.getNonHDLUnit().equalsIgnoreCase("-")
-//                                && vts_Obj.getTGtoHDLRatio().equalsIgnoreCase("-") && vts_Obj.getTGtoHDLUnit().equalsIgnoreCase("-")){
-//                            System.out.println("Skip extract vts CHOLESTEROL");
-//                        }else {
+                        if(vts_Obj.getTotalCholesterol().equalsIgnoreCase("0.0") && vts_Obj.getTotalUnit().equalsIgnoreCase("-") 
+                                && vts_Obj.getLDLUnit().equalsIgnoreCase("-") && vts_Obj.getLDLCholesterol().equalsIgnoreCase("0.0") 
+                                && vts_Obj.getHDLCholesterol().equalsIgnoreCase("0.0") && vts_Obj.getHDLUnit().equalsIgnoreCase("-")
+                                && vts_Obj.getTriglycerides().equalsIgnoreCase("0.0") && vts_Obj.getTriUnit().equalsIgnoreCase("-")
+                                && vts_Obj.getNonHDL().equalsIgnoreCase("0.0") && vts_Obj.getNonHDLUnit().equalsIgnoreCase("-")
+                                && vts_Obj.getTGtoHDLRatio().equalsIgnoreCase("0.0") && vts_Obj.getTGtoHDLUnit().equalsIgnoreCase("-")){
+                            System.out.println("Skip extract vts CHOLESTEROL");
+                        }else {
                             status_vts_lhr_cholesterol = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_cholesterol2);
                             if (status_vts_lhr_cholesterol == false) {
                                 total_fail_insert++;
@@ -1117,7 +1117,7 @@ public class lhr_VTS {
                             } else {
                                 System.out.println("done extract vts CHOLESTEROL");
                             }
-                        //}
+                        }
                         
                     } catch (Exception e) {
                         e.printStackTrace();
