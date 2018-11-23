@@ -416,7 +416,7 @@
                                 $("#reportPatientTypeTotalPatient").val(totalPatient);
                                 $("#searchPatientTypeList").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
-                                alert("There is no patient in this time range !!");
+                                alert("There is no RECORD in this time range !!");
                             }
                         },
                         error: function (err) {
