@@ -470,8 +470,8 @@ public class lhr_VTS {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                  respiratory rate
-                    if (alVts.get(2).get(30) != null && !alVts.get(2).get(30).isEmpty() && !alVts.get(2).get(30).equals("-")) {
-                        vts_Obj.setRespiratory_rate(alVts.get(2).get(30));
+                    if (alVts.get(2).get(10) != null && !alVts.get(2).get(10).isEmpty() && !alVts.get(2).get(10).equals("-")) {
+                        vts_Obj.setRespiratory_rate(alVts.get(2).get(10));
                     } else {
                         vts_Obj.setRespiratory_rate("0");
                     }
