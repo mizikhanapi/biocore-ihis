@@ -248,6 +248,15 @@
                     PISParaPISS = dataPISPara.get(0).get(0);
                 }
                 //==================================================
+                
+                //-------------- getting CIS Fast param -----------------
+                String sql6 = "select status from adm_system_parameter where system_code = '02' and parameter_code ='FASTTRACK' and hfc_cd='"+hfc_cd+"';";
+                ArrayList<ArrayList<String>> dataCISFastPara = conn.getData(sql6);
+                String CISParaFAST = "1";
+                if(dataCISFastPara.size()>0){
+                    CISParaFAST = dataCISFastPara.get(0).get(0);
+                }
+                //==================================================            
 
                 //setting the session;
                 session.setAttribute("USER_ID", user_id);
@@ -277,6 +286,7 @@
                 session.setAttribute("SYSTEM_PARAMETER", sysParaIT);
                 
                 session.setAttribute("PIS_PARAM", PISParaPISS);
+                session.setAttribute("CIS_FAST_PARAM", CISParaFAST);
 
                 session.setAttribute("CIS_PARAM", CISLongString);
                 session.setAttribute("USER_TYPE", "STAFF");

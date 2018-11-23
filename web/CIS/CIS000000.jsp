@@ -25,7 +25,8 @@
     MySession myCIS = new MySession(user_id, hfc_cd);
     myCIS.initiateMenuList("02","HIS020000");
 
-
+    String parameterCISFAST = session.getAttribute("CIS_FAST_PARAM").toString();
+                                               
 %>
 <!DOCTYPE html>
 <!-- saved from url=(0044)https://getbootstrap.com/examples/dashboard/ -->
@@ -180,7 +181,13 @@
                                 <div class="col-md-12">
                                     <div class="thumbnail">
 
-                                        <!-- Tab Menu -->
+                                        <%
+                                        
+                                               if (parameterCISFAST.equalsIgnoreCase("1")) {
+                                        
+                                        %>
+
+                                        <!-- Tab Menu For General Flow -->
                                         <div class="tabbable-panel cis-tab">
                                             <div class="tabbable-line">
                                                 <ul class="nav nav-tabs ">
@@ -225,12 +232,62 @@
                                                     </li>
 
 
+
                                                 </ul>
                                                 <%@ include file="soap-content.jsp" %>
+                                                <jsp:include page="CIS01/CIS0101.jsp"/> 
+                                                <%@ include file="CIS03/CIS0103.jsp" %> 
+                                                <%@ include file="CIS02/CIS020001.jsp" %>    
+                                                <%@ include file="CIS02/CIS020002.jsp" %> 
+                                                <%@ include file="CIS02/CIS020003.jsp" %> 
+                                                <%@ include file="CIS02/CIS020004.jsp" %> 
+                                                <%@ include file="CIS02/CIS020005.jsp" %> 
+                                                <%@ include file="CIS02/CIS020006.jsp" %> 
+                                                <%@ include file="CIS02/CIS020007.jsp" %> 
+                                                <%@ include file="CIS02/CIS020008.jsp" %> 
+                                                <%@ include file="CIS02/CIS020009.jsp" %> 
+                                                <%@ include file="CIS02/CIS020010.jsp" %> 
+                                                <%@ include file="CIS02/CIS020011.jsp" %> 
+                                                <%@ include file="CIS02/CIS020012.jsp" %> 
+                                                <jsp:include page="CIS02/CIS020014.jsp"/>
+                                                <jsp:include page="CIS02/CIS020013.jsp"/>
+                                                <jsp:include page="CIS02/CIS020016.jsp"/>
+                                                <jsp:include page="CIS02/CIS020015.jsp"/>
+                                                <jsp:include page="CIS02/CIS020017.jsp"/>    
 
                                             </div>
                                         </div>
-                                        <!-- Tab Menu -->
+                                        <!-- Tab Menu For General Flow -->
+                                        
+                                                                                       
+                                        <%
+                                            } else {
+                                        %>
+                                        
+                                        <!-- Tab Menu For Fast Flow -->
+                                        <div class="tabbable-panel cis-tab">
+                                            <div class="tabbable-line">
+
+                                                <ul class="nav nav-tabs ">
+                                                    <li class="">
+                                                        <button class="btn btn-default" id="fastTrackVitalSignsTrigger">New Visit Notes</button>
+                                                    </li>
+                                                    <li class="" href="">
+                                                        <button class="btn btn-default" id="fastTrackDrugOrderTrigger" >
+                                                            New Drug Order
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                                <jsp:include page="fast-modal.jsp" />
+                                            </div>
+                                        </div>
+                                        <!-- Tab Menu For Fast Flow -->
+                                        
+                                        <%
+                                            } 
+                                        %>
+                                        
+                                        
                                         <hr class="pemisah" />
                                         <h4 id="mainConsultBar">Consultation Notes</h4>
                                         <div id="divCIS_Consultation_PARENT">
@@ -283,9 +340,19 @@
 
                             </div>
                         </div>
-                        <div class="none swapping-tab" id="order-entry">
-                            <jsp:include page="order/orderEntry.jsp"/> 
-                        </div>
+                        <%
+                                        
+                            if (parameterCISFAST.equalsIgnoreCase("1")) {
+                                        
+                        %>
+                                <div class="none swapping-tab" id="order-entry">
+                                    <jsp:include page="order/orderEntry.jsp"/> 
+                                </div>
+                        <%
+                            }
+                        %>
+                        
+                        
                         <div class="none swapping-tab" id="orthopedic-con" style="display: none;">
                             <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
                         </div>
@@ -334,46 +401,30 @@
         <%
             if(myCIS.hasMenuAccess("CIS_05")){
         %>
+        
+            <%
+                                        
+                 if (parameterCISFAST.equalsIgnoreCase("1")) {
+                                        
+            %>
         <div class="material-button-anim toggle-draggable">
             <button class="material-button option1 order-ety" type="button" data-toggle="tooltip" data-placement="top" title="Physician Order Entry">
                 <a href="#order-entry" class="panelito order-ety" style="color: #fff;"><span class="fa fa-medkit"></span></a>
             </button>
         </div>
-        <%
+        <%}
             }
         %>
 
         <%@ include file="queue/QueueModal.jsp" %> 
         <%@ include file="search/SearchModal.jsp" %>
         <%@ include file="setting/settingModal.jsp" %>
-        
-       
-         
-         
-         <%@ include file="CIS02/CIS020001.jsp" %> 
-   
-        <%@ include file="CIS02/CIS020002.jsp" %> 
-        <%@ include file="CIS02/CIS020003.jsp" %> 
-        <%@ include file="CIS02/CIS020004.jsp" %> 
-        <%@ include file="CIS02/CIS020005.jsp" %> 
-        <%@ include file="CIS02/CIS020006.jsp" %> 
-        <%@ include file="CIS02/CIS020007.jsp" %> 
-        <%@ include file="CIS02/CIS020008.jsp" %> 
-        <%@ include file="CIS02/CIS020009.jsp" %> 
-        <%@ include file="CIS02/CIS020010.jsp" %> 
-        <%@ include file="CIS02/CIS020011.jsp" %> 
-        <%@ include file="CIS02/CIS020012.jsp" %> 
-        
-        <%@ include file="CIS03/CIS0103.jsp" %> 
+           
 
         <%@ include file="CIS04/CIS0104.jsp" %> 
         <%@ include file="discharge/dischargeSummaryModal.jsp" %> 
         
-        <jsp:include page="CIS02/CIS020014.jsp"/>
-        <jsp:include page="CIS02/CIS020013.jsp"/>
-        <jsp:include page="CIS02/CIS020016.jsp"/>
-        <jsp:include page="CIS02/CIS020015.jsp"/>
-        <jsp:include page="CIS02/CIS020017.jsp"/>
+
         
 
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
@@ -538,6 +589,6 @@
                 }
             }
         </script>
-<jsp:include page="CIS01/CIS0101.jsp"/> 
+
     </body>
 </html>

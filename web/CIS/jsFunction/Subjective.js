@@ -116,15 +116,15 @@ $(document).ready(function () {
        
 
         var problem = $('#tCISSubCCNHFCSearch').val();
-        var Mild = $('#Mild').val();
-        var Site = $('#Site').val();
+        var Mild = $('#Mild:checked').val();
+        var Site = $('#Site:checked').val();
         var duration = $('#duration').val();
         var sdur = $('#sdur').val();
-        var Laterality = $('#Laterality').val();
+        var Laterality = $('#Laterality:checked').val();
         var Comment = $('#Comment').val();
         var ccnCode = $('#ccnCode').val();
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
-        var $items = $('#codeCCN, #Mild, #Site, #duration, #sdur, #Laterality, #Comment,#ccnCode');
+        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
         
         var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
         if(search_by === "P"){
@@ -149,7 +149,7 @@ $(document).ready(function () {
             } else {
                 _data.push(obj1);
                 displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
-                //retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
                 $("#Mild").val("");
                 $("#Site").val("");
                 $("#Laterality").val("");
@@ -157,7 +157,7 @@ $(document).ready(function () {
                 $("#duration").val("");
                 $("#Comment").val("");
                 $("#ccnCode").val("");
-                $("#CIS01000001").modal('hide');
+                //$("#CIS01000001").modal('hide');
             }
         
         }
@@ -179,11 +179,14 @@ $(document).ready(function () {
         retriveDataSearchingSubjective("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
         // retriveDataSearchingSubjective("tCISSubCCNHFCSearchPersonalised_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNPersonaliseSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", "");
 
-        $('#uMild').val(updateObj.Mild);
-        $('#uSite').val(updateObj.Site);
+//        $('#uMild:checked').val(updateObj.Mild);
+        $("input[id=uMild][value=" + updateObj.Mild + "]").prop('checked', true);
+       // $('#uSite:checked').val(updateObj.Site);
+        $("input[id=uSite][value=" + updateObj.Site + "]").prop('checked', true);
         $('#uduration').val(updateObj.duration);
         $('#ssdur').val(updateObj.sdur);
-        $('#uLaterality').val(updateObj.Laterality);
+        //$('#uLaterality:checked').val(updateObj.Laterality);
+        $("input[name=uLaterality][value=" + updateObj.Laterality + "]").prop('checked', true);
         $('#uComment').val(updateObj.Comment);
         $('#uccnCode').val(updateObj.ccnCode);
         $('#jsonId').val(id[1]);
@@ -198,11 +201,11 @@ $(document).ready(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _uproblem = $('#tCISSubCCNHFCSearch_update').val();
-        var _uMild = $('#uMild').val();
-        var _uSite = $('#uSite').val();
+        var _uMild = $('#uMild:checked').val();
+        var _uSite = $('#uSite:checked').val();
         var _uduration = $('#uduration').val();
         var _ssdur = $('#ssdur').val();
-        var _uLaterality = $('#uLaterality').val();
+        var _uLaterality = $('#uLaterality:checked').val();
         var _uComment = $('#uComment').val();
         var _uccnCode = $('#uccnCode').val();
         
@@ -1071,6 +1074,7 @@ $(document).ready(function () {
 
 function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnCCN" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#CCNNotes').append(_tr);
     i = i + 1;
 }

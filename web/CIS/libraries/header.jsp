@@ -19,7 +19,7 @@
 
 <script src="assets/jquery-3.1.1.js" type="text/javascript"></script>
 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
- <script src="assets/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
+<script src="assets/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
 <script src="assets/jquery.timepicker.min.js" type="text/javascript"></script>
@@ -30,13 +30,28 @@
 <script src="../assets/js/bootbox.min.js"></script>
 <script src="jsFunction/MainFunction.js"></script>
 <script src="jsFunction/MainConfig.js?v=1.1"></script>
-<script src="jsFunction/Objective.js?v=1"></script>
+
+<%
+
+    String parameterCISFASTV2 = session.getAttribute("CIS_FAST_PARAM").toString();
+
+    if (parameterCISFASTV2.equalsIgnoreCase("1")) {
+
+%>
 <script src="jsFunction/Subjective.js?v=1"></script>
 <script src="jsFunction/Assesment.js?v=1"></script>
+<script src="jsFunction/Objective.js?v=1"></script>
 <script src="jsFunction/Plan.js?v=1"></script>
+<%  } else {    %>
+
+<script src="jsFunction/SubjectiveFast.js?v=1"></script>
+<script src="jsFunction/ObjectiveFast.js?v=1"></script>
+<script src="jsFunction/PlanFast.js?v=1"></script>
+<%  }   %>
+
+
 <script src="jsFunction/queue.js?v=1.2"></script>
 <script src="jsFunction/Converter.js?v=1.1" type="text/javascript"></script>
-
 <script src="jsFunction/TopMenuFunction.js?=1.2"></script>
 <script src="jsFunction/searchTopMenu.js"></script>
 

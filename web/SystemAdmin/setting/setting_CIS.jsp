@@ -51,6 +51,16 @@
     else{
         drg_0="checked";
     }
+    
+
+    String paramFast = (String) session.getAttribute("CIS_FAST_PARAM");
+    String NoNeedFast = "", NeedFast = "";
+
+    if (paramFast.equalsIgnoreCase("1")) {
+        NoNeedFast = "checked";
+    } else {
+        NeedFast = "checked";
+    }
 %>
 <div class="row">
     <h4 class="text-left">Before discharge:</h4>
@@ -121,9 +131,91 @@
         </div>
     </div>
 </div>
+          
+<hr/>
+<div class="row">
+    <h4 class="text-left">Fast Track Consultation Setting :</h4>
+    <form class="form-horizontal" autocomplete="off" style="width: 50%; margin: 0 auto" id="PMS_form">
+
+        <!-- Text input-->
+        <div class="form-group">
+            <p>
+                <input type="radio" name="CIS_Fast_type" value="2" <%=NeedFast%>>
+                <label>Fast Track Consultation Process Enabled</label>
+            </p>
+
+            <p>
+                <input type="radio" name="CIS_Fast_type" value="1" <%=NoNeedFast%>>
+                <label>Fast Track Consultation Process Disabled</label>
+            </p>
+
+        </div>
+
+
+
+
+    </form>
+    <div class="col-md-8">
+        <br/>
+        <div class="text-center">
+            <button id="CIS_Fast_btnSave" class="btn btn-success"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+
+        </div>
+    </div>
+</div>
 
 
 <script type="text/javascript">
+    
+    
+    
+    //---------------- saving pis setting --------------
+    
+    $('#CIS_Fast_btnSave').on('click', function () {
+        
+        var cisFast = $('input[name=CIS_Fast_type]:checked').val();
+
+        if (cisFast == null) {
+            
+            bootbox.alert("Please choose an option for CIS Consultation Setting !!!");
+            
+        } else {
+            
+            createScreenLoading();
+            
+            var data = {
+                type: cisFast
+            };
+            
+            $.ajax({
+                url: 'setting/control/cis_fast_setting.jsp',
+                type: 'POST',
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    
+                    if (data.trim() === 'success') {
+                        bootbox.alert("CIS Consultation setting is saved.");
+                    } else if (data.trim() === 'fail') {
+                        bootbox.alert("Failed to save PIS setting.");
+                    }
+                    
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Oops! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    destroyScreenLoading();
+                }
+            });
+            
+        }
+        
+    });
+    
+    //===================================================
+    
+    
+    
     $('#CIS_btnSave').on('click', function () {
 
         var dgs = '0', dcg = '0', ccn = '0';

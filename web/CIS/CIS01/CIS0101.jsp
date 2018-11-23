@@ -6,116 +6,100 @@
 
 <!-- Modal add complaint -->
 <div class="modal fade" id="CIS01000001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Chief Complaint</h3>
             </div>
             <div class="modal-body">
-                <!-- content goes here -->
-                <form>
-                    <div class="form-group">
-                        <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-11">
-                            <label>Search From : </label>
-                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="P" >Personalised</label>
-                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="CT" checked="">Common Term</label>
-                            <input class="form-control input-lg" type="hidden" name="tCISSUBCCNCodeType"  id="tCISSUBCCNCodeType"  value="CCN" tabindex="4" readonly="">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Search From : </label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="P">Personalised</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="CT" checked="">Common Term</label>
+                                            <input class="form-control input-lg" type="hidden" name="tCISSUBCCNCodeType" id="tCISSUBCCNCodeType" value="CCN" tabindex="4" readonly="">
 
-                        </div>
-                        <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubCCNAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
-                    </div>
-                    <label>Symptoms</label>
-                    <div class="form-group">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>Symptoms</label>
+                                            <div class="form-group">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <div id="tCISSubCCNHFCSearchLoading" ></div>
+                                                <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complaint" tabindex="4">
+                                                <div id="match50"></div>
+                                            </div>
+                                            <div class="form-group" style="">
+                                                <input class="form-control input-lg" type="hidden" name="ccnCode" id="ccnCode" tabindex="4" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Duration</label>
+                                            <div class="form-group">
+                                                <input class="form-control input-lg" max="999" type="number" name="dur" id="duration" placeholder="0" autocomplete="off">
+                                            </div>
+                                        </div><div class="col-md-2">
+                                            <label>Unit</label>
+                                            <div class="form-group">
+                                                <select name="lat" id="sdur" class="form-control input-lg" autocomplete="off">
+                                                    <option value="" selected="">Select One</option>
+                                                    <option value="Minutes">Minutes</option>
+                                                    <option value="Hour">Hour</option>
+                                                    <option value="Day">Day</option>
+                                                    <option value="Week">Week</option>
+                                                    <option value="Month">Month</option>
+                                                    <option value="Year">Year</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                        <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                        <div id="tCISSubCCNHFCSearchLoading" ></div>
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complaint" tabindex="4">
-                        <div id="match50"></div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control input-lg" type="hidden" name="ccnCode"  id="ccnCode"  tabindex="4">
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Severity</label>
-                            <div class="form-group">
-                                <select name="mild" id="Mild" class="form-control input-lg" placeholder="Severity">
-                                    
-                                    <option value="None" selected="">None</option>
-                                    <option value="Mild">Mild</option>
-                                    <option value="Moderate">Moderate</option>
-                                    <option value="Severe">Severe</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Site</label>
-                            <div class="form-group">
-                                <select name="site" id="Site" class="form-control input-lg">
-                                    
-                                    <option value="None" selected="">None</option>
-                                    <option value="Right">Right</option>
-                                    <option value="Left">Left</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Severity</label>
+                                            <div class="form-group" id="Mild">
+                                                <label class="radio-inline"><input type="radio" id="Mild" name="Mild" value="Mild">Mild</label>
+                                                <label class="radio-inline"><input type="radio" id="Mild" name="Mild" value="Moderate">Moderate</label>
+                                                <label class="radio-inline"><input type="radio" id="Mild" name="Mild" value="Severe">Severe</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Site</label>
+                                            <div class="form-group">
+                                                <label class="radio-inline"><input type="radio" id="Site" name="Site" value="Right">Right</label>
+                                                <label class="radio-inline"><input type="radio" id="Site" name="Site" value="Left">Left</label>
+                                            </div>
+                                        </div>
 
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Duration</label>
-                            <div class="form-group">
-                                <input class="form-control input-lg" max="999" type="number" name="dur" id="duration" placeholder="Duration" />
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Unit</label>
-                            <div class="form-group">
-                                <select name="lat" id="sdur" class="form-control input-lg">
-                                    <option value="" selected="">Select One</option>
-                                    <option value="Minutes">Minutes</option>
-                                    <option value="Hour">Hour</option>
-                                    <option value="Day">Day</option>
-                                    <option value="Week">Week</option>
-                                    <option value="Month">Month</option>
-                                    <option value="Year">Year</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Laterality</label>
-                        <select name="lat" id="Laterality" class="form-control input-lg">
-                            
-                            <option value="None" selected="">None</option>
-                            <option value="Right">Right</option>
-                            <option value="Left">Left</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea type="text" name="display_name" id="Comment" class="form-control input-lg" placeholder="Comment..." tabindex="3"></textarea> 
-                    </div>
-                </form>
+
+                                        <div class="col-md-4">
+                                            <label>Laterality</label><div class="form-group">
+                                                <label class="radio-inline"><input type="radio" id="Laterality" name="Laterality" value="Right">Right</label>
+                                                <label class="radio-inline"><input type="radio" id="Laterality" name="Laterality" value="Left">Left</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea type="text" name="display_name" id="Comment" class="form-control input-lg" placeholder="Notes.." tabindex="3" autocomplete="off"></textarea> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="text-right"><button class="btn btn-primary" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" id="acceptBtn" role="button" autocomplete="off">Add Symtoms</button></div><br>
+                        
 
             </div>     
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn" role="button">Accept</button>
-                    </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -123,7 +107,7 @@
 
 <!-- modal update complain-->
 <div class="modal fade" id="update_CIS01000001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
@@ -131,104 +115,96 @@
             </div>
             <div class="modal-body">
                 <!-- content goes here -->
-                <form>
-                    <div class="col-md-12">
-                        <div class="col-md-11">
-                            <label>Search From : </label>
-                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType_update" value="P" >Personalised</label>
-                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType_update" value="CT" checked="">Common Term</label>
-                            <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType_update"  id="tCISSUBCCNCodeType_update"  value="CCN" tabindex="4" readonly="">
+                                                <form>
+                                    <div class="form-group">
+                                        <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Search From : </label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType_update" value="P">Personalised</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType_update" value="CT" checked="">Common Term</label>
+                                            <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType_update" id="tCISSUBCCNCodeType" value="CCN" tabindex="4" readonly="">
 
-                        </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <label>Symptoms</label>
+                                            <div class="form-group">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <div id="tCISSubCCNHFCSearchLoading_update" ></div>
+                                                <input class="form-control input-lg" type="hidden" name="uproblem"  id="uproblem" placeholder="Please Type Chief Complaint" tabindex="4">
+                                                <div id="match50"></div>
+                                            </div>
+                                            <div class="form-group" style="">
+                                                <input class="form-control input-lg" type="hidden" name="uccnCode" id="uccnCode" tabindex="4" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Duration</label>
+                                            <div class="form-group">
+                                                <input class="form-control input-lg" max="999" type="number" name="dur" id="uduration" placeholder="0" autocomplete="off">
+                                            </div>
+                                        </div><div class="col-md-2">
+                                            <label>Unit</label>
+                                            <div class="form-group">
+                                                <select name="lat" id="ssdur" class="form-control input-lg" autocomplete="off">
+                                                    <option value="" selected="">Select One</option>
+                                                    <option value="Minutes">Minutes</option>
+                                                    <option value="Hour">Hour</option>
+                                                    <option value="Day">Day</option>
+                                                    <option value="Week">Week</option>
+                                                    <option value="Month">Month</option>
+                                                    <option value="Year">Year</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    </div>
-                    <label>Symptoms</label>
-                    <div class="form-group">
-                        <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search chief complaint..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)"> 
-                        <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                        <div id="tCISSubCCNHFCSearchLoading_update" ></div>
-                        <input class="form-control input-lg" type="hidden" name="uproblem"  id="uproblem" placeholder="Search CCN Problem..." tabindex="4">
-                        <div id="match1"></div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control input-lg" type="hidden" name="uccnCode"  id="uccnCode"  tabindex="4">
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Severity</label>
-                            <div class="form-group">
-                                <select name="mild" id="uMild" class="form-control input-lg">
-                                   
-                                    <option value="None" selected="">None</option>
-                                    <option value="Mild">Mild</option>
-                                    <option value="Moderate">Moderate</option>
-                                    <option value="Severe">Severe</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Site</label>
-                            <div class="form-group">
-                                <select name="site" id="uSite" class="form-control input-lg">
-                                    
-                                    <option value="None" selected="">None</option>
-                                    <option value="Right">Right</option>
-                                    <option value="Left">Left</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Severity</label>
+                                            <div class="form-group" id="Mild">
+                                                <label class="radio-inline"><input type="radio" id="uMild" name="uMild" value="Mild">Mild</label>
+                                                <label class="radio-inline"><input type="radio" id="uMild" name="uMild" value="Moderate">Moderate</label>
+                                                <label class="radio-inline"><input type="radio" id="uMild" name="uMild" value="Severe">Severe</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Site</label>
+                                            <div class="form-group">
+                                                <label class="radio-inline"><input type="radio" id="uSite" name="uSite" value="Right">Right</label>
+                                                <label class="radio-inline"><input type="radio" id="uSite" name="uSite" value="Left">Left</label>
+                                            </div>
+                                        </div>
 
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                             <label>Duration</label>
-                            <div class="form-group">
-                                <input class="form-control input-lg" type="number" name="dur" id="uduration" placeholder="Duration" max="999" min="1">
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <label>Unit</label>
-                            <div class="form-group">
-                                <select name="lat" id="ssdur" class="form-control input-lg">
-                                    <option value="1" selected="" disabled="">Select One</option>
-                                    <option value="Minutes">Minutes</option>
-                                    <option value="Hour">Hour</option>
-                                    <option value="Day">Day</option>
-                                    <option value="Week">Week</option>
-                                    <option value="Month">Month</option>
-                                    <option value="Year">Year</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Laterality</label>
-                        <select name="lat" id="uLaterality" class="form-control input-lg">
-               
-                            <option value="None" selected="">None</option>
-                            <option value="Right">Right</option>
-                            <option value="Left">Left</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea type="text" name="display_name" id="uComment" class="form-control input-lg" placeholder="Comment..." tabindex="3"></textarea> 
-                        <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Comments" tabindex="4">
-                    </div>
-                </form>
+
+                                        <div class="col-md-4">
+                                            <label>Laterality</label><div class="form-group">
+                                                <label class="radio-inline"><input type="radio" id="uLaterality" name="uLaterality" value="Right">Right</label>
+                                                <label class="radio-inline"><input type="radio" id="uLaterality" name="uLaterality" value="Left">Left</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea type="text" name="display_name" id="uComment" class="form-control input-lg" placeholder="Notes.." tabindex="3" autocomplete="off"></textarea> 
+                                                <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Comments" tabindex="4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-success" id="updateBtnCCN" role="button" autocomplete="off">Update Symtoms</button>
+                                </div>
+                <br>
+          
             </div>     
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnCCN" role="button">Update</button>
-                    </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

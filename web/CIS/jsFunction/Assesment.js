@@ -54,16 +54,17 @@ $(document).ready(function(){
         var doctorid = "B031310504";
         var status = "Active";
         //---------------------------
-        var Type = $('#TypeDGS').val();
+
+        var Type = $('#TypeDGS:checked').val();
         var date4 = $('#dateDGS').val();
         var Problem8 = $('#tCISSubDGSSearch').val();
-        var Severity1 = $('#SeverityDGS').val();
-        var Site1 = $('#SiteDGS').val();
-        var Laterality1 = $('#LateralityDGS').val();
+        var Severity1 = $('#SeverityDGS:checked').val();
+        var Site1 = $('#SiteDGS:checked').val();
+        var Laterality1 = $('#LateralityDGS:checked').val();
         var comment8 = $('#commentDGS').val();
         var code10 = $('#dgsCode').val();
         //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
-        var $items = $('#dgsCode, #TypeDGS, #dateDGS, #SeverityDGS, #SiteDGS, #LateralityDGS, #commentDGS');
+        var $items = $('#dgsCode, #TypeDGS:checked, #dateDGS, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
         var obj1 = {
             Acode:'DGS',
             searchDiag:Problem8
@@ -82,12 +83,12 @@ $(document).ready(function(){
                 $("#searchDiag").val("");
                 retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
                 $("#commentDGS").val("");
-                $("#TypeDGS").val("1");
+                $("#TypeDGS").val("");
                 $("#dateDGS").val("");
-                $("#SiteDGS").val("1");
-                $("#SeverityDGS").val("1");
-                $("#LateralityDGS").val("1");
-                $("#CIS030001").modal('toggle');
+                $("#SiteDGS").val("");
+                $("#SeverityDGS").val("");
+                $("#LateralityDGS").val("");
+                //$("#CIS030001").modal('toggle');
             }
          }
        
@@ -106,12 +107,16 @@ $(document).ready(function(){
        
         retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
          retriveDataSearchingAssessment("tCISSubDGSSearchPersonalised_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", "");
-        $('#update_TypeDGS').val(updateObj.TypeDGS);
+        //$('#update_TypeDGS').val(updateObj.TypeDGS);
+        $("input[name=update_TypeDGS][value=" + updateObj.TypeDGS + "]").prop('checked', true);       
         $('#update_dateDGS').val(updateObj.dateDGS);
         //$('#update_searchDiag').val(updateObj.searchDiag);
-        $('#update_SeverityDGS').val(updateObj.SeverityDGS);
-        $('#update_SiteDGS').val(updateObj.SiteDGS);
-        $('#update_LateralityDGS').val(updateObj.LateralityDGS);
+        //$('#update_SeverityDGS').val(updateObj.SeverityDGS);
+        $("input[name=update_SeverityDGS][value=" + updateObj.SeverityDGS + "]").prop('checked', true);               
+        //$('#update_SiteDGS').val(updateObj.SiteDGS);
+        $("input[name=update_SiteDGS][value=" + updateObj.SiteDGS + "]").prop('checked', true);                       
+        //$('#update_LateralityDGS').val(updateObj.LateralityDGS);
+        $("input[name=update_LateralityDGS][value=" + updateObj.LateralityDGS + "]").prop('checked', true);                      
         $('#update_commentDGS').val(updateObj.commentDGS);
         $('#update_dgsCode').val(updateObj.dgsCode);
         $('#jsonIdDGS').val(id[1]);
@@ -123,12 +128,12 @@ $(document).ready(function(){
         
         var upObject = _data[$('#jsonIdDGS').val()];
         var rowId = $('#jsonIdDGS').val();
-        var _TType = $('#update_TypeDGS').val();
+        var _TType = $('#update_TypeDGS:checked').val();
         var _ddate4 = $('#update_dateDGS').val();
         var _PProblem8 = $('#tCISSubDGSSearch_update').val();
-        var _SSeverity1 = $('#update_SeverityDGS').val();
-        var _SSite1 = $('#update_SiteDGS').val();
-        var _LLaterality1 = $('#update_LateralityDGS').val();
+        var _SSeverity1 = $('#update_SeverityDGS:checked').val();
+        var _SSite1 = $('#update_SiteDGS:checked').val();
+        var _LLaterality1 = $('#update_LateralityDGS:checked').val();
         var _Pcomment8 = $('#update_commentDGS').val();
         var _dgsCode = $('#update_dgsCode').val();
         
@@ -284,6 +289,7 @@ $(document).ready(function(){
 
 function displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8){
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+//    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#DGSNotes').append(_tr);
         i = i + 1;
 }
