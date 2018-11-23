@@ -83,11 +83,11 @@ $(document).ready(function(){
                 $("#searchDiag").val("");
                 retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
                 $("#commentDGS").val("");
-                $("#TypeDGS").val("");
+                //$("#TypeDGS").val("");
                 $("#dateDGS").val("");
-                $("#SiteDGS").val("");
-                $("#SeverityDGS").val("");
-                $("#LateralityDGS").val("");
+                //$("#SiteDGS").val("");
+                //$("#SeverityDGS").val("");
+                //$("#LateralityDGS").val("");
                 //$("#CIS030001").modal('toggle');
             }
          }

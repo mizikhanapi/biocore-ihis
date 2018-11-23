@@ -191,9 +191,9 @@ $(document).ready(function () {
                 displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
                 retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
 
-                $("#Mild").val("");
-                $("#Site").val("");
-                $("#Laterality").val("");
+//                $("#Mild").val("");
+//                $("#Site").val("");
+//                $("#Laterality").val("");
                 $("#problem").val("");
                 $("#duration").val("");
                 $("#Comment").val("");
@@ -245,11 +245,11 @@ $(document).ready(function () {
                 $("#searchDiag").val("");
                 retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
                 $("#commentDGS").val("");
-                $("#TypeDGS").val("");
+//                $("#TypeDGS").val("");
                 $("#dateDGS").val("");
-                $("#SiteDGS").val("");
-                $("#SeverityDGS").val("");
-                $("#LateralityDGS").val("");
+//                $("#SiteDGS").val("");
+//                $("#SeverityDGS").val("");
+//                $("#LateralityDGS").val("");
                 //$("#CIS030001").modal('toggle');
             }
         }
