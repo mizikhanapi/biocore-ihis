@@ -9,7 +9,7 @@
 
 
 <div class="modal fade" id="CIS030001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
@@ -90,7 +90,7 @@
                                 <div class="text-right">
                                     <button class="btn btn-primary" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Symtoms</button>
+                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Diagnosis</button>
                                 </div>
                                 <br>
             </div>     
@@ -100,7 +100,7 @@
 <!--End ADD Diagnosis-->
 
 <div class="modal fade" id="update_CIS030001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
@@ -180,7 +180,7 @@
                                     </div>
                                 </form>
                                 <div class="text-right">
-                                    <button type="button" class="btn btn-success" id="updateBtnDGS" role="button" autocomplete="off">Update Symtoms</button>
+                                    <button type="button" class="btn btn-success" id="updateBtnDGS" role="button" autocomplete="off">Update Diagnosis</button>
                                 </div>
                                 <br>
 

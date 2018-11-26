@@ -19,7 +19,10 @@ function initialisedModalSearch(modal_id, personalised_id, modal_name, modal_nam
         searchInitialize(modal_name, "I");
         $("#" + personalised_id + "-flexdatalist").hide();
         initialiseRadioPersonalised(modal_name, modal_name2);
-
+        $("#fastTrackChiefComplaintForm")[0].reset();
+        $("#fastTrackVitalSignForm")[0].reset();
+        $("#fastTrackDiagnosisForm")[0].reset();
+        
     });
 
     $("#" + modal_id).on('hide.bs.modal', function () {

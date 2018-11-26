@@ -376,13 +376,13 @@ $(document).ready(function () {
             $('#bmiHeight').val(ui.value + "");
         }
     });
-    
+
     $('#bmiHeight').on('change', function (e) {
         var bmiInput = parseInt($('#bmiHeight').val());
         $('#bmiHeightSlider').slider("option", "value", bmiInput);
         $('#bmiHeight').val(bmiInput + "");
     });
-    
+
     $('#bmiWeightSlider').slider({
         value: 0,
         min: 0,
@@ -392,13 +392,13 @@ $(document).ready(function () {
             $('#bmiWeight').val(ui.value + "");
         }
     });
-    
+
     $('#bmiWeight').on('change', function (e) {
         var bmiWInput = parseInt($('#bmiWeight').val());
         $('#bmiWeightSlider').slider("option", "value", bmiWInput);
         $('#bmiWeight').val(bmiWInput + "");
     });
-    
+
     $('#calcBMI').on('click', function (e) {
         var height = $('#bmiHeight').val().split(" ");
         height = parseFloat(height[0]) / 100;
@@ -416,7 +416,47 @@ $(document).ready(function () {
 
     });
 
+
+
+/// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+/// -------------------------------------------------------------OTHER MODAL----------------------------------------------------------/////;
+/// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+
+    $('#acceptOtherBtn').click(function (e) {
+        var title = "Other";
+        var Oheight = $('#bmiHeight').val();
+        var Oweight = $('#bmiWeight').val();
+        var Obmi = $('#bmi').val();
+        var OWeightStatus = $('#bmiStatus').val();
+        var OheadCir = $('#headCir').val();
+        var OBloodGlucose = $('#bloodGlucose').val();
+
+        var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');
+
+        var obj = {
+            Acode: "VTS",
+            bmiHeight: Oheight,
+            bmiWeight: Oweight,
+            bmi: Obmi,
+            bmiStatus: OWeightStatus,
+            headCir: OheadCir,
+            bloodGlucose: OBloodGlucose
+        }
+
+        _data.push(obj);
+
+        displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
+
+        $("#fastTrackVitalSignForm")[0].reset();
+
+    });
+
+
+
+
 });
+
+
 
 function convertPEMtoNotes(objPEM) {
     var PEMnotes;
@@ -482,3 +522,9 @@ function displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, 
     //i = i + 1;
 }
 
+function displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#OTRNotes').append(_tr);
+
+    i = i + 1;
+}

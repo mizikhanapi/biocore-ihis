@@ -6,7 +6,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel1" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg" style="/* width:80%; */">
+    <div class="modal-dialog modal-lg" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span><i class="fa fa-times fa-lg"></i></span></button>
@@ -23,7 +23,7 @@
 
                         <div id="collapseOne1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
-                                <form>
+                                <form id="fastTrackChiefComplaintForm"> 
                                     <div class="form-group">
                                         <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
                                     </div>
@@ -76,7 +76,7 @@
                                         <div class="col-md-4">
                                             <label>Severity</label>
                                             <div class="form-group" id="Mild">
-                                                <label class="radio-inline"><input type="radio" id="Mild" name="ccnradioseverity" value="Mild" checked>Mild</label>
+                                                <label class="radio-inline"><input type="radio" id="Mild" name="ccnradioseverity" value="Mild">Mild</label>
                                                 <label class="radio-inline"><input type="radio" id="Mild" name="ccnradioseverity" value="Moderate">Moderate</label>
                                                 <label class="radio-inline"><input type="radio" id="Mild" name="ccnradioseverity" value="Severe">Severe</label>
                                             </div>
@@ -84,7 +84,7 @@
                                         <div class="col-md-4">
                                             <label>Site</label>
                                             <div class="form-group">
-                                                <label class="radio-inline"><input type="radio" id="Site" name="ccnradiosite" value="Right" checked>Right</label>
+                                                <label class="radio-inline"><input type="radio" id="Site" name="ccnradiosite" value="Right">Right</label>
                                                 <label class="radio-inline"><input type="radio" id="Site" name="ccnradiosite" value="Left">Left</label>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
 
                                         <div class="col-md-4">
                                             <label>Laterality</label><div class="form-group">
-                                                <label class="radio-inline"><input type="radio" id="Laterality" name="ccnradiolatera" value="Right" checked>Right</label>
+                                                <label class="radio-inline"><input type="radio" id="Laterality" name="ccnradiolatera" value="Right">Right</label>
                                                 <label class="radio-inline"><input type="radio" id="Laterality" name="ccnradiolatera" value="Left">Left</label>
                                             </div>
                                         </div>
@@ -117,134 +117,146 @@
                         </div>
                         <div id="collapseTwo1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Height</label>
-                                                <div class="form-group">
-
-                                                    <input type="number" name="bmiHeight" id="bmiHeight" class="form-control input-lg BP-class" placeholder="0" tabindex="4" min="0" max="300" step="1">
-                                                </div>
-                                                <div class="form-group slider">
-                                                    <div id="bmiHeightSlider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 28.75%;"></span></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Weight</label>
-                                                <div class="form-group">
-                                                    <input type="number" name="bmiWeight" id="bmiWeight" class="form-control input-lg BP-class" placeholder="0" tabindex="4" min="0" max="300" step="1" autocomplete="off">
-                                                </div>
-                                                <div class="form-group slider">
-                                                    <div id="bmiWeightSlider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 40%;"></span></div>
-                                                </div></div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a class="btn btn-primary btn-block btn-lg calcBMI " id="calcBMI">Calculate BMI</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5>Calculated BMI</h5>
-                                        <div class="input-group">
-                                            <span class="input-group-addon" id="basic-addon2" style="
-                                                  background-color: transparent;
-                                                  border: none;
-                                                  width: 140px;
-                                                  ">Patient BMI is:</span>
-                                            <input type="text" name="bmi" id="bmi" class="form-control input-lg " placeholder="0" tabindex="4" autocomplete="off">
-                                        </div>
-
-                                        <div class="input-group">
-                                            <span class="input-group-addon" id="basic-addon2" style="
-                                                  background-color: transparent;
-                                                  border: none;
-                                                  width: 140px;
-                                                  ">Weight Status is:</span>
-                                            <input type="text" name="bmiStatus" id="bmiStatus" class="form-control input-lg" placeholder="" tabindex="4" autocomplete="off">
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <form role="form" id="BloodPressureForm">
-                                    <input type="hidden" id="BPid">
+                                <form id="fastTrackVitalSignForm"> 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Blood Pressure</h5><div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Systolic</label>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Height</label>
                                                     <div class="form-group">
-                                                        <input type="number" name="sitS" id="sitS" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" min="0" max="300" step="1">
+
+                                                        <input type="number" name="bmiHeight" id="bmiHeight" class="form-control input-lg BP-class" placeholder="0" tabindex="4" min="0" max="300" step="1">
+                                                    </div>
+                                                    <div class="form-group slider">
+                                                        <div id="bmiHeightSlider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 28.75%;"></span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Weight</label>
+                                                    <div class="form-group">
+                                                        <input type="number" name="bmiWeight" id="bmiWeight" class="form-control input-lg BP-class" placeholder="0" tabindex="4" min="0" max="300" step="1" autocomplete="off">
+                                                    </div>
+                                                    <div class="form-group slider">
+                                                        <div id="bmiWeightSlider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 40%;"></span></div>
                                                     </div></div>
-                                                <div class="col-md-4">
-                                                    <label>Diastolic</label>
-                                                    <div class="form-group">
-                                                        <input type="number" name="sitD" id="sitD" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" min="0" max="300" step="1">
-                                                    </div></div><div class="col-md-4">
-                                                    <label>Pulse</label>
-                                                    <div class="input-group">
-                                                        <input type="number" name="sitP" id="sitP" class="form-control input-lg BP-class" placeholder="bpm" tabindex="4" min="0" max="300" step="1">
+                                            </div>
 
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-default" type="button" id="btnCIS_O_VTS_BP_ACCEPT">ADD</button>
-                                                        </span></div></div>
-                                                <div class="col-md-3">
-                                                    <label>&nbsp;</label>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <a class="btn btn-primary btn-block calcBMI" id="calcBMI">Calculate BMI</a>
                                                 </div>
                                             </div>
-                                        </div><div class="col-md-6">
-                                            <h5>Respitatory Rate</h5><label> </label><div class="input-group">
-                                                <input type="number" name="rrRate" id="rrRate" class="form-control input-lg rr-rate-input" placeholder="0" tabindex="4" min="0" max="300" step="1" autocomplete="off">
-
-                                                <input type="hidden" id="RRid">
-
-                                                <span class="input-group-addon" id="basic-addon2" style="
-                                                      background-color: transparent;
-                                                      border: none;
-                                                      ">breaths / min</span><span class="input-group-btn">
-                                                          <button class="btn btn-default" type="button" id="acceptRRBtn">ADD</button>
-                                                </span>
-                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Oxygen Saturation</h5><div class="input-group">
-                                                <input type="number" min="0" max="99.9" step="0.1" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4" autocomplete="off">
-                                                <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" tabindex="4">
+                                            <h5>Calculated BMI</h5>
+                                            <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon2" style="
                                                       background-color: transparent;
                                                       border: none;
-                                                      ">%</span>
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button" id="acceptOSBtn">ADD</button>
-                                                </span>
+                                                      width: 140px;
+                                                      ">Patient BMI is:</span>
+                                                <input type="text" name="bmi" id="bmi" class="form-control input-lg " placeholder="0" tabindex="4" autocomplete="off">
                                             </div>
-                                        </div><div class="col-md-6">
-                                            <h5>Body Temperature °C</h5>
 
                                             <div class="input-group">
-                                                <input type="number" id="BTemp" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" autocomplete="off">
-                                                <input type="hidden" id="BTid" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" readonly="">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button" id="acceptBTBtn">ADD</button>
-                                                </span>
+                                                <span class="input-group-addon" id="basic-addon2" style="
+                                                      background-color: transparent;
+                                                      border: none;
+                                                      width: 140px;
+                                                      ">Weight Status is:</span>
+                                                <input type="text" name="bmiStatus" id="bmiStatus" class="form-control input-lg" placeholder="" tabindex="4" autocomplete="off">
                                             </div>
+
+                                        </div>
+                                        <div class="col-xs-2 col-sm-2 col-md-2 hidden">
                                             <div class="form-group">
-                                                <div id="slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header ui-slider-range-min" style="width: 0%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span></div>
+                                                <h5>Head Circumference</h5></div>
+                                        </div>
+                                        <div class="col-xs-2 col-sm-2 col-md-2 hidden">
+                                            <div class="form-group">
+
+                                                <input type="number" name="headCir" id="headCir" class="form-control input-lg num-3-1" placeholder="cm" tabindex="4">
                                             </div>
                                         </div>
-
+                                        <br>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-success btn-block btn-lg"id="acceptOtherBtn" role="button" autocomplete="off">ADD HEIGHT AND WEIGHT</button>
+                                        </div>
                                     </div>
 
+                                    <form role="form" id="BloodPressureForm">
+                                        <input type="hidden" id="BPid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Blood Pressure</h5><div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Systolic</label>
+                                                        <div class="form-group">
+                                                            <input type="number" name="sitS" id="sitS" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" min="0" max="300" step="1">
+                                                        </div></div>
+                                                    <div class="col-md-4">
+                                                        <label>Diastolic</label>
+                                                        <div class="form-group">
+                                                            <input type="number" name="sitD" id="sitD" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" min="0" max="300" step="1">
+                                                        </div></div><div class="col-md-4">
+                                                        <label>Pulse</label>
+                                                        <div class="input-group">
+                                                            <input type="number" name="sitP" id="sitP" class="form-control input-lg BP-class" placeholder="bpm" tabindex="4" min="0" max="300" step="1">
 
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button" id="btnCIS_O_VTS_BP_ACCEPT">ADD</button>
+                                                            </span></div></div>
+                                                    <div class="col-md-3">
+                                                        <label>&nbsp;</label>
+                                                    </div>
+                                                </div>
+                                            </div><div class="col-md-6">
+                                                <h5>Respitatory Rate</h5><label> </label><div class="input-group">
+                                                    <input type="number" name="rrRate" id="rrRate" class="form-control input-lg rr-rate-input" placeholder="0" tabindex="4" min="0" max="300" step="1" autocomplete="off">
 
+                                                    <input type="hidden" id="RRid">
 
+                                                    <span class="input-group-addon" id="basic-addon2" style="
+                                                          background-color: transparent;
+                                                          border: none;
+                                                          ">breaths / min</span><span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="acceptRRBtn">ADD</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Oxygen Saturation</h5><div class="input-group">
+                                                    <input type="number" min="0" max="99.9" step="0.1" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4" autocomplete="off">
+                                                    <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" tabindex="4">
+                                                    <span class="input-group-addon" id="basic-addon2" style="
+                                                          background-color: transparent;
+                                                          border: none;
+                                                          ">%</span>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="acceptOSBtn">ADD</button>
+                                                    </span>
+                                                </div>
+                                            </div><div class="col-md-6">
+                                                <h5>Body Temperature °C</h5>
 
+                                                <div class="input-group">
+                                                    <input type="number" id="BTemp" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" autocomplete="off">
+                                                    <input type="hidden" id="BTid" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" readonly="">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" id="acceptBTBtn">ADD</button>
+                                                    </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div id="slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header ui-slider-range-min" style="width: 0%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
                                 </form>
                             </div>
                         </div>
@@ -255,7 +267,7 @@
                         </div>
                         <div id="collapseThree1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
-                                <form>
+                                <form id="fastTrackDiagnosisForm">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Search From : </label>
@@ -329,7 +341,7 @@
                                 <div class="text-right">
                                     <button class="btn btn-primary" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Symtoms</button>
+                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Diagnosis</button>
                                 </div>
                                 <br>
                             </div>
