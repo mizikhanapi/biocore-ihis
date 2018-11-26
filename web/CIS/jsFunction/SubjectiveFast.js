@@ -147,19 +147,19 @@ $(document).ready(function () {
         e.preventDefault();
 
         var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
+
         var problem = $('#tCISSubCCNHFCSearch').val();
-        var Mild = $('input[id=Mild]:checked').val();
-        var Site = $('input[id=Site]:checked').val();
-        var Laterality = $('input[id=Laterality]:checked').val();
+        var Mild = $('#Mild:checked').val();
+        var Site = $('#Site:checked').val();
         var duration = $('#duration').val();
         var sdur = $('#sdur').val();
-
+        var Laterality = $('#Laterality:checked').val();
         var Comment = $('#Comment').val();
         var ccnCode = $('#ccnCode').val();
 
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
 
-        var $items = $('#codeCCN, #Mild, #Site, #duration, #sdur, #Laterality, #Comment,#ccnCode');
+        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
 
         console.log($items);
 
@@ -191,13 +191,18 @@ $(document).ready(function () {
                 displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
                 retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
 
-//                $("#Mild").val("");
-//                $("#Site").val("");
-//                $("#Laterality").val("");
                 $("#problem").val("");
                 $("#duration").val("");
                 $("#Comment").val("");
                 $("#ccnCode").val("");
+
+//                $("#Mild").val("");
+//                $("#Site").val("");
+//                $("#Laterality").val("");
+//                $("#problem").val("");
+//                $("#duration").val("");
+//                $("#Comment").val("");
+//                $("#ccnCode").val("");
 
             }
 
@@ -244,13 +249,17 @@ $(document).ready(function () {
 
                 $("#searchDiag").val("");
                 retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
-                $("#commentDGS").val("");
+//                $("#commentDGS").val("");
 //                $("#TypeDGS").val("");
-                $("#dateDGS").val("");
+//                $("#dateDGS").val("");
 //                $("#SiteDGS").val("");
 //                $("#SeverityDGS").val("");
 //                $("#LateralityDGS").val("");
                 //$("#CIS030001").modal('toggle');
+                $("#commentDGS").val("");
+                //$("#TypeDGS").val("");
+                $("#dateDGS").val("");
+
             }
         }
 
