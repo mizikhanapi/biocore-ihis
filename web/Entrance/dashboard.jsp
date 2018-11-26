@@ -419,7 +419,7 @@
                             if (mod22) {
                         %>                        
                         <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../SMS/Distribution_Stock_Order" class="thumbnail">
+                            <a href="../SMS/Order_Stock" class="thumbnail">
                                 <div class="kotak text-center">
                                     <i class="fa fa-cubes" aria-hidden="true" style="color:#777620;font-size: 4em;"></i>
                                     <h3>Stock Management</h3>

@@ -24,10 +24,9 @@
     <hr/>
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="side-menu">
-        <li><a href="Order_Stock"><i class="fa fa-plus fa-lg" aria-hidden="true" ></i>Order Stock</a></li>
+        <li class="active"><a href="Order_Stock"><i class="fa fa-plus fa-lg" aria-hidden="true" ></i>Order Stock</a></li>
             <%            if (roleCode.equalsIgnoreCase(adminCS) || superUser.isSuperUser() == true) { %>
         <li><a href="Distribution_Stock_Order"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Stock Distribution</a></li>
-        <li><a href="Stock_Adjustment"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Stock Adjustment</a></li>
         <li><a href="Manage_Stock_Quantity"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Stock Receipt</a></li>
         
         <li><a href="Manage_VendorS"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Manage Vendor</a></li>
