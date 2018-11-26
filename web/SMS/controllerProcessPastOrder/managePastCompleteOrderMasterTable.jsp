@@ -32,7 +32,7 @@
 
     } else if (type.equalsIgnoreCase("Date")) {
 
-        whereClause = "AND (date(om.txt_date) BETWEEN date('" + dateFrom + "') AND date('" + dateTo + "') ) ORDER BY om.txt_date DESC;";
+        whereClause = "AND (date(om.txt_date) BETWEEN STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') AND STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) ORDER BY om.txt_date DESC;";
 
     }
 
@@ -46,7 +46,7 @@
             + "WHERE om.hfc_cd = '" + hfc_cd + "' AND om.discipline_cd = '" + dis_cd + "' AND om.status = '1' " + whereClause;
 
     ArrayList<ArrayList<String>> dataOm = conn.getData(query);
-
+    //out.print(query);
 
 %>
 <table class="table table-bordered table-striped table-hover" id="OM_tableOrder">

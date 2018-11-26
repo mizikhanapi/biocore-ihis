@@ -436,7 +436,7 @@
                                                         .append('<div style="text-align: left;padding-top:10px;"><br>Total Order = ' + totalPatient + '<br>Total Released = ' + totalreleased + ' </div>');
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
-                                                        .append('<div style="text-align: center;"><div style="text-align: left;padding-top:30px;">Receive By:<br><br>-------------------<br>(Name: '+orderby+')</div><div style="text-align: right;">Released By:<br><%=username%><br>'+namaDis+'</div></div>');
+                                                        .append('<div style="display: table; width: 100%;"><div style="display: table-cell; text-align: left; padding-top:30px;">Receive By:<br><br>-------------------<br>(Name: '+orderby+')</div><div style="display:table-cell; text-align: right;">Released By:<br><%=username%><br>'+namaDis+'</div>');
 
                                             },
                                             exportOptions: {

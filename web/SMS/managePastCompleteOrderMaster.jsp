@@ -56,12 +56,12 @@
     <div class="form-group select-type" id="OM_selectDate" style="display: none;">
         <label class="col-md-4 control-label" for="textinput">From</label>
         <div class="col-md-2">
-            <input type="text" id="OM_DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD" readonly>
+            <input type="text" id="OM_DateFrom" class="form-control input-md Datepicker" placeholder="DD-MM-YYYY" readonly>
         </div>
 
         <label class="col-md-1 control-label" for="textinput">To</label>
         <div class="col-md-2">
-            <input type="text" id="OM_DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD" readonly>
+            <input type="text" id="OM_DateTo" class="form-control input-md Datepicker" placeholder="DD-MM-YYYY" readonly>
         </div>
 
     </div>
@@ -86,7 +86,7 @@
         $('#OM_DateFrom').datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd/mm/yy',
             yearRange: '1990:+0',
             maxDate: '+0d'
         });
@@ -103,7 +103,7 @@
             $('#OM_DateTo').datepicker({
                 changeMonth: true,
                 changeYear: true,
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'dd/mm/yy',
                 yearRange: '1990:+0',
                 minDate: fromDate,
                 maxDate: '+0d'
@@ -175,7 +175,7 @@
                     data: datas,
                     url: "controllerProcessPastOrder/managePastCompleteOrderMasterTable.jsp",
                     success: function (data, textStatus, jqXHR) {
-
+                        //console.log(data);
                         $('#OM_viewDiv').html(data);
 
                     },

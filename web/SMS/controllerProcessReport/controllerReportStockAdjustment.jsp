@@ -35,8 +35,7 @@
              + " WHERE cast(s.txn_date as date) BETWEEN '"+startDate + "' AND '" + endDate + "' AND s.hfc_cd = '"+hfc+"'";
      
     if(patientType.equalsIgnoreCase("all")){
-        
-           
+  
     }else{
         query += " AND s.discipline_cd = '"+patientType+"'";
     }   

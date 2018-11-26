@@ -58,7 +58,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToYearlySalesDetailsTButton">
+    <tr style="text-align: center;" id="moveToYearlySalesDetailsTButton" class="clickable_tr">
 <input id="dataYearlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportYearly.get(i))%>">
 <td><%= dataReportYearly.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportYearly.get(i).get(2)))%></td>

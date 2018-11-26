@@ -121,9 +121,17 @@
 
 </script>
 <script>
-
+    var stringDetail = "";
+    var arrayItemCode = [];
+    var stockOrderListorder = [];
+    var releaseOrderList = [];
+    arrayItemCode.length = 0;
+    stockOrderListorder.length = 0;
+    releaseOrderList.length = 0;
     
-
+    console.log(arrayItemCode.length);
+    console.log(releaseOrderList.length);
+    console.log(stockOrderListorder.length);
     $('#risManageOrderDetailsListTable').on('click', '#MOD_btnPrepareItem', function () {
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
@@ -254,14 +262,12 @@
     });
 
     // Add Item Function Start
-    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').on('click', '#orderNewStockOrderItemAddNewItemBtn', function () {
+    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').off('click', '#orderNewStockOrderItemAddNewItemBtn').on('click', '#orderNewStockOrderItemAddNewItemBtn', function () {
 
 
         var table = $("#tablepositemprepare tbody");
 
-        var arrayItemCode = [];
-        var stockOrderListorder = [];
-        var releaseOrderList = [];
+        
 
         // Calculating Data For Overall Dispense
         table.find('tr').each(function (i) {
@@ -304,7 +310,7 @@
             datatableTableDestroy();
 
             var arrayItemCodeCheck = arrayItemCode.indexOf(itemCode);
-
+            console.log(arrayItemCodeCheck);
 
             if (arrayItemCodeCheck === -1) {
 
@@ -323,7 +329,7 @@
                 var quantity = itemQuantity;
                 var typebutton = "release";
                 var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
-                var stringDetail = "";
+                
                 var grandTotalpriceorder = 0;
                 var grandTotalqtyorder = 0, stringDetailorder;
 
@@ -354,6 +360,7 @@
                     quantity: grandTotalqtyorder,
                     stringDetail: stringDetailorder
                 };
+                console.log("dataorder : "+dataorder);
                 $.ajax({
                     url: "../GNL/StockOrder/controllerProcess/orderStockOverall.jsp",
                     type: "post",
@@ -362,14 +369,14 @@
                     success: function (returnMessage) {
 
                         if (returnMessage.trim() === 'Success') {
-                            console.log(data);
+                            //console.log(data);
                             $.ajax({
                                 url: "../SMS/controllerProcessDistributeStockOrder/distrubuteStockOrderReleaseItems.jsp",
                                 type: "post",
                                 data: data,
                                 timeout: 10000, // 10 seconds
                                 success: function (datas) {
-                                    console.log(datas);
+                                    console.log("datas : "+data);
 
                                     if (datas.trim() === "Success") {
 
@@ -494,7 +501,7 @@
 
 
     // Delivery Update Function Start
-    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').on('click', '#orderNewStockOrderItemUpdateNewItemBtn', function (e) {
+    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').off('click', '#orderNewStockOrderItemUpdateNewItemBtn').on('click', '#orderNewStockOrderItemUpdateNewItemBtn', function (e) {
 
         //datatableTableDestroy();
 
@@ -590,7 +597,7 @@
     // Delivery Update Function End        
 
         // Delete Order Data 
-        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
+        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').off('click', '#orderNewStockOrderItemDeleteNewItemBtn').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
 
             var itemCode = $('#orderNewStockOrderItemDisplayItemCode').val();
             var itemName = $('#orderNewStockOrderItemDisplayItemName').val();

@@ -249,13 +249,13 @@
         });
     });
 
-    $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').on('click', '#orderNewStockOrderItemReset', function (e) {
+    $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').off('click', '#orderNewStockOrderItemReset').on('click', '#orderNewStockOrderItemReset', function (e) {
         $('#orderNewStockOrderModalFrom')[0].reset();
         $('#orderNewStockOrderSearchItemInputDisplayResult').html('');
     });
 
     // Add Item Function Start
-    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').on('click', '#orderNewStockOrderItemAddNewItemBtn', function () {
+    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').off('click', '#orderNewStockOrderItemAddNewItemBtn').on('click', '#orderNewStockOrderItemAddNewItemBtn', function () {
 
 
         var table = $("#tablepositemprepare tbody");
@@ -505,7 +505,7 @@
 
 
     // Delivery Update Function Start
-    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').on('click', '#orderNewStockOrderItemUpdateNewItemBtn', function (e) {
+    $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').off('click', '#orderNewStockOrderItemUpdateNewItemBtn').on('click', '#orderNewStockOrderItemUpdateNewItemBtn', function (e) {
 
         datatableTableDestroy();
 
@@ -601,7 +601,7 @@
     // Delivery Update Function End        
 
     // Delete Order Data 
-    $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
+    $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').off('click', '#orderNewStockOrderItemDeleteNewItemBtn').on('click', '#orderNewStockOrderItemDeleteNewItemBtn', function (e) {
 
         var itemCode = $('#orderNewStockOrderItemDisplayItemCode').val();
         var itemName = $('#orderNewStockOrderItemDisplayItemName').val();
