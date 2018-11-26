@@ -55,7 +55,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: center;" class="clickable_tr">
         <td ><%= dataSupplier.get(i).get(0)%></td> <!-- ID -->
         <td ><%= dataSupplier.get(i).get(1)%></td> <!-- NAME -->
         <td ><%= dataSupplier.get(i).get(2)%></td> <!-- ACC -->
