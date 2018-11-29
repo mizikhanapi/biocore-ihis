@@ -447,6 +447,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         $('#idOS').val(id[1]);
+        $('#OSat').val(updateObj.OSat);
 
 
     });
@@ -495,7 +496,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         $('#BTid').val(id[1]);
-        $("#BTemp").val(updateObj.BTemp + " " + ascii(176) + "C");
+        $("#BTemp").val(updateObj.BTemp);
         $("#slider").slider("value", parseInt(updateObj.BTemp));
 
     });
