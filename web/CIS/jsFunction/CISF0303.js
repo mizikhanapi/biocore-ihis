@@ -50,25 +50,32 @@ $(document).ready(function () {
         }
     });
 
-    $('#btnCISSubDGSAddPersonalised').click(function (e) {
+    //$('#btnCISSubDGSAddPersonalised').click(function (e) {
+    $('#btnCISSubDGSAddPersonalised').off('click').on('click', function (e) {
         e.preventDefault();
+        
         var search_by = $('input[name="rCISSubDGSSearchType"]').val();
         var term_name = term_name = $("#tCISSubDGSSearch").val();
-        ;
         var term_code = $("#dgsCode").val();
         var code_type = $("#tCISSUBDGSCodeType").val();
-
-        if (term_code === "") {
+        var code_valid = $("#tCISSubDGSSearch").val();
+        
+        if(term_code === ""){
             bootbox.alert("You need enter valid Diagnosis Term");
-        } else {
+        } else if (code_valid === "") {
+            bootbox.alert("Please search and select a diagnosis before pressing the add button !!!");
+        } else{
+            
             var dataPersonalised = {
                 term_name: term_name,
                 term_code: term_code,
                 code_type: code_type
             }
-            addPersonalisedTerm(dataPersonalised);
+            
+            addPersonalisedTermDGS(dataPersonalised);
+            
         }
-
+        
     });
 
 

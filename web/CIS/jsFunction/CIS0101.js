@@ -91,20 +91,30 @@ function initialiseRadioPersonalised(code,field){
         }
     });
     
-    $('#btnCISSub'+code+'AddPersonalised').click(function (e) {
+    //$('#btnCISSub' + code + 'AddPersonalised').click(function (e) {
+    $('#btnCISSub' + code + 'AddPersonalised').off('click').on('click', function (e) {
         e.preventDefault();
-        var search_by = $('input[name="rCISSub'+code+'SearchType"]').val();
-        var term_name = term_name = $("#tCISSub"+field+"Search").val();
-        
+
+        var search_by = $('input[name="rCISSub' + code + 'SearchType"]').val();
+        var term_name = term_name = $("#tCISSub" + field + "Search").val();
         var term_code = getDate();
-        var code_type = $("#tCISSUB"+code+"CodeType").val();
+        var code_type = $("#tCISSUB" + code + "CodeType").val();
+        var code_valid = $("#tCISSubCCNHFCSearch").val();
+
         var dataPersonalised = {
             term_name: term_name,
             term_code: term_code,
             code_type: code_type
         };
-        addPersonalisedTerm(dataPersonalised);
+
+        if (code_valid === "") {
+            bootbox.alert("Please search and select a symptom before pressing the add button !!!");
+        } else {
+            addPersonalisedTerm(dataPersonalised);
+        }
+
     });
+    
 }
 
 function validateDuration(id){
