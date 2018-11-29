@@ -353,16 +353,25 @@
                         %>
                         
                         
+<!--                          
                         <div class="none swapping-tab" id="orthopedic-con" style="display: none;">
-                            <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
+                            <%--
+                                <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
+                            --%>
                         </div>
+-->
 
-<!--                        <div class="none" id="orthopedic-nur">
-                            <%--<jsp:include page="../Ortho-Nursing/Nursing.jsp"/>--%>
-                        </div> -->
+<!--                        
+                        <div class="none" id="orthopedic-nur">
+                            <%--
+                                <jsp:include page="../Ortho-Nursing/Nursing.jsp"/>
+                            --%>
+                        </div> 
+-->
 
+<!--    
                         <div class="none swapping-tab" id="orthopedic-niw">
-                            <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
+<%--                            <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
                         </div> 
 
                         <div class="none swapping-tab" id="orthopedic-ot">
@@ -374,8 +383,9 @@
                         </div>
                         
                         <div class="none swapping-tab" id="ong-ward">
-                            <jsp:include page="ong_ward.jsp"/>
+                            <jsp:include page="ong_ward.jsp"/>                  --%>
                         </div> 
+-->
 
                         <div class="none swapping-tab" id="CIS-analyseTab">
                             <jsp:include page="analyse/analyse.jsp"/>

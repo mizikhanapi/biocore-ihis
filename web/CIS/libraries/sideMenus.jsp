@@ -66,7 +66,7 @@
                 }
                 if (myCIS.hasMenuAccess("CIS_02")) {
             %>
-        <li role="presentation" class="dropdown">
+        <li role="presentation" class="dropdown hidden">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-angle-right fa-lg"></i> Orthopedic <span class="caret"></span>
             </a>
@@ -90,7 +90,7 @@
             if (myCIS.hasMenuAccess("CIS_03")) {
         %>
         <!--        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito ong-general" id="linkOng"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>-->
-        <li role="presentation" class="dropdown">
+        <li role="presentation" class="dropdown hidden">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology <span class="caret"></span>
             </a>
