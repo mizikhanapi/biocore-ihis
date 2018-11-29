@@ -9,12 +9,12 @@
 <%
     Config.getBase_url(request);
     Config.getFile_url(session);
-    
+
     String fromPage = "x";
-    if(request.getParameter("page") != null){
+    if (request.getParameter("page") != null) {
         fromPage = request.getParameter("page");
     }
-    
+    //out.print(fromPage);
 %>
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,66 @@
         <style>
             html, body, .login_container {
                 height: 100%;
+            }
+
+            body {
+                background-attachment: fixed;
+                background-color: #f7f7f7;
+                background-image: url(../assets/img/tms-bg.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: right center;
+            }
+
+            #content-wrapper {
+                display: table;
+                height: 100%;
+                width: 100%;
+            }
+            #content-wrapper > * {
+                display: table-row;
+            }
+            #page-content {
+                height: 100%;
+            }
+
+            .navbar.navbar-hiscare {
+                background-color: #fff;
+                box-shadow: 0px 2px 8px 0px rgba(0,0,0,.25);
+                width: 100%;
+            }
+
+            .navbar-brand {
+                float: left;
+                padding: 22px 15px;
+                font-size: 19px;
+                line-height: 21px;
+            }
+
+            .navbar.navbar-hiscare .nav > li > a {
+                color: #808080 !important;
+            }
+
+            .navbar.navbar-hiscare .nav > li > a:hover {
+                background-color: transparent;
+                color: #fca20a !important;
+            }
+
+            @media (min-width: 768px){
+                .navbar-nav > li > a {
+                    font-weight: 600;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                } 
+            }
+
+            .btn-bordered>a {
+                border: 2px solid #fca20a;
+                color: #F16000;
+                padding: 7px 14px !important;
+                border-radius: 4em;
+                line-height: 21px;
+                margin: 17px 15px !important;
             }
             .login_container {
                 display: table;
@@ -47,7 +107,9 @@
                 margin: 50px 0 30px;
             }
             .login_logo img {
-                width: 220px;
+                width: 100%;
+                transform: translatey(0px);
+                animation: float 6s ease-in-out infinite;
             }
             .login_colon {
                 position: absolute;
@@ -122,7 +184,6 @@
             }
 
             .reg-sticker {
-                box-shadow: -2px 0px 20px 0px rgba(0, 0, 0, 0.17); 
                 height: 100%;
             }
 
@@ -138,204 +199,303 @@
                 display: block !important;
             }
 
+            .panel {
+                background-color: transparent;
+                box-shadow: none !important;
+            }
+
+            .wrap {
+                background-color: #fff;
+                box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .25);
+                overflow: hidden;
+                padding: 60px 30px;
+            }
+
+            .wrap h1 {
+                color: #00185c;
+                font-size: 48px;
+                margin: 0px;
+
+            }
+
+            .wrap h2 {
+                font-size: 36px;
+                font-weight: 400;
+                margin: 0px;
+            }
+
+            .signup-box {
+                padding-bottom: 80px;
+                padding-top: 60px;
+            }
+
         </style>
         <script>
             history.forward();
         </script>
     </head>
     <body>
-        <input type="hidden" id="fromPage" value="<%=fromPage%>"/>
-        <div class="login_container col-md-8">
-            <div class="login_row panel login_panel">
+        <div id="content-wrapper">
+            <input type="hidden" id="fromPage" value="<%=fromPage%>"/>
+            <header>
+                <nav class="navbar navbar-hiscare navbar-static-top">
+                    <div class="container">
+                        <% if (fromPage.equalsIgnoreCase("HIS-CARE")) { %>
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
+                                <span class="sr-only">Navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" title="HIS-CARE" href="http://staging.mkagtechnologies.com/his-care/"><img id="navlogo" src="../assets/img/hiscare-logo.svg"></a>
+                        </div>
 
-                <div class="panel-body login_body">
+                        <div id="navbar-responsive-collapse" class="collapse navbar-collapse">
+                            <ul id="menu-top-menu-1" class="nav navbar-nav pull-right"><li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://mkagtechnologies.com/his-care/how-its-work/">How it’s work</a></li>
+                                <li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Directory</a></li>
+                                <li id="menu-item-103" class="dropdown btn-bordered menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My HIS-CARE <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li id="menu-item-86" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://biocore-stag.utem.edu.my/IHIS_4.0/Entrance/Sign-in">Sign In</a></li>
+                                        <li id="menu-item-89" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://biocore-stag.utem.edu.my/IHIS_4.0/TMS/register-tenant-manager.jsp?page=HIS-CARE">Sign Up</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
 
-                    <div class="form-horizontal">
+                        <% } else if (fromPage.equalsIgnoreCase("JOMLOKA")) { %>
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
+                                <span class="sr-only">Navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" title="JOMLOKA" href="http://staging.mkagtechnologies.com/jomloka/"><img id="navlogo" style="width:180px;" src="../assets/img/jomloka-logo.svg"></a>
+                        </div>
 
-                        <form id="zeroForm">
-                            <fieldset class="steps step0 activate">
-                                <h2>You are signing up for which product?</h2>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">HIS-CARE or JOMLOKA:</label></div>
-                                    <div class="col-md-12">
-                                        <button class="btn btn-default btn-lg btn-product-option">HIS-CARE</button>
-                                        <button class="btn btn-default btn-lg btn-product-option">JOMLOKA</button>
-                                        <input type="hidden" id="inputProduct">
-                                        <input type="hidden" id="inputPrevProduct">
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button id="btnNext0" class="btn btn-rounded btn-mkag btn-lg login-btn">Continue <span class="txtProduct"></span> <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
-                                </div>
-                            </fieldset>
-                        </form>
+                        <div id="navbar-responsive-collapse" class="collapse navbar-collapse">
+                            <ul id="menu-top-menu-1" class="nav navbar-nav pull-right"><li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://mkagtechnologies.com/his-care/how-its-work/">How it’s work</a></li>
+                                <li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Directory</a></li>
+                                <li id="menu-item-103" class="dropdown btn-bordered menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Jomloka <b class="caret"></b></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li id="menu-item-86" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://biocore-stag.utem.edu.my/IHIS_4.0/Entrance/Sign-in">Sign In</a></li>
+                                        <li id="menu-item-89" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://biocore-stag.utem.edu.my/IHIS_4.0/TMS/register-tenant-manager.jsp?page=HIS-CARE">Sign Up</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <% }%>
 
-                        <form id="firstForm">
-                            <fieldset class="steps step1">
-                                <h2>Enter your email address and phone number</h2>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Email Address*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputEmail" type="email" class="form-control input-lg" required maxlength="150">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Mobile Number*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputMobile1" type="text" class="form-control input-lg" required maxlength="30">
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
-                                    <button id="btnPrev1" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
-                                    <button class="first btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
-                                </div>
-                            </fieldset>
-                        </form>
-
-                        <form id="secondForm">
-                            <fieldset class="steps step2">
-                                <h2>ID Password & Security Details</h2>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">ID*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputUserID" type="text" class="form-control input-lg" required maxlength="150" readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Password*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputPassword1" type="password" class="form-control input-lg" required maxlength="50">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Confirm Password*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputPassowrd2" type="password" class="form-control input-lg" required maxlength="50">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Security Question*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputQuestion" type="text" class="form-control input-lg" required maxlength="255">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Answer*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputAnswer" type="text" class="form-control input-lg" maxlength="255" required>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
-                                    <button id="btnPrev2" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
-                                    <button class="second btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
-                                </div>
-                            </fieldset>
-                        </form>
-
-                        <form id="thirdForm">
-                            <fieldset class="steps step3">
-                                <h2>Personal Details</h2>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Salutation*:</label></div>
-                                    <div class="col-md-12">
-                                        <select id="inputSalutation" class="form-control input-lg"></select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Name*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputName" type="text" class="form-control input-lg" maxlength="150" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">NRIC / ID*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputNRIC" type="text" class="form-control input-lg" maxlength="100" required>
-                                    </div>
-                                </div>                                
+                    </div>
+                </nav>
+            </header>
+            <section id="page-content">
+                <div class="container signup-box">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="wrap">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="col-md-12"><label class="control-label" for="company_name">Date of Birth*:</label></div>
-                                            <div class="col-md-12">
-                                                <input id="inputDOB" type="text" class="form-control input-lg" placeholder="dd/mm/yyyy" required>
+                                    <div class="col-md-12 text-center">
+                                        <h1>Sign Up</h1>
+                                        <p>Description goes here</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="login_container col-sm-12 col-md-12">
+                                        <div class="login_row panel login_panel">
+
+                                            <div class="panel-body login_body">
+
+                                                <div class="form-horizontal">
+
+                                                    <form id="zeroForm" style="display: none;">
+                                                        <fieldset class="steps step0 activate">
+                                                            <h2>You are signing up for which product?</h2>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">HIS-CARE or JOMLOKA:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <button class="btn btn-default btn-lg btn-product-option">HIS-CARE</button>
+                                                                    <button class="btn btn-default btn-lg btn-product-option">JOMLOKA</button>
+                                                                    <input type="hidden" id="inputProduct">
+                                                                    <input type="hidden" id="inputPrevProduct">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button id="btnNext0" class="btn btn-rounded btn-mkag btn-lg login-btn">Continue <span class="txtProduct"></span> <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+
+                                                    <form id="firstForm">
+                                                        <fieldset class="steps step1">
+                                                            <h2 class="text-center">Create HIS-CARE ID</h2>
+                                                            <p class="text-center">Enter your email address and phone number</p>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Email Address*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputEmail" type="email" class="form-control input-lg" required maxlength="150">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Mobile Number*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputMobile1" type="text" class="form-control input-lg" required maxlength="30">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
+                                                                <button id="btnPrev1" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
+                                                                <button class="first btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+
+                                                    <form id="secondForm">
+                                                        <fieldset class="steps step2">
+                                                            <h2>ID Password & Security Details</h2>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">ID*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputUserID" type="text" class="form-control input-lg" required maxlength="150" readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Password*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputPassword1" type="password" class="form-control input-lg" required maxlength="50">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Confirm Password*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputPassowrd2" type="password" class="form-control input-lg" required maxlength="50">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Security Question*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputQuestion" type="text" class="form-control input-lg" required maxlength="255">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Answer*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputAnswer" type="text" class="form-control input-lg" maxlength="255" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
+                                                                <button id="btnPrev2" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
+                                                                <button class="second btn btn-rounded btn-mkag btn-lg login-btn">Next Step <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+
+                                                    <form id="thirdForm">
+                                                        <fieldset class="steps step3">
+                                                            <h2>Personal Details</h2>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Salutation*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <select id="inputSalutation" class="form-control input-lg"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Name*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputName" type="text" class="form-control input-lg" maxlength="150" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">NRIC / ID*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputNRIC" type="text" class="form-control input-lg" maxlength="100" required>
+                                                                </div>
+                                                            </div>                                
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12"><label class="control-label" for="company_name">Date of Birth*:</label></div>
+                                                                        <div class="col-md-12">
+                                                                            <input id="inputDOB" type="text" class="form-control input-lg" placeholder="dd/mm/yyyy" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12"><label class="control-label" for="company_name">Gender*:</label></div>
+                                                                        <div class="col-md-12">
+                                                                            <select id="inputGender" class="form-control input-lg"></select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Mobile Number*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputMobile2" type="text" class="form-control input-lg" maxlength="30" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12"><label class="control-label" for="company_name">Upload NRIC / ID*:</label></div>
+                                                                <div class="col-md-12">
+                                                                    <input id="inputNRIC_pic" type="file"  accept="image/*" class="form-control input-lg" required>
+                                                                </div>
+                                                                <div class="col-md-12" align="center">
+                                                                    <img src="" id="NRIC_pic" alt="NRIC/ID picture" class="img-responsive" style="height: 100%; width: 100%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
+                                                                <button id="btnPrev3" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
+                                                                <button class="third btn btn-rounded btn-mkag btn-lg login-btn">Submit <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>                      
+
+                                                </div>
+
                                             </div>
+                                            <!--                        <div class="direction_numbering">
+                                                                        <ul>
+                                                                            <li class="directory1 active">1</li>
+                                                                            <li class="directory2">2</li>
+                                                                            <li class="directory3">3</li>
+                                                                        </ul>
+                                                                    </div>-->
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="col-md-12"><label class="control-label" for="company_name">Gender*:</label></div>
-                                            <div class="col-md-12">
-                                                <select id="inputGender" class="form-control input-lg"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Mobile Number*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputMobile2" type="text" class="form-control input-lg" maxlength="30" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12"><label class="control-label" for="company_name">Upload NRIC / ID*:</label></div>
-                                    <div class="col-md-12">
-                                        <input id="inputNRIC_pic" type="file"  accept="image/*" class="form-control input-lg" required>
-                                    </div>
-                                    <div class="col-md-12" align="center">
-                                        <img src="" id="NRIC_pic" alt="NRIC/ID picture" class="img-responsive" style="height: 100%; width: 100%">
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button class="quit btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-times fa-lg pull-left"></i> Quit</button>
-                                    <button id="btnPrev3" class="btn btn-rounded btn-default btn-lg login-btn"><i style="margin-top: 3px;" class="fa fa-angle-left fa-lg pull-left"></i> Prev</button>
-                                    <button class="third btn btn-rounded btn-mkag btn-lg login-btn">Submit <i style="margin-top: 3px;" class="fa fa-angle-right fa-lg pull-right"></i></button>
-                                </div>
-                            </fieldset>
-                        </form>                      
 
+                                    </div>
+                                </div>                
+                            </div>
+                        </div>
                     </div>
 
+
                 </div>
-            </div>
+            </section>
+            <footer>
+                <div id="inner-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <% if (fromPage.equalsIgnoreCase("HIS-CARE")) { %>
+                                <p>All right reserved. © HIS-CARE 2018.</p>
+                                <% } else if (fromPage.equalsIgnoreCase("JOMLOKA")) {  %>
+                                <p>All right reserved. © Jomloka 2018.</p>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <div class="col-md-4 login_container reg-sticker">
-            <div class="login_row login_panel">
-                <div class="direction_numbering">
-                    <ul>
-                        <li class="directory1 active">1</li>
-                        <li class="directory2">2</li>
-                        <li class="directory3">3</li>
-                    </ul>
-                </div>
-                <div class="login_logo text-center">
-                    <div class="keterangan keterangan0 activate">
-                        <h3>Welcome</h3>
-                        <p>Your <span class="txtProduct"></span> ID is the username and password you will need to access your <span class="txtProduct"></span> account online and the My JOMLOKA App. You'll need a valid email address as your <span class="txtProduct"></span> ID.</p>
-                    </div>
-                    <div class="keterangan keterangan1 ">
-                        <img class="keterangan-logo" src="../assets/mail.svg">
-                        <h3>Create <span class="txtProduct">HIS-CARE</span> ID</h3>
-                        <p>Your <span class="txtProduct">HIS-CARE</span> ID is the username and password you will need to access your HIS-CARE account online and Apps</p>
-                    </div>
 
-                    <div class="keterangan keterangan2 ">
-                        <img class="keterangan-logo" src="../assets/id.svg">
-                        <h3>Complete your ID details</h3>
-                        <p>Your <span class="txtProduct">HIS-CARE</span> is the username and password you will need to access your HIS-CARE  account online and Apps</p>
-                    </div>
 
-                    <div class="keterangan keterangan3 ">
-                        <img class="keterangan-logo" src="../assets/hospital.svg">
-                        <h3>Provider Information</h3>
-                        <p>Your <span class="txtProduct">HIS-CARE</span> ID is the username and password you will need to access your HIS-CARE account online and Apps</p>
-                    </div>
-                </div>
 
-            </div>
-        </div>
+
+
         <%@include file="libraries/footLibrary.jsp" %>
         <script src="../assets/js/rd.jquery.validator.js"></script>
         <script src="../assets/js/rd.jquery.check-file.js"></script>
@@ -369,24 +529,24 @@
                         $dir1 = $(".directory1"),
                         $dir2 = $(".directory2"),
                         $dir3 = $(".directory3");
-                        
+
                 //check from which page
                 var fromPage = $("#fromPage").val();
-                if(fromPage !=="x"){
+                if (fromPage !== "x") {
                     var product = fromPage;
                     $(".txtProduct").text(product);
 
                     $("#inputProduct").val(product);
-                    
+
                     document.title = product;
-                    
+
                     //hide prev button
                     $btnPrev1.hide();
-                    
+
                     //show next page
                     $ctr0.removeClass("activate");
                     $ctr1.addClass("activate");
-                    
+
                 }
 
                 $(".btn-product-option").button();
@@ -455,16 +615,14 @@
                                         console.log("Fail to quit registration.");
                                     },
                                     complete: function (jqXHR, textStatus) {
-                                        if(fromPage==="HIS-CARE"){
-                                           window.location="http://staging.mkagtechnologies.com/his-care/";
-                                        }
-                                        else if(fromPage==="JOMLOKA"){
-                                            window.location="http://staging.mkagtechnologies.com/jomloka/";
-                                        }
-                                        else{
+                                        if (fromPage === "HIS-CARE") {
+                                            window.location = "http://staging.mkagtechnologies.com/his-care/";
+                                        } else if (fromPage === "JOMLOKA") {
+                                            window.location = "http://staging.mkagtechnologies.com/jomloka/";
+                                        } else {
                                             location.reload();
                                         }
-                                        
+
                                     }
                                 });
 
