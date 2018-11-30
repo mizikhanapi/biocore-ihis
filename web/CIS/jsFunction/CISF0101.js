@@ -9,6 +9,7 @@
 $(document).ready(function () {
 
     initialisedModalSearch("squarespaceModal2", "tCISSubCCNHFCSearchPersonalised", "CCN", "CCNHFC");
+    initialisedModalSearch("update_CIS01000001","tCISSubCCNHFCSearchPersonalised_update","CCN","CCNHFC");
 
 });
 

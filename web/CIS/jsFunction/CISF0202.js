@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+function ascii(a) {
+    return String.fromCharCode(a);
+}
 
 $(document).ready(function () {
 

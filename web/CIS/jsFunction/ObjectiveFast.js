@@ -113,116 +113,83 @@ $(document).ready(function () {
         var _lyingBPD = $('#lyingD').val();
         var _lyingBPP = $('#lyingP').val();
 
-        var items = $('#sitS,#sitD,#sitP,#standS,#standD,#standP,#lyingS,#lyingD,#lyingP');
-        var obj1 = {Acode: "VTS"};
-        items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _data.push(obj1);
+        if (_sitBPS === "" || _sitBPD === "" || _sitBPP === "" || _sitBPS === null || _sitBPD === null || _sitBPP === null) {
+            bootbox.alert("Please insert the correct and valid blood pressure !!!");
+        } else {
 
-        displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP);
+            var items = $('#sitS,#sitD,#sitP,#standS,#standD,#standP,#lyingS,#lyingD,#lyingP');
+            var obj1 = {Acode: "VTS"};
+            items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
+            _data.push(obj1);
 
-        $("#CIS020003").modal('hide');
+            displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP);
 
-        $('#sitS').val("");
-        $('#sitD').val("");
-        $('#sitP').val("");
-        $('#standS').val("");
-        $('#standD').val("");
-        $('#standP').val("");
-        $('#lyingS').val("");
-        $('#lyingD').val("");
-        $('#lyingP').val("");
+            //$("#CIS020003").modal('hide');
 
-    });
+            $('#sitS').val("");
+            $('#sitD').val("");
+            $('#sitP').val("");
+            $('#standS').val("");
+            $('#standD').val("");
+            $('#standP').val("");
+            $('#lyingS').val("");
+            $('#lyingD').val("");
+            $('#lyingP').val("");
 
-    $('#ortho_acceptBloodPBtn').click(function (e) {
-
-        var _sitBPS = $('#sitS').val();
-        var _sitBPD = $('#sitD').val();
-        var _sitBPP = $('#sitP').val();
-        var checked = $('input[name="selected"]:checked').val();
-        //alert(checked);
-        $.ajax({
-            url: "../Ortho-Consultation/modal/action/save_bloodPressure.jsp",
-            type: "post",
-            data: {
-                sitS: _sitBPS,
-                sitD: _sitBPD,
-                sitP: _sitBPP,
-                encounter_date: checked
-            },
-            timeout: 10000,
-            success: function (data) {
-
-                $.ajax({
-                    url: "../Ortho-Consultation/table/t_observation.jsp",
-                    type: "post",
-                    timeout: 3000,
-                    success: function (returnObservation) {
-                        $('#getNeuObservation').html(returnObservation);
-
-                        $('#getNeuObservation').trigger('contentchanged');
-                        $('#sitS').val("");
-                        $('#sitD').val("");
-                        $('#sitP').val("");
-                        $('#CIS020003').modal('hide');
-                        $("#CIS020003").hide();
-                        $(".modal-backdrop").hide();
-                        bootbox.alert("Bllod pressure is saved.");
-                    }
-                });
-            },
-            error: function (err) {
-                bootbox.alert("Error update!");
-            }
-        });
+        }
 
     });
+
 
     $('#tblCIS_Consultation_Table').on('click', '.updateBP', function (e) {
+
         $("#CIS020003").modal('show');
-        $('#actionBloodP').hide();
-        $('#updateBloodP').show();
+
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
 
-        $('#BPid').val(id[1]);
-        $('#sitS').val(updateObj.sitS);
-        $('#sitD').val(updateObj.sitD);
-        $('#sitP').val(updateObj.sitP);
+        $('#BPidFast').val(id[1]);
+        $('#sitSFast').val(updateObj.sitS);
+        $('#sitDFast').val(updateObj.sitD);
+        $('#sitPFast').val(updateObj.sitP);
 
-        $('#standS').val(updateObj.standS);
-        $('#standD').val(updateObj.standD);
-        $('#standP').val(updateObj.standP);
-
-        $('#lyingS').val(updateObj.lyingS);
-        $('#lyingD').val(updateObj.lyingD);
-        $('#lyingP').val(updateObj.lyingP);
+//        $('#standS').val(updateObj.standS);
+//        $('#standD').val(updateObj.standD);
+//        $('#standP').val(updateObj.standP);
+//
+//        $('#lyingS').val(updateObj.lyingS);
+//        $('#lyingD').val(updateObj.lyingD);
+//        $('#lyingP').val(updateObj.lyingP);
 
     });
 
     $('#updateBloodPBtn').click(function (e) {
-        var upObject = _data[$('#BPid').val()];
-        var rowId = $('#BPid').val();
 
-        upObject.sitS = $('#sitS').val();
-        upObject.sitD = $('#sitD').val();
-        upObject.sitP = $('#sitP').val();
+        var upObject = _data[$('#BPidFast').val()];
+        var rowId = $('#BPidFast').val();
 
-        upObject.standS = $('#standS').val();
-        upObject.standD = $('#standD').val();
-        upObject.standP = $('#standP').val();
+        upObject.sitS = $('#sitSFast').val();
+        upObject.sitD = $('#sitDFast').val();
+        upObject.sitP = $('#sitPFast').val();
 
-        upObject.lyingS = $('#lyingS').val();
-        upObject.lyingD = $('#lyingD').val();
-        upObject.lyingP = $('#lyingP').val();
+        upObject.standS = "";
+        upObject.standD = "";
+        upObject.standP = "";
+
+        upObject.lyingS = "";
+        upObject.lyingD = "";
+        upObject.lyingP = "";
 
 
         var sum = ' Sitting: Systolic =' + upObject.sitS + ' mmHg | Diastolic =' + upObject.sitD + ' mmHg | Pulse =' + upObject.sitP + 'mmHg </br> Standing: Systolic =' + upObject.standS + 'mmHg | Diatolic =' + upObject.standD + 'mmHg | Pulse =' + upObject.standP + 'mmHg </br> Lying: Systolic =' + upObject.lyingS + ' mmHg | Diatolic = ' + upObject.lyingD + ' mmHg | Pulse =' + upObject.lyingP + ' mmHg';
+
         $('#sum' + rowId).html(sum);
+
         $("#CIS020003").modal('hide');
+
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -231,46 +198,57 @@ $(document).ready(function () {
 
     $('#acceptRRBtn').click(function (e) {
         e.preventDefault();
+
         var _rrRate = $('#rrRate').val();
 
-        var items = $('#rrRate');
-        var obj1 = {Acode: "VTS"};
-        items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _data.push(obj1);
-        displayrrRate(_rrRate);
+        if (_rrRate === "" || _rrRate === null) {
+            bootbox.alert("Please insert the correct and valid respiratory rate !!!");
+        } else {
 
-        $("#CIS020004").modal('hide');
-        $('#rrRate').val('');
+            var items = $('#rrRate');
+
+            var obj1 = {Acode: "VTS"};
+            items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
+            _data.push(obj1);
+            displayrrRate(_rrRate);
+
+            //$("#CIS020004").modal('hide');
+            $('#rrRate').val('');
+
+        }
+
+
+
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateRR', function (e) {
 
         $("#CIS020004").modal('show');
-        $('#updateRR').show();
-        $('#actionRR').hide();
-
 
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        $('#RRid').val(id[1]);
 
-        $('#rrRate').val(updateObj.rrRate);
+        $('#RRidFast').val(id[1]);
+
+        $('#rrRateFast').val(updateObj.rrRate);
 
     });
 
     $('#updateRRBtn').click(function (e) {
         e.preventDefault();
-        var upObject = _data[$('#RRid').val()];
-        var rowId = $('#RRid').val();
 
-        upObject.rrRate = $('#rrRate').val();
+        var upObject = _data[$('#RRidFast').val()];
+        var rowId = $('#RRidFast').val();
+
+        upObject.rrRate = $('#rrRateFast').val();
 
         var sum = 'Respiratory Rate:' + upObject.rrRate + ' breath/min';
         $('#sum' + rowId).html(sum);
         $("#CIS020004").modal('hide');
+
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -278,42 +256,54 @@ $(document).ready(function () {
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
     $('#acceptOSBtn').click(function (e) {
+
         var _OSat = $('#OSat').val();
 
-        var items = $('#OSat');
-        var obj1 = {Acode: "VTS"};
-        items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _data.push(obj1);
-        displayOsat(_OSat);
+        if (_OSat === "" || _OSat === null) {
+            bootbox.alert("Please insert the correct and valid oxygen saturation !!!");
+        } else {
 
-        $("#CIS020005").modal('hide');
+            var items = $('#OSat');
+            var obj1 = {Acode: "VTS"};
+            items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
+
+            _data.push(obj1);
+
+            displayOsat(_OSat);
+
+            //$("#CIS020005").modal('hide');
+
+        }
+
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateOS', function () {
+
         $('#CIS020005').modal('show');
-        $('#actionOS').hide();
-        $('#updateOS').show();
 
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        $('#idOS').val(id[1]);
 
+        $('#idOSFast').val(id[1]);
+        $('#OSatFast').val(updateObj.OSat);
 
     });
 
     $('#updateOSBtn').click(function (e) {
         e.preventDefault();
-        var upObject = _data[$('#idOS').val()];
-        var rowId = $('#idOS').val();
 
-        upObject.OSat = $('#OSat').val();
+        var upObject = _data[$('#idOSFast').val()];
+        var rowId = $('#idOSFast').val();
 
+        upObject.OSat = $('#OSatFast').val();
         var sum = upObject.OSat;
         $('#sum' + rowId).html(sum);
+
         $("#CIS020005").modal('hide');
+
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -326,45 +316,61 @@ $(document).ready(function () {
         var title = "Body Temperature";
         var _BTemp = $('#BTemp').val();
 
-        var items = $('#BTemp');
-        var obj1 = {Acode: "VTS"};
-        items.each(function () {
-            var value = $(this).val().split(" ");
-            obj1[this.id] = value[0];
-        });
-        _data.push(obj1);
-        displayBTemp(_BTemp);
-        $('#BTemp').val('');
-        $("#slider").slider("value", parseInt(1));
-        $("#CIS020006").modal('hide');
+        if (_BTemp === "" || _BTemp === null) {
+            bootbox.alert("Please insert the correct and valid body temperature !!!");
+        } else {
+
+            var items = $('#BTemp');
+            var obj1 = {Acode: "VTS"};
+            items.each(function () {
+                var value = $(this).val().split(" ");
+                obj1[this.id] = value[0];
+            });
+            _data.push(obj1);
+            displayBTemp(_BTemp);
+            $('#BTemp').val('');
+            $("#slider").slider("value", parseInt(1));
+            //$("#CIS020006").modal('hide');
+
+        }
+
+
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateBT', function () {
+
         $('#CIS020006').modal('show');
-        $('#actionBT').hide();
-        $('#updateBT').show();
 
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        $('#BTid').val(id[1]);
-        $("#BTemp").val(updateObj.BTemp + " " + ascii(176) + "C");
+
+        $('#BTidFast').val(id[1]);
+        $("#BTempFast").val(updateObj.BTemp);
         $("#slider").slider("value", parseInt(updateObj.BTemp));
 
     });
 
     $('#updateBTBtn').click(function (e) {
         e.preventDefault();
-        var upObject = _data[$('#BTid').val()];
-        var rowId = $('#BTid').val();
 
-        var value = $('#BTemp').val().split(" ");
+        var upObject = _data[$('#BTidFast').val()];
+        var rowId = $('#BTidFast').val();
+
+        var value = $('#BTempFast').val().split(" ");
         upObject.BTemp = value[0];
 
         var sum = upObject.BTemp + ascii(176) + "C";
         $('#sum' + rowId).html(sum);
         $("#CIS020006").modal('hide');
+
     });
+
+
+/// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+/// -------------------------------------------------------------Others modal-----------------------------------------------/////;
+/// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+
 
 
     $('#bmiHeightSlider').slider({
@@ -424,6 +430,7 @@ $(document).ready(function () {
 
     $('#acceptOtherBtn').click(function (e) {
         var title = "Other";
+
         var Oheight = $('#bmiHeight').val();
         var Oweight = $('#bmiWeight').val();
         var Obmi = $('#bmi').val();
@@ -431,27 +438,79 @@ $(document).ready(function () {
         var OheadCir = $('#headCir').val();
         var OBloodGlucose = $('#bloodGlucose').val();
 
-        var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');
+        if (Oheight === "" || Oheight === null || Oweight === "" || Oweight === null || Obmi === null || Obmi === "" || Obmi === "0") {
+            bootbox.alert("Please insert the correct and valid height and weight then press the calculate bmi button !!!");
+        } else {
 
-        var obj = {
-            Acode: "VTS",
-            bmiHeight: Oheight,
-            bmiWeight: Oweight,
-            bmi: Obmi,
-            bmiStatus: OWeightStatus,
-            headCir: OheadCir,
-            bloodGlucose: OBloodGlucose
+            var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');
+
+            var obj = {
+                Acode: "VTS",
+                bmiHeight: Oheight,
+                bmiWeight: Oweight,
+                bmi: Obmi,
+                bmiStatus: OWeightStatus,
+                headCir: OheadCir,
+                bloodGlucose: OBloodGlucose
+            }
+
+            _data.push(obj);
+
+            displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
+
+            $("#bmiWeightSlider").slider("value", parseInt(1));
+            $("#bmiHeightSlider").slider("value", parseInt(1));
+
+            $("#fastTrackVitalSignForm")[0].reset();
+
         }
 
-        _data.push(obj);
-
-        displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
-
-        $("#fastTrackVitalSignForm")[0].reset();
 
     });
 
 
+    $('#tblCIS_Consultation_Table').on('click', '.updateOther', function () {
+
+        $('#CIS020008').modal('show');
+
+        var idName = $(this).get(0).id;
+        var id = idName.split('|');
+        var updateObj = _data[id[1]];
+
+        $('#otherIdFast').val(id[1]);
+
+        $('#bmiHeightFast').val(updateObj.bmiHeight);
+        $('#bmiWeightFast').val(updateObj.bmiWeight);
+
+    });
+
+    $('#updateOtherBtn').click(function (e) {
+        e.preventDefault();
+
+        var upObject = _data[$('#otherIdFast').val()];
+        var rowId = $('#otherIdFast').val();
+
+        var height = $('#bmiHeightFast').val().split(" ");
+        var weight = $('#bmiWeightFast').val().split(" ");
+
+        height = parseFloat(height[0]) / 100;
+        height = height * height;
+        weight = parseFloat(weight[0]);
+
+        var result = calcBMI(height, weight);
+
+        upObject.bmiHeight = $('#bmiHeightFast').val();
+        upObject.bmiWeight = $('#bmiWeightFast').val();
+        upObject.bmi = result[0];
+        upObject.bmiStatus = result[1];
+        upObject.headCir = "";
+        upObject.bloodGlucose = "";
+
+        var sum = 'Height:' + upObject.bmiHeight + 'cm </br> Weight:' + upObject.bmiWeight + 'kg </br> BMI:' + upObject.bmi + 'kg/m2 </br> Weight Status:' + upObject.bmiStatus + ' </br> Head Circumference:' + upObject.headCir + 'cm </br> Blood Glucose:' + upObject.bloodGlucose + 'mmol/L';
+        $('#sum' + rowId).html(sum);
+        $("#CIS020008").modal('hide');
+
+    });
 
 
 });
@@ -484,14 +543,17 @@ function convertPEMtoNotes(objPEM) {
 
 function displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP) {
 
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#BPNotes').append(_tr);
 
     i = i + 1;
 }
 function displayrrRate(_rrRate) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#RRNotes').append(_tr);
 
@@ -499,7 +561,9 @@ function displayrrRate(_rrRate) {
 }
 
 function displayOsat(_OSat) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Oxygen Saturation :<p class="summary" id="sum' + i + '">' + _OSat + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Oxygen Saturation :<p class="summary" id="sum' + i + '">' + _OSat + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Oxygen Saturation :<p class="summary" id="sum' + i + '">' + _OSat + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#OSATNotes').append(_tr);
     $('#OSat').val("");
@@ -509,7 +573,9 @@ function displayOsat(_OSat) {
 
 function displayBTemp(_BTemp) {
 
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: <p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: <p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: <p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
     $('#BTEMPNotes').append(_tr);
 
     i = i + 1;
@@ -523,7 +589,8 @@ function displayCholesterol(CholeLDL, CholeTotal, CholeHDL, CholeTri, CholeNon, 
 }
 
 function displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#OTRNotes').append(_tr);
 
     i = i + 1;

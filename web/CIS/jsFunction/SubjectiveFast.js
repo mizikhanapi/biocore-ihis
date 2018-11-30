@@ -36,33 +36,16 @@ function checkCCN(datas, obj) {
 
 }
 
-function checkDGS(datas, obj) {
-
-    var already = false;
-    for (var i in datas) {
-        if (datas[i].dgsCode === obj.dgsCode) {
-            already = true;
-        }
-    }
-    return already;
-
-}
 
 function displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment) {
 
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnCCN" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    //var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#CCNNotes').append(_tr);
     i = i + 1;
 
 }
 
-function displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8) {
-
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-    $('#DGSNotes').append(_tr);
-    i = i + 1;
-
-}
 
 $(document).ready(function () {
 
@@ -89,13 +72,6 @@ $(document).ready(function () {
             searchHFCDetail('DTO');
         }
 
-    });
-
-    $("#dateDGS").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
     });
 
 
@@ -143,6 +119,8 @@ $(document).ready(function () {
     /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
     /// -------------------------------------------------------------CCN NOTES----------------------------------------------------------------/////;
     /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+
+
     $('#acceptBtn').click(function (e) {
         e.preventDefault();
 
@@ -161,8 +139,6 @@ $(document).ready(function () {
 
         var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
 
-        console.log($items);
-
         if (search_by === "P") {
             problem = $('#tCISSubCCNHFCSearchPersonalised').val();
         } else {
@@ -173,12 +149,10 @@ $(document).ready(function () {
             Acode: "CCN",
             problem: problem
         };
+        
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-
-        console.log(obj1);
-
 
 
         if (validationField(obj1.ccnCode, "Please enter the correct symptoms")) {
@@ -188,7 +162,9 @@ $(document).ready(function () {
             } else {
 
                 _data.push(obj1);
+                
                 displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
+                
                 retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
 
                 $("#problem").val("");
@@ -196,123 +172,116 @@ $(document).ready(function () {
                 $("#Comment").val("");
                 $("#ccnCode").val("");
 
-//                $("#Mild").val("");
-//                $("#Site").val("");
-//                $("#Laterality").val("");
-//                $("#problem").val("");
-//                $("#duration").val("");
-//                $("#Comment").val("");
-//                $("#ccnCode").val("");
-
             }
 
         }
 
     });
 
-    //js ADD for Diagnosis
-    $('#acceptBtnDGS').click(function () {
-        var diacode = "I0221c002";
-        var termtype = "Term";
-        var icd10code = "25256";
-        var icd10desc = "Fever";
-        var hfc = "2252145522";
-        var doctorname = "Ahmed";
-        var doctorid = "B031310504";
-        var status = "Active";
-        //---------------------------
+    //js UPDATE Complaint 
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnCCN', function (e) {
+        e.preventDefault();
+        
+        $("#update_CIS01000001").modal("show");
 
-        var Type = $('#TypeDGS:checked').val();
-        var date4 = $('#dateDGS').val();
-        var Problem8 = $('#tCISSubDGSSearch').val();
-        var Severity1 = $('#SeverityDGS:checked').val();
-        var Site1 = $('#SiteDGS:checked').val();
-        var Laterality1 = $('#LateralityDGS:checked').val();
-        var comment8 = $('#commentDGS').val();
-        var code10 = $('#dgsCode').val();
-        //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
-        var $items = $('#dgsCode, #TypeDGS:checked, #dateDGS, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
-        var obj1 = {
-            Acode: 'DGS',
-            searchDiag: Problem8
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+
+        retriveDataSearchingSubjective("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
+
+        $("input[id=uMild][value=" + updateObj.Mild + "]").prop('checked', true);
+        $("input[id=uSite][value=" + updateObj.Site + "]").prop('checked', true);
+        $('#uduration').val(updateObj.duration);
+        $('#ssdur').val(updateObj.sdur);
+        $("input[name=uLaterality][value=" + updateObj.Laterality + "]").prop('checked', true);
+        $('#uComment').val(updateObj.Comment);
+        $('#uccnCode').val(updateObj.ccnCode);
+        $('#jsonId').val(id[1]);
+        $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
+
+
+
+    });
+
+    $('#updateBtnCCN').click(function (e) {
+        e.preventDefault();
+
+        var upObject = _data[$('#jsonId').val()];
+
+        var rowId = $('#jsonId').val();
+        var _uproblem = $('#tCISSubCCNHFCSearch_update').val();
+        var _uMild = $('#uMild:checked').val();
+        var _uSite = $('#uSite:checked').val();
+        var _uduration = $('#uduration').val();
+        var _ssdur = $('#ssdur').val();
+        var _uLaterality = $('#uLaterality:checked').val();
+        var _uComment = $('#uComment').val();
+        var _uccnCode = $('#uccnCode').val();
+
+        var search_by = $('input[name=rCISSubCCNSearchType_update]:checked').val();
+
+        if (search_by === "P") {
+            _uproblem = $('#tCISSubCCNHFCSearchPersonalised_update').val();
+        } else {
+            _uproblem = $('#tCISSubCCNHFCSearch_update').val();
+        }
+
+        var tempccnObj = {
+            ccnCode: _uccnCode
         };
-        $items.each(function () {
-            obj1[this.id] = $(this).val();
 
-        });
-        if (validationField(code10, "Please enter the correct Diagnosis")) {
-            if (checkDGS(_data, obj1)) {
-                bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+        if (validationField(_uccnCode, "Please enter the correct symptoms")) {
+
+            if (upObject.ccnCode === _uccnCode) {
+
+                upObject.problem = _uproblem;
+                upObject.Mild = _uMild;
+                upObject.Site = _uSite;
+                upObject.duration = _uduration;
+                upObject.sdur = _ssdur;
+                upObject.Laterality = _uLaterality;
+                upObject.Comment = _uComment;
+                upObject.ccnCode = _uccnCode;
+
+                var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
+
+                $('#sum' + rowId).html(sum);
+
+                $("#update_CIS01000001").modal('hide');
+
             } else {
-                _data.push(obj1);
-                displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
 
-                $("#searchDiag").val("");
-                retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
-//                $("#commentDGS").val("");
-//                $("#TypeDGS").val("");
-//                $("#dateDGS").val("");
-//                $("#SiteDGS").val("");
-//                $("#SeverityDGS").val("");
-//                $("#LateralityDGS").val("");
-                //$("#CIS030001").modal('toggle');
-                $("#commentDGS").val("");
-                //$("#TypeDGS").val("");
-                $("#dateDGS").val("");
+                if (checkCCN(_data, tempccnObj)) {
+                    bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                } else {
 
+                    upObject.problem = _uproblem;
+                    upObject.Mild = _uMild;
+                    upObject.Site = _uSite;
+                    upObject.duration = _uduration;
+                    upObject.sdur = _ssdur;
+                    upObject.Laterality = _uLaterality;
+                    upObject.Comment = _uComment;
+                    upObject.ccnCode = _uccnCode;
+
+                    var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
+
+                    $('#sum' + rowId).html(sum);
+
+                    $("#update_CIS01000001").modal('hide');
+                }
             }
+
         }
-
-
-
-
-        //$(".modal-backdrop").hide();
 
     });
 
-    function retriveDataSearchingAssessment(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
-        $('#' + fieldId).val(retriveValue).flexdatalist({
-            minLength: 1,
-            searchIn: 'name',
-            searchDelay: 2000,
-            //data:arrayDGSDataAjax,
-            url: urlData,
-            cache: true,
-            params: {
-                timeout: 3000,
-                success: function (result) {
 
-                    if (result === undefined) {
-                        $('#' + loadingDivId).html('No Record');
-                    }
-                }
-            }
-        });
-        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+    /// -------------------------------------------------------------CCN NOTES----------------------------------------------------------------/////;
+    /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
-            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
-        });
-        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-
-            $('#' + loadingDivId).html('');
-        });
-        $("#" + fieldId).on('select:flexdatalist', function (response) {
-            var searchName = $("#" + fieldId).val();
-
-            $.ajax({
-                type: "post",
-                url: urlCode,
-                timeout: 3000,
-                data: {id: searchName},
-                success: function (response) {
-
-                    $("#" + codeFieldId).val(response.trim());
-
-                }
-            });
-
-        });
-    }
 
 
 });

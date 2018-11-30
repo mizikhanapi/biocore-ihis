@@ -18,6 +18,16 @@ $(document).ready(function () {
         $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
     });
 
+    $('#update_CIS030001').on('show.bs.modal', function (e) {
+        searchInitialize("DGS", "I");
+        $("#tCISSubDGSSearchPersonalised_update-flexdatalist").hide();
+    });
+
+    $('#update_CIS030001').on('hide.bs.modal', function (e) {
+        searchInitialize("DGS", "D");
+        $("#tCISSubDGSSearchPersonalised_update-flexdatalist").hide();
+    });
+
 
     $('input[name="rCISSubDGSSearchType"]').on('click', function () {
         var type = $(this).val();
@@ -53,29 +63,29 @@ $(document).ready(function () {
     //$('#btnCISSubDGSAddPersonalised').click(function (e) {
     $('#btnCISSubDGSAddPersonalised').off('click').on('click', function (e) {
         e.preventDefault();
-        
+
         var search_by = $('input[name="rCISSubDGSSearchType"]').val();
         var term_name = term_name = $("#tCISSubDGSSearch").val();
         var term_code = $("#dgsCode").val();
         var code_type = $("#tCISSUBDGSCodeType").val();
         var code_valid = $("#tCISSubDGSSearch").val();
-        
-        if(term_code === ""){
+
+        if (term_code === "") {
             bootbox.alert("You need enter valid Diagnosis Term");
         } else if (code_valid === "") {
             bootbox.alert("Please search and select a diagnosis before pressing the add button !!!");
-        } else{
-            
+        } else {
+
             var dataPersonalised = {
                 term_name: term_name,
                 term_code: term_code,
                 code_type: code_type
             }
-            
+
             addPersonalisedTermDGS(dataPersonalised);
-            
+
         }
-        
+
     });
 
 
