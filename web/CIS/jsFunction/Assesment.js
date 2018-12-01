@@ -73,7 +73,7 @@ $(document).ready(function(){
             obj1[this.id] = $(this).val();
           
         });
-         if(validationField(code10,"Please enter the correct Diagnosis")){
+         if(validationField(Problem8,"Please enter the correct Diagnosis")){
               if (checkDGS(_data, obj1)) {
                 bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
             } else {

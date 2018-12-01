@@ -143,7 +143,7 @@ $(document).ready(function () {
         
       
         
-        if(validationField(obj1.ccnCode,"Please enter the correct symptoms")){
+        if(validationField(obj1.problem,"Please enter the correct symptoms")){
             if (checkCCN(_data, obj1)) {
                 bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
             } else {

@@ -55,7 +55,7 @@ $(document).ready(function () {
 
         });
 
-        if (validationField(code10, "Please enter the correct Diagnosis")) {
+        if (validationField(Problem8, "Please enter the correct Diagnosis")) {
 
             if (checkDGS(_data, obj1)) {
 
