@@ -10,6 +10,7 @@ $(document).ready(function () {
     $('#CIS030001').on('show.bs.modal',function(e){
         searchInitialize("DGS", "I");
         $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
+        $("#SOAPDiagnosisTableDIV").load("CIS03/CIS030001.jsp #SOAPDiagnosisTableDIV #SOAPDiagnosisTable");
     });
     
     $('#CIS030001').on('hide.bs.modal', function (e) {
@@ -33,10 +34,11 @@ $(document).ready(function () {
         if (type === 'CT') {
             $("#btnCISSubDGSAddPersonalised").show();
             $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
-
             $("#tCISSubDGSSearch-flexdatalist").show();
+            $("#tCISSubDGSSearch-flexdatalist").val("");
         } else {
             $("#tCISSubDGSSearchPersonalised-flexdatalist").show();
+            $("#tCISSubDGSSearchPersonalised-flexdatalist").val("");
             $("#tCISSubDGSSearch-flexdatalist").hide();
             $("#btnCISSubDGSAddPersonalised").hide();
 
@@ -49,13 +51,11 @@ $(document).ready(function () {
         if (type === 'CT') {
             $("#btnCISSubDGSAddPersonalised_update").show();
             $("#tCISSubDGSSearchPersonalised_update-flexdatalist").hide();
-
             $("#tCISSubDGSSearch_update-flexdatalist").show();
         } else {
             $("#tCISSubDGSSearchPersonalised_update-flexdatalist").show();
             $("#tCISSubDGSSearch_update-flexdatalist").hide();
             $("#btnCISSubDGSAddPersonalised_update").hide();
-
         }
     });
 
@@ -66,21 +66,26 @@ $(document).ready(function () {
         var search_by = $('input[name="rCISSubDGSSearchType"]').val();
         var term_name = term_name = $("#tCISSubDGSSearch").val();
         var term_code = $("#dgsCode").val();
+        var new_code = $("#dgsCode").val();
         var code_type = $("#tCISSUBDGSCodeType").val();
         var code_valid = $("#tCISSubDGSSearch").val();
+                
+        if(new_code === "") {
+            new_code = getDate();
+        }
+
+        var dataPersonalised = {
+            term_name: term_name,
+            term_code: new_code,
+            code_type: code_type
+        };
         
-        if(term_code === ""){
-            bootbox.alert("You need enter valid Diagnosis Term");
-        } else if (code_valid === "") {
+        console.log(dataPersonalised);
+        
+        
+        if (code_valid === "") {
             bootbox.alert("Please search and select a diagnosis before pressing the add button !!!");
-        } else{
-            
-            var dataPersonalised = {
-                term_name: term_name,
-                term_code: term_code,
-                code_type: code_type
-            }
-            
+        } else {
             addPersonalisedTermDGS(dataPersonalised);
         }
         

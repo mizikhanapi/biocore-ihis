@@ -51,6 +51,9 @@ validateDuration("uduration");
 
 function initialisedModalSearch(modal_id,personalised_id,modal_name,modal_name2){
         $("#"+modal_id).on('show.bs.modal',function(){
+            
+        $("#SOAPChiefComplaintTableDIV").load("CIS01/CIS0101.jsp #SOAPChiefComplaintTableDIV #SOAPChiefComplaintTable");
+
         searchInitialize(modal_name, "I");
         $("#"+personalised_id+"-flexdatalist").hide();
         initialiseRadioPersonalised(modal_name,modal_name2);
@@ -68,8 +71,10 @@ function initialiseRadioPersonalised(code,field){
                 $("#btnCISSub"+code+"AddPersonalised").show();
                 $("#tCISSub"+field+"SearchPersonalised-flexdatalist").hide();
                 $("#tCISSub"+field+"Search-flexdatalist").show();
+                $("#tCISSub" + field + "Search-flexdatalist").val("");
             } else{
                 $("#tCISSub"+field+"SearchPersonalised-flexdatalist").show();
+                $("#tCISSub" + field + "SearchPersonalised-flexdatalist").val("");
                 $("#tCISSub"+field+"Search-flexdatalist").hide();
                  $("#btnCISSub"+code+"AddPersonalised").hide();
             }       
@@ -97,15 +102,23 @@ function initialiseRadioPersonalised(code,field){
 
         var search_by = $('input[name="rCISSub' + code + 'SearchType"]').val();
         var term_name = term_name = $("#tCISSub" + field + "Search").val();
-        var term_code = getDate();
+        var term_code = $("#ccnCode").val();
+        var new_code = $("#ccnCode").val();
         var code_type = $("#tCISSUB" + code + "CodeType").val();
         var code_valid = $("#tCISSubCCNHFCSearch").val();
 
+
+        if (new_code === "") {
+            new_code = getDate();
+        }
+        
         var dataPersonalised = {
             term_name: term_name,
-            term_code: term_code,
+            term_code: new_code,
             code_type: code_type
         };
+
+        console.log(dataPersonalised);
 
         if (code_valid === "") {
             bootbox.alert("Please search and select a symptom before pressing the add button !!!");

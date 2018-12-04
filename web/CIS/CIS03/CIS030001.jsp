@@ -93,7 +93,43 @@
                                     <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Diagnosis</button>
                                 </div>
                                 <br>
-            </div>     
+
+                                <div class="row">
+                                    <div class="col-md-12" id="SOAPDiagnosisTableDIV" >
+                                        <table class="table table-striped table-bordered" id="SOAPDiagnosisTable">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display: none;">JSON</th>
+                                                    <th style="display: none;">Code</th>
+                                                    <th>Diagnosis</th>
+                                                    <th>Type</th>
+                                                    <th>Date</th>
+                                                    <th>Severity</th>
+                                                    <th>Site</th>
+                                                    <th>Laterality</th>
+                                                    <th>Notes</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="SOAPDiagnosisTableIniialRecord">
+                                                    <td colspan="8" align="center">No Record To Show<br>Please Insert New Diagnosis</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+            </div>  
+            <div class="modal-footer" id="SOAPChiefComplaintAcceptDiagnosis">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success btn-block btn-lg" id="SOAPChiefComplaintAcceptDiagnosisBtn" >Accept Diagnosis</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

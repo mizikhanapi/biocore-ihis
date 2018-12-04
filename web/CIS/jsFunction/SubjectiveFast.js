@@ -47,6 +47,51 @@ function displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment) {
 }
 
 
+function displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Laterality, Comment, object) {
+
+    $("#fastTrackChiefComplaintTableIniialRecord").closest('tr').remove();
+
+    if (Laterality === undefined) {
+        Laterality = "";
+    }
+
+    if (Mild === undefined) {
+        Mild = "";
+    }
+
+    if (Site === undefined) {
+        Site = "";
+    }
+
+    $("#fastTrackChiefComplaintTable").DataTable().destroy();
+
+    var _tr = '<tr>\n\
+                    <td style="display:none;">' + JSON.stringify(object) + '</td>\n\
+                    <td style="display:none;">' + ccnCode + '</td>\n\
+                    <td>' + problem + '</td>\n\
+                    <td>' + duration + ' ' + sdur + '</td>\n\
+                    <td>' + Mild + '</td>\n\
+                    <td>' + Site + '</td>\n\
+                    <td>' + Laterality + '</td>\n\
+                    <td>' + Comment + '</td>\n\
+                    <td><a id="fastTrackChiefComplaintTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
+                 </tr>';
+
+    $('#fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable').append(_tr);
+
+    $('#fastTrackChiefComplaintTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 3,
+        "language": {
+            "emptyTable": "No Data Available To Display"
+        }
+    });
+
+}
+
+
+
 $(document).ready(function () {
 
     $('#fastTrackVitalSignsTrigger').on('click', function () {
@@ -90,9 +135,15 @@ $(document).ready(function () {
         });
     });
 
-    /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
-    /// -----------------------------------------------------------DELETED NOTES------------------------------------------------------------/////;
-    /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+
+
+
+
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
+    /// -------------------------------------------------------------------------------DELETED NOTES---------------------------------------------------------------------/////;
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
+
+
     $('#divCIS_Consultation_PARENT').on('click', "#divCIS_Consultation_Table #tblCIS_Consultation_Table .deleteBtn", function (e) {
         e.preventDefault();
 
@@ -102,9 +153,6 @@ $(document).ready(function () {
 
             var idName = $(this).get(0).id;
             var id = idName.split("|");
-
-            console.log(id);
-            console.log(_data);
 
             delete _data[id[1]];
 
@@ -116,12 +164,83 @@ $(document).ready(function () {
 
     });
 
-    /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
-    /// -------------------------------------------------------------CCN NOTES----------------------------------------------------------------/////;
-    /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
+    /// -------------------------------------------------------------------------------DELETED NOTES---------------------------------------------------------------------/////;
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
+
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
+    /// -------------------------------------------------------------------------------CCN NOTES-------------------------------------------------------------------------/////;
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
 
 
-    $('#acceptBtn').click(function (e) {
+    /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
+
+
+//    $('#acceptBtn').click(function (e) {
+//        e.preventDefault();
+//
+//        var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
+//
+//        var problem = $('#tCISSubCCNHFCSearch').val();
+//        var Mild = $('#Mild:checked').val();
+//        var Site = $('#Site:checked').val();
+//        var duration = $('#duration').val();
+//        var sdur = $('#sdur').val();
+//        var Laterality = $('#Laterality:checked').val();
+//        var Comment = $('#Comment').val();
+//        var ccnCode = $('#ccnCode').val();
+//
+//        notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
+//
+//        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
+//
+//        if (search_by === "P") {
+//            problem = $('#tCISSubCCNHFCSearchPersonalised').val();
+//        } else {
+//            problem = $('#tCISSubCCNHFCSearch').val();
+//        }
+//
+//        var obj1 = {
+//            Acode: "CCN",
+//            problem: problem
+//        };
+//        
+//        $items.each(function () {
+//            obj1[this.id] = $(this).val();
+//        });
+//
+//
+//        if (validationField(obj1.problem, "Please enter the correct symptoms")) {
+//
+//            if (checkCCN(_data, obj1)) {
+//                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+//            } else {
+//
+//                _data.push(obj1);
+//                
+//                displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
+//                
+//                retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+//
+//                $("#problem").val("");
+//                $("#duration").val("");
+//                $("#Comment").val("");
+//                $("#ccnCode").val("");
+//
+//            }
+//
+//        }
+//
+//    });
+
+
+    /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
+
+
+    var counterComplains = 0;
+
+    $('#acceptBtn').on('click', function (e) {
         e.preventDefault();
 
         var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
@@ -137,7 +256,7 @@ $(document).ready(function () {
 
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
 
-        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
+        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment, #ccnCode');
 
         if (search_by === "P") {
             problem = $('#tCISSubCCNHFCSearchPersonalised').val();
@@ -149,28 +268,58 @@ $(document).ready(function () {
             Acode: "CCN",
             problem: problem
         };
-        
+
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
 
 
-        if (validationField(obj1.problem, "Please enter the correct symptoms")) {
+
+        if (validationField(obj1.problem, "Please search and select the correct symptoms !!!")) {
 
             if (checkCCN(_data, obj1)) {
-                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain !!!");
             } else {
 
-                _data.push(obj1);
-                
-                displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
-                
-                retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                var table = $("#fastTrackChiefComplaintTable tbody");
 
-                $("#problem").val("");
-                $("#duration").val("");
-                $("#Comment").val("");
-                $("#ccnCode").val("");
+                var arrayItemCode = [];
+
+                // Calculating Data For Overall Dispense
+                table.find('tr').each(function (i) {
+
+                    var $tds = $(this).find('td');
+                    var itemCode = $tds.eq(1).text();
+                    arrayItemCode.push(itemCode);
+
+                });
+
+                var arrayItemCodeCheck = arrayItemCode.indexOf(ccnCode);
+
+                if (arrayItemCodeCheck === -1) {
+
+                    displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Laterality, Comment, obj1);
+
+                    if (search_by === "P") {
+                        searchInitialize("CCN", "I");
+                        $("#tCISSubCCNHFCSearch-flexdatalist").hide();
+                    } else {
+                        retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                        $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
+                    }
+
+                    counterComplains = counterComplains + 1;
+
+                    $("#problem").val("");
+                    $("#duration").val("");
+                    $("#Comment").val("");
+                    $("#ccnCode").val("");
+
+                } else {
+
+                    bootbox.alert("You have already added the symptom into the table !! Please Choose Different Symptom !!");
+
+                }
 
             }
 
@@ -178,10 +327,65 @@ $(document).ready(function () {
 
     });
 
+
+
+    $('#fastTrackChiefComplaintAcceptComplains').on('click', "#fastTrackChiefComplaintAcceptComplainsBtn", function (e) {
+
+        var table = $("#fastTrackChiefComplaintTable tbody");
+
+        if (counterComplains === 0) {
+            bootbox.alert("You have no record the chief complain table !! Please Insert Symptom before pressing the add button !!");
+        } else {
+
+
+            // Calculating Data For Overall Dispense
+            table.find('tr').each(function (i) {
+
+                var $tds = $(this).find('td');
+                var item = $tds.eq(0).text();
+                var obj = JSON.parse(item);
+
+                _data.push(obj);
+
+                displayCCN(obj.problem, obj.Mild, obj.Site, obj.duration, obj.sdur, obj.Laterality, obj.Comment);
+
+                $("#fastTrackChiefComplaintTableDIV").load("fast-modal.jsp #fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable");
+
+            });
+
+
+        }
+
+    });
+
+
+    $('#fastTrackChiefComplaintTableDIV').on('click', "#fastTrackChiefComplaintTable #fastTrackChiefComplaintTableDeleteBtn", function (e) {
+        e.preventDefault();
+
+        $("#fastTrackChiefComplaintTable").DataTable().destroy();
+
+        var row = $(this).closest("tr");
+
+        row.remove();
+
+        counterComplains = counterComplains - 1;
+
+        $('#fastTrackChiefComplaintTable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "pageLength": 3,
+            "language": {
+                "emptyTable": "No Data Available To Display"
+            }
+        });
+
+    });
+
+
     //js UPDATE Complaint 
     $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnCCN', function (e) {
         e.preventDefault();
-        
+
         $("#update_CIS01000001").modal("show");
 
         var idName = $(this).get(0).id;
@@ -204,7 +408,8 @@ $(document).ready(function () {
 
     });
 
-    $('#updateBtnCCN').click(function (e) {
+
+    $('#updateBtnCCN').on('click', function (e) {
         e.preventDefault();
 
         var upObject = _data[$('#jsonId').val()];
@@ -244,7 +449,7 @@ $(document).ready(function () {
                 upObject.Comment = _uComment;
                 upObject.ccnCode = _uccnCode;
 
-                var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
+                var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment;
 
                 $('#sum' + rowId).html(sum);
 
@@ -265,7 +470,7 @@ $(document).ready(function () {
                     upObject.Comment = _uComment;
                     upObject.ccnCode = _uccnCode;
 
-                    var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
+                    var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment;
 
                     $('#sum' + rowId).html(sum);
 
@@ -278,9 +483,9 @@ $(document).ready(function () {
     });
 
 
-    /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
-    /// -------------------------------------------------------------CCN NOTES----------------------------------------------------------------/////;
-    /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
+    /// -------------------------------------------------------------------------------CCN NOTES-------------------------------------------------------------------------/////;
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------------------------/////;
 
 
 

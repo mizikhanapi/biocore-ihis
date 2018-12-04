@@ -97,9 +97,45 @@
                                     </div>
                                 </form>
                                 <div class="text-right"><button class="btn btn-primary" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" id="acceptBtn" role="button" autocomplete="off">Add Symtoms</button></div><br>
-                        
 
-            </div>     
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12" id="SOAPChiefComplaintTableDIV" >
+                                        <table class="table table-striped table-bordered" id="SOAPChiefComplaintTable">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display: none;">JSON</th>
+                                                    <th style="display: none;">Code</th>
+                                                    <th>Symptoms</th>
+                                                    <th>Duration</th>
+                                                    <th>Severity</th>
+                                                    <th>Site</th>
+                                                    <th>Laterality</th>
+                                                    <th>Notes</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="SOAPChiefComplaintTableIniialRecord">
+                                                    <td colspan="7" align="center">No Record To Show<br>Please Insert New Chief Complain</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>                        
+
+            </div>    
+            <div class="modal-footer" id="SOAPChiefComplaintAcceptComplains">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success btn-block btn-lg" id="SOAPChiefComplaintAcceptComplainsBtn" >Accept Complains</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

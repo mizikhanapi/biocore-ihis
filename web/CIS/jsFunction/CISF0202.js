@@ -10,6 +10,23 @@ function ascii(a) {
 
 $(document).ready(function () {
 
+    $('#squarespaceModal2 #collapseTwo1').off('shown.bs.collapse').on('shown.bs.collapse', function () {
+        // do something…
+
+        $("#fastTrackChiefComplaintAcceptComplains").hide();
+        $("#fastTrackChiefComplaintAcceptDiagnosis").hide();
+
+    });
+
+
+    $('#squarespaceModal2 #collapseTwo1').off('hidden.bs.collapse').on('hidden.bs.collapse', function () {
+        // do something…
+
+        $("#fastTrackChiefComplaintAcceptComplains").hide();
+        $("#fastTrackChiefComplaintAcceptDiagnosis").hide();
+
+    });
+
     $(".BP-class").on('keyup keydown', function () {
         var input = this;
         if ($(this).val().length > 3) {

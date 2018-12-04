@@ -17,12 +17,13 @@
                 <div class="panel-group" id="accordion1">
                     <div class="panel panel-default">
 
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseOne1" aria-expanded="false">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseOne1" aria-expanded="false" id="fastTrackAccordianMenuComplain">
                             <h4 class="panel-title">Chief Complaint</h4>
                         </div>
 
                         <div id="collapseOne1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
+
                                 <form id="fastTrackChiefComplaintForm"> 
                                     <div class="form-group">
                                         <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
@@ -35,8 +36,8 @@
                                             <input class="form-control input-lg" type="hidden" name="tCISSUBCCNCodeType" id="tCISSUBCCNCodeType" value="CCN" tabindex="4" readonly="">
 
                                         </div>
-                                    </div>
-                                    <hr>
+                                    </div>                                   
+                                    <hr>                                   
                                     <div class="row">
                                         <div class="col-md-8">
                                             <label>Symptoms</label>
@@ -71,7 +72,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label>Severity</label>
@@ -88,16 +88,13 @@
                                                 <label class="radio-inline"><input type="radio" id="Site" name="ccnradiosite" value="Left">Left</label>
                                             </div>
                                         </div>
-
-
                                         <div class="col-md-4">
                                             <label>Laterality</label><div class="form-group">
                                                 <label class="radio-inline"><input type="radio" id="Laterality" name="ccnradiolatera" value="Right">Right</label>
                                                 <label class="radio-inline"><input type="radio" id="Laterality" name="ccnradiolatera" value="Left">Left</label>
                                             </div>
                                         </div>
-
-                                    </div>
+                                    </div>                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -106,14 +103,48 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="text-right"><button class="btn btn-primary" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" id="acceptBtn" role="button" autocomplete="off">Add Symtoms</button></div><br>
+                                <div class="text-right">
+                                    <button class="btn btn-primary" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;">
+                                        <i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized
+                                    </button>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-success" id="acceptBtn" role="button">
+                                        Add Symtoms
+                                    </button>
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12" id="fastTrackChiefComplaintTableDIV" >
+                                        <table class="table table-striped table-bordered" id="fastTrackChiefComplaintTable">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display: none;">JSON</th>
+                                                    <th style="display: none;">Code</th>
+                                                    <th>Symptoms</th>
+                                                    <th>Duration</th>
+                                                    <th>Severity</th>
+                                                    <th>Site</th>
+                                                    <th>Laterality</th>
+                                                    <th>Notes</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="fastTrackChiefComplaintTableIniialRecord">
+                                                    <td colspan="7" align="center">No Record To Show<br>Please Insert New Chief Complain</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseTwo1" aria-expanded="false">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseTwo1" aria-expanded="false" id="fastTrackAccordianMenuVital">
                             <h4 class="panel-title">Check Vital</h4>
-
                         </div>
                         <div id="collapseTwo1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
@@ -271,7 +302,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree1" aria-expanded="false">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree1" aria-expanded="false" id="fastTrackAccordianMenuDiagnosis">
                             <h4 class="panel-title">Diagnosis</h4>
                         </div>
                         <div id="collapseThree1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
@@ -350,11 +381,58 @@
                                 <div class="text-right">
                                     <button class="btn btn-primary" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Diagnosis</button>
+                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button">Add Diagnosis</button>
                                 </div>
-                                <br>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12" id="fastTrackDiagnosisTableDIV" >
+                                        <table class="table table-striped table-bordered" id="fastTrackDiagnosisTable">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display: none;">JSON</th>
+                                                    <th style="display: none;">Code</th>
+                                                    <th>Diagnosis</th>
+                                                    <th>Type</th>
+                                                    <th>Date</th>
+                                                    <th>Severity</th>
+                                                    <th>Site</th>
+                                                    <th>Laterality</th>
+                                                    <th>Notes</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="fastTrackDiagnosisTableIniialRecord">
+                                                    <td colspan="8" align="center">No Record To Show<br>Please Insert New Diagnosis</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="fastTrackChiefComplaintAcceptComplains">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success btn-block btn-lg" id="fastTrackChiefComplaintAcceptComplainsBtn" >Accept Complains</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="fastTrackChiefComplaintAcceptDiagnosis">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success btn-block btn-lg" id="fastTrackChiefComplaintAcceptDiagnosisBtn" >Accept Diagnosis</a>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
             </div>

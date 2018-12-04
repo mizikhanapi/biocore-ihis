@@ -110,10 +110,76 @@ $(document).ready(function () {
     /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
     /// -------------------------------------------------------------CCN NOTES----------------------------------------------------------------/////;
     /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
-    $('#acceptBtn').click(function (e) {
+    
+    
+    /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
+
+//    $('#acceptBtn').click(function (e) {
+//        e.preventDefault();
+//        var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
+//       
+//
+//        var problem = $('#tCISSubCCNHFCSearch').val();
+//        var Mild = $('#Mild:checked').val();
+//        var Site = $('#Site:checked').val();
+//        var duration = $('#duration').val();
+//        var sdur = $('#sdur').val();
+//        var Laterality = $('#Laterality:checked').val();
+//        var Comment = $('#Comment').val();
+//        var ccnCode = $('#ccnCode').val();
+//        notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
+//        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
+//        
+//        var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
+//        if(search_by === "P"){
+//            problem = $('#tCISSubCCNHFCSearchPersonalised').val();
+//        } else {
+//            problem = $('#tCISSubCCNHFCSearch').val();
+//        }
+//        
+//        var obj1 = {
+//            Acode:"CCN",
+//            problem:problem
+//        };
+//        $items.each(function () {
+//            obj1[this.id] = $(this).val();
+//        });
+//        
+//      
+//        
+//        if(validationField(obj1.problem,"Please enter the correct symptoms")){
+//            if (checkCCN(_data, obj1)) {
+//                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+//            } else {
+//                _data.push(obj1);
+//                displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
+//                retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+////                $("#Mild").val("");
+////                $("#Site").val("");
+////                $("#Laterality").val("");
+//                $("#problem").val("");
+//                $("#duration").val("");
+//                $("#Comment").val("");
+//                $("#ccnCode").val("");
+//                //$("#CIS01000001").modal('hide');
+//            }
+//        
+//        }
+//      
+//        
+//
+//    });
+    
+    
+    /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
+
+
+    var counterComplains = 0;
+
+    $('#acceptBtn').off('click').on('click', function (e) {
         e.preventDefault();
+
         var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
-       
 
         var problem = $('#tCISSubCCNHFCSearch').val();
         var Mild = $('#Mild:checked').val();
@@ -123,48 +189,134 @@ $(document).ready(function () {
         var Laterality = $('#Laterality:checked').val();
         var Comment = $('#Comment').val();
         var ccnCode = $('#ccnCode').val();
+
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
-        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment,#ccnCode');
-        
-        var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
-        if(search_by === "P"){
+
+        var $items = $('#codeCCN, #Mild:checked, #Site:checked, #duration, #sdur, #Laterality:checked, #Comment, #ccnCode');
+
+        if (search_by === "P") {
             problem = $('#tCISSubCCNHFCSearchPersonalised').val();
         } else {
             problem = $('#tCISSubCCNHFCSearch').val();
         }
-        
+
         var obj1 = {
-            Acode:"CCN",
-            problem:problem
+            Acode: "CCN",
+            problem: problem
         };
+
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        
-      
-        
-        if(validationField(obj1.problem,"Please enter the correct symptoms")){
+
+
+
+        if (validationField(obj1.problem, "Please search and select the correct symptoms !!!")) {
+
             if (checkCCN(_data, obj1)) {
-                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain !!!");
             } else {
-                _data.push(obj1);
-                displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
-                retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
-//                $("#Mild").val("");
-//                $("#Site").val("");
-//                $("#Laterality").val("");
-                $("#problem").val("");
-                $("#duration").val("");
-                $("#Comment").val("");
-                $("#ccnCode").val("");
-                //$("#CIS01000001").modal('hide');
+
+                var table = $("#SOAPChiefComplaintTable tbody");
+
+                var arrayItemCode = [];
+
+                // Calculating Data For Overall Dispense
+                table.find('tr').each(function (i) {
+
+                    var $tds = $(this).find('td');
+                    var itemCode = $tds.eq(1).text();
+                    arrayItemCode.push(itemCode);
+
+                });
+
+                var arrayItemCodeCheck = arrayItemCode.indexOf(ccnCode);
+
+                if (arrayItemCodeCheck === -1) {
+
+                    displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Laterality, Comment, obj1);
+
+                    if (search_by === "P") {
+                        searchInitialize("CCN", "I");
+                        $("#tCISSubCCNHFCSearch-flexdatalist").hide();
+                    } else {
+                        retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                        $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
+                    }
+
+                    counterComplains = counterComplains + 1;
+
+                    $("#problem").val("");
+                    $("#duration").val("");
+                    $("#Comment").val("");
+                    $("#ccnCode").val("");
+
+                } else {
+
+                    bootbox.alert("You have already added the symptom into the table !! Please Choose Different Symptom !!");
+
+                }
+
             }
-        
+
         }
-      
-        
 
     });
+    
+    
+    
+    $('#SOAPChiefComplaintAcceptComplains').on('click', "#SOAPChiefComplaintAcceptComplainsBtn", function (e) {
+
+        var table = $("#SOAPChiefComplaintTable tbody");
+
+        if (counterComplains === 0) {
+            bootbox.alert("You have no record the chief complain table !! Please Insert Symptom before pressing the add button !!");
+        } else {
+
+
+            // Calculating Data For Overall Dispense
+            table.find('tr').each(function (i) {
+
+                var $tds = $(this).find('td');
+                var item = $tds.eq(0).text();
+                var obj = JSON.parse(item);
+
+                _data.push(obj);
+
+                displayCCN(obj.problem, obj.Mild, obj.Site, obj.duration, obj.sdur, obj.Laterality, obj.Comment);
+
+                $("#SOAPChiefComplaintTableDIV").load("CIS01/CIS0101.jsp #SOAPChiefComplaintTableDIV #SOAPChiefComplaintTable");
+
+            });
+
+
+        }
+
+    });
+
+
+    $('#SOAPChiefComplaintTableDIV').on('click', "#SOAPChiefComplaintTable #SOAPChiefComplaintTableDeleteBtn", function (e) {
+        e.preventDefault();
+
+        $("#SOAPChiefComplaintTable").DataTable().destroy();
+
+        var row = $(this).closest("tr");
+
+        row.remove();
+
+        counterComplains = counterComplains - 1;
+
+        $('#SOAPChiefComplaintTable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "pageLength": 3,
+            "language": {
+                "emptyTable": "No Data Available To Display"
+            }
+        });
+
+    });
+    
 
     //js UPDATE Complaint 
     $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnCCN', function (e) {
@@ -196,8 +348,9 @@ $(document).ready(function () {
 
     });
 
-    $('#updateBtnCCN').click(function (e) {
+    $('#updateBtnCCN').on('click', function (e) {
         e.preventDefault();
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _uproblem = $('#tCISSubCCNHFCSearch_update').val();
@@ -1078,6 +1231,51 @@ function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
     $('#CCNNotes').append(_tr);
     i = i + 1;
 }
+
+function displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Laterality, Comment, object) {
+
+    $("#SOAPChiefComplaintTableIniialRecord").closest('tr').remove();
+
+    if (Laterality === undefined) {
+        Laterality = "";
+    }
+
+    if (Mild === undefined) {
+        Mild = "";
+    }
+
+    if (Site === undefined) {
+        Site = "";
+    }
+
+    $("#SOAPChiefComplaintTable").DataTable().destroy();
+
+    var _tr = '<tr>\n\
+                    <td style="display:none;">' + JSON.stringify(object) + '</td>\n\
+                    <td style="display:none;">' + ccnCode + '</td>\n\
+                    <td>' + problem + '</td>\n\
+                    <td>' + duration + ' ' + sdur + '</td>\n\
+                    <td>' + Mild + '</td>\n\
+                    <td>' + Site + '</td>\n\
+                    <td>' + Laterality + '</td>\n\
+                    <td>' + Comment + '</td>\n\
+                    <td><a id="SOAPChiefComplaintTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
+                 </tr>';
+
+    $('#SOAPChiefComplaintTableDIV #SOAPChiefComplaintTable').append(_tr);
+
+    $('#SOAPChiefComplaintTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 3,
+        "language": {
+            "emptyTable": "No Data Available To Display"
+        }
+    });
+
+}
+
+
  function displayHPI(details){
  
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">History of Present Illness  :<p class="summary" id="sum' + i + '">' + details + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnHPI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';

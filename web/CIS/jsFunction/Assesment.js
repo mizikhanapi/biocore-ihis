@@ -41,19 +41,74 @@ $(document).ready(function(){
         });
   } );
 
-   
+    /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
+
+// //js ADD for Diagnosis
+//    $('#acceptBtnDGS').click(function () {
+//        var diacode = "I0221c002";
+//        var termtype = "Term";
+//        var icd10code = "25256";
+//        var icd10desc = "Fever";
+//        var hfc = "2252145522";
+//        var doctorname = "Ahmed";
+//        var doctorid = "B031310504";
+//        var status = "Active";
+//        //---------------------------
+//
+//        var Type = $('#TypeDGS:checked').val();
+//        var date4 = $('#dateDGS').val();
+//        var Problem8 = $('#tCISSubDGSSearch').val();
+//        var Severity1 = $('#SeverityDGS:checked').val();
+//        var Site1 = $('#SiteDGS:checked').val();
+//        var Laterality1 = $('#LateralityDGS:checked').val();
+//        var comment8 = $('#commentDGS').val();
+//        var code10 = $('#dgsCode').val();
+//        //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
+//        var $items = $('#dgsCode, #TypeDGS:checked, #dateDGS, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
+//        var obj1 = {
+//            Acode:'DGS',
+//            searchDiag:Problem8
+//        };
+//        $items.each(function () {
+//            obj1[this.id] = $(this).val();
+//          
+//        });
+//         if(validationField(Problem8,"Please enter the correct Diagnosis")){
+//              if (checkDGS(_data, obj1)) {
+//                bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+//            } else {
+//                _data.push(obj1);
+//                displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
+//
+//                $("#searchDiag").val("");
+//                retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
+//                $("#commentDGS").val("");
+//                //$("#TypeDGS").val("");
+//                $("#dateDGS").val("");
+//                //$("#SiteDGS").val("");
+//                //$("#SeverityDGS").val("");
+//                //$("#LateralityDGS").val("");
+//                //$("#CIS030001").modal('toggle');
+//            }
+//         }
+//       
+// 
+//
+//      
+//        //$(".modal-backdrop").hide();
+//
+//    });
+
+    /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
+
     
+    var counterDiagnosis = 0;
+
     //js ADD for Diagnosis
-    $('#acceptBtnDGS').click(function () {
-        var diacode = "I0221c002";
-        var termtype = "Term";
-        var icd10code = "25256";
-        var icd10desc = "Fever";
-        var hfc = "2252145522";
-        var doctorname = "Ahmed";
-        var doctorid = "B031310504";
-        var status = "Active";
-        //---------------------------
+    $('#acceptBtnDGS').off('click').on('click', function (e) {
+        e.preventDefault();
+
+        var search_by = $('input[name=rCISSubDGSSearchType]:checked').val();
 
         var Type = $('#TypeDGS:checked').val();
         var date4 = $('#dateDGS').val();
@@ -63,41 +118,136 @@ $(document).ready(function(){
         var Laterality1 = $('#LateralityDGS:checked').val();
         var comment8 = $('#commentDGS').val();
         var code10 = $('#dgsCode').val();
+
         //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
         var $items = $('#dgsCode, #TypeDGS:checked, #dateDGS, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
+
+        if (search_by === "P") {
+            Problem8 = $('#tCISSubDGSSearchPersonalised').val();
+        } else {
+            Problem8 = $('#tCISSubDGSSearch').val();
+        }
+
         var obj1 = {
-            Acode:'DGS',
-            searchDiag:Problem8
+            Acode: 'DGS',
+            searchDiag: Problem8
         };
+
         $items.each(function () {
             obj1[this.id] = $(this).val();
-          
+
         });
-         if(validationField(Problem8,"Please enter the correct Diagnosis")){
-              if (checkDGS(_data, obj1)) {
+
+        if (validationField(Problem8, "Please search and select the correct Diagnosis !!!")) {
+
+            if (checkDGS(_data, obj1)) {
+
                 bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+
             } else {
-                _data.push(obj1);
-                displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
 
-                $("#searchDiag").val("");
-                retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
-                $("#commentDGS").val("");
-                //$("#TypeDGS").val("");
-                $("#dateDGS").val("");
-                //$("#SiteDGS").val("");
-                //$("#SeverityDGS").val("");
-                //$("#LateralityDGS").val("");
-                //$("#CIS030001").modal('toggle');
+                var table = $("#SOAPDiagnosisTable tbody");
+
+                var arrayItemCode = [];
+
+                // Calculating Data For Overall Dispense
+                table.find('tr').each(function (i) {
+
+                    var $tds = $(this).find('td');
+                    var itemCode = $tds.eq(1).text();
+                    arrayItemCode.push(itemCode);
+
+                });
+
+                var arrayItemCodeCheck = arrayItemCode.indexOf(code10);
+
+                if (arrayItemCodeCheck === -1) {
+
+                    displayDGSTable(code10, Type, date4, Problem8, Severity1, Site1, Laterality1, comment8, obj1);
+
+                    if (search_by === "P") {
+                        searchInitialize("DGS", "I");
+                        $("#tCISSubDGSSearch-flexdatalist").hide();
+                    } else {
+                        retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
+                        $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
+                    }
+
+
+                    counterDiagnosis = counterDiagnosis + 1;
+
+                    $("#searchDiag").val("");
+                    $("#commentDGS").val("");
+                    $("#dateDGS").val("");
+
+                } else {
+
+                    bootbox.alert("You have already added the disgnosis into the table !! Please Choose Different Disgnosis !!");
+
+                }
+
+
+
             }
-         }
-       
- 
+        }
 
-      
         //$(".modal-backdrop").hide();
 
     });
+
+
+    $('#SOAPChiefComplaintAcceptDiagnosis').on('click', "#SOAPChiefComplaintAcceptDiagnosisBtn", function (e) {
+
+        var table = $("#SOAPDiagnosisTable tbody");
+
+        if (counterDiagnosis === 0) {
+            bootbox.alert("You have no record of diagnosis in the table table !! Please Insert diagnosis before pressing the add button !!");
+        } else {
+
+
+            // Calculating Data For Overall Dispense
+            table.find('tr').each(function (i) {
+
+                var $tds = $(this).find('td');
+                var item = $tds.eq(0).text();
+                var obj = JSON.parse(item);
+
+                _data.push(obj);
+
+                displayDGS(obj.TypeDGS, obj.dateDGS, obj.searchDiag, obj.SeverityDGS, obj.SiteDGS, obj.LateralityDGS, obj.commentDGS);
+
+                $("#SOAPDiagnosisTableDIV").load("CIS03/CIS030001.jsp #SOAPDiagnosisTableDIV #SOAPDiagnosisTable");
+
+            });
+
+
+        }
+
+    });
+
+
+    $('#SOAPDiagnosisTableDIV').on('click', "#SOAPDiagnosisTable #SOAPDiagnosisTableDeleteBtn", function (e) {
+        e.preventDefault();
+
+        $("#SOAPDiagnosisTable").DataTable().destroy();
+
+        var row = $(this).closest("tr");
+
+        row.remove();
+
+        counterDiagnosis = counterDiagnosis - 1;
+
+        $('#SOAPDiagnosisTable').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "pageLength": 3,
+            "language": {
+                "emptyTable": "No Data Available To Display"
+            }
+        });
+
+    });
+    
 
     //js UPDATE for Diagnosis
     $('#tblCIS_Consultation_Table').on('click', '.updateBtnDGS', function () {
@@ -124,7 +274,8 @@ $(document).ready(function(){
 
     });
 
-    $('#updateBtnDGS').click(function () {
+    $('#updateBtnDGS').on('click', function (e) {
+        e.preventDefault();
         
         var upObject = _data[$('#jsonIdDGS').val()];
         var rowId = $('#jsonIdDGS').val();
@@ -292,6 +443,54 @@ function displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8){
 //    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#DGSNotes').append(_tr);
         i = i + 1;
+}
+
+function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Laterality1, comment8, object) {
+
+    $("#SOAPDiagnosisTableIniialRecord").closest('tr').remove();
+
+    if (Type === undefined) {
+        Type = "";
+    }
+
+    if (Severity1 === undefined) {
+        Severity1 = "";
+    }
+
+    if (Site1 === undefined) {
+        Site1 = "";
+    }
+
+    if (Laterality1 === undefined) {
+        Laterality1 = "";
+    }
+
+    $("#SOAPDiagnosisTable").DataTable().destroy();
+
+    var _tr = '<tr>\n\
+                    <td style="display:none;">' + JSON.stringify(object) + '</td>\n\
+                    <td style="display:none;">' + dgsCode + '</td>\n\
+                    <td>' + Problem8 + '</td>\n\
+                    <td>' + Type + '</td>\n\
+                    <td>' + date4 + '</td>\n\
+                    <td>' + Severity1 + '</td>\n\
+                    <td>' + Site1 + '</td>\n\
+                    <td>' + Laterality1 + '</td>\n\
+                    <td>' + comment8 + '</td>\n\
+                    <td><a id="SOAPDiagnosisTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
+                 </tr>';
+
+    $('#SOAPDiagnosisTableDIV #SOAPDiagnosisTable').append(_tr);
+
+    $('#SOAPDiagnosisTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 3,
+        "language": {
+            "emptyTable": "No Data Available To Display"
+        }
+    });
+
 }
 
 function displayPNT(pnt){
