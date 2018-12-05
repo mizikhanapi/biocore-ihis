@@ -7,7 +7,19 @@
 <h4>View Past Order</h4>
 <div class=" form-horizontal" align="center">
 
+    <!-- Select Basic -->
+    <div class="form-group"> 
+        <label class="col-md-4 control-label" for="textinput">Order Status</label>
+        <div class="col-md-4">
+            <select id="OM_selectStatus" name="orderType" class="form-control" >
+                <option selected disabled value="-"> Please select order Status</option>
 
+                <option value="1">Completed</option>
+
+                <option value="0">Ordered</option>
+            </select>
+        </div>
+    </div>
     <!-- Select Basic -->
     <div class="form-group"> 
         <label class="col-md-4 control-label" for="textinput">Search Type</label>
@@ -129,7 +141,7 @@
         $('#OM_btnSearch').on('click', function () {
 
             var type = $('#OM_selectType').val();
-
+            var status = $('#OM_selectStatus').val();
             var inputID, dateFrom, dateTo;
 
             if (type === "Date") {
@@ -146,16 +158,18 @@
 
             if ((type === "Date") && (dateFrom === "" || dateTo === "")) {
 
-                bootbox.alert("Fill in all date inputs !!!");
+                bootbox.alert("Fill in all date inputs");
 
             } else if ((type !== "Date") && (inputID === "")) {
 
-                bootbox.alert("Please fill in the empty field !!!");
+                bootbox.alert("Please fill in the empty field");
 
             } else if (type === null) {
 
-                bootbox.alert("Please choose correct type !!!");
+                bootbox.alert("Please choose correct type");
 
+            }else if(status === null){
+                ootbox.alert("Please choose correct order status");
             } else {
 
                 $('<div class="loading">Loading</div>').appendTo('body');
@@ -164,7 +178,8 @@
                     type: type,
                     dateFrom: dateFrom,
                     dateTo: dateTo,
-                    inputID: inputID
+                    inputID: inputID,
+                    status:status
                 };
 
                 console.log(datas);

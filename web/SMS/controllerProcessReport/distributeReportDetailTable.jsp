@@ -34,7 +34,7 @@
             + "JOIN adm_users admuser ON admuser.user_id = sdm.customer_id "
             + "WHERE sdd.order_no = '"+orderno+"'";
 
-    data = conn.getData(sqlquery);
+    data = conn.getData(sqlquery); 
     if (data.size() > 0) {
         
         for (int i = 0; i < data.size(); i++) {
@@ -49,7 +49,8 @@
             }
         }
     }else{
-        //out.print(sqlquery);
+        out.print("No Data");
+        System.out.print(sqlquery);
     }
 
     %>

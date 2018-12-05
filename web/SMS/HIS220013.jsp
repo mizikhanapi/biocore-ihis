@@ -355,6 +355,7 @@
                var data = {
                    orderno : orderno
                };
+               console.log(data);
                 $.ajax({
                         type: "POST",
                         url: "controllerProcessReport/distributeReportDetailTable.jsp",

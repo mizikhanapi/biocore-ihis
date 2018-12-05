@@ -17,6 +17,7 @@
     String inputID = request.getParameter("inputID");
     String dateFrom = request.getParameter("dateFrom");
     String dateTo = request.getParameter("dateTo");
+    String status = request.getParameter("status");
 
     Conn conn = new Conn();
 
@@ -43,7 +44,7 @@
             // LEFT JOIN USER TABLE
             + " JOIN adm_users aus ON (om.customer_id = aus.USER_ID) "
             // WHERE CONDITION
-            + "WHERE om.hfc_cd = '" + hfc_cd + "' AND om.discipline_cd = '" + dis_cd + "' AND om.status = '1' " + whereClause;
+            + "WHERE om.hfc_cd = '" + hfc_cd + "' AND om.discipline_cd = '" + dis_cd + "' AND om.status = '"+status+"' " + whereClause;
 
     ArrayList<ArrayList<String>> dataOm = conn.getData(query);
     //out.print(query);
