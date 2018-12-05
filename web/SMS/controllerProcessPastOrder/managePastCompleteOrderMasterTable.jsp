@@ -46,15 +46,15 @@
     
     if (type.equalsIgnoreCase("User")) {
 
-        whereClause = "AND om.customer_id = '" + inputID + "' ORDER BY om.txt_date DESC;";
+        whereClause = "AND om.customer_id = '" + inputID + "' group by om.order_no ORDER BY om.txt_date DESC;";
 
     } else if (type.equalsIgnoreCase("Order")) {
 
-        whereClause = "AND om.order_no = '" + inputID + "' ORDER BY om.txt_date DESC;";
+        whereClause = "AND om.order_no = '" + inputID + "' group by om.order_no ORDER BY om.txt_date DESC;";
 
     } else if (type.equalsIgnoreCase("Date")) {
 
-        whereClause = "AND (date(om.txt_date) BETWEEN STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') AND STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) ORDER BY om.txt_date DESC;";
+        whereClause = "AND (date(om.txt_date) BETWEEN STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') AND STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) group by om.order_no ORDER BY om.txt_date DESC;";
 
     }
 
@@ -107,7 +107,8 @@
 
     $('#OM_tableOrder').DataTable({
         language: {
-            emptyTable: "No history available."
+            emptyTable: "No history available.",
+            order: [[ 1, "desc" ]]
         }
     });
 

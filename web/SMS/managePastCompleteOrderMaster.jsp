@@ -84,11 +84,11 @@
 
 
     </div>
-    <div class="form-group select-type" id="OM_selectPMI" style="display: none;">
+    <div class="form-group select-type" id="OM_selectUser" style="display: none;">
 
-        <label class="col-md-4 control-label" for="textinput">PMI No.</label>
+        <label class="col-md-4 control-label" for="textinput">User ID</label>
         <div class="col-md-3">
-            <input type="text" class="form-control input-md" id="OM_inputPMI" placeholder="PMI No" >
+            <input type="text" class="form-control input-md" id="OM_inputUser" placeholder="User Id" >
         </div>
 
 
