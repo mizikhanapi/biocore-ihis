@@ -3,7 +3,26 @@
     Created on : Feb 1, 2018, 3:06:58 PM
     Author     : Shammugam
 --%>
-
+<%@page import="dBConn.Conn"%>
+<%@page import="ADM_helper.MySession"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    String roleCode = session.getAttribute("ROLE_CODE").toString();
+    String userID = session.getAttribute("USER_ID").toString();
+    Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String adminCS = "CS01";
+    String dis_names = "";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+    for (int x = 0; x < mysqldis_name.size(); x++) {
+        dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
+        if (x < mysqldis_name.size() - 1) {
+            dis_names += "^";
+        }
+    }
+    MySession superUser = new MySession(userID, hfc);
+%>
 <h4>View Past Order</h4>
 <div class=" form-horizontal" align="center">
 
@@ -20,6 +39,24 @@
             </select>
         </div>
     </div>
+    <%
+        if (roleCode.equalsIgnoreCase(adminCS) || superUser.isSuperUser() == true) { %>
+    <div class="form-group" >
+        <label class="col-md-4 control-label" for="textinput">Discipline</label>
+        <div class="col-md-4">
+            <select id="patientType" class="form-control">
+                <option value="all">All</option>
+                <%
+                    for (int x = 0; x < mysqldis_name.size(); x++) {
+                        out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
+                    }
+                %>
+            </select>
+        </div>
+    </div>
+    <%
+        }
+    %>
     <!-- Select Basic -->
     <div class="form-group"> 
         <label class="col-md-4 control-label" for="textinput">Search Type</label>
@@ -139,9 +176,9 @@
 
         // On Search Click
         $('#OM_btnSearch').on('click', function () {
-
             var type = $('#OM_selectType').val();
             var status = $('#OM_selectStatus').val();
+            var discipline = $('#patientType').val();
             var inputID, dateFrom, dateTo;
 
             if (type === "Date") {
@@ -168,7 +205,7 @@
 
                 bootbox.alert("Please choose correct type");
 
-            }else if(status === null){
+            } else if (status === null) {
                 ootbox.alert("Please choose correct order status");
             } else {
 
@@ -179,7 +216,8 @@
                     dateFrom: dateFrom,
                     dateTo: dateTo,
                     inputID: inputID,
-                    status:status
+                    status: status,
+                    discipline : discipline
                 };
 
                 console.log(datas);
