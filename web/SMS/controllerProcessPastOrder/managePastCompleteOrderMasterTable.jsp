@@ -4,25 +4,46 @@
     Author     : Shammugam
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="ADM_helper.MySessionKey"%>
 
 <%
+    String roleCode = session.getAttribute("ROLE_CODE").toString();
+    String adminCS = "CS01";
+    String userID = session.getAttribute("USER_ID").toString();
     String hfc_cd = (String) session.getAttribute(MySessionKey.HFC_CD);
     String dis_cd = (String) session.getAttribute(MySessionKey.DISCIPLINE_CD);
-
+    MySession superUser = new MySession(userID, hfc_cd);
+    
     String type = request.getParameter("type");
     String inputID = request.getParameter("inputID");
     String dateFrom = request.getParameter("dateFrom");
     String dateTo = request.getParameter("dateTo");
     String status = request.getParameter("status");
-
+    String dis = request.getParameter("discipline");
+    String discipline_val = "";
     Conn conn = new Conn();
 
     String whereClause = "";
-
+    String whereDiscipline = "";
+    
+    
+    if (roleCode.equalsIgnoreCase(adminCS) || superUser.isSuperUser() == true) {
+        discipline_val = dis;
+    }else{
+        discipline_val = dis_cd;
+    }
+    
+    if(discipline_val.equalsIgnoreCase("all")){
+        whereDiscipline = " ";
+    }else{
+        whereDiscipline = "AND om.ordering_discipline_cd = '" + discipline_val + "'";
+    }
+    
+    
     if (type.equalsIgnoreCase("User")) {
 
         whereClause = "AND om.customer_id = '" + inputID + "' ORDER BY om.txt_date DESC;";
@@ -44,7 +65,7 @@
             // LEFT JOIN USER TABLE
             + " JOIN adm_users aus ON (om.customer_id = aus.USER_ID) "
             // WHERE CONDITION
-            + "WHERE om.hfc_cd = '" + hfc_cd + "' AND om.discipline_cd = '" + dis_cd + "' AND om.status = '"+status+"' " + whereClause;
+            + "WHERE om.hfc_cd = '" + hfc_cd + "' "+whereDiscipline+" AND om.status = '"+status+"' " + whereClause;
 
     ArrayList<ArrayList<String>> dataOm = conn.getData(query);
     //out.print(query);

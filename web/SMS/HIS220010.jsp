@@ -13,14 +13,15 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%    Config.getFile_url(session);
+<%  
+    Config.getFile_url(session);
     Config.getBase_url(request);
 
-    Conn conn = new Conn();
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
-    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-
+    //Conn conn = new Conn();
+//    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+//    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+//    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    
 %>
 
 
@@ -69,7 +70,6 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
                                                 <div id="OrderMain">
-
                                                 </div>
 
                                             </div>
