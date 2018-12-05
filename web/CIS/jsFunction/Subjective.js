@@ -210,53 +210,60 @@ $(document).ready(function () {
         });
 
 
-
         if (validationField(obj1.problem, "Please search and select the correct symptoms !!!")) {
 
-            if (checkCCN(_data, obj1)) {
-                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain !!!");
+            if (duration === "" || duration === null || sdur === "") {
+                bootbox.alert("Please insert correct duration for the symptom !!!");
+            } else if (Mild === undefined) {
+                bootbox.alert("Please select correct severity for the symptom !!!");
             } else {
-
-                var table = $("#SOAPChiefComplaintTable tbody");
-
-                var arrayItemCode = [];
-
-                // Calculating Data For Overall Dispense
-                table.find('tr').each(function (i) {
-
-                    var $tds = $(this).find('td');
-                    var itemCode = $tds.eq(1).text();
-                    arrayItemCode.push(itemCode);
-
-                });
-
-                var arrayItemCodeCheck = arrayItemCode.indexOf(ccnCode);
-
-                if (arrayItemCodeCheck === -1) {
-
-                    displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Laterality, Comment, obj1);
-
-                    if (search_by === "P") {
-                        searchInitialize("CCN", "I");
-                        $("#tCISSubCCNHFCSearch-flexdatalist").hide();
-                    } else {
-                        retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
-                        $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
-                    }
-
-                    counterComplains = counterComplains + 1;
-
-                    $("#problem").val("");
-                    $("#duration").val("");
-                    $("#Comment").val("");
-                    $("#ccnCode").val("");
-
+                
+                if (checkCCN(_data, obj1)) {
+                    bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain !!!");
                 } else {
 
-                    bootbox.alert("You have already added the symptom into the table !! Please Choose Different Symptom !!");
+                    var table = $("#SOAPChiefComplaintTable tbody");
+
+                    var arrayItemCode = [];
+
+                    // Calculating Data For Overall Dispense
+                    table.find('tr').each(function (i) {
+
+                        var $tds = $(this).find('td');
+                        var itemCode = $tds.eq(1).text();
+                        arrayItemCode.push(itemCode);
+
+                    });
+
+                    var arrayItemCodeCheck = arrayItemCode.indexOf(ccnCode);
+
+                    if (arrayItemCodeCheck === -1) {
+
+                        displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Laterality, Comment, obj1);
+
+                        if (search_by === "P") {
+                            searchInitialize("CCN", "I");
+                            $("#tCISSubCCNHFCSearch-flexdatalist").hide();
+                        } else {
+                            retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                            $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
+                        }
+
+                        counterComplains = counterComplains + 1;
+
+                        $("#problem").val("");
+                        $("#duration").val("");
+                        $("#Comment").val("");
+                        $("#ccnCode").val("");
+
+                    } else {
+
+                        bootbox.alert("You have already added the symptom into the table !! Please Choose Different Symptom !!");
+
+                    }
 
                 }
-
+                
             }
 
         }
@@ -370,46 +377,54 @@ $(document).ready(function () {
         }
         var tempccnObj = {
             ccnCode:_uccnCode
-        }
+        };
+        
+        
         if(validationField(_uccnCode,"Please enter the correct symptoms")){
-                    if(upObject.ccnCode === _uccnCode){
-            
-            upObject.problem = _uproblem;
-            upObject.Mild = _uMild;
-            upObject.Site = _uSite;
-            upObject.duration = _uduration;
-            upObject.sdur = _ssdur;
-            upObject.Laterality = _uLaterality;
-            upObject.Comment = _uComment;
-            upObject.ccnCode = _uccnCode;
-            var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000001").modal('hide');
-            
-        }else{
-
-            if (checkCCN(_data, tempccnObj)) {
-                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                    
+            if (_uduration === "" || _uduration === null || _ssdur === "") {
+                bootbox.alert("Please insert correct duration for the symptom !!!");
+            } else if (_uMild === undefined) {
+                bootbox.alert("Please select correct severity for the symptom !!!");
             } else {
-                upObject.problem = _uproblem;
-                upObject.Mild = _uMild;
-                upObject.Site = _uSite;
-                upObject.duration = _uduration;
-                upObject.sdur = _ssdur;
-                upObject.Laterality = _uLaterality;
-                upObject.Comment = _uComment;
-                upObject.ccnCode = _uccnCode;
-                var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
-                $('#sum' + rowId).html(sum);
-                $("#update_CIS01000001").modal('hide');
-            }
-        }
+                
+                if(upObject.ccnCode === _uccnCode){
+            
+                    upObject.problem = _uproblem;
+                    upObject.Mild = _uMild;
+                    upObject.Site = _uSite;
+                    upObject.duration = _uduration;
+                    upObject.sdur = _ssdur;
+                    upObject.Laterality = _uLaterality;
+                    upObject.Comment = _uComment;
+                    upObject.ccnCode = _uccnCode;
+                    var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000001").modal('hide');
+
+                }else{
+
+                    if (checkCCN(_data, tempccnObj)) {
+                        bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                    } else {
+                        upObject.problem = _uproblem;
+                        upObject.Mild = _uMild;
+                        upObject.Site = _uSite;
+                        upObject.duration = _uduration;
+                        upObject.sdur = _ssdur;
+                        upObject.Laterality = _uLaterality;
+                        upObject.Comment = _uComment;
+                        upObject.ccnCode = _uccnCode;
+                        var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
+                        $('#sum' + rowId).html(sum);
+                        $("#update_CIS01000001").modal('hide');
+                    }
+                }
+            
+            }             
         
         }
 
-       
-
-        
     });
 
 

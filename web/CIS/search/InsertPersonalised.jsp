@@ -15,14 +15,13 @@
     String term_name = request.getParameter("term_name");
     String term_code = request.getParameter("term_code");
     String code_type = request.getParameter("code_type");
-    String user_id = (String)session.getAttribute("USER_ID");
+    String user_id = (String) session.getAttribute("USER_ID");
     RMIConnector rmic = new RMIConnector();
-    
 
-    String check_term_sql = "SELECT clinical_term_code,clinical_term_name FROM cis_personalised_clinical_term WHERE UPPER(clinical_term_name) = UPPER('"+term_name+"') AND user_id = '"+user_id+"';";
-    ArrayList<ArrayList<String>> check_term = Conn.getData(check_term_sql); 
-    
-    if(check_term.size() > 0){
+    String check_term_sql = "SELECT clinical_term_code,clinical_term_name FROM cis_personalised_clinical_term WHERE UPPER(clinical_term_name) = UPPER('" + term_name + "') AND code_type = '" + code_type + "' AND user_id = '" + user_id + "';";
+    ArrayList<ArrayList<String>> check_term = Conn.getData(check_term_sql);
+
+    if (check_term.size() > 0) {
         out.print("ALREADY[-|-]");
         out.print(check_term.get(0).get(0) + "|" + check_term.get(0).get(1));
     } else {
@@ -35,22 +34,21 @@
                 + "created_date, "
                 + "created_by)"
                 + " VALUES ("
-                + "'"+user_id+"', "
-                + "'"+code_type+"', "
-                + "'"+term_code+"', "
-                + "'"+term_name+"', "
+                + "'" + user_id + "', "
+                + "'" + code_type + "', "
+                + "'" + term_code + "', "
+                + "'" + term_name + "', "
                 + "'', "
                 + "NOW(), "
-                + "'"+user_id+"'); ";
-        
-        if(rmic.setQuerySQL(Conn.HOST, Conn.PORT, insert_new_term_sql)){
+                + "'" + user_id + "'); ";
+
+        if (rmic.setQuerySQL(Conn.HOST, Conn.PORT, insert_new_term_sql)) {
             out.print("SUCCESS[-|-]");
-        }else{
+        } else {
             out.print("FAIL[-|-]" + insert_new_term_sql);
-                    
+
         }
-        
-        
+
     }
 
 

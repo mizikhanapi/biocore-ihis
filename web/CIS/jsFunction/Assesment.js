@@ -140,58 +140,67 @@ $(document).ready(function(){
 
         if (validationField(Problem8, "Please search and select the correct Diagnosis !!!")) {
 
-            if (checkDGS(_data, obj1)) {
-
-                bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
-
+            if (date4 === "" || date4 === null) {
+                bootbox.alert("Please insert correct date for the diagnosis !!!");
+            } else if (Type === undefined) {
+                bootbox.alert("Please select correct type for the diagnosis !!!");
+            } else if (Severity1 === undefined) {
+                bootbox.alert("Please select correct severity for the diagnosis !!!");
             } else {
 
-                var table = $("#SOAPDiagnosisTable tbody");
+                if (checkDGS(_data, obj1)) {
 
-                var arrayItemCode = [];
-
-                // Calculating Data For Overall Dispense
-                table.find('tr').each(function (i) {
-
-                    var $tds = $(this).find('td');
-                    var itemCode = $tds.eq(1).text();
-                    arrayItemCode.push(itemCode);
-
-                });
-
-                var arrayItemCodeCheck = arrayItemCode.indexOf(code10);
-
-                if (arrayItemCodeCheck === -1) {
-
-                    displayDGSTable(code10, Type, date4, Problem8, Severity1, Site1, Laterality1, comment8, obj1);
-
-                    if (search_by === "P") {
-                        searchInitialize("DGS", "I");
-                        $("#tCISSubDGSSearch-flexdatalist").hide();
-                    } else {
-                        retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
-                        $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
-                    }
-
-
-                    counterDiagnosis = counterDiagnosis + 1;
-
-                    $("#searchDiag").val("");
-                    $("#commentDGS").val("");
-                    $("#dateDGS").val("");
+                    bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
 
                 } else {
 
-                    bootbox.alert("You have already added the disgnosis into the table !! Please Choose Different Disgnosis !!");
+                    var table = $("#SOAPDiagnosisTable tbody");
 
-                }
+                    var arrayItemCode = [];
+
+                    // Calculating Data For Overall Dispense
+                    table.find('tr').each(function (i) {
+
+                        var $tds = $(this).find('td');
+                        var itemCode = $tds.eq(1).text();
+                        arrayItemCode.push(itemCode);
+
+                    });
+
+                    var arrayItemCodeCheck = arrayItemCode.indexOf(code10);
+
+                    if (arrayItemCodeCheck === -1) {
+
+                        displayDGSTable(code10, Type, date4, Problem8, Severity1, Site1, Laterality1, comment8, obj1);
+
+                        if (search_by === "P") {
+                            searchInitialize("DGS", "I");
+                            $("#tCISSubDGSSearch-flexdatalist").hide();
+                        } else {
+                            retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
+                            $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
+                        }
 
 
+                        counterDiagnosis = counterDiagnosis + 1;
 
+                        $("#searchDiag").val("");
+                        $("#commentDGS").val("");
+                        $("#dateDGS").val("");
+
+                    } else {
+
+                        bootbox.alert("You have already added the disgnosis into the table !! Please Choose Different Disgnosis !!");
+
+                    }
+
+
+                }                
+                
             }
+
         }
 
-        //$(".modal-backdrop").hide();
 
     });
 
@@ -290,25 +299,17 @@ $(document).ready(function(){
         
         var checkObj = {
             dgsCode:_dgsCode
-        }
-        
-        if (upObject.dgsCode === _dgsCode) {
-            upObject.TypeDGS = _TType;
-            upObject.date4 = _ddate4;
-            upObject.Problem8 = _PProblem8;
-            upObject.Severity1 = _SSeverity1;
-            upObject.Site1 = _SSite1;
-            upObject.Laterality1 = _LLaterality1;
-            upObject.comment8 = _Pcomment8;
-            upObject.dgsCode = _dgsCode;
-            var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
-
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS030001").modal('toggle');
+        };
+                
+        if (_ddate4 === "" || _ddate4 === null) {
+            bootbox.alert("Please insert correct date for the diagnosis !!!");
+        } else if (_TType === undefined) {
+            bootbox.alert("Please select correct type for the diagnosis !!!");
+        } else if (_SSeverity1 === undefined) {
+            bootbox.alert("Please select correct severity for the diagnosis !!!");
         } else {
-            if (checkDGS(_data, checkObj)) {
-                bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
-            }else{
+            
+            if (upObject.dgsCode === _dgsCode) {
                 upObject.TypeDGS = _TType;
                 upObject.date4 = _ddate4;
                 upObject.Problem8 = _PProblem8;
@@ -321,13 +322,29 @@ $(document).ready(function(){
 
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS030001").modal('toggle');
-            }
+            } else {               
+                if (checkDGS(_data, checkObj)) {
+                    bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+                }else{
+                    upObject.TypeDGS = _TType;
+                    upObject.date4 = _ddate4;
+                    upObject.Problem8 = _PProblem8;
+                    upObject.Severity1 = _SSeverity1;
+                    upObject.Site1 = _SSite1;
+                    upObject.Laterality1 = _LLaterality1;
+                    upObject.comment8 = _Pcomment8;
+                    upObject.dgsCode = _dgsCode;
+                    var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
 
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS030001").modal('toggle');
+                }
+
+            }
+            
         }
         
-      
         
-        //$(".modal-backdrop").hide();
     });
 
     //js DELETE for Diagnosis
