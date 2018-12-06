@@ -94,12 +94,21 @@ function displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Lateralit
 
 $(document).ready(function () {
 
+    $('#squarespaceModal2').css('overflow', 'auto');
+    $('#update_CIS01000001').css('overflow', 'auto');
+    $('#update_CIS030001').css('overflow', 'auto');
+    $('#CIS020003').css('overflow', 'auto');
+    $('#CIS020004').css('overflow', 'auto');
+    $('#CIS020005').css('overflow', 'auto');
+    $('#CIS020006').css('overflow', 'auto');
+    $('#CIS020008').css('overflow', 'auto');
+
     $('#fastTrackVitalSignsTrigger').on('click', function () {
 
         var patientName = $('#pName').text();
 
         if (patientName === "-") {
-            bootbox.alert("You need to select the patient first !!!");
+            bootbox.alert("You need to select the patient first.");
         } else {
             $("#squarespaceModal2").modal('show');
         }
@@ -111,7 +120,7 @@ $(document).ready(function () {
         var patientName = $('#pName').text();
 
         if (patientName === "-") {
-            bootbox.alert("You need to select the patient first !!!");
+            bootbox.alert("You need to select the patient first.");
         } else {
             $("#CIS040002").modal('show');
             searchHFCDetail('DTO');
@@ -274,16 +283,18 @@ $(document).ready(function () {
         });
 
 
-        if (validationField(obj1.problem, "Please search and select the correct symptoms !!!")) {
+        if (validationField(obj1.problem, "Please search and select the correct symptoms")) {
 
-            if (duration === "" || duration === null || sdur === "") {
-                bootbox.alert("Please insert correct duration for the symptom !!!");
+            if (duration === "" || duration === null) {
+                bootbox.alert("Please insert complain duration.");
+            } else if ( sdur === "" || sdur === null) {
+                bootbox.alert("Please select complain duration unit.");
             } else if (Mild === undefined) {
-                bootbox.alert("Please select correct severity for the symptom !!!");
+                bootbox.alert("Please select complain severity.");
             } else {
 
                 if (checkCCN(_data, obj1)) {
-                    bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain !!!");
+                    bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain.");
                 } else {
 
                     var table = $("#fastTrackChiefComplaintTable tbody");
@@ -322,7 +333,7 @@ $(document).ready(function () {
 
                     } else {
 
-                        bootbox.alert("You have already added the symptom into the table !! Please Choose Different Symptom !!");
+                        bootbox.alert("You have already added the symptom into the table. Please Choose Different Symptom.");
 
                     }
 
@@ -341,7 +352,7 @@ $(document).ready(function () {
         var table = $("#fastTrackChiefComplaintTable tbody");
 
         if (counterComplains === 0) {
-            bootbox.alert("You have no record the chief complain table !! Please Insert Symptom before pressing the add button !!");
+            bootbox.alert("You have no record the chief complain table. Please Insert Symptom before pressing the add button");
         } else {
 
 
@@ -443,12 +454,14 @@ $(document).ready(function () {
             ccnCode: _uccnCode
         };
 
-        if (validationField(_uccnCode, "Please enter the correct symptoms")) {
+        if (validationField(_uccnCode, "Please enter the correct symptoms.")) {
 
-            if (_uduration === "" || _uduration === null || _ssdur === "") {
-                bootbox.alert("Please insert correct duration for the symptom !!!");
+            if (_uduration === "" || _uduration === null) {
+                bootbox.alert("Please insert complain duration.");
+            } else if (_ssdur === "" || _ssdur === null) {
+                bootbox.alert("Please select complain duration unit.");
             } else if (_uMild === undefined) {
-                bootbox.alert("Please select correct severity for the symptom !!!");
+                bootbox.alert("Please select complain severity.");
             } else {
 
                 if (upObject.ccnCode === _uccnCode) {
@@ -471,7 +484,7 @@ $(document).ready(function () {
                 } else {
 
                     if (checkCCN(_data, tempccnObj)) {
-                        bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                        bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain.");
                     } else {
 
                         upObject.problem = _uproblem;

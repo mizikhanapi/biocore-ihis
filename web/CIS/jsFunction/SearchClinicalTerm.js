@@ -1049,12 +1049,12 @@ function addPersonalisedTerm(dataPersonalised) {
             var status = data_response[0];
             
             if (status === "ALREADY") {
-                bootbox.alert("The clinical term already already added in the Personalised. Please select 'Personalised Radio Button' and type the clinical term in the 'Search Clinical Term' field !!!")
+                bootbox.alert("The clinical term already already added in the Personalised. Please select 'Personalised Radio Button' and type the clinical term in the 'Search Clinical Term' field.")
                 retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
                 //retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
             } else {
                 retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
-                bootbox.alert("The clinical term successfully added in your personalised. Please search in personalise to select the clinical term !!!");
+                bootbox.alert("The clinical term successfully added in your personalised. Please search in personalise to select the clinical term.");
                 //retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
             }
 
@@ -1078,12 +1078,12 @@ function addPersonalisedTermDGS(dataPersonalised) {
             var status = data_response[0];
             
             if (status === "ALREADY") {
-                bootbox.alert("The selected diagnosis already added in the Personalised. Please select 'Personalised Radio Button' and type the diagnosis name in the 'Search Diagnosis' field !!!");
+                bootbox.alert("The selected diagnosis already added in the Personalised. Please select 'Personalised Radio Button' and type the diagnosis name in the 'Search Diagnosis' field.");
                 //retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
                 retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
             } else {
                 //retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
-                bootbox.alert("The selected diagnosis is successfully added in your personalised. Please search in personalise to select the diagnosis !!!");
+                bootbox.alert("The selected diagnosis is successfully added in your personalised. Please search in personalise to select the diagnosis.");
                 retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
             }
 

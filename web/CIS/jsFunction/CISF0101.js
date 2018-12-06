@@ -130,7 +130,7 @@ function initialiseRadioPersonalised(code, field) {
         console.log(dataPersonalised);
 
         if (code_valid === "") {
-            bootbox.alert("Please search and select a symptom before pressing the add button !!!");
+            bootbox.alert("Please search and select a symptom before pressing the add button.");
         } else {
             addPersonalisedTerm(dataPersonalised);
         }

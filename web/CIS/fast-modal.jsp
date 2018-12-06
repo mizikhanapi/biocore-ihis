@@ -17,7 +17,7 @@
                 <div class="panel-group" id="accordion1">
                     <div class="panel panel-default">
 
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseOne1" aria-expanded="false" id="fastTrackAccordianMenuComplain">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseOne1" aria-expanded="false" id="fastTrackAccordianMenuComplain">
                             <h4 class="panel-title">Chief Complaint</h4>
                         </div>
 
@@ -143,7 +143,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseTwo1" aria-expanded="false" id="fastTrackAccordianMenuVital">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseTwo1" aria-expanded="false" id="fastTrackAccordianMenuVital">
                             <h4 class="panel-title">Check Vital</h4>
                         </div>
                         <div id="collapseTwo1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1,#accordion2,#accordion3" data-target="#collapseThree1" aria-expanded="false" id="fastTrackAccordianMenuDiagnosis">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseThree1" aria-expanded="false" id="fastTrackAccordianMenuDiagnosis">
                             <h4 class="panel-title">Diagnosis</h4>
                         </div>
                         <div id="collapseThree1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">

@@ -114,7 +114,7 @@ $(document).ready(function () {
         var _lyingBPP = $('#lyingP').val();
 
         if (_sitBPS === "" || _sitBPD === "" || _sitBPP === "" || _sitBPS === null || _sitBPD === null || _sitBPP === null) {
-            bootbox.alert("Please insert the correct and valid blood pressure !!!");
+            bootbox.alert("Please insert the correct and valid blood pressure");
         } else {
 
             var items = $('#sitS,#sitD,#sitP,#standS,#standD,#standP,#lyingS,#lyingD,#lyingP');
@@ -202,7 +202,7 @@ $(document).ready(function () {
         var _rrRate = $('#rrRate').val();
 
         if (_rrRate === "" || _rrRate === null) {
-            bootbox.alert("Please insert the correct and valid respiratory rate !!!");
+            bootbox.alert("Please insert the correct and valid respiratory rate");
         } else {
 
             var items = $('#rrRate');
@@ -260,7 +260,7 @@ $(document).ready(function () {
         var _OSat = $('#OSat').val();
 
         if (_OSat === "" || _OSat === null) {
-            bootbox.alert("Please insert the correct and valid oxygen saturation !!!");
+            bootbox.alert("Please insert the correct and valid oxygen saturation");
         } else {
 
             var items = $('#OSat');
@@ -317,7 +317,7 @@ $(document).ready(function () {
         var _BTemp = $('#BTemp').val();
 
         if (_BTemp === "" || _BTemp === null) {
-            bootbox.alert("Please insert the correct and valid body temperature !!!");
+            bootbox.alert("Please insert the correct and valid body temperature");
         } else {
 
             var items = $('#BTemp');
@@ -439,7 +439,7 @@ $(document).ready(function () {
         var OBloodGlucose = $('#bloodGlucose').val();
 
         if (Oheight === "" || Oheight === null || Oweight === "" || Oweight === null || Obmi === null || Obmi === "" || Obmi === "0") {
-            bootbox.alert("Please insert the correct and valid height and weight then press the calculate bmi button !!!");
+            bootbox.alert("Please insert the correct and valid height and weight then press the calculate bmi button");
         } else {
 
             var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');

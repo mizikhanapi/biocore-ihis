@@ -84,7 +84,7 @@ $(document).ready(function () {
         
         
         if (code_valid === "") {
-            bootbox.alert("Please search and select a diagnosis before pressing the add button !!!");
+            bootbox.alert("Please search and select a diagnosis before pressing the add button.");
         } else {
             addPersonalisedTermDGS(dataPersonalised);
         }

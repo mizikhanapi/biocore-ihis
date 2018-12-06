@@ -210,16 +210,18 @@ $(document).ready(function () {
         });
 
 
-        if (validationField(obj1.problem, "Please search and select the correct symptoms !!!")) {
+        if (validationField(obj1.problem, "Please search and select the correct symptoms.")) {
 
-            if (duration === "" || duration === null || sdur === "") {
-                bootbox.alert("Please insert correct duration for the symptom !!!");
+            if (duration === "" || duration === null) {
+                bootbox.alert("Please insert complain duration.");
+            } else if ( sdur === "" || sdur === null) {
+                bootbox.alert("Please select complain duration unit.");
             } else if (Mild === undefined) {
-                bootbox.alert("Please select correct severity for the symptom !!!");
+                bootbox.alert("Please select complain severity.");
             } else {
                 
                 if (checkCCN(_data, obj1)) {
-                    bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain !!!");
+                    bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain.");
                 } else {
 
                     var table = $("#SOAPChiefComplaintTable tbody");
@@ -258,7 +260,7 @@ $(document).ready(function () {
 
                     } else {
 
-                        bootbox.alert("You have already added the symptom into the table !! Please Choose Different Symptom !!");
+                        bootbox.alert("You have already added the symptom into the table. Please Choose Different Symptom.");
 
                     }
 
@@ -277,7 +279,7 @@ $(document).ready(function () {
         var table = $("#SOAPChiefComplaintTable tbody");
 
         if (counterComplains === 0) {
-            bootbox.alert("You have no record the chief complain table !! Please Insert Symptom before pressing the add button !!");
+            bootbox.alert("You have no record the chief complain table. Please Insert Symptom before pressing the add button.");
         } else {
 
 
@@ -380,12 +382,14 @@ $(document).ready(function () {
         };
         
         
-        if(validationField(_uccnCode,"Please enter the correct symptoms")){
+        if(validationField(_uccnCode,"Please enter the correct symptoms.")){
                     
-            if (_uduration === "" || _uduration === null || _ssdur === "") {
-                bootbox.alert("Please insert correct duration for the symptom !!!");
+            if (_uduration === "" || _uduration === null) {
+                bootbox.alert("Please insert complain duration.");
+            } else if (_ssdur === "" || _ssdur === null) {
+                bootbox.alert("Please select complain duration unit.");
             } else if (_uMild === undefined) {
-                bootbox.alert("Please select correct severity for the symptom !!!");
+                bootbox.alert("Please select complain severity.");
             } else {
                 
                 if(upObject.ccnCode === _uccnCode){
@@ -405,7 +409,7 @@ $(document).ready(function () {
                 }else{
 
                     if (checkCCN(_data, tempccnObj)) {
-                        bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+                        bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain.");
                     } else {
                         upObject.problem = _uproblem;
                         upObject.Mild = _uMild;

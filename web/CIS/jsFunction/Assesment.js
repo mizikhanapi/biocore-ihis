@@ -138,14 +138,14 @@ $(document).ready(function(){
 
         });
 
-        if (validationField(Problem8, "Please search and select the correct Diagnosis !!!")) {
+        if (validationField(Problem8, "Please search and select the correct Diagnosis.")) {
 
             if (date4 === "" || date4 === null) {
-                bootbox.alert("Please insert correct date for the diagnosis !!!");
+                bootbox.alert("Please choose diagnosis date.");
             } else if (Type === undefined) {
-                bootbox.alert("Please select correct type for the diagnosis !!!");
+                bootbox.alert("Please select diagnosis type.");
             } else if (Severity1 === undefined) {
-                bootbox.alert("Please select correct severity for the diagnosis !!!");
+                bootbox.alert("Please select diagnosis severity.");
             } else {
 
                 if (checkDGS(_data, obj1)) {
@@ -190,7 +190,7 @@ $(document).ready(function(){
 
                     } else {
 
-                        bootbox.alert("You have already added the disgnosis into the table !! Please Choose Different Disgnosis !!");
+                        bootbox.alert("You have already added the diagnosis into the table. Please Choose Different Diagnosis.");
 
                     }
 
@@ -210,7 +210,7 @@ $(document).ready(function(){
         var table = $("#SOAPDiagnosisTable tbody");
 
         if (counterDiagnosis === 0) {
-            bootbox.alert("You have no record of diagnosis in the table table !! Please Insert diagnosis before pressing the add button !!");
+            bootbox.alert("You have no record of diagnosis in the table table. Please insert diagnosis before pressing the add button.");
         } else {
 
 
@@ -302,11 +302,11 @@ $(document).ready(function(){
         };
                 
         if (_ddate4 === "" || _ddate4 === null) {
-            bootbox.alert("Please insert correct date for the diagnosis !!!");
+            bootbox.alert("Please insert diagnosis date.");
         } else if (_TType === undefined) {
-            bootbox.alert("Please select correct type for the diagnosis !!!");
+            bootbox.alert("Please select diagnosis type.");
         } else if (_SSeverity1 === undefined) {
-            bootbox.alert("Please select correct severity for the diagnosis !!!");
+            bootbox.alert("Please select diagnosis severity.");
         } else {
             
             if (upObject.dgsCode === _dgsCode) {
