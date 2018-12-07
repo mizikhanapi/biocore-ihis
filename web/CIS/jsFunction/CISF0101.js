@@ -44,6 +44,13 @@ function initialisedModalSearch(modal_id, personalised_id, modal_name, modal_nam
     $('#squarespaceModal2 #collapseOne1').off('shown.bs.collapse').on('shown.bs.collapse', function () {
         // do something…
 
+        $("#fastTrackChiefComplaintTableDIV").load("fast-modal.jsp #fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable");
+        $("#fastTrackDiagnosisTableDIV").load("fast-modal.jsp #fastTrackDiagnosisTableDIV #fastTrackDiagnosisTable");
+
+        $("#fastTrackChiefComplaintForm")[0].reset();
+        $("#fastTrackVitalSignForm")[0].reset();
+        $("#fastTrackDiagnosisForm")[0].reset();
+        
         $("#fastTrackChiefComplaintAcceptComplains").show();
         $("#fastTrackChiefComplaintAcceptDiagnosis").hide();
 
@@ -53,6 +60,13 @@ function initialisedModalSearch(modal_id, personalised_id, modal_name, modal_nam
     $('#squarespaceModal2 #collapseOne1').off('hidden.bs.collapse').on('hidden.bs.collapse', function () {
         // do something…
 
+        $("#fastTrackChiefComplaintTableDIV").load("fast-modal.jsp #fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable");
+        $("#fastTrackDiagnosisTableDIV").load("fast-modal.jsp #fastTrackDiagnosisTableDIV #fastTrackDiagnosisTable");
+
+        $("#fastTrackChiefComplaintForm")[0].reset();
+        $("#fastTrackVitalSignForm")[0].reset();
+        $("#fastTrackDiagnosisForm")[0].reset();
+        
         $("#fastTrackChiefComplaintAcceptComplains").hide();
         $("#fastTrackChiefComplaintAcceptDiagnosis").hide();
 

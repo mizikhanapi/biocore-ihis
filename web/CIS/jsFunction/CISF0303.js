@@ -32,6 +32,13 @@ $(document).ready(function () {
     $('#squarespaceModal2 #collapseThree1').off('shown.bs.collapse').on('shown.bs.collapse', function () {
         // do something…
 
+        $("#fastTrackChiefComplaintTableDIV").load("fast-modal.jsp #fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable");
+        $("#fastTrackDiagnosisTableDIV").load("fast-modal.jsp #fastTrackDiagnosisTableDIV #fastTrackDiagnosisTable");
+
+        $("#fastTrackChiefComplaintForm")[0].reset();
+        $("#fastTrackVitalSignForm")[0].reset();
+        $("#fastTrackDiagnosisForm")[0].reset();
+
         $("#fastTrackChiefComplaintAcceptComplains").hide();
         $("#fastTrackChiefComplaintAcceptDiagnosis").show();
 
@@ -40,6 +47,13 @@ $(document).ready(function () {
 
     $('#squarespaceModal2 #collapseThree1').off('hidden.bs.collapse').on('hidden.bs.collapse', function () {
         // do something…
+
+        $("#fastTrackChiefComplaintTableDIV").load("fast-modal.jsp #fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable");
+        $("#fastTrackDiagnosisTableDIV").load("fast-modal.jsp #fastTrackDiagnosisTableDIV #fastTrackDiagnosisTable");
+
+        $("#fastTrackChiefComplaintForm")[0].reset();
+        $("#fastTrackVitalSignForm")[0].reset();
+        $("#fastTrackDiagnosisForm")[0].reset();
 
         $("#fastTrackChiefComplaintAcceptComplains").hide();
         $("#fastTrackChiefComplaintAcceptDiagnosis").hide();
@@ -86,8 +100,8 @@ $(document).ready(function () {
         var new_code = $("#dgsCode").val();
         var code_type = $("#tCISSUBDGSCodeType").val();
         var code_valid = $("#tCISSubDGSSearch").val();
-        
-        if(new_code === "") {
+
+        if (new_code === "") {
             new_code = getDate();
         }
 
@@ -96,7 +110,7 @@ $(document).ready(function () {
             term_code: new_code,
             code_type: code_type
         };
-        
+
         console.log(dataPersonalised);
 
         if (code_valid === "") {
