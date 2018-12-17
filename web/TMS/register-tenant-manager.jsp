@@ -10,11 +10,15 @@
     Config.getBase_url(request);
     Config.getFile_url(session);
 
-    String fromPage = "x";
-    if (request.getParameter("page") != null) {
-        fromPage = request.getParameter("page");
-    }
-    //out.print(fromPage);
+//    String fromPage = "x";
+//    if (request.getParameter("page") != null) {
+//        fromPage = request.getParameter("page");
+//    }
+//    //out.print(fromPage);
+
+
+      String fromPage = "HIS-CARE";
+      
 %>
 <!DOCTYPE html>
 <html>

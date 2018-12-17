@@ -486,77 +486,77 @@
                         $file2 = $("#file-drag2");
 
                 if ($provider.val() === "") {
-                    bootbox.alert("Please enter provider name!");
+                    bootbox.alert("Please enter provider name");
                     return false;
                 }
 
                 if ($buildingNo.val() === "") {
-                    bootbox.alert("Please enter building number!");
+                    bootbox.alert("Please enter building number");
                     return false;
                 }
 
                 if ($street.val() === "") {
-                    bootbox.alert("Please enter street name!");
+                    bootbox.alert("Please enter street name");
                     return false;
                 }
 
                 if ($postcode.val() === "" || $postcode.val() == null) {
-                    bootbox.alert("Please search and choose existing postcode!");
+                    bootbox.alert("Please search and choose existing postcode");
                     $("#inputPostcode-flexdatalist").val("");
                     return false;
                 }
 
                 if ($town.val() === "" || $town.val() == null) {
-                    bootbox.alert("Please search and choose existing town!");
+                    bootbox.alert("Please search and choose existing town");
                     $("#inputTown-flexdatalist").val("");
                     return false;
                 }
 
                 if ($district.val() === "" || $district.val() == null) {
-                    bootbox.alert("Please search and choose existing district!");
+                    bootbox.alert("Please search and choose existing district");
                     $("#inputDistrict-flexdatalist").val("");
                     return false;
                 }
 
                 if ($state.val() === "" || $state.val() == null) {
-                    bootbox.alert("Please search and choose existing state!");
+                    bootbox.alert("Please search and choose existing state");
                     $("#inputState-flexdatalist").val("");
                     return false;
                 }
 
                 if ($country.val() === "" || $country.val() == null) {
-                    bootbox.alert("Please search and choose existing country!");
+                    bootbox.alert("Please search and choose existing country");
                     $("#inputCountry-flexdatalist").val("");
                     return false;
                 }
 
                 if ($bankAcc.val() === "") {
-                    bootbox.alert("Please enter the bank account number!");
+                    bootbox.alert("Please enter the bank account number");
                     return false;
                 }
 
                 if ($phone.val() === "" || !validatePhonenumber($phone.val())) {
-                    bootbox.alert("Please enter the phone number with valid phone number!");
+                    bootbox.alert("Please enter the phone number with valid phone number");
                     return false;
                 }
 
                 if ($email.val() === "" || !ValidateEmail($email.val())) {
-                    bootbox.alert("Please enter the email with valid email!");
+                    bootbox.alert("Please enter the email with valid email");
                     return false;
                 }
 
                 if ($package.val() === "" || $package.val() == null) {
-                    bootbox.alert("Please select a package!");
+                    bootbox.alert("Please select a package");
                     return false;
                 }
 
                 if (!$file1.find("img").length) {
-                    bootbox.alert("Please upload your annual practicing certificate!");
+                    bootbox.alert("Please upload your annual practicing certificate");
                     return false;
                 }
 
                 if (!$file2.find("img").length) {
-                    bootbox.alert("Please upload your business license certificate!");
+                    bootbox.alert("Please upload your business license certificate");
                     return false;
                 }
 
