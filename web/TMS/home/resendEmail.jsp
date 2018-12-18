@@ -102,7 +102,7 @@
         adminID = temp_mys.getAdminID();
         adminPwd = temp_mys.getRandomSessionID();
         query = "INSERT INTO adm_users (user_id, health_facility_code, user_name, password, occupation_code, birth_date, sex_code, new_icno, home_phone, office_phone, mobile_phone, fax_no, email, id_category_code, start_date, end_date, title, nationality_code, user_type, user_group, user_classification_code, status, created_by, created_date, mother_name, room_no, picture, login_status, user_status) "
-                + "VALUES('" + adminID + "', '" + hfc_cd + "', '" + hfc_cd + " Admin', '" + adminPwd + "', '001', now(), '001', '" + adminID + "', '', '', '', '', '" + user_email + "', '', '" + timestamp + "', '9999-12-31 00:00:00', '002', '001', 'STAFF', '', '', '0', '" + user_id + "', now(), '-', '01', '', '0', '0')";
+                + "VALUES('" + adminID + "', '" + hfc_cd + "', '" + hfc_cd + " Admin', '" + adminPwd + "', '001', now(), '001', '" + adminID + "', '', '', '', '', '" + user_email + "', 'HIS-CARE', '" + timestamp + "', '9999-12-31 00:00:00', '002', '001', 'STAFF', 'HIS-CARE', '', '0', '" + user_id + "', now(), '-', '01', '', '0', '0')";
         rmi.setQuerySQL(con.HOST, con.PORT, query);
         //assign role to user
         query = "Insert into adm_user_access_role(user_id, discipline_code, subdiscipline_code, health_facility_code, role_code, `STATUS`) "
