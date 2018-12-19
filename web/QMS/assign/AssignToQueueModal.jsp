@@ -40,7 +40,7 @@
                             
 
                         </div>
-                            <h4 style="padding: 0px">Reassign To</h4>
+                            <h4 style="padding: 0px">Reassign to</h4>
                             <div class="form-group">
                                 <input class="form-control input-lg" type="hidden" name="tQMS_ATQ_HFC_Code"  id="tQMS_ATQ_PMI_NO" placeholder="" tabindex="4" readonly="">
                                 <input class="form-control input-lg" type="hidden" name="tQMS_ATQ_Episode_Date"  id="tQMS_ATQ_Episode_Date" placeholder="" tabindex="4" readonly="">
@@ -91,7 +91,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="btnQMS_ATQ_ASSIGN_SUBMIT" role="button">Assign</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="btnQMS_ATQ_ASSIGN_SUBMIT" role="button">Reassign</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
