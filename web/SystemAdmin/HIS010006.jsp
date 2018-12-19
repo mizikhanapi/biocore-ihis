@@ -59,20 +59,20 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#HM_tab1" data-toggle="tab">
-                                                    CIS Setting </a>
+                                                    Patient Consultation </a>
                                             </li>
 
                                             <li>
                                                 <a href="#HM_tab2" data-toggle="tab">
-                                                    PMS Setting </a>
+                                                    Outpatient Management </a>
                                             </li>
                                             <li>
                                                 <a href="#HM_tab3" data-toggle="tab">
-                                                    Calling System Setting </a>
+                                                    Calling System </a>
                                             </li>
                                             <li>
                                                 <a href="#HM_tab4" data-toggle="tab">
-                                                    PIS Setting </a>
+                                                    Pharmacy Info System </a>
                                             </li>
 
                                         </ul>

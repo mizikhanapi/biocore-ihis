@@ -35,11 +35,11 @@
             <ul id="menu-content" class="nav nav-sidebar">
                 <!-- // menu tanpa dropdown -->
 				<li><a href="Lookup"><i class="fa fa-search fa-lg"></i>Lookup Code Maintenance</a></li>
-				<li><a href="UserManagement"><i class="fa fa-users fa-lg" ></i>Users Administration</a></li>
+				<li><a href="UserManagement"><i class="fa fa-users fa-lg" ></i>Manage User</a></li>
 <!--				<li><a href="QueueManagement"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>-->
-                                <li><a href="HealthFacilityManagement"><i class="fa fa-hospital-o fa-lg"></i>Health Facility Maintenance</a></li>
-                                <li><a href="Setting"><i class="fa fa-cog fa-lg"></i>Settings</a></li>
-                                <li><a href="Report"><i class="fa fa-bar-chart fa-lg"></i>Report</a></li>
+                                <li><a href="HealthFacilityManagement"><i class="fa fa-hospital-o fa-lg"></i>Manage Health Facility</a></li>
+                                <li><a href="Setting"><i class="fa fa-cog fa-lg"></i>System Settings</a></li>
+                                <li><a href="Report"><i class="fa fa-bar-chart fa-lg"></i>Reports</a></li>
                                 <%
                                     if(adm_sideMenus_mys.isSuperUser()){
                                 %>

@@ -15,7 +15,6 @@
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    LOOKUP MASTER MANAGEMENT
     <%        if (LM_mys.isSuperUser()) {
     %>
     <span class="pull-right">

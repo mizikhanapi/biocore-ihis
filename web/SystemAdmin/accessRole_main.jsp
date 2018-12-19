@@ -10,7 +10,6 @@
 <!-- Add Button Start -->
 <link href="css/multi-select.css" rel="stylesheet" type="text/css"/>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    ASSIGN ROLE TO USER
     <span class="pull-right">
         <button id="ARM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#ARM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>New Assignment</button>
     </span>

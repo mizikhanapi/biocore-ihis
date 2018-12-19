@@ -63,7 +63,7 @@
 
                                             <li>
                                                 <a href="#REP_tab2" data-toggle="tab">
-                                                    Lookup List </a>
+                                                    List of lookup master with detail records </a>
                                             </li>
 
 

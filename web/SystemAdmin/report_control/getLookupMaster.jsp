@@ -15,7 +15,7 @@
   
     
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of User of Lookup Master </h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;"></h4>
 <br>
 <table  id="reportListLookupTable"  class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
     <thead>
