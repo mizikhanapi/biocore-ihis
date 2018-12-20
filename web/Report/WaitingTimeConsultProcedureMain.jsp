@@ -172,7 +172,7 @@
                 type: "POST",
                 url: "WaitingTimeConsultProcedureTable.jsp",
                 data: data,
-                timeout: 10000000,
+                timeout: 1000000000,
                 success: function (list) {
                     $('#WaitingTimeTableDiv').html(list);
                 },
