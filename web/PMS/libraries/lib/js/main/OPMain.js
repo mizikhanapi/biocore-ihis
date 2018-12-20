@@ -7,7 +7,7 @@ function Main(array_data) {
     //if the return value is empty
     if ($.trim(array_data) === "N/A1") {
         bootbox.confirm({
-            message: "This patient not an Employee or a Student,Are you sure want to proceed with registration?",
+            message: "This patient is not an employee or a student, are you sure want to proceed with registration?",
             buttons: {
                 confirm: {
                     label: 'Continue',
@@ -147,7 +147,7 @@ function Main(array_data) {
         });
     } else if ($.trim(array_data) === "N/A0") {
         bootbox.confirm({
-            message: "This is new patient,Please press continue button to key-in patient information...",
+            message: "This is new patient,Please press continue button to key-in patient information.",
             buttons: {
                 confirm: {
                     label: 'Continue',

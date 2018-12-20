@@ -15,7 +15,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Queue List</h3>
             </div>
             <div class="modal-body" >
-                    <div class="row"id="modalBodyQueue" style="overflow-x: auto;" >
+                    <div class="row" id="modalBodyQueue" style="overflow-x: auto;" >
                         <!-- content goes here -->
                         <form role="form" id="formQueueSaya" >
                             <table class="table table-filter table-striped table-responsive" style="background: #fff;" id="listQueue">
@@ -40,7 +40,6 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
 
                 </div>
-                </form>
             </div>
         </div>
     </div>

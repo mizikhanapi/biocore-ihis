@@ -124,27 +124,27 @@
                 idType = $('#FAMidtype').val();
 
         if (relay === null) {
-            bootbox.alert("Select family relationship!", function () {
+            bootbox.alert("Please select family relationship", function () {
                 $('#FAMrelay').focus();
             });
             return;
         }
 
-        if (idType == null) {
-            bootbox.alert("Select ID type!", function () {
+        if (idType === null) {
+            bootbox.alert("Please select ID type", function () {
                 $('#FAMidtype').focus();
             });
             return;
         }
 
         if (fampnimo === "") {
-            bootbox.alert("Key in the IC / ID number!", function () {
+            bootbox.alert("Please key in the IC / ID number", function () {
                 $('#FAMpmifam').focus();
             });
             return;
         }
         if (name === "") {
-            bootbox.alert("Key in the name!", function () {
+            bootbox.alert("Please key in the name", function () {
                 $('#FAMname').focus();
             });
             return;

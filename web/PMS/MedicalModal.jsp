@@ -129,14 +129,14 @@
                 status = $('#MEDstatus').val(),
                 seq = $('#MEDseq').val();
 
-        if (insuranceCom == null || insuranceCom === "") {
-            bootbox.alert("Search existing insurance company!", function () {
+        if (insuranceCom === null || insuranceCom === "") {
+            bootbox.alert("Please search existing insurance company", function () {
                 $('#MEDinscom').focus();
             });
             return;
         }
         if (policy === "") {
-            bootbox.alert("Key in the policy number!", function () {
+            bootbox.alert("Please key in the policy number", function () {
                 $('#MEDpolicy').focus();
             });
             return;

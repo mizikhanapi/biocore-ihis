@@ -237,19 +237,19 @@
                 EMPstatus = $('#EMPstatus').val();
         
         if(EMPcd === ""){
-            bootbox.alert("Please fill in the employer code!", function(){
+            bootbox.alert("Please fill in the employer code", function(){
                 $('#EMPempcode').focus();
             });
             return;
         }
         else if(EMPname===""){
-             bootbox.alert("Please fill in the employer name!", function(){
+             bootbox.alert("Please fill in the employer name", function(){
                 $('#EMPempname').focus();
             });
             return;
         }
-        else if(EMPoccu == null || EMPoccu === ""){
-             bootbox.alert("Please choose existing occupation!", function(){
+        else if(EMPoccu === null || EMPoccu === ""){
+             bootbox.alert("Please choose an existing occupation", function(){
                 $('#EMPoccu').focus();
             });
             return;

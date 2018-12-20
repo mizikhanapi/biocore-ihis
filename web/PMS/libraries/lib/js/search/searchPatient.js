@@ -73,7 +73,7 @@ $(function () {
 
         if ($('#idInput').val() === "" || $('#idInput').val() === " ") {
             //if the id/ic input is empty
-            bootbox.alert('Please key in PMI no. or IC no. or IDENTIFICATION no. to continue seaching process');
+            bootbox.alert('Please key in "IC No./ID No.</b>" to continue search patient');
         } else if (opt === "-") {
             //if the select box is not selected
             bootbox.alert('Please select ID Type first.');

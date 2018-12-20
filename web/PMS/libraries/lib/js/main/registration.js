@@ -11,21 +11,21 @@
 //        'max-height': '100%'});
 //});
 
-$('#appointment').on('click', function () {
-    $.ajax({
-        type: "POST",
-        data: {idType: "", idInput: ""},
-        url: "controller/listApp.jsp", // call the php file ajax/tuto-autocomplete.php
-        timeout: 10000,
-        success: function (list) {
-            $('#modalBodyAppointment').html(list);
-        },
-        error: function (xhr, status, error) {
-            var err = eval("(" + xhr.responseText + ")");
-            bootbox.alert(err.Message);
-        }
-    });
-});
+//$('#appointment').on('click', function () {
+//    $.ajax({
+//        type: "POST",
+//        data: {idType: "", idInput: ""},
+//        url: "controller/listApp.jsp", // call the php file ajax/tuto-autocomplete.php
+//        timeout: 10000,
+//        success: function (list) {
+//            $('#modalBodyAppointment').html(list);
+//        },
+//        error: function (xhr, status, error) {
+//            var err = eval("(" + xhr.responseText + ")");
+//            bootbox.alert(err.Message);
+//        }
+//    });
+//});
 
 $('#queueModal').on('show.bs.modal', function () {
     $.ajax({
@@ -174,7 +174,7 @@ $('#registerQueue').click(function () {
     console.log(array_dat);
 
     if ($('#pmino').val() === " " || $('#pmino').val() === "") {
-        bootbox.alert('Please use a proper PMI no.');
+        bootbox.alert('Please search the patient before continue');
 
     } else if (str === "null") {
         bootbox.alert('Please choose a Queue.');

@@ -75,8 +75,8 @@
         %></td>
     <td><%=relay%></td>
     <td><%=occu%></td>
-    <td><button id="KINedit" name="KINedit" class="btn btn-default" data-toggle="modal" data-target="#KINModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
-    <td><button id="KINdel" name="KINdel" class="btn btn-default"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
+    <td><button id="KINedit" name="KINedit" class="btn btn-link" data-toggle="modal" data-target="#KINModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
+    <td><button id="KINdel" name="KINdel" class="btn btn-link"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
 </tr>
 <%
         }//end try

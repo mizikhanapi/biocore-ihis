@@ -1,3 +1,4 @@
+<%@page import="java.text.DateFormat"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -17,6 +18,7 @@
         <!--<link rel="stylesheet" href="libraries/lib/css/loading.css">-->
         <link rel="stylesheet" href="../assets/css/mystyles.css">
         <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
+        
         <script src="libraries/lib/js/jquery.min.js"></script>
         <script src="libraries/lib/js/bootstrap.min.js"></script>
 <!--        <script src="libraries/lib/datepicker/jquery-ui.js"></script>-->
@@ -26,6 +28,9 @@
         <script src="libraries/lib/js/search/searchPatient.js?v1" type="text/javascript"></script>
         <script src="../assets/js/modernizr.js" type="text/javascript"></script>
         <script src="../assets/js/webcam.js" type="text/javascript"></script>
+        <script>
+            $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+        </script>
         <%@include file = "../assets/header.html" %>
 
         <!-- header -->
@@ -131,10 +136,12 @@
             <!-- main --> 
 
         </div>
-        <div  id="modalSaya"><%@include file = "AppointmentModal.jsp" %></div>
+        
+        
         <div id="modalSaya2"><%@include file = "QueueModal.jsp" %></div>
-        <div id="modalQueueNumberSaya"><%@include file = "queueNumberModal.jsp" %></div>
-        <div id="modalReferralSaya"><%@include file = "ReferralModal.jsp" %></div>
+        <div id="modalQueueNumberSaya"<%@include file = "queueNumberModal.jsp" %></div>
+        <div id="modalReferralSaya"><% //include file  = "ReferralModal.jsp" %></div>
+        <div id="modalSaya"><%@include file = "AppointmentModal.jsp" %></div>
 
 
 
@@ -142,6 +149,35 @@
         <!-- header -->
 
         <script>
+            var pageClicked;
+            $('#OM_DateFrom').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                yearRange: '1990:+0',
+                maxDate: '+0d'
+            });
+
+
+            //--- initialise datepicker for to after changes on from ------------
+            $('#OM_DateFrom').on('change', function () {
+
+                $("#OM_DateTo").datepicker("destroy");
+                $('#OM_DateTo').val('');
+
+                var fromDate = $("#OM_DateFrom").datepicker("getDate");
+
+                $('#OM_DateTo').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd/mm/yy',
+                    yearRange: '1990:+0',
+                    minDate: fromDate,
+                    maxDate: '+0d'
+                });
+
+            });
+
             function printReport2(divID1)
                 {
                     var popupWin = window.open('', '_blank');
@@ -161,7 +197,7 @@
                 // $('#tab_a').find('a').removeAttr('data-toggle');
                 var target = $(e.target).attr("href");
                 e.preventDefault();
-                var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.  To save information,press cancel and use the Save buttons in the main page.');
+                var areYouSure = confirm("The changes you made will be lost if you navigate away from this page. Please click 'Cancel' and save your changes, or click 'OK' to continue");
                 if (areYouSure === true) {
                     $(this).tab('show');
                 } else {
@@ -191,6 +227,8 @@
         <script src="libraries/lib/js/search/searchOccu.js" type="text/javascript"></script>
         <script src="libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
         <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
+        
+        
 
     </body>
 </html>

@@ -46,8 +46,8 @@
     <input id="famval" type="hidden" value="<%=StringUtils.join(dataFamList.get(i), "|")%>">
     <td><%=dataFamList.get(i).get(3)%></td>
     <td><%=relay%></td>
-    <td><button id="FAMedit" name="FAMedit" class="btn btn-default" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
-    <td><button id="FAMdel" name="FAMdel" class="btn btn-default"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
+    <td><button id="FAMedit" name="FAMedit" class="btn btn-link" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
+    <td><button id="FAMdel" name="FAMdel" class="btn btn-link"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
 </tr>
 <%  }
 %>

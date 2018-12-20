@@ -46,8 +46,8 @@
             <td id="pmiNumber"><%=ins%></td>
     <input id="medval" type="hidden" value="<%=StringUtils.join(dataMedList.get(i), "|")%>">
     <td><%=dataMedList.get(i).get(2)%></td>
-    <td><button id="MEDedit" name="MEDedit" class="btn btn-default" data-toggle="modal" data-target="#MEDModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
-    <td><button id="MEDdel" name="MEDdel" class="btn btn-default"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
+    <td><button id="MEDedit" name="MEDedit" class="btn btn-link" data-toggle="modal" data-target="#MEDModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
+    <td><button id="MEDdel" name="MEDdel" class="btn btn-link"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
 </tr>
 <%  }
 %>

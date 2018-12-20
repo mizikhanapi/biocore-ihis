@@ -26,7 +26,7 @@
             </a>
         </li>
         <li>
-            <a data-toggle="modal" data-target="#referralModal" id="btnReferralModal">
+            <a data-toggle="modal" data-target="#appointmentModal" id="btnReferralModal">
                 <i class="fa fa-envelope fa-lg"></i> Referral List
             </a>
         </li>
@@ -48,4 +48,22 @@
         </ul> -->
         <!-- Menu with dropdown -->
     </ul>
-</div>  
+</div> 
+    <script>
+        
+        
+        $("#appointment").on('click',function(){
+            $("#modalSaya #modalBodyReferral").hide();
+            $("#modalSaya #modalBodyAppointment").show();
+            $("#lineModalLabelApp").text("Appointment List");
+            $("#methodType").val("appointment");
+        });
+        
+        $("#btnReferralModal").on('click',function(){
+            $("#modalSaya #modalBodyReferral").show();
+            $("#modalSaya #modalBodyAppointment").hide();
+            $("#lineModalLabelApp").text("Referral List");
+            $("#methodType").val("referral");
+        });
+        
+    </script>

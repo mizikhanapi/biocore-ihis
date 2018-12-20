@@ -96,7 +96,7 @@
                     <center>
                         <div class="form-group">
                             <div style="width: 50%; margin: 0 auto">
-                                <div id="dym2">
+                                <div id="dym2" class="profile-userpic">
                                 </div>
                             </div>
                         </div>
@@ -734,12 +734,12 @@
                 });
 
 
-                if (p_idty != null) {
+                if (p_idty !== null) {
                     $('#PMIprimary_idty').val(p_idty);
                 }
 
                 $('#PMIprimary_idty').change();
-                if (s_idty != null) {
+                if (s_idty !== null) {
                     $("#PMIidty").val(s_idty);
                 }
 

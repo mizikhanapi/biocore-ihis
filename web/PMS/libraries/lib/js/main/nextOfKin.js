@@ -71,35 +71,35 @@
         console.log("kin country before: "+ $('#KINcountryCODE').val());
         
         if (KINrelationship === null) {
-            bootbox.alert("Select the relationship!", function(){
+            bootbox.alert("Please select the relationship", function(){
                 $('#KINrelationship').focus();
             });
             return;
         }
         
         if (KINidtype === null) {
-            bootbox.alert("Select the ID type!", function(){
+            bootbox.alert("Please select the ID type", function(){
                 $('#KINidtype').focus();
             });
             return;
         }
         
         if (KINnewic === "") {
-            bootbox.alert("Key in the IC / ID number!", function(){
+            bootbox.alert("Please key in the IC / ID number", function(){
                 $('#KINnewic').focus();
             });
             return;
         }
         
-        if (KINoccuCD === "" || KINoccuCD == null) {
-            bootbox.alert("Search existing occupation!", function(){
+        if (KINoccuCD === "" || KINoccuCD === null) {
+            bootbox.alert("Please search an existing occupation", function(){
                 $('#KINoccu').focus();
             });
             return;
         }
         
         if (KINphone === "") {
-            bootbox.alert("Key in the mobile phone number!", function(){
+            bootbox.alert("Please key in the mobile phone number", function(){
                 $('#KINphone').focus();
             });
             return;
@@ -108,7 +108,7 @@
             KINemail = "-";
         }
         if (KINname === "") {
-            bootbox.alert("Key in the NOK Name!", function(){
+            bootbox.alert("Please key in the Next of Kin name", function(){
                 $('#KINname').focus();
             });
             return;
