@@ -15,7 +15,7 @@
 
 
 
-<table  id="WaitingTimeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table  id="WaitingTimeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%" style="overflow-x: auto;">
     <thead>
     <th style="text-align: center;">PMI NO</th>
     <th style="text-align: center;">Patient Name</th>
@@ -27,7 +27,10 @@
     <th style="text-align: center;">Consult Date</th>
     <th style="text-align: center;">Order Date</th>
     <th style="text-align: center;">Dispense Date</th>
-    <th style="text-align: center;">Duration (Minutes)</th>
+    <th style="text-align: center;">Duration Register -> Consult (Minutes)</th>
+    <th style="text-align: center;">Duration Consult -> Pharmacy (Minutes)</th>
+    <th style="text-align: center;">Duration Pharmacy -> Dispense (Minutes)</th>
+    <th style="text-align: center;">Total Duration (Minutes)</th>
 </thead>
 <tbody>
 
@@ -54,10 +57,16 @@
                     + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', "
                     //                  9                                           10                                              11                                    
                     + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE),0) AS 'Duration in minutes',  "
-                                        //                  12                                                                          13                                            
+                    //                  12                                                                          13                                            
                     + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
                     //              14                                                                          15           
-                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s') "
+                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s'), "
+                    //                  16                                                                                                        
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE),0) AS 'Duration PMS to CIS in minutes',  "
+                    //              17                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE),0) AS 'Duration CIS to PIS in minutes', "
+                    //              18                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE),0) AS 'Duration PIS to DIS in minutes' "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -84,10 +93,16 @@
                     + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', "
                     //                  9                                           10                                              11                                    
                     + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE),0) AS 'Duration in minutes', "
-                                     //                  12                                                                          13                                            
+                    //                  12                                                                          13                                            
                     + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
                     //              14                                                                          15           
-                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s') "
+                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s'), "
+                    //                  16                                                                                                        
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE),0) AS 'Duration PMS to CIS in minutes',  "
+                    //              17                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE),0) AS 'Duration CIS to PIS in minutes', "
+                    //              18                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE),0) AS 'Duration PIS to DIS in minutes' "
                     // FROM PMS SQL
                     + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
@@ -127,6 +142,9 @@
         <td><%= dataReport.get(s).get(13)%></td>                                            <!-- Consult Date -->
         <td><%= dataReport.get(s).get(14)%></td>                                            <!-- Order Date -->
         <td><%= dataReport.get(s).get(15)%></td>                                            <!-- Dispense Date -->
+        <td><%= dataReport.get(s).get(16)%></td>                                           <!-- Duration PMS to CIS -->
+        <td><%= dataReport.get(s).get(17)%></td>                                           <!-- Duration CIS to PIS -->
+        <td><%= dataReport.get(s).get(18)%></td>                                           <!-- Duration PIS to BACK -->
         <td><%= dataReport.get(s).get(11)%></td>                                           <!-- Duration -->
 
     </tr>
@@ -196,7 +214,7 @@
             pageLength: 15,
             dom: 'Bfrtip',
             columnDefs: [
-                {targets: [0, 1, 3, 5, 6, 9, 10], visible: true},
+                {targets: [0, 1, 3, 5, 6, 9, 13], visible: true},
                 {targets: '_all', visible: false}
             ],
             buttons: [
