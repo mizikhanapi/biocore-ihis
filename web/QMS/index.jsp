@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h3 style="margin: 0px;">Queue Maintenance</h3>
+                                <h3 style="margin: 0px;">Manage Queue</h3>
                                 <hr class="pemisah" />
 
                                 <!-- Tab Menu -->
@@ -73,15 +73,15 @@
                                                                                         </li>-->
                                             <li >
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    Maintain Queue Name </a>
+                                                    Queue Name </a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_3" data-toggle="tab">
-                                                    Maintain Queue List </a>
+                                                    Queue List </a>
                                             </li>
                                             <li class="active">
                                                 <a href="#tab_default_4" data-toggle="tab">
-                                                    Assign To Queue </a>
+                                                    Reassign Patient Queue </a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->

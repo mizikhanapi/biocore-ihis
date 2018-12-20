@@ -15,19 +15,19 @@
     }
 %>
 
-<h4 class="text-left">Pharmacy Dispense Process Setting :</h4>
+<h4 class="text-left">Pharmacy Dispense Process :</h4>
 <form class="form-horizontal" autocomplete="off" style="width: 50%; margin: 0 auto" id="PMS_form">
 
     <!-- Text input-->
     <div class="form-group">
         <p>
             <input type="radio" name="PIS_type" value="2" <%=NeedScreening%>>
-            <label>Screening Process Enabled</label>
+            <label>Screening Enabled</label>
         </p>
 
         <p>
             <input type="radio" name="PIS_type" value="1" <%=NoNeedScreening%>>
-            <label>Screening Process Disabled</label>
+            <label>Screening Disabled</label>
         </p>
 
     </div>

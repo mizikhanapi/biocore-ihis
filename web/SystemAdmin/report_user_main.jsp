@@ -11,7 +11,7 @@
 
     <!-- Select Basic -->
     <div class="form-group"> 
-        <label class="col-md-4 control-label" for="textinput">Show list of:</label>
+        <label class="col-md-4 control-label" for="textinput">Choose report type:</label>
         <div class="col-md-4">
             <select id="USR_searchType" class="form-control" >
                 <option selected value="1">Created user within selected time frame</option>

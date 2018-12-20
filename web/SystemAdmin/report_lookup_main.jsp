@@ -4,7 +4,6 @@
     Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 
-<h4>Lookup List Report</h4>
 <!-- tab content -->
 <div class=" form-horizontal" align="center">
 

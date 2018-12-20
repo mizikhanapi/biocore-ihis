@@ -70,17 +70,17 @@
         <div class="form-group">
             <p>
                 <input type="checkbox" id="CCN" <%= CCN%>>
-                <label  for="CCN">Required to complete the Chief Complain before discharge</label>
+                <label  for="CCN">Required to complete the Chief Complain before discharging the patient </label>
             </p>
 
             <p>
                 <input type="checkbox" id="DGS" <%= DGS%>>
-                <label  for="DGS">Required to complete the Diagnosis before discharge</label>
+                <label  for="DGS">Required to complete the Diagnosis before discharging the patient </label>
             </p>
 
             <p>
                 <input type="checkbox" id="DCG" <%= DCG%>>
-                <label  for="DCG">Required to complete the Discharge Summary before discharge</label>
+                <label  for="DCG">Required to complete the Discharge Summary before discharging the patient </label>
             </p>
         </div>
 
@@ -115,7 +115,7 @@
             
             <p>
                 <input type="radio" name="DRG_ord" value="0" <%=drg_0%>>
-                <label>Allow drug order if quantity is more than 0</label>
+                <label>Allow drug order if quantity is more than zero</label>
             </p>
 
         </div>
@@ -134,19 +134,19 @@
           
 <hr/>
 <div class="row">
-    <h4 class="text-left">Fast Track Consultation Setting :</h4>
+    <h4 class="text-left">Fast Track Consultation :</h4>
     <form class="form-horizontal" autocomplete="off" style="width: 50%; margin: 0 auto" id="PMS_form">
 
         <!-- Text input-->
         <div class="form-group">
             <p>
                 <input type="radio" name="CIS_Fast_type" value="2" <%=NeedFast%>>
-                <label>Fast Track Consultation Process Enabled</label>
+                <label>Enabled</label>
             </p>
 
             <p>
                 <input type="radio" name="CIS_Fast_type" value="1" <%=NoNeedFast%>>
-                <label>Fast Track Consultation Process Disabled</label>
+                <label>Disabled</label>
             </p>
 
         </div>

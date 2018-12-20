@@ -16,7 +16,7 @@
             <ul id="menu-content" class="nav nav-sidebar">
                 <!-- // menu tanpa dropdown -->
 				
-				<li><a href="index.jsp"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
+				<li><a href="index.jsp"><i class="fa fa-files-o fa-lg"></i>Manage Queue</a></li>
 				<li><a href="report.jsp"><i class="fa fa-bar-chart fa-lg"></i>Report</a></li>
                                 
 				<!-- // menu tanpa dropdown -->

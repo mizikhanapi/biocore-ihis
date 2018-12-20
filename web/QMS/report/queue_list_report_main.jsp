@@ -11,7 +11,6 @@
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
 %>
 
-<h4>List of Queue</h4>
 <!-- tab content -->
 <div class=" form-horizontal" align="center">
 

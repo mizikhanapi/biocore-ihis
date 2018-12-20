@@ -20,7 +20,7 @@
     String reportTitle="Test";
     
     if(searchType.equalsIgnoreCase("all")){
-       reportTitle="List of Queue";
+       reportTitle="List of All Queue";
     
     }
     else if(searchType.equalsIgnoreCase("type")){
@@ -118,7 +118,7 @@
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    text: 'Export To Excel',
+                    text: 'Export to Excel',
                     title: 'Queue: <%=reportTitle%>',
                     className: 'btn btn-primary',
                     exportOptions: {
@@ -126,7 +126,7 @@
                     }
                 }, {
                     extend: 'csvHtml5',
-                    text: 'Export To Excel CSV',
+                    text: 'Export to Excel CSV',
                     title: 'Queue: <%=reportTitle%>',
                     className: 'btn btn-primary',
                     exportOptions: {

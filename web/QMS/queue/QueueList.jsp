@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h4 class="" id="lineModalLabel" style="font-weight: bold;">Queue List</h4>
+        <h4 class="" id="lineModalLabel" style="font-weight: bold;"></h4>
 
         <div class="" id="modalBodyQueue" style="overflow-x: auto;" >
             <!-- content goes here -->
