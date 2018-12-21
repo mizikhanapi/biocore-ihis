@@ -25,9 +25,11 @@
     <th style="text-align: center;">Nurse Name</th>
     <th style="text-align: center;">Register Date</th>
     <th style="text-align: center;">Consult Date</th>
+    <th style="text-align: center;">Order Date</th>
     <th style="text-align: center;">Dispense Date</th>
-    <th style="text-align: center;">Register -> Consult (Minutes)</th>
-    <th style="text-align: center;">Consult -> Dispense (Minutes)</th>
+    <th style="text-align: center;">PMS -> CIS (Minutes)</th>
+    <th style="text-align: center;">CIS -> PIS (Minutes)</th>
+    <th style="text-align: center;">PIS -> Dispense (Minutes)</th>
     <th style="text-align: center;">Total (Minutes)</th>
 </thead>
 <tbody>
@@ -49,16 +51,24 @@
 
         if (filter.equals("month")) {
 
-            //                 0               1            2                3                   4                5
-            sql = " SELECT ehr.C_TXNDATE, pis.ORDER_NO, pis.TXN_DATE, pis.EPISODE_DATE, disp.DISPENSED_DATE, ehr.C_TxnData, "
-                    //      6               7                   8                                       9
-                    + " que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name', "
-                    //                  10                                      11
-                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name' "
-                    // FROM EHR SQL
-                    + " FROM ehr_central ehr "
-                    // JOIN PMS QUEUE SQL
-                    + " JOIN pms_patient_queue que ON (ehr.C_TXNDATE = que.EPISODE_DATE) "
+            //                                          0                         1            2                     3                               4
+            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name', "
+                    //                  5                                       6                                       7                           8                         
+                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', "
+                    //                  9                                           10                                              11                                    
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE),0) AS 'Duration in minutes',  "
+                    //                  12                                                                          13                                            
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
+                    //              14                                                                          15           
+                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s'), "
+                    //                  16                                                                                                        
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE),0) AS 'Duration PMS to CIS in minutes',  "
+                    //              17                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE),0) AS 'Duration CIS to PIS in minutes', "
+                    //              18                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE),0) AS 'Duration PIS to DIS in minutes' "
+                    // FROM PMS SQL
+                    + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
                     + " JOIN pms_patient_biodata bio ON (que.pmi_no = bio.PMI_NO) "
                     // JOIN PIS ORDER MASTER SQL
@@ -71,22 +81,30 @@
                     + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE) "
                     // WHERE SQL
                     + " WHERE que.hfc_cd='" + hfc + "' AND YEAR(que.episode_date)='" + year + "' AND MONTH(que.episode_date)='" + month + "' "
-                    + " AND disp.DISPENSED_DATE != '0000-00-00 00:00:00' AND ehr.STATUS = '3' "
+                    + " AND disp.DISPENSED_DATE != '0000-00-00 00:00:00' "
                     + " GROUP BY que.episode_date "
                     + " ORDER BY que.episode_date; ";
 
         } else {
 
-            //                 0               1            2                3                   4                5
-            sql = " SELECT ehr.C_TXNDATE, pis.ORDER_NO, pis.TXN_DATE, pis.EPISODE_DATE, disp.DISPENSED_DATE, ehr.C_TxnData, "
-                    //      6               7                   8                                       9
-                    + " que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name', "
-                    //                  10                                      11
-                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name' "
-                    // FROM EHR SQL
-                    + " FROM ehr_central ehr "
-                    // JOIN PMS QUEUE SQL
-                    + " JOIN pms_patient_queue que ON (ehr.C_TXNDATE = que.EPISODE_DATE) "
+            //                                          0                                1            2                           3                               4
+            sql = " SELECT DATE_FORMAT(que.episode_date, '%M %Y') AS BULAN, que.pmi_no, bio.PATIENT_NAME, que.user_id AS 'Doctor ID', IFNULL(doc.USER_NAME,'-') AS 'Doctor Name', "
+                    //                  5                                       6                                       7                           8                         
+                    + " disp.DISPENSED_BY AS 'Nurse ID', IFNULL(phar.USER_NAME,'-') AS 'Nurse Name', que.episode_date AS 'Register Date', pis.ENCOUNTER_DATE AS 'Consult Date', "
+                    //                  9                                           10                                              11                                    
+                    + " pis.ORDER_DATE AS 'Pharmacy Get Order', disp.DISPENSED_DATE AS 'Pharmacy Dispense Order', IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, disp.DISPENSED_DATE),0) AS 'Duration in minutes', "
+                    //                  12                                                                          13                                            
+                    + " DATE_FORMAT(que.episode_date,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(pis.ENCOUNTER_DATE,'%d/%m/%Y %H:%i:%s'),  "
+                    //              14                                                                          15           
+                    + " DATE_FORMAT(pis.ORDER_DATE,'%d/%m/%Y %H:%i:%s'), DATE_FORMAT(disp.DISPENSED_DATE,'%d/%m/%Y %H:%i:%s'), "
+                    //                  16                                                                                                        
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, que.episode_date, pis.ENCOUNTER_DATE),0) AS 'Duration PMS to CIS in minutes',  "
+                    //              17                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ENCOUNTER_DATE, pis.ORDER_DATE),0) AS 'Duration CIS to PIS in minutes', "
+                    //              18                                                                                     
+                    + " IFNULL(TIMESTAMPDIFF(MINUTE, pis.ORDER_DATE, disp.DISPENSED_DATE),0) AS 'Duration PIS to DIS in minutes' "
+                    // FROM PMS SQL
+                    + " FROM pms_patient_queue que "
                     // JOIN PMS BIODATA SQL
                     + " JOIN pms_patient_biodata bio ON (que.pmi_no = bio.PMI_NO) "
                     // JOIN PIS ORDER MASTER SQL
@@ -99,7 +117,7 @@
                     + " LEFT JOIN adm_users doc ON (que.user_id = doc.USER_ID AND que.hfc_cd = doc.HEALTH_FACILITY_CODE)  "
                     // WHERE SQL
                     + " WHERE que.hfc_cd='" + hfc + "' AND que.episode_date BETWEEN '" + startDate + "' AND '" + endDate + "' "
-                    + " AND disp.DISPENSED_DATE != '0000-00-00 00:00:00' AND ehr.STATUS = '3' "
+                    + " AND disp.DISPENSED_DATE != '0000-00-00 00:00:00' "
                     + " GROUP BY que.episode_date "
                     + " ORDER BY que.episode_date; ";
 
@@ -110,48 +128,28 @@
         int sizeMain = dataReport.size();
         for (int s = 0; s < sizeMain; s++) {
 
-            String memo = dataReport.get(s).get(5);
-
-            String messages[] = memo.split("\\<cr>");
-            String withoutNode[] = messages[0].split("\\|", -1);
-
-            Timestamp timestampMesageDate = Timestamp.valueOf(withoutNode[6]);
-            Timestamp timestampRegisterDate = Timestamp.valueOf(dataReport.get(s).get(0));
-            Timestamp timestampDispenseDate = Timestamp.valueOf(dataReport.get(s).get(4));
-
-            long milisecForPMSCIS = timestampMesageDate.getTime() - timestampRegisterDate.getTime();
-            int secondsPMSCIS = (int) milisecForPMSCIS / 1000;
-            int minutesPMSCIS = (secondsPMSCIS % 3600) / 60;
-
-            long milisecForCISPIS = timestampDispenseDate.getTime() - timestampMesageDate.getTime();
-            int secondsCISPIS = (int) milisecForCISPIS / 1000;
-            int minutesCISPIS = (secondsCISPIS % 3600) / 60;
-
-            int minutesPMSPIS = minutesPMSCIS + minutesCISPIS;
-
-            if (minutesPMSCIS >= 0 || secondsPMSCIS >= 0) {
-
     %>
 
     <tr style="text-align: center;">
 
-        <td><%= dataReport.get(s).get(6)%></td>                                             <!-- PMI NO -->
-        <td><%= dataReport.get(s).get(7)%></td>                                             <!-- Patient Name -->
-        <td><%= dataReport.get(s).get(8)%></td>                                             <!-- DR ID -->
-        <td><%= dataReport.get(s).get(9)%></td>                                             <!-- DR Nmae -->
-        <td><%= dataReport.get(s).get(10)%></td>                                            <!-- Nurse ID -->
-        <td><%= dataReport.get(s).get(11)%></td>                                            <!-- Nurse Name -->
-        <td><%= timestampRegisterDate%></td>                                                <!-- Register Date -->
-        <td><%= timestampMesageDate%></td>                                                  <!-- Consult Date -->
-        <td><%= timestampDispenseDate%></td>                                                <!-- Dispense Date -->
-        <td><%= minutesPMSCIS%></td>                                                        <!-- Duration PMS to CIS -->
-        <td><%= minutesCISPIS%></td>                                                        <!-- Duration CIS to PIS -->
-        <td><%= minutesPMSPIS%></td>                                                        <!-- Duration -->
+        <td><%= dataReport.get(s).get(1)%></td>                                            <!-- PMI NO -->
+        <td><%= dataReport.get(s).get(2)%></td>                                            <!-- Patient Name -->
+        <td><%= dataReport.get(s).get(3)%></td>                                            <!-- DR ID -->
+        <td><%= dataReport.get(s).get(4)%></td>                                            <!-- DR Nmae -->
+        <td><%= dataReport.get(s).get(5)%></td>                                            <!-- Nurse ID -->
+        <td><%= dataReport.get(s).get(6)%></td>                                           <!-- Nurse Name -->
+        <td><%= dataReport.get(s).get(12)%></td>                                            <!-- Register Date -->
+        <td><%= dataReport.get(s).get(13)%></td>                                            <!-- Consult Date -->
+        <td><%= dataReport.get(s).get(14)%></td>                                            <!-- Order Date -->
+        <td><%= dataReport.get(s).get(15)%></td>                                            <!-- Dispense Date -->
+        <td><%= dataReport.get(s).get(16)%></td>                                           <!-- Duration PMS to CIS -->
+        <td><%= dataReport.get(s).get(17)%></td>                                           <!-- Duration CIS to PIS -->
+        <td><%= dataReport.get(s).get(18)%></td>                                           <!-- Duration PIS to BACK -->
+        <td><%= dataReport.get(s).get(11)%></td>                                           <!-- Duration -->
 
     </tr>
 
     <%
-            }
         }
     %>
 
@@ -216,7 +214,7 @@
             pageLength: 15,
             dom: 'Bfrtip',
             columnDefs: [
-                {targets: [0, 1, 3, 5, 6, 7, 8, 11], visible: true},
+                {targets: [0, 1, 3, 5, 6, 9, 13], visible: true},
                 {targets: '_all', visible: false}
             ],
             buttons: [
