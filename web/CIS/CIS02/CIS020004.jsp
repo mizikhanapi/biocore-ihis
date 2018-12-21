@@ -18,7 +18,6 @@
                     <!-- content goes here -->
                     <form role="form" id="myForm2" method="post">
                         <div class="form-group">
-                            <h4>Respitatory Rate</h4>
                         </div>
 
                         <div class="row">
