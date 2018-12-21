@@ -19,7 +19,6 @@
                     <form role="form" id="myForm2" method="post">
 
                         <div class="form-group">
-                            <h4>Oxygen Saturation</h4>
                         </div>
 
 

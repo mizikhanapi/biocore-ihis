@@ -19,7 +19,7 @@
                 <form role="form" id="BloodPressureForm" >
                     <input type="hidden" id="BPid">
                     <div class="form-group">
-                        <h4 id="BP_setting">Blood Pressure Sitting</h4>
+                        <h4 id="BP_setting">Sitting</h4>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4">
@@ -59,7 +59,7 @@
                     </div>
                     <div id="bloodPressure">
                         <div class="form-group">
-                            <h4>Blood Pressure Standing</h4>
+                            <h4>Standing</h4>
                         </div>
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <h4>Blood Pressure Lying</h4>
+                            <h4>Lying</h4>
                         </div>
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">

@@ -13,21 +13,14 @@
                 <h3 class="modal-title" id="lineModalLabel">Blood Glucose</h3>
             </div>
             <div class="modal-body">
-                <div class="row">
                     <!-- content goes here -->
                     <form role="form" id="myForm2" method="post">
-
-                        <div class="col-xs-2 col-sm-2 col-md-4"><h5>Blood Glucose :</h5></div>
-                        <div class="col-xs-2 col-sm-2 col-md-4">
                             <div class="form-group">
-                                <input type="number" id="CIS020016_glucose" class="form-control num-3-1" placeholder="Insert blood glucose level" tabindex="4">
+                                <!-- <input type="number" id="CIS020016_glucose" class="form-control num-3-1" placeholder="Insert blood glucose level" tabindex="4"> -->
+                                <input type="number" min="0" max="99.9" step="0.1" name="OSat" id="CIS020016_glucose" class="form-control input-lg num-3-1" placeholder="Blood Glucose (mmol/L)" tabindex="4" >
                                 <input type="hidden" id="CIS020016_glucoseID">
                             </div>
-                        </div>
-                        <div class="col-xs-2 col-sm-2 col-md-4"><h5>mmol/L</h5></div>
                     </form>
-                </div>
-
             </div>
         </div>
         <div class="modal-footer">
