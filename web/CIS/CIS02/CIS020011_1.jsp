@@ -62,11 +62,13 @@
             <th>Test Name</th>
             <th>Test Date</th>
             <th>Test Time</th>
-            <th>Result</th>
-            <th>Remarks</th>
+            
+            
             <th>Perform By</th>
-            <th>Verification</th>
+            <th>Status</th>
             <th hidden>Result ID</th>
+            <th>Remarks</th>
+            <th>Result</th>
         </tr>
     </thead>
     <tbody>
@@ -77,11 +79,13 @@
             <td><%out.print(dataRIS.get(i).get(1));%></td>
             <td><%out.print(dataRIS.get(i).get(2));%></td>
             <td><%out.print(dataRIS.get(i).get(3));%></td>
-            <td><%out.print(dataRIS.get(i).get(4));%><br><button id="btnCIS_O_LIO_VIEW_RESULT"><i class="fa fa-eye"></i> Result </button></td>
-            <td><%out.print(dataRIS.get(i).get(5));%></td>
+            
+            
             <td><%out.print(dataRIS.get(i).get(6));%></td>
             <td><%out.print(dataRIS.get(i).get(7));%></td>
             <td hidden id="id_result"><%out.print(dataRIS.get(i).get(0));%></td>
+            <td><%out.print(dataRIS.get(i).get(5));%></td>
+            <td><%out.print(dataRIS.get(i).get(4));%><br><button id="btnCIS_O_LIO_VIEW_RESULT" class="btn btn-default"><i class="fa fa-eye"></i> Result </button></td>
         </tr>
         <%
             }

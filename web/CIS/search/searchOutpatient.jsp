@@ -28,34 +28,34 @@
 
 
     
-        sql = "SELECT symptom_name,severity_desc FROM lhr_signs where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        sql = "SELECT symptom_name,severity_desc FROM lhr_signs where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode = conn.getData(sql);
         //out.println(sql);
-        String sql1 = "select icd10_description from lhr_family_history where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql1 = "select icd10_description from lhr_family_history where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode1 = conn.getData(sql1);
         
-        String sql2 = "select icd10_description from lhr_past_medical_history where pmi_no = '"+pmi_no+"' and onset_data = '"+episodeDate+"'";
+        String sql2 = "select icd10_description from lhr_past_medical_history where pmi_no = '"+pmi_no+"' and onset_data = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode2 = conn.getData(sql2);
         
-        String sql3 = "select icd10_description from lhr_immunisation where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql3 = "select icd10_description from lhr_immunisation where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode3 = conn.getData(sql3);
         
-        String sql4= "select leave_type from lhr_med_leave where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql4= "select leave_type from lhr_med_leave where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode4 = conn.getData(sql4);
         
-        String sql5= "select drug_name from lhr_medication where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql5= "select drug_name from lhr_medication where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode5 = conn.getData(sql5);
         
-        String sql6 = "select icd10_description from lhr_diagnosis where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql6 = "select icd10_description from lhr_diagnosis where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode6 = conn.getData(sql6);
         
-        String sql7 = "select procedure_name from lhr_procedure where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql7 = "select procedure_name from lhr_procedure where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode7 = conn.getData(sql7);
         
-       String sql8  = "select icd10_description  from lhr_allergy where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+       String sql8  = "select icd10_description  from lhr_allergy where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode8 = conn.getData(sql8);
         
-        String sql9 = "select temperature_reading from lhr_temperature where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"'";
+        String sql9 = "select temperature_reading from lhr_temperature where pmi_no = '"+pmi_no+"' and episode_date = '"+episodeDate+"' order by episode_date desc";
         ArrayList<ArrayList<String>> searchEpisode9 = conn.getData(sql9);
         
           if(searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0 

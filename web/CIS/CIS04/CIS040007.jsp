@@ -26,7 +26,7 @@
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcOrderDetailADW" >
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcProviderDetailADW">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" value="<%=adw_hfc_cd%>">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." required=""  disabled value="<%=adw_hfc_name%>">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search health facility" required=""  disabled value="<%=adw_hfc_name%>">
                                 <div id="tCIS_ADWHFCreferFromLoading" ></div>
                                 <br>
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
@@ -41,7 +41,7 @@
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" value="<%=adw_dis_cd%>">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search..." disabled value="<%=adw_dis_name%>">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search Discipline" disabled value="<%=adw_dis_name%>">
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
                                 <div id="tCIS_ADWreferFromLoading" ></div>
                             </div>
@@ -61,7 +61,7 @@
                               <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                               <div class="col-md-12">
                                   <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
-                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search..." required="">
+                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search health facility" required="">
                                   <div id="tCIS_ADWsearchHFCLoading" ></div>
                                   <br>
                                   <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
@@ -76,7 +76,7 @@
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search..." required="">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search Discipline" required="">
                                 <div id="tCIS_ADWsearchDisLoading" ></div>
                                 <div id="matchCIS_ADWsearchDis" class="search-drop"></div>
                             </div>
@@ -104,7 +104,7 @@
                             <label class="col-md-6 control-label" for="textinput">Patient have to be admitted before :</label>
                             <div class="col-md-12 form-inline">
                                 <div class="form-group ">
-                                    <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="tCIS_ADWdate"  placeholder="DD-MM-YY">  
+                                    <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="tCIS_ADWdate"  placeholder="DD/MM/YYYY">  
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control input-lg num1MEC" type="text" name="num1" id="tCIS_ADWtime" placeholder="Time Start">  
@@ -146,7 +146,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea type="text" name="display_name" id="tCIS_ADWreason" class="form-control input-lg" placeholder="Type your reason..." tabindex="3"></textarea>
+                                <textarea type="text" name="display_name" id="tCIS_ADWreason" class="form-control input-lg" placeholder="Type your reason here" tabindex="3"></textarea>
                             </div>
                         </div>
                     </div>

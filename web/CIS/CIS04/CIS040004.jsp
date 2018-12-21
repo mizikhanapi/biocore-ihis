@@ -22,8 +22,8 @@
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
                         <div class="col-md-12">
-                            <input class="form-control input-lg" type="hidden" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
-                            <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch" placeholder="Search Doctor" tabindex="4">
+                            <input class="form-control input-lg" type="hidden" name="problem"  id="searchFLU" placeholder="Search Doctor Name" tabindex="4">
+                            <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch" placeholder="Search Doctor Name" tabindex="4">
                             <div id="matchFLU"></div>
                             <div id="tCISPlanFLUDOCSearchLoading"></div>
                             <input id="docFLUCode" type="hidden">
@@ -47,7 +47,7 @@
                                         </div>-->        
                 <div class="form-group">
                     <div class="col-md-12">
-                        <textarea  name="display_name" id="commentFLU" class="form-control input-lg" placeholder="comment.." tabindex="3"></textarea>
+                        <textarea  name="display_name" id="commentFLU" class="form-control input-lg" placeholder="Type your comment here" tabindex="3"></textarea>
                     </div>
                 </div>
             </div>     
@@ -86,9 +86,9 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="usearchFLU" placeholder="Search Doctor" tabindex="4">
+                        <input class="form-control input-lg" type="hidden" name="problem"  id="usearchFLU" placeholder="Search Doctor Name" tabindex="4">
                         <div id="umatchFLU"></div>
-                        <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch_Update" placeholder="Search Doctor" tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch_Update" placeholder="Search Doctor Name" tabindex="4">
                         <div id="tCISPlanFLUDOCSearchLoading_Update"></div>
                         <input id="UdocFLUCode" type="hidden">
                     </div>   
@@ -107,7 +107,7 @@
                                             </select>
                                         </div>-->        
                 <div class="form-group">
-                    <textarea  name="display_name" id="ucommentFLU" class="form-control input-lg" placeholder="comment.." tabindex="3"></textarea>
+                    <textarea  name="display_name" id="ucommentFLU" class="form-control input-lg" placeholder="Type your comment here" tabindex="3"></textarea>
                 </div>
             </div>     
             <div class="modal-footer">

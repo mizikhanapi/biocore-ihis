@@ -35,7 +35,7 @@
 %>
 <div class="row">
     <div class="col-md-12">
-        <h4 style="padding: 0px;"><strong>ACTIVE DRUG LIST</strong></h4><br/>
+        <h4><strong>ACTIVE DRUG LIST</strong></h4><br/>
         <div id="table_active_drug">
 
         </div>
@@ -45,7 +45,7 @@
                 </br>
 <div class="row">
     <div class="col-md-12">
-        <h4 style="padding: 0px;">PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
+        <h4>PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
         <div id="inpatientdrug" >
             <table id="inPatientDrug" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>  
@@ -84,7 +84,7 @@
 <div class="row">
     <hr/>
     <div class="col-md-12">
-        <h4 style="padding: 0px;">PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
+        <h4>PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
         <div id="outpatientdrug">
             <table id="outPatientDrug"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>  
@@ -122,9 +122,15 @@
             </table>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#inPatientDrug').DataTable();
-                    $('#outPatientDrug').DataTable();
-                    $('#tableActiveDrugList').DataTable();
+                    $('#inPatientDrug').DataTable({ 
+                        "order": [[ 0, "desc" ]] 
+                    });
+                    $('#outPatientDrug').DataTable({ 
+                        "order": [[ 0, "desc" ]] 
+                    });
+                    $('#tableActiveDrugList').DataTable({ 
+                        "order": [[ 2, "desc" ]] 
+                    });
                 });
             </script>
         </div>
@@ -154,7 +160,7 @@
             timeout: 10000,
             success: function (getData) {
                 if (getData.trim() === "1") {
-                    alert("No Medication!");
+                    bootbox.alert("There is no medication for this episode.");
                     $('#inpatientProblemDrug').html("");
                 } else {
                     $('#inpatientProblemDrug').html(getData);
@@ -172,20 +178,30 @@
             pmi_no:pmi_no,
             drug_code:drug_code,
             drug_onset:drug_onset
-        }
-      
-        bootbox.confirm("This is the default confirm!", function(result)
-        { 
-            console.log('This was logged in the callback: ' + result); 
-            if(result === true){
-                deleteActiveDrug(data);
-             
-            }else{
-               return false;
+        };
+        
+        bootbox.confirm({
+            message: "Are you sure want to delete this record?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                console.log('This was logged in the callback: ' + result);
+                if(result === true){
+                    deleteActiveDrug(data);
+                }
             }
         });
+        
 
-    })
+    });
     
     function deleteActiveDrug(data){
         $.ajax({
@@ -224,7 +240,7 @@
             success: function (getData) {
                 //console.log(getData);
                 if (getData.trim() === "1") {
-                    alert("No Medication!");
+                    bootbox.alert("There is no medication for this episode.");
                     $('#outpatientProblemDrug').html("");
                 } else {
                     $('#outpatientProblemDrug').html(getData);
@@ -259,7 +275,7 @@
            success: function(databack){
                console.log(databack);
                if($.trim(databack)==="already"){
-                   alert("This drug already Active");
+                   bootbox.alert("This drug already Active");
                    
                }else if($.trim(databack)==="success"){
                    alert("Success activating the drug");

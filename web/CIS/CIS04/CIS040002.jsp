@@ -39,7 +39,7 @@
                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="hidden"  id="problemCodeDTO" placeholder="">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTOProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTOProblemName" placeholder="Type to search Problem Name (Optional)" tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOEDTOProblemNameLoading" ></div>
                                             </div>
                                         </div>
@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="textinput">Search Drug</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTODrugName" placeholder="Search Drug Name..." tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTODrugName" placeholder="Type to search Drug name" tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOEDTODrugNameLoading" ></div>
                                                 <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
                                                 <!--                                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4" data-search-by-word="true">-->

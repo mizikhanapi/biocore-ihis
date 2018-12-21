@@ -50,7 +50,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label" for="textinput">Health Facility</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control input-lg" type="text"  id="tCISOEROSHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
+                                                    <input class="form-control input-lg" type="text"  id="tCISOEROSHFC" placeholder="Type to search Heatlh Facility" data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
                                                     <div id="tCISOEROSHFCSearchLoading" ></div>
                                                     <input class="form-control input-lg" type="hidden"  id="hfcROS" placeholder="">
                                                     <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
@@ -78,7 +78,7 @@
                                                 <input type="hidden" name="POS" id="problemCode" class="form-control input-lg"  tabindex="4">
                                                 <label class="col-md-12" for="textinput">Search Problem Name</label>
                                                 <div class="col-md-12">
-                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4" data-search-by-word="true">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="Type to search Problem Name (Optional)" tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProblemNameLoading" ></div>
                                                     <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
                                                                                                         <div id="matchROS" class="search-drop"></div>-->
@@ -89,7 +89,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-12" for="textinput">Search Radiology Procedure</label>
                                                 <div class="col-md-12">
-                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch" placeholder="Search Radiology Procedure..." tabindex="4" data-search-by-word="true">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch" placeholder="Type to search Radiology Procedure" tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProcedureSearchLoading" ></div>
                                                     <!--                                                    
                                                     <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
@@ -137,7 +137,7 @@
                                                 <label class="col-md-4 control-label" for="textinput">Patient Condition</label>
                                                 <div class="col-md-6">
                                                     <select id="patientConditionROSCd" class="form-control input-lg">
-                                                        <option disabled="" >Please select Priority...</option>
+                                                        <option disabled="" >Please select Priority</option>
                                                         <%                                                            if (dataPatientCondition.size() > 0) {
                                                                 for (int i = 0; i < dataPatientCondition.size(); i++) {
                                                         %>
@@ -177,9 +177,9 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="col-md-12" for="textinput">Comments</label>
+                                                <label class="col-md-12" for="textinput"></label>
                                                 <div class="col-md-12">
-                                                    <textarea type="text" name="display_name" id="commentROS" class="form-control input-lg" placeholder="comments.." tabindex="3"></textarea>
+                                                    <textarea type="text" name="display_name" id="commentROS" class="form-control input-lg" placeholder="Type your comment here" tabindex="3"></textarea>
                                                 </div>
                                             </div>
                                         </div>

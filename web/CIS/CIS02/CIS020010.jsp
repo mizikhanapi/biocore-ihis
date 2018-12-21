@@ -11,7 +11,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
-                    <h3 class="modal-title" id="lineModalLabel">Radiology Result</h3>
+                    <h3 class="modal-title" id="lineModalLabel">Radiology Report</h3>
                 </div>
                 <div class="modal-body">
 

@@ -10,7 +10,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
-                        <h3 class="modal-title" id="lineModalLabel">Progress Notes Form</h3>
+                        <h3 class="modal-title" id="lineModalLabel">Progress Notes</h3>
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
@@ -18,7 +18,7 @@
                             <input type="hidden" name="PNT" id="codePNT" class="form-control input-lg" value="PNT" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <textarea  name="display_name" id="PNT" class="form-control input-lg" placeholder="Notes..." tabindex="3"></textarea>
+                            <textarea  name="display_name" id="PNT" class="form-control input-lg" placeholder="Type your progress notes here" tabindex="3"></textarea>
                         </div>
                     </div>     
                     <div class="modal-footer">
@@ -45,13 +45,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
-                        <h3 class="modal-title" id="lineModalLabel">Update Progress Notes Form</h3>
+                        <h3 class="modal-title" id="lineModalLabel">Progress Notes</h3>
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <textarea  name="display_name" id="update_PNT" class="form-control input-lg" placeholder="Notes..." tabindex="3"></textarea>
-                            <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Comments" tabindex="4">  
+                            <textarea  name="display_name" id="update_PNT" class="form-control input-lg" placeholder="Type your progress notes here" tabindex="3"></textarea>
+                            <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Type your progress notes here" tabindex="4">  
                         </div>
                     </div>     
                     <div class="modal-footer">

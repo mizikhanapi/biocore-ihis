@@ -21,7 +21,7 @@
                 <div class="form-group">
                      <label class="col-md-6 control-label" for="textinput">Health Facility :</label>
                     <div class="form-group">
-                        <input class="form-control input-lg" type="text" name="problem"  id="hfc" placeholder="Search Health Facility..." tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="hfc" placeholder="Type to search Health Facility" tabindex="4">
                         <div id="matchHFC"></div>
                     </div>   
                 </div>
@@ -47,7 +47,7 @@
 
                  <div class="form-group">
                     <div class="form-group">
-                        <input class="form-control input-lg" type="text" name="problem"  id="Searchdoctor" placeholder="Search Doctor & Specialist & Consultant..." tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="Searchdoctor" placeholder="Type to search Doctor / Specialist / Consultant" tabindex="4">
                         <input class="form-control input-lg" type="hidden" name="problem"  id="user_id" tabindex="4">
 
                         <div id="match101"></div>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea type="text" name="display_name" id="comment10" class="form-control input-lg" placeholder="comment.." tabindex="3"></textarea>
+                    <textarea type="text" name="display_name" id="comment10" class="form-control input-lg" placeholder="Type your comment here" tabindex="3"></textarea>
                 </div>
             </div>     
             <div class="modal-footer">

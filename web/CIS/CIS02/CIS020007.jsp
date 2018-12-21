@@ -21,24 +21,18 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
+                                    <h4>Scale</h4>
                                     
-                                    <h4>Result</h4>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                   <h4>Pain Scale</h4>
+                                   <h4>Scale Result</h4>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="resultPanScale" id="resultPanScale" class="form-control input-lg" placeholder="Result" tabindex="4" readonly>
-                                    <input type="hidden" name="resultPanScale" id="PSid" class="form-control input-lg" tabindex="4">
-                                </div>
-                            </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <select name="painScale" id="painScale" class="form-control input-lg">
@@ -54,6 +48,13 @@
                                         <option value="9">9</option>
                                         <option value="10">10</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                
+                                <div class="form-group">
+                                    <input type="text" name="resultPanScale" id="resultPanScale" class="form-control input-lg" placeholder="Result" tabindex="4" readonly>
+                                    <input type="hidden" name="resultPanScale" id="PSid" class="form-control input-lg" tabindex="4">
                                 </div>
                             </div>
                             <div class="row">

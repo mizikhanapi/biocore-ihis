@@ -32,13 +32,13 @@
 %>
 <div class="row">
     <div class="col-md-12">
-        <h4 style="padding: 0px;">PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
+        <h4 >PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
         <div id="inpatient" >
             <table id="inPatient" class="table table-stripout.print(pmiNo);ed table-bordered" cellspacing="0" width="100%">
                 <thead>  
                     <tr>
                         <th class="col-sm-1">Episode Date</th>
-                        <th class="col-sm-1">Health Care Facility</th>
+                        <th class="col-sm-1">Healthcare Facility</th>
                         <th class="col-sm-1">Discipline Name</th>
                         <th class="col-sm-1">Action</th>				 
                     </tr>
@@ -71,13 +71,13 @@
 <div class="row">
     <hr/>
     <div class="col-md-12">
-        <h4 style="padding: 0px;">PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
+        <h4>PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
         <div id="outpatient">
             <table id="outPatient"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>  
                     <tr>
                         <th class="col-sm-1">Episode Date</th>
-                        <th class="col-sm-1">Health Care Facility</th>
+                        <th class="col-sm-1">Healthcare Facility</th>
                         <th class="col-sm-1">Discipline Name</th>
                         <th class="col-sm-1">Action</th>				 
                     </tr>
@@ -109,8 +109,13 @@
             </table>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#inPatient').DataTable();
-                    $('#outPatient').DataTable();
+                    $('#inPatient').DataTable({ 
+                        "order": [[ 0, "desc" ]] 
+                    });
+                    
+                    $('#outPatient').DataTable({ 
+                        "order": [[ 0, "desc" ]] 
+                    });
                 });
             </script>
         </div>
@@ -139,7 +144,7 @@
             timeout: 10000,
             success: function (getData) {
                 if (getData.trim() === "1") {
-                    alert("No Problem!");
+                    bootbox.alert("This episode doesn't have consultation notes history");
                 } else {
                     $('#inpatientProblem').html(getData);
                 }
@@ -162,7 +167,7 @@
             success: function (getData) {
                 if (getData.trim() === "1") {
                     
-                    alert("No Problem!");
+                    bootbox.alert("This episode doesn't have consultation notes history");
                     $('#outpatientProblem').html(getData);
                 } else {
                     $('#outpatientProblem').html(getData);
