@@ -27,7 +27,7 @@ $(document).ready(function(){
               
                 //this ajax will response discipline Code for hfc patient admit to;
                 $("#disREFcode").val(response.trim());
-                searchDOCTOROnly("docREF", "docREFLoading", hfc_cd) 
+                searchDOCTOROnly("docREF", "docREFLoading", hfc_cd); 
             }
         });
     });

@@ -796,6 +796,7 @@ function searchDOCTORValue(fieldId, loadingDivId, hfc_code, value) {
         searchDelay: 2000,
         url: "search/ResultDOCTORSearch.jsp?hfc_code=" + hfc_code,
         cache: false,
+        searchByWord: true,
         valueProperty: 'name',
         visibleProperties: ['name', "role", "discipline", "subdiscipline"],
         params: {

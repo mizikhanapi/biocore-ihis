@@ -16,10 +16,10 @@ $(document).ready(function(e){
     
     $("#CIS040004").on('hide.bs.modal', function () {
         searchInitialize("FLU", "D");
-    })
+    });
     $("#update_CIS040004").on('hide.bs.modal', function () {
         searchInitialize("FLU", "D");
-    })
+    });
     
     
     $("#tCISPlanFLUDOCSearch").on('select:flexdatalist',function(e){
@@ -56,4 +56,4 @@ $(document).ready(function(e){
     
    
     
-})
+});

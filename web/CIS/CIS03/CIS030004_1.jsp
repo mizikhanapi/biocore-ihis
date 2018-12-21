@@ -179,19 +179,29 @@
             drug_code:drug_code,
             drug_onset:drug_onset
         };
-      
-        bootbox.confirm("This is the default confirm!", function(result)
-        { 
-            console.log('This was logged in the callback: ' + result); 
-            if(result === true){
-                deleteActiveDrug(data);
-             
-            }else{
-               return false;
+        
+        bootbox.confirm({
+            message: "Are you sure want to delete this record?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-primary'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-default'
+                }
+            },
+            callback: function (result) {
+                console.log('This was logged in the callback: ' + result);
+                if(result === true){
+                    deleteActiveDrug(data);
+                }
             }
         });
+        
 
-    })
+    });
     
     function deleteActiveDrug(data){
         $.ajax({

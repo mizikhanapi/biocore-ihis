@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2" for="textinput">Health Facility</label>
                                             <div class="col-md-9">
-                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search health facility" data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
                                                 <div id="tCISOELIOHFCSearchLoading" ></div>
                                                 <!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
                                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
@@ -77,7 +77,7 @@
                                             <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Type to search Problem Name (Optional)" tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOELIOProblemNameLoading" ></div>
                                             </div>
                                         </div>
@@ -99,8 +99,8 @@
                                                        name='country_name_capital_continent' data-search-by-word="true">
 
                                                 <div id="tCISOELIOSearchLoading" ></div>
-                                                <input class="form-control input-lg" type="hidden" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4" data-search-by-word="true">
-                                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
+                                                <input class="form-control input-lg" type="hidden" name="problem"  id="searchLOS" placeholder="Type to search Laboratory request" tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="codeLOS" placeholder="Drug Code" tabindex="4" readonly="">
                                                 <div id="matchLOS" ></div>
                                             </div>
                                         </div>
@@ -219,9 +219,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="col-md-6" for="textinput">Comments</label>
+                                            <label class="col-md-6" for="textinput"></label>
                                             <div class="col-md-12">
-                                                <textarea type="text" name="display_name" id="commentLOS" class="form-control input-lg" placeholder="comments.." tabindex="3"></textarea>
+                                                <textarea type="text" name="display_name" id="commentLOS" class="form-control input-lg" placeholder="Type your comment here" tabindex="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
