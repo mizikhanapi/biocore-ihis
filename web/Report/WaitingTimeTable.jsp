@@ -27,10 +27,10 @@
     <th style="text-align: center;">Consult Date</th>
     <th style="text-align: center;">Order Date</th>
     <th style="text-align: center;">Dispense Date</th>
-    <th style="text-align: center;">Duration Register -> Consult (Minutes)</th>
-    <th style="text-align: center;">Duration Consult -> Pharmacy (Minutes)</th>
-    <th style="text-align: center;">Duration Pharmacy -> Dispense (Minutes)</th>
-    <th style="text-align: center;">Total Duration (Minutes)</th>
+    <th style="text-align: center;">PMS -> CIS (Minutes)</th>
+    <th style="text-align: center;">CIS -> PIS (Minutes)</th>
+    <th style="text-align: center;">PIS -> Dispense (Minutes)</th>
+    <th style="text-align: center;">Total (Minutes)</th>
 </thead>
 <tbody>
 
