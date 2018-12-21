@@ -109,13 +109,13 @@
 
                     if (myCIS.hasMenuAccess("CIS_01.2.3")) {
                 %>
-            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020010" href="" id="RISResult"> <i class="fa fa-bolt fa-li soap-select"></i> Radiology Result</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020010" href="" id="RISResult"> <i class="fa fa-bolt fa-li soap-select"></i> Radiology Report</a></li>
                 <%
                     }
 
                     if (myCIS.hasMenuAccess("CIS_01.2.4")) {
                 %>
-            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020011" href=""  id="LISResult"> <i class="fa fa-thermometer-empty fa-li soap-select"></i> Laboratory Result</a></li>
+            <li class="soap-select"><a data-toggle="modal" data-target="#CIS020011" href=""  id="LISResult"> <i class="fa fa-thermometer-empty fa-li soap-select"></i> Lab Test Results</a></li>
                 <%
                     }
 

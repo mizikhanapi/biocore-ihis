@@ -54,7 +54,7 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
 
 %>
 
-<table class="table table-striped table-filter table-bordered" id="risTable" style="width: 100%">
+<table class="table table-striped table-filter table-bordered table-guling" id="risTable" style="width: 100%">
     <%
         if(result.size() >0){%>
         <thead>
@@ -63,8 +63,8 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
                 <th>Modality Name</th>
                 <th>Body System Name</th>
                 <th>Procedure Name</th>
-                <th>Filler Comment</th>
-                <th>Result</th>
+                <th>Finding Notes</th>
+                <th>Action</th>
                 <th hidden>a</th>
                 <th hidden>a</th>
                 <th hidden>a</th>
@@ -90,7 +90,7 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
                 <td hidden id="orderId"><%out.print(result.get(i).get(0));%></td>
                 <td hidden id="providerId"><%out.print(result.get(i).get(6));%></td>
                 <td>
-                    <button id="btnCIS_O_ROS_VIEW_RESULT">Show Image</button>
+                    <button id="btnCIS_O_ROS_VIEW_RESULT" class="btn btn-default">Show X-Ray Image</button>
                 </td>
             </tr>
             <%

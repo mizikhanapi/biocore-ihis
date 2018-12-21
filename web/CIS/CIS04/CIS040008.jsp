@@ -16,6 +16,19 @@
             <div class="modal-body">
                 <!-- content goes here -->
                 <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput">Leave Type</label>
+                            <div class="col-md-12">
+                                <select class="form-control input-lg" name="leavetypeMEC" id="leavetypeMEC">
+                                    <option value="MC">MC</option>
+                                    <option value="TS">TIME SLIP</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Start Date</label>
@@ -51,25 +64,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <label class="col-md-12 control-label" for="textinput">Leave Type</label>
-                            <div class="col-md-12">
-                                <select class="form-control input-lg" name="leavetypeMEC" id="leavetypeMEC">
-                                    <option value="MC">MC</option>
-                                    <option value="TS">TIME SLIP</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label class="col-md-12 control-label" for="textinput">Comments</label>
                             <div class="col-md-12">
-                                <textarea class="form-control input-lg" name="commentMEC" id="commentMEC"></textarea>
+                                <textarea class="form-control input-lg" name="commentMEC" id="commentMEC" placeholder="Type your comment here"></textarea>
                             </div>
                         </div>
                     </div>

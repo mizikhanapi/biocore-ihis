@@ -26,7 +26,7 @@
     //out.println(pmi_no);
     //out.println(episodeDate);
 
-    String sql5 = "select drug_name,drug_cd from lhr_medication where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
+    String sql5 = "select drug_name,drug_cd from lhr_medication where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "' order by episode_date desc";
     ArrayList<ArrayList<String>> searchEpisode5 = conn.getData(sql5);
 
     if (searchEpisode5.size() > 0) {
