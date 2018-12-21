@@ -152,8 +152,11 @@
                                             <span class="p-label" id="pBirthDayDate">-</span>
                                         </td>
                                         <td width="20%">
-                                            Allergy:
-                                            <span class="p-label" id="pAllergy">-</span>
+                                            Allergies:                                          
+                                            <span class="p-label" id="ShowAndGetPatientAlergy" style="cursor: pointer;">
+                                                <a >Show Details</a>
+                                            </span>
+                                            <span class="p-label hidden" id="pAllergy">-</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -429,6 +432,7 @@
         <%@ include file="queue/QueueModal.jsp" %> 
         <%@ include file="search/SearchModal.jsp" %>
         <%@ include file="setting/settingModal.jsp" %>
+        <jsp:include page="generalModal.jsp"/>
            
 
         <%@ include file="CIS04/CIS0104.jsp" %> 
@@ -494,7 +498,7 @@
                             if (dataPaient === "Got") {
 
                                 alertify.set('notifier', 'position', 'bottom-right');
-                                alertify.error('You Have A New Patient in The Queue !!!!!!');
+                                alertify.error('You Have A New Patient in The Queue');
 
                             }
 
