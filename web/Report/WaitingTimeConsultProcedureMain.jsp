@@ -180,7 +180,7 @@
                     bootbox.alert("Oops! " + error);
                 },
                 complete: function (jqXHR, textStatus) {
-
+                    $('.loading').hide();
                 }
             });
 

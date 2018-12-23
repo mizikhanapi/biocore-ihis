@@ -91,6 +91,9 @@
         int sizeMain = dataReport.size();
         for (int s = 0; s < sizeMain; s++) {
 
+            if (Integer.parseInt(dataReport.get(s).get(7)) < 0) {
+            } else {
+
     %>
 
     <tr style="text-align: center;">
@@ -106,6 +109,7 @@
     </tr>
 
     <%
+            }
         }
     %>
 

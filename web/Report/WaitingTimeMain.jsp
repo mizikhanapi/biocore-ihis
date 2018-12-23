@@ -171,7 +171,7 @@
                 type: "POST",
                 url: "WaitingTimeTable.jsp",
                 data: data,
-                timeout: 10000000000000000,
+                timeout: 1000000000,
                 success: function (list) {
                     $('#WaitingTimeTableDiv').html(list);
                 },
@@ -179,7 +179,7 @@
                     bootbox.alert("Oops! " + error);
                 },
                 complete: function (jqXHR, textStatus) {
-
+                    $('.loading').hide();
                 }
             });
 

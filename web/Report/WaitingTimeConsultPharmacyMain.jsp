@@ -157,7 +157,7 @@
 
             temp = endDate.split("/");
             endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-            
+
             var data = {
                 filter: filter,
                 month: reportMonth,
@@ -179,7 +179,7 @@
                     bootbox.alert("Oops! " + error);
                 },
                 complete: function (jqXHR, textStatus) {
-
+                    $('.loading').hide();
                 }
             });
 
