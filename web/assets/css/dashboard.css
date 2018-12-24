@@ -199,3 +199,4 @@ ui-datepicker-month{z-index:100000;}
 td>.btn-default{margin-bottom:5px;}
 .kiosk{max-width:350px;padding:40px 40px;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;max-height:445px;}
 .none{display:none;}
+.input-group .form-control { margin-bottom: 0px !important;}

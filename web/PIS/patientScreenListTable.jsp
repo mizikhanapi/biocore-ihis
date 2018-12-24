@@ -37,15 +37,27 @@
 
         //-------------------------- to refresh order table based on request--------------------------------
         String process = "1";
+        String fromDate = "";
+        String toDate = "";
 
         if (request.getParameter("process") != null) {
-
             process = request.getParameter("process");
+            fromDate = request.getParameter("dateFrom");
+            toDate = request.getParameter("dateTo");
         }
 
-        if (process.equalsIgnoreCase("1")) {
-
+        if (process.equalsIgnoreCase("today")) {
             orderWhereClause = " AND date(pis_order_master.ORDER_DATE) = date(now()) ";
+        } else if (process.equalsIgnoreCase("yesterday")) {
+            orderWhereClause = " AND date(pis_order_master.ORDER_DATE) = DATE(NOW() - INTERVAL 1 DAY) ";
+        } else if (process.equalsIgnoreCase("7")) {
+            orderWhereClause = " AND (date(pis_order_master.ORDER_DATE) between SUBDATE(CURDATE(),7) and CURDATE() ) ";
+        } else if (process.equalsIgnoreCase("30")) {
+            orderWhereClause = " AND (date(pis_order_master.ORDER_DATE) between SUBDATE(CURDATE(),30) and CURDATE() ) ";
+        } else if (process.equalsIgnoreCase("60")) {
+            orderWhereClause = " AND (date(pis_order_master.ORDER_DATE) between SUBDATE(CURDATE(),60) and CURDATE() ) ";
+        } else if (process.equalsIgnoreCase("custom")) {
+            orderWhereClause = " AND (date(pis_order_master.ORDER_DATE) between STR_TO_DATE('" + fromDate + "','%d/%m/%Y') and STR_TO_DATE('" + toDate + "','%d/%m/%Y') ) ";
         }
 
         //=============================================================================================
@@ -88,14 +100,14 @@
         for (int i = 0; i < size; i++) {
     %>
 
-<tr id="moveToScreenDetailsTButton" style="text-align: left;">
-    <input id="dataPatientScreenListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
-    <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
-    <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->
-    <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
-    <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
-    <td style="display: none"><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
-    <td><%= dataPatientOrderList.get(i).get(24)%></td> <!-- Doctor's Name -->
+    <tr id="moveToScreenDetailsTButton" style="text-align: left;">
+<input id="dataPatientScreenListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
+<td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
+<td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->
+<td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
+<td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
+<td style="display: none"><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
+<td><%= dataPatientOrderList.get(i).get(24)%></td> <!-- Doctor's Name -->
 </tr>
 <%
     }

@@ -75,6 +75,7 @@
 
                                                 <div id="patientDispenseListMain">
                                                 </div>
+                                                <br>
                                                 <div id="patientDispenseListContent">
                                                     <table class="table table-filter table-striped table-bordered" style="width: 100%">
                                                         <thead>

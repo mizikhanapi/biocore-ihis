@@ -69,6 +69,7 @@
 
                                                 <div id="patientScreenListMain">
                                                 </div>
+                                                <br>
                                                 <div id="patientScreenListContent">
                                                     <table class="table table-filter table-striped table-bordered" style="width: 100%">
                                                         <thead>

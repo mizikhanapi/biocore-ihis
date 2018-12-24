@@ -70,8 +70,8 @@
                                             <div class="tab-pane active" id="tab_default_1">
 
                                                 <div id="patientOrderListMain">
-
                                                 </div>
+                                                <br>
                                                 <div id="patientOrderListContent">
                                                     <table class="table table-filter table-striped table-bordered" style="width: 100%">
                                                         <thead>
