@@ -39,6 +39,7 @@
         <%@ include file="../assets/header.html" %> 
         <link href="../assets/css/toggleButton.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+        <link href="../assets/css/notification.css" rel="stylesheet" type="text/css"/>
         <!-- header -->
         <style>
             .modal-dialog-gra{
@@ -498,7 +499,7 @@
                             if (dataPaient === "Got") {
 
                                 alertify.set('notifier', 'position', 'bottom-right');
-                                alertify.error('You Have A New Patient in The Queue');
+                                alertify.notify(' <i class="fa fa-info-circle"></i>&nbsp; You Have A New Patient in The Queue', 'info_message', 5);
 
                             }
 

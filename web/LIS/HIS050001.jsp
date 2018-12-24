@@ -138,7 +138,7 @@
                             if (dataPaient === "Got") {
 
                                 alertify.set('notifier', 'position', 'bottom-right');
-                                alertify.error('You Have A New Patient in The Queue !!!!!!');
+                                alertify.notify(' <i class="fa fa-info-circle"></i>&nbsp; You Have A New Patient in The Queue', 'info_message', 5);
 
                             }
 
