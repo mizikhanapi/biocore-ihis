@@ -7,10 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    BODY SYSTEM CODE MANAGEMENT
+    
     <span class="pull-right">
         <button id="BS_btnCloneModal" class="btn btn-link"  title="Clone item">Clone Body System</button>
-        <button id="BS_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#BS_detail"><i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Body System</button>
+        <button id="BS_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#BS_detail"><i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Body System</button>
     </span>
 </h4>
 <!-- Add Button End -->

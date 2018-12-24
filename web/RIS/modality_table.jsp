@@ -17,13 +17,12 @@
 
 %>
 
-<table id="THE_modalityTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="THE_modalityTable"  class="table table-striped table-bordered table-guling" cellspacing="0" width="100%">
     <thead>
     <th>Modality Code</th>
     <th>Modality Name</th>
     <th>Status</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th>Action</th>
 </thead>
 
 <tbody>
@@ -42,11 +41,12 @@
     %>
 </td>
 <td style="width: 5%">
-    <a id="MOD_btnModalUpdate" data-toggle="modal" data-target="#MOD_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="MOD_btnModalUpdate" data-toggle="modal" data-target="#MOD_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o fa-lg" data-toggle="tooltip" data-placement="left" title="Update code" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    &nbsp;&nbsp;&nbsp;
+    <a id="MOD_btnDelete" class="testing" style="cursor: pointer"><i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+
 </td>
-<td style="width: 5%">
-    <a id="MOD_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-</td>
+
 </tr>
 
 <%
@@ -66,5 +66,10 @@
 
 
 
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
 </script>
 

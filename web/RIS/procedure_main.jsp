@@ -7,12 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    PROCEDURE CODE MANAGEMENT
     <span class="pull-right">
         <button id="PRO_btnCloneModal" class="btn btn-link" title="Clone item">
                 Clone Procedure
         </button>
-        <button id="PRO_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" >
+        <button id="PRO_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" >
                 <i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Procedure
         </button>
     </span>
@@ -28,7 +27,7 @@
 
         $('#PRO_modal_title').text("Add New Radiology Procedure");
         $('#PRO_proCode2').prop('readonly', false);
-        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO_btnAdd">Add</button>');
+        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO_btnAdd">Add</button>');
 
         //create all the option list
         createBodySystemOption("");
@@ -62,28 +61,28 @@
        
 
         if (cdis_code === "") {
-            bootbox.alert("Opps! Something went wrong. Clinical discipline can't be empty.");
+            bootbox.alert({message:"Opps! Something went wrong. Clinical discipline can't be empty.",title:"Information"});
 
         } else if (bs_code === "") {
-            bootbox.alert("Select the body system");
+            bootbox.alert({message:"Select the body system",title:"Information"});
 
         }else if (mod_code === "") {
-            bootbox.alert("Select the modality");
+            bootbox.alert({message:"Select the modality",title:"Information"});
 
         }else if (last4_proCode === "" || last4_proCode.length <= 3) {
-            bootbox.alert("Please complete the procedure code. Procedure code must have 4 characters.");
+            bootbox.alert({message:"Please complete the procedure code. Procedure code must have 4 characters.",title:"Information"});
 
         }else if (proName === "") {
-            bootbox.alert("Please insert the procedure name");
+            bootbox.alert({message:"Please insert the procedure name",title:"Information"});
 
         }else if (buyPrice === "") {
-            bootbox.alert("Please insert the buying price");
+            bootbox.alert({message:"Please insert the buying price",title:"Information"});
 
         }else if (sellPrice === "") {
-            bootbox.alert("Please insert the selling price");
+            bootbox.alert({message:"Please insert the selling price",title:"Information"});
 
         }else if (quantity === "") {
-            bootbox.alert("Please insert the quantity");
+            bootbox.alert({message:"Please insert the quantity",title:"Information"});
 
         } else if(!$('#PRO_addForm')[0].checkValidity() ){
            $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
@@ -125,12 +124,14 @@
                         //alert("Insertion Success");
                         bootbox.alert({
                             message: "New procedure code is added",
-                            title: "Process Result",
-                            backdrop: true
+                            title: "Success!"
                         });
 
                     } else if (data.trim() === 'fail') {
-                        bootbox.alert("Failed to add new procedure code");
+                        bootbox.alert({
+                            message: "Failed to add new procedure code",
+                            title: "Failed"
+                        });
 
                     } else {
 
@@ -183,7 +184,7 @@
         $('#PRO_modal_title').text("Update Radiology Procedure");
         //$('#PRO_modalityCode').prop('readonly', true);
         $('#PRO_proCode2').prop('readonly', true);
-        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO_btnUpdate">Update</button>');
+        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO_btnUpdate">Update</button>');
 
 
 
@@ -209,28 +210,28 @@
        
 
         if (cdis_code === "") {
-            bootbox.alert("Opps! Something went wrong. Clinical discipline can't be empty.");
+            bootbox.alert({message:"Opps! Something went wrong. Clinical discipline can't be empty.",title:"Information"});
 
         } else if (bs_code === "") {
-            bootbox.alert("Select the body system");
+            bootbox.alert({message:"Select the body system",title:"Information"});
 
         }else if (mod_code === "") {
-            bootbox.alert("Select the modality");
+            bootbox.alert({message:"Select the modality",title:"Information"});
 
         }else if (last4_proCode === "" || last4_proCode.length <= 3) {
-            bootbox.alert("Please complete the procedure code. Procedure code must have 4 characters.");
+            bootbox.alert({message:"Please complete the procedure code. Procedure code must have 4 characters.",title:"Information"});
 
         }else if (proName === "") {
-            bootbox.alert("Please insert the procedure name");
+            bootbox.alert({message:"Please insert the procedure name",title:"Information"});
 
         }else if (buyPrice === "") {
-            bootbox.alert("Please insert the buying price");
+            bootbox.alert({message:"Please insert the buying price",title:"Information"});
 
         }else if (sellPrice === "") {
-            bootbox.alert("Please insert the selling price");
+            bootbox.alert({message:"Please insert the selling price",title:"Information"});
 
         }else if (quantity === "") {
-            bootbox.alert("Please insert the quantity");
+            bootbox.alert({message:"Please insert the quantity",title:"Information"});
 
         } else if(!$('#PRO_addForm')[0].checkValidity() ){
            $('<input type="submit">').hide().appendTo('#PRO_addForm').click().remove();
@@ -264,12 +265,15 @@
                         //alert("Insertion Success");
                         bootbox.alert({
                             message: "A procedure code is updated",
-                            title: "Process Result",
+                            title: "Success!",
                             backdrop: true
                         });
 
                     } else if (data.trim() === 'fail') {
-                        bootbox.alert("Failed to update procedure code");
+                        bootbox.alert({
+                            message:"Failed to update",
+                            title:"Failed"
+                        });
 
                     } else {
 
@@ -396,16 +400,16 @@
         var pro_cd = arrayData[5], pro_name = arrayData[6];
 
         bootbox.confirm({
-            title: "Delete item?",
-            message: "Are you sure you want to delete " + pro_cd + " - " + pro_name,
+            title: "Please Confirm",
+            message: "Are you sure you want to delete &ldquo;" + pro_cd + " - " + pro_name+"&rdquo;",
             buttons: {
                 confirm: {
                     label: "Yes",
-                    className: "btn-success"
+                    className: "btn-primary"
                 },
                 cancel: {
                     label: "No",
-                    className: "btn-danger"
+                    className: "btn-default"
                 }
             },
             callback: function (result) {

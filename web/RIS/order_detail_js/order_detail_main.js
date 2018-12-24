@@ -475,15 +475,15 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
     bootbox.confirm({
         message: "Are you sure want to perform this exam? " + proCode + "-" + proName,
-        title: "Perform Exam?",
+        title: "Please confirm",
         buttons: {
             confirm: {
                 label: 'Yes',
-                className: 'btn-success'
+                className: 'btn-primary'
             },
             cancel: {
                 label: 'No',
-                className: 'btn-danger'
+                className: 'btn-default'
             }
         },
         callback: function (result) {
@@ -507,12 +507,20 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
                     success: function (datas) {
 
                         if (datas.trim() === 'success') {
-                            bootbox.alert('Exam is performed.');
+                            //bootbox.alert('Exam is performed.');
+                            bootbox.alert({
+                                message: "The radiology exam is completed.",
+                                title: "Success!"
+                            });
                             loadOrderDetailList(orderNo);
 
 
                         } else if (datas.trim() === 'fail') {
-                            bootbox.alert("Fail to perform exam!");
+                            //bootbox.alert("Fail to perform exam");
+                            bootbox.alert({
+                               message:"The radiology exam faile to complete.",
+                               title:"Failed"
+                            });
                             destroyScreenLoading();
 
                         }
@@ -550,11 +558,11 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
         buttons: {
             confirm: {
                 label: 'Yes',
-                className: 'btn-success'
+                className: 'btn-primary'
             },
             cancel: {
                 label: 'No',
-                className: 'btn-danger'
+                className: 'btn-default'
             }
         },
         callback: function (result) {
@@ -583,7 +591,7 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
 
                         } else if (datas.trim() === 'fail') {
-                            bootbox.alert("Fail to cancel order!");
+                            bootbox.alert("Fail to cancel order.");
                             destroyScreenLoading();
 
                         }
@@ -638,7 +646,11 @@ $('#PR_fileToLoad').checkFileType({
         loadImageFileAsURL();
     },
     error: function () {
-        bootbox.alert('Incompatible file type');
+        //bootbox.alert('Incompatible file type');
+        bootbox.alert({
+            message: "Incompatible file type",
+            title:"Information"
+        });
         $('#PR_fileToLoad').val("");
         //$('#dym').html("");
         RIS_gambarURI = "";
@@ -728,11 +740,18 @@ $('#PR_btnSubmit').on('click', function () {
     var comment = $('#PR_comment').val();
 
     if (comment === '') {
-        bootbox.alert('Please write a meaningful comment.',
-                function () {
-                    $('#PR_comment').focus();
-                }
-        );
+//        bootbox.alert('Please write a meaningful comment.',
+//                function () {
+//                    
+//                }
+//        );
+        bootbox.alert({
+            message: "Pelase insert the examination notes.",
+            title:"Information",
+            callback: function () {
+                $('#PR_comment').focus();
+            }
+        });
     }
     else{
         comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
@@ -755,11 +774,19 @@ $('#PR_btnSubmit').on('click', function () {
             data: data,
             success: function (data, textStatus, jqXHR) {
                 if(data.trim() === 'success'){
-                    bootbox.alert('Report is submitted.');
+                    //bootbox.alert('Report is submitted.');
+                    bootbox.alert({
+                        title:"Succcess!",
+                        message:"The radiology report is submitted."
+                    });
                     loadOrderDetailList(orderNo);
                     
                 }else if(data.trim() === 'fail'){
-                    bootbox.alert('Fail to submit report.');
+                    //bootbox.alert('Fail to submit report.');
+                    bootbox.alert({
+                        title:"Failed",
+                        message:"The radiology report failed to submit."
+                    });
                     destroyScreenLoading();
                 }else{
                     console.log(data);

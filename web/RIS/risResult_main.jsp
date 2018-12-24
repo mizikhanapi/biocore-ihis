@@ -103,11 +103,19 @@
             url: "order_control/verify_result.jsp",
             success: function (data, textStatus, jqXHR) {
                 if (data.trim() === 'success') {
-                    bootbox.alert('Exam result is verified.');
+                    //bootbox.alert('Exam result is verified.');
+                    bootbox.alert({
+                       message:"The radiology examination result is verified.",
+                       title:"Success!"
+                    });
                     $("#risResultContent").load("risResult_table.jsp");
 
                 } else if (data.trim() === 'fail') {
-                    bootbox.alert('Fail to verify exam result.');
+                    bootbox.alert({
+                       message:"The radiology examination result failed to verified.",
+                       title:"Failed"
+                    });
+                    //bootbox.alert('Fail to verify exam result.');
                     destroyScreenLoading();
                 }
             },

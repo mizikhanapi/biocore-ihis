@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h3 style="margin: 0px;">Radiology Maintenance</h3>
+                                <h3 style="margin: 0px;">Manage RIS Code</h3>
                                 <hr class="pemisah" />
                                 <div class="tabbable-panel">
 

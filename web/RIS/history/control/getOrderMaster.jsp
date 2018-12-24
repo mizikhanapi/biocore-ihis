@@ -53,7 +53,7 @@
     ArrayList<ArrayList<String>> dataOm = con.getData(query);
 
 %>
-<table class="table table-bordered table-striped" id="OM_tableOrder">
+<table class="table table-bordered table-striped table-guling" id="OM_tableOrder">
     <thead>
         <tr>
             <th>Order No</th>

@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Exam Result</h3>
+                <h3 class="modal-title" id="lineModalLabel">Radiology Examination Result</h3>
             </div>
             <div class="modal-body">
 
@@ -66,13 +66,13 @@
                         <label class="col-md-4 control-label" for="textinput" id="hfcLabel">Result:</label>
                         
                         <div class="col-md-12" align="center">
-                            <img src="" id="VR_gamba" alt="Exam Result" class="img-responsive" style="height: 100%; width: 100%">
+                            <img src="" id="VR_gamba" alt="" class="img-responsive" style="height: 100%; width: 100%">
                         </div>
                     </div>
                     
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Comment</label>
+                        <label class="col-md-4 control-label" for="textinput">Examination Notes</label>
                        <div class="col-md-8">
                            <textarea id="VR_comment" placeholder="Write your comment here (Optional)" class="form-control input-md" maxlength="500" rows="4"></textarea>
                         </div>
@@ -87,10 +87,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="VR_btnSubmit">Verify <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="VR_btnSubmit">Verify <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
                      <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="VR_btnReject">Reject <span class="fa fa-ban" aria-hidden="true" style="display: inline-block;" ></span></button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" id="VR_btnReject">Reject <span class="fa fa-ban" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
                 </div>
             </div>

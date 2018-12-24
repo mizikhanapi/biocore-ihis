@@ -7,10 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    MODALITY CODE MANAGEMENT
     <span class="pull-right">
         <button id="MOD_btnCloneModal" class="btn btn-link" title="Clone item">Clone Modality</button>
-        <button id="MOD_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#MOD_detail"><i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Modality</button>
+        <button id="MOD_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#MOD_detail"><i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Modality</button>
         
     </span>
 </h4>
@@ -25,7 +24,7 @@
 
         $('#MOD_modal_title').text("Add New Modality");
         $('#MOD_modalityCode').prop('readonly', false);
-        $('#MOD_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MOD_btnAdd">Add</button>');
+        $('#MOD_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="MOD_btnAdd">Add</button>');
 
         $('#MOD_addForm')[0].reset();
 
@@ -111,7 +110,7 @@
 
         $('#MOD_modal_title').text("Update Body System");
         $('#MOD_modalityCode').prop('readonly', true);
-        $('#MOD_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MOD_btnUpdate">Update</button>');
+        $('#MOD_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="MOD_btnUpdate">Update</button>');
 
 
 
@@ -189,16 +188,16 @@
         var mod_code = arrayData[0], mod_name = arrayData[1];
 
         bootbox.confirm({
-            title: "Delete item?",
+            title: "Please confirm",
             message: "Are you sure you want to delete " + mod_code + " - " + mod_name,
             buttons: {
                 confirm: {
                     label: "Yes",
-                    className: "btn-success"
+                    className: "btn-primary"
                 },
                 cancel: {
                     label: "No",
-                    className: "btn-danger"
+                    className: "btn-default"
                 }
             },
             callback: function (result) {
