@@ -61,7 +61,20 @@
 
                                                 </div>
                                                 <div id="risOrderListContent">
-
+                                                    <table class="table table-filter table-striped table-bordered" style="width: 100%">
+                                                        <thead>
+                                                        <th style="text-align: left;">Order No.</th>
+                                                        <th style="text-align: left;">PMI No.</th>
+                                                        <th style="text-align: left;">Name</th>
+                                                        <th style="text-align: left;">Order Date</th>
+                                                        <th style="text-align: left;">Doctor's Name</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="5" align="center">Please Select Correct Filter And Press Refresh Button</td>
+                                                            </tr> 
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                             <div class="tab-pane" id="tab_default_2">
@@ -108,7 +121,7 @@
 
 
                                                     $("#risOrderMain").load("risManageOrderMaster_main.jsp");
-                                                    $("#risOrderListContent").load("risManageOrderListTable.jsp");
+                                                    //$("#risOrderListContent").load("risManageOrderListTable.jsp");
                                                     $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
 
 
