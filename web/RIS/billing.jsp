@@ -22,7 +22,7 @@
 
     <!-- Select Basic -->
     <div class="form-group"> 
-        <label class="col-md-4 control-label" for="textinput">ID Type</label>
+        <label class="col-md-4 control-label" for="textinput">Search by</label>
         <div class="col-md-4">
             <select id="orderType" name="orderType" class="form-control" >
                 <option selected="" disabled="" value="-"> Please select ID type</option>
@@ -38,7 +38,7 @@
             </select>
         </div>
     </div>
-
+    <jsp:include page="libraries/dateSelect.jsp"/>
     <!-- Text input-->
     <div class="form-group" id="ic" style="display: none;">
 
@@ -87,28 +87,29 @@
 <script>
 
     $(document).ready(function () {
-
+        $("#divDate").hide();
+        $("#refreshbuttondiv").hide();
         destroyScreenLoading();
 
-        $(function () {
-            $("#DateFrom").datepicker({
-                dateFormat: 'yy-mm-dd',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y'
-            });
-
-            $("#DateTo").datepicker({
-                dateFormat: 'yy-mm-dd',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y'
-            });
-        });
+//        $(function () {
+//            $("#DateFrom").datepicker({
+//                dateFormat: 'yy-mm-dd',
+//                yearRange: '1999:c+1',
+//                changeMonth: true,
+//                changeYear: true,
+//                minDate: new Date(1999, 10 - 1, 25),
+//                maxDate: '+30Y'
+//            });
+//
+//            $("#DateTo").datepicker({
+//                dateFormat: 'yy-mm-dd',
+//                yearRange: '1999:c+1',
+//                changeMonth: true,
+//                changeYear: true,
+//                minDate: new Date(1999, 10 - 1, 25),
+//                maxDate: '+30Y'
+//            });
+//        });
 
 
         $('#orderType').on('change', function () {
@@ -117,7 +118,7 @@
                 $("#ic").show();
                 $("#order_noText").hide();
                 document.getElementById("order_no").value = "";
-                $("#date").hide();
+                $("#divDate").hide();
                 document.getElementById("DateFrom").value = "";
                 document.getElementById("DateTo").value = "";
             } else if (this.value === '004')
@@ -125,12 +126,12 @@
                 $("#order_noText").show();
                 $("#ic").hide();
                 document.getElementById("idIC").value = "";
-                $("#date").hide();
+                $("#divDate").hide();
                 document.getElementById("DateFrom").value = "";
                 document.getElementById("DateTo").value = "";
             } else if (this.value === '005')
             {
-                $("#date").show();
+                $("#divDate").show();
                 $("#ic").hide();
                 document.getElementById("idIC").value = "";
                 $("#order_noText").hide();
@@ -146,34 +147,39 @@
 
     function loadBillTable() {
         createScreenLoading();
+        var DateTo,DateFrom,order_no,dateType;
         var orderType = $("#orderType").val();
         if (orderType === '002' || orderType === '003')
         {
             var ic = $("#idIC").val();
-            var order_no = "";
-            var DateFrom = "";
-            var DateTo = "";
+             order_no = "";
+             DateFrom = "";
+             DateTo = "";
+             dateType="";
         } else if (orderType === '004')
         {
-            var order_no = $("#order_no").val();
+             order_no = $("#order_no").val();
             var ic = "";
-            var DateFrom = "";
-            var DateTo = "";
+             DateFrom = "";
+             DateTo = "";
+             dateType="";
         } else if (orderType === '005')
         {
             //var DateFrom = new Date($('#DateFrom').val());
-            var DateFrom1 = $("#DateFrom").datepicker("getDate");
-            var DateFrom = $.datepicker.formatDate("yy-mm-dd", DateFrom1);
-            var DateTo1 = $("#DateTo").datepicker("getDate");
-            var DateTo = $.datepicker.formatDate("yy-mm-dd", DateTo1);
-            var order_no = "";
-            var ic = "";
+            //var DateFrom1 = $("#DateFrom").datepicker("getDate");
+             DateFrom = $("#OM_DateFrom").val();
+            //var DateTo1 = $("#DateTo").datepicker("getDate");
+             DateTo = $("#OM_DateTo").val();
+             order_no = "";
+             ic = "";
+             dateType=$("#bydateSel").val();;
         }
         var data = {
             ic: ic,
             order_no: order_no,
             DateFrom: DateFrom,
-            DateTo: DateTo
+            DateTo: DateTo,
+            dateType: dateType
         };
 
         $.ajax({

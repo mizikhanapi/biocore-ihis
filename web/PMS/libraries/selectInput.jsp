@@ -89,6 +89,7 @@
                                         <option selected=""  disabled="" value="-"> Please select Date</option>
                                         <option   value="today"> Today</option>
                                         <option   value="yesterday"> Yesterday</option>
+                                        <option   value="7"> 7 Days</option>
                                         <option   value="30"> 30 days</option>
                                         <option   value="60"> 60 days</option>
                                         <option   value="custom"> Select Date</option>

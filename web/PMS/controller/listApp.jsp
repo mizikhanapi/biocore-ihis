@@ -35,7 +35,12 @@
             // yesterday
             sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where DATE(a.appointment_date) = DATE(NOW() - INTERVAL 1 DAY) and a.status ='active' and hfc_cd='" + hfc + "'";
             break; // optional
-
+        
+        case "7":
+            // 60 days behind
+            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),7) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
+            break; // optional
+            
         case "30":
             // 30 days behind
             sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),30) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";

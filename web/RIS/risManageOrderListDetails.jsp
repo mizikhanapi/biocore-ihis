@@ -93,7 +93,7 @@
         <td><%= status%></td> <!-- status -->
         <td> 
         <button id="MOD_btnModalDate" class="btn btn-default"  ><i class="fa fa-calendar fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Set Exam Date</button><!-- set date -->
-        <button id="MOD_btnPrepareItem" class="btn btn-default btn-danger"  data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
+        <button id="MOD_btnPrepareItem" class="btn btn-primary"  data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
         <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Exam</button><!-- perform -->
         <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Report</button><!-- prepare -->
         <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button></td> <!-- cancel order -->
@@ -136,8 +136,8 @@
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
         $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
-        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
-        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
+        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Item</button>');
+        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>');
 
         $('#orderNewStockOrderModalFrom')[0].reset();
 

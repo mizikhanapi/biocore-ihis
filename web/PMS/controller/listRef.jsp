@@ -39,7 +39,13 @@
             // yesterday
             sql = "select om.pmi_no, b.PATIENT_NAME, b.NEW_IC_NO, hfc.hfc_name from pms_order_master om join pms_patient_biodata b on om.pmi_no = b.`PMI_NO` join adm_health_facility hfc on om.ordering_hfc_cd=hfc.hfc_cd where DATE(om.order_date) = (DATE(NOW() - INTERVAL 1 DAY)) and om.hfc_cd='" + hfc + "' group by om.hfc_cd, om.pmi_no";
             break; // optional
+            
+        case "7":
+            // 30 days behind
+            sql = "select om.pmi_no, b.PATIENT_NAME, b.NEW_IC_NO, hfc.hfc_name from pms_order_master om join pms_patient_biodata b on om.pmi_no = b.`PMI_NO` join adm_health_facility hfc on om.ordering_hfc_cd=hfc.hfc_cd where (DATE(om.order_date) between SUBDATE(CURDATE(),7) and CURDATE()) and om.hfc_cd='" + hfc + "' group by om.hfc_cd, om.pmi_no";
 
+            break; // optional
+            
         case "30":
             // 30 days behind
             sql = "select om.pmi_no, b.PATIENT_NAME, b.NEW_IC_NO, hfc.hfc_name from pms_order_master om join pms_patient_biodata b on om.pmi_no = b.`PMI_NO` join adm_health_facility hfc on om.ordering_hfc_cd=hfc.hfc_cd where (DATE(om.order_date) between SUBDATE(CURDATE(),30) and CURDATE()) and om.hfc_cd='" + hfc + "' group by om.hfc_cd, om.pmi_no";
