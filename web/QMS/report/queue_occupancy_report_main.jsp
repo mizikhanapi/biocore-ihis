@@ -23,61 +23,81 @@
                 <option selected value="1">Daily</option>
 
                 <option value="2">Monthly</option>
-                
+
                 <option value="3">Yearly</option>
 
             </select>
         </div>
     </div>
-    
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="button" id="RQO_btnSearch" ><i class="fa fa-search"></i>&nbsp; Search</button>
+    </div>
+
 </div>
 
 <script type="text/javascript">
-    $(function(){
-        postRequestToOccupancyTable("day");
+    $(function () {
+        //postRequestToOccupancyTable("day");
     });
-    
-    function postRequestToOccupancyTable(leType){
-        
+
+    function postRequestToOccupancyTable(leType) {
+
         createScreenLoading();
-        
-        var data={
+
+        var data = {
             type: leType
         };
-        
+
         $.ajax({
             type: 'POST',
             url: "report/queue_occupancy_table.jsp",
             timeout: 60000,
             data: data,
             success: function (data, textStatus, jqXHR) {
-                        $('#RQO_table').html(data);
-                    },
+                $('#RQO_table').html(data);
+            },
             error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Oopps! "+errorThrown);
-                    },
-            complete: function (jqXHR, textStatus ) {
-                        destroyScreenLoading();
-                }
+                bootbox.alert("Oopps! " + errorThrown);
+            },
+            complete: function (jqXHR, textStatus) {
+                destroyScreenLoading();
+            }
         });
     }
-    
-    $('#RQO_searchType').on('change', function(){
-        var type= $(this).val();
-        
-        var timeType="";
-        
-        if(type==="1"){
-            timeType="day";
+
+    $('#RQO_btnSearch').on('click', function () {
+
+        var type = $('#RQO_searchType').val();
+
+        var timeType = "";
+
+        if (type === "1") {
+            timeType = "day";
+        } else if (type === "2") {
+            timeType = "month";
+        } else if (type === "3") {
+            timeType = "year";
         }
-        else if(type==="2"){
-            timeType="month";
-        }
-        else if(type==="3"){
-            timeType="year";
-        }
-        
+
         postRequestToOccupancyTable(timeType);
+        
     });
-    
+
+//    $('#RQO_searchType').on('change', function () {
+//        var type = $(this).val();
+//
+//        var timeType = "";
+//
+//        if (type === "1") {
+//            timeType = "day";
+//        } else if (type === "2") {
+//            timeType = "month";
+//        } else if (type === "3") {
+//            timeType = "year";
+//        }
+//
+//        postRequestToOccupancyTable(timeType);
+//    });
+
 </script>

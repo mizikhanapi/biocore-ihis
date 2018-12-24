@@ -109,7 +109,7 @@
 <script type="text/javascript">
     
     $(function(){
-        RQL_listALl();
+        //RQL_listALl();
     });
     
     $('#RQL_searchType').on('change', function(){
