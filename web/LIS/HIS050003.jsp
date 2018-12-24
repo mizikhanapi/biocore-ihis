@@ -67,6 +67,20 @@
                                                 <div id="lisLabRequestVerifyMasterMain">
                                                 </div>
                                                 <div id="lisLabRequestVerifyMasterContent">
+                                                    <table class="table table-filter table-striped table-bordered" style="width: 100%">
+                                                        <thead>
+                                                        <th style="text-align: left;">Order No.</th>
+                                                        <th style="text-align: left;">PMI No.</th>
+                                                        <th style="text-align: left;">Name</th>
+                                                        <th style="text-align: left;">Order Date</th>
+                                                        <th style="text-align: left;">Doctor's Name</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="5" align="center">Please Select Correct Filter And Press Refresh Button</td>
+                                                            </tr> 
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
 
@@ -99,11 +113,11 @@
 
             $(document).ready(function () {
 
-                $('<div class="loading">Loading</div>').appendTo('body');
+                //$('<div class="loading">Loading</div>').appendTo('body');
 
                 // Load LIST Page
                 $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");
-                $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
+                //$("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
 
                 // Load Detail Page
                 $("#lisLabRequestVerifyDetailContent").load("manageLabVerifyDetaillBasicInfo.jsp");
