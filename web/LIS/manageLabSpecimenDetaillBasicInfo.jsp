@@ -707,7 +707,24 @@
         // Reset The Page Start
         function resetPage() {
 
-            $("#lisLabRequestSpecimenMasterContent").load("manageLabSpecimenMasterTable.jsp");
+            //$("#lisLabRequestSpecimenMasterContent").load("manageLabSpecimenMasterTable.jsp");
+
+            var table = '<table class="table table-filter table-striped table-bordered" style="width: 100%">\n\
+                            <thead>\n\
+                                <th style="text-align: left;">Order No.</th>\n\
+                                <th style="text-align: left;">PMI No.</th>\n\
+                                <th style="text-align: left;">Name</th>\n\
+                                <th style="text-align: left;">Order Date</th>\n\
+                                <th style="text-align: left;">Doctor\'s Name</th>\n\
+                            </thead>\n\
+                            <tbody>\n\
+                                <tr>\n\
+                                    <td colspan="5" align="center">Please Select Correct Filter And Press Refresh Button</td>\n\
+                                </tr> \n\
+                            </tbody>\n\
+                        </table>';
+
+            $("#lisLabRequestSpecimenMasterContent").html(table);
 
             $('#LAB_SpecimenTime').prop('selectedIndex', 0);
 

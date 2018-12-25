@@ -638,16 +638,37 @@
 
                     console.log(deleteResult);
 
-                    $('<div class="loading">Loading</div>').appendTo('body');
+                    var table = '<table class="table table-filter table-striped table-bordered" style="width: 100%">\n\
+                            <thead>\n\
+                                <th style="text-align: left;">Order No.</th>\n\
+                                <th style="text-align: left;">PMI No.</th>\n\
+                                <th style="text-align: left;">Name</th>\n\
+                                <th style="text-align: left;">Order Date</th>\n\
+                                <th style="text-align: left;">Doctor\'s Name</th>\n\
+                            </thead>\n\
+                            <tbody>\n\
+                                <tr>\n\
+                                    <td colspan="5" align="center">Please Select Correct Filter And Press Refresh Button</td>\n\
+                                </tr> \n\
+                            </tbody>\n\
+                        </table>';
 
-                    // Load LIST Page
-                    $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");
-                    $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
+                    $("#lisLabRequestVerifyMasterContent").html(table);
+
+                    $('#LAB_VerifyTime').prop('selectedIndex', 0);
+
+                    document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
+                    document.getElementById("patientOrderDetailContentBasicInfoForm").reset();
+
+                    $("#lisLabRequestVerifyDetailContent #patientSpecimenDetailsListTableDiv").load("manageLabVerifyDetaillBasicInfo.jsp #patientSpecimenDetailsListTableDiv");
 
                     $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
                     // Load Detail Page
                     $("#lisLabRequestVerifyDetailContent").load("manageLabVerifyDetaillBasicInfo.jsp");
+
+                    // Load LIST Page
+                    $("#lisLabRequestVerifyMasterMain").load("manageLabVerifyMasterMain.jsp");
 
                 }
 

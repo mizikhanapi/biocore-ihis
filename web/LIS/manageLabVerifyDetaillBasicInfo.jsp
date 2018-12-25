@@ -659,7 +659,26 @@
         // Reset The Page Start
         function resetPage() {
             location.reload();
-            $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
+            
+            
+            var table = '<table class="table table-filter table-striped table-bordered" style="width: 100%">\n\
+                            <thead>\n\
+                                <th style="text-align: left;">Order No.</th>\n\
+                                <th style="text-align: left;">PMI No.</th>\n\
+                                <th style="text-align: left;">Name</th>\n\
+                                <th style="text-align: left;">Order Date</th>\n\
+                                <th style="text-align: left;">Doctor\'s Name</th>\n\
+                            </thead>\n\
+                            <tbody>\n\
+                                <tr>\n\
+                                    <td colspan="5" align="center">Please Select Correct Filter And Press Refresh Button</td>\n\
+                                </tr> \n\
+                            </tbody>\n\
+                        </table>';
+                                                                         
+            $("#lisLabRequestVerifyMasterContent").html(table);
+
+           // $("#lisLabRequestVerifyMasterContent").load("manageLabVerifyMasterTable.jsp");
 
             $('#LAB_VerifyTime').prop('selectedIndex', 0);
 
