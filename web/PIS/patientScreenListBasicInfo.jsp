@@ -909,7 +909,7 @@
 
         tableItem.shift();  // first row will be empty - so remove
         tableItem = JSON.stringify(tableItem);
-        
+
 
         if (pmino === "" || pmino === null || orderNo === "" || orderNo === null) {
 
@@ -965,9 +965,20 @@
                                     $('#patientScreenListContent').html('<div class="loading">Loading</div>');
 
                                     var process = $('#PIS_ScreenTime').val();
+                                    var dateFrom, dateTo;
+
+                                    if (process === "custom") {
+                                        dateFrom = $("#OM_DateFrom").val();
+                                        dateTo = $("#OM_DateTo").val();
+                                    } else {
+                                        dateFrom = "";
+                                        dateTo = "";
+                                    }
 
                                     var data = {
-                                        process: process
+                                        process: process,
+                                        dateFrom: dateFrom,
+                                        dateTo: dateTo
                                     };
 
                                     $.ajax({

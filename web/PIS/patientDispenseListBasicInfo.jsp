@@ -1390,16 +1390,37 @@
                 function () {
                     console.log("Inclean");
 
+                    var process = $('#PIS_DispenseTime').val();
+                    var dateFrom, dateTo;
+
+                    if (process === "custom") {
+                        dateFrom = $("#OM_DateFrom").val();
+                        dateTo = $("#OM_DateTo").val();
+                    } else {
+                        dateFrom = "";
+                        dateTo = "";
+                    }
+
+                    var data = {
+                        process: process,
+                        dateFrom: dateFrom,
+                        dateTo: dateTo
+                    };
+
                     $.ajax({
+                        type: 'POST',
                         url: "patientDispenseListTable.jsp",
-                        type: 'GET',
-                        timeout: 3000,
-                        success: function (data) {
-
-                            console.log(data);
-                            $("#patientDispenseListContent").html(data);
-
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            $('#patientDispenseListContent').html(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert('Opps! ' + errorThrown);
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            $('.loading').hide();
                         }
+
                     });
 
                     resetPage();

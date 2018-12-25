@@ -1771,15 +1771,37 @@
                 function () {
                     console.log("Inclean");
 
+                    var process = $('#PIS_OrderTime').val();
+                    var dateFrom, dateTo;
+
+                    if (process === "custom") {
+                        dateFrom = $("#OM_DateFrom").val();
+                        dateTo = $("#OM_DateTo").val();
+                    } else {
+                        dateFrom = "";
+                        dateTo = "";
+                    }
+
+                    var data = {
+                        process: process,
+                        dateFrom: dateFrom,
+                        dateTo: dateTo
+                    };
+
                     $.ajax({
+                        type: 'POST',
                         url: "patientOrderListTable.jsp",
-                        type: 'GET',
-                        timeout: 3000,
-                        success: function (data) {
-
-                            $("#patientOrderListContent").html(data);
-
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            $('#patientOrderListContent').html(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert('Opps! ' + errorThrown);
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            $('.loading').hide();
                         }
+
                     });
 
                     resetPage();
