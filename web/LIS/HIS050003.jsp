@@ -66,6 +66,7 @@
                                             <div class="tab-pane active" id="tab_default_1">
                                                 <div id="lisLabRequestVerifyMasterMain">
                                                 </div>
+                                                <br>
                                                 <div id="lisLabRequestVerifyMasterContent">
                                                     <table class="table table-filter table-striped table-bordered" style="width: 100%">
                                                         <thead>

@@ -37,18 +37,32 @@
 
         //-------------------------- to refresh order table based on request--------------------------------
         String process = "1";
+        String fromDate = "";
+        String toDate = "";
 
+        
         if (request.getParameter("process") != null) {
-
             process = request.getParameter("process");
+            fromDate = request.getParameter("dateFrom");
+            toDate = request.getParameter("dateTo");
         }
 
-        if (process.equalsIgnoreCase("1")) {
-
-            orderWhereClause = " AND date(lom.txn_date) = date(now()) ";
-
+        
+        if (process.equalsIgnoreCase("today")) {
+            orderWhereClause = " AND date(lom.order_date) = date(now()) ";
+        } else if (process.equalsIgnoreCase("yesterday")) {
+            orderWhereClause = " AND date(lom.order_date) = DATE(NOW() - INTERVAL 1 DAY) ";
+        } else if (process.equalsIgnoreCase("7")) {
+            orderWhereClause = " AND (date(lom.order_date) between SUBDATE(CURDATE(),7) and CURDATE() ) ";
+        } else if (process.equalsIgnoreCase("30")) {
+            orderWhereClause = " AND (date(lom.order_date) between SUBDATE(CURDATE(),30) and CURDATE() ) ";
+        } else if (process.equalsIgnoreCase("60")) {
+            orderWhereClause = " AND (date(lom.order_date) between SUBDATE(CURDATE(),60) and CURDATE() ) ";
+        } else if (process.equalsIgnoreCase("custom")) {
+            orderWhereClause = " AND (date(lom.order_date) between STR_TO_DATE('" + fromDate + "','%d/%m/%Y') and STR_TO_DATE('" + toDate + "','%d/%m/%Y') ) ";
         }
 
+        
         //=============================================================================================
         if (!hfc.equals("99_iHIS_99") || !last_nine.equals("9")) {
             whereClause = " AND lom.hfc_to = '" + hfc + "'  ";

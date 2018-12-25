@@ -66,6 +66,7 @@
                                             <div class="tab-pane active" id="tab_default_1">
                                                 <div id="lisLabRequestSpecimenMasterMain">
                                                 </div>
+                                                <br>
                                                 <div id="lisLabRequestSpecimenMasterContent">
                                                     <table class="table table-filter table-striped table-bordered" style="width: 100%">
                                                         <thead>
