@@ -61,7 +61,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" id="VR_btnSubmit">Close <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" id="VR_btnSubmit">Close</button>
                     </div>
                 </div>
             </div>

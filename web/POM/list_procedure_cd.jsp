@@ -44,21 +44,26 @@
                             <div class="thumbnail">
                                 <h3 style="margin: 0px;">List of Procedure Code</h3>
                                 <hr class="pemisah"/>
-                                <div style="width:20%; margin: auto;">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            
-                                            <div class="col-md-12">
-                                                <button id="REP_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
-
-                                            </div>
-                                            
-                                        </div>
+                                <!--                                <div style="width:20%; margin: auto;">
+                                                                    <div class="form-horizontal">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-6"></div>
+                                                                            <div class="col-md-6" style="margin-left:auto; margin-right:0;">
+                                                                                <button id="REP_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
+                                
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="REP_btnRefresh" class="btn btn-default pull-right"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
                                     </div>
                                 </div>
-                               
+                                <br/>
                                 <div class="table-guling" id='viewProcedure'>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -76,34 +81,34 @@
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
         <script>
-            $(function(){
+            $(function () {
                 load_code();
             });
-            
-            function load_code(){
+
+            function load_code() {
                 createScreenLoading();
-                 $.ajax({
+                $.ajax({
                     type: 'GET',
                     url: "report_control/getListOfCode.jsp",
                     success: function (data) {
                         //$("#viewProcedure").val(data.trim());
                         $('#viewProcedure').html(data);
-                       // $('#viewProcedure').trigger('contentchanged');
+                        // $('#viewProcedure').trigger('contentchanged');
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        $('#viewProcedure').html("Oopps! "+errorThrown);
+                        $('#viewProcedure').html("Oopps! " + errorThrown);
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         destroyScreenLoading();
                     }
 
                 });
             }
-            
-            $('#REP_btnRefresh').on('click', function(){
+
+            $('#REP_btnRefresh').on('click', function () {
                 load_code();
             });
-            
+
         </script>        
 
     </body>

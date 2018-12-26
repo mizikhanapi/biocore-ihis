@@ -105,7 +105,7 @@
                     $(win.document.body)
                                .css('font-size', '10pt')
                                .css('font-weight', 'bolder')
-                               .append('<div style="text-align: right;padding-top:10px;"><br>Grand Total Order : <%=intTotal%><br>Grand Total Sale(RM) : <%=String.format("%.2f", dblTotal)%></div>');
+                               .append('<div style="text-align: right;padding-top:10px;"><b><br>Grand Total Order :</b> <%=intTotal%><br><b>Grand Total Sale(RM) : </b><%=String.format("%.2f", dblTotal)%></div>');
                     $(win.document.body)
                             .css('font-size', '10pt')
                             .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');

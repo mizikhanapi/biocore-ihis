@@ -85,24 +85,41 @@
 
     $(document).ready(function () {
        
-        $('#procedure').DataTable({
+         $('#procedure').DataTable({
             pageLength: 15,
             dom: 'Bfrtip',
             buttons: [
-                'csv', 'excel', 'pdf',
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export To Excel',
+                    title: 'Yearly Released Item List',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'csvHtml5',
+                    text: 'Export To CSV',
+                    title: 'Yearly Released Item List',
+                    className: 'btn btn-default',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
                 {
                     extend: 'print',
-                    title: $('h1').text(),
+                    className: 'btn btn-default',
+                    title: 'Print',                    
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
-        <div class="info_kecik">\n\
-        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
-        </div> '
+                                        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        </div> '
                                         );
                         $(win.document.body).find('table')
                                 .addClass('compact')
@@ -117,11 +134,15 @@
                 },
                 {
                     extend: 'colvis',
-                    text: 'Filter Table Column'
+                    text: 'Filter Table Column',
+                    className: 'btn btn-default'
                 }
 
             ]
         });
+        
+//    table.buttons().container()
+//        .appendTo( '#procedure_wrapper .col-sm-6:eq(0)' );
 
     });
 

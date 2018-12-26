@@ -7,11 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    CIS PROCEDURE LEVEL 1 MANAGEMENT
+    PROCEDURE LEVEL 1 MANAGEMENT
     <span class="pull-right">
-        <button id="PRO_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" style=" padding-right: 10px;padding-left: 10px;color: white;">
+        <button id="PRO_btnAddNew" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" style=" padding-right: 10px;padding-left: 10px;">
             <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
-                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
+                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>
             </a>ADD Procedure
         </button>
         <button id="PRO_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
@@ -32,7 +32,7 @@
 
         $('#PRO_modal_title').text("Add New Procedure");
         $('#PRO_Code').prop('disabled', false);
-        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO_btnAdd">Add</button>');
+        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO_btnAdd">Add</button>');
 
         $('#PRO_addForm')[0].reset();
 
@@ -137,7 +137,7 @@
 
         $('#PRO_modal_title').text("Update Procedure");
         $('#PRO_Code').prop('disabled', true);
-        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO_btnUpdate">Update</button>');
+        $('#PRO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO_btnUpdate">Update</button>');
 
 
 
@@ -158,7 +158,7 @@
         var sell= $('#PRO_sellPrice').val();
 
         if (code === "") {
-            bootbox.alert("Procedure code can't be empty!");
+            bootbox.alert("Procedure code can't be empty");
 
         } else if (name === "") {
             bootbox.alert("Please fill in the procedure name.");
@@ -236,11 +236,11 @@
             buttons: {
                 confirm: {
                     label: "Yes",
-                    className: "btn-success"
+                    className: "btn-primary"
                 },
                 cancel: {
                     label: "No",
-                    className: "btn-danger"
+                    className: "btn-default"
                 }
             },
             callback: function (result) {
@@ -403,7 +403,7 @@
                 || ($(this).val().length > 9))
                 && event.which !== 8) {
             event.preventDefault();
-            $("#PRO_buyPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
+            $("#PRO_buyPrice_err").html("Decimal Number Only").show().fadeOut("slow");
 
         }
 
@@ -416,7 +416,7 @@
                 || ($(this).val().length > 9))
                 && event.which !== 8) {
             event.preventDefault();
-            $("#PRO_sellPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
+            $("#PRO_sellPrice_err").html("Decimal Number Only").show().fadeOut("slow");
 
         }
 

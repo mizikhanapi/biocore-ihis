@@ -75,9 +75,9 @@
     </tbody>
 </table>
     <div class="pull-right">
-        <div style="text-align: left;">
-            <p class="bold">Grand Total Order: <span id="theQuantity"><%= intTotal%></span></p>
-            <p class="bold">Grand Total Sale(RM): <span id="theSale"><%=String.format("%.2f", dblTotal)%></span></p>
+        <div style="text-align: right;">
+            <p class="bold">Grand Total Order: <span id="theQuantity" style="font-weight: 400"><%= intTotal%></span></p>
+            <p class="bold">Grand Total Sale(RM): <span id="theSale" style="font-weight: 400"><%=String.format("%.2f", dblTotal)%></span></p>
         </div>        
     </div>    
 <script type="text/javascript">
@@ -106,7 +106,7 @@
                     $(win.document.body)
                                .css('font-size', '10pt')
                                .css('font-weight', 'bolder')
-                               .append('<div style="text-align: right;padding-top:10px;"><br>Grand Total Order : <%=intTotal%><br>Grand Total Sale(RM) : <%=String.format("%.2f", dblTotal)%></div>');
+                               .append('<div style="text-align: right;padding-top:10px;"><br><b>Grand Total Order :</b> <%=intTotal%><br><b>Grand Total Sale(RM) :</b> <%=String.format("%.2f", dblTotal)%></div>');
                     $(win.document.body)
                             .css('font-size', '10pt')
                             .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
