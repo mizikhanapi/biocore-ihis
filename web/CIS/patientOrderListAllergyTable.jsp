@@ -37,8 +37,8 @@
     <th style="display: none;text-align: left;">HFC CODE</th>
     <th style="text-align: left;">HFC NAME</th>
     <th style="text-align: left;">EPISODE DATE</th>
-    <th style="text-align: left;">ALLERGY CODE</th>
-    <th style="text-align: left;">ALLERGY DESCRIPTION</th>
+    <th style="text-align: left;display: none;">ALLERGY CODE</th>
+    <th style="text-align: left;">ALLERGY NAME</th>
     <th style="text-align: left;">COMMENT</th>
 </thead>
 <tbody>
@@ -50,7 +50,7 @@
         <td style="display: none"><%= dataAllergyList.get(i).get(1)%></td> <!-- HFC Code -->
         <td  ><%= dataAllergyList.get(i).get(6)%></td> <!-- HFC Name -->
         <td ><%= dataAllergyList.get(i).get(2)%></td> <!-- EPISODE DATE -->
-        <td ><%= dataAllergyList.get(i).get(3)%></td> <!-- ALERYGY CODE -->
+        <td  style="display: none"><%= dataAllergyList.get(i).get(3)%></td> <!-- ALERYGY CODE -->
         <td ><%= dataAllergyList.get(i).get(4)%> </td> <!-- DIAGNOSIS DESCRIPTION -->
         <td ><%= dataAllergyList.get(i).get(5)%></td> <!-- COMMENT -->
     </tr>

@@ -31,8 +31,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Search From : </label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="P">Personalised</label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="CT" checked="">Common Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="P">Favourite Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="CT" checked="">All Term</label>
                                             <input class="form-control input-lg" type="hidden" name="tCISSUBCCNCodeType" id="tCISSUBCCNCodeType" value="CCN" tabindex="4" readonly="">
 
                                         </div>
@@ -42,8 +42,8 @@
                                         <div class="col-md-8">
                                             <label>Symptoms</label>
                                             <div class="form-group">
-                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search common term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised" placeholder="Type to search favourite..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                                                 <div id="tCISSubCCNHFCSearchLoading" ></div>
                                                 <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complaint" tabindex="4">
                                                 <div id="match50"></div>
@@ -133,7 +133,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr id="fastTrackChiefComplaintTableIniialRecord">
-                                                    <td colspan="7" align="center">No Record To Show<br>Please Insert New Chief Complain</td>
+                                                    <td colspan="7" align="center">Please Insert New Chief Complain</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -311,8 +311,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Search From : </label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="P" >Personalised</label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="CT" checked="">Common Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="P" >Favourite Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="CT" checked="">All Term</label>
                                             <input class="form-control input-lg" type="hidden" name="tCISSUBDGSCodeType"  id="tCISSUBDGSCodeType"  value="DGS" tabindex="4" readonly="">
 
                                         </div>
@@ -325,7 +325,7 @@
                                             <label>Search Diagnosis</label>
                                             <div class="form-group">
                                                 <input type='text' id="tCISSubDGSSearch" placeholder='Type more than 3 character to search diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion' data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                                                <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised" placeholder="Type to Search Diagnosis Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised" placeholder="Type to search favourite diagnosis..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                                                 <div id="tCISSubDGSSearchLoading"></div>
                                                 <input type="hidden" name="DGS" id="dgsCode" class="form-control input-lg"  tabindex="4">
                                                 <input type="hidden" name="DGS" id="codeDGS" class="form-control input-lg" value="DGS" tabindex="4">
@@ -405,7 +405,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr id="fastTrackDiagnosisTableIniialRecord">
-                                                    <td colspan="8" align="center">No Record To Show<br>Please Insert New Diagnosis</td>
+                                                    <td colspan="8" align="center">Please Insert New Diagnosis</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -870,6 +870,7 @@
 
 
 <script src="jsFunction/SearchClinicalTerm.js?v=1.1"></script>
+<!--<script src="jsFunction/FastTrackConfiguration.js?v=1.4"></script>-->
 
 <script src="jsFunction/CISF0101.js?v=1.4"></script>
 <script src="jsFunction/CISF0202.js?v=1.4"></script>

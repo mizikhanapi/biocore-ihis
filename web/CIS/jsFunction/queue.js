@@ -180,7 +180,7 @@ function findPatient(pmiNo, episodeDate) {
             $('#pRace').html(DataArry[7]);
             patientCategory = DataArry[9];
             fullPatientData = DataArry[10];
-            $('#gambarpesakitdisini').html('<img class="img-responsive" width="100" height="100" src="' + DataArry[11] + '" />');
+            $('#gambarpesakitdisini').html('<img class="img-responsive" width="150" height="150" src="' + DataArry[11] + '" />');
 
 
         }

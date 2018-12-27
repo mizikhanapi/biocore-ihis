@@ -20,8 +20,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Search From : </label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="P" >Personalised</label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="CT" checked="">Common Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="P" >Favourite Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType" value="CT" checked="">All Term</label>
                                             <input class="form-control input-lg" type="hidden" name="tCISSUBDGSCodeType"  id="tCISSUBDGSCodeType"  value="DGS" tabindex="4" readonly="">
 
                                         </div>
@@ -34,7 +34,7 @@
                                             <label>Search Diagnosis</label>
                                             <div class="form-group">
                                                 <input type='text' id="tCISSubDGSSearch" placeholder='Type more than 3 character to search diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion' data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                                                <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised" placeholder="Type to Search Diagnosis Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised" placeholder="Type to search favourite diagnosis..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                                                 <div id="tCISSubDGSSearchLoading"></div>
                                                 <input type="hidden" name="DGS" id="dgsCode" class="form-control input-lg"  tabindex="4">
                                                 <input type="hidden" name="DGS" id="codeDGS" class="form-control input-lg" value="DGS" tabindex="4">
@@ -113,7 +113,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr id="SOAPDiagnosisTableIniialRecord">
-                                                    <td colspan="8" align="center">No Record To Show<br>Please Insert New Diagnosis</td>
+                                                    <td colspan="8" align="center">Please Insert New Diagnosis</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -148,8 +148,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Search From : </label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="P" >Personalised</label>
-                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="CT" checked="">Common Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="P" >Favourite Term</label>
+                                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="CT" checked="">All Term</label>
                                             <input class="form-control input-lg" type="hidden" name="tCISSUBDGSCodeType_update"  id="tCISSUBDGSCodeType"  value="DGS" tabindex="4" readonly="">
 
                                         </div>
@@ -162,7 +162,7 @@
                                             <label>Search Diagnosis</label>
                                             <div class="form-group">
                                                 <input type='text' id="tCISSubDGSSearch_update" placeholder='Type more than 3 character to search diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion' data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-                                                <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised_update" placeholder="Type to Search Diagnosis Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                                <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised_update" placeholder="Type to search favourite diagnosis..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                                                 <div id="tCISSubDGSSearchLoading_update"></div>
                                                 <input type="hidden" name="DGS" id="update_dgsCode" class="form-control input-lg"  tabindex="4">
                                                 <input type="hidden" name="DGS" id="jsonIdDGS" class="form-control input-lg" value="DGS" tabindex="4">

@@ -136,7 +136,10 @@
                                             <span class="p-label" id="pBloodType">-</span>
                                         </td>
                                         <td rowspan="2" width="20%">
-                                            <span class="p-label" id="gambarpesakitdisini"></span>
+                                            <span class="p-label" >
+                                                <div id="gambarpesakitdisini" class="profile-userpic">
+                                                </div>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>

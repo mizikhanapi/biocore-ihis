@@ -118,7 +118,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr id="SOAPChiefComplaintTableIniialRecord">
-                                                    <td colspan="7" align="center">No Record to Show<br>Please Insert New Chief Complain</td>
+                                                    <td colspan="7" align="center">Please Insert New Chief Complain</td>
                                                 </tr>
                                             </tbody>
                                         </table>
