@@ -104,10 +104,9 @@ String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(11)%></td> <!--  Volume -->
 <td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(5)%></td> <!--  Comment -->
 <td  align="center">
-    <button id="MOD_btnPrepare" class="btn btn-default btn-danger" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
-    <button class="btn btn-primary " type="button" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i>&nbsp; Enter Result &nbsp;</button>
-    &nbsp;
-    <button class="btn btn-success " type="button" id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-id="1" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i>&nbsp; Verify Result &nbsp;</button>
+    <button id="MOD_btnPrepare" class="btn btn-primary" title="Prepare Item" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" ></i></button>
+    <button class="btn btn-default " type="button" title="Enter Result" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i></button>
+    <button class="btn btn-default " type="button" title="Verify Result"  id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-id="1" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i></button>
 </td> <!--  Action -->
 
 </tr>

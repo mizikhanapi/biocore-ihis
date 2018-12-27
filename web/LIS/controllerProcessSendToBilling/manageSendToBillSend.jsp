@@ -19,9 +19,9 @@
     EHRMessageSender ems;
 
     for (int i = 0; i < bigFields.length; i++) {
+        
         String[] smallFields = bigFields[i].split("\\|");
         ems = new EHRMessageSender(userID, hfc, dis, subdis, smallFields[1], smallFields[0], smallFields[2], smallFields[3], smallFields[4]);
-        //ems.updateLOMBillingStatus();
         ems.insertIntoEHR_FAR("05");
 
     }

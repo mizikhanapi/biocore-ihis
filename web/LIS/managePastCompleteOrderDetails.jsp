@@ -132,7 +132,7 @@
 
 <hr/>
 <div class="text-left"> 
-    <button class="btn btn-default " type="button" id="OD_btnClear" > <i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="OD_btnClear" > <i class="fa fa-angle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 <script>

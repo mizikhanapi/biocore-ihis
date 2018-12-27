@@ -68,9 +68,6 @@
     </div>
 
 
-
-    <hr class="pemisah">
-
     <div id="viewBill" class="table-guling">
 
     </div>
@@ -214,7 +211,7 @@
             DateTo: DateTo
         };
 
-        console.log(data);
+        $('<div class="loading">Loading</div>').appendTo('body');
 
         $.ajax({
             url: "controllerProcessSendToBilling/manageSendToBillDetail.jsp",
@@ -223,7 +220,6 @@
             success: function (orderDetail) {
 
                 $('#viewBill').html(orderDetail);
-
 
             },
             error: function (err) {

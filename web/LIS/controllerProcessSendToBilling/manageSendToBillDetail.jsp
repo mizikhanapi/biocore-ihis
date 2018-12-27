@@ -21,8 +21,10 @@
     String last_nine = current_user.substring(current_user.length() - 1);
 %>
 <hr class="pemisah">
-<table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
+
+<table  id="LISBillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
+    <th style="text-align: left;"></th>
     <th style="text-align: left; width: 8%;">Order No.</th>
     <th style="text-align: left; width: 10%;">PMI No.</th>
     <th style="text-align: left; width: 10%;">IC No.</th>
@@ -31,7 +33,6 @@
     <th style="text-align: left;">Health Facility Code</th>
     <th style="text-align: left;">Doctor's Name</th>
     <th style="text-align: left;">Bill status</th>
-    <th style="text-align: left;">Send the bill</th>
 </thead>
 <tbody>
 
@@ -42,18 +43,63 @@
             whereClause = " AND lis_order_master.hfc_to = '" + hfc_cd + "' ";
         }
         String sql = "";
-        //                       0                          1                       2                           3                           4                                   5                    6                                7                        8                     9                           10                             11                              12                         13                               14                              15                              16                      17                              18                  
+
         if (!ic.equalsIgnoreCase("")) {
 
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.billing_status FROM lis_order_master LEFT JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status = '3' AND lis_order_master.billing_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' " + whereClause;
+            //                          0                   1                       2                           3
+            sql = "SELECT lis_order_master.pmi_no, lis_order_master.order_no, lis_order_master.hfc_cd, lis_order_master.episode_date, "
+                    //                  4                               5                           6                           7
+                    + " lis_order_master.encounter_date, lis_order_master.order_date, lis_order_master.order_by, lis_order_master.hfc_from, "
+                    //              8                       9                               10                              11
+                    + " lis_order_master.hfc_to, lis_order_master.order_status, lis_order_master.diagnosis_cd, lis_order_master.created_by,"
+                    //              12                              13                              14                          15
+                    + " lis_order_master.created_date, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, pms_patient_biodata.BIRTH_DATE,"
+                    //                  16                          17                                  18
+                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status "
+                    // FROM
+                    + " FROM lis_order_master "
+                    // JOIN PMS PATIENT
+                    + " LEFT JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                    // WHERE CONDITION
+                    + " WHERE lis_order_master.order_status = '3' AND lis_order_master.billing_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' " + whereClause;
 
         } else if (!order_no.equalsIgnoreCase("")) {
 
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.billing_status FROM lis_order_master LEFT JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status = '3' AND lis_order_master.order_no = '" + order_no + "'" + whereClause;
+            //                          0                   1                       2                           3
+            sql = "SELECT lis_order_master.pmi_no, lis_order_master.order_no, lis_order_master.hfc_cd, lis_order_master.episode_date, "
+                    //                  4                               5                           6                           7
+                    + " lis_order_master.encounter_date, lis_order_master.order_date, lis_order_master.order_by, lis_order_master.hfc_from, "
+                    //              8                       9                               10                              11
+                    + " lis_order_master.hfc_to, lis_order_master.order_status, lis_order_master.diagnosis_cd, lis_order_master.created_by,"
+                    //              12                              13                              14                          15
+                    + " lis_order_master.created_date, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, pms_patient_biodata.BIRTH_DATE,"
+                    //                  16                          17                                  18
+                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status "
+                    // FROM
+                    + " FROM lis_order_master "
+                    // JOIN PMS PATIENT
+                    + " LEFT JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                    // WHERE CONDITION
+                    + " WHERE lis_order_master.order_status = '3' AND lis_order_master.billing_status='0' AND lis_order_master.order_no = '" + order_no + "'" + whereClause;
 
         } else if (!DateFrom.equalsIgnoreCase("") && !DateTo.equalsIgnoreCase("")) {
 
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.billing_status FROM lis_order_master LEFT JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status = '3' AND lis_order_master.billing_status='0' AND date(lis_order_master.order_date) BETWEEN '" + DateFrom + "' AND '" + DateTo + "'" + whereClause;
+            //                          0                   1                       2                           3
+            sql = "SELECT lis_order_master.pmi_no, lis_order_master.order_no, lis_order_master.hfc_cd, lis_order_master.episode_date, "
+                    //                  4                               5                           6                           7
+                    + " lis_order_master.encounter_date, lis_order_master.order_date, lis_order_master.order_by, lis_order_master.hfc_from, "
+                    //              8                       9                               10                              11
+                    + " lis_order_master.hfc_to, lis_order_master.order_status, lis_order_master.diagnosis_cd, lis_order_master.created_by,"
+                    //              12                              13                              14                          15
+                    + " lis_order_master.created_date, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, pms_patient_biodata.BIRTH_DATE,"
+                    //                  16                          17                                  18
+                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status "
+                    // FROM
+                    + " FROM lis_order_master "
+                    // JOIN PMS PATIENT
+                    + " LEFT JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                    // WHERE CONDITION
+                    + "WHERE lis_order_master.order_status = '3' AND lis_order_master.billing_status='0' AND date(lis_order_master.order_date) BETWEEN '" + DateFrom + "' AND '" + DateTo + "'" + whereClause;
 
         }
 
@@ -74,21 +120,18 @@
             }
 
     %>
-    <tr id="moveToLISOrderDetailsTButton" style="text-align: left;">
-
+    <tr style="text-align: left;">
+        <td>
+            <input type="checkbox" id="checky" name="order" <%=disableCheckBox%> value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(3)%>|<%=dataPatientOrderList.get(i).get(4)%>">
+        </td><!-- Check -->
         <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
         <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
         <td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
-        <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
+        <td><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
         <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
         <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
         <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
         <td><%= status%></td> <!-- bill status -->
-
-        <td>
-            <!--                                                                                                            0                                       1                                       2                                   3                                       4-->
-            <input type="checkbox" id="checky" name="order" <%=disableCheckBox%> value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(3)%>|<%=dataPatientOrderList.get(i).get(4)%>">
-        </td><!-- Doctor's Name -->
     </tr>
     <%
         }
@@ -105,10 +148,11 @@
     $(document).ready(function () {
 
 
-        $('#BillTo').DataTable({
+        $('#LISBillTo').DataTable({
             language: {
                 emptyTable: "No Completed Order Available To Display"
             }, initComplete: function (settings, json) {
+                $('.loading').hide();
             }
         });
 
@@ -139,7 +183,7 @@
 
         if (strLongData === '') {
 
-            bootbox.alert('Please tick at least one order to be posted to billing');
+            bootbox.alert('Please tick at least one test item.');
 
         } else {
 
@@ -148,9 +192,6 @@
                 longData: strLongData
             };
 
-
-
-            console.log(data);
 
             $.ajax({
                 type: 'POST',
@@ -161,9 +202,7 @@
                     if (data.trim() === 'success') {
 
                         bootbox.alert('Sent to billing.');
-
                         loadBillTable();
-
 
                     } else if (data.trim() === 'fail') {
 
@@ -176,13 +215,10 @@
                     }
 
 
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 
                     bootbox.alert('Opps! ' + errorThrown);
-
-
 
                 }
             });
@@ -190,12 +226,7 @@
 
         }
 
-
-
-        console.log(strLongData);
-
         loadBillTable();
-
 
     });
     // Send To Billing Button Function End

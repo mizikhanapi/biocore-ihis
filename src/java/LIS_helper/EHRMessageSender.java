@@ -542,7 +542,7 @@ public class EHRMessageSender {
         String sqlGetOrderDetail = "Select lid.item_cd, lid.item_name, IFNULL(lid.ser_price,0), lod.created_by, lod.created_date "
                 + "from lis_order_detail lod "
                 + "left join lis_item_detail lid on (lod.item_cd = lid.item_cd) AND lid.hfc_cd = '" + hfc + "' "
-                + "where lod.detail_status = '2' AND lod.order_no = '" + orderNo + "';";
+                + "where lod.detail_status = '3' AND lod.order_no = '" + orderNo + "';";
         ArrayList<ArrayList<String>> dataOrderDetail = conn.getData(sqlGetOrderDetail);
 
         if (dataOrderDetail.size() < 1) {

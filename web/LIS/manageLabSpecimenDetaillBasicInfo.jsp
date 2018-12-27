@@ -152,13 +152,13 @@
 <hr/>
 
 <div style="float: left;" id="patientOrderSpecimenLeftButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnSpecimenBackSpecimen" ><i class="fa fa-backward fa-lg"></i>&nbsp; Back &nbsp;</button>
-    <button class="btn btn-warning " type="button" id="btnSpecimenRejectSpecimen" ><i class="fa fa-times fa-lg"></i>&nbsp; Reject Specimen &nbsp;</button>
-    <button class="btn btn-danger " type="button" id="btnSpecimenCancelSpecimen" ><i class="fa fa-ban fa-lg"></i>&nbsp; Cancel Specimen &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnSpecimenBackSpecimen" ><i class="fa fa-angle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 <div class="text-right" id="patientOrderSpecimenRightButtonDiv" > 
-    <button class="btn btn-success " type="button" id="btnSpecimenSendSpecimenAccept" > <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Accept Specimen &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnSpecimenRejectSpecimen" ><i class="fa fa-times fa-lg"></i>&nbsp; Reject Specimen &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnSpecimenCancelSpecimen" ><i class="fa fa-ban fa-lg"></i>&nbsp; Cancel Specimen &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnSpecimenSendSpecimenAccept" > <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Accept Specimen &nbsp;</button>
 </div>
 
 
@@ -308,7 +308,7 @@
 
 
 
-        $('#lisLabRequestSpecimenDetailContent').off('click', '#patientOrderSpecimenLeftButtonDiv #btnSpecimenRejectSpecimen').on('click', '#patientOrderSpecimenLeftButtonDiv #btnSpecimenRejectSpecimen', function (e) {
+        $('#lisLabRequestSpecimenDetailContent').off('click', '#patientOrderSpecimenRightButtonDiv #btnSpecimenRejectSpecimen').on('click', '#patientOrderSpecimenRightButtonDiv #btnSpecimenRejectSpecimen', function (e) {
 
 
             var customer_id = $("#patientpmino").val();
@@ -358,7 +358,7 @@
 
                 bootbox.confirm({
                     message: "Are you sure want to reject this specimen ?",
-                    title: "Reject Specimen ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
@@ -437,7 +437,7 @@
 
 
 
-        $('#lisLabRequestSpecimenDetailContent').off('click', '#patientOrderSpecimenLeftButtonDiv #btnSpecimenCancelSpecimen').on('click', '#patientOrderSpecimenLeftButtonDiv #btnSpecimenCancelSpecimen', function (e) {
+        $('#lisLabRequestSpecimenDetailContent').off('click', '#patientOrderSpecimenRightButtonDiv #btnSpecimenCancelSpecimen').on('click', '#patientOrderSpecimenRightButtonDiv #btnSpecimenCancelSpecimen', function (e) {
 
 
             var customer_id = $("#patientpmino").val();
@@ -487,7 +487,7 @@
 
                 bootbox.confirm({
                     message: "Are you sure want to cancel this specimen ?",
-                    title: "Cancel Specimen ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
@@ -610,13 +610,13 @@
 
             if (stringDetail === "") {
 
-                bootbox.alert("Please Select At Least A Specimen Request To Cancel !!!");
+                bootbox.alert("Please select at least a specimen request to cancel");
 
             } else {
 
                 bootbox.confirm({
                     message: "Are you sure want to accept this specimen ?",
-                    title: "Accept Specimen ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
@@ -654,13 +654,13 @@
 
                                         resetPage();
 
-                                        bootbox.alert("Accept Specimen Is Successfull !!!");
+                                        bootbox.alert("The specimen is accepted successfully");
 
                                     } else if (datas.trim() === "Failed") {
 
                                         resetPage();
 
-                                        bootbox.alert("Accept Specimen Failed !!!");
+                                        bootbox.alert("Accept specimen failed");
 
                                     }
 

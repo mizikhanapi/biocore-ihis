@@ -59,7 +59,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataTestDetailshidden" type="hidden" value="<%=String.join("|", dataTestDetails.get(i))%>">
 <td><%= dataTestDetails.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataTestDetails.get(i).get(3)%></td> <!-- Name -->

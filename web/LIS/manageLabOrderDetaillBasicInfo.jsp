@@ -207,14 +207,14 @@
     </table>
 </div>
 
-<hr/>
+<hr>
 
 <div style="float: left;" id="patientOrderAssignLeftButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnClearAssignSpecimen" ><i class="fa fa-backward fa-lg"></i>&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnClearAssignSpecimen" ><i class="fa fa-angle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 <div class="text-right" id="patientOrderAssignRightButtonDiv" > 
-    <button class="btn btn-success " type="button" id="btnOrderAssignSpecimen" > <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Assign Specimen &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnOrderAssignSpecimen" > <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Assign Specimen &nbsp;</button>
 </div>
 
 
@@ -770,7 +770,7 @@
 
                 },
                 error: function (err) {
-                    alert("Error! Update Ajax failed!!");
+                    alert("Error! Update Ajax failed");
                 }
 
             });
@@ -857,7 +857,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error! Deletion Ajax failed");
                             }
 
                         });
@@ -934,13 +934,13 @@
 
             if (stringDetail === "") {
 
-                bootbox.alert("Please Select At Least A Laboratory Request To Assign Specimen !!!");
+                bootbox.alert("Please select at least a laboratory request to assign specimen");
 
             } else {
 
                 bootbox.confirm({
                     message: "Are you sure want to assign specimen the selected order ?",
-                    title: "Assign Specimen?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
@@ -985,13 +985,13 @@
 
                                                 resetPage();
 
-                                                bootbox.alert("Assign Specimen Is Successfull !!!");
+                                                bootbox.alert("The specimen is accepted successfully");
 
                                             } else if (datas.trim() === "Failed") {
 
                                                 resetPage();
 
-                                                bootbox.alert("Assign Specimen Failed !!!");
+                                                bootbox.alert("Assign specimen failed");
 
                                             }
 
