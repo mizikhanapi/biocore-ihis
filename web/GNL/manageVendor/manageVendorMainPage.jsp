@@ -9,6 +9,9 @@
     <div class="col-md-12" style="height: 100%;">
         <div class="thumbnail">
 
+            <h3 style="margin: 0px;">Manage Vendor</h3>
+            <hr class="pemisah" />
+
             <div id="contentSup">
                 <div id="contentVendorMain">
                 </div>

@@ -21,7 +21,7 @@
 <h4>
     Basic Info
     <div class="pull-right">
-        <button id="patientOrderShowVitalSign" name="patientOrderShowVitalSign" class="btn btn-default" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
+        <button id="patientOrderShowVitalSign" name="patientOrderShowVitalSign" class="btn btn-link" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
     </div>
 </h4>
 <form class="form-horizontal" name="patientOrderDetailContentBasicInfoForm" id="patientOrderDetailContentBasicInfoForm">
@@ -50,7 +50,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">New IC No.</label>
+                <label class="col-md-3 control-label" for="textinput">IC/ID No.</label>
                 <div class="col-md-7">
                     <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
                 </div>

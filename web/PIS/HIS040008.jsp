@@ -49,6 +49,9 @@
                         <div class="col-md-12" style="height: 100%;">
                             <div class="thumbnail">
 
+                                <h3 style="margin: 0px;">Sales for Pharmacy</h3>
+                                <hr class="pemisah" />
+
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">

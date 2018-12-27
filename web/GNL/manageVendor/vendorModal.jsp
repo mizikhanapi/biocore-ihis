@@ -271,7 +271,7 @@
                     <div class="btn-group" role="group" id="vendor_btnAdd_or_btnUpdate_div">
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="vendorReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                        <button type="button" id="vendorReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>

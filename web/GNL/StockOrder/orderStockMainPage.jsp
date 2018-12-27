@@ -29,7 +29,7 @@
         // $('<div class="loading">Loading</div>').appendTo('body');
         $("#orderStockContentAddMaster").load("../GNL/StockOrder/orderStockBasicInfo.jsp");
         $("#orderStockContentAddDetail").load("../GNL/StockOrder/orderStockDetailTable.jsp");
-        
+
 
     });
 

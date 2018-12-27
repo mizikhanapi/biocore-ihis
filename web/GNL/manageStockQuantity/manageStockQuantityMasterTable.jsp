@@ -13,7 +13,12 @@
     Conn conn = new Conn();
     String moduleCode = request.getParameter("moduleCode");
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">Invoice List</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;">
+    Invoice List
+    <span class="pull-right">
+        <button class="btn btn-default" type="button" id="deleveryViewInvoiceResreshBtn"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Refresh Table</button>
+    </span>
+</h4>
 
 <table  id="invoiceListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
@@ -79,9 +84,7 @@
 
 <br><br>
 
-<div class="text-right">
-    <button class="btn btn-default" type="button" id="deleveryViewInvoiceResreshBtn"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Refresh Table</button>
-</div>
+
 
 <script type="text/javascript" charset="utf-8">
 

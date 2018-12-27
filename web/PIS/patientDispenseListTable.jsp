@@ -100,7 +100,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-<tr id="moveToDispenseDetailsTButton" style="text-align: left;">
+<tr id="moveToDispenseDetailsTButton" class="clickable_tr" style="text-align: left;">
     <input id="dataPatientDispenseListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
     <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
     <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->

@@ -15,7 +15,7 @@
     Conn conn = new Conn();
     String userID = session.getAttribute("USER_ID").toString();
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Avaliable Order That Can Be Archived</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;display: none;">List Of Avaliable Order That Can Be Archived</h4>
 
 <table  id="dataManagementListArchiveOrderTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>

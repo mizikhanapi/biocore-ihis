@@ -7,8 +7,8 @@
 <hr/>
 
 <div style="float: left;" id="dataManagementArchiveOrderButtonLeftDiv" > 
-    <button class="btn btn-success " type="button" id="btnArchiveOrderSelectAll" name="btnArchiveOrderSelectAll" > <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Select All &nbsp;</button>
-    <button class="btn btn-warning " type="button" id="btnArchiveOrderDeSelectAll" name="btnArchiveOrderDeSelectAll" > <i class="fa fa-square-o fa-lg" ></i>&nbsp; Deselect All &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnArchiveOrderSelectAll" name="btnArchiveOrderSelectAll" > <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Select All &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnArchiveOrderDeSelectAll" name="btnArchiveOrderDeSelectAll" > <i class="fa fa-square-o fa-lg" ></i>&nbsp; Deselect All &nbsp;</button>
 </div>
 
 <div class="text-right" id="dataManagementArchiveOrderButtonRightDiv" > 
