@@ -101,8 +101,8 @@
         </div>
 
     </div>
-
-    <div class="form-group select-type" id="OM_selectDate" style="display: none;">
+    <jsp:include page="../RIS/libraries/dateSelect.jsp" />
+<!--    <div class="form-group select-type" id="OM_selectDate" style="display: none;">
         <label class="col-md-4 control-label" for="textinput">From</label>
         <div class="col-md-2">
             <input type="text" id="OM_DateFrom" class="form-control input-md Datepicker" placeholder="DD-MM-YYYY" readonly>
@@ -113,7 +113,7 @@
             <input type="text" id="OM_DateTo" class="form-control input-md Datepicker" placeholder="DD-MM-YYYY" readonly>
         </div>
 
-    </div>
+    </div>-->
 
     <div class="text-center">
         <button class="btn btn-primary" type="button" id="OM_btnSearch" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
@@ -129,45 +129,51 @@
 <script>
 
     $(function () {
+        $("#divDate").hide();
+        $("#refreshbuttondiv").hide();
 
-
-        //--- initialise datepicker for from ----
-        $('#OM_DateFrom').datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'dd/mm/yy',
-            yearRange: '1990:+0',
-            maxDate: '+0d'
-        });
-
-
-        //--- initialise datepicker for to after changes on from ------------
-        $('#OM_DateFrom').on('change', function () {
-
-            $("#OM_DateTo").datepicker("destroy");
-            $('#OM_DateTo').val('');
-
-            var fromDate = $("#OM_DateFrom").datepicker("getDate");
-
-            $('#OM_DateTo').datepicker({
-                changeMonth: true,
-                changeYear: true,
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1990:+0',
-                minDate: fromDate,
-                maxDate: '+0d'
-            });
-
-        });
+//        //--- initialise datepicker for from ----
+//        $('#OM_DateFrom').datepicker({
+//            changeMonth: true,
+//            changeYear: true,
+//            dateFormat: 'dd/mm/yy',
+//            yearRange: '1990:+0',
+//            maxDate: '+0d'
+//        });
+//
+//
+//        //--- initialise datepicker for to after changes on from ------------
+//        $('#OM_DateFrom').on('change', function () {
+//
+//            $("#OM_DateTo").datepicker("destroy");
+//            $('#OM_DateTo').val('');
+//
+//            var fromDate = $("#OM_DateFrom").datepicker("getDate");
+//
+//            $('#OM_DateTo').datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                dateFormat: 'dd/mm/yy',
+//                yearRange: '1990:+0',
+//                minDate: fromDate,
+//                maxDate: '+0d'
+//            });
+//
+//        });
 
 
         // Type Choose
         $('#OM_selectType').on('change', function () {
 
             $('.select-type').hide();
-
+            var div;
             var type = $(this).val();
-            var div = "#OM_select" + type;
+            if(type==="Date"){
+                div = "#divDate";
+            }else{
+                div = "#OM_select" + type;
+            }
+            
 
             $(div).show();
 
@@ -179,10 +185,11 @@
             var type = $('#OM_selectType').val();
             var status = $('#OM_selectStatus').val();
             var discipline = $('#patientType').val();
-            var inputID, dateFrom, dateTo;
+            dateType = $("#bydateSel").val();
+            var inputID, dateFrom, dateTo,dateType;
 
             if (type === "Date") {
-
+                dateType = $("#bydateSel").val();
                 dateFrom = $('#OM_DateFrom').val();
                 dateTo = $('#OM_DateTo').val();
 
@@ -193,8 +200,8 @@
 
             }
 
-            if ((type === "Date") && (dateFrom === "" || dateTo === "")) {
-
+            if ((type === "Date") && (dateType ==="custom") && (dateFrom === "" || dateTo === "")) {
+                
                 bootbox.alert("Fill in all date inputs");
 
             } else if ((type !== "Date") && (inputID === "")) {
@@ -217,7 +224,8 @@
                     dateTo: dateTo,
                     inputID: inputID,
                     status: status,
-                    discipline : discipline
+                    discipline : discipline,
+                    dateType : dateType
                 };
 
                 console.log(datas);

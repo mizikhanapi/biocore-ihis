@@ -189,7 +189,7 @@
 
                 <div class="text-right">
                     <button class="btn btn-default" type="button" id="stockadjustcancel"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Cancel  &nbsp;</button>
-                    <button type="button" class="btn btn-success" id="stockadjustupdate"><i class="fa fa-edit fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Update &nbsp;</button>
+                    <button type="button" class="btn btn-primary" id="stockadjustupdate"><i class="fa fa-edit fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Update &nbsp;</button>
                 </div>
             </form>
         </div>

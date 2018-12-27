@@ -11,8 +11,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     DRUG FREQUENCY MANAGEMENT
     <span class="pull-right">
-        <button id="addNewFreqButton" class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG FREQUENCY</button>
-        <button id="FREQClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE DRUG FREQUENCY CODE</button>
+        <button id="FREQClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"></a>Clone Drug Frequency Code</button>
+        <button id="addNewFreqButton" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG FREQUENCY</button>
     </span>
 </h4>
 
@@ -357,7 +357,7 @@
 
                     $('#FREQ_Code').html(data);
                     $('#FREQ_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Frequency Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Frequency Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Frequency Code</div>",
                         keepOrder: true
                     });

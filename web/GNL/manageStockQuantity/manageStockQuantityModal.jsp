@@ -193,7 +193,7 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="reset" id="invoiceViewOrderCloseBtn" class="btn btn-success btn-block btn-lg" data-dismiss="modal" role="button"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
+                    <button type="reset" id="invoiceViewOrderCloseBtn" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" role="button"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
                 </div>
             </div>
         </div>

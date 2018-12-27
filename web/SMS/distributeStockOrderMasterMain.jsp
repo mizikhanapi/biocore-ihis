@@ -12,7 +12,7 @@
 
 <div style="width:50%; margin: auto;">
     <div class="form-horizontal">
-        <div class="form-group">
+<!--        <div class="form-group">
             <label class="col-md-3 control-label" for="textinput">Show list of order: </label>
             <div class="col-md-3">
                 <select class="form-control"  id="STOCK_DistributeOrderTime">
@@ -24,7 +24,8 @@
             <div class="col-md-2">
                 <button id="STOCK_DistributeRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
             </div>
-        </div>
+        </div>-->
+    <jsp:include page="../RIS/libraries/dateSelect.jsp" />
     </div>
 </div>
 
@@ -33,14 +34,26 @@
     $(function () {
 
         //-------------------------refresh the order table ---------------------------------------
-        $('#STOCK_DistributeRefresh').on('click', function () {
+        $('#RMOM_btnRefresh').on('click', function () {
 
             $('#distributeStockOrderMasterContent').html('<div class="loading">Loading</div>');
 
-            var process = $('#STOCK_DistributeOrderTime').val();
-
+            var process = $('#bydateSel').val();
+            var dateFrom,dateTo;
+            
+            if(process === "custom"){
+                dateFrom = $('#OM_DateFrom').val();
+                dateTo = $("#OM_DateTo").val();
+            }else{
+                dateFrom = $('#OM_DateFrom').val();
+                dateTo = $("#OM_DateTo").val();
+            }
+            
+            
             var data = {
-                process: process
+                process: process,
+                dateFrom : dateFrom,
+                dateTo: dateTo
             };
             
             console.log(data);

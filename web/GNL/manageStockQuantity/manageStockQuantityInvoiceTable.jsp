@@ -69,7 +69,7 @@
 
 <div class="text-right">
     <button class="btn btn-default" type="button" id="invoiceAddOrderCancelBtn"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Cancel</button>
-    <button type="button" class="btn btn-success" id="invoiceAddOrderUpdateStockBtn"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Update Stock</button>
+    <button type="button" class="btn btn-primary" id="invoiceAddOrderUpdateStockBtn"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Update Stock</button>
 </div>
 
 <script>
@@ -167,7 +167,7 @@
                         if (dataBack.trim() === "Duplicate") {
 
                             bootbox.alert({
-                                message: "Invoice No Duplicated !! Please Choose Diffrent Invoice No !!",
+                                message: "Invoice No Duplicated, Please Choose Diffrent Invoice No",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -196,7 +196,7 @@
                             $('#invoiceAddOrderModal').modal('show');
 
                             $('#invoiceAddOrderDetailTitle').text("Add New Invoice Item");
-                            $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').html('<button type="submit" id="invoiceAddOrderAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
+                            $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').html('<button type="submit" id="invoiceAddOrderAddNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Add Items</button>');
                             $('#invoiceAddOrderDetail_btnClear_or_btnDelete_div').html('<button type="submit" id="invoiceAddOrderDetailReset" data-dismiss="modal" class="btn btn-default btn-block btn-lg" role="button">Clear</button>');
 
                             $('#invoiceAddOrderDetailForm')[0].reset();
@@ -356,11 +356,11 @@
 
             if (itemCode === "" || itemCode === null) {
 
-                bootbox.alert("Please Search An Item To Continue !!");
+                bootbox.alert("Please Search An Item To Continue");
 
             } else if (itemQuantity === "" || itemQuantity === null) {
 
-                bootbox.alert("Please Insert Item Quantity !!");
+                bootbox.alert("Please Insert Item Quantity");
 
             } else {
 
@@ -434,8 +434,8 @@
             $('#invoiceAddOrderModal').modal('show');
 
             $('#invoiceAddOrderDetailTitle').text("Update Or Delete Item");
-            $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').html('<button type="submit" id="invoiceAddOrderDetailUpdateItemBtn" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
-            $('#invoiceAddOrderDetail_btnClear_or_btnDelete_div').html('<button type="submit" id="invoiceAddOrderDetailDeleteItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
+            $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').html('<button type="submit" id="invoiceAddOrderDetailUpdateItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
+            $('#invoiceAddOrderDetail_btnClear_or_btnDelete_div').html('<button type="submit" id="invoiceAddOrderDetailDeleteItemBtn" class="btn btn-default btn-block btn-lg" role="button">Delete</button>');
 
 
             var itemCode = row.find('td').eq(0).text();
@@ -544,11 +544,11 @@
 
             if (invoice_noCheck === "") {
 
-                bootbox.alert("Invoice Detail is not Complete !!!");
+                bootbox.alert("Invoice Detail is not Complete");
 
             } else if (itemCheck === "" || itemCheck === null) {
 
-                bootbox.alert("Please add at least an item to update the stock !!!");
+                bootbox.alert("Please add at least an item to update the stock");
 
             } else {
 

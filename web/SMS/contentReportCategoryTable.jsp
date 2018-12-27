@@ -88,7 +88,7 @@
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Stock Category List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -96,7 +96,7 @@
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Stock Category List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -105,7 +105,7 @@
                     text: 'Print Category List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
@@ -130,7 +130,7 @@
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

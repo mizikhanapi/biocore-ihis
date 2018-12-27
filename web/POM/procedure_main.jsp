@@ -9,15 +9,14 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     PROCEDURE LEVEL 1 MANAGEMENT
     <span class="pull-right">
-        <button id="PRO_btnAddNew" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" style=" padding-right: 10px;padding-left: 10px;">
-            <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
-                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>
-            </a>ADD Procedure
-        </button>
-        <button id="PRO_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
+        <button id="PRO_btnCloneModal" class="btn btn-link" style=" padding-right: 10px;padding-left: 10px;" title="Clone item">
             <a>
-                <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            </a>CLONE Procedure
+            </a>Clone Procedure
+        </button>
+        <button id="PRO_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" style=" padding-right: 10px;padding-left: 10px;">
+            <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
+                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color:white;"></i>
+            </a>Add Procedure
         </button>
     </span>
 </h4>

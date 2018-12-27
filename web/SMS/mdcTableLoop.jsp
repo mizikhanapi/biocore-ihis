@@ -50,8 +50,7 @@
     <th style="display: none">SUB-DISCIPLINE</th>
     <th style="display: none">SUPPLIER</th>
 
-    <th style="text-align: center;" class="mrsembunyi">Update</th>
-    <th style="text-align: center;" class="mrsembunyi">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Action</th>
 </thead>
 <tbody>
 
@@ -116,14 +115,13 @@
 <td class="mrsembunyi">
     <!-- Update Button Start -->
     <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal">
-        <i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
+        <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
     </a>
     <!-- Update Button End -->
-</td>
-<td class="mrsembunyi">
+    &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
     <a id="mdcDeleteTButton" class="testing">
-        <i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
+        <i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
     </a>
     <!-- Delete Button End -->
 </td>

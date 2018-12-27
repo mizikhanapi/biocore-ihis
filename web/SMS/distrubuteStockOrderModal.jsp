@@ -169,7 +169,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="orderStockAddButton">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="orderStockAddButton">Add</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="orderStockResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
@@ -295,10 +295,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateStockOrderMButton">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="updateStockOrderMButton">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="deleteStockOrderMButton" >Delete</button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" id="deleteStockOrderMButton" >Delete</button>
                     </div>
                 </div>
             </div>

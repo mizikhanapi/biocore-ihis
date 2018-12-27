@@ -24,6 +24,8 @@
     String dateTo = request.getParameter("dateTo");
     String status = request.getParameter("status");
     String dis = request.getParameter("discipline");
+    String dateType = request.getParameter("dateType");
+    
     String discipline_val = "";
     Conn conn = new Conn();
 
@@ -54,8 +56,21 @@
 
     } else if (type.equalsIgnoreCase("Date")) {
 
-        whereClause = "AND (date(om.txt_date) BETWEEN STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') AND STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) group by om.order_no ORDER BY om.txt_date DESC;";
-
+        //whereClause = "AND (date(om.txt_date) BETWEEN STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') AND STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) group by om.order_no ORDER BY om.txt_date DESC;";
+        
+        if (dateType.equalsIgnoreCase("today")) {
+            whereClause = " AND (date(om.txt_date)) = date(now()) group by om.order_no ORDER BY om.txt_date DESC;";
+        }else if(dateType.equalsIgnoreCase("yesterday")){
+            whereClause = " AND (date(om.txt_date) = DATE(NOW() - INTERVAL 1 DAY) group by om.order_no ORDER BY om.txt_date DESC;";
+        }else if(dateType.equalsIgnoreCase("7")){
+            whereClause = " AND (date(om.txt_date) between SUBDATE(CURDATE(),7) and CURDATE() ) group by om.order_no ORDER BY om.txt_date DESC;";
+        }else if(dateType.equalsIgnoreCase("30")){
+            whereClause = " AND (date(om.txt_date) between SUBDATE(CURDATE(),30) and CURDATE() ) group by om.order_no ORDER BY om.txt_date DESC;";
+        }else if(dateType.equalsIgnoreCase("60")){
+            whereClause = " AND (date(om.txt_date) between SUBDATE(CURDATE(),60) and CURDATE() ) group by om.order_no ORDER BY om.txt_date DESC;";
+        }else if(dateType.equalsIgnoreCase("custom")){
+            whereClause = " AND (date(om.txt_date) between STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') and STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) group by om.order_no ORDER BY om.txt_date DESC;";
+        }
     }
 
     //                          1             2             3           4

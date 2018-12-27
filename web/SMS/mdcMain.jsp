@@ -27,9 +27,9 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     DRUG CODE MANAGEMENT
     <span class="pull-right ">
-        <button class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG CODE</button>
-        <button id="MDCClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE DRUG CODE</button>
-        <button id="MDCClone_btnSummary" class="btn btn-danger mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>DRUG INVENTORY SUMMARY</button>
+        <button id="MDCClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"></a>Clone Drug Code</button>
+        <button class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Drug Code</button>
+        <button id="MDCClone_btnSummary" class="btn btn-default mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;"></i></a>Drug Inventory Summary</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -990,7 +990,7 @@
 
                     $('#MDC_DrugCode').html(data);
                     $('#MDC_DrugCode').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Drug Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Drug Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Drug Code</div>",
                         keepOrder: true
                     });

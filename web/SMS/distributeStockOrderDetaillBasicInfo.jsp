@@ -264,16 +264,16 @@
 <hr/>
 
 <div style="float: left;" id="distributeStockOrderDetailsBackButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnClearOrderDetailRelease" name="btnClearOrderDetailRelease" >&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnClearOrderDetailRelease" name="btnClearOrderDetailRelease" >&nbsp;<i class="fa fa-angle-left fa-lg"></i> Back &nbsp;</button>
 </div>
 <div class="text-right" id="distributeStockOrderDetailsTransferButtonDiv" >
     <div class="btn print-assets text-right"></div>
 
-    <button class="btn btn-success buttonactionnn" type="button" id="btnStockOrderTransfer" name="btnOrderDispense" value="transfer"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Transfer Stock &nbsp;</button>
+    <button class="btn btn-primary buttonactionnn" type="button" id="btnStockOrderTransfer" name="btnOrderDispense" value="transfer"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Transfer Stock &nbsp;</button>
 </div>
 <div class="text-right" id="distributeStockOrderDetailsReleaseButtonDiv" > 
     <div class="btn print-assets text-right"></div>
-    <button class="btn btn-success buttonactionnn" type="button" id="btnStockOrderRelease" name="btnOrderDispense" value="release"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Release Stock &nbsp;</button>
+    <button class="btn btn-primary buttonactionnn" type="button" id="btnStockOrderRelease" name="btnOrderDispense" value="release"> <i class="fa fa-paper-plane-o fa-lg"></i>&nbsp; Release Stock &nbsp;</button>
 </div>
 
 

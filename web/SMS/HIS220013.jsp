@@ -48,14 +48,12 @@
         <title>Stock Distributes/Transfer Report</title>
         <%@include file = "libraries/stockHeadLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
-        <script src="../assets/js/jquery.min.js"></script>
+<!--        <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <%@include file="../assets/header.html"%>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
 
         <!--        <script src="https://code.highcharts.com/highcharts.js"></script>
                 <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
@@ -152,7 +150,8 @@
         <div>
             <%@include file="reportDistributeModal.jsp" %>
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <%@include file = "libraries/stockFootLibrary.jsp" %>
+<!--        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
@@ -161,7 +160,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>-->
 
 
 
@@ -414,7 +413,7 @@
                                             text: 'Print Stock Distribution List',
                                             title: '',
                                             message: '<br><br>',
-                                            className: 'btn btn-primary',
+                                            className: 'btn btn-default',
                                             customize: function (win) {
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
@@ -447,7 +446,7 @@
                                         {
                                             extend: 'colvis',
                                             text: 'Filter Table Columns',
-                                            className: 'btn btn-success'
+                                            className: 'btn btn-default'
                                         }
                                     ]
                                 });
@@ -456,7 +455,7 @@
                                 //$("#searchPatientTypeList").prop("disabled", true);
                                 
                             } else if (reply.trim() === "No Data") {
-                                alert("There is no record in this time range !!");
+                                alert("There is no record in this time range");
                             }
                         },
                         error: function (err) {

@@ -128,7 +128,7 @@
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Daily Released Item List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -136,7 +136,7 @@
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Daily Released Item List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -145,7 +145,7 @@
                     text: 'Print Daily Sales List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
@@ -176,7 +176,7 @@
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });
@@ -231,7 +231,7 @@
                                 extend: 'excelHtml5',
                                 text: 'Export To Excel',
                                 title: 'Released Item List For ' + rdate,
-                                className: 'btn btn-primary',
+                                className: 'btn btn-default',
                                 exportOptions: {
                                     columns: ':visible'
                                 }
@@ -239,7 +239,7 @@
                                 extend: 'csvHtml5',
                                 text: 'Export To Excel CSV',
                                 title: 'Released Item List For ' + rdate,
-                                className: 'btn btn-primary',
+                                className: 'btn btn-default',
                                 exportOptions: {
                                     columns: ':visible'
                                 }
@@ -248,7 +248,7 @@
                                 text: 'Print Released Item List',
                                 title: $('h1').text(),
                                 message: '<br><br>',
-                                className: 'btn btn-primary',
+                                className: 'btn btn-default',
                                 customize: function (win) {
                                     $(win.document.body)
                                             .css('font-size', '10pt')
@@ -279,7 +279,7 @@
                             }, {
                                 extend: 'colvis',
                                 text: 'Filter Table Column',
-                                className: 'btn btn-success'
+                                className: 'btn btn-default'
                             }
                         ]
                     });

@@ -12,8 +12,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     STOCK CATEGORY MANAGEMENT
     <span class="pull-right">
-        <button id="addNewStockCateButton" class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK CATEGORY</button>
-        <button id="STOCKCATEClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK CATEGORY</button>
+        <button id="STOCKCATEClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"></a>Clone Stock Category</button>
+        <button id="addNewStockCateButton" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockCateModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Stock Category</button>
     </span>
 </h4>
 
@@ -380,7 +380,7 @@
 
                     $('#STOCKCATE_Code').html(data);
                     $('#STOCKCATE_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Category Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Category Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Category Code</div>",
                         keepOrder: true
                     });

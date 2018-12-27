@@ -32,22 +32,31 @@
         String dis = (String) session.getAttribute("DISCIPLINE_CODE");
         String current_user = (String) session.getAttribute("USER_ID");
         String last_nine = current_user.substring(current_user.length() - 1);
-
+        String dateFrom = request.getParameter("dateFrom");
+        String dateTo = request.getParameter("dateTo");
         String whereClause = "";
         String orderWhereClause = " ";
 
         //-------------------------- to refresh order table based on request--------------------------------
-        String process = "1";
+        String process = "";
 
         if (request.getParameter("process") != null) {
 
             process = request.getParameter("process");
         }
 
-        if (process.equalsIgnoreCase("1")) {
-
+        if (process.equalsIgnoreCase("today")) {
             orderWhereClause = " AND date(stkom.txt_date) = date(now()) ";
-
+        }else if(process.equalsIgnoreCase("yesterday")){
+            orderWhereClause = " AND date(stkom.txt_date) = date(now() - INTERVAL 1 DAY) ";
+        }else if(process.equalsIgnoreCase("7")){
+            orderWhereClause = " AND (date(stkom.txt_date) between SUBDATE(CURDATE(),7) and CURDATE()) ";
+        }else if(process.equalsIgnoreCase("30")){
+            orderWhereClause = " AND (date(stkom.txt_date) between SUBDATE(CURDATE(),30) and CURDATE()) ";
+        }else if(process.equalsIgnoreCase("60")){
+            orderWhereClause = " AND (date(stkom.txt_date) between SUBDATE(CURDATE(),60) and CURDATE()) ";
+        }else if(process.equalsIgnoreCase("custom")){
+            orderWhereClause = " AND (date(stkom.txt_date) between STR_TO_DATE('" + dateFrom + "','%d/%m/%Y') and STR_TO_DATE('" + dateTo + "','%d/%m/%Y') ) ";
         }
 
         //=============================================================================================
@@ -86,7 +95,6 @@
                 + whereClause + " ;";
 
         ArrayList<ArrayList<String>> dataDistributeStockOrderMaster = conn.getData(sql);
-
         int size = dataDistributeStockOrderMaster.size();
         for (int i = 0; i < size; i++) {
     %>

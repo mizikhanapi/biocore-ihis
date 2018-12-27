@@ -11,9 +11,10 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     STOCK ITEM MANAGEMENT
     <span class="pull-right ">
-        <button id="addNewStockItemButton" class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD STOCK ITEM</button>
-        <button id="STOCKITEMClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE STOCK ITEM</button>
-        <button id="STOCKITEM_btnSummary" class="btn btn-danger mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>STOCK ITEM INVENTORY SUMMARY</button>    </span>
+        <button id="STOCKITEMClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"></a>Clone Stock Item</button>
+        <button id="addNewStockItemButton" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Stock Item</button>
+        <button id="STOCKITEM_btnSummary" class="btn btn-default mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;"></i></a>Stock Item Inventory Summary</button>
+    </span>
 </h4>
 
 <script>
@@ -664,7 +665,7 @@
 
                     $('#STOCKITEM_Code').html(data);
                     $('#STOCKITEM_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Item Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Item Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Item Code</div>",
                         keepOrder: true
                     });

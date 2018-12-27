@@ -120,7 +120,7 @@
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Vendor List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -128,7 +128,7 @@
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Vendor List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -137,7 +137,7 @@
                     text: 'Print Vendor List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
@@ -163,7 +163,7 @@
                     extend: 'colvis',
                     collectionLayout: 'fixed two-column',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

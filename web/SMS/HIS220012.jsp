@@ -47,20 +47,16 @@
         <title>Stock Adjustment Report</title>
         <%@include file = "libraries/stockHeadLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
-        <script src="../assets/js/jquery.min.js"></script>
+<!--        <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
-        <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>-->
 
-        <%@include file="../assets/header.html"%>
-        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<!--        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+<!--        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
 
-<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
         
-        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
-        <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        
         
     </head>
     <body>
@@ -96,11 +92,11 @@
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength="" readonly=""/>
+                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" style="position: relative; z-index: 999999;" maxlength="" readonly=""/>
                                 </div>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength="" readonly=""/>
+                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" style="position: relative; z-index: 999999;" maxlength="" readonly=""/>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -156,16 +152,17 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <%@include file = "libraries/stockFootLibrary.jsp" %>
+<!--        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>-->
+<!--        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
         <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
         <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>-->
 
 
 
@@ -358,7 +355,7 @@
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
                                             title: 'Stock Adjustment List, From ' + startDateori + ' To ' + endDateori,
-                                            className: 'btn btn-primary',
+                                            className: 'btn btn-default',
                                             exportOptions: {
                                                 columns: ':visible'
                                             }
@@ -366,7 +363,7 @@
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
                                             title: 'Stock Adjustment List, From ' + startDateori + ' To ' + endDateori,
-                                            className: 'btn btn-primary',
+                                            className: 'btn btn-default',
                                             exportOptions: {
                                                 columns: ':visible'
                                             }
@@ -375,7 +372,7 @@
                                             text: 'Print Stock Adjustment List',
                                             title: '',
                                             message: '<br><br>',
-                                            className: 'btn btn-primary',
+                                            className: 'btn btn-default',
                                             customize: function (win) {
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
@@ -408,7 +405,7 @@
                                         {
                                             extend: 'colvis',
                                             text: 'Filter Table Columns',
-                                            className: 'btn btn-success'
+                                            className: 'btn btn-default'
                                         }
                                     ]
                                 });
@@ -416,7 +413,7 @@
                                 $("#reportPatientTypeTotalPatient").val(totalPatient);
                                 $("#searchPatientTypeList").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
-                                alert("There is no RECORD in this time range !!");
+                                alert("There is no Records in this time range");
                             }
                         },
                         error: function (err) {

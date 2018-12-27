@@ -23,8 +23,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     CATEGORY CODE MANAGEMENT
     <span class="pull-right">
-        <button id="addATCTriggerHFC" class="btn btn-success mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD CATEGORY CODE</button>
-        <button id="ATCClone_btnClone" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE CATEGORY CODE</button>
+        <button id="ATCClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"></a>Clone Category Code</button>
+        <button id="addATCTriggerHFC" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Category Code</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -351,7 +351,7 @@ var adminrole = "<%=roleCode2%>";
 
                     $('#ATC_DrugCode').html(data);
                     $('#ATC_DrugCode').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Category Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Category Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Category Code</div>",
                         keepOrder: true
                     });
