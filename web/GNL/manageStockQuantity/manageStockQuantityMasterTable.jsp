@@ -32,7 +32,7 @@
     <th style="text-align: left;">TOTAL AMOUNT (RM)</th>
     <th style="text-align: left;">TOTAL QUATITY (UNIT)</th>
     <th style="text-align: left; display: none">ORDER</th>
-    <th>SUB-LEGGER TYPE</th>
+    <th>SUB-LEDGER TYPE</th>
     <th style="text-align: left; display: none">NO</th>
 </thead>
 <tbody>
