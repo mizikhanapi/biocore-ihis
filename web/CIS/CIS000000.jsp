@@ -295,7 +295,19 @@
                                         %>
                                         
                                         
+                                       <%
+                                        
+                                               if (parameterCISFAST.equalsIgnoreCase("1")) {
+                                        
+                                        %>
+
                                         <hr class="pemisah" />
+                                        
+                                        <%
+                                        
+                                              }
+                                        
+                                        %>          
                                         <h4 id="mainConsultBar">Consultation Notes</h4>
                                         <div id="divCIS_Consultation_PARENT">
                                         <div id="divCIS_Consultation_Table">

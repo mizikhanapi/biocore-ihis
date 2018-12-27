@@ -17,7 +17,7 @@
                 <div class="panel-group" id="accordion1">
                     <div class="panel panel-default">
 
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseOne1" aria-expanded="false" id="fastTrackAccordianMenuComplain">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseOne1" aria-expanded="false" id="fastTrackAccordianMenuComplain" style="cursor: pointer;">
                             <h4 class="panel-title">Chief Complaint</h4>
                         </div>
 
@@ -143,8 +143,8 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseTwo1" aria-expanded="false" id="fastTrackAccordianMenuVital">
-                            <h4 class="panel-title">Check Vital</h4>
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseTwo1" aria-expanded="false" id="fastTrackAccordianMenuVital" style="cursor: pointer;">
+                            <h4 class="panel-title">Check Vitals</h4>
                         </div>
                         <div id="collapseTwo1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="panel-body">
@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseThree1" aria-expanded="false" id="fastTrackAccordianMenuDiagnosis">
+                        <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" data-target="#collapseThree1" aria-expanded="false" id="fastTrackAccordianMenuDiagnosis" style="cursor: pointer;">
                             <h4 class="panel-title">Diagnosis</h4>
                         </div>
                         <div id="collapseThree1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
@@ -419,7 +419,7 @@
             <div class="modal-footer" id="fastTrackChiefComplaintAcceptComplains">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg" id="fastTrackChiefComplaintAcceptComplainsBtn" >Accept Complains</a>
+                        <a class="btn btn-success btn-block btn-lg" id="fastTrackChiefComplaintAcceptComplainsBtn" >Accept Symtoms</a>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
@@ -560,8 +560,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label>Search From : </label>
-                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="P" >Personalised</label>
-                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="CT" checked="">Common Term</label>
+                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="P" >Favourite Term</label>
+                            <label class="radio-inline"><input type="radio" name="rCISSubDGSSearchType_update" value="CT" checked="">All Term</label>
                             <input class="form-control input-lg" type="hidden" name="tCISSUBDGSCodeType_update"  id="tCISSUBDGSCodeType"  value="DGS" tabindex="4" readonly="">
 
                         </div>
