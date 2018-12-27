@@ -7,7 +7,7 @@
 
 //------------------------ create loader ------------------------------------------------ 
     function createScreenLoading() {
-        $('body').append('<div class = "loading">Loading</div>');
+        $('body').append('<div class = "loading"></div>');
     }
 
 //------------------------ destroy loader ----------------------------------

@@ -100,7 +100,7 @@
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="REP_modalTitle"></h3>
             </div>
-            <div class="modal-body" id="REP_modalBody">
+            <div class="modal-body table-guling" id="REP_modalBody">
 
                 
                 <!-- content goes here -->

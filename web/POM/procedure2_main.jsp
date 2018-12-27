@@ -7,11 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    CIS PROCEDURE LEVEL 3 MANAGEMENT
+    PROCEDURE LEVEL 3 MANAGEMENT
     <span class="pull-right">
-        <button id="PRO2_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO2_detail" style=" padding-right: 10px;padding-left: 10px;color: white;">
+        <button id="PRO2_btnAddNew" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO2_detail" style=" padding-right: 10px;padding-left: 10px;">
             <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
-                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
+                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>
             </a>ADD Procedure Level 3
         </button>
     </span>
@@ -24,7 +24,7 @@
 
         $('#PRO2_modal_title').text("Add New Procedure");
         $('#PRO2_Code').prop('disabled', false);
-        $('#PRO2_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO2_btnAdd">Add</button>');
+        $('#PRO2_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO2_btnAdd">Add</button>');
         
         $('#PRO2_div_level1').show();
         $("#PRO2_div_insert").show();
@@ -133,7 +133,7 @@
         $("#PRO2_div_insert").hide();
         $("#PRO2_div_update").show();
         
-        $('#PRO2_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO2_btnUpdate">Update</button>');
+        $('#PRO2_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO2_btnUpdate">Update</button>');
         
         //console.log( $('#PRO2_level1_code').val());
 
@@ -222,11 +222,11 @@
             buttons: {
                 confirm: {
                     label: "Yes",
-                    className: "btn-success"
+                    className: "btn-primary"
                 },
                 cancel: {
                     label: "No",
-                    className: "btn-danger"
+                    className: "btn-default"
                 }
             },
             callback: function (result) {

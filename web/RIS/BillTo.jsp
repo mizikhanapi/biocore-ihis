@@ -144,15 +144,15 @@
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                     if (data.trim() === 'success') {
-                        bootbox.alert('Sent to billing.');
+                        bootbox.alert({title:'Success!',message:'Success to send to the billing'});
 
                         loadBillTable();
 
 
                     } else if (data.trim() === 'fail') {
-                        bootbox.alert('Failed to send to billing.');
+                        bootbox.alert({title:'Failed',message:'Failed to sent to the billing'});
 
-                    } else {
+                    }  else {
                         console.log(data.trim());
                     }
 

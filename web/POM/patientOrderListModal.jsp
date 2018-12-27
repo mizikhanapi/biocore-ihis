@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" align="center"> Vital Signs </h2>
+                <h2 class="modal-title" align="left"> Vital Signs </h2>
             </div>
             <div class="modal-body">
                 <div id="patientOrderDetailsVitalSignContent">
@@ -29,7 +29,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" align="center"> Vital Signs Graph </h2>
+                <h2 class="modal-title" align="left"> Vital Signs Graph </h2>
             </div>
             <div class="modal-body">
                 <div id="patientOrderDetailsVitalSignContent">

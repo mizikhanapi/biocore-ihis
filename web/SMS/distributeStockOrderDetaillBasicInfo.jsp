@@ -497,7 +497,7 @@
                         text: 'Print Receipt',
                         title: '',
                         message: '<br><br>',
-                        className: 'btn btn-success',
+                        className: 'btn btn-default',
                         customize: function (win) {
                             $(win.document.body).css('font-size', '10pt').prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\

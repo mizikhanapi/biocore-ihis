@@ -35,16 +35,25 @@
         String orderWhereClause = " ";
 
         //-------------------------- to refresh order table based on request--------------------------------
-        String process = "1";
+        String process = "";
+        process = request.getParameter("process");
+        String fromDate = request.getParameter("dateFrom");
+        String toDate = request.getParameter("dateTo");
+        
 
-        if (request.getParameter("process") != null) {
-
-            process = request.getParameter("process");
-        }
-
-        if (process.equalsIgnoreCase("1")) {
+        if (process.equalsIgnoreCase("today")) {
 
             orderWhereClause = " AND date(pos_order_master.order_date) = date(now()) ";
+        }else if(process.equalsIgnoreCase("yesterday")){
+            orderWhereClause = " AND date(pos_order_master.order_date) = DATE(NOW() - INTERVAL 1 DAY) ";
+        }else if(process.equalsIgnoreCase("7")){
+            orderWhereClause = " AND (date(pos_order_master.order_date) between SUBDATE(CURDATE(),7) and CURDATE() ) ";
+        }else if(process.equalsIgnoreCase("30")){
+            orderWhereClause = " AND (date(pos_order_master.order_date) between SUBDATE(CURDATE(),30) and CURDATE() ) ";
+        }else if(process.equalsIgnoreCase("60")){
+            orderWhereClause = " AND (date(pos_order_master.order_date) between SUBDATE(CURDATE(),60) and CURDATE() ) ";
+        }else if(process.equalsIgnoreCase("custom")){
+            orderWhereClause = " AND (date(pos_order_master.order_date) between STR_TO_DATE('" + fromDate + "','%d/%m/%Y') and STR_TO_DATE('" + toDate + "','%d/%m/%Y') ) ";
         }
 
         //=============================================================================================

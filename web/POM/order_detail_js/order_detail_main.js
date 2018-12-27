@@ -326,16 +326,16 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
     var proCode = arrData[1], proName = arrData[8], orderNo = arrData[0];
 
     bootbox.confirm({
-        message: "Are you sure want to delete(cancel) this order? " + proCode + "-" + proName,
-        title: "Cancel Order?",
+        message: "Are you sure want to cancel this order?",
+        title: "Please confirm",
         buttons: {
             confirm: {
                 label: 'Yes',
-                className: 'btn-success'
+                className: 'btn-primary'
             },
             cancel: {
                 label: 'No',
-                className: 'btn-danger'
+                className: 'btn-default'
             }
         },
         callback: function (result) {
@@ -358,14 +358,20 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
                     success: function (datas) {
 
                         if (datas.isValid) {
-                            bootbox.alert('Order is cancelled.');
+                            bootbox.alert({
+                                message:'Order is cancelled.',
+                                title:"Information"
+                            });
                             loadOrderDetailList(orderNo);
                             if (datas.isComplete) {
                                 cancelCallPatient(false);
                             }
 
                         } else if (!datas.isValid) {
-                            bootbox.alert("Fail to cancel order!");
+                            bootbox.alert({
+                                message:"Fail to cancel order",
+                                title:"Information"
+                            });
                             destroyScreenLoading();
 
                         }

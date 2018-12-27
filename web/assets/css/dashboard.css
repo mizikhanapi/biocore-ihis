@@ -98,6 +98,8 @@ ul.nav.navbar-nav.navbar-left.back{margin-left:20px;}
 .P .media-body{color:#00a0d2;}
 .S .media-body>.summary, .O .media-body>.summary, .A .media-body>.summary, .P .media-body>.summary{color:#666;}
 .btn-group>.btn, .btn-group>.btn{border-radius:0px;border:none;padding:15px;}
+.dt-buttons .btn-default { border: solid 1px #ccc; }
+.dt-buttons.btn-group {display:block;}
 tr#moveToOrderDetailsTButton{cursor:pointer;}
 .filter:hover{color:#333 !important;transition:.35s ease-in-out;}
 .thumbnail h4{margin:0 -30px;padding:20px 30px 30px;}

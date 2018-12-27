@@ -7,11 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    CIS PROCEDURE LEVEL 2 MANAGEMENT
+    PROCEDURE LEVEL 2 MANAGEMENT
     <span class="pull-right">
-        <button id="PRO1_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO1_detail" style=" padding-right: 10px;padding-left: 10px;color: white;">
+        <button id="PRO1_btnAddNew" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO1_detail" style=" padding-right: 10px;padding-left: 10px;">
             <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
-                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
+                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>
             </a>ADD Procedure Level 2
         </button>
         <button id="PRO1_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
@@ -32,7 +32,7 @@
 
         $('#PRO1_modal_title').text("Add New Procedure");
         $('#PRO1_Code').prop('disabled', false);
-        $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnAdd">Add</button>');
+        $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO1_btnAdd">Add</button>');
 
         $('#PRO1_div_level1').show();
         $("#PRO1_div_insert").show();
@@ -141,7 +141,7 @@
         $("#PRO1_div_insert").hide();
         $("#PRO1_div_update").show();
 
-        $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnUpdate">Update</button>');
+        $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PRO1_btnUpdate">Update</button>');
 
         //console.log( $('#PRO1_level1_code').val());
 
@@ -230,11 +230,11 @@
             buttons: {
                 confirm: {
                     label: "Yes",
-                    className: "btn-success"
+                    className: "btn-primary"
                 },
                 cancel: {
                     label: "No",
-                    className: "btn-danger"
+                    className: "btn-default"
                 }
             },
             callback: function (result) {
