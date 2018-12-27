@@ -178,16 +178,17 @@
         </tbody>
     </table>
 </div>
+
 <hr/>
 
 <div style="float: left;" id="patientOrderSpecimenLeftButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnVerifyBackSpecimen" ><i class="fa fa-backward fa-lg"></i>&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnVerifyBackSpecimen" ><i class="fa fa-angle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 
 <div class="text-right" id="patientOrderSpecimenRightButtonDiv" > 
-    <button class="btn btn-warning" type="button" id="btnVerifySpecimenCallPatient" name="btnVerifySpecimenCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
-    <button class="btn btn-danger" type="button" id="btnVerifySpecimenDeclineCallPatient" name="btnVerifySpecimenDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
+    <button class="btn btn-default" type="button" id="btnVerifySpecimenDeclineCallPatient" name="btnVerifySpecimenDeclineCallPatient" > <i class="fa fa-phone fa-lg  f-decline" style="-webkit-transform: rotate(135deg);"></i>&nbsp; Decline Call Patient &nbsp;</button>
+    <button class="btn btn-primary" type="button" id="btnVerifySpecimenCallPatient" name="btnVerifySpecimenCallPatient" > <i class="fa fa-phone fa-lg"></i>&nbsp; Call Patient &nbsp;</button>
 </div>
 
 
