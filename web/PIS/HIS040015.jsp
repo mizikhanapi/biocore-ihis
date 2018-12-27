@@ -45,9 +45,8 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
-                                <h3>SCREENING DRUG ORDER</h3>
-
-                                <hr/>
+                                <h3 style="margin: 0px;">Screening Drug Order</h3>
+                                <hr class="pemisah" />
 
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">

@@ -21,7 +21,7 @@
 <h4>
     Basic Info
     <div class="pull-right">
-        <button id="patientShowVitalSign" name="patientShowVitalSign" class="btn btn-default" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
+        <button id="patientShowVitalSign" name="patientShowVitalSign" class="btn btn-link" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
     </div>
 </h4>
 
@@ -49,7 +49,7 @@
         <div class="col-md-4">
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">New IC No.</label>
+                <label class="col-md-3 control-label" for="textinput">IC/ID No.</label>
                 <div class="col-md-7">
                     <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
@@ -238,12 +238,12 @@
 
 
 <div style="float: left;" id="patientScreenProcessButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnScreenClear" name="btnScreenClear" >&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnScreenClear" name="btnScreenClear" > <i class="fa fa-angle-left fa-lg"></i> &nbsp; Back &nbsp;</button>
 </div>
 
 
 <div class="text-right" id="patientScreenProcessButtonDiv" > 
-    <button class="btn btn-success " type="button" id="btnScreenScreening" name="btnScreenScreening" > <i class="fa fa-tasks fa-lg"></i>&nbsp; Screening Complete &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnScreenScreening" name="btnScreenScreening" > <i class="fa fa-tasks fa-lg"></i>&nbsp; Screening Complete &nbsp;</button>
 </div>
 
 

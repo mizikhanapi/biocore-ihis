@@ -48,9 +48,8 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
-                                <h3>DISPENSE DRUG ORDER</h3>
-
-                                <hr/>
+                                <h3 style="margin: 0px;">Dispense Drug Order</h3>
+                                <hr class="pemisah" />
 
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
@@ -178,7 +177,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Comment</label>
                                 <div class="col-md-8">
-                                    <input id="updateOrderComment" name="updateOrderComment" type="text" placeholder="Order Comment" class="form-control input-md" maxlength="200" required>
+                                    <input id="updateOrderComment" name="updateOrderComment" type="text" placeholder="Type your comment here" class="form-control input-md" maxlength="200" required>
                                 </div>
                             </div>
 
@@ -204,10 +203,10 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateOrderMButton">Update</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="updateOrderMButton">Update</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="deleteOrderMButton" >Delete</button>
+                                <button type="submit" class="btn btn-default btn-block btn-lg" role="button" id="deleteOrderMButton" >Delete</button>
                             </div>
                         </div>
                     </div>
@@ -414,7 +413,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Comment</label>
                                         <div class="col-md-8">
-                                            <input id="orderComment" name="orderComment" type="text" placeholder="Comment" class="form-control input-md" maxlength="200">
+                                            <input id="orderComment" name="orderComment" type="text" placeholder="Type your comment here" class="form-control input-md" maxlength="200">
                                         </div>
                                     </div>
 
@@ -428,10 +427,10 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="orderDrugAddButton">Add</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="orderDrugAddButton">Add</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="reset" id="orderDrugResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                                <button type="reset" id="orderDrugResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Close</button>
                             </div>
                         </div>
                     </div>
@@ -485,7 +484,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dispenseOrderMButton">Dispense</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="dispenseOrderMButton">Dispense</button>
                             </div>
                         </div>
                     </div>

@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Comment</label>
                         <div class="col-md-7">
-                            <input id="deleteScreenComment" name="updateOrderComment" type="text" placeholder="Order Comment" class="form-control input-md" maxlength="200" readonly disabled>
+                            <input id="deleteScreenComment" name="updateOrderComment" type="text" placeholder="Type your comment here" class="form-control input-md" maxlength="200" readonly disabled>
                         </div>
                     </div>
 
@@ -96,10 +96,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateScreenMButton">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="updateScreenMButton">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="deleteScreenMButton">Delete</button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" id="deleteScreenMButton">Delete</button>
                     </div>
                 </div>
             </div>
@@ -306,7 +306,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Comment</label>
                                 <div class="col-md-8">
-                                    <input id="orderComment" name="orderComment" type="text" placeholder="Comment" class="form-control input-md" maxlength="200">
+                                    <input id="orderComment" name="orderComment" type="text" placeholder="Type your comment here" class="form-control input-md" maxlength="200">
                                 </div>
                             </div>
 
@@ -320,10 +320,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="screenDrugAddButton">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="screenDrugAddButton">Add</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="screenDrugResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                        <button type="reset" id="screenDrugResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Close</button>
                     </div>
                 </div>
             </div>

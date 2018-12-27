@@ -13,8 +13,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
 %>
@@ -44,7 +43,12 @@
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
+
                             <div class="thumbnail">
+
+                                <h3 style="margin: 0px;">List of Category Codes</h3>
+                                <hr class="pemisah" />
+
                                 <div id="contentReportATCList" class="table-guling">
                                 </div>
                             </div>

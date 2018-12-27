@@ -107,7 +107,7 @@
 
                         <div style="align-items: center; text-align: center">
                             <br>
-                            <label>Select Frequency To Be Cloned</label>
+                            <label>Select Frequency to be Cloned</label>
                             <br><br>
                             <span>
                                 <a href="#" class="btn btn-default" id="FREQ_Code_selectAll">&nbsp; Select all &nbsp;</a>

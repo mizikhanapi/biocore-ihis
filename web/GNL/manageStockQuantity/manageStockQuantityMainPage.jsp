@@ -8,6 +8,8 @@
     <div class="col-md-12">
         <div  class="thumbnail">
 
+            <h3 style="margin: 0px;">Manage Drug Stock</h3>
+            <hr class="pemisah" />
 
             <!-- Tab Menu -->
             <div class="tabbable-panel">
@@ -67,7 +69,7 @@
         var data = {
             moduleCode: "04,22"
         };
-        
+
         $.ajax({
             type: "POST",
             url: "../GNL/manageStockQuantity/manageStockQuantityMasterTable.jsp", // call the jsp file ajax/auto-autocomplete.php

@@ -21,7 +21,7 @@
 <h4>
     Basic Info
     <div class="pull-right">
-        <button id="patientShowVitalSign" name="patientShowVitalSign" class="btn btn-default" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
+        <button id="patientShowVitalSign" name="patientShowVitalSign" class="btn btn-link" data-toggle="modal" ><i class="fa fa-info-circle fa-lg"></i> &nbsp; Show Vital Signs </button>
     </div>
 </h4>
 
@@ -47,7 +47,7 @@
         <div class="col-md-4">
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">New IC No.</label>
+                <label class="col-md-3 control-label" for="textinput">IC/ID No.</label>
                 <div class="col-md-7">
                     <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
@@ -246,15 +246,15 @@
 
 
 <div style="float: left;" id="patientDispenseProcessButtonDiv" > 
-    <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnScreenClear" >&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnScreenClear" > <i class="fa fa-angle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 
 <div class="text-right" id="patientDispenseProcessButtonDiv" > 
-    <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
-    <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
-    <button class="btn btn-danger " type="button" id="btnOrderDispenseDeclineCallPatient" name="btnOrderDispenseDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
-    <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnOrderDispenseDeclineCallPatient" name="btnOrderDispenseDeclineCallPatient" > <i class="fa fa-phone fa-lg f-decline" style="-webkit-transform: rotate(135deg);" ></i>&nbsp; Decline Call Patient &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
 </div>
 
 
@@ -710,13 +710,13 @@
 
                                                     var contextPath = '<%=request.getContextPath()%>';
 
-                                                    var url = contextPath + "/SessionRecipt";
+                                                    var url = contextPath + "/SessionReceipt";
 
                                                     var win = window.open(url, '_blank');
                                                     win.focus();
 
                                                     bootbox.alert({
-                                                        message: "Please Call The Patient Before Dispensing The Drug !!!",
+                                                        message: "Please Call The Patient Before Dispensing The Drug",
                                                         title: "Information",
                                                         backdrop: true
                                                     });
@@ -790,8 +790,8 @@
 
 
             bootbox.confirm({
-                message: "Are You Sure ?",
-                title: "Call Patient ?",
+                message: "Are you sure you want to continue ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -832,8 +832,8 @@
                                 if (message === 'Success') {
 
                                     bootbox.alert({
-                                        message: "Patient Call Successful",
-                                        title: "Process Result",
+                                        message: "You successfully call the patient",
+                                        title: "Success!",
                                         backdrop: true
                                     });
 
@@ -883,8 +883,8 @@
 
 
             bootbox.confirm({
-                message: "Are You Sure ?",
-                title: "Decline Call Patient ?",
+                message: "Are you sure you want to continue ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -919,7 +919,7 @@
 
                                     bootbox.alert({
                                         message: "Decline Call Patient Successful",
-                                        title: "Process Result",
+                                        title: "Success!",
                                         backdrop: true
                                     });
 
@@ -1011,8 +1011,8 @@
         } else {
 
             bootbox.confirm({
-                message: "Please make sure all the order are correct. Are you sure that you want to dispense this order ?",
-                title: "Dispense Item ?",
+                message: "Please make sure all the order are correct before you proceed to dispense process.",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -1370,8 +1370,8 @@
             $('#myModal').modal('hide');
 
             bootbox.alert({
-                message: "Dispense Order is Successfully",
-                title: "Dispense Result",
+                message: "The drug is dispense successfully",
+                title: "Success!",
                 backdrop: true
             });
 

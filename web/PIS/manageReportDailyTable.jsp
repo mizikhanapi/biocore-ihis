@@ -69,14 +69,24 @@
 </tbody>
 </table>
 
+<br><br>
 
 <div class="row" id="data">
     <!-- content goes here -->
     <form class="form-horizontal" id="addForm">
 
+        <div class="col-md-2">
+        </div>
+        
         <div class="col-md-3">
         </div>
+
         <div class="col-md-3">
+        </div>
+
+
+        <div class="col-md-4">
+
 
             <!-- Text input-->
             <div class="form-group">
@@ -85,10 +95,6 @@
                     <input id="reportDailyTotalQuantity" name="reportDailyTotalQuantity" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" value="<%= formatterInt.format(quantity)%>" readonly>
                 </div>
             </div>
-
-        </div>
-
-        <div class="col-md-4">
 
             <!-- Text input-->
             <div class="form-group">

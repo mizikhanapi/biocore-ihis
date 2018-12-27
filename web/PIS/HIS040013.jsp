@@ -44,6 +44,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
+
+                                <h3 style="margin: 0px;">Archive Order</h3>
+                                <hr class="pemisah" />
+
                                 <div id="contentDataManagementAchiveOrderTable">
                                 </div>
                                 <div id="contentDataManagementAchiveOrderDetail">

@@ -34,8 +34,8 @@
     <th style="text-align: left;">HFC NAME</th>
     <th style="text-align: left;">EPISODE DATE</th>
     <th style="text-align: left;">ENCOUNTER DATE</th>
-    <th style="text-align: left;">DIAGNOSIS CODE</th>
-    <th style="text-align: left; width: 50%;">DIAGNOSIS DESCRIPTION</th>
+    <th style="display: none;text-align: left;">DIAGNOSIS CODE</th>
+    <th style="text-align: left; width: 50%;">DIAGNOSIS NAME</th>
     <th style="text-align: left; width: 20%;">COMMENT</th>
 </thead>
 <tbody>
@@ -48,7 +48,7 @@
         <td  ><%= dataDiagnosisList.get(i).get(7)%></td> <!-- HFC Name -->
         <td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- EPISODE DATE -->
         <td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- ENCOUNTER DATE -->
-        <td ><%= dataDiagnosisList.get(i).get(4)%></td> <!-- DIAGNOSIS CODE -->
+        <td style="display: none"><%= dataDiagnosisList.get(i).get(4)%></td> <!-- DIAGNOSIS CODE -->
         <td style="font-weight: 500"><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- DIAGNOSIS DESCRIPTION -->
         <td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- COMMENT -->
     </tr>

@@ -45,7 +45,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-3 control-label" for="textinput">New IC No.</label>
+                <label class="col-md-3 control-label" for="textinput">IC/ID No.</label>
                 <div class="col-md-7">
                     <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
                 </div>

@@ -44,6 +44,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
+
+                                <h3 style="margin: 0px;">Manage Drug Code</h3>
+                                <hr class="pemisah" />
+
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">

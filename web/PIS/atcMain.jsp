@@ -21,8 +21,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     CATEGORY CODE MANAGEMENT
     <span class="pull-right">
-        <button id="addATCTriggerHFC" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD CATEGORY CODE</button>
-        <button id="ATCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE CATEGORY CODE</button>
+        <button id="ATCClone_btnClone" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE CATEGORY CODE</button>
+        <button id="addATCTriggerHFC" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD CATEGORY CODE</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -147,7 +147,7 @@
 
                         <div style="align-items: center; text-align: center">
                             <br>
-                            <label>Select Category Code To Be Cloned</label>
+                            <label>Select Category Code to be Cloned</label>
                             <br><br>
                             <span>
                                 <a href="#" class="btn btn-default" id="ATC_Code_selectAll">&nbsp; Select all &nbsp;</a>

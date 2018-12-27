@@ -441,7 +441,7 @@
 
             $('#vendorModalTitle').text("Add New Vendor");
             $('#vendor_ID').prop('readonly', false);
-            $('#vendor_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addVendorButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#vendor_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addVendorButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#vendorModalForm')[0].reset();
 
@@ -780,7 +780,7 @@
 
             $('#vendorModalTitle').text("Update Vendor");
             $('#vendor_ID').prop('readonly', true);
-            $('#vendor_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateVendorButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#vendor_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateVendorButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
             $('#vendor_ID').val(arrayData[0]);
             $('#vendor_Name').val(arrayData[2]);
