@@ -40,11 +40,11 @@
     <thead>
     <th>Transaction Date</th>
     <th>Bill No.</th>
-    <th style="display: none;">Customer ID</th>
-    <th style="display: none;">Name</th>
-    <th style="display: none;">IC No.</th>
-    <th style="display: none;">Other ID</th>
-    <th style="display: none;">Phone No.</th>
+    <th>Customer ID</th>
+    <th>Name</th>
+    <th>IC No.</th>
+    <th>Other ID</th>
+    <th>Phone No.</th>
     <th>Outstanding (RM)</th>
     <th>Action</th>
 </thead>
@@ -56,13 +56,13 @@
 <input id="dataManageBillMasterOrderListhidden" type="hidden" value="<%=String.join("|", dataManageBillMasterOrderList.get(i))%>">
 <td><%=dataManageBillMasterOrderList.get(i).get(9)%></td>
 <td><%=dataManageBillMasterOrderList.get(i).get(0)%></td>
-<td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(1)%></td>
-<td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(2)%></td>
-<td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(3)%></td>
-<td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(4)%></td>
-<td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(6)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(1)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(2)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(3)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(4)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(6)%></td>
 <td><%=df.format(Double.parseDouble(dataManageBillMasterOrderList.get(i).get(8)))%></td>
-<td><button id="manageBillViewBillDetailBtn" class="btn btn-default pull-right"><i class="fa fa-file-o fa-lg" aria-hidden="true"></i>&nbsp; View Detail</button></td>
+<td><button id="manageBillViewBillDetailBtn" class="btn btn-success pull-right" type="button"><i class="fa fa-file-o fa-lg" aria-hidden="true"></i>&nbsp; View Detail</button></td>
 </tr>
 <% }
 %>
@@ -70,13 +70,14 @@
 </table>
 
 
-<hr class="pemisah">
+<hr>
 
 <div id="manageBillMasterOrderListButtonRightDiv">
     <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
-        <button id="manageBillMasterOrderListButtonRightDivBackBtn" class="btn btn-default" style="float: left;"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>&nbsp; &nbsp; Back</button>
+        <button id="manageBillMasterOrderListButtonRightDivBackBtn" class="btn btn-default" style="float: left;"><i class="fa fa-backward fa-lg" aria-hidden="true"></i>&nbsp; &nbsp; Back</button>
     </div>
 </div>
+
 
 
 <script type="text/javascript">
@@ -92,30 +93,6 @@
                 $('.loading').hide();
             }
         });
-
-
-
-// --------------------------------------------------------------- Back Data In Master Table --------------------------------------------------------------- //
-
-
-
-        // Load Master Table Start
-        $('#manageBillMasterOrderListButtonRightDiv').off('click', '#manageBillMasterOrderListButtonRightDivBackBtn').on('click', ' #manageBillMasterOrderListButtonRightDivBackBtn', function (e) {
-
-            e.preventDefault();
-
-
-            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
-
-            $('#manageBillMasterOrderListCustomerContent').html('');
-
-        });
-        // Load Master Table End
-
-
-
-// --------------------------------------------------------------- Back Data In Master Table --------------------------------------------------------------- //
-
 
 
     });

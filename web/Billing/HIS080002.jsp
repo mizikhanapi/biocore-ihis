@@ -57,18 +57,24 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
-
+                                <h3 style="margin: 0px;">Manage Bills</h3>
+                                <hr class="pemisah" />
+                                
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs " id="myTab">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    GENERATED BILL MASTER</a>
+                                                   LIST OF ALL CUSTOMER</a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    GENERATED BILL DETAIL</a>
+                                                     LIST OF BILLS FOR SPECIFIC CUSTOMER</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_default_3" data-toggle="tab">
+                                                    VIEW DETAILS OF SPECIFIC BILLS</a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->
@@ -104,7 +110,15 @@
 
                                             </div>
 
+
                                             <div class="tab-pane" id="tab_default_2">
+
+                                                <div id="manageBillMasterOrderListCustomerContent">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_default_3">
 
                                                 <div id="manageBillDetailOrderDetailContent">
                                                 </div>

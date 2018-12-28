@@ -7,24 +7,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+
+<br>
+
+
 <div style="width:50%; margin: auto;">
     <div class="form-horizontal">
         <div class="form-group">
             <label class="col-md-3 control-label" for="textinput">Show Bill For : </label>
-            <div class="col-md-3">
-                <select class="form-control"  id="BILL_MasterOrderRefreshSelect">
-                    <option value="all">All</option>
-                    <option value="today">Today</option>
-                    <option value="yesterday">Yesterday</option>
-                    <option value="7day">7 Days</option>
-                    <option value="30day">30 Days</option>
-                    <option value="60day">60 Days</option>
-                    <option value="custom">Select date</option>
-                </select>
+            <div class="col-md-5">
+                <div class="input-group">
+                    <select class="form-control"  id="BILL_MasterOrderRefreshSelect">
+                        <option value="today">Today</option>
+                        <option value="yesterday">Yesterday</option>
+                        <option value="7day">7 Days</option>
+                        <option value="30day">30 Days</option>
+                        <option value="60day">60 Days</option>
+                        <option value="custom">Select date</option>
+                    </select>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="BILL_MasterOrderSearchBtn"><i class=" fa fa-search" style=" padding-right: 5px;padding-left: 5px;color: black;"></i></button>
+                    </span>
+                </div>
             </div>
-            <div class="col-md-2">
-                <button id="BILL_MasterOrderRefreshBtn" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
-            </div>
+            <button id="BILL_MasterOrderRefreshBtn" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
         </div>
 
         <div class="form-group" id="BILL_MasterOrderSelectAssessmentStartEnd">
@@ -135,6 +141,98 @@
 
     // Load Master Start
     $('#billMasterOrderListMain').off('click', '#BILL_MasterOrderRefreshBtn').on('click', '#BILL_MasterOrderRefreshBtn', function (e) {
+
+        $('#billMasterOrderListContent').html('<div class="loading">Loading</div>');
+
+        var process = $('#BILL_MasterOrderRefreshSelect').val();
+
+        var longString, todayDate;
+
+        longString = "";
+
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();
+
+        todayDate = yy + "-" + mm + "-" + dd;
+
+        if (process === "today") {
+
+            longString = "today|" + todayDate;
+
+        } else if (process === "yesterday") {
+
+            longString = "yesterday|" + todayDate;
+
+        } else if (process === "7day") {
+
+            longString = "7day|" + todayDate;
+
+        } else if (process === "30day") {
+
+            longString = "30day|" + todayDate;
+
+        } else if (process === "60day") {
+
+            longString = "60day|" + todayDate;
+
+        } else if (process === "custom") {
+
+            var strtDate = $('#BILL_MasterOrderSelectAssessmentStart').val();
+            var endDate = $('#BILL_MasterOrderSelectAssessmentEnd').val();
+
+            var sDate = strtDate.split('/');
+            var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var eDate = endDate.split('/');
+            var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+            longString = "custom|" + SnewDate + "^" + EnewDate;
+
+        } else if (process === "all") {
+
+            longString = "all|" + todayDate;
+
+        }
+
+
+        var data = {
+            longString: longString
+        };
+
+
+        console.log(data);
+
+
+        $.ajax({
+            type: 'POST',
+            url: "billMasterOrderListTable.jsp",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+
+                $('#billMasterOrderListContent').html(data);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+                bootbox.alert('Opps! ' + errorThrown);
+
+            },
+            complete: function (jqXHR, textStatus) {
+
+                $('.loading').hide();
+
+            }
+
+        });
+
+    });
+    // Load Master End
+
+
+    // Load Master Search Start
+    $('#billMasterOrderListMain').off('click', '#BILL_MasterOrderSearchBtn').on('click', '#BILL_MasterOrderSearchBtn', function (e) {
 
         $('#billMasterOrderListContent').html('<div class="loading">Loading</div>');
 
@@ -932,12 +1030,12 @@
                         </thead>\n\
                         <tbody>\n\
                             <tr>\n\
-                                <td colspan="6" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>\n\
+                                <td colspan="6" align="center">Please Select Correct Filter And Press Refresh Button</td>\n\
                             </tr> \n\
                         </tbody>\n\
                     </table>');
 
-        $('#freqObservationChartSelectAssessment').prop('selectedIndex', 0);
+        $('#BILL_MasterOrderRefreshSelect').prop('selectedIndex', 0);
 
     }
     // Reset Function for Table End

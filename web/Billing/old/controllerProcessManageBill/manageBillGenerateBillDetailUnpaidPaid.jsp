@@ -85,26 +85,17 @@
 <br>
 
 
-<h4>
-    <b>Item Detail</b>
-    <%
-        if (status.equalsIgnoreCase("unpaid")) {
-    %>
-    <span class="pull-right">
-        <button id="manageBillViewBillDetailsAddBtn" class="btn btn-primary modal-toggle" data-toggle="modal" data-target="#addItemList" style="float: right; margin-right: 10px;"><i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Add Item</button>
-    </span>
-    <%}%>
-</h4>
+<h5><b>Item Detail</b></h5>
 <div>
     <div id="listOfItems">
         <table id="tableItems" class="table table-filter table-striped table-bordered">
             <thead>
-            <th style="display: none;">Transaction Date</th>
+            <th>Transaction Date</th>
             <th>Item Code</th>
             <th>Item Description</th>
-            <th style="text-align: right;">Quantity</th>
-            <th style="text-align: right;">Price (RM)</th>
-            <th style="text-align: right;">Total (RM)</th>
+            <th style="text-align: right;">Item Quantity</th>
+            <th style="text-align: right;">Unit Price (RM)</th>
+            <th style="text-align: right;">Total Amount (RM)</th>
                 <%
                     if (status.equalsIgnoreCase("unpaid")) {
                 %>
@@ -123,7 +114,7 @@
                 %>
                 <tr>
             <input id="dataManageBillDetailOrderListhidden" type="hidden" value="<%=String.join("|", dataBill.get(i))%>">
-            <td style="display: none;"><%=dataBill.get(i).get(0)%></td>
+            <td><%=dataBill.get(i).get(0)%></td>
             <td><%=dataBill.get(i).get(1)%></td>
             <td><%=dataBill.get(i).get(2)%></td>
             <td style="text-align: right;"><%=dataBill.get(i).get(3)%></td>
@@ -133,7 +124,7 @@
                 if (status.equalsIgnoreCase("unpaid")) {
             %>
             <td>
-                <button id="manageBillViewBillDetailsDeleteBtn" class="btn btn-default pull-right" title="Delete Item" type="button"><i class="fa fa-trash fa-lg" aria-hidden="true"></i>&nbsp;</button>
+                <button id="manageBillViewBillDetailsDeleteBtn" class="btn btn-danger pull-right" type="button"><i class="fa fa-trash fa-lg" aria-hidden="true"></i>&nbsp; Delete</button>
             </td>
             <%}%>
             </tr>
@@ -235,18 +226,19 @@
     <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
         <input type="hidden" class="form-control" name="manageBillViewBillDetailsStatusHiddenForUse" id="manageBillViewBillDetailsStatusHiddenForUse" value="<%=status%>" readonly="true">
         <input type="hidden" class="form-control" name="manageBillViewBillDetailsTabIDHiddenForUse" id="manageBillViewBillDetailsTabIDHiddenForUse" readonly="true">
-        <button id="manageBillViewBillDetailsCancelBtn" class="btn btn-default" style="float: left;"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>&nbsp; Back</button>
+        <button id="manageBillViewBillDetailsCancelBtn" class="btn btn-default" style="float: left;"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp; Cancel</button>
     </div>
     <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
         <div class="pull-right" style="margin-bottom: 10px; ">
             <%
                 if (status.equalsIgnoreCase("unpaid")) {
             %>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#makePayment" style="float: right;" id="manageBillViewBillDetailsPaymentBtn" ><i class="fa fa-money fa-lg" aria-hidden="true"></i>&nbsp; Payment</button>
-            <button id="manageBillViewBillDetailsInvoicePrintBtn" class="btn btn-default" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Invoice</button>
-            <button id="manageBillViewBillDetailsInvoiceMergeBtn" class="btn btn-default modal-toggle" data-toggle="modal" data-target="#mergeItemList" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Merge Invoice</button>
+            <button class="btn btn-success" data-toggle="modal" data-target="#makePayment" style="float: right;" id="manageBillViewBillDetailsPaymentBtn" ><i class="fa fa-money fa-lg" aria-hidden="true"></i>&nbsp; Payment</button>
+            <button id="manageBillViewBillDetailsAddBtn" class="btn btn-warning modal-toggle" data-toggle="modal" data-target="#addItemList" style="float: right; margin-right: 10px;"><i class="fa fa-plus fa-lg" aria-hidden="true"></i>&nbsp; Add Item</button>
+            <button id="manageBillViewBillDetailsInvoicePrintBtn" class="btn btn-primary" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Invoice</button>
+            <button id="manageBillViewBillDetailsInvoiceMergeBtn" class="btn btn-primary modal-toggle" data-toggle="modal" data-target="#mergeItemList" style="float: right; margin-right: 10px;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Merge Invoice</button>
             <%} else {%>
-            <button id="manageBillViewBillDetailsPrintBtn" class="btn btn-primary" style="float: right;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Receipt</button>
+            <button id="manageBillViewBillDetailsPrintBtn" class="btn btn-info" style="float: right;"><i class="fa fa-print fa-lg" aria-hidden="true"></i>&nbsp; Print Receipt</button>
             <%}%>
         </div>
     </div>
@@ -1764,12 +1756,12 @@
                         </thead>\n\
                         <tbody>\n\
                             <tr>\n\
-                                <td colspan="9" align="center">Please Select Correct Filter And Press Refresh Button</td>\n\
+                                <td colspan="9" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>\n\
                             </tr>\n\
                         </tbody>\n\
                 </table>');
 
-            $('#MANAGEBILL_MasterOrderRefreshSelect').prop('selectedIndex', 0);
+            $('#freqObservationChartSelectAssessment').prop('selectedIndex', 0);
 
         }
         // Reset Function for Table End

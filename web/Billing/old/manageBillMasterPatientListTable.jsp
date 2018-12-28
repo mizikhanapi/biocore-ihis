@@ -14,6 +14,38 @@
     String userID = session.getAttribute("USER_ID").toString();
 %>
 
+<div style="width:50%;margin: auto;">
+
+    <h4> <b>Please Select "PAID or UNPAID" Button First and Click of the Patient Name To View The Bills</b> </h4>
+
+</div>
+<br>
+<div style="width:50%;margin: auto;">
+    <form class="form-horizontal" name="manageBillMasterListMainFilterForm" id="manageBillMasterListMainFilterForm" autocomplete="off">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Bill Status</label>
+            <div class="col-sm-7 col-md-7" style="margin-bottom: 10px">
+                <div class="input-group">
+                    <div id="manageBillMasterListMainFilterStatus" class="btn-group">
+                        <a class="btn btn-info btn-sm active" data-toggle="status" data-title="U">UNPAID</a>
+                        <a class="btn btn-info btn-sm" data-toggle="status" data-title="P">PAID</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        <div id="custom-search-input">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">IC No.</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control input-md singleNumbersOnly" id="manageBillMasterListMainFilterIC" placeholder="IC No." maxlength="12">
+                        </div>
+                        <button class="btn btn-primary" type="button" id="manageBillMasterListMainFilterSearchBillBtn" name="manageBillMasterListMainFilterSearchBillBtn"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
+                    </div>
+                </div>-->
+    </form>
+</div>
+
+
 <table  id="manageBillMasterPatientListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
     <th style="text-align: left;">PMI No.</th>
@@ -25,7 +57,6 @@
     <th style="text-align: left; display: none;">Episode Date</th>
     <th style="text-align: left; display: none;">Total Un-Generated Bill</th>
     <th style="text-align: left; display: none;">HFC</th>
-    <th style="text-align: left; ">Action</th>
 </thead>
 <tbody>
 
@@ -101,7 +132,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: left;">
+    <tr id="manageBillMasterListMainFilterSearchBillBtn" style="text-align: left;">
 <input id="dataManageBillMasterOrderListhidden" type="hidden" value="<%=String.join("|", dataManageBillMasterOrderList.get(i))%>">
 <td><%= dataManageBillMasterOrderList.get(i).get(0)%></td> <!-- PMI No. -->
 <td><%= dataManageBillMasterOrderList.get(i).get(1)%></td> <!-- PMI No. -->
@@ -112,10 +143,6 @@
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(6)%></td> <!-- Episode Date -->
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(7)%></td> <!-- Total Bill -->
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(8)%></td> <!-- Health Facility Code -->
-<td style="text-align: center;">
-    <button class="btn btn-default " title="Paid" id="btnManageBillMasterPatientListTablePaid"><i class="fa fa-database fa-lg"></i> PAID</button>
-    <button class="btn btn-default " title="Unpaid"  id="btnManageBillMasterPatientListTableUnpaid"><i class="fa fa-check-square-o fa-lg"></i>UNPAID</button>
-</td> <!-- Health Facility Code -->
 </tr>
 <%
     }
@@ -142,6 +169,35 @@
 
 
 // --------------------------------------------------------------- Datatable --------------------------------------------------------------- //
+
+
+
+
+
+// --------------------------------------------------------------- Status Button On Off --------------------------------------------------------------- //
+
+
+
+
+        $('#manageBillMasterListMainFilterStatus a').on('click', function () {
+
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+
+            $('#' + tog).prop('value', sel);
+
+            $('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+            $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+            
+            bootbox.alert("Please choose the patient by clicking the patient record in the table !!!");
+
+        });
+
+
+
+
+// --------------------------------------------------------------- Status Button On Off --------------------------------------------------------------- //
+
 
 
     });

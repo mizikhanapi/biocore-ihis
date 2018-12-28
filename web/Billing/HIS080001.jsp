@@ -12,9 +12,7 @@
 <%@include file="validateModuleAccess.jsp" %>
 
 
-<%    
-    
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
     Conn conn = new Conn();
@@ -52,6 +50,8 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
+                                <h3 style="margin: 0px;">Billing</h3>
+                                <hr class="pemisah" />
 
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
