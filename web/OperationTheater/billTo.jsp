@@ -10,6 +10,7 @@
     String order_no = request.getParameter("order_no");
     String DateFrom = request.getParameter("DateFrom");
     String DateTo = request.getParameter("DateTo");
+    String dateType = request.getParameter("dateType");
     //out.print(DateFrom+" "+DateTo+" "+order_no+" "+ic);
     //String textSearch = "950405025185";
     //String idcat = request.getParameter("idcat");
@@ -20,6 +21,7 @@
 <hr class="pemisah">
 <table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
+    <th style="text-align: left;"></th>
     <th style="text-align: left; width: 8%;">Order No.</th>
     <th style="text-align: left; width: 10%;">PMI No.</th>
     <th style="text-align: left; width: 10%;">IC No.</th>
@@ -28,7 +30,7 @@
     <th style="text-align: left;">Health Facility Code</th>
     <!--<th style="text-align: left;">Doctor's Name</th>-->
     <th style="text-align: left;">Bill status</th>
-    <th style="text-align: left;">Send the bill</th>
+    
 </thead>
 <tbody>
 
@@ -41,15 +43,25 @@
         String sql = "";
         //                       0                          1                       2                           3                           4                                   5                    6                                7                        8                     9                           10                             11                              12                         13                               14                              15                              16                      17                              18                  
         if (!ic.equalsIgnoreCase("")) {
-            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,opt_order_master.encounter_date,opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' " + whereClause;
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' " + whereClause;
         } else if (!order_no.equalsIgnoreCase("")) {
-            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,opt_order_master.encounter_date,opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.order_no = '" + order_no + "'" + whereClause;
-        } else if (!DateFrom.equalsIgnoreCase("") && !DateTo.equalsIgnoreCase("")) {
-            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,opt_order_master.encounter_date,opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND date(opt_order_master.encounter_date) BETWEEN '" + DateFrom + "' AND '" + DateTo + "'" + whereClause;
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.order_no = '" + order_no + "'" + whereClause;
+        }else if (dateType.equalsIgnoreCase("custom") && !dateType.isEmpty() ) {
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND (date(opt_order_master.encounter_date) BETWEEN STR_TO_DATE('" + DateFrom + "','%d/%m/%Y') and STR_TO_DATE('" + DateTo + "','%d/%m/%Y')) " + whereClause;
+        }else if (dateType.equalsIgnoreCase("today") && !dateType.isEmpty() ) {
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND date(opt_order_master.encounter_date) = date(now()) " + whereClause;
+        }else if (dateType.equalsIgnoreCase("yesterday") && !dateType.isEmpty() ) {
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND date(opt_order_master.encounter_date) = DATE(NOW() - INTERVAL 1 DAY) " + whereClause;
+        }else if (dateType.equalsIgnoreCase("7") && !dateType.isEmpty() ) {
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND date(opt_order_master.encounter_date) between SUBDATE(CURDATE(),7) and CURDATE() " + whereClause;
+        }else if (dateType.equalsIgnoreCase("30") && !dateType.isEmpty() ) {
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND date(opt_order_master.encounter_date) between SUBDATE(CURDATE(),30) and CURDATE() " + whereClause;
+        }else if (dateType.equalsIgnoreCase("60") && !dateType.isEmpty() ) {
+            sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,date_format(opt_order_master.encounter_date,'%d/%m/%Y %T'),opt_order_master.order_by,opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.diagnosis_cd',opt_order_master.order_by,opt_order_master.encounter_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, opt_order_master.billing_status FROM opt_order_master JOIN pms_patient_biodata ON (opt_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE opt_order_master.order_status='2' AND opt_order_master.billing_status='0' AND date(opt_order_master.encounter_date) between SUBDATE(CURDATE(),60) and CURDATE() " + whereClause;
         }
 
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
-
+        //out.print(sql);
         int size = dataPatientOrderList.size();
         
         for (int i = 0; i < size; i++) {
@@ -65,7 +77,9 @@
     %>
 
     <tr id="moveToRISOrderDetailsTButton" style="text-align: left;">
-
+        <td>
+            <input type="checkbox" id="checky" name="order" <%=disableCheckBox%> value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(3)%>|<%=dataPatientOrderList.get(i).get(4)%>">
+        </td><!-- check box -->
         <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
         <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
         <td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
@@ -75,9 +89,7 @@
         <!--<td></td>  Doctor's Name -->
         <td><%= status%></td> <!-- bill status -->
 
-        <td>
-            <input type="checkbox" id="checky" name="order" <%=disableCheckBox%> value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(3)%>|<%=dataPatientOrderList.get(i).get(4)%>">
-        </td><!-- check box -->
+        
     </tr>
     <%
         }
@@ -131,13 +143,13 @@
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                     if (data.trim() === 'success') {
-                        bootbox.alert('Sent to billing.');
+                        bootbox.alert({title:'Success!',message:'Success to send to the billing'});
 
                         loadBillTable();
 
 
                     } else if (data.trim() === 'fail') {
-                        bootbox.alert('Failed to send to billing.');
+                        bootbox.alert({title:'Failed',message:'Failed to sent to the billing'});
 
                     } else {
                         console.log(data.trim());

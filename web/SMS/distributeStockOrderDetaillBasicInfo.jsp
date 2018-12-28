@@ -711,7 +711,7 @@
                     });
                 } else {
 
-                    $('#orderStockDetailsSearchItemInputDisplayResult').text('Search For More Than Two Characters !!'); // If less than 2 characters, clear the <div id="match"></div>
+                    $('#orderStockDetailsSearchItemInputDisplayResult').text('Search For More Than Two Characters'); // If less than 2 characters, clear the <div id="match"></div>
 
                 }
             });
@@ -1024,12 +1024,12 @@
 
             } else if (validRelease.checkValidity() === false) {
 
-                bootbox.alert("The Release Quantity Should Not Be Decimal Number. Please Choose Valid Number !!!");
+                bootbox.alert("The Release Quantity Should Not Be Decimal Number. Please Choose Valid Number");
                 $("#updateStockOrderQtyToReleaseQuantity").val("");
 
             } else if ((parseInt(updateStockOrderQtyToRelease) > parseInt(updateStockOrderStockQuantity))) {
 
-                bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number !!!");
+                bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number");
                 $("#updateStockOrderQtyToReleaseQuantity").val("");
 
             } else {
@@ -1130,7 +1130,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error! Deletion Ajax failed");
                             }
 
                         });
@@ -1255,7 +1255,7 @@
 
             if (stringDetail === "") {
 
-                bootbox.alert("Please Select A Stock Order Item To Be Released !!!");
+                bootbox.alert("Please Select A Stock Order Item To Be Released");
 
             } else {
 
@@ -1298,11 +1298,11 @@
 
                                     if (datas.trim() === "Success") {
 
-                                        bootbox.alert("STOCK IS RELEASED SUCCESSFULLY!");
+                                        bootbox.alert("STOCK IS RELEASED SUCCESSFULLY");
 
                                     } else{
 
-                                        bootbox.alert("Stock is FAILED to release!");
+                                        bootbox.alert("Stock is FAILED to release");
 
                                     }
 
@@ -1310,7 +1310,7 @@
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Release Ajax failed!!");
+                                    alert("Error! Release Ajax failed");
                                 }
 
                             });

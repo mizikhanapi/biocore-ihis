@@ -247,32 +247,32 @@
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
 
-            $("#dateFrom").datepicker({
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1999:c+1',
+            $('#dateFrom').datepicker({
                 changeMonth: true,
                 changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
-
-                    $("#dateTo").datepicker("option", "minDate", selected);
-
-                }
+                dateFormat: 'dd/mm/yy',
+                yearRange: '1990:+0',
+                maxDate: '+0d'
             });
 
-            $("#dateTo").datepicker({
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
 
-                    $("#dateFrom").datepicker("option", "maxDate", selected);
+            //--- initialise datepicker for to after changes on from ------------
+            $('#dateFrom').on('change', function () {
 
-                }
+                $("#dateTo").datepicker("destroy");
+                $('#dateTo').val('');
+
+                var fromDate = $("#dateFrom").datepicker("getDate");
+
+                $('#dateTo').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd/mm/yy',
+                    yearRange: '1990:+0',
+                    minDate: fromDate,
+                    maxDate: '+0d'
+                });
+
             });
 
             $("#searchPatientTypeList").click(function () {

@@ -30,5 +30,5 @@
 
 } else {
 %>
-<option disabled>No Drug Frequency Found!</option>
+<option disabled>No Drug Frequency Found</option>
 <%}%>

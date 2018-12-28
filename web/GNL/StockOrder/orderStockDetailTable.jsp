@@ -70,7 +70,7 @@
 
 <div class="text-right">
     <button class="btn btn-default" type="button" id="orderNewStockOrderItemCancelBtn"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Cancel Order &nbsp;</button>
-    <button type="button" class="btn btn-success" id="orderNewStockOrderItemSubmitOrderBtn"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Submit Order &nbsp;</button>
+    <button type="button" class="btn btn-primary" id="orderNewStockOrderItemSubmitOrderBtn"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>&nbsp;&nbsp; Submit Order &nbsp;</button>
 </div>
 
 <script>
@@ -117,7 +117,7 @@
 
             $('#orderNewStockOrderModalTitle').text("Add New Item");
             $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
-            $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
+            $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Add Items</button>');
             $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
             
             
@@ -180,14 +180,14 @@
                         },
                         error: function () { // if error
 
-                            $('#orderNewStockOrderSearchItemInputDisplayResult').text('No Record Found !');
+                            $('#orderNewStockOrderSearchItemInputDisplayResult').text('No Record Found ');
 
                         }
                     });
 
                 } else {
 
-                    $('#orderNewStockOrderSearchItemInputDisplayResult').text('Search For More Than One Characters !!'); // If less than 2 characters, clear the <div id="match"></div>
+                    $('#orderNewStockOrderSearchItemInputDisplayResult').text('Search For More Than One Characters'); // If less than 2 characters, clear the <div id="match"></div>
 
                 }
             });
@@ -300,19 +300,19 @@
 
             if (itemCode === "" || itemCode === null) {
 
-                bootbox.alert("Please Search An Item To Continue !!!");
+                bootbox.alert("Please Search An Item To Continue");
 
             } else if (itemQuantity === "" || itemQuantity === null) {
 
-                bootbox.alert("Please Insert Order Quantity !!!");
+                bootbox.alert("Please Insert Order Quantity");
 
             } else if (itemComment === "" || itemComment === null) {
 
-                bootbox.alert("Please Insert Order Comment !!!");
+                bootbox.alert("Please Insert Order Comment");
 
             } else if (parseInt(itemQuantity) > parseInt(itemStock)) {
 
-                bootbox.alert("Please Insert Order Quantity Less Than Stock Quantity That Is Available !!!");
+                bootbox.alert("Please Insert Order Quantity Less Than Stock Quantity That Is Available");
 
             } else {
 
@@ -352,7 +352,7 @@
 
                 } else {
 
-                    bootbox.alert("Item Code Duplicated!! Please Choose Different Code!!");
+                    bootbox.alert("Item Code Duplicated,Please Choose Different Code");
 
                     datatableTableCreate();
 
@@ -385,8 +385,8 @@
             $('#orderNewStockOrder').modal('show');
 
             $('#orderNewStockOrderModalTitle').text("Update Or Delete Item");
-            $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
-            $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
+            $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
+            $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-default btn-block btn-lg" role="button">Delete</button>');
 
             $('#orderNewStockOrderSearchItemInput').prop('disabled', true);
 
@@ -506,7 +506,7 @@
 
             if (itemCheck === "" || itemCheck === null || itemCheck === "0.00") {
 
-                bootbox.alert("Please Add at Least An Item To Make A Stock Order !!!");
+                bootbox.alert("Please Add at Least An Item To Make A Stock Order ");
 
             } else {
 
@@ -579,11 +579,11 @@
                             buttons: {
                                 confirm: {
                                     label: 'Yes',
-                                    className: 'btn-success'
+                                    className: 'btn-primary'
                                 },
                                 cancel: {
                                     label: 'No',
-                                    className: 'btn-danger'
+                                    className: 'btn-default'
                                 }
                             },
                             callback: function (result) {

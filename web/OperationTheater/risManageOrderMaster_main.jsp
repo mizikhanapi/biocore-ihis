@@ -12,7 +12,8 @@
 
 <div style="width:50%; margin: auto;">
     <div class="form-horizontal">
-        <div class="form-group">
+        <jsp:include page="../RIS/libraries/dateSelect.jsp" />
+<!--        <div class="form-group">
             <label class="col-md-3 control-label" for="textinput">Show list of order: </label>
             <div class="col-md-3">
                 <select class="form-control"  id="RMOM_oderTime">
@@ -24,7 +25,7 @@
             <div class="col-md-2">
                 <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -32,20 +33,37 @@
     
     function reloadOrderMasterList(){
         $('#risOrderListContent').html('<div class="loading">Loading</div>');
-            
-            var process = $('#RMOM_oderTime').val();
-            
+             var process = $('#bydateSel').val();
+        var dateFrom, dateTo;
+
+
+        if (process === null) {
+            $(".loading").hide();
+            bootbox.alert("Please select date to find records");
+        } else {
+            if (process === "custom") {
+                dateFrom = $("#OM_DateFrom").val();
+                dateTo = $("#OM_DateTo").val();
+            } else {
+                dateFrom = "";
+                dateTo = "";
+            }
+
+
             var data = {
-                process: process
+                process: process,
+                dateFrom: dateFrom,
+                dateTo: dateTo
             };
-            //datatableTableDestroy();
-            
+
+
             $.ajax({
                 type: 'POST',
                 url: "risManageOrderListTable.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                         $('#risOrderListContent').html(data);
+                        
                     },
                 error: function (jqXHR, textStatus, errorThrown) {
                         bootbox.alert('Opps! '+ errorThrown);
@@ -55,6 +73,29 @@
                 }
                 
             });
+        }
+//            var process = $('#RMOM_oderTime').val();
+//            
+//            var data = {
+//                process: process
+//            };
+//            //datatableTableDestroy();
+//            
+//            $.ajax({
+//                type: 'POST',
+//                url: "risManageOrderListTable.jsp",
+//                data: data,
+//                success: function (data, textStatus, jqXHR) {
+//                        $('#risOrderListContent').html(data);
+//                    },
+//                error: function (jqXHR, textStatus, errorThrown) {
+//                        bootbox.alert('Opps! '+ errorThrown);
+//                    },
+//                complete: function (jqXHR, textStatus ) {
+//                        $('.loading').hide();
+//                }
+//                
+//            });
             
     }
     

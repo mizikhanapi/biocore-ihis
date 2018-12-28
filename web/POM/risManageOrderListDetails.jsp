@@ -127,7 +127,7 @@
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
         $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
-        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
+        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Add Items</button>');
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
 
         $('#orderNewStockOrderModalFrom')[0].reset();
@@ -287,15 +287,15 @@
 
         if (itemCode === "" || itemCode === null) {
 
-            bootbox.alert("Please Search An Item To Continue !!!");
+            bootbox.alert("Please Search An Item To Continue");
 
         } else if (itemQuantity === "" || itemQuantity === null) {
 
-            bootbox.alert("Please Insert Order Quantity !!!");
+            bootbox.alert("Please Insert Order Quantity");
 
         } else if (parseInt(itemQuantity) > parseInt(itemStock)) {
 
-            bootbox.alert("Please Insert Order Quantity Less Than Stock Quantity That Is Available !!!");
+            bootbox.alert("Please Insert Order Quantity Less Than Stock Quantity That Is Available");
 
         } else {
 
@@ -453,7 +453,7 @@
 
             } else {
 
-                bootbox.alert("Item Code Duplicated!! Please Choose Different Code!!");
+                bootbox.alert("Item Code Duplicated, Please Choose Different Code");
 
                 datatableTableCreate();
 
@@ -477,8 +477,8 @@
         $('#POSorderNewStockOrder').modal('show');
 
         $('#orderNewStockOrderModalTitle').text("Update Or Delete Item");
-        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
-        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
+        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
+        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-default btn-block btn-lg" role="button">Delete</button>');
 
         $('#orderNewStockOrderSearchItemInput').prop('disabled', true);
         
@@ -657,11 +657,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -719,7 +719,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error! Deletion Ajax failed");
                             }
 
                         });

@@ -30,5 +30,5 @@
 
 } else {
 %>
-<option disabled>No Stock Category Found!</option>
+<option disabled>No Stock Category Found</option>
 <%}%>

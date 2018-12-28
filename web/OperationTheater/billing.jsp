@@ -15,7 +15,7 @@
 
 
 
-<h4>Post Completed Order to Billing</h4>
+<h4>Find completed order</h4>
 <!-- tab content -->
 <div class=" form-horizontal" align="center">
 
@@ -38,7 +38,7 @@
             </select>
         </div>
     </div>
-
+    <jsp:include page="../RIS/libraries/dateSelect.jsp"/>
     <!-- Text input-->
     <div class="form-group" id="ic" style="display: none;">
 
@@ -61,12 +61,12 @@
     <div class="form-group" id="date" style="display: none;">
         <label class="col-md-4 control-label" for="textinput">From</label>
         <div class="col-md-2">
-            <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+            <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="DD/MM/YYYY" readonly>
         </div>
 
         <label class="col-md-1 control-label" for="textinput">To</label>
         <div class="col-md-2">
-            <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+            <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="DD/MM/YYYY" readonly>
         </div>
 
     </div>
@@ -87,27 +87,39 @@
 <script>
 
     $(document).ready(function () {
-
+        $("#divDate").hide();
+        $("#refreshbuttondiv").hide();
         destroyScreenLoading();
 
         $(function () {
-            $("#DateFrom").datepicker({
-                dateFormat: 'yy-mm-dd',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y'
-            });
-
-            $("#DateTo").datepicker({
-                dateFormat: 'yy-mm-dd',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y'
-            });
+            
+//            $('#DateFrom').datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                dateFormat: 'dd/mm/yy',
+//                yearRange: '1990:+0',
+//                maxDate: '+0d'
+//            });
+//
+//
+//            //--- initialise datepicker for to after changes on from ------------
+//            $('#DateFrom').on('change', function () {
+//
+//                $("#DateTo").datepicker("destroy");
+//                $('#DateTo').val('');
+//
+//                var fromDate = $("#DateFrom").datepicker("getDate");
+//
+//                $('#DateTo').datepicker({
+//                    changeMonth: true,
+//                    changeYear: true,
+//                    dateFormat: 'dd/mm/yy',
+//                    yearRange: '1990:+0',
+//                    minDate: fromDate,
+//                    maxDate: '+0d'
+//                });
+//
+//            });
         });
 
 
@@ -118,6 +130,7 @@
                 $("#order_noText").hide();
                 document.getElementById("order_no").value = "";
                 $("#date").hide();
+                $("#divDate").hide();
                 document.getElementById("DateFrom").value = "";
                 document.getElementById("DateTo").value = "";
             } else if (this.value === '004')
@@ -126,11 +139,12 @@
                 $("#ic").hide();
                 document.getElementById("idIC").value = "";
                 $("#date").hide();
+                $("#divDate").hide();
                 document.getElementById("DateFrom").value = "";
                 document.getElementById("DateTo").value = "";
             } else if (this.value === '005')
             {
-                $("#date").show();
+                $("#divDate").show();
                 $("#ic").hide();
                 document.getElementById("idIC").value = "";
                 $("#order_noText").hide();
@@ -146,6 +160,7 @@
 
     function loadBillTable() {
         createScreenLoading();
+        var DateTo,DateFrom,order_no,dateType;
         var orderType = $("#orderType").val();
         if (orderType === '002' || orderType === '003')
         {
@@ -162,18 +177,20 @@
         } else if (orderType === '005')
         {
             //var DateFrom = new Date($('#DateFrom').val());
-            var DateFrom1 = $("#DateFrom").datepicker("getDate");
-            var DateFrom = $.datepicker.formatDate("yy-mm-dd", DateFrom1);
-            var DateTo1 = $("#DateTo").datepicker("getDate");
-            var DateTo = $.datepicker.formatDate("yy-mm-dd", DateTo1);
-            var order_no = "";
-            var ic = "";
+            //var DateFrom1 = $("#DateFrom").datepicker("getDate");
+             DateFrom = $("#OM_DateFrom").val();
+            //var DateTo1 = $("#DateTo").datepicker("getDate");
+             DateTo = $("#OM_DateTo").val();
+             order_no = "";
+             ic = "";
+             dateType=$("#bydateSel").val();;
         }
         var data = {
             ic: ic,
             order_no: order_no,
             DateFrom: DateFrom,
-            DateTo: DateTo
+            DateTo: DateTo,
+            dateType: dateType
         };
 
         $.ajax({

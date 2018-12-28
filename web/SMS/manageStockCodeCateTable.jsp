@@ -24,8 +24,7 @@
     <th style="text-align: center;">Category Name</th>
     <th style="text-align: center;">GL Code</th>
     <th style="text-align: center;">Status</th>
-    <th style="text-align: center;" class="mrsembunyi">Update</th>
-    <th style="text-align: center;" class="mrsembunyi">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Action</th>
 </thead>
 <tbody>
 
@@ -53,12 +52,11 @@
     }%></td> <!-- Status -->
 <td class="mrsembunyi">
     <!-- Update Part Start -->
-    <a id="stockCateUpdateTButton" data-toggle="modal" data-target="#stockCateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="stockCateUpdateTButton" data-toggle="modal" data-target="#stockCateModal"><i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
-</td>
-<td class="mrsembunyi">
+    &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="stockCateDeleteTButton" ><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
+    <a id="stockCateDeleteTButton" ><i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -95,4 +93,9 @@
 
     });
 
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
 </script>

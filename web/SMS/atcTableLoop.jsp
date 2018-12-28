@@ -364,7 +364,7 @@
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
+                            alert("Error! Deletion Ajax failed");
                         }
 
                     });

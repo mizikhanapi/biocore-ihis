@@ -42,7 +42,7 @@
             whereClause = " AND rom.hfc_to = '"+hfc_cd+"' ";
         }
 //                                  0             1                       2                  3           4                    5                    6                    7                   8           9               10                  11              12                  13
-        String sql = "SELECT res.order_no, res.body_system_cd, bs.body_system_name, res.modality_cd, md.modality_name, res.procedure_cd, pm.ris_procedure_name, res.filler_comments, rom.pmi_no, rom.order_date, rom.episode_date, rom.encounter_date, res.created_date, pb.patient_name "
+        String sql = "SELECT res.order_no, res.body_system_cd, bs.body_system_name, res.modality_cd, md.modality_name, res.procedure_cd, pm.ris_procedure_name, res.filler_comments, rom.pmi_no, rom.order_date, rom.episode_date, rom.encounter_date, DATE_FORMAT(res.created_date,'%d/%m/%Y %T'), pb.patient_name "
                 + "from ris_result_detail res "
                 + "join ris_order_master rom on rom.order_no = res.order_no "
                 + "left join ris_body_system bs on res.body_system_cd = bs.body_system_cd AND bs.hfc_cd = rom.hfc_to "

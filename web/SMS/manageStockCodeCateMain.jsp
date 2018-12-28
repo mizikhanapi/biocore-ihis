@@ -45,7 +45,7 @@
 
             $('#stockCateModalTitle').text("Add New Stock Category");
             $('#stockCateCode').prop('readonly', false);
-            $('#stockCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addStockCateButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#stockCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addStockCateButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#stockCateForm')[0].reset();
 
@@ -169,7 +169,7 @@
 
             $('#stockCateModalTitle').text("Update Stock Category");
             $('#stockCateCode').prop('readonly', true);
-            $('#stockCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateStockCateButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#stockCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateStockCateButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
             $('#stockCateCode').val(arrayData[0]);
             $('#stockCateName').val(arrayData[1]);

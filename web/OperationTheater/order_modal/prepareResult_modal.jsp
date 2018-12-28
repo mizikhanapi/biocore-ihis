@@ -95,7 +95,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PR_btnSubmit">Submit <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="PR_btnSubmit">Submit <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
                 </div>
             </div>
