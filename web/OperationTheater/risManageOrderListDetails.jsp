@@ -66,8 +66,8 @@
                 prepareDisabled = "disabled";
             } else if (status.equalsIgnoreCase("1")) {
                 status = "In progress. Please write the report to complete this order.";
-                performDisabled = "disabled";
-                cancelDisabled = "disabled";
+                performDisabled = "";
+                cancelDisabled = "";
             } else if (status.equalsIgnoreCase("2")) {
                 status = "Completed";
                 performDisabled = "disabled";
@@ -95,10 +95,10 @@
         <td><%= dataOrderList.get(i).get(9)%></td> <!-- comment -->
         <td><%= status%></td> <!-- status -->
         <td>
-            <button id="MOD_btnPrepareItem" class="btn btn-default btn-danger" data-toggle="modal"   data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
+            <button id="MOD_btnPrepareItem" class="btn btn-primary" data-toggle="modal"   data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: white;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
             <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
             <button id="MOD_btnReport" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #00dd1c;" ></i>&nbsp;&nbsp;&nbsp;Write Report</button><!-- report -->
-            <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
+            <button id ="MOD_btnDelete" class="btn btn-default"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
         </td><!-- perform -->
 
     </tr>
@@ -129,7 +129,7 @@
 
         $('#orderNewStockOrderModalTitle').text("Add New Item");
         $('#orderNewStockOrderSearchItemInput').prop('disabled', false);
-        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Add Items</button>');
+        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemAddNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Add Items</button>');
         $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="button" id="orderNewStockOrderItemReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>');
 
         $('#orderNewStockOrderModalFrom')[0].reset();
@@ -327,7 +327,7 @@
                 var item_amt = newTotal;
                 var quantity = itemQuantity;
                 var typebutton = "release";
-                var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
+                var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
                 var stringDetail = "";
                 var grandTotalpriceorder = 0;
                 var grandTotalqtyorder = 0, stringDetailorder;
@@ -463,8 +463,8 @@
         $('#POSorderNewStockOrder').modal('show');
 
         $('#orderNewStockOrderModalTitle').text("Update Or Delete Item");
-        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
-        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
+        $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
+        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-default btn-block btn-lg" role="button">Delete</button>');
 
         $('#orderNewStockOrderSearchItemInput').prop('disabled', true);
 
@@ -642,11 +642,11 @@
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -704,7 +704,7 @@
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
+                            alert("Error! Deletion Ajax failed");
                         }
 
                     });

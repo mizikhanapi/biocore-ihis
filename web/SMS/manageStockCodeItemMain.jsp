@@ -11,9 +11,9 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     STOCK ITEM MANAGEMENT
     <span class="pull-right ">
-        <button id="STOCKITEMClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"></a>Clone Stock Item</button>
+        <button id="STOCKITEMClone_btnClone" class="btn btn-link mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Clone Items"></a>Clone Stock Item</button>
         <button id="addNewStockItemButton" class="btn btn-primary mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Stock Item</button>
-        <button id="STOCKITEM_btnSummary" class="btn btn-default mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;"></i></a>Stock Item Inventory Summary</button>
+        <button id="STOCKITEM_btnSummary" class="btn btn-default mrsembunyi" data-status="pagado" data-toggle="modal" data-id="1" data-target="#stockItemSummaryModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Summary"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;"></i></a>Stock Item Inventory Summary</button>
     </span>
 </h4>
 
@@ -47,7 +47,7 @@
             $('#stockItemModalTitle').text("Add New Stock Item");
             $('#stockItemCode').prop('disabled', false);
             $('#stockItemCatCode').prop('disabled', false);
-            $('#stockItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addStockItemButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#stockItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addStockItemButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#stockItemForm')[0].reset();
 
@@ -278,7 +278,7 @@
             $('#stockCateModalTitle').text("Update Stock Item");
             $('#stockItemCode').prop('disabled', true);
             $('#stockItemCatCode').prop('disabled', true);
-            $('#stockItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateStockItemButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#stockItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateStockItemButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
 
 

@@ -328,7 +328,7 @@
                 var item_amt = newTotal;
                 var quantity = itemQuantity;
                 var typebutton = "release";
-                var stringMaster = customer_id + "|" + order_no + "|" + newdt + "|" + item_amt + "|" + quantity;
+                var stringMaster = customer_id + "|" + order_no + "|" + txt_date + "|" + item_amt + "|" + quantity;
                 
                 var grandTotalpriceorder = 0;
                 var grandTotalqtyorder = 0, stringDetailorder;
@@ -360,7 +360,7 @@
                     quantity: grandTotalqtyorder,
                     stringDetail: stringDetailorder
                 };
-                console.log("dataorder : "+dataorder);
+                console.log("dataorder : ",dataorder);
                 $.ajax({
                     url: "../GNL/StockOrder/controllerProcess/orderStockOverall.jsp",
                     type: "post",
@@ -376,7 +376,7 @@
                                 data: data,
                                 timeout: 10000, // 10 seconds
                                 success: function (datas) {
-                                    console.log("datas : "+data);
+                                    console.log("datas : ",data);
 
                                     if (datas.trim() === "Success") {
 
@@ -638,11 +638,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {

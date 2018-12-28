@@ -19,8 +19,8 @@
                 <br><br>
 
 
-                <div id="contentReportSalesDetailViewModalTableDiv" class="form-group table-guling">
-                    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="contentReportSalesDetailViewModalTable">
+                <div id="contentReportSalesDetailViewModalTableDiv" class="table-guling">
+                    <table class="table table-bordered" style="background: #fff; border: 1px solid #ccc;" id="contentReportSalesDetailViewModalTable">
                         <thead>
                         <th>Item Code</th>
                         <th>Item Name</th>
@@ -37,7 +37,7 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="reset" id="contentReportSalesDetailViewCloseBtn" class="btn btn-success btn-block btn-lg" data-dismiss="modal" role="button"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
+                    <button type="reset" id="contentReportSalesDetailViewCloseBtn" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" role="button"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
                 </div>
             </div>
         </div>

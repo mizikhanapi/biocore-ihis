@@ -35,16 +35,27 @@
         String orderWhereClause = " ";
 
         //-------------------------- to refresh order table based on request--------------------------------
-        String process = "1";
+        String process = "";
 
-        if (request.getParameter("process") != null) {
 
             process = request.getParameter("process");
-        }
+            String fromDate = request.getParameter("dateFrom");
+            String toDate = request.getParameter("dateTo");
+        
 
-        if (process.equalsIgnoreCase("1")) {
-
+        
+        if (process.equalsIgnoreCase("today")) {
             orderWhereClause = " AND date(opt_order_master.encounter_date) = date(now()) ";
+        }else if(process.equalsIgnoreCase("yesterday")){
+            orderWhereClause = " AND date(opt_order_master.encounter_date) = DATE(NOW() - INTERVAL 1 DAY) ";
+        }else if(process.equalsIgnoreCase("7")){
+            orderWhereClause = " AND (date(opt_order_master.encounter_date) between SUBDATE(CURDATE(),7) and CURDATE() ) ";
+        }else if(process.equalsIgnoreCase("30")){
+            orderWhereClause = " AND (date(opt_order_master.encounter_date) between SUBDATE(CURDATE(),30) and CURDATE() ) ";
+        }else if(process.equalsIgnoreCase("60")){
+            orderWhereClause = " AND (date(opt_order_master.encounter_date) between SUBDATE(CURDATE(),60) and CURDATE() ) ";
+        }else if(process.equalsIgnoreCase("custom")){
+            orderWhereClause = " AND (date(opt_order_master.encounter_date) between STR_TO_DATE('" + fromDate + "','%d/%m/%Y') and STR_TO_DATE('" + toDate + "','%d/%m/%Y') ) ";
         }
 
         //=============================================================================================
@@ -52,7 +63,7 @@
             whereClause = " AND opt_order_master.hfc_cd = '" + hfc_cd + "' ";
         }
 //                                  0                       1                       2                           3                                   4                       5                       
-        String sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,opt_order_master.encounter_date,"
+        String sql = "SELECT opt_order_master.pmi_no,opt_order_master.order_no,opt_order_master.hfc_cd,opt_order_master.episode_date,opt_order_master.encounter_date,DATE_FORMAT(opt_order_master.encounter_date,'%d/%m/%Y %T'),"
                 //  6                                           7                       8                           9                   10                                  11                  12                      
                 + "'opt_order_master.doctor_id',opt_order_master.hfc_from,opt_order_master.hfc_to,opt_order_master.order_status,'opt_order_master.order_priority','opt_order_master.created_by','opt_order_master.created_date',"
                 //  13                                          14                              15                                  16                          17
@@ -98,7 +109,8 @@
                 emptyTable: "No Order Available To Display"
             }, initComplete: function (settings, json) {
                 $('.loading').hide();
-            }
+            },
+            "order":[[4,'desc']]
         });
 
 

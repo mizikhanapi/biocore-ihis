@@ -281,14 +281,14 @@
                         },
                         error: function () { // if error
 
-                            $('#resultcarian').text('No Record Found !');
+                            $('#resultcarian').text('No Record Found ');
 
                         }
                     });
 
                 } else {
 
-                    $('#resultcarian').text('Search For More Than One Characters !!'); // If less than 2 characters, clear the <div id="match"></div>
+                    $('#resultcarian').text('Search For More Than One Characters '); // If less than 2 characters, clear the <div id="match"></div>
 
                 }
             }

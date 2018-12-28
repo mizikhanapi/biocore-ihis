@@ -9,14 +9,14 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     PROCEDURE MANAGEMENT
     <span class="pull-right" id="PRO_span_buttons" style="display: none">
-        <button id="PRO_btnAddModal" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
+        <button id="PRO_btnCloneModal" class="btn btn-link" style=" padding-right: 10px;padding-left: 10px;" title="Clone item">
+            Clone Procedure
+        </button>
+        <button id="PRO_btnAddModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
            <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-           ADD Procedure
+           Add Procedure
         </button>
-        <button id="PRO_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
-            <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            CLONE Procedure
-        </button>
+        
     </span>
 </h4>
 <!-- Add Button End -->

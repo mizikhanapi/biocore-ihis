@@ -9,15 +9,15 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     PROCEDURE CATEGORY MANAGEMENT
     <span class="pull-right">
-        <button id="CAT_btnAddModal" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
+        <button id="CAT_btnCloneModal" class="btn btn-link" style=" padding-right: 10px;padding-left: 10px;" title="Clone item">
+            Clone Category
+        </button>
+        <button id="CAT_btnAddModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
             <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            ADD Category
+            Add Category
         </button>
         
-        <button id="CAT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
-            <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            CLONE Category
-        </button>
+        
     </span>
 </h4>
 <!-- Add Button End -->

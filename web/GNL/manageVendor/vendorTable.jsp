@@ -59,11 +59,11 @@
     }%></td> <!-- STATUS -->
 <td>
     <!-- Update Part Start -->
-    <a id="vendorUpdateTButton" data-toggle="modal" data-target="#vendorModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="vendorUpdateTButton" data-toggle="modal" data-target="#vendorModal"><i data-toggle="tooltip" data-placement="left" title="Update vendor" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
     &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="vendorDeleteTButton" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
+    <a id="vendorDeleteTButton" ><i data-toggle="tooltip" data-placement="right" title="Delete vendor" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -96,4 +96,9 @@
 
     });
 
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
 </script>

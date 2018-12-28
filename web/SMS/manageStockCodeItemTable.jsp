@@ -25,8 +25,7 @@
     <th style="text-align: center;">Physical Stock</th>
     <th style="text-align: center;">Selling Price</th>
     <th style="text-align: center;">Condition</th>
-    <th style="text-align: center;" class="mrsembunyi">Update</th>
-    <th style="text-align: center;" class="mrsembunyi">Delete</th>
+    <th style="text-align: center;" class="mrsembunyi">Action</th>
 </thead>
 <tbody>
 
@@ -67,14 +66,12 @@
 <td class="mrsembunyi">
     <!-- Update Button Start -->
     <a id="stockItemUpdateTButton" data-toggle="modal" data-target="#stockItemModal">
-        <i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
+        <i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
     </a>
     <!-- Update Button End -->
-</td>
-<td class="mrsembunyi">
-    <!-- Delete Button Start -->
+    &nbsp;&nbsp;&nbsp;
     <a id="stockItemDeleteTButton" class="testing">
-        <i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
+        <i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
     </a>
     <!-- Delete Button End -->
 </td>
@@ -115,4 +112,9 @@
 
 
     });
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
 </script>

@@ -254,7 +254,7 @@
                         },
                         error: function () { // if error
 
-                            $('#invoiceAddItemSearchResult').text('No Record Found !');
+                            $('#invoiceAddItemSearchResult').text('No Record Found ');
 
                         }
                     });
@@ -263,7 +263,7 @@
 
                 } else {
 
-                    $('#invoiceAddItemSearchResult').text('Search For More Than Two Characters !!'); // If less than 2 characters, clear the <div id="match"></div>
+                    $('#invoiceAddItemSearchResult').text('Search For More Than Two Characters'); // If less than 2 characters, clear the <div id="match"></div>
 
                 }
             });
@@ -393,7 +393,7 @@
 
                 } else {
 
-                    bootbox.alert("Item Code Duplicated!! Please Choose Different Code!!");
+                    bootbox.alert("Item Code Duplicated, Please Choose Different Code");
 
                     $('#invoiceAddOrderDetailTable').DataTable({
                         "paging": true,
@@ -599,11 +599,11 @@
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {

@@ -45,7 +45,7 @@
         }
     }
 
-    String query = "SELECT om.order_no, om.order_date, om.pmi_no, bio.`PATIENT_NAME` "
+    String query = "SELECT om.order_no, DATE_FORMAT(om.order_date,'%d/%m/%Y %T'), om.pmi_no, bio.`PATIENT_NAME` "
             + "FROM ris_order_master om "
             + "JOIN pms_patient_biodata bio ON bio.`PMI_NO`=om.pmi_no "
             + "WHERE om.hfc_to='" + hfc_cd + "' AND om.order_status='2' " + whereClause;

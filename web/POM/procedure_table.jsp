@@ -39,9 +39,9 @@
 <td><%= dataBS.get(i).get(2)%>
 </td>
 <td>
-    <a id="PRO_btnModalUpdate" data-toggle="modal" data-target="#PRO_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="PRO_btnModalUpdate" data-toggle="modal" data-target="#PRO_detail" style="cursor: pointer"><i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     &nbsp;&nbsp;&nbsp;
-    <a id="PRO_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="PRO_btnDelete" class="testing" style="cursor: pointer"><i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
 
 </td>
 </tr>
@@ -65,3 +65,8 @@
     
 </script>
 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

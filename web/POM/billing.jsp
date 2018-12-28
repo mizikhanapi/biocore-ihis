@@ -15,7 +15,7 @@
 
 
 
-<h4>Post Completed Order to Billing</h4>
+<h4>Find completed order</h4>
 <!-- tab content -->
 <div class=" form-horizontal" align="center">
 

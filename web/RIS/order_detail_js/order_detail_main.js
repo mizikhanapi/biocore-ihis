@@ -874,7 +874,7 @@ $('#btnRISCall').on('click', function () {
 
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
-        bootbox.alert("Please Select An Order First !!!");
+        bootbox.alert("Please Select An Order First");
 
         return;
 
@@ -886,11 +886,11 @@ $('#btnRISCall').on('click', function () {
         buttons: {
             confirm: {
                 label: 'Yes',
-                className: 'btn-success'
+                className: 'btn-primary'
             },
             cancel: {
                 label: 'No',
-                className: 'btn-danger'
+                className: 'btn-default'
             }
         },
         callback: function (result) {
@@ -940,7 +940,7 @@ $('#btnRISCancelCall').on('click', function () {
 
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
-        bootbox.alert("Please Select An Order First !!!");
+        bootbox.alert("Please Select An Order First");
 
         return;
 
@@ -952,11 +952,11 @@ $('#btnRISCancelCall').on('click', function () {
         buttons: {
             confirm: {
                 label: 'Yes',
-                className: 'btn-success'
+                className: 'btn-primary'
             },
             cancel: {
                 label: 'No',
-                className: 'btn-danger'
+                className: 'btn-default'
             }
         },
         callback: function (result) {

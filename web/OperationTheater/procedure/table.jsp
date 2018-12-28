@@ -32,8 +32,7 @@
     <th>Buying Price(RM)</th>
     <th>Selling Price(RM)</th>
     <th style="width: 5%">Status</th>
-    <th style="width: 5%">Update</th>
-    <th style="width: 5%">Delete</th>
+    <th style="width: 5%">Action</th>
 </thead>
 
 <tbody>
@@ -57,10 +56,9 @@
 <td><%= status%>
 </td>
 <td>
-    <a id="PRO_btnModalUpdate" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-</td>
-<td>
-    <a id="PRO_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="PRO_btnModalUpdate" style="cursor: pointer"><i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    &nbsp;&nbsp;&nbsp;
+    <a id="PRO_btnDelete" class="testing" style="cursor: pointer"><i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
 </td>
 </tr>
 
@@ -130,5 +128,9 @@
     }
     
 %>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>
 

@@ -31,5 +31,5 @@
 
 } else {
 %>
-<option disabled>No ATC Drug Found!</option>
+<option disabled>No ATC Drug Found</option>
 <%}%>

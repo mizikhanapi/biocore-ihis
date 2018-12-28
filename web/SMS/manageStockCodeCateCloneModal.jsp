@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Stock Category Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="left">Clone Stock Category Code</h2>
             </div>
             <div class="modal-body">
 
