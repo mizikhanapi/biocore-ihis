@@ -154,11 +154,14 @@
 
 %>
 
+<hr class="pemisah">
+
 <div class="center-block" style="margin: 10px;">
     <input type="hidden" id="ANL_hidden_patientBio" value="<%=patientBio%>">
     <div class="col-md-12">
         <h4 style="padding: 0px;">Patient Info</h4>
     </div>
+    <br><br>
     <div class="col-md-3">
         <address>
             <p>Name: <span class="p-label"><%=dataQueue.get(0).get(1)%></span></p>
@@ -178,9 +181,13 @@
         </address>
     </div>
     <div class="col-md-3">
-        <address>
+        <address id="analysePatientDashboard">
             <p>Blood Type: <span class="p-label"><%=bloodType%></span></p>
-            <p>Allergy: <span class="p-label"><%=allergy%></span></p>
+<!--            <p>Allergy: 
+                <span class="p-label" id="ShowAndGetPatientAlergyAnalyse" style="cursor: pointer;">
+                    <a >Show Details</a>
+                </span>
+            </p>-->
         </address>
     </div>
 </div>

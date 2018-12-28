@@ -171,16 +171,13 @@
                                                         <div id="bmiWeightSlider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 40%;"></span></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <button type="button" class="btn btn-default"id="acceptOtherBtn" role="button" autocomplete="off">ADD</button>
-                                                </div>
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <a class="btn btn-primary btn-block calcBMI" id="calcBMI">Calculate BMI</a>
-                                                </div>
-                                            </div>
+                                            <!--                                            <div class="row">
+                                                                                            <div class="col-md-12">
+                                                                                                <a class="btn btn-primary btn-block calcBMI" id="calcBMI">Calculate BMI</a>
+                                                                                            </div>
+                                                                                        </div>-->
                                         </div>
                                         <div class="col-md-6">
                                             <h5>Calculated BMI</h5>
@@ -197,8 +194,11 @@
                                                 </span>
                                                 <input type="text" name="bmiStatus" id="bmiStatus" class="form-control input-lg" placeholder="" tabindex="4" autocomplete="off">
                                             </div>
-
+                                            <div class="col-md-2 pull-right">
+                                                <button type="button" class="btn btn-default"id="acceptOtherBtn" role="button" autocomplete="off">ADD</button>
+                                            </div>
                                         </div>
+
                                         <div class="col-xs-2 col-sm-2 col-md-2 hidden">
                                             <div class="form-group">
                                                 <h5>Head Circumference</h5></div>

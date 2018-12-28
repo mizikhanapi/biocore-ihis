@@ -27,10 +27,10 @@
                     <div class="tab-content">
                         <!-- content -->
                         <div class="tab-pane active fade in" id="Analyse_tab1">
-                            <p class="pull-right">
+<!--                            <p class="pull-right">
                                 <button class="btn btn-info" type="button" name="searchPatient" title="Show/Hide search area" onclick="$('#ANL_searchPatient').toggle();"><i class="fa fa-eye fa-lg"></i>&nbsp;Search</button>
-                            </p>
-                            <div class="row ANL-toggle" id="ANL_searchPatient">
+                            </p>-->
+                            <div class="row" id="ANL_searchPatient">
                                 <form class="form-horizontal" name="myFormApp" id="myFormApp">
                                     <!-- Select Basic -->
                                     <div class="form-group">

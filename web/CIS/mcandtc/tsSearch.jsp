@@ -46,9 +46,9 @@
         </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-primary" type="button" id="searchPatientTs" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
+        <button class="btn btn-primary" id="searchPatientTs" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
 
-        <button id="clearSearchTs" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+        <button id="clearSearchTs" name="clearSearch" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
     </div>
 </form>
 
@@ -77,7 +77,8 @@
 
 
     //event on click search button
-    $('#searchPatientTs').on('click', function () {
+    $('#searchPatientTs').on('click', function (e) {
+        e.preventDefault();
         searchPatientTs();
     });
 

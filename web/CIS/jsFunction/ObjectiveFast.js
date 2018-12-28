@@ -389,6 +389,8 @@ $(document).ready(function () {
         $('#bmiHeight').val(bmiInput + "");
     });
 
+
+
     $('#bmiWeightSlider').slider({
         value: 0,
         min: 0,
@@ -405,7 +407,9 @@ $(document).ready(function () {
         $('#bmiWeight').val(bmiWInput + "");
     });
 
-    $('#calcBMI').on('click', function (e) {
+
+    function calCalculateBMI() {
+
         var height = $('#bmiHeight').val().split(" ");
         height = parseFloat(height[0]) / 100;
         height = height * height;
@@ -419,9 +423,16 @@ $(document).ready(function () {
         $('#bmi').val(result[0]);
         $('#bmiStatus').val((result[1]));
 
+    }
 
+    $("#bmiWeight").on('keydown keyup', function () {
+        calCalculateBMI();
     });
 
+
+    $("#bmiHeight").on('keydown keyup', function () {
+        calCalculateBMI();
+    });
 
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -439,7 +450,7 @@ $(document).ready(function () {
         var OBloodGlucose = $('#bloodGlucose').val();
 
         if (Oheight === "" || Oheight === null || Oweight === "" || Oweight === null || Obmi === null || Obmi === "" || Obmi === "0") {
-            bootbox.alert("Please insert the correct and valid height and weight then press the calculate bmi button");
+            bootbox.alert("Please insert the correct and valid height and weight");
         } else {
 
             var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');

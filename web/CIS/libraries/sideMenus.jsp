@@ -28,7 +28,7 @@
                 }
                 if (myCIS.hasMenuAccess("CIS_08")) {
             %>
-        <li><a href="../QMS/"><i class="fa fa-gear fa-lg"></i> Second Opinion</a></li>
+        <li id="secondOpinionBtn"><a  ><i class="fa fa-gear fa-lg"></i> Second Opinion</a></li>
             <%
                 }
             %>

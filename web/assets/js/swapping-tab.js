@@ -136,6 +136,21 @@ $(document).ready(function () {
         $("#PrintTC_tab").load("mcandtc/tsSearch.jsp");
     });
 
+    //event on click search button
+    $('#secondOpinionBtn').on('click', function (e) {
+        e.preventDefault();
+        window.onbeforeunload = null;
+
+        var patientName = $('#pName').text();
+
+        if (patientName === "-") {
+            return location.href = "../QMS/";
+        } else {
+            bootbox.alert("You have to on hold the current patient to proceed with the second opinion.");
+        }
+
+    });
+
 //    $('#CIS-analyseTab').on('hide', function(event) {
 //        event.stopPropagation();
 //        $('#div_CIS_PATIENT_DASHBOARD').show(400);
