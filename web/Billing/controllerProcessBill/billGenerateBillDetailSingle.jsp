@@ -70,49 +70,85 @@
 
 <div style="margin-bottom: 50px">
     <h4><b>Bill Detail</b></h4>
-    <div class="form-group">
-        <label class="col-lg-2">Bill No.</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="billNo" id="billNo" value="<%=billNo%>" readonly="true">
-        </div>
-        <label class="col-lg-2">Transaction Date</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="txnDate" id="txnDate" value="<%=txtDate%>" readonly="true">
-        </div>
-        <label class="col-lg-2">Order No.</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="address" id="orderNo" value="<%=orderNo%>" readonly="true">
-        </div> 
-        <label class="col-lg-2">IC No.</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="ic" id="ic" value="<%=icNo%>" readonly="true">
-        </div>
-        <label class="col-lg-2">Name</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="patientName" id="patientName" value="<%=pName%>" readonly="true">
-        </div>
-        <label class="col-lg-2">Address</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="address" id="address" value="<%=address%>" readonly="true">
-        </div>
-        <label class="col-lg-2">PMI No.</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="address" id="pmiNo" value="<%=pmiNo%>" readonly="true">
-        </div>  
-        <label class="col-lg-2">Other ID</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="otherID" id="otherID" value="<%=otherID%>" readonly="true">
-        </div>
-        <label class="col-lg-2">Phone No.</label>
-        <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="phone" id="phone" value="<%=phoneNo%>" readonly="true">
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Bill No.</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="billNo" id="billNo" value="<%=billNo%>" readonly="true">
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Transaction Date</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="txnDate" id="txnDate" value="<%=txtDate%>" readonly="true">
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Order No.</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="address" id="orderNo" value="<%=orderNo%>" readonly="true">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">IC No.</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="ic" id="ic" value="<%=icNo%>" readonly="true">
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Name</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="patientName" id="patientName" value="<%=pName%>" readonly="true">
+                    </div>
+                </div>
+                <!--Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Address</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="address" id="address" value="<%=address%>" readonly="true">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!--Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">PMI No.</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="address" id="pmiNo" value="<%=pmiNo%>" readonly="true">
+                    </div>
+                </div>
+                <!--Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Other ID</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="otherID" id="otherID" value="<%=otherID%>" readonly="true">
+                    </div>
+                </div>
+                <!--Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Phone No.</label>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" name="phone" id="phone" value="<%=phoneNo%>" readonly="true">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 
 
-<h5><b>Item Detail</b></h5>
+<h4><b>Item Detail</b></h4>
 <div>
     <div id="listOfItems">
         <table id="tableItems" class="table table-filter table-striped table-bordered">
@@ -285,15 +321,11 @@
 <hr/>
 
 
-<div id="viewBillGenereteBillDetailsButtonRightDiv">
-    <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
+<div id="viewBillGenereteBillDetailsButtonRightDiv" class="pull-right">
+    <div class="col-lg-12" style="margin-bottom: 10px; ">
         <input id="grandTotal" type="hidden" value="<%=df.format(grandTotal)%>">
         <input id="dataBillDetailsOrderListGrandTotalValuehidden" type="hidden" value="">
-        <button id="btnViewBillGenereteBillDetailsCancelBtn" class="btn btn-warning" style="float: left;"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i>&nbsp; Cancel Bill &nbsp;</button>
-    </div>
-    <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
-        <button id="btnViewBillGenereteBillDetailsConfirmBtn" class="btn btn-success" style="float: right; margin-right: 10px;" > <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>&nbsp; Confirm Bill &nbsp;</button>
+        <button id="btnViewBillGenereteBillDetailsCancelBtn" class="btn btn-default" style="margin-right: 10px;"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i>&nbsp; Cancel Bill &nbsp;</button>
+        <button id="btnViewBillGenereteBillDetailsConfirmBtn" class="btn btn-primary" style="margin-right: 10px;"> <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>&nbsp; Confirm Bill &nbsp;</button>
     </div>
 </div>
-
-<hr/>

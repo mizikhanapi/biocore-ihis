@@ -14,8 +14,6 @@
 
 %>
 
-<h2>SALES REPORT BY ITEM</h2>
-<hr/>
 <div class="form-horizontal" >
 
     <div class="form-group" >
@@ -95,10 +93,10 @@
         </div>
     </div>
 
-    <div class="text-center" style="margin-bottom: 10px;width: 100%;">
-        <button id="billingReportItemSalesReportDailySalesBtn" class="btn btn-info" >Daily Sales Report</button>
-        <button id="billingReportItemSalesReportMonthlySalesBtn" class="btn btn-info" >Monthly Sales Report</button>
-        <button id="billingReportItemSalesReportYearlySalesBtn" class="btn btn-info" >Yearly Sales Report</button>
+    <div class="text-right" style="margin-bottom: 10px;width: 100%;">
+        <button id="billingReportItemSalesReportDailySalesBtn" class="btn btn-default" >Daily Sales Report</button>
+        <button id="billingReportItemSalesReportMonthlySalesBtn" class="btn btn-default" >Monthly Sales Report</button>
+        <button id="billingReportItemSalesReportYearlySalesBtn" class="btn btn-default" >Yearly Sales Report</button>
     </div>
 </div>
 
@@ -118,7 +116,7 @@
         </thead>
         <tbody>
             <tr>
-                <td colspan="5" align="center">No Record To Show<br>Please Select Correct Filter And Press The Preferred Search Button</td>
+                <td colspan="5" align="center">Please Select Correct Filter And Press The Preferred Search Button</td>
             </tr> 
         </tbody>
     </table>

@@ -50,11 +50,14 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
+                                <h3 style="margin: 0px;">Year End Processing</h3>
+                                <hr class="pemisah" />
+
                                 <div id="yearEndProcessingMainDIV">
-                                    
+
                                     <div id="yearEndProcessingMain">
                                     </div>
-                                    
+
                                 </div>
 
                             </div>

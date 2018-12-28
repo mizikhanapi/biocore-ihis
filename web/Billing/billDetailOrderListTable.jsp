@@ -14,13 +14,10 @@
     String userID = session.getAttribute("USER_ID").toString();
 %>
 
-<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    DETAIL LIST
-</h4>
 
 <table  id="billDetailOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: left;">Check</th>
+    <th></th>
     <th>Episode Date</th>
     <th>Order No</th>
     <th style="display: none">PMI No.</th>
@@ -126,7 +123,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToBillDetailsTButton" style="text-align: left;">
+    <tr style="text-align: left;">
 <input id="dataBillDetailsOrderListhidden" type="hidden" value="<%=String.join("|", dataBillDetailsOrderList.get(i))%>">
 <td align="center"><input type="checkbox" id="generateBillChecked"></td>                                            <!-- Checked -->
 <td><%=dataBillDetailsOrderList.get(i).get(6)%></td>                                                                <!-- Episode Date -->
@@ -136,7 +133,7 @@
 <td><%=dataBillDetailsOrderList.get(i).get(1)%></td>                                                                <!-- Name -->
 <td><%=dataBillDetailsOrderList.get(i).get(4)%></td>                                                                <!-- Address -->
 <td><%=dataBillDetailsOrderList.get(i).get(5)%></td>                                                                <!-- Phone No. -->
-<td><button id="generateBillDetailSingleRecordBtn" class="btn btn-primary pull-right"><i class="fa fa-file-o fa-lg" ></i>&nbsp; Generate Bill</button></td>
+<td style="text-align: center;"><button id="generateBillDetailSingleRecordBtn" class="btn btn-default"><i class="fa fa-file-o fa-lg" ></i>&nbsp; Generate Bill</button></td>
 </tr>
 <%
     }
@@ -149,7 +146,7 @@
 <hr/>
 <div class="text-right" id="viewBillGenereteBillMasterButtonRightDiv" > 
     <input id="viewBillGenereteBillMasterButtonRightDivPMIPatientHidden" type="hidden" value="<%=patientnic%><%=seperatorData%><%=patientpmino%>">
-    <button class="btn btn-success " type="button" id="btnViewBillGenereteBillMasterGenerateSelected" name="btnViewBillGenereteBillMasterGenerateSelected" > <i class="fa fa-file-text-o fa-lg" ></i>&nbsp; Generate Selected Bill &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnViewBillGenereteBillMasterGenerateSelected" name="btnViewBillGenereteBillMasterGenerateSelected" > <i class="fa fa-file-text-o fa-lg" ></i>&nbsp; Generate Selected Bill &nbsp;</button>
 </div>
 
 

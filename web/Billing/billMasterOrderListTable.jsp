@@ -117,7 +117,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToBillDetailsTButton" style="text-align: left;">
+    <tr id="moveToBillDetailsTButton" class="clickable_tr" style="text-align: left;">
 <input id="dataBillMasterOrderListhidden" type="hidden" value="<%=String.join("|", dataBillMasterOrderList.get(i))%>">
 <td><%= dataBillMasterOrderList.get(i).get(0)%></td> <!-- PMI No. -->
 <td><%= dataBillMasterOrderList.get(i).get(1)%></td> <!-- PMI No. -->

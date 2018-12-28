@@ -15,10 +15,6 @@
 %>
 
 <div>
-    <h2>YEAR END PROCESSING</h2>
-
-
-    <hr>
 
     <div style="width:50%;margin: auto;text-align: center;padding-top: 20px;padding-bottom: 20px;">
 

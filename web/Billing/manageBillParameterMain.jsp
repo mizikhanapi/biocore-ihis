@@ -302,7 +302,7 @@
 
             bootbox.confirm({
                 message: "Are you sure want to delete this item ?",
-                title: "Delete Item?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',

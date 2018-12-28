@@ -6,9 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    MASTER LIST
-</h4>
 
 <div style="width:50%; margin: auto;">
     <div class="form-horizontal">
@@ -325,7 +322,7 @@
 
         bootbox.confirm({
             message: "Are you sure that you want to generate bill for the selected record ?",
-            title: "Archive Order ?",
+            title: "Please Confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -462,7 +459,7 @@
 
         bootbox.confirm({
             message: "Are you sure want to confirm this bill ?",
-            title: "Confirm Bill?",
+            title: "Please Confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -497,8 +494,8 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Success !!!";
-                                document.getElementById('messageContent').innerHTML = "Bill created.";
+                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageContent').innerHTML = "Your bill has been created successfully.";
 
                                 $("#alertMessage").modal();
 
@@ -511,7 +508,7 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Partial Success !!!";
+                                document.getElementById('messageHeader').innerHTML = "Partial Success!";
                                 document.getElementById('messageContent').innerHTML = "Bill created with complication.";
 
                                 $("#alertMessage").modal();
@@ -634,7 +631,7 @@
 
             bootbox.confirm({
                 message: "Are you sure that you want to generate bill for the selected record ?",
-                title: "Archive Order ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -799,7 +796,7 @@
 
         bootbox.confirm({
             message: "Are you sure want to confirm this bills ?",
-            title: "Confirm Bills?",
+            title: "Please Confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -832,8 +829,8 @@
                                 $('#btnViewBillGenereteBillDetailsGroupCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsGroupConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Success !!!";
-                                document.getElementById('messageContent').innerHTML = "Bill created.";
+                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageContent').innerHTML = "Your bill has been created successfully.";
 
                                 $("#alertMessage").modal();
 
@@ -846,7 +843,7 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Partial Success !!!";
+                                document.getElementById('messageHeader').innerHTML = "Partial Success!";
                                 document.getElementById('messageContent').innerHTML = "Bill created with complication.";
 
                                 $("#alertMessage").modal();

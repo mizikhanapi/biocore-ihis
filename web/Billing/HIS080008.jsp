@@ -50,7 +50,10 @@
                         <div class="col-md-12">
 
                             <div class="thumbnail">
-
+                                
+                                <h3 style="margin: 0px;">Sales Report by Item</h3>
+                                <hr class="pemisah" />
+                                
                                 <div id="reportBilllingItemSalesReportMainDIV">
                                 </div>
 

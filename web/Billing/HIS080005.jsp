@@ -51,6 +51,9 @@
 
                             <div class="thumbnail">
 
+                                <h3 style="margin: 0px;">Account Report for Customer</h3>
+                                <hr class="pemisah" />
+
                                 <div id="reportBilllingCustomerAccountReportMainDIV">
                                 </div>
 

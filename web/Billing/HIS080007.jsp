@@ -51,6 +51,9 @@
 
                             <div class="thumbnail">
 
+                                <h3 style="margin: 0px;">Sales Report by Customer</h3>
+                                <hr class="pemisah" />
+
                                 <div id="reportBilllingCustomerSalesReportMainDIV">
                                 </div>
 

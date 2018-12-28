@@ -79,7 +79,7 @@
                     <div class="btn-group" role="group" id="misc_btnAdd_or_btnUpdate_div">
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="miscReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                        <button type="button" id="miscReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>

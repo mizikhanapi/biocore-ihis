@@ -59,11 +59,11 @@
                                         <ul class="nav nav-tabs " id="myTab">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    BILL LIST</a>
+                                                    LIST OF CUSTOMER BILLS</a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    BILL MASTER</a>
+                                                    DETAILS OF CUSTOMER BILLS</a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->
@@ -84,7 +84,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td colspan="6" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>
+                                                                <td colspan="6" align="center">Please select correct filter and press refresh button</td>
                                                             </tr> 
                                                         </tbody>
                                                     </table>

@@ -14,8 +14,6 @@
 
 %>
 
-<h2>ACCOUNT REPORT FOR CUSTOMER</h2>
-<hr/>
 <div class="form-horizontal" >
 
     <div class="form-group" >
@@ -62,10 +60,10 @@
         </div>
     </div>
 
-    <div class="text-center">
-        <button id="billingReportAccountReportYearlyStatementBtn" class="btn btn-info" >Customer Account Statement</button>
-        <button id="billingReportAccountReportDetailsStatementBtn" class="btn btn-info" >Customer Details Account Statement</button>
-        <button id="billingReportAccountReportYearEndReportBtn" class="btn btn-info" >Year End Processing Report</button>
+    <div class="text-right">
+        <button id="billingReportAccountReportYearlyStatementBtn" class="btn btn-default" >Customer Account Statement</button>
+        <button id="billingReportAccountReportDetailsStatementBtn" class="btn btn-default" >Customer Details Account Statement</button>
+        <button id="billingReportAccountReportYearEndReportBtn" class="btn btn-default" >Year End Processing Report</button>
     </div>
 
 </div>

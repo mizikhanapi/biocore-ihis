@@ -96,7 +96,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td colspan="9" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>
+                                                                <td colspan="9" align="center">Please select correct filter and press refresh button</td>
                                                             </tr> 
                                                         </tbody>
                                                     </table>
