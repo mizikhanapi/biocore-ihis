@@ -90,7 +90,7 @@
                         <button  id="saveList" class="btn btn-primary btn-block btn-lg" role="button" data-dismiss="modal">Save</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button  id="delList" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button" >Delete</button>
+                        <button  id="delList" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Delete</button>
                     </div>
                 </div>
              

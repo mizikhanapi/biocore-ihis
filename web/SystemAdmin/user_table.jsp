@@ -25,8 +25,7 @@
     <th>Mobile Phone</th>
     <th style="width: 5% ">Status</th>
     <th style="width: 5% ">Change Password</th>
-    <th style="width: 5% ">Update</th>
-    <th style="width: 5% ">Delete</th>
+    <th style="width: 5% ">Action</th>
 </thead>
 <tbody>
 
@@ -74,18 +73,14 @@
 <td>
 
     <!-- Update Part Start -->
-    <a id="UT_btnUpdate" data-toggle="modal" data-target="#UT_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-
+    <a id="UT_btnUpdate" data-toggle="modal" data-target="#UT_detail" style="cursor: pointer"><i data-toggle="tooltip" data-placement="left" title="Update user" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+     &nbsp;&nbsp;&nbsp;
+    <a id="UT_btnDelete" style="cursor: pointer"><i data-toggle="tooltip" data-placement="right" title="Delete user" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Modal Update -->
 
     <!-- Update Part End -->
 </td>
-<!-- Delete Part Start -->
-<td>
-    <!-- Delete Button Start -->
-    <a id="UT_btnDelete" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-</td>
-<!-- Delete Button End -->
+
 </tr>
 <%
     }
@@ -510,7 +505,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="UT_btn_update_">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" role="button" id="UT_btn_update_">Update</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="UT_updateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
@@ -587,7 +582,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="UT_btnConfirmChangePassword">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="UT_btnConfirmChangePassword">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
                     <!--                    <div class="btn-group" role="group">
                                             <button type="reset"  class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
@@ -948,11 +943,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1286,3 +1281,8 @@
     });
 </script>
 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

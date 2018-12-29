@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-md-12">		
         <h4>List of Family
-            <button id="addFAMmodal" name="addFAMmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-plus"></i>&nbsp; Add Family Information</button>
+            <button id="addFAMmodal" name="addFAMmodal" class="btn btn-primary pull-right" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-plus"></i>&nbsp; Add Family Information</button>
         </h4>
         <br/>
         <div id="tableListFamily" class="form-group">

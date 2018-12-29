@@ -15,7 +15,7 @@
 %>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">Maintain Queue Type
     <span class="pull-right">
-       <button id="Tplus" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Queue Type</button>
+       <button id="Tplus" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Queue Type" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Queue Type</button>
     </span>
 </h4>
 <div id="QTdiv">

@@ -8,7 +8,7 @@
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     <span class="pull-right">
-        <button id="RESM_btnModal" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#RESM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Assign Responsibility</button>
+        <button id="RESM_btnModal" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#RESM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Assign Responsibility" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Assign Responsibility</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -138,7 +138,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="REST_btn_update_">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" role="button" id="REST_btn_update_">Update</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="REST_btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>

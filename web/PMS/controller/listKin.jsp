@@ -32,8 +32,7 @@
             <th>Date Of Birth</th>
             <th>Relationship</th>
             <th>Occupation</th>                    
-            <th>Update</th>
-            <th>Delete</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -75,8 +74,11 @@
         %></td>
     <td><%=relay%></td>
     <td><%=occu%></td>
-    <td><button id="KINedit" name="KINedit" class="btn btn-link" data-toggle="modal" data-target="#KINModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
-    <td><button id="KINdel" name="KINdel" class="btn btn-link"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
+    <td>
+        <button id="KINedit" name="KINedit" class="btn btn-link" data-toggle="modal" data-target="#KINModal"><i data-toggle="tooltip" data-placement="left" title="Update" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button>
+        &nbsp;&nbsp;&nbsp;
+        <button id="KINdel" name="KINdel" class="btn btn-link"><i data-toggle="tooltip" data-placement="right" title="Delete" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button>
+    </td>
 </tr>
 <%
         }//end try
@@ -87,3 +89,8 @@
 %>
 </tbody>
 </table>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

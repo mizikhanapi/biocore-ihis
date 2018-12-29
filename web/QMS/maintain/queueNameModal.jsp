@@ -114,7 +114,7 @@
                         <button id="saveName" class="btn btn-primary btn-block btn-lg" role="button"  data-dismiss="modal">Save</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button  id="delName" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button" data-dismiss="modal">Delete</button>
+                        <button  id="delName" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" data-dismiss="modal">Delete</button>
                     </div>
                 </div>
                 

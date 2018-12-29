@@ -39,7 +39,7 @@
 <div class="col-md-8">
     <br/>
     <div class="text-center">
-        <button id="PIS_btnSave" class="btn btn-success"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+        <button id="PIS_btnSave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
 
     </div>
 </div>
@@ -55,7 +55,7 @@
 
         if (pisType == null) {
             
-            bootbox.alert("Please choose an option for PIS Setting !!!");
+            bootbox.alert("Please choose an option for PIS Setting ");
             
         } else {
             
@@ -79,7 +79,7 @@
                     
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Oops! " + errorThrown);
+                    bootbox.alert("Oops " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     destroyScreenLoading();

@@ -30,8 +30,7 @@
         <th>Occupation</th>
         <th>Joined Date</th>
         <th>Income Range</th>
-        <th style="width: 5%;">Update</th>
-        <th style="width: 5%;">Delete</th> 
+        <th>Action</th>
     </tr>
 </thead>
 <tbody>
@@ -60,10 +59,18 @@
 <td><%=occu%></td>
 <td><%=joinedDate%></td>
 <td><%=incomeRange%></td>
-<td><a id="EMPedit" name="EMPedit" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a></td>
-<td><a id="EMPdel" name="EMPdel" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;"></i></a></td>
+<td>
+    <a id="EMPedit" name="EMPedit" data-toggle="modal" data-target="#EMPModal"><i data-toggle="tooltip" data-placement="left" title="Update" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
+    &nbsp;&nbsp;&nbsp;
+    <a id="EMPdel" name="EMPdel" ><i data-toggle="tooltip" data-placement="right" title="Delete" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;"></i></a>
+</td>
 </tr>
 <%  }
 %>
 </tbody>
 </table>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

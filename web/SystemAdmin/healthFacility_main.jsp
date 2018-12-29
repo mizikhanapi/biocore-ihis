@@ -23,7 +23,7 @@
         if(mys.isSuperUser()){
     %>
     <span class="pull-right">
-        <button id="HFM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#HFM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Health Facility</button>
+        <button id="HFM_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#HFM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Health Facility" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Health Facility</button>
     </span>
     <%
         }
@@ -297,7 +297,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="HFM_btnAdd">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="HFM_btnAdd">Add</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="HFM_btnReset" class="btn btn-default btn-block btn-lg" role="button" >Reset</button>

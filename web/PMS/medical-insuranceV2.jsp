@@ -10,7 +10,7 @@
 
         <div id="modalMED"><%@include file = "MedicalModal.jsp" %></div>
             <h4>List of Medical Insurance
-                <button id="addMEDmodal" name="addMEDmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#MEDModal"><i class="fa fa-plus"></i>&nbsp; Add Medical Insurance Information</button></h4>
+                <button id="addMEDmodal" name="addMEDmodal" class="btn btn-primary pull-right" data-toggle="modal" data-target="#MEDModal"><i class="fa fa-plus"></i>&nbsp; Add Medical Insurance Information</button></h4>
             </h4>
             <br/>
             <div id="tableListMed" class="form-group">

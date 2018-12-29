@@ -91,7 +91,7 @@
     <div class="col-md-8">
         <br/>
         <div class="text-center">
-            <button id="CIS_btnSave" class="btn btn-success"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+            <button id="CIS_btnSave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
             <!--<button id="btnClear" name="button2id" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>-->
         </div>
     </div>
@@ -126,7 +126,7 @@
     <div class="col-md-8">
         <br/>
         <div class="text-center">
-            <button id="CIS_DRG_btnSave" class="btn btn-success"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+            <button id="CIS_DRG_btnSave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
             <!--<button id="btnClear" name="button2id" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>-->
         </div>
     </div>
@@ -158,7 +158,7 @@
     <div class="col-md-8">
         <br/>
         <div class="text-center">
-            <button id="CIS_Fast_btnSave" class="btn btn-success"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+            <button id="CIS_Fast_btnSave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
 
         </div>
     </div>
@@ -177,7 +177,7 @@
 
         if (cisFast == null) {
             
-            bootbox.alert("Please choose an option for CIS Consultation Setting !!!");
+            bootbox.alert("Please choose an option for CIS Consultation Setting");
             
         } else {
             
@@ -201,7 +201,7 @@
                     
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Oops! " + errorThrown);
+                    bootbox.alert("Oops " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     destroyScreenLoading();
@@ -252,7 +252,7 @@
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                bootbox.alert('Oops! ' + errorThrown);
+                bootbox.alert('Oops ' + errorThrown);
             },
             complete: function (jqXHR, textStatus ) {
                     destroyScreenLoading();

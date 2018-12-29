@@ -20,7 +20,7 @@
     DISCIPLINE MANAGEMENT
    
     <span class="pull-right">
-        <button id="DM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#DM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Discipline</button>
+        <button id="DM_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#DM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add discipline" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Discipline</button>
     </span>
     
 </h4>
@@ -110,7 +110,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="DM_btnAdd">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="DM_btnAdd">Add</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="DM_btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>

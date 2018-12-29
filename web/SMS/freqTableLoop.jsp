@@ -50,11 +50,11 @@
     }%></td> <!-- Status -->
 <td class="mrsembunyi">
     <!-- Update Part Start -->
-    <a id="freqUpdateTButton" data-toggle="modal" data-target="#freqModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="freqUpdateTButton" data-toggle="modal" data-target="#freqModal"><i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
     &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="freqDeleteTButton" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="freqDeleteTButton" ><i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 <td class="mrsembunyi">
@@ -92,4 +92,9 @@
 
     });
 
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
 </script>

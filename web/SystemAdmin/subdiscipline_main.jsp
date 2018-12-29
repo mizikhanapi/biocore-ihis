@@ -18,7 +18,7 @@
     SUBDISCIPLINE MANAGEMENT
 
     <span class="pull-right">
-        <button id="SDM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#SDM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Subdiscipline</button>
+        <button id="SDM_btnAddNew" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#SDM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Add Subdiscipline</button>
     </span>
 
 </h4>
@@ -106,7 +106,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="SDM_btnAdd">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="SDM_btnAdd">Add</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="SDM_btnReset" class="btn btn-default btn-block btn-lg" role="button" >Cancel</button>

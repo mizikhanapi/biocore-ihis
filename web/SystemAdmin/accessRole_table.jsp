@@ -22,8 +22,7 @@
     <th>Discipline</th>
     <th>Subdiscipline</th>
     <th>Status</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th>Action</th>
 </thead>
 <tbody>
 
@@ -69,13 +68,14 @@
 <td style="width: 5% ">
 
     <!-- Update Part Start -->
-    <a id="ART_btnUpdate" data-toggle="modal" data-target="#ART_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-</td>
-<td style="width: 5% ">
+    <a id="ART_btnUpdate" data-toggle="modal" data-target="#ART_detail" style="cursor: pointer"><i data-toggle="tooltip" data-placement="left" title="Update assignment" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    &nbsp;&nbsp;&nbsp;
+    
     <!-- Delete Button Start -->
-    <a id="ART_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="ART_btnDelete" class="testing" style="cursor: pointer"><i data-toggle="tooltip" data-placement="right" title="Delete assignment" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
+    
 </tr>
 
 
@@ -167,7 +167,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="ART_btnUpdateConfirm">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="ART_btnUpdateConfirm">Update</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset"  class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
@@ -291,11 +291,11 @@
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -417,4 +417,8 @@
                 
     });
 </script>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

@@ -25,7 +25,7 @@
 
         <div id="modalEMP"><%@include file = "EmploymentModal.jsp" %></div>
         <h4>List of Employments
-            <button id="addEMPmodal" name="addEMPmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
+            <button id="addEMPmodal" name="addEMPmodal" class="btn btn-primary pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
         <br/>
         <div id="tableListEmp" class="form-group">
 

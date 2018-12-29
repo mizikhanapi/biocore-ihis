@@ -41,11 +41,9 @@
 <td style="width: 5% ">
 
     <!-- Update Part Start -->
-    <a id="DLT_btnUpdate" data-toggle="modal" data-target="#DLT_detail2_" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-</td>
-<td style="width: 5% ">
-    <!-- Delete Button Start -->
-    <a id="DLT_deleteButton_" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="DLT_btnUpdate" data-toggle="modal" data-target="#DLT_detail2_" style="cursor: pointer"><i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <!-- Delete Button Start -->&nbsp;&nbsp;&nbsp;
+    <a id="DLT_deleteButton_" class="testing" style="cursor: pointer"><i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -82,4 +80,8 @@ if(size > 0){
 
 }
 %>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

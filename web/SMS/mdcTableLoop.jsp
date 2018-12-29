@@ -115,13 +115,13 @@
 <td class="mrsembunyi">
     <!-- Update Button Start -->
     <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal">
-        <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
+        <i data-toggle="tooltip" data-placement="left" title="Update code" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
     </a>
     <!-- Update Button End -->
     &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
     <a id="mdcDeleteTButton" class="testing">
-        <i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
+        <i data-toggle="tooltip" data-placement="right" title="Delete code" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
     </a>
     <!-- Delete Button End -->
 </td>
@@ -1033,4 +1033,9 @@
 
 
     });
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
 </script>

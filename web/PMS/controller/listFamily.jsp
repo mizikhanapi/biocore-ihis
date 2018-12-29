@@ -25,8 +25,7 @@
             <th>Family Member's Name</th>
             <th>IC / ID Number</th>
             <th>Relationship</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -46,10 +45,18 @@
     <input id="famval" type="hidden" value="<%=StringUtils.join(dataFamList.get(i), "|")%>">
     <td><%=dataFamList.get(i).get(3)%></td>
     <td><%=relay%></td>
-    <td><button id="FAMedit" name="FAMedit" class="btn btn-link" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
-    <td><button id="FAMdel" name="FAMdel" class="btn btn-link"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
+    <td>
+        <button id="FAMedit" name="FAMedit" class="btn btn-link" data-toggle="modal" data-target="#FamilyModal"><i data-toggle="tooltip" data-placement="left" title="Update" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button>
+        &nbsp;&nbsp;&nbsp;
+        <button id="FAMdel" name="FAMdel" class="btn btn-link"><i data-toggle="tooltip" data-placement="right" title="Delete" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button>
+    </td>
 </tr>
 <%  }
 %>
 </tbody>
 </table>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

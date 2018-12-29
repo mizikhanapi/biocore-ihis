@@ -660,11 +660,8 @@
             </div>
             <hr/>
             <div class="text-right">
-                <!--                    <button class="btn btn-primary " type="button" disabled="">Save</button>-->
-
-                <!--                    <button class="btn btn-default " type="button"> Appointment List</button>-->
                 <button class="btn btn-link btn-lg" type="button" id="clearPMI">Clear</button>
-                <button class="btn btn-success btn-lg" type="button" id="PMI_btnGenerate">Generate PMI</button>
+                <button class="btn btn-default btn-lg" type="button" id="PMI_btnGenerate">Generate PMI</button>
                 <button class="btn btn-primary btn-lg " type="button" id="updatePatient">Save</button>
             </div>
         </form>
