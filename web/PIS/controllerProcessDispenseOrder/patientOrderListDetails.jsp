@@ -138,11 +138,11 @@
 
     <%            
         if (((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0)) {    %>
-    <tr style="font-weight:bolder; color: #FFD700;text-align: center;" >
+    <tr style="font-weight:bolder; color: #FFD700;text-align: center;" class="clickable_tr">
         <% } else if (Integer.parseInt(stock) == 0) {   %>
-    <tr style="font-weight:bolder; color: red;text-align: center;">
+    <tr style="font-weight:bolder; color: red;text-align: center;" class="clickable_tr">
         <% } else {   %>
-    <tr style="text-align: left;">
+    <tr style="text-align: left;" class="clickable_tr">
         <%   }%>
             <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
             <td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Checked -->

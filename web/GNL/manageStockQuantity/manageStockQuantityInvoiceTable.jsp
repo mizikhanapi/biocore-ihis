@@ -371,7 +371,7 @@
 
                     var newQuantity = parseInt(itemStock) + parseInt(itemQuantity);
 
-                    $('#invoiceAddOrderDetailTable').append('<tr id="invoiceAddOrderDetailsUpdateDeleteBtn">\n\
+                    $('#invoiceAddOrderDetailTable').append('<tr class="clickable_tr" id="invoiceAddOrderDetailsUpdateDeleteBtn">\n\
                         <td>' + itemCode + '</td>\n\
                         <td>' + itemName + '</td>\n\
                         <td>' + itemPrice + '</td>\n\

@@ -94,7 +94,7 @@ String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'
 
     %>
 
-    <tr style="text-align: center;" class="clickable_tr">
+    <tr style="text-align: center;" >
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <!--<td align="center"><input type="checkbox" id="labSpecimenChecked" checked></td>  Checked -->
 <td data-status="pagado" data-toggle="modal" data-id="1"  align="center" ><%= dataOrderList.get(i).get(2)%></td> <!-- Code -->

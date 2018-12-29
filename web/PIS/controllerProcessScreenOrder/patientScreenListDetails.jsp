@@ -99,11 +99,11 @@
 
     <%            
         if (((Double.parseDouble(ordered)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0)) {    %>
-    <tr style="font-weight:bolder; color: #FFD700;text-align: center;" >
+    <tr style="font-weight:bolder; color: #FFD700;text-align: center;" class="clickable_tr">
         <% } else if (Integer.parseInt(stock) == 0) {   %>
-    <tr style="font-weight:bolder; color: red;text-align: center;">
+    <tr style="font-weight:bolder; color: red;text-align: center;" class="clickable_tr">
         <% } else {   %>
-    <tr style="text-align: left;">
+    <tr style="text-align: left;" class="clickable_tr">
         <%   }%>
         <input id="dataPatientScreenDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
         <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->

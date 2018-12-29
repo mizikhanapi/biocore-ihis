@@ -103,7 +103,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToOrderDetailsTButton" style="text-align: left;">
+    <tr id="moveToOrderDetailsTButton" style="text-align: left;" class="clickable_tr">
 <input id="dataVerifyLabOrderMasterListhidden" type="hidden" value="<%=String.join("|", dataVerifyLabOrderMaster.get(i))%>">
 <td><%= dataVerifyLabOrderMaster.get(i).get(25)%></td> <!-- Specimen No -->
 <td><%= dataVerifyLabOrderMaster.get(i).get(1)%></td> <!-- Order No -->

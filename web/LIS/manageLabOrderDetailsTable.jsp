@@ -79,7 +79,7 @@
 
     %>
 
-    <tr style="text-align: center;" >
+    <tr style="text-align: center;" class="clickable_tr">
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <%
     if (statusBox.equals("0")) {

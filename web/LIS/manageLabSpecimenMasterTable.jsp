@@ -112,7 +112,7 @@
 
     %>
 
-    <tr id="moveToSpecimenDetailsTButton" style="text-align: left;">
+    <tr id="moveToSpecimenDetailsTButton" style="text-align: left;" class="clickable_tr">
 <input id="dataAssignLabSpecimenMasterListhidden" type="hidden" value="<%=String.join("|", dataAssignLabOrderMaster.get(i))%>">
 <td><%= dataAssignLabOrderMaster.get(i).get(4)%></td> <!-- Specimen No -->
 <td><%= dataAssignLabOrderMaster.get(i).get(3)%></td> <!-- Order No  -->

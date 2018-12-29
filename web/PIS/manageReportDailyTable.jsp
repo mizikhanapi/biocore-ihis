@@ -57,7 +57,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
+    <tr style="text-align: center;" id="moveToDailySalesDetailsTButton" class="clickable_tr">
 <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
 <td><%= dataReportDaily.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
