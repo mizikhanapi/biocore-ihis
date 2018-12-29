@@ -14,7 +14,7 @@
     String moduleCode = request.getParameter("moduleCode");
 %>
 <h4 style="padding-top: 2%;padding-bottom: 1%;">
-    Invoice List
+ 
     <span class="pull-right">
         <button class="btn btn-default" type="button" id="deleveryViewInvoiceResreshBtn"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Refresh Table</button>
     </span>

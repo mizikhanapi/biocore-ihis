@@ -21,11 +21,11 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
 
-
+<!--
 <h4>
     YEARLY DISPENSED DATA
 </h4>
-
+-->
 
 <table  id="reportYearlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>

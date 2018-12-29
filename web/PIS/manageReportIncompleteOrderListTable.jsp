@@ -15,7 +15,7 @@
     Conn conn = new Conn();
     String userID = session.getAttribute("USER_ID").toString();
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Incomplete Order</h4>
+<!--<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Incomplete Order</h4>-->
 
 <table  id="reportListIncompleteOrderTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>

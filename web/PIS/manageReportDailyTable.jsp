@@ -20,11 +20,11 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
 
-
+<!--
 <h4>
     DAILY DISPENSED DATA
 </h4>
-
+-->
 
 <table  id="reportDailyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>

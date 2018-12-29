@@ -7,7 +7,7 @@
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    VENDOR MANAGEMENT
+
     <span class="pull-right">
         <button id="addNewVendorButton" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#vendorModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add vendor" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD NEW VENDOR &nbsp;</button>
     </span>

@@ -4,7 +4,7 @@
     Author     : Shammugam
 --%>
 
-<h4>Post Completed Order to Billing</h4>
+<h4>Find Completed Order</h4>
 
 <div class="form-horizontal" align="center">
 

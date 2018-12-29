@@ -50,6 +50,9 @@
                         <div class="col-md-12">
                             <div class="thumbnail">
 
+                                <h3 style="margin: 0px;">Bill Parameter</h3>
+                                <hr class="pemisah" />
+
                                 <div id="manageBillParameterMainDIV">
                                 </div>
                                 <div id="manageBillParameterTableDIV">

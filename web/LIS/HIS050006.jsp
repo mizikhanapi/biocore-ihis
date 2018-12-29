@@ -45,6 +45,9 @@
                         <div class="col-md-12">
                             <div class="thumbnail">
 
+                                <h3 style="margin: 0px;">Past Completed Order</h3>
+                                <hr class="pemisah" />
+
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">

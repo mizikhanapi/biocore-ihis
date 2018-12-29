@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    ORDER LIST
+
 </h4>
 
 <div style="width:50%; margin: auto;">

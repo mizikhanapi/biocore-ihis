@@ -20,7 +20,7 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Pharmacy Drugs</h4>
+<!--<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Pharmacy Drugs</h4>-->
 <br>
 <table  id="reportListMDCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>

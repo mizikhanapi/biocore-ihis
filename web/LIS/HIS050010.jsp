@@ -45,7 +45,7 @@
                         <div class="col-md-12">
                             <div  class="thumbnail">
 
-                                <h3>Sales List For Laboratory</h3>
+                                <h3 style="margin: 0px;">Sales List For Laboratory</h3>
                                 <hr class="pemisah"/>
 
                                 <div id="ReportSalesListMain">

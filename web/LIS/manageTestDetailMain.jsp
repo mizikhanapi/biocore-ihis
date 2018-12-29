@@ -8,7 +8,7 @@
 <div id="testDetailTableContainer" class="table-guling clear-patient">
 
     <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-        TEST DETAILS MANAGEMENT
+
     </h4>
 
     <div id="testDetailTableDiv" class="table-guling clear-patient">
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="9" align="center">No Record To Show<br>Please Select A Test Category</td>
+                    <td colspan="9" align="center">Please Select A Test Category and Press View Detail Button</td>
                 </tr>
             </tbody>
         </table>

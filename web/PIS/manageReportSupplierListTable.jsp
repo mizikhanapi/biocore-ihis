@@ -17,7 +17,7 @@
     Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Supplier</h4>
+<!--<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Supplier</h4>-->
 
 <table  id="reportListSupplierTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
