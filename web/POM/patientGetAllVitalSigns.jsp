@@ -120,9 +120,9 @@
                 if (dataBP.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Blood Pressure</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphBP" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Blood Pressure</span> &nbsp; <button class="btn btn-default btn-sm pull-right" id="ANL_btnGraphBP" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataBP.size(); i++) {
 
                         %>
@@ -136,7 +136,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -199,9 +199,9 @@
                 if (dataTemper.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Temperature (&#8451;)</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Temperature (&#8451;)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataTemper.size(); i++) {
 
                         %>
@@ -215,7 +215,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -249,9 +249,9 @@
                 if (dataSPO.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Oxygen Saturation (%)</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Oxygen Saturation (%)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataSPO.size(); i++) {
 
                         %>
@@ -265,7 +265,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -299,9 +299,9 @@
                 if (dataGlucose.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Blood Glucose Level(mmol/L)</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Blood Glucose Level(mmol/L)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataGlucose.size(); i++) {
 
                         %>
@@ -315,7 +315,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -349,9 +349,9 @@
                 if (dataHtWt.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Weight</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphHtWt" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Weight</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphHtWt" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataHtWt.size(); i++) {
 
                         %>
@@ -365,7 +365,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -399,9 +399,9 @@
                 if (dataRespiratory.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Respiratory Rate(bpm)</span> &nbsp; <button class="btn btn-default btn-sm" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Respiratory Rate(bpm)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataRespiratory.size(); i++) {
 
                         %>
@@ -415,7 +415,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -449,9 +449,9 @@
                 if (dataCholesterol.size() > 0) {
 
             %>
-            <tr class="bg-info summary text-center">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle">Cholesterol History</span>
+                    <span id="ANL_chartTitle" class="pull-left">Cholesterol History</span>
 
                 </td>
             </tr>
@@ -459,7 +459,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="10%">Date</td>
