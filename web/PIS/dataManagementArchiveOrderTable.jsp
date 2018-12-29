@@ -19,7 +19,7 @@
 
 <table  id="dataManagementListArchiveOrderTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
+    <th style="text-align: left;"><!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
     <th style="text-align: left;">Order No.</th>
     <th style="text-align: left;">PMI No.</th>
     <th style="text-align: left;">Name</th>

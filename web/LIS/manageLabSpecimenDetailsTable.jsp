@@ -40,7 +40,7 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientSpecimenDetailsListTable">
     <thead>
-    <th style="text-align: left;">Check</th>
+    <th style="text-align: left;"></th>
     <th style="text-align: left;">Item Code</th>
     <th style="text-align: left;">Item Name</th>
     <th style="text-align: left;">Specimen Source</th>
