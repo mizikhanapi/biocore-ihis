@@ -417,7 +417,7 @@
 
                     $('#MISC_Code').html(data);
                     $('#MISC_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Miscellaneous Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Miscellaneous Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Miscellaneous Code</div>",
                         keepOrder: true
                     });

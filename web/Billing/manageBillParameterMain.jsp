@@ -396,7 +396,7 @@
 
                     $('#BILLPARAMETER_Code').html(data);
                     $('#BILLPARAMETER_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Parameter Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Parameter Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Parameter Code</div>",
                         keepOrder: true
                     });

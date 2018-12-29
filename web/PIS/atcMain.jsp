@@ -345,7 +345,7 @@
 
                     $('#ATC_DrugCode').html(data);
                     $('#ATC_DrugCode').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Category Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Category Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Category Code</div>",
                         keepOrder: true
                     });
@@ -399,7 +399,7 @@
                             $('#atcCloneModal').modal('hide');
 
                             bootbox.alert({
-                                message: "Category Code is successfully cloned",
+                                message: "Category code is successfully cloned.",
                                 title: "Process Result",
                                 backdrop: true
                             });

@@ -552,7 +552,7 @@
 
                     $('#TESTDETAILS_Code').html(data);
                     $('#TESTDETAILS_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Details Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Details Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Details Code</div>",
                         keepOrder: true
                     });

@@ -358,7 +358,7 @@
 
                     $('#TESTCATE_Code').html(data);
                     $('#TESTCATE_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Category Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Category Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Category Code</div>",
                         keepOrder: true
                     });

@@ -351,7 +351,7 @@
 
                     $('#FREQ_Code').html(data);
                     $('#FREQ_Code').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Frequency Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Frequency Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Frequency Code</div>",
                         keepOrder: true
                     });

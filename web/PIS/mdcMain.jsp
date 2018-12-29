@@ -984,7 +984,7 @@
 
                     $('#MDC_DrugCode').html(data);
                     $('#MDC_DrugCode').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Drug Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Drug Code</div>",
                         selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Drug Code</div>",
                         keepOrder: true
                     });
