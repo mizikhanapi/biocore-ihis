@@ -136,7 +136,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -215,7 +215,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -265,7 +265,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -315,7 +315,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -365,7 +365,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -415,7 +415,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="15%">Date</td>
@@ -459,7 +459,7 @@
             <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
-                        <table class="table table-bordered" style="width:100%; text-align: center;">
+                        <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
                                 <tr>
                                     <td width="10%">Date</td>
