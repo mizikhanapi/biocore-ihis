@@ -398,6 +398,20 @@ $('#modalSaya').on('click', '#appointmentModal #listAppointment #APPedit', funct
     $('#select-1').val('Normal Queue');
 });
 
+//referral edit button
+$('#modalSaya').on('click', '#appointmentModal #modalBodyReferral #formRefointmentSaya #listReferralTbl #listReferralTblBody #ref_btnEdit', function () {
+    console.log("u're clicking the edit button in referral table");
+
+    var arr = $(this).closest('td').find('#ref_hidden').val().split("|");
+       console.log(arr);
+       var pmiNo= arr[0];
+       $('#idType').val("001");
+       $('#idInput').val(pmiNo);
+       $('#searchPatient').click();
+       $('#modalReferralSaya #referralModal').modal('hide');
+
+});
+
 //queue delete button
 $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
     var item = $(this).closest("tr").find("#pmiNumber").text();
