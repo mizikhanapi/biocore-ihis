@@ -24,11 +24,11 @@
 
 <table  id="reportMonthlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-        <th style="text-align: center;">DATE</th>
-    <th style="text-align: center;">ID NUMBER</th>
-    <th style="text-align: center;">PATIENT NAME </th>
-    <th style="text-align: center;">REASON OF DISCHARGE</th>
-    <th style="text-align: center;">ELIGIBILITY TYPE</th>
+        <th style="text-align: left;">DATE</th>
+    <th style="text-align: left;">ID NUMBER</th>
+    <th style="text-align: left;">PATIENT NAME </th>
+    <th style="text-align: left;">REASON OF DISCHARGE</th>
+    <th style="text-align: left;">ELIGIBILITY TYPE</th>
 </thead>
 <tbody>
 
@@ -56,7 +56,7 @@
           //  grandTotal = grandTotal + Double.parseDouble(dataReportMonthly.get(i).get(4));
     %>
 
-    <tr style="text-align: center;" id="">
+    <tr style="text-align: left;" id="">
        <td><%= dataReportMonthly.get(i).get(0)%></td>
         <td><%= dataReportMonthly.get(i).get(1)%></td>
         <td><%= dataReportMonthly.get(i).get(2)%></td> 

@@ -47,21 +47,22 @@
         <title>Type Of Patient List</title>
 
 
+        <%@include file="../assets/header.html"%>
+
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <%@include file="../assets/header.html"%>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
 
-<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
-        
+        <!--        <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+
         <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
-        
+
     </head>
     <body>
         <!-- side bar -->
@@ -83,9 +84,8 @@
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
                                         <option value="all">All</option>
-                                        <%
-                                            for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                        <%                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
                                             }
                                         %>
                                     </select>
@@ -117,9 +117,9 @@
 
                             <table  id="UTemPTLReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
-                                <th style="text-align: center;">no.</th>
-                                <th style="text-align: center;">Type</th>
-                                <th style="text-align: center;">Total</th>
+                                <th style="text-align: left;">no.</th>
+                                <th style="text-align: left;">Type</th>
+                                <th style="text-align: left;">Total</th>
                                 </thead>
                                 <tbody>
 
@@ -148,8 +148,12 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+
+
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
         <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
@@ -157,7 +161,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
 
 
 
@@ -277,7 +281,7 @@
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
                 var namaDis = $("#patientType option:selected").text();
-                
+
                 var startDateori = $("#dateFrom").val();
                 var endDateori = $("#dateTo").val();
 
@@ -314,17 +318,17 @@
                             {
                                 var dataRow = reply.trim().split("^");
                                 var totalPatient = 0;
-                                
+
                                 var trHTML = '';
                                 var i;
                                 for (i = 0; i < dataRow.length; i++)
                                 {
                                     var datas = dataRow[i].split("|");
-                                   
-                                        trHTML += '<tr><td>' + (i+1) + '</td><td>' + datas[1] + '</td>\n\
+
+                                    trHTML += '<tr><td>' + (i + 1) + '</td><td>' + datas[1] + '</td>\n\
                                     <td id="totalPatient">' + datas[2] + '</td></tr>';
                                     totalPatient += parseInt(datas[2]);
-                                    
+
                                 }
                                 $('#UTemPTLReport tbody').empty();
                                 $('#UTemPTLReport').append(trHTML);
@@ -369,7 +373,7 @@
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>PMS-003</strong></dd>\n\
                                         </div> \n\
-                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\<p>Discipline: <strong>'+namaDis+'</strong></p>\n\
+                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\<p>Discipline: <strong>' + namaDis + '</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

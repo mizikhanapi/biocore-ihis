@@ -28,8 +28,8 @@ DAILY LIST OF ADMISSION
 
 <table  id="reportDailyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-      <th style="text-align: center;">DATE</th>
-      <th style="text-align: center;">TOTAL PATIENT</th>
+      <th style="text-align: left;">DATE</th>
+      <th style="text-align: left;">TOTAL PATIENT</th>
  
 </thead>
 <tbody>
@@ -60,7 +60,7 @@ DAILY LIST OF ADMISSION
 
     %>
 
-    <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
+    <tr style="text-align: left;" id="moveToDailySalesDetailsTButton">
 <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
 <td><%= dataReportDaily.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(1)))%></td>
@@ -121,7 +121,7 @@ DAILY LIST OF ADMISSION
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Inpatient Daily Admission List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -129,7 +129,7 @@ DAILY LIST OF ADMISSION
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Inpatient Daily Admission List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -138,7 +138,7 @@ DAILY LIST OF ADMISSION
                     text: ' Print Daily Admission List ',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
@@ -169,7 +169,7 @@ DAILY LIST OF ADMISSION
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

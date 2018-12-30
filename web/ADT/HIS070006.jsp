@@ -229,7 +229,7 @@
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
                                     title: 'Inpatient Daily Admission List For ' + rdate,
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
@@ -237,7 +237,7 @@
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
                                     title: 'Inpatient Daily Admission List For ' + rdate,
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
@@ -246,7 +246,7 @@
                                     text: 'Print Daily Admission List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     customize: function (win) {
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
@@ -277,7 +277,7 @@
                                 }, {
                                     extend: 'colvis',
                                     text: 'Filter Table Column',
-                                    className: 'btn btn-success'
+                                    className: 'btn btn-default'
                                 }
                             ]
                         });
@@ -344,7 +344,7 @@
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
                                     title: 'Inpatient Monthly Admission List For ' + rdate,
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
@@ -352,7 +352,7 @@
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
                                     title: 'Inpatient Monthly Admission List For ' + rdate,
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
@@ -361,7 +361,7 @@
                                     text: 'Print Monthly Inpatient Admission List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     customize: function (win) {
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
@@ -392,7 +392,7 @@
                                 }, {
                                     extend: 'colvis',
                                     text: 'Filter Table Column',
-                                    className: 'btn btn-success'
+                                    className: 'btn btn-default'
                                 }
                             ]
                         });
@@ -461,7 +461,7 @@
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
                                     title: ' Yearly Inpatient Admission List For ' + rdate,
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
@@ -469,7 +469,7 @@
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
                                     title: 'Yearly Inpatient Admission List For ' + rdate,
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
@@ -478,7 +478,7 @@
                                     text: 'Print Yearly Admission List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
-                                    className: 'btn btn-primary',
+                                    className: 'btn btn-default',
                                     customize: function (win) {
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
@@ -509,7 +509,7 @@
                                 }, {
                                     extend: 'colvis',
                                     text: 'Filter Table Column',
-                                    className: 'btn btn-success'
+                                    className: 'btn btn-default'
                                 }
                             ]
                         });

@@ -47,14 +47,13 @@
         <title>Diagnosis List Report</title>
 
 
+        <%@include file="../assets/header.html"%>
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <%@include file="../assets/header.html"%>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
 
 <!--        <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
@@ -117,10 +116,10 @@
 
                             <table  id="UTemDReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
-                                <th style="text-align: center;">no.</th>
-                                <th style="text-align: center;">ICD10 Code</th>
-                                <th style="text-align: center;">Description</th>
-                                <th style="text-align: center;">Total</th>
+                                <th style="text-align: left;">no.</th>
+                                <th style="text-align: left;">ICD10 Code</th>
+                                <th style="text-align: left;">Description</th>
+                                <th style="text-align: left;">Total</th>
                                 </thead>
                                 <tbody>
 
@@ -147,8 +146,10 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
         <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
@@ -156,7 +157,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
 
 
 

@@ -29,14 +29,13 @@
 
         <thead>
 
-        <th style="text-align: center;">Ward Class</th>
-        <th style="text-align: center;">Ward Name</th>
-        <th style="text-align: center;">No of Bed</th>
-        <th style="text-align: center;">Discipline Code</th>
-        <th style="text-align: center;">Citizen Rate (RM)</th>
-        <th style="text-align: center;">Non Citizen Rate (RM)</th>
-        <th style="text-align: center;">Update</th>
-        <th style="text-align: center;">Delete</th>
+        <th style="text-align: left;">Ward Class</th>
+        <th style="text-align: left;">Ward Name</th>
+        <th style="text-align: left;">No of Bed</th>
+        <th style="text-align: left;">Discipline Code</th>
+        <th style="text-align: left;">Citizen Rate (RM)</th>
+        <th style="text-align: left;">Non Citizen Rate (RM)</th>
+        <th style="text-align: left;">Action</th>
         </thead>
         <tbody>
 
@@ -76,14 +75,13 @@
         <td><%= dataFacilityID.get(i).get(5)%></td>
         <td><%= dataFacilityID.get(i).get(8)%></td>
 
-        <td>
+        <td align="center">
             <!-- Update Part Start -->
-            <a id="MWID_edit" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <a id="MWID_edit" ><i data-toggle="tooltip" data-placement="left" title="Update Item" class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
             <!-- Update Part End -->
-        </td>
-        <td>
-            <!-- Delete Button Start -->
-            <a id="MWID_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+                        	&nbsp;	&nbsp;
+                        <!-- Delete Button Start -->
+            <a id="MWID_delete" class="testing"><i  data-toggle="tooltip" data-placement="right" title="Delete Item" class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
             <!-- Delete Button End -->
         </td>
         </tr>
@@ -317,6 +315,13 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 <!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 <script src="searchDiscipline.jsp"></script>

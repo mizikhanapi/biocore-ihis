@@ -22,11 +22,11 @@
 
 <table  id="reportYearlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
- <th style="text-align: center;">YEAR</th>
-    <th style="text-align: center;">ID NUMBER</th>
-    <th style="text-align: center;">PATIENT NAME </th>
-    <th style="text-align: center;">REASON OF ADMIT</th>
-    <th style="text-align: center;">ELIGIBILITY TYPE</th>
+ <th style="text-align: left;">YEAR</th>
+    <th style="text-align: left;">ID NUMBER</th>
+    <th style="text-align: left;">PATIENT NAME </th>
+    <th style="text-align: left;">REASON OF ADMIT</th>
+    <th style="text-align: left;">ELIGIBILITY TYPE</th>
 </thead>
 <tbody>
 
@@ -55,7 +55,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="">
+    <tr style="text-align: left;" id="">
        <td><%= dataReportDaily.get(i).get(0)%></td>
         <td><%= dataReportDaily.get(i).get(1)%></td>
         <td><%= dataReportDaily.get(i).get(2)%></td>

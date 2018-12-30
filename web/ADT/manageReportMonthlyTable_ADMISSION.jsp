@@ -29,8 +29,8 @@
 
 <table  id="reportMonthlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead >
-   <th style="text-align: center;">MONTH</th>
-      <th style="text-align: center;">TOTAL PATIENT</th>
+   <th style="text-align: left;">MONTH</th>
+      <th style="text-align: left;">TOTAL PATIENT</th>
  
 </thead>
 <tbody>
@@ -61,7 +61,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToMonthlySalesDetailsTButton">
+    <tr style="text-align: left;" id="moveToMonthlySalesDetailsTButton">
 <input id="dataMonthlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportMonthly.get(i))%>">
 <td><%= dataReportMonthly.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportMonthly.get(i).get(1)))%></td>
@@ -116,7 +116,7 @@
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Inpatient Monthly Admission List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -124,7 +124,7 @@
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Inpatient Monthly Admission List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -133,7 +133,7 @@
                     text: 'Print Monthly Admission List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     "paging": true,
                     "pagingType": "full_numbers",
                     customize: function (win) {
@@ -167,7 +167,7 @@
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

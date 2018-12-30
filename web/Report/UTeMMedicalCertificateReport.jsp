@@ -20,7 +20,7 @@
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String hfc_name = session.getAttribute("HFC_NAME").toString();
-    
+
     String dis_names = "";
     String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'";
     ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
@@ -46,25 +46,26 @@
         <title>Medical Certificate List</title>
 
 
+        <%@include file="../assets/header.html"%>
+
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <%@include file="../assets/header.html"%>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
 
         <script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
 
 
 
-<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
-        
-           <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
+        <!--        <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+
+        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
-        
+
 
     </head>
     <body>
@@ -83,53 +84,53 @@
 
                         <h3 style="margin: 0px;">Medical Certificate</h3>
                         <hr class="pemisah"/>
-                       
-                            <div class="col-md-5">
-                                <label class="control-label">Occupation</label>
-                                <div class="form-inline"> 
-                                    <div class="radio radio-primary">
-                                        <input type="radio" name="radioOccupation" id="RadioStaff" value="staff" checked>
-                                        <label for="RadioStaff">
-                                            Staff
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-primary">
-                                        <input type="radio" name="radioOccupation" id="RadioStudent" value="student">
-                                        <label for="RadioStudent">
-                                            Student
-                                        </label>
-                                    </div>
+
+                        <div class="col-md-5">
+                            <label class="control-label">Occupation</label>
+                            <div class="form-inline"> 
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="radioOccupation" id="RadioStaff" value="staff" checked>
+                                    <label for="RadioStaff">
+                                        Staff
+                                    </label>
+                                </div>
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="radioOccupation" id="RadioStudent" value="student">
+                                    <label for="RadioStudent">
+                                        Student
+                                    </label>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <label class="control-label">Sort By</label>
-                                <div class="form-inline">   
-                                    <div class="radio radio-primary">
-                                        <input type="radio" name="radioSortBY" id="radioSortBYGender" value="gender" checked>
-                                        <label for="radioSortBYGender">
-                                            Gender
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-primary">
-                                        <input type="radio" name="radioSortBY" id="radioSortBYAge" value="ageRange">
-                                        <label for="radioSortBYAge">
-                                            Age Range
-                                        </label>
-                                    </div>
-                                    <div class="radio radio-primary">
-                                        <input type="radio" name="radioSortBY" id="radioSortBYCenterCode" value="centerCode">
-                                        <label for="radioSortBYCenterCode">
-                                            Center
-                                        </label>
-                                    </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="control-label">Sort By</label>
+                            <div class="form-inline">   
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="radioSortBY" id="radioSortBYGender" value="gender" checked>
+                                    <label for="radioSortBYGender">
+                                        Gender
+                                    </label>
+                                </div>
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="radioSortBY" id="radioSortBYAge" value="ageRange">
+                                    <label for="radioSortBYAge">
+                                        Age Range
+                                    </label>
+                                </div>
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="radioSortBY" id="radioSortBYCenterCode" value="centerCode">
+                                    <label for="radioSortBYCenterCode">
+                                        Center
+                                    </label>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="text-center" style="margin: auto">
-                                    <button class="btn btn-primary btn-lg" type="button" id="medicalCertificateViewReportBtn" name="patientAttandanceViewReport"><i class="fa fa-search fa-lg" ></i>&nbsp; View</button>
-                                </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="text-center" style="margin: auto">
+                                <button class="btn btn-primary btn-lg" type="button" id="medicalCertificateViewReportBtn" name="patientAttandanceViewReport"><i class="fa fa-search fa-lg" ></i>&nbsp; View</button>
                             </div>
-                        
+                        </div>
+
                         <div id="MCGraph">
 
                         </div>
@@ -144,9 +145,8 @@
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
                                         <option value="all">All</option>
-                                        <%
-                                            for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                        <%                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
                                             }
                                         %>
                                     </select>
@@ -177,17 +177,17 @@
 
                             <table  id="UTemMCReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
-                                <th style="text-align: center;">Patient Name</th>
-                                <th style="text-align: center;">Patient IC No.</th>
-                                <th style="text-align: center;">Patient Gender</th>
-                                <th style="text-align: center;">Start Date</th>
-                                <th style="text-align: center;">End Date</th>
-                                <th style="text-align: center;">Duration</th>
-                                <th style="text-align: center;">Center Code</th>
-                                <th style="text-align: center;">Nationality</th>
-                                <th style="text-align: center;">Reason</th>
-                                <th style="text-align: center;">Consulting Doctor</th>
-                                <th style="text-align: center;">Episode Date</th>
+                                <th style="text-align: left;">Patient Name</th>
+                                <th style="text-align: left;">Patient IC No.</th>
+                                <th style="text-align: left;">Patient Gender</th>
+                                <th style="text-align: left;">Start Date</th>
+                                <th style="text-align: left;">End Date</th>
+                                <th style="text-align: left;">Duration</th>
+                                <th style="text-align: left;">Center Code</th>
+                                <th style="text-align: left;">Nationality</th>
+                                <th style="text-align: left;">Reason</th>
+                                <th style="text-align: left;">Consulting Doctor</th>
+                                <th style="text-align: left;">Episode Date</th>
                                 </thead>
                                 <tbody>
 
@@ -216,8 +216,11 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
         <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
@@ -225,7 +228,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
 
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
@@ -287,24 +290,24 @@
 //                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
-                  
-            
+
+
             viewMCGraph();
             $("#medicalCertificateViewReportBtn").click(function () {
                 viewMCGraph();
             });
-            
+
             function viewMCGraph() {
 
                 getDateNow();
-                var startDate, endDate, hfc, sortBy = "",  occupation,url="";
+                var startDate, endDate, hfc, sortBy = "", occupation, url = "";
                 startDate = curYear + '-01-01';
                 endDate = yyyyMMdd;
                 hfc = "<%=hfc%>";
                 sortBy = $("input[name='radioSortBY']:checked").val();
                 occupation = $("input[name='radioOccupation']:checked").val();
-                
-                  if (sortBy === "gender") {
+
+                if (sortBy === "gender") {
                     url = "UTeMMedicalCertificateGraphByGender.jsp";
                 } else if (sortBy === "ageRange") {
                     url = "UTeMMedicalCertificateGraphByAgeRange.jsp";
@@ -313,14 +316,14 @@
                 } else {
                     alert("Uncorrect Type of Sort");
                 }
-                
+
                 var data = {
                     startDate: startDate,
                     endDate: endDate,
                     hfc: hfc,
-                    patientType: occupation                    
+                    patientType: occupation
                 };
-                
+
                 $.ajax({
                     type: "POST",
                     url: url,
@@ -366,12 +369,12 @@
             });
 
             $("#searchMedicalCertificate").click(function () {
-                var startDate, endDate,filterby;
+                var startDate, endDate, filterby;
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
                 var startDateori = $("#dateFrom").val();
                 var endDateori = $("#dateTo").val();
-               var filterby = $('#patientType').val();
+                var filterby = $('#patientType').val();
 
                 if (startDate === "") {
                     alert("Select Start Date.");
@@ -379,7 +382,7 @@
                     alert("Select End Date.");
                 } else if (convfertDate(startDate) > convfertDate(endDate)) {
                     alert("Incorrect date range, Start-Date Should be before End-Date.");
-                } else if (filterby==="") {
+                } else if (filterby === "") {
                     alert("Select discipline first.");
                 } else {
 
@@ -393,9 +396,9 @@
                         "startDate": startDate,
                         "endDate": endDate,
                         "hfc": "<%=hfc%>",
-                        "dis":filterby
+                        "dis": filterby
                     };
-                    
+
                     var namaDis = $('#patientType option:selected').text();
 //                    console.log(data);
                     $.ajax({
@@ -475,7 +478,7 @@
                                         <dd>Report No: <strong>PMS-002</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
-                                        <p>Discipline : <strong>'+namaDis+'</strong></p>\n\
+                                        <p>Discipline : <strong>' + namaDis + '</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')
@@ -515,7 +518,7 @@
                 }
 
             });
-            
+
             function convfertDate(cDate) {
 
                 var temp = cDate.split("/");
@@ -524,7 +527,7 @@
                 return new Date(cDate);
 
             }
-            
+
         </script>
 
     </body>

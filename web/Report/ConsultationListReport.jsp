@@ -47,22 +47,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>Consultation List Report</title>
 
-
+        <%@include file="../assets/header.html"%>
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <%@include file="../assets/header.html"%>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
-<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
-        
+        <!--        <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+
         <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
-        
+
     </head>
     <body>
         <!-- side bar -->
@@ -84,15 +81,14 @@
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
                                         <option value="all">All</option>
-                                        <%
-                                            for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                        <%                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
                                             }
                                         %>
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group col-md-12">
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
@@ -119,9 +115,9 @@
                             <table  id="UTemCLReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
                                     <tr>
-                                        <th style="text-align: center;">no.</th>
-                                        <th style="text-align: center;">Name</th>
-                                        <th style="text-align: center;">Total</th>
+                                        <th style="text-align: left;">no.</th>
+                                        <th style="text-align: left;">Name</th>
+                                        <th style="text-align: left;">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,26 +127,29 @@
                         </div>
 
                     </div>
-                                    <div class="row" id="data">
-                            <!-- content goes here -->
-                            <form class="form-horizontal" id="addForm">
+                    <div class="row" id="data">
+                        <!-- content goes here -->
+                        <form class="form-horizontal" id="addForm">
 
-                                <!-- Text input-->
-                                <div class="form-group" id="reportTotalPatientTypeDiv" style="display: none; margin: 20px 20px 0 0;">
-                                    <label class="col-md-5 control-label" for="textinput">Total Patients</label>
-                                    <div class="col-md-4">
-                                        <input id="reportPatientTypeTotalPatient" name="reportPatientTypeTotalPatient" type="number" placeholder="Total Patients" class="form-control input-md" maxlength="50" value="" readonly>
-                                    </div>
+                            <!-- Text input-->
+                            <div class="form-group" id="reportTotalPatientTypeDiv" style="display: none; margin: 20px 20px 0 0;">
+                                <label class="col-md-5 control-label" for="textinput">Total Patients</label>
+                                <div class="col-md-4">
+                                    <input id="reportPatientTypeTotalPatient" name="reportPatientTypeTotalPatient" type="number" placeholder="Total Patients" class="form-control input-md" maxlength="50" value="" readonly>
                                 </div>
+                            </div>
 
-                            </form>
-                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
         </div>
         <!--<script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script> -->
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
         <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
@@ -158,7 +157,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
 
 
 
@@ -274,12 +273,12 @@
 
 
             $("#searchConsultationList").click(function () {
-                var startDate, endDate,patientType;
+                var startDate, endDate, patientType;
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
                 var disnama = $('#patientType option:selected').text();
-                 var startDateori = $("#dateFrom").val();
+                var startDateori = $("#dateFrom").val();
                 var endDateori = $("#dateTo").val();
 
 
@@ -299,7 +298,7 @@
 
 
                     var data = {
-                        "patientType":patientType,
+                        "patientType": patientType,
                         "startDate": startDate,
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
@@ -320,8 +319,8 @@
                                 for (i = 0; i < dataRow.length; i++)
                                 {
                                     var datas = dataRow[i].split("|");
-                                    
-                                        trHTML += '<tr><td>' + (i+1) + '</td><td>' + datas[1] + '</td>\n\
+
+                                    trHTML += '<tr><td>' + (i + 1) + '</td><td>' + datas[1] + '</td>\n\
                                     <td>' + datas[2] + '</td></tr>';
                                     totalPatient += parseInt(datas[2]);
 
@@ -329,7 +328,7 @@
                                 }
                                 $('#UTemCLReport tbody').empty();
                                 $('#UTemCLReport').append(trHTML);
-                                
+
                                 //$('#UTemCLReport').destroy();
                                 $('#UTemCLReport').DataTable({
                                     pageLength: 15,
@@ -372,7 +371,7 @@
                                         <dd>Report No: <strong>CIS-001</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
-                                        <p>Discipline : <strong>'+disnama+'</strong></p>\n\</div> '
+                                        <p>Discipline : <strong>' + disnama + '</strong></p>\n\</div> '
                                                                 );
                                                 $(win.document.body).find('table')
                                                         .addClass('compact')
@@ -400,7 +399,7 @@
                                 $('#reportTotalPatientTypeDiv').css("display", "block");
                                 $("#reportPatientTypeTotalPatient").val(totalPatient);
                                 $("#searchConsultationList").prop("disabled", true);
-                                
+
                             } else if (reply.trim() === "No Data") {
                                 alert("There is no patient in this time range !!");
                             }

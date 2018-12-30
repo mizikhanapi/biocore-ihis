@@ -29,11 +29,10 @@
         <thead>
 
 
-        <th style="text-align: center;">Ward Class</th>
-        <th style="text-align: center;">Ward Class ID</th>
-        <th style="text-align: center;">Status</th>
-        <th style="text-align: center;">Update</th>
-        <th style="text-align: center;">Delete</th>
+        <th style="text-align: left;">Ward Class</th>
+        <th style="text-align: left;">Ward Class ID</th>
+        <th style="text-align: left;">Status</th>
+        <th style="text-align: left;">Action</th>
         </thead>
         <tbody>
 
@@ -58,14 +57,13 @@
             } else {
                 out.print("Inactive");
             }%></td>
-        <td>
+        <td align="center">
             <!-- Update Part Start -->
-            <a id="MW_edit" id="btnEDITTYPE"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-            <!-- Update Part End -->            
-        </td>
-        <td>
+            <a id="MW_edit" id="btnEDITTYPE"><i class="fa fa-pencil-square-o fa-lg" data-toggle="tooltip" data-placement="left" title="Update Item" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <!-- Update Part End -->    
+            	&nbsp;	&nbsp;
             <!-- Delete Button Start -->
-            <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+            <a id="MW_delete" class="testing"><i  data-toggle="tooltip" data-placement="right" title="Delete Item" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
             <!-- Delete Button End -->
         </td>
         </tr>
@@ -76,6 +74,13 @@
         </tbody>
     </table>
 </div>
+        
+        <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
 <!-- Modal Update -->
 <div class="modal fade" id="FacilityTypeUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">

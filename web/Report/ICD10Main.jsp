@@ -98,6 +98,7 @@
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
 
         <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 

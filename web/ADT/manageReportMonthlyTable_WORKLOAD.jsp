@@ -29,9 +29,9 @@
 
 <table  id="reportMonthlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">DATE</th>
-    <th style="text-align: center;">DOCTOR</th>
-    <th style="text-align: center;">TOTAL PATIENT</th>
+    <th style="text-align: left;">DATE</th>
+    <th style="text-align: left;">DOCTOR</th>
+    <th style="text-align: left;">TOTAL PATIENT</th>
 
 </thead>
 <tbody>
@@ -78,7 +78,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToMonthlySalesDetailsTButton">
+    <tr style="text-align: left;" id="moveToMonthlySalesDetailsTButton">
 <input id="dataMonthlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
 <td><%= dataTotal.get(i2).get(0)%></td>
 <td><%= totalNew%></td>
@@ -134,7 +134,7 @@
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Monthly Summary of Health Workers Workload List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -142,7 +142,7 @@
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Monthly Summary of Health Workers Workload List',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -151,7 +151,7 @@
                     text: 'Print Monthly Summary of Health Workers Workload List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     "paging": true,
                     "pagingType": "full_numbers",
                     customize: function (win) {
@@ -185,7 +185,7 @@
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

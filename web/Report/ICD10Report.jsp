@@ -149,7 +149,7 @@
 //        }else{
 //        others = ICD10.get(i).get(5);
 //    }
-    %>
+%>
 </thead>
 <tr>
 
@@ -192,22 +192,44 @@
     enddate = temp[2] + "/" + temp[1] + "/" + temp[0];
 
     $(document).ready(function () {
-        var table = $('#ICD10Table').DataTable({
+        $('#ICD10Table').DataTable({
+            initComplete: function (settings, json) {
+                $('.loading').hide();
+            },
+            pageLength: 15,
             dom: 'Bfrtip',
             buttons: [
-                'csv', 'excel', 'pdf',
                 {
+                    extend: 'excelHtml5',
+                    text: 'Export To Excel',
+                    title: 'ICD10 List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'csvHtml5',
+                    text: 'Export To Excel CSV',
+                    title: 'ICD10 List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
                     extend: 'print',
+                    text: 'Print List',
                     title: $('h1').text(),
+                    message: '<br><br>',
+                    className: 'btn btn-primary',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>ICD10 Report<br/><h5>From <strong>' + startdate + '</strong>  To <strong>' + enddate + '</strong> </h5></div><p>Discipline : <strong><%=discipline%></strong></p>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>ICD10 List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>SAM-0002</strong></dd>\n\
+                                        <dd>Report No: <strong>REP-0006</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
@@ -215,16 +237,17 @@
                                 .css('font-size', 'inherit');
                         $(win.document.body)
                                 .css('font-size', '10pt')
-                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                    },
+                    exportOptions: {
+                        columns: ':visible'
                     }
+                }, {
+                    extend: 'colvis',
+                    text: 'Filter Table Column',
+                    className: 'btn btn-success'
                 }
-
             ]
-        });
-        table.buttons().container()
-                .appendTo('#ICD10Table_wrapper .col-sm-6:eq(0)');
-        $('#b_print').click(function () {
-            printReport();
         });
     });
 </script>

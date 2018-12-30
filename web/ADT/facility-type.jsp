@@ -25,7 +25,7 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY TYPE
     <span class="pull-right">
-        <button id="FT_btnModalAdd" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;">
+        <button id="FT_btnModalAdd" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;">
             <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
                 <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
             </a>ADD FACILITY TYPE</button>

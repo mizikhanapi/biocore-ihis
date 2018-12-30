@@ -40,22 +40,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>Attendance List Report</title>
 
+        <%@include file="../assets/header.html"%>
 
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <%@include file="../assets/header.html"%>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
-
-<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
         <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
-        
-        
+
+
     </head>
     <body>
         <!-- side bar -->
@@ -77,9 +72,8 @@
                                 <label class="control-label">Discipline</label>
                                 <div class="form-inline">
                                     <select id="radioDiscipline" name="radioDiscipline" class="form-control">
-                                        <%
-                                            for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                        <%                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
                                             }
                                         %>
                                     </select>
@@ -161,7 +155,7 @@
                                         <option value="all">All</option>
                                         <%
                                             for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                                out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
                                             }
                                         %>
                                     </select>
@@ -193,13 +187,13 @@
 
                             <table  id="UTemPAReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
-                                <th style="text-align: center;">Patient Name</th>
-                                <th style="text-align: center;">Patient IC No.</th>
-                                <th style="text-align: center;">Patient Gender</th>
-                                <th style="text-align: center;">Consulting Doctor</th>
-                                <th style="text-align: center;">Episode Date</th>
-                                <th style="text-align: center;">Diagnosis</th>
-                                <th style="text-align: center;">Type of Patient</th>
+                                <th style="text-align: left;">Patient Name</th>
+                                <th style="text-align: left;">Patient IC No.</th>
+                                <th style="text-align: left;">Patient Gender</th>
+                                <th style="text-align: left;">Consulting Doctor</th>
+                                <th style="text-align: left;">Episode Date</th>
+                                <th style="text-align: left;">Diagnosis</th>
+                                <th style="text-align: left;">Type of Patient</th>
                                 </thead>
                                 <tbody>
 
@@ -226,10 +220,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <!--<script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>-->
+
+
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
         <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
@@ -237,7 +234,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
 
 
 
@@ -321,8 +318,8 @@
 //                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
-            
-           
+
+
             viewPAGraph();
 
             $("#patientAttandanceViewReportBtn").click(function () {
@@ -339,7 +336,7 @@
                 sortBy = $("input[name='radioSortBY']:checked").val();
                 occupation = $("input[name='radioOccupation']:checked").val();
                 discipline = $("#radioDiscipline option:selected").text();
-                 
+
                 var result = [];
                 if (disciplineData.length > 0 && discipline !== "")
                 {
@@ -417,7 +414,7 @@
 
 
             $("#searchPatientAttendance").click(function () {
-                var patientType, startDate, endDate,startDateori,endDateori;
+                var patientType, startDate, endDate, startDateori, endDateori;
 
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
@@ -472,7 +469,7 @@
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
                                     <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
 
-                                    }else{
+                                    } else {
                                         trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
                                     <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td><td>' + datas[7] + '</td><td>' + datas[9] + '</td></tr>';
                                     }

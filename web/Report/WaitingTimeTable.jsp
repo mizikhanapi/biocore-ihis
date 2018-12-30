@@ -17,20 +17,20 @@
 
 <table  id="WaitingTimeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%" style="overflow-x: auto;">
     <thead>
-    <th style="text-align: center;">PMI NO</th>
-    <th style="text-align: center;">Patient Name</th>
-    <th style="text-align: center;">DR ID</th>
-    <th style="text-align: center;">DR Name</th>
-    <th style="text-align: center;">Nurse ID</th>
-    <th style="text-align: center;">Nurse Name</th>
-    <th style="text-align: center;">Register Date</th>
-    <th style="text-align: center;">Consult Date</th>
-    <th style="text-align: center;">Order Date</th>
-    <th style="text-align: center;">Dispense Date</th>
-    <th style="text-align: center;">PMS -> CIS (Minutes)</th>
-    <th style="text-align: center;">CIS -> PIS (Minutes)</th>
-    <th style="text-align: center;">PIS -> Dispense (Minutes)</th>
-    <th style="text-align: center;">Total (Minutes)</th>
+    <th style="text-align: left;">PMI NO</th>
+    <th style="text-align: left;">Patient Name</th>
+    <th style="text-align: left;">DR ID</th>
+    <th style="text-align: left;">DR Name</th>
+    <th style="text-align: left;">Nurse ID</th>
+    <th style="text-align: left;">Nurse Name</th>
+    <th style="text-align: left;">Register Date</th>
+    <th style="text-align: left;">Consult Date</th>
+    <th style="text-align: left;">Order Date</th>
+    <th style="text-align: left;">Dispense Date</th>
+    <th style="text-align: left;">PMS -> CIS (Minutes)</th>
+    <th style="text-align: left;">CIS -> PIS (Minutes)</th>
+    <th style="text-align: left;">PIS -> Dispense (Minutes)</th>
+    <th style="text-align: left;">Total (Minutes)</th>
 </thead>
 <tbody>
 
@@ -133,7 +133,7 @@
 
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 
         <td><%= dataReport.get(s).get(1)%></td>                                            <!-- PMI NO -->
         <td><%= dataReport.get(s).get(2)%></td>                                            <!-- Patient Name -->

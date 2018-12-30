@@ -20,8 +20,7 @@
         <th>Ward Name</th>
         <th>Bed ID</th>
         <th>Bed Status</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Action</th>
         </thead>
         <tbody>
 
@@ -63,14 +62,13 @@
         <td><%= databed.get(i).get(2)%></td>
         <td><%= databed.get(i).get(3)%></td>
         <td><%= databed.get(i).get(4)%></td>
-        <td>
+        <td align="center">
             <!-- Update Part Start -->
-            <a id="MWBed_edit" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <a id="MWBed_edit" ><i class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Update Item" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
             <!-- Update Part End -->
-        </td>
-        <td>
-            <!-- Delete Button Start -->
-            <a id="BED_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+                        	&nbsp;	&nbsp;
+                        <!-- Delete Button Start -->
+            <a id="BED_delete" class="testing"><i  data-toggle="tooltip" data-placement="right" title="Delete Item" class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
             <!-- Delete Button End -->
         </td>
         </tr>
@@ -82,6 +80,14 @@
     </table>
 
 </div>
+        
+        
+        <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
 <!-- Modal Update -->
 <div class="modal fade" id="assignBedUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
