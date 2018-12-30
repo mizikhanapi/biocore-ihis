@@ -51,7 +51,7 @@
             for (int i = 0; i < size; i++) {
         %>
 
-        <tr>
+        <tr style="text-align: left;">
 
             <td><%= dataModule.get(i).get(0)%></td> <!-- code -->   
             <td><%= dataModule.get(i).get(1)%></td> <!-- name  --> 

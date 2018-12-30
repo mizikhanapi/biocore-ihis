@@ -29,7 +29,7 @@
                        
            String evod = (i%2==0)? "even":"odd";
 %>
-<tr class="clickable_tr <%=evod%>">
+<tr class="clickable_tr <%=evod%>" style="text-align: left;">
     <td><%=dataOrd.get(i).get(0)%></td>
     <td><%=dataOrd.get(i).get(1)%></td>
     <td><%=dataOrd.get(i).get(2)%></td>

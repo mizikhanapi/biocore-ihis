@@ -49,7 +49,7 @@
         sub = dataQT.get(i).get(7);
     }
             %>
-                 <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
+                 <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style="text-align: left;">
                     <td id="cd"><%=dataQT.get(i).get(0)%></td>
                     <td id="desc"><%=dataQT.get(i).get(1) %></td>
                     <td id="stat"><%=dataQT.get(i).get(2) %></td>

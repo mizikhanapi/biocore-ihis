@@ -106,7 +106,7 @@
 
 
         %>
-        <tr class="clickable_tr ">
+        <tr style="text-align: left;" class="clickable_tr ">
             <td><%=dataOm.get(i).get(0)%></td>
             <td><%=dataOm.get(i).get(1)%></td>
             <td><%=dataOm.get(i).get(2)%></td>

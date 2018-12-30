@@ -40,7 +40,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataStockCatehidden" type="hidden" value="<%=String.join("|", dataStockCate.get(i))%>">
 <td><%= dataStockCate.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataStockCate.get(i).get(1)%></td> <!-- Desc -->
@@ -85,13 +85,8 @@
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
             "language": {
                 "emptyTable": "No Category Available To Display"
-            },
-                                    columnDefs: [
-                                        {
-                                            className: 'dt-body-left',
-                                            targets: '_all'
-
-                                        }]
+            },columnDefs: [{className: 'dt-body-left',targets: '_all'}]                            
+                                        
         });
         // Supplier DataTables End
 

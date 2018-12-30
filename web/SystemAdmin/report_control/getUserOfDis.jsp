@@ -46,7 +46,7 @@
            
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>

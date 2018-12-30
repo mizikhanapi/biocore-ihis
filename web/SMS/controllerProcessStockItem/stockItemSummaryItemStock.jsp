@@ -51,7 +51,7 @@
                         int reorderValue = Integer.parseInt(dataSTOCKITEMReorder.get(i).get(4).toString());
 
                 %>
-                <tr >
+                <tr style="text-align: left;">
 
                     <!-- First TD -->
                     <td style="font-weight: bolder;" align="center"><%= dataSTOCKITEMReorder.get(i).get(1)%> [<%= dataSTOCKITEMReorder.get(i).get(0)%>]</td>

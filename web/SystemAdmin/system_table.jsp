@@ -29,7 +29,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
         <input id="ST_hidden" type="hidden" value="<%=String.join("|", dataSystem.get(i))%>">
         <td><%= dataSystem.get(i).get(0)%></td>
         <td><%= dataSystem.get(i).get(1)%></td>

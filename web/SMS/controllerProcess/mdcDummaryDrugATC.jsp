@@ -28,7 +28,7 @@
     <div style="height: 200px; overflow: auto; margin-top:-30px; padding-top: 30px;">    
         <table class="table table-striped"  width="30%" style="margin-bottom: 0px; margin-top:-30px;">
             <thead>
-                <tr >
+                <tr>
                     <th style="color: #999; font-weight: 500;" > ATC Drug Code</th>
                     <th style="color: #999; font-weight: 500;" > ATC Drug Description </th>
                 </tr>
@@ -46,7 +46,7 @@
 
 
                 %>
-                <tr >
+                <tr style="text-align: left;">
                     <td style="font-weight: bolder;" align="center"><%= dataMDCStock.get(i).get(0)%></td>
                     <td style="font-weight: bolder;" align="center"><%= dataMDCStock.get(i).get(1)%></td>
                 </tr>

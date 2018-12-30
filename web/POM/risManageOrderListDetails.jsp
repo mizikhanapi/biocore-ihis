@@ -86,7 +86,7 @@
 //            out.print(test);
 
     %>
-    <tr class="clickable_tr">
+    <tr class="clickable_tr" style="text-align: left;">
 
         <td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
         <td><%= procedure_cd%></td> <!-- code -->

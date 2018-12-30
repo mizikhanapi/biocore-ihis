@@ -34,7 +34,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 <input id="MT_hidden" type="hidden" value="<%=String.join("|", dataModule.get(i))%>">
 <td><%= dataModule.get(i).get(0)%></td> <!-- system code -->   
 <td><%= dataModule.get(i).get(1)%></td> <!-- system name  --> 

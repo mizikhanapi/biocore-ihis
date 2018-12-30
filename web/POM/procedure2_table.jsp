@@ -36,7 +36,7 @@
     <%            for (int i = 0; i < dataBS.size(); i++) {
 
     %>
-    <tr>
+    <tr style="text-align: left;">
 <input id="PRO2_hidden" type="hidden" value="<%= String.join("|", dataBS.get(i))%>">
 <td><%= dataBS.get(i).get(5)%></td>
 <td><%= dataBS.get(i).get(6)%></td>

@@ -48,7 +48,7 @@
 
         <%
             for (int i = 0; i < dataSale.size(); i++) {%>
-        <tr class="clickable_tr" style="cursor: pointer;">
+        <tr class="clickable_tr"  style="text-align: left;">
             <td><%=dataSale.get(i).get(0)%></td>
             <td><%=dataSale.get(i).get(1)%></td>
             <td>

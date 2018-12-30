@@ -68,7 +68,7 @@
 
     %>
 
-    <tr style="text-align: center;" class="clickable_tr">
+    <tr style="text-align: left;" class="clickable_tr">
 
 
         <td><%= dataStockItem.get(s).get(1)%></td>                                            <!-- Category Code -->

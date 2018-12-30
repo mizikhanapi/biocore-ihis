@@ -54,7 +54,7 @@
             for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 <input id="SDT_hidden" type="hidden" value="<%=String.join("|", dataDetail.get(i))%>">
 <td>(<%= dataDetail.get(i).get(6)%>) <%= dataDetail.get(i).get(7)%></td> <!--hfc  -->   
 <td><%= dataDetail.get(i).get(0)%></td> <!--discipline code  -->   

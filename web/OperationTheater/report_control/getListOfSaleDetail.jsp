@@ -48,7 +48,7 @@
 
         <%
             for (int i = 0; i < dataSale.size(); i++) {%>
-        <tr>
+        <tr style="text-align: left;">
             <td><%=dataSale.get(i).get(0)%></td>
             <td><%=dataSale.get(i).get(1)%></td>
             <td><%=dataSale.get(i).get(2)%></td>

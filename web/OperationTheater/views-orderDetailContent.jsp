@@ -199,7 +199,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr role="row" class="odd">
+                <tr role="row" class="odd" style="text-align: left;">
 
                     <td style="display: none" class="sorting_1"></td> <!-- hidden -->
                     <td>Heart</td> <!-- body -->

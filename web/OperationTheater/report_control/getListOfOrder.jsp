@@ -70,7 +70,7 @@
             for (int i = 0; i < dataPatientApp.size(); i++) {
                                
         %>
-        <tr class="clickable_tr" style="cursor: pointer;">
+        <tr class="clickable_tr" style="text-align: left;">
             <td><%=dataPatientApp.get(i).get(0)%></td>
             <td><%=tabStat%></td>
             <td>

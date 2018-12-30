@@ -23,7 +23,7 @@
     for (int i = 0; i < size; i++) {
 %>
 
-<tr>
+<tr style="text-align: left;">
 <input id="DLT_hidden" type="hidden" value="<%=String.join("|", dataDetail.get(i))%>">
 <td style="width: 10% "><%= dataDetail.get(i).get(0)%></td> <!--master code  -->   
 <td style="width: 10% "><%= dataDetail.get(i).get(4)%></td> <!--master name  --> 

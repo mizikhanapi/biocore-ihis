@@ -52,10 +52,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group" id="div_ROOM_btnAdd">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="ROOM_btnAdd">Add Room</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" role="button" id="ROOM_btnAdd">Add Room</button>
                     </div>
                     <div class="btn-group btn-delete" role="group" id="div_ROOM_btnUpdate">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="ROOM_btnUpdate">Update Room</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" role="button" id="ROOM_btnUpdate">Update Room</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>

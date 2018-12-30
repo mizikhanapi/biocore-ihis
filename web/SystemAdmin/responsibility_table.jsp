@@ -36,7 +36,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 
         <td><a id="REST_btnRolePage" data-toggle="modal" data-target="#REST_detail2" style="cursor: pointer"><%= dataRes.get(i).get(3)%></a></td>
         <td><%= dataRes.get(i).get(0)%></td>

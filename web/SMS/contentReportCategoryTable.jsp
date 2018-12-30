@@ -42,7 +42,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;" class="clickable_tr">
+    <tr style="text-align: left;" class="clickable_tr">
         <td><%= dataStockCate.get(i).get(0)%></td> <!-- Code -->
         <td><%= dataStockCate.get(i).get(1)%></td> <!-- Desc -->
         <td><%= dataStockCate.get(i).get(5)%></td> <!-- Value -->

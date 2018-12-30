@@ -71,7 +71,7 @@
                 qlType="Facility";
             }
     %>
-    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#list">
+    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#list" style="text-align: left;">
         <td><%=qlType%></td>
         <td id="Lname"><%=dataQL.get(i).get(1)%></td>
         <td hidden="true" id="Ltype"><%=dataQL.get(i).get(0)%></td>

@@ -56,7 +56,7 @@
                 sub = dataQN.get(i).get(10);
             }
     %>
-    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#names">
+    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#names" style="text-align: left;">
         <td id="tyCd"><%=dataQN.get(i).get(0)%></td>
         <td id="nmCd"><%=dataQN.get(i).get(1)%></td>
         <td id="idName" hidden><%=dataQN.get(i).get(12)%></td>

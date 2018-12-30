@@ -157,25 +157,25 @@
                                     <td>
                                         <div class="table-guling">
                                             <table class="table table-bordered" style="width: 50%; max-width: 400px;">
-                                                <tr>
+                                                <tr style="text-align: left;">
                                                     <td></td>
                                                     <td>Systolic(mmHg)</td>
                                                     <td>Diastolic(mmHg)</td>
                                                     <td>Pulse(bpm)</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="text-align: left;">
                                                     <td>Sitting</td>
                                                     <td><%=dataBP.get(i).get(3)%></td>
                                                     <td><%=dataBP.get(i).get(4)%></td>
                                                     <td><%=dataBP.get(i).get(5)%></td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="text-align: left;">
                                                     <td>Standing</td>
                                                     <td><%=dataBP.get(i).get(6)%></td>
                                                     <td><%=dataBP.get(i).get(7)%></td>
                                                     <td><%=dataBP.get(i).get(8)%></td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="text-align: left;">
                                                     <td>Supine</td>
                                                     <td><%=dataBP.get(i).get(9)%></td>
                                                     <td><%=dataBP.get(i).get(10)%></td>
@@ -229,7 +229,7 @@
                                     for (int i = 0; i < dataTemper.size(); i++) {
 
                                 %>
-                                <tr>
+                                <tr style="text-align: left;">
                                     <td style="width: 7%;"><%=dataTemper.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataTemper.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataTemper.get(i).get(2))%></td>
@@ -279,7 +279,7 @@
                                     for (int i = 0; i < dataSPO.size(); i++) {
 
                                 %>
-                                <tr>
+                                <tr style="text-align: left;">
                                     <td style="width: 7%;"><%=dataSPO.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataSPO.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataSPO.get(i).get(2))%></td>
@@ -317,7 +317,7 @@
                     <div style="overflow-x: auto;">
                         <table class="table table-bordered" style="width:100%; text-align: left;">
                             <thead>
-                                <tr>
+                                <tr >
                                     <td width="15%">Date</td>
                                     <td width="15%">Time</td>
                                     <td width="20%">Venue</td>
@@ -329,7 +329,7 @@
                                     for (int i = 0; i < dataGlucose.size(); i++) {
 
                                 %>
-                                <tr>
+                                <tr style="text-align: left;">
                                     <td style="width: 7%;"><%=dataGlucose.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataGlucose.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataGlucose.get(i).get(2))%></td>
@@ -379,7 +379,7 @@
                                     for (int i = 0; i < dataHtWt.size(); i++) {
 
                                 %>
-                                <tr>
+                                <tr style="text-align: left;">
                                     <td style="width: 7%;"><%=dataHtWt.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataHtWt.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataHtWt.get(i).get(2))%></td>
@@ -429,7 +429,7 @@
                                     for (int i = 0; i < dataRespiratory.size(); i++) {
 
                                 %>
-                                <tr>
+                                <tr style="text-align: left;">
                                     <td style="width: 7%;"><%=dataRespiratory.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataRespiratory.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataRespiratory.get(i).get(2))%></td>
@@ -477,7 +477,7 @@
                                 <%            for (int i = 0; i < dataCholesterol.size(); i++) {
 
                                 %>
-                                <tr>
+                                <tr style="text-align: left;">
                                     <td style="width: 7%;"><%=dataCholesterol.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataCholesterol.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataCholesterol.get(i).get(2))%></td>
@@ -508,6 +508,6 @@
 
 
 <%} else {
-        out.print("There is no record of vital sign !!!!");
+        out.print("There is no record of vital sign");
     }%>
 

@@ -62,7 +62,7 @@
                     tempStatus = "Inactive";
                 }
         %>
-        <tr>
+        <tr style="text-align: left;">
             <td><%=dataPatientApp.get(i).get(0)%></td>
             <td><%=dataPatientApp.get(i).get(1)%></td>
             <td><%=dataPatientApp.get(i).get(2)%></td>

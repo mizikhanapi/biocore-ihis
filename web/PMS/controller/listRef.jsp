@@ -200,7 +200,7 @@
                     for (int i = 0; i < dataAppointment.size(); i++) {
 
             %>
-            <tr>
+            <tr style="text-align: left;">
                 <td><%=dataAppointment.get(i).get(0)%></td>
                 <td><%=dataAppointment.get(i).get(1)%></td>
                 <td><%=dataAppointment.get(i).get(2)%></td>

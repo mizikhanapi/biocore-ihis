@@ -76,7 +76,7 @@
 
                                                     <%
                                                         for (int i = 0; i < dataQueue.size(); i++) {%>
-                                                    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
+                                                    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style="text-align: left;">
                                                         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
                                                         <td><%=dataQueue.get(i).get(1)%></td>
                                                         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>

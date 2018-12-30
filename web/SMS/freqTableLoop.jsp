@@ -38,7 +38,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataFreqhidden" type="hidden" value="<%=String.join("|", dataFreq.get(i))%>">
 <td><%= dataFreq.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataFreq.get(i).get(1)%></td> <!-- Desc -->
