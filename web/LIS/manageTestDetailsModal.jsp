@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="testDetailsModalTitle" align="center"></h2>
+                <h2 class="modal-title" id="testDetailsModalTitle" align="left"></h2>
             </div>
             <div class="modal-body">
 
@@ -109,7 +109,7 @@
                     <div class="btn-group" role="group" id="testDetails_btnAdd_or_btnUpdate_div">
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="testDetailsReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                        <button type="button" id="testDetailsReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>
@@ -128,7 +128,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Test Details Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="left">Clone Test Details Code</h2>
             </div>
             <div class="modal-body">
 

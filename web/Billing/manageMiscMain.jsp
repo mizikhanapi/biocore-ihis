@@ -39,7 +39,7 @@
 
             $('#miscModalTitle').text("Add New Miscellaneous Item");
             $('#miscCode').prop('readonly', false);
-            $('#misc_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addMiscButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#misc_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addMiscButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#miscModalForm')[0].reset();
 
@@ -193,7 +193,7 @@
 
             $('#miscModalTitle').text("Update Miscellaneous Item");
             $('#miscCode').prop('disabled', true);
-            $('#misc_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateMiscButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#misc_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateMiscButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
 
             $('#miscCode').val(arrayData[0]);

@@ -38,7 +38,7 @@
 
             $('#billParameterModalTitle').text("Add New Bill Parameter");
             $('#billParameterCode').prop('disabled', false);
-            $('#billParameter_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addBillParameterButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#billParameter_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addBillParameterButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#billParameterModalForm')[0].reset();
 
@@ -181,7 +181,7 @@
 
             $('#billParameterModalTitle').text("Update Parameter Item");
             $('#billParameterCode').prop('disabled', true);
-            $('#billParameter_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateBillParameterButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#billParameter_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateBillParameterButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
 
             $('#billParameterCode').val(arrayData[0]);

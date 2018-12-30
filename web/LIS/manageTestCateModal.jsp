@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="testCateModalTitle" align="center"></h2>
+                <h2 class="modal-title" id="testCateModalTitle" align="left"></h2>
             </div>
             <div class="modal-body">
 
@@ -27,7 +27,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Test Category Name *</label>
-                        <div class="col-md-">
+                        <div class="col-md-8">
                             <textarea id="testCateName" name="freqDesc" class="form-control" rows="4" placeholder="Insert Test Category Name" maxlength="100" required></textarea>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                     <div class="btn-group" role="group" id="testCate_btnAdd_or_btnUpdate_div">
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="testCateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                        <button type="button" id="testCateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>
@@ -71,7 +71,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Test Category Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="left">Clone Test Category Code</h2>
             </div>
             <div class="modal-body">
 

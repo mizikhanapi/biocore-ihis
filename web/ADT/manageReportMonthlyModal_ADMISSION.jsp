@@ -11,7 +11,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" align="center">  LIST OF ADMISSION DETAILS </h2>
+                <h2 class="modal-title" align="left">  LIST OF ADMISSION DETAILS </h2>
             </div>
             <div class="modal-body">
                 
@@ -36,7 +36,7 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group" role="group">
-                    <button type="reset" id="deleveryOrderInvoiceCloseBtn" class="btn btn-success btn-block btn-lg" data-dismiss="modal" role="button"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
+                    <button type="reset" id="deleveryOrderInvoiceCloseBtn" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" role="button"><i class="fa fa-times-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;Close</button>
                 </div>
             </div>
         </div>

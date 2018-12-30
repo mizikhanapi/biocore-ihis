@@ -203,7 +203,7 @@
 
                             $('#invoiceAddOrderDetailTitle').text("Add New Invoice Item");
                             $('#invoiceAddOrderDetail_btnAdd_or_btnUpdate_div').html('<button type="submit" id="invoiceAddOrderAddNewItemBtn" class="btn btn-primary btn-block btn-lg" role="button">Add Items</button>');
-                            $('#invoiceAddOrderDetail_btnClear_or_btnDelete_div').html('<button type="submit" id="invoiceAddOrderDetailReset" data-dismiss="modal" class="btn btn-default btn-block btn-lg" role="button">Clear</button>');
+                            $('#invoiceAddOrderDetail_btnClear_or_btnDelete_div').html('<button type="submit" id="invoiceAddOrderDetailReset" data-dismiss="modal" class="btn btn-default btn-block btn-lg" role="button">Close</button>');
 
                             $('#invoiceAddOrderDetailForm')[0].reset();
 

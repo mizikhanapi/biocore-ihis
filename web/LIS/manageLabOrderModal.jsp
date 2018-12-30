@@ -31,7 +31,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Add New Stock Order</h3>
+                <h3 class="modal-title" id="lineModalLabel">Add New Lab Order</h3>
             </div>
             <div class="modal-body">
 
@@ -158,10 +158,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="orderLabRequestAddButton">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="orderLabRequestAddButton">Add</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="orderLabRequestResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                        <button type="reset" id="orderLabRequestResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Close</button>
                     </div>
                 </div>
             </div>
@@ -229,10 +229,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateLabRequestOrderMButton">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="updateLabRequestOrderMButton">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="deleteLabRequestOrderMButton" >Delete</button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" id="deleteLabRequestOrderMButton" >Delete</button>
                     </div>
                 </div>
             </div>

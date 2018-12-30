@@ -88,10 +88,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MW_add">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="MW_add">Add</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="MW_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                        <button type="reset" id="MW_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Close</button>
                     </div>
                 </div>
             </div>

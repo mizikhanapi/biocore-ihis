@@ -61,7 +61,7 @@
 
             $('#testDetailsModalTitle').text("Add New Test Detail");
             $('#testDetailsCode').prop('readonly', false);
-            $('#testDetails_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addTestDetailButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#testDetails_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addTestDetailButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#testDetailsForm')[0].reset();
 
@@ -245,7 +245,7 @@
 
             $('#testDetailsModalTitle').text("Update Test Detail");
             $('#testDetailsCode').prop('readonly', true);
-            $('#testDetails_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateTestDetailButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#testDetails_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateTestDetailButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
             $('#testDetailsCateCode').val(arrayData[2]);
             $('#testDetailsCode').val(arrayData[0]);

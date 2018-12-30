@@ -37,7 +37,7 @@
 
             $('#freqModalTitle').text("Add New Drug Frequency");
             $('#freqCode').prop('readonly', false);
-            $('#freq_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addFreqButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#freq_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addFreqButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#freqForm')[0].reset();
 
@@ -152,7 +152,7 @@
 
             $('#freqModalTitle').text("Update Drug Frequency");
             $('#freqCode').prop('readonly', true);
-            $('#freq_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateFreqButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#freq_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateFreqButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
             $('#freqCode').val(arrayData[0]);
             $('#freqDesc').val(arrayData[1]);

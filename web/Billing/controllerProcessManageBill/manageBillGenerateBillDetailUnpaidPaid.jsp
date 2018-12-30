@@ -374,7 +374,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="addMiscItem" type="button" class="btn btn-success" data-dismiss="modal">Add Item</button>
+                <button id="addMiscItem" type="button" class="btn btn-primary" data-dismiss="modal">Add Item</button>
             </div>
         </div>
     </div>
@@ -398,7 +398,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="addDrugsItem" type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                <button id="addDrugsItem" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
             </div>
         </div>
     </div>
@@ -430,7 +430,7 @@
 
             </div>
             <div class="modal-footer">
-                <button id="mergedInvoiceBtn" type="button" class="btn btn-success" data-dismiss="modal">Create Merged Bill</button>
+                <button id="mergedInvoiceBtn" type="button" class="btn btn-primary" data-dismiss="modal">Create Merged Bill</button>
             </div>
         </div>
     </div>
@@ -481,7 +481,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="payment" type="button" class="btn btn-success" data-dismiss="modal">Make Payment</button>
+                <button id="payment" type="button" class="btn btn-primary" data-dismiss="modal">Make Payment</button>
             </div>
         </div>
     </div>

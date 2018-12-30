@@ -16,7 +16,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="invoiceAddOrderDetailTitle" align="center"></h2>
+                <h2 class="modal-title" id="invoiceAddOrderDetailTitle" align="left"></h2>
             </div>
             <div class="modal-body">
 
@@ -114,7 +114,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" align="center"> Invoice Details </h2>
+                <h2 class="modal-title" align="left"> Invoice Details </h2>
             </div>
             <div class="modal-body">
                 <br><br>

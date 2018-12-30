@@ -151,7 +151,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Update Drug Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="left">Update Drug Code</h2>
             </div>
             <div class="modal-body">
 
@@ -592,10 +592,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" id="updateMDCButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>
+                        <button type="submit" id="updateMDCButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="updateMDCReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                        <button type="button" id="updateMDCReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>

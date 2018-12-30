@@ -112,10 +112,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="addSpecimenResultMButton">Add Result</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="addSpecimenResultMButton">Add Result</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" data-dismiss="modal" id="addSpecimenResultMCButton" >Cancel</button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" data-dismiss="modal" id="addSpecimenResultMCButton" >Close</button>
                     </div>
                 </div>
             </div>
@@ -209,10 +209,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="verifySpecimenResultMButton">Verify Result</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="verifySpecimenResultMButton">Verify Result</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" data-dismiss="modal" id="verifySpecimenResultMCButton" >Cancel</button>
+                        <button type="submit" class="btn btn-default btn-block btn-lg" role="button" data-dismiss="modal" id="verifySpecimenResultMCButton" >Close</button>
                     </div>
                 </div>
             </div>

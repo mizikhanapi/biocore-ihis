@@ -39,7 +39,7 @@
 
             $('#testCateModalTitle').text("Add New Test Category");
             $('#testCateCode').prop('readonly', false);
-            $('#testCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addTestCateButton" class="btn btn-success btn-block btn-lg" role="button">Add</button>');
+            $('#testCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="addTestCateButton" class="btn btn-primary btn-block btn-lg" role="button">Add</button>');
 
             $('#testCateForm')[0].reset();
 
@@ -156,7 +156,7 @@
 
             $('#testCateModalTitle').text("Update Test Category");
             $('#testCateCode').prop('readonly', true);
-            $('#testCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateTestCateButton" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
+            $('#testCate_btnAdd_or_btnUpdate_div').html('<button type="submit" id="updateTestCateButton" class="btn btn-primary btn-block btn-lg" role="button">Update</button>');
 
             $('#testCateCode').val(arrayData[0]);
             $('#testCateName').val(arrayData[2]);

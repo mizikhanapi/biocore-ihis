@@ -24,7 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="freqModalTitle" align="center"></h2>
+                <h2 class="modal-title" id="freqModalTitle" align="left"></h2>
             </div>
             <div class="modal-body">
 
@@ -75,7 +75,7 @@
                     <div class="btn-group" role="group" id="freq_btnAdd_or_btnUpdate_div">
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="freqReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                        <button type="button" id="freqReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>
@@ -94,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Drug Frequency Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="left">Clone Drug Frequency Code</h2>
             </div>
             <div class="modal-body">
 
