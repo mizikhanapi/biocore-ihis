@@ -30,8 +30,8 @@
 
     String sql2 = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,u.user_name,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l,adm_users u where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='" + hfc + "' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and q.patient_category='1' order by q.queue_name  ;";
 
-    //                         0          1                 2               3           4           5               6                   7               8           9
-    String sqlV3 = "SELECT q.pmi_no, b.patient_name, q.episode_date, q.queue_name, q.queue_no, l.description, q.patient_category, x.description, b.new_ic_no, IFNULL(adm.USER_NAME,'-') "
+    //                         0          1                 2                          3           4           5               6                   7               8           9
+    String sqlV3 = "SELECT q.pmi_no, b.patient_name, date_format(q.episode_date,'%d/%m/%Y %T'), q.queue_name, q.queue_no, l.description, q.patient_category, x.description, b.new_ic_no, IFNULL(adm.USER_NAME,'-') "
             + " FROM pms_patient_queue q"
             + " JOIN pms_patient_biodata b ON b.pmi_no = q.pmi_no"
             + " JOIN adm_lookup_detail l ON l.`Master_Reference_code` ='0069' AND l.`Detail_Reference_code` = q.status AND l.`hfc_cd` = '" + hfc + "'"
