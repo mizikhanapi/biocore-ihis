@@ -107,6 +107,9 @@
             reloadOrderMasterList();
             
         });
+        $('#PIS_ScreenSearch').on('click',function(){
+            $('#RMOM_btnRefresh').click();
+        });
         
     });
     

@@ -89,7 +89,9 @@
         $('#RMOM_oderTime').on('change', function(){
             $('#RMOM_btnRefresh').click();
         });
-        
+        $('#PIS_ScreenSearch').on('click',function(){
+            $('#RMOM_btnRefresh').click();
+        });
     });
     
 </script>

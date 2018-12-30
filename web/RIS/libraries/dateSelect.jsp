@@ -4,23 +4,47 @@
     Author     : Shay
 --%>
 <div class="form-group" id="divDate">
-    <div class="form-group">
+<!--    <div class="form-group">
         <label class="col-md-4 control-label" for="selectbasic">Date</label>
-        <div class="col-md-4">
-            <select id="bydateSel" name="bydateSel" class="form-control" required="">
-                <option selected=""  disabled="" value="-"> Please select Date</option>
-                <option   value="today"> Today</option>
-                <option   value="yesterday"> Yesterday</option>
-                <option   value="7"> 7 Days</option>
-                <option   value="30"> 30 days</option>
-                <option   value="60"> 60 days</option>
-                <option   value="custom"> Select Date</option>
-            </select>
+        <div class="form-group">
+                <select id="bydateSel" name="bydateSel" class="form-control" required="">
+                    <option selected=""  disabled="" value="-"> Please select Date</option>
+                    <option   value="today"> Today</option>
+                    <option   value="yesterday"> Yesterday</option>
+                    <option   value="7"> 7 Days</option>
+                    <option   value="30"> 30 days</option>
+                    <option   value="60"> 60 days</option>
+                    <option   value="custom"> Select Date</option>
+                </select>
+                <button class="btn btn-default" id="PIS_ScreenSearch"><i class=" fa fa-search" style=" padding-right: 5px;padding-left: 5px;color: black;"></i></button>
         </div>
+         
         <div class="col-md-2" id="refreshbuttondiv">
             <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
         </div>
-    </div>
+    </div>-->
+    <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Show list of order: </label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <select class="form-control"  id="bydateSel" style="margin-bottom: 0px !important;">
+                        <option selected=""  disabled="" value="-"> Please select Date</option>
+                        <option value="today"> Today</option>
+                        <option value="yesterday"> Yesterday</option>
+                        <option value="7"> 7 Days</option>
+                        <option value="30"> 30 days</option>
+                        <option value="60"> 60 days</option>
+                        <option value="custom"> Select Date</option>
+                    </select>
+                    <span class="input-group-btn" id="spansearchbutton">
+                        <button class="btn btn-default" id="PIS_ScreenSearch"><i class=" fa fa-search" style=" padding-right: 5px;padding-left: 5px;color: black;"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div id="refreshbuttondiv">
+            <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
+            </div>
+       </div>
     <div class="form-group select-type" id="OM_selectDate" style="display: none;">
         <label class="col-md-4 control-label" for="textinput">From</label>
         <div class="col-md-2">

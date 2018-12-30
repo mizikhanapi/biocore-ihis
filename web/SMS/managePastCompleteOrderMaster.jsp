@@ -131,7 +131,7 @@
     $(function () {
         $("#divDate").hide();
         $("#refreshbuttondiv").hide();
-
+        $('#spansearchbutton').hide();
 //        //--- initialise datepicker for from ----
 //        $('#OM_DateFrom').datepicker({
 //            changeMonth: true,
@@ -212,8 +212,8 @@
 
                 bootbox.alert("Please choose correct type");
 
-            } else if (status === null) {
-                ootbox.alert("Please choose correct order status");
+            } else if (status === null || status === "-") {
+                bootbox.alert("Please choose correct order status");
             } else {
 
                 $('<div class="loading">Loading</div>').appendTo('body');
