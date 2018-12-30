@@ -18,17 +18,17 @@
 
 <table  id="reportTestItemTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: center;">Category Code</th>
-    <th style="text-align: center;">Category Name</th>
-    <th style="text-align: center;">Item Code</th>	 
-    <th style="text-align: center;">Item Name</th>
-    <th style="text-align: center;">Specimen Source</th>
-    <th style="text-align: center;">Specimen Container</th>
-    <th style="text-align: center;">Volume</th>
-    <th style="text-align: center;">Special Instruction</th>
-    <th style="text-align: center;">Price</th>
-    <th style="text-align: center;">Service Price</th>
-    <th style="text-align: center;">Status</th>
+    <th style="text-align: left;">Category Code</th>
+    <th style="text-align: left;">Category Name</th>
+    <th style="text-align: left;">Item Code</th>	 
+    <th style="text-align: left;">Item Name</th>
+    <th style="text-align: left;">Specimen Source</th>
+    <th style="text-align: left;">Specimen Container</th>
+    <th style="text-align: left;">Volume</th>
+    <th style="text-align: left;">Special Instruction</th>
+    <th style="text-align: left;">Price</th>
+    <th style="text-align: left;">Service Price</th>
+    <th style="text-align: left;">Status</th>
 </thead>
 <tbody>
 

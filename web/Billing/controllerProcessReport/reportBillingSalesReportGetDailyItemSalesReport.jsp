@@ -67,8 +67,8 @@
                 <th width="10%">No.</th>
                 <th width="20%">Item Code</th>
                 <th width="50%">Item Name</th>
-                <th style="text-align: center;" width="15%">Quantity</th>
-                <th style="text-align: center;" width="15%">Total Sales</th>
+                <th style="text-align: left;" width="15%">Quantity</th>
+                <th style="text-align: left;" width="15%">Total Sales</th>
             </tr>
         </thead>
         <tbody> 
@@ -87,8 +87,8 @@
                 <td><%=num%></td>
                 <td><%=itemCode%></td>
                 <td><%=itemName%></td>
-                <td style="text-align: center;"><%=totalQty%></td>
-                <td style="text-align: center;"><%=formatter.format(totalSales)%></td>
+                <td style="text-align: left;"><%=totalQty%></td>
+                <td style="text-align: left;"><%=formatter.format(totalSales)%></td>
             </tr> 
 
             <%  num++;

@@ -79,7 +79,7 @@
 
     %>
 
-    <tr style="text-align: center;" class="clickable_tr">
+    <tr style="text-align: left;" class="clickable_tr">
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <%
     if (statusBox.equals("0")) {
@@ -92,17 +92,17 @@
     <%
         }
     %>
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(1)%></td> <!-- Order No -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center" ><%= dataOrderList.get(i).get(2)%></td> <!-- Code -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(11)%></td> <!-- Name -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(10)%></td> <!--  S Source -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(13)%></td> <!--  S Container -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(12)%></td> <!--  Volume -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(15)%></td> <!--  Special Instruction -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(6)%></td> <!--  Requester Comment -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(18)%></td> <!--  Verification -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= dataOrderList.get(i).get(14)%></td> <!--  Comment -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" align="center"><%= statusTable%></td> <!--  Status -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" style="display: none"><%= dataOrderList.get(i).get(1)%></td> <!-- Order No -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(2)%></td> <!-- Code -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(11)%></td> <!-- Name -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(10)%></td> <!--  S Source -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(13)%></td> <!--  S Container -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(12)%></td> <!--  Volume -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(15)%></td> <!--  Special Instruction -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(6)%></td> <!--  Requester Comment -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(18)%></td> <!--  Verification -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= dataOrderList.get(i).get(14)%></td> <!--  Comment -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateLabRequestOrder" ><%= statusTable%></td> <!--  Status -->
 
 </tr>
 <%

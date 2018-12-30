@@ -21,30 +21,30 @@
 
 <table  id="reportListSupplierTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">ID</th>
-    <th style="text-align: center;">NAME</th>
-    <th style="text-align: center;">BANK ACCOUNT NO.</th>
-    <th style="text-align: center;">BANK CODE</th>
-    <th style="text-align: center;">ADDRESS 1</th>
-    <th style="text-align: center;">ADDRESS 2</th>
-    <th style="text-align: center;">ADDRESS 3</th>
-    <th style="text-align: center;">TOWNCODE</th>
-    <th style="text-align: center;">POSCODE</th>
-    <th style="text-align: center;">DISTRICT</th>
-    <th style="text-align: center;">STATE</th>
-    <th style="text-align: center;">COUNTRY</th>
-    <th style="text-align: center;">TELEPHONE NO.</th>
-    <th style="text-align: center;">FAX NO.</th>
-    <th style="text-align: center;">EMAIL</th>
-    <th style="text-align: center;">GL CODE</th>
-    <th style="text-align: center;">ROC NO</th>
-    <th style="text-align: center;">REGIS DATE</th>
-    <th style="text-align: center;">CONTACT PERSON</th>
-    <th style="text-align: center;">PAYMENT TERM</th>
-    <th style="text-align: center;">ACC TYPE</th>
-    <th style="text-align: center;">CREDIT LIMIT</th>
-    <th style="text-align: center;">CURRENCY</th>
-    <th style="text-align: center;">STATUS</th>
+    <th style="text-align: left;">ID</th>
+    <th style="text-align: left;">NAME</th>
+    <th style="text-align: left;">BANK ACCOUNT NO.</th>
+    <th style="text-align: left;">BANK CODE</th>
+    <th style="text-align: left;">ADDRESS 1</th>
+    <th style="text-align: left;">ADDRESS 2</th>
+    <th style="text-align: left;">ADDRESS 3</th>
+    <th style="text-align: left;">TOWNCODE</th>
+    <th style="text-align: left;">POSCODE</th>
+    <th style="text-align: left;">DISTRICT</th>
+    <th style="text-align: left;">STATE</th>
+    <th style="text-align: left;">COUNTRY</th>
+    <th style="text-align: left;">TELEPHONE NO.</th>
+    <th style="text-align: left;">FAX NO.</th>
+    <th style="text-align: left;">EMAIL</th>
+    <th style="text-align: left;">GL CODE</th>
+    <th style="text-align: left;">ROC NO</th>
+    <th style="text-align: left;">REGIS DATE</th>
+    <th style="text-align: left;">CONTACT PERSON</th>
+    <th style="text-align: left;">PAYMENT TERM</th>
+    <th style="text-align: left;">ACC TYPE</th>
+    <th style="text-align: left;">CREDIT LIMIT</th>
+    <th style="text-align: left;">CURRENCY</th>
+    <th style="text-align: left;">STATUS</th>
 </thead>
 <tbody>
 
@@ -60,7 +60,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataSupplierhidden" type="hidden" value="<%=String.join("|", dataSupplier.get(i))%>">
 <td ><%= dataSupplier.get(i).get(0)%></td> <!-- ID -->
 <td ><%= dataSupplier.get(i).get(1)%></td> <!-- NAME -->

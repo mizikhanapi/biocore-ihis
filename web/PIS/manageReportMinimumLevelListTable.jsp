@@ -25,10 +25,10 @@
 <br>
 <table  id="reportListMinimumLevelTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">DRUG CODE</th>
-    <th style="text-align: center;">DRUG NAME</th>
-    <th style="text-align: center;">MINIMUM STOCK LEVEL</th>
-    <th style="text-align: center;">CURRENT STOCK QUANTITY</th>
+    <th style="text-align: left;">DRUG CODE</th>
+    <th style="text-align: left;">DRUG NAME</th>
+    <th style="text-align: left;">MINIMUM STOCK LEVEL</th>
+    <th style="text-align: left;">CURRENT STOCK QUANTITY</th>
 </thead>
 <tbody>
 
@@ -41,7 +41,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
         <td><%= dataMINIMUM.get(i).get(0)%></td>
         <td><%= dataMINIMUM.get(i).get(1)%></td>
         <td><%= dataMINIMUM.get(i).get(3)%></td>

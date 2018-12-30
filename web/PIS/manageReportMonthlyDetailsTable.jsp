@@ -56,7 +56,7 @@
             grandTotal = grandTotal + Double.parseDouble(dataReportMonthly.get(i).get(4));
     %>
 
-    <tr style="text-align: center;" id="">
+    <tr style="text-align: left;" id="">
         <td><%= dataReportMonthly.get(i).get(0)%></td>
         <td><%= dataReportMonthly.get(i).get(1)%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportMonthly.get(i).get(2)))%></td>

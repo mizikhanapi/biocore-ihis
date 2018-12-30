@@ -26,13 +26,13 @@
 <br>
 <table  id="reportListATCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">CATEGORY CODE</th>
-    <th style="text-align: center;">CATEGORY DESCRIPTION</th>
-    <th style="text-align: center;">CATEGORY CLASSIFICATION</th>
-    <th style="text-align: center;">HFC CODE</th>
-    <th style="text-align: center;">DISCIPLINE CODE</th>
-    <th style="text-align: center;">SUBDISCIPLINE CODE</th>
-    <th style="text-align: center;">STATUS</th>
+    <th style="text-align: left;">CATEGORY CODE</th>
+    <th style="text-align: left;">CATEGORY DESCRIPTION</th>
+    <th style="text-align: left;">CATEGORY CLASSIFICATION</th>
+    <th style="text-align: left;">HFC CODE</th>
+    <th style="text-align: left;">DISCIPLINE CODE</th>
+    <th style="text-align: left;">SUBDISCIPLINE CODE</th>
+    <th style="text-align: left;">STATUS</th>
 </thead>
 <tbody>
 
@@ -44,7 +44,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>

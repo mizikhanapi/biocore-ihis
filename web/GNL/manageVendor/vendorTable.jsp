@@ -19,13 +19,13 @@
 
 <table  id="vendorTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">ID</th>
-    <th style="text-align: center;">NAME</th>
-    <th style="text-align: center;">BANK ACCOUNT NO.</th>
-    <th style="text-align: center;">TELEPHONE NO.</th>
-    <th style="text-align: center;">FAX NO.</th>
-    <th style="text-align: center;">STATUS</th>
-    <th style="text-align: center;">Action</th>
+    <th style="text-align: left;">ID</th>
+    <th style="text-align: left;">NAME</th>
+    <th style="text-align: left;">BANK ACCOUNT NO.</th>
+    <th style="text-align: left;">TELEPHONE NO.</th>
+    <th style="text-align: left;">FAX NO.</th>
+    <th style="text-align: left;">STATUS</th>
+    <th style="text-align: left;">Action</th>
 </thead>
 <tbody>
 
@@ -45,7 +45,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataVendorhidden" type="hidden" value="<%=String.join("|", dataVendor.get(i))%>">
 <td><%= dataVendor.get(i).get(0)%></td> <!-- ID -->
 <td><%= dataVendor.get(i).get(2)%></td> <!-- NAME -->
@@ -57,13 +57,13 @@
     } else {
         out.print("Inactive");
     }%></td> <!-- STATUS -->
-<td>
+<td align="center">
     <!-- Update Part Start -->
-    <a id="vendorUpdateTButton" data-toggle="modal" data-target="#vendorModal"><i data-toggle="tooltip" data-placement="left" title="Update vendor" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="vendorUpdateTButton" data-toggle="modal" data-target="#vendorModal"><i data-toggle="tooltip" data-placement="left" title="Update Vendor" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
     &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="vendorDeleteTButton" ><i data-toggle="tooltip" data-placement="right" title="Delete vendor" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
+    <a id="vendorDeleteTButton" ><i data-toggle="tooltip" data-placement="right" title="Delete Vendor" class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>

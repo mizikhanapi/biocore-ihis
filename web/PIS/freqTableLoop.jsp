@@ -20,12 +20,11 @@
 
 <table  id="freqTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Frequency Code</th>
-    <th style="text-align: center;">Frequency Description</th>
-    <th style="text-align: center;">Frequency Value</th>
-    <th style="text-align: center;">STATUS</th>
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: left;">Frequency Code</th>
+    <th style="text-align: left;">Frequency Description</th>
+    <th style="text-align: left;">Frequency Value</th>
+    <th style="text-align: left;">STATUS</th>
+    <th style="text-align: left;">ACTION</th>
 </thead>
 <tbody>
 
@@ -39,7 +38,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataFreqhidden" type="hidden" value="<%=String.join("|", dataFreq.get(i))%>">
 <td><%= dataFreq.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataFreq.get(i).get(1)%></td> <!-- Desc -->
@@ -49,14 +48,14 @@
     } else {
         out.print("Inactive");
     }%></td> <!-- Status -->
-<td>
+<td align="center">
     <!-- Update Part Start -->
-    <a id="freqUpdateTButton" data-toggle="modal" data-target="#freqModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="freqUpdateTButton" data-toggle="modal" data-target="#freqModal">
+        <i class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Update Item"  aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
-</td>
-<td>
+    &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="freqDeleteTButton" ><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
+    <a id="freqDeleteTButton" ><i data-toggle="tooltip" data-placement="right" title="Delete Item"  class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>

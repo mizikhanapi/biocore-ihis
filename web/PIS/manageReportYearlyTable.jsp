@@ -29,9 +29,9 @@
 
 <table  id="reportYearlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">YEAR</th>
-    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
-    <th style="text-align: center;">TOTAL PRICE (RM)</th>
+    <th style="text-align: left;">YEAR</th>
+    <th style="text-align: left;">TOTAL DRUG QUANTITY DISPENSED</th>
+    <th style="text-align: left;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
 
@@ -59,7 +59,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToYearlySalesDetailsTButton" class="clickable_tr">
+    <tr style="text-align: left;" id="moveToYearlySalesDetailsTButton" class="clickable_tr">
 <input id="dataYearlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportYearly.get(i))%>">
 <td><%= dataReportYearly.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportYearly.get(i).get(2)))%></td>
