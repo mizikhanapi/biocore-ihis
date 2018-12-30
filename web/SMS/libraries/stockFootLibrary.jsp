@@ -24,7 +24,6 @@
 <script src="libraries/js/jquery.multi-select.js" type="text/javascript"></script>
 <script src="../assets/js/Chart.bundle.js"></script>
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
-<script src="../assets/js/buttonActive.js" type="text/javascript"></script>
 <script>
     
     function checkNumericOnly(e){

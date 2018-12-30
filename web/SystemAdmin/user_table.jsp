@@ -52,7 +52,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 <input id="UT_hidden" type="hidden" value="<%=String.join("|", dataUser.get(i))%>">
 <td><%= dataUser.get(i).get(0)%></td>
 <td><%= dataUser.get(i).get(2)%></td>

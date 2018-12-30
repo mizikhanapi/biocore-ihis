@@ -40,7 +40,7 @@
                 } else {
                     relay = dataRelayName.get(0).get(0);
                 }%>
-        <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
+        <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style="text-align: left;">
             <td id="pmiNumber"><%=dataFamList.get(i).get(4)%></td>
     <input id="famval" type="hidden" value="<%=StringUtils.join(dataFamList.get(i), "|")%>">
     <td><%=dataFamList.get(i).get(3)%></td>

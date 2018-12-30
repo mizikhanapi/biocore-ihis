@@ -53,7 +53,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 <input id="ART_hidden" type="hidden" value="<%=String.join("|", dataAccess.get(i))%>">
 <td><%= dataAccess.get(i).get(0)%></td> <!--id  -->   
 <td><%= dataAccess.get(i).get(1)%></td> <!--name  --> 

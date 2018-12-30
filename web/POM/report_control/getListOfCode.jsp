@@ -53,7 +53,7 @@
                 }// end if level 2
                 
         %>
-        <tr>
+        <tr style="text-align: left;">
             <td><%=dataPom.get(i).get(0)%></td>
             <td><%=proName%></td>
             <td><%=dataPom.get(i).get(4)%></td>

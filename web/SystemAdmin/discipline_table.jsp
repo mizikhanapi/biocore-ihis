@@ -49,7 +49,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 <input id="DT_hidden" type="hidden" value="<%=String.join("|", dataDiscipline.get(i))%>">
 <td>(<%= dataDiscipline.get(i).get(6)%>) <%= dataDiscipline.get(i).get(7)%></td>
 <td><%= dataDiscipline.get(i).get(0)%></td>

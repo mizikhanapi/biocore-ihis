@@ -49,7 +49,7 @@
 
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 
 <input id="dataStockItemhidden" type="hidden" value="<%=String.join("|", dataStockItem.get(s))%>">
 
@@ -107,13 +107,8 @@
             },
             initComplete: function (settings, json) {
                 $('.loading').hide();
-            },
-                                    columnDefs: [
-                                        {
-                                            className: 'dt-body-left',
-                                            targets: '_all'
-
-                                        }]
+            },columnDefs: [{className: 'dt-body-left',targets: '_all'}]
+                                    
         });
 
 

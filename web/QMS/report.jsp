@@ -109,7 +109,7 @@
                                                         <th style="text-align: left;">Total</th>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+                                                            <tr style="text-align: left;">
                                                                 <td colspan="6" align="center">Please Select Correct Filter And Press Refresh Button</td>
                                                             </tr> 
                                                         </tbody>

@@ -50,7 +50,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
 <input id="ADT_hidden" type="hidden" value="<%=String.join("|", dataHD.get(i))%>">
 <td style="width: 10%"><%= dataHD.get(i).get(0)%></td>
 <td><%= dataHD.get(i).get(1)%></td> <!-- hfc --> 

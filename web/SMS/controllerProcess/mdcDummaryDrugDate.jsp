@@ -49,7 +49,7 @@
                         }
 
                 %>
-                <tr >
+                <tr style="text-align: left;">
                     
                     <!-- First TD -->
                     <td style="font-weight: bolder;" align="center"><%= dataMDCDate.get(i).get(1)%> [<%= dataMDCDate.get(i).get(0)%>]</td>

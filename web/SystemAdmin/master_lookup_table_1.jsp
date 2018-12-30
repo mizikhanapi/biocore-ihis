@@ -83,7 +83,7 @@
     }else{
         for (int i = 0; i < size; i++) {
         %>
-<tr>
+<tr style="text-align: left;">
 <input id="MLT_hidden" type="hidden" value="<%=String.join("|", dataMaster.get(i))%>">
 <td><%= dataMaster.get(i).get(0)%></td>
 <td><%= dataMaster.get(i).get(1)%></td>

@@ -41,7 +41,7 @@
                 } else {
                     ins = dataInsName.get(0).get(2);
             }%>
-        <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
+        <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style="text-align: left;">
             <td id="pmiNumber"><%=ins%></td>
     <input id="medval" type="hidden" value="<%=StringUtils.join(dataMedList.get(i), "|")%>">
     <td><%=dataMedList.get(i).get(2)%></td>

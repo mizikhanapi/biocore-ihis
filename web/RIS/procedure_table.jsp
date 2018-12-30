@@ -37,7 +37,7 @@
     <%            for (int i = 0; i < dataPRO.size(); i++) {
 
     %>
-    <tr>
+    <tr style="text-align: left;">
 <input id="PRO_hidden" type="hidden" value="<%= String.join("|", dataPRO.get(i))%>">
 <td><%= dataPRO.get(i).get(2)%></td>
 <td><%= dataPRO.get(i).get(4)%></td>

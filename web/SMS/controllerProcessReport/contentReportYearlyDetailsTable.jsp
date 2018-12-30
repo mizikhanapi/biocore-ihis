@@ -55,7 +55,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="" class="clickable_tr">
+    <tr style="text-align: left;" id="" class="clickable_tr">
         <td><%= dataReportYearly.get(i).get(0)%></td>
         <td><%= dataReportYearly.get(i).get(1)%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportYearly.get(i).get(3)) / Double.parseDouble(dataReportYearly.get(i).get(2)))%></td>

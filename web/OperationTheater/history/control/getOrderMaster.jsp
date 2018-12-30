@@ -59,7 +59,7 @@
                 
 
         %>
-        <tr class="clickable_tr ">
+        <tr class="clickable_tr " style="text-align: left;">
             <td><%=dataOm.get(i).get(0)%></td>
             <td><%=dataOm.get(i).get(1)%></td>
             <td><%=dataOm.get(i).get(2)%></td>

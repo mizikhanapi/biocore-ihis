@@ -84,7 +84,7 @@
         for (int i = 0; i < size; i++) {
 
 %>
-<tr>
+<tr style="text-align: left;">
     <input id="HFT_hidden" type="hidden" value="<%=String.join("|", dataHFC.get(i))%>">
     <td><%= dataHFC.get(i).get(0)%></td> <!-- HFC code -->   
     <td><%= dataHFC.get(i).get(2)%></td> <!-- HFC name  --> 

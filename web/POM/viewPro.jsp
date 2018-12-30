@@ -67,7 +67,7 @@
                     for (int i = 0; i < q1.size(); i++) {
 
             %>
-            <tr>
+            <tr style="text-align: left;">
                 <td><%=q1.get(i).get(1)%></td>
                 <td><%=q1.get(i).get(0)%></td>
                 <td><%=q1.get(i).get(20)%></td>

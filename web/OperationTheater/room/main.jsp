@@ -9,10 +9,10 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     ROOM MANAGEMENT
     <span class="pull-right">
-        <button id="ROOM_btnAddModal" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
+        <button id="ROOM_btnAddModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
             <a>
                 <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            </a>ADD Room
+            </a>Add Room
         </button>
     </span>
 </h4>

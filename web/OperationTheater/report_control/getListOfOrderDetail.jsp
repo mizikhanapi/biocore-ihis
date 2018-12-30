@@ -75,7 +75,7 @@
             for (int i = 0; i < dataOrder.size(); i++) {
                                
         %>
-        <tr>
+        <tr style="text-align: left;">
             <td><%=dataOrder.get(i).get(1)%></td>
             <td><%=dataOrder.get(i).get(3)%></td>
             <td><%=dataOrder.get(i).get(5)%></td>

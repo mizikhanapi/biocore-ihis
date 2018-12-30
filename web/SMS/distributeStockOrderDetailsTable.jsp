@@ -152,9 +152,9 @@
     %>
 
     <%            if ( ((Double.parseDouble(ordered)) > ((Double.parseDouble(stock))) )) {    %>
-    <tr style="font-weight:bolder; color: #FFD700;text-align: center;" >
+    <tr style="font-weight:bolder; color: #FFD700;text-align: left;" >
         <% } else if (Integer.parseInt(stock) == 0) {   %>
-    <tr style="font-weight:bolder; color: red;text-align: center;">
+    <tr style="font-weight:bolder; color: red;text-align: left;">
         <% } else {   %>
     <tr style="text-align: left;">
         <%   }%>

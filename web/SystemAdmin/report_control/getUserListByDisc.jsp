@@ -46,7 +46,7 @@
             
     %>
 
-    <tr class="clickable_tr" style="text-align: center; cursor: pointer;">
+    <tr class="clickable_tr" style="text-align: left; cursor: pointer;">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>
@@ -83,7 +83,7 @@
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
                     title: 'Administration: Number of User By Discipline',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -91,7 +91,7 @@
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
                     title: 'Administration: Number of User By Discipline',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -100,7 +100,7 @@
                     text: 'Print User List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
@@ -130,7 +130,7 @@
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

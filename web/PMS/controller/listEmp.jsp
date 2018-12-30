@@ -53,7 +53,7 @@
                 joinedDate = joinDateArr[2] +"/"+joinDateArr[1]+"/"+joinDateArr[0];
             }
     %>
-    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
+    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style="text-align: left;">
         <td id="pmiNumber"><%=dataEmpList.get(i).get(3)%></td>
 <input id="empval" type="hidden" value="<%=StringUtils.join(dataEmpList.get(i), "|")%>">
 <td><%=occu%></td>

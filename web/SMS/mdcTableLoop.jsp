@@ -74,7 +74,7 @@
 
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 
 <input id="dataMDChidden" type="hidden" value="<%=String.join("|", dataMTC.get(s))%>">
 

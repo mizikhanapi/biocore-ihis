@@ -41,7 +41,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataATChidden" type="hidden" value="<%=String.join("|", dataATC.get(i))%>">
 <td><%= dataATC.get(i).get(0)%></td>
 <td><%= dataATC.get(i).get(1)%></td>

@@ -28,7 +28,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: left;">
         <td><%= dataDetail.get(i).get(0)%></td>
         <td><%= dataDetail.get(i).get(1)%></td>
         <td><%= dataDetail.get(i).get(2)%></td>
