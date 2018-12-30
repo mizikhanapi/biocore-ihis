@@ -81,7 +81,7 @@
 
 <script>
     $(function () {
-
+        $('#spansearchbutton').hide();
         destroyScreenLoading();
 
         //--- initialise datepicker for from ----

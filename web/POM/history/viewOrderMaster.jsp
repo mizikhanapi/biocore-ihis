@@ -85,7 +85,7 @@
         destroyScreenLoading();
         $("#refreshbuttondiv").hide();
         $("#divDate").hide();
-
+        $('#spansearchbutton').hide();
 
         $('#OM_selectType').on('change', function () {
             $('.select-type').hide();

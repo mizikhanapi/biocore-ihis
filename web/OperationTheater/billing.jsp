@@ -90,7 +90,7 @@
         $("#divDate").hide();
         $("#refreshbuttondiv").hide();
         destroyScreenLoading();
-
+        $('#spansearchbutton').hide();
         $(function () {
             
 //            $('#DateFrom').datepicker({

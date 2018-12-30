@@ -75,6 +75,10 @@
             });
 
         });
+        
+        $('#PIS_ScreenSearch').on('click',function(){
+            $('#RMOM_btnRefresh').click();
+        });
         //-------------------------refresh the order table ---------------------------------------
 
     });

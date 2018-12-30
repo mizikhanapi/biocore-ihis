@@ -89,6 +89,7 @@
     $(document).ready(function () {
         $("#divDate").hide();
         $("#refreshbuttondiv").hide();
+        $('#spansearchbutton').hide();
         destroyScreenLoading();
 
 //        $(function () {
