@@ -58,7 +58,7 @@
                 $('#RQO_table').html(data);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                bootbox.alert("Oopps! " + errorThrown);
+                bootbox.alert("Oopps " + errorThrown);
             },
             complete: function (jqXHR, textStatus) {
                 destroyScreenLoading();

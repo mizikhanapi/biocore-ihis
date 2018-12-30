@@ -160,7 +160,7 @@
                         $('#RQL_table').html(data);
                     },
             error: function (jqXHR, textStatus, errorThrown) {
-                        $('#RQL_table').html("Oopps! "+errorThrown);
+                        $('#RQL_table').html("Oopps "+errorThrown);
                     },
             complete: function (jqXHR, textStatus ) {
                         destroyScreenLoading(); 
@@ -177,7 +177,7 @@
         var code = $('#RQL_listByUser').val();
         
         if(code==="" || code==null){
-            bootbox.alert("Please select existing user!");
+            bootbox.alert("Please select existing user");
         }
         else{
             postRequestToQueueTable("user", code);
@@ -189,7 +189,7 @@
         var type= $('#RQL_listByDis').val();
         
         if(type===""){
-            bootbox.alert("Please select the discipline!");
+            bootbox.alert("Please select the discipline");
         }
         else{
             postRequestToQueueTable("dis", type);
@@ -200,7 +200,7 @@
         var type= $('#RQL_listByType').val();
         
         if(type===""){
-            bootbox.alert("Please select the queue type!");
+            bootbox.alert("Please select the queue type");
         }
         else{
             postRequestToQueueTable("type", type);
@@ -211,7 +211,7 @@
         var name = $('#RQL_listByQName').val();
         
         if(name==="" || name==null){
-            bootbox.alert("Please select existing queue name!");
+            bootbox.alert("Please select existing queue name");
         }
         else{
             postRequestToQueueTable("qName", name);

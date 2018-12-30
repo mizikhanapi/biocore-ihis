@@ -170,7 +170,7 @@
                     var msg = 'Queue is saved.';
                     
                     if(!isSuccess){
-                        msg = 'Failed to save queue list!';
+                        msg = 'Failed to save queue list';
                     }
                    
                     bootbox.alert(msg, function(){
@@ -236,7 +236,7 @@
                     var msg = 'Queue is deleted.';
                     
                     if(!isSuccess){
-                        msg = 'Failed to delete queue list!';
+                        msg = 'Failed to delete queue list';
                     }
                 console.log(data);
                 bootbox.alert(msg, function(){
