@@ -407,7 +407,13 @@
                                             text: 'Filter Table Columns',
                                             className: 'btn btn-default'
                                         }
-                                    ]
+                                    ],
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
                                 });
                                 $('#reportTotalPatientTypeDiv').css("display", "block");
                                 $("#reportPatientTypeTotalPatient").val(totalPatient);

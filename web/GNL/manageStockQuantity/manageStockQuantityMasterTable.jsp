@@ -106,7 +106,13 @@
                 "emptyTable": "No Invoice Available To Display"
             }, initComplete: function (settings, json) {
                 $('.loading').hide();
-            }
+            },
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
         });
         // Datatable End
 

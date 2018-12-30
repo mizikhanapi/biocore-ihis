@@ -124,7 +124,13 @@
         language: {
             emptyTable: "No history available.",
             order: [[ 1, "desc" ]]
-        }
+        },
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
     });
 
 </script>

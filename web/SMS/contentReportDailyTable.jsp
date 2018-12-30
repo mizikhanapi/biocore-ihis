@@ -178,7 +178,13 @@
                     text: 'Filter Table Column',
                     className: 'btn btn-default'
                 }
-            ]
+            ],
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
         });
 
         // Move to Order Details Fetch Details Start
@@ -281,7 +287,13 @@
                                 text: 'Filter Table Column',
                                 className: 'btn btn-default'
                             }
-                        ]
+                        ],
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
                     });
 
                     $('#salesDetailViewModal').modal('show');

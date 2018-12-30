@@ -100,7 +100,13 @@
                 "pageLength": 5,
                 "language": {
                     "emptyTable": "No Data Available To Display"
-                }
+                },
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
             });
 
         }
@@ -401,7 +407,13 @@
                         "pageLength": 5,
                         "language": {
                             "emptyTable": "No Data Available To Display"
-                        }
+                        },
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
                     });
 
                 }

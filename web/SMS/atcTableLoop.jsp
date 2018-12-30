@@ -405,7 +405,12 @@
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
             "language": {
                 "emptyTable": "No Category Code Available To Display"
-            }
+            },columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
         });
 
     });

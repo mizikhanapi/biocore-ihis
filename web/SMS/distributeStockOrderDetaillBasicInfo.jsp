@@ -523,7 +523,13 @@
                             columns: ':visible'
                         }
                     }
-                ]
+                ],
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
             });
             dt.buttons( 0, null ).container().appendTo( '.print-assets' );
         }
