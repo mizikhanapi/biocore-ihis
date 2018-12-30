@@ -42,7 +42,7 @@
         }
         else{
             isValid = false;
-            msg = "Oops! Something went wrong. Try again later.";
+            msg = "Oops, Something went wrong. Try again later.";
         }
     }
     

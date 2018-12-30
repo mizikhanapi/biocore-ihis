@@ -29,7 +29,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#disList').text('Problem!');
+                    $('#disList').text('Something was wrong');
                 }
             });
         } else {

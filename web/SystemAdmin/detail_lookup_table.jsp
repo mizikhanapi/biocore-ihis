@@ -139,14 +139,14 @@
 
                             if (datas.trim() === 'Success') {
                                 $('#detailTable').load('detail_lookup_table.jsp');
-                                alert("Delete Success");
+                                bootbox.alert("Delete Success");
                             } else if (datas.trim() === 'Failed') {
-                                alert("Delete failed!");
+                                bootbox.alert("Delete failed");
                             }
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion failed!!");
+                            bootbox.alert("Error,Deletion failed");
                         }
 
                     });
@@ -179,14 +179,14 @@
                         if (datas.trim() === 'Success') {
                             $('#detailTable').load('detail_lookup_table.jsp');
                             $(".modal-backdrop").hide();
-                            alert("Update Success");
+                            bootbox.alert("Update Success");
                         } else if (datas.trim() === 'Failed') {
-                            alert("Update failed!");
+                            bootbox.alert("Update failed");
 
                         }
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update");
                     }
 
                 });

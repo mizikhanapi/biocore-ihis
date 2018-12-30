@@ -288,7 +288,7 @@
                                 
                             } else if (datas.trim() === 'Failed') {
                                 
-                                alert("Insertion failed!");
+                                bootbox.alert("Insertion failed");
                                 //$('#DM_detail').modal('hide');
                                 DM_reset();
                                 

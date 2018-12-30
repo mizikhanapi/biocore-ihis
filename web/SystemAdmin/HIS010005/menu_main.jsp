@@ -153,7 +153,7 @@
 //                    $('#MENU_parent_cd').val(new_parent_cd);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Oops! " + errorThrown);
+                    bootbox.alert("Oops " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     destroyScreenLoading();
@@ -186,7 +186,7 @@
                     MENU_initDataTable();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Oops! " + errorThrown);
+                    bootbox.alert("Oops, " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     destroyScreenLoading();
@@ -302,7 +302,7 @@
             $('#MENU_lineModalLabel').html("Add New Menu");
 
             if (module_cd === "" || page_cd === "") {
-                bootbox.alert("Please choose a page first!", function () {
+                bootbox.alert("Please choose a page first", function () {
                     $('.nav-tabs a[href="#S_tab4"]').tab('show');
                 });
             } else {
@@ -382,7 +382,7 @@
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("<b class='text-danger'>Oops! " + errorThrown + "</b>");
+                        bootbox.alert("<b class='text-danger'>Oops, " + errorThrown + "</b>");
                     },
                     complete: function (jqXHR, textStatus) {
                         destroyScreenLoading();
@@ -437,7 +437,7 @@
 
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
-                                bootbox.alert("Oops! " + errorThrown);
+                                bootbox.alert("Oops, " + errorThrown);
                             },
                             complete: function (jqXHR, textStatus) {
                                 destroyScreenLoading();
@@ -511,7 +511,7 @@
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Oops! "+errorThrown);
+                        bootbox.alert("Oops, "+errorThrown);
                     },
                     complete: function (jqXHR, textStatus ) {
                         destroyScreenLoading();

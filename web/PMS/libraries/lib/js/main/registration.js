@@ -322,7 +322,7 @@ $('#registerQueue').click(function () {
                                 bootbox.alert("<h3>Quota for this queue is over limit,choose another queue</h3>");
                             }
                         }, error: function () {
-                            bootbox.alert("There is an error!");
+                            bootbox.alert("There is an error");
                             $body.removeClass("loading");
                         }
                     });
@@ -446,7 +446,7 @@ $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
                             bootbox.alert("Failed deleting patient in queue.");
                         }
                     }, error: function () {
-                        bootbox.alert("There is an error!");
+                        bootbox.alert("There is an error");
                     }
                 });
             }

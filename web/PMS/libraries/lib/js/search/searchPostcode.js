@@ -39,7 +39,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchHpostcode').text('Problem!');
+                                $('#matchHpostcode').text('Something was wrong');
                             }
                         });
                     } else {
@@ -89,7 +89,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchPpostcode').text('Problem!');
+                                $('#matchPpostcode').text('Something was wrong');
                             }
                         });
                     } else {
@@ -141,7 +141,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matcKINpostcode').text('Problem!');
+                                $('#matcKINpostcode').text("Something was wrong");
                             }
                         });
                     } else {

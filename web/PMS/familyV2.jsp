@@ -150,7 +150,7 @@
                     });
                 },
                 error: function () { // if error
-                    $('#matcFampmifam').text('Problem!');
+                    $('#matcFampmifam').text('There was an error occurs');
                 }
             });
         } else {

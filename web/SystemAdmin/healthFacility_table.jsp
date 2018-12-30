@@ -590,12 +590,12 @@
                                 });
                         
                     } else if (datas.trim() === 'Failed') {
-                        bootbox.alert("Update failed!");
+                        bootbox.alert("Update failed");
 
                     }
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update");
                 },
                 complete: function (jqXHR, textStatus ) {
                     destroyScreenLoading();    
@@ -656,12 +656,12 @@
                                 });
                                 
                             } else if (datas.trim() === 'Failed') {
-                                alert("Delete failed!");
+                                bootbox.alert("Delete failed");
                             }
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion failed!!");
+                            alert("Error, Deletion failed");
                         },
                         complete: function (jqXHR, textStatus ) {
                             destroyScreenLoading();
@@ -778,7 +778,7 @@
                         });
                     },
                     error: function () { // if error
-                        $('#HFT_match').text('Problem!');
+                        $('#HFT_match').text('Problem');
                     }
                 });
             } else {
@@ -929,7 +929,7 @@
                             gambarURI2 = "";
                             
                         }else{
-                            bootbox.alert("Oops!!! Something went wrong");
+                            bootbox.alert("Oops, Something went wrong");
                             
                         }
                     }

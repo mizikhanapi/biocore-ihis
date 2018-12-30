@@ -39,7 +39,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchHdis').text('Problem!');
+                                $('#matchHdis').text('Something was wrong');
                             }
                         });
                     } else {
@@ -89,7 +89,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchPdis').text('Problem!');
+                                $('#matchPdis').text('Something was wrong');
                             }
                         });
                     } else {
@@ -140,7 +140,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matcKINdistrict').text('Problem!');
+                                $('#matcKINdistrict').text('Something was wrong');
                             }
                         });
                     } else {

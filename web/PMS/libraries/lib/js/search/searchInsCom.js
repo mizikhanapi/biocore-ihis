@@ -40,7 +40,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matcMEDinscom').text('Problem!');
+                                $('#matcMEDinscom').text('Something was wrong');
                             }
                         });
                     } else {

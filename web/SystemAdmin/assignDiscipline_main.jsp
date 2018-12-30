@@ -225,7 +225,8 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            alert("Insertion failed!");
+                            bootbox.alert({message: "Failed to assigned the discipline to a health facility",
+                                title: "Process Result"});
                             //$('#ADM_detail').modal('hide');
                             ADM_reset();
 
@@ -277,7 +278,7 @@
                         });
                     },
                     error: function () { // if error
-                        $('#ADM_hfc_match').text('Problem!');
+                        $('#ADM_hfc_match').text('Problem');
                     }
                 });
             } else {
@@ -295,7 +296,7 @@
             var hfc = $('#ADM_hfc').val();
             
             if(isHFCSelected === false || selectedHFC !== hfc){
-                bootbox.alert("Please choose existing health facility first!");
+                bootbox.alert("Please choose existing health facility first");
                 return;
             }
             
@@ -330,7 +331,7 @@
                         });
                     },
                     error: function () { // if error
-                        $('#ADM_discipline_match').text('Problem!');
+                        $('#ADM_discipline_match').text('Problem');
                     }
                 });
             } else {
@@ -348,13 +349,13 @@
 
             if (discipline === "" || isDisciplineSelected === false) {
 
-                bootbox.alert("Fill in discipline first!");
+                bootbox.alert("Fill in discipline first");
                 $('#ADM_discipline').focus();
                 $("#ADM_subdiscipline").val("");
 
             } else if (discipline !== selectedDiscipline || selectedDiscipline === "" || selectedDiscipline === null) {
 
-                bootbox.alert("Please choose existing discipline first!");
+                bootbox.alert("Please choose existing discipline first");
                 $('#ADM_discipline').focus();
 
             } else if (input.length >= 1) { // Minimum characters = 2 (you can change)

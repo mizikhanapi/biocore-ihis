@@ -36,7 +36,7 @@
         }else{
         
             %>
-                <span>No Record Found!</span>
+                <span>No Record Found</span>
             <%
         
         }
@@ -68,7 +68,7 @@
         }else{
             
             %>
-                <span>No Record Found!</span>
+                <span>No Record Found</span>
             <%
         
         }        
@@ -99,7 +99,7 @@
         }else{
             
             %>
-                <span>No Record Found!</span>
+                <span>No Record Found</span>
             <%
         
         }        

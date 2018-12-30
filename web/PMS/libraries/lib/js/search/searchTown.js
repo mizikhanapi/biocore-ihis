@@ -38,7 +38,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matchHtown').text('Problem!');
+                    $('#matchHtown').text('Something was wrong');
                 }
             });
         } else {
@@ -89,7 +89,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matchPtown').text('Problem!');
+                    $('#matchPtown').text('Something was wrong');
                 }
             });
         } else {
@@ -142,7 +142,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matcKINtown').text('Problem!');
+                    $('#matcKINtown').text('Something was wrong');
                 }
             });
         } else {

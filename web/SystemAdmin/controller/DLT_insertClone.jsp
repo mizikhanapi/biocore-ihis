@@ -45,7 +45,7 @@
     catch(Exception e){
         System.out.println("Insert clone lookup detail: "+e.toString());
         e.printStackTrace();
-        out.print("Oopps!");
+        out.print("Opps");
     }
     
 %>

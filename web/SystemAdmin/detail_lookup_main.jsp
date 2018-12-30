@@ -135,19 +135,19 @@
                 var status = $('input[name="status2"]:checked').val();
 
                 if (masterCode === "" || masterCode === "Select Master Code" || masterCode === null) {
-                    alert("Fill in the Master Code");
+                    bootbox.alert("Fill in the Master Code");
                     $('#masterCode2').focus();
                     
                 } else if (detailCode === "") {
-                    alert("Complete The Fields");
+                    bootbox.alert("Complete The Fields");
                     $('#detailCode').focus();
                     
                 } else if (detailName === "") {
-                    alert("Complete The Fields");
+                    bootbox.alert("Complete The Fields");
                     $('#detailName').focus();
                     
                 }else if (status !== "1" && status !== "0") {
-                    alert("Select Any Status");
+                    bootbox.alert("Select Any Status");
                 } else {
 
                     var data = {
@@ -170,12 +170,12 @@
 
                                 $('#detailTable').load('detail_lookup_table.jsp');
                                 $('#detail2').modal('hide');
-                                alert("Insertion Success");
+                                bootbox.alert("Insertion Success");
                                 reset();
                                 
                             } else if (datas.trim() === 'Failed') {
                                 
-                                alert("Insertion failed!");
+                                bootbox.alert("Insertion failed!");
                                 $('#detail2').modal('hide');
                                 reset();
                                 

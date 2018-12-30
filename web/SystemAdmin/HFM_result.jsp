@@ -93,7 +93,7 @@
         
         }else{
 
-            %><span>No Postcode Found!</span><%
+            %><span>No Postcode Found</span><%
 
         }
 

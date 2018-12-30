@@ -39,7 +39,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchHcountry').text('Problem!');
+                                $('#matchHcountry').text('Something was wrong');
                             }
                         });
                     } else {
@@ -89,7 +89,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchPcountry').text('Problem!');
+                                $('#matchPcountry').text('Something was wrong');
                             }
                         });
                     } else {
@@ -139,7 +139,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matcKINcountry').text('Problem!');
+                                $('#matcKINcountry').text('Something was wrong');
                             }
                         });
                     } else {

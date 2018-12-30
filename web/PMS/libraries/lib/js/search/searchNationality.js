@@ -38,7 +38,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchnational').text('Problem!');
+                                $('#matchnational').text('Something was wrong');
                             }
                         });
                     } else {

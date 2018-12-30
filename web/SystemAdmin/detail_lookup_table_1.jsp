@@ -230,7 +230,7 @@
                         
                     } 
                     else if (datas.trim() === 'Failed') {
-                        bootbox.alert("Update failed!");
+                        bootbox.alert("Update failed");
 
                     }
                     else{
@@ -238,7 +238,7 @@
                     }
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    alert("Error update");
                 }
 
             });
@@ -285,7 +285,7 @@
                         loadLookupDetailData(tempArr[0].trim(), tempArr[1].trim());
                         
                     } else if (datas.trim() === 'Failed') {
-                        bootbox.alert("Delete failed!");
+                        bootbox.alert("Delete failed");
                         
                     }else{
                         
@@ -294,7 +294,7 @@
 
                 },
                 error: function (err) {
-                    bootbox.alert("Error! Deletion failed!!");
+                    bootbox.alert("Error, Deletion failed");
                 }
 
             });

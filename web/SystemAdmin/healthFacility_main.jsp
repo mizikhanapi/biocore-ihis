@@ -492,7 +492,7 @@
                 $('#HFM_hfcCode').focus();
 
             } else if (gotSpecialChar){
-                bootbox.alert("Health facility code must only contain alphanumeric characters!");
+                bootbox.alert("Health facility code must only contain alphanumeric characters");
                 $('#HFM_hfcCode').val('');
             }
             else if (state.trim() === "0") {
@@ -508,7 +508,7 @@
                 $('#HFM_town').focus();
 
             } else if (postcode.trim() === "" || postcode_hidden.trim() === "") {
-                bootbox.alert("Please choose existing postcode!");
+                bootbox.alert("Please choose existing postcode");
                 $('#HFM_postcode').focus();
 
             } else if (status !== "1" && status !== "0") {
@@ -597,7 +597,7 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            alert("Insertion failed!");
+                            bootbox.alert("Insertion failed");
                             $('#HFM_detail').modal('hide');
                             //HFM_reset();
 
@@ -719,7 +719,7 @@
                         });
                     },
                     error: function () { // if error
-                        $('#HFM_match').text('Problem!');
+                        $('#HFM_match').text('Problem');
                     }
                 });
             } else {

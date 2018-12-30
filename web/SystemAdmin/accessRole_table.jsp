@@ -260,12 +260,13 @@
                                 });
                         
                     } else if (datas.trim() === 'Failed') {
-                        alert("Update failed!");
+                        bootbox.alert({message: "Failed to update",
+                                    title: "Process Result"});
 
                     }
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    alert("Error update");
                 }
 
             });
@@ -324,12 +325,13 @@
                                 });
                                 
                             } else if (datas.trim() === 'fail') {
-                                alert("Delete failed!");
+                                bootbox.alert({message: "Fail to revoked role ",
+                                    title: "Process Result"});
                             }
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion failed!!");
+                            bootbox.alert("Error, Deletion failed");
                         }
 
                     });

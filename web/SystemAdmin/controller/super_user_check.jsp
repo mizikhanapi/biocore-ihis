@@ -12,7 +12,7 @@
     
     if(!hfc99.equals("99_iHIS_99") || !last_nine.equals("9")){
     
-        out.print("Sorry, you are not authorized to do that!");
+        out.print("Sorry, you are not authorized to do that");
         return;    
     }
 

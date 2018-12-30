@@ -39,7 +39,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchHstate').text('Problem!');
+                                $('#matchHstate').text('Something was wrong');
                             }
                         });
                     } else {
@@ -89,7 +89,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchPstate').text('Problem!');
+                                $('#matchPstate').text('Something was wrong');
                             }
                         });
                     } else {
@@ -140,7 +140,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matcKINstate').text('Problem!');
+                                $('#matcKINstate').text('Something was wrong');
                             }
                         });
                     } else {

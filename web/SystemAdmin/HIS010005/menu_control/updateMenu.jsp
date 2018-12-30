@@ -35,7 +35,7 @@
             msg="Failed to update. The menu code "+menu_cd+" does not exist. Try refresh the page.";
         }
         else{
-            msg = "Oops! Something went wrong. Please try again later.";
+            msg = "Oops, Something went wrong. Please try again later.";
         }
     }
     

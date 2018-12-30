@@ -446,7 +446,7 @@ $(document).ready(function () {
         var idInput = $('#PMInic').val().trim();
 
         if (idInput === "") {
-            bootbox.alert("Please enter the patient IC number first!", function () {
+            bootbox.alert("Please enter the patient IC number first", function () {
                 $('#PMInic').focus();
             });
             return;

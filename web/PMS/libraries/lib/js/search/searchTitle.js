@@ -40,7 +40,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchtitle').text('Problem!');
+                                $('#matchtitle').text('Something was wrong');
                             }
                         });
                     } else {

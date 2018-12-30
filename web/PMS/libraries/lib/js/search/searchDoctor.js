@@ -38,7 +38,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#matchDoctor').text('Problem!');
+                                $('#matchDoctor').text('Something was wrong');
                             }
                         });
                     } else {

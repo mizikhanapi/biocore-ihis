@@ -249,12 +249,16 @@
                                 });
                         
                     } else if (datas.trim() === 'Failed') {
-                        bootbox.alert("Update failed!");
+                        bootbox.alert({
+                                    message: "Fail to update",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
 
                     }
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    alert("Error update");
                 }
 
             });
@@ -323,7 +327,7 @@
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion failed");
+                            alert("Error, Deletion failed");
                         }
 
                     });

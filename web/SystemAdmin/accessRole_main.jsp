@@ -285,7 +285,7 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Opps! "+errorThrown);
+                        bootbox.alert("Opps, "+errorThrown);
                     },
                 complete: function (jqXHR, textStatus ) {
                         $('.loading').hide();

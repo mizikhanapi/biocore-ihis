@@ -38,7 +38,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matcEMPoccu').text('Problem!');
+                    $('#matcEMPoccu').text('Something was wrong');
                 }
             });
         } else {
@@ -89,7 +89,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matcKINoccu').text('Problem!');
+                    $('#matcKINoccu').text('Something was wrong');
                 }
             });
         } else {
@@ -141,7 +141,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matcFAMocc').text('Problem!');
+                    $('#matcFAMocc').text('Something was wrong');
                 }
             });
         } else {

@@ -296,7 +296,7 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            bootbox.alert("Insertion failed!");
+                            bootbox.alert("Insertion failed");
                             $('#detail2').modal('hide');
                             reset();
 
@@ -347,7 +347,7 @@
                         });
                     },
                     error: function () { // if error
-                        $('#match').text('Problem!');
+                        $('#match').text('Problem');
                     }
                 });
             } else {
@@ -385,7 +385,7 @@
                     },
             error: function (jqXHR, textStatus, errorThrown) {
                         $('#DLT_clone_modal').modal('hide');
-                        bootbox.alert("Oopps! "+errorThrown);
+                        bootbox.alert("Oopps "+errorThrown);
                     },
             complete: function (jqXHR, textStatus ) {
                         destroyScreenLoading();
@@ -400,7 +400,7 @@
         var tempCode = $('#DLT_hidden_id_name').val();
         
         if(tempCode === ""){
-            bootbox.alert("Please select a master code fisrt!");
+            bootbox.alert("Please select a master code fisrt");
             backToMasterTab();
         }
         else{
@@ -465,7 +465,7 @@
                         }
                     },
                 error: function (jqXHR, textStatus, errorThrown) {
-                        msg="Oopps! "+ errorThrown;
+                        msg="Oopps "+ errorThrown;
                     },
                 complete: function (jqXHR, textStatus ) {
                         destroyScreenLoading();

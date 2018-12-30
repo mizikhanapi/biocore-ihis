@@ -38,7 +38,7 @@ $(function () {
                     });
                 },
                 error: function () { // if error
-                    $('#matcEMPhfc').text('Problem!');
+                    $('#matcEMPhfc').text('Something was wrong');
                 }
             });
         } else {
