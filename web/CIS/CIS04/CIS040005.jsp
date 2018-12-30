@@ -61,7 +61,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" id="acceptBtn11" role="button">Accept</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="acceptBtn11" role="button">Accept</button>
 <!--                        <button type="submit" class="btn btn-success btn-block btn-lg" id="updateBtn11" role="button" hidden="true">Update</button>-->
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
@@ -115,7 +115,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" id="updateBtn11" role="button">Update</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="updateBtn11" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

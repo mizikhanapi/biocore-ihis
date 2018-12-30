@@ -65,7 +65,7 @@
                 <div class="modal-footer" id="updateGSC">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <a class="btn btn-success btn-block btn-lg gcsUpdate " id="gcsUpdate" >Update</a>
+                            <a class="btn btn-primary btn-block btn-lg gcsUpdate " id="gcsUpdate" >Update</a>
                         </div>
                    
                         <div class="btn-group" role="group">
@@ -77,7 +77,7 @@
                 <div class="modal-footer" id="actionGSC">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <a class="btn btn-success btn-block btn-lg gcsAccept " id="gcsAccept" >Accept</a>
+                            <a class="btn btn-primary btn-block btn-lg gcsAccept " id="gcsAccept" >Accept</a>
                         </div>
                       
                         <div class="btn-group" role="group">
@@ -149,7 +149,7 @@
                 <div class="modal-footer"id="subModalAction" >
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <a class="btn btn-success btn-block btn-lg  " id="gcsDone" >Done</a>
+                            <a class="btn btn-primary btn-block btn-lg  " id="gcsDone" >Done</a>
                         </div>
                         <div class="btn-group btn-delete hidden" role="group">
                             <button type="button" id="delImage" class="btn btn-default btn-block btn-lg"   role="button">Clear</button>

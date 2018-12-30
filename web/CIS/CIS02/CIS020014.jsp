@@ -82,7 +82,7 @@
            <div class="modal-footer vts-vision-update">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btn_CIS_VTS_Vision_Update" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="btn_CIS_VTS_Vision_Update" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -95,7 +95,7 @@
             <div class="modal-footer vts-vision-add">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btn_CIS_VTS_Vision_ADD" role="button">Add</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="btn_CIS_VTS_Vision_ADD" role="button">Add</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>

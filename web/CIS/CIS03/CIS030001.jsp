@@ -88,9 +88,9 @@
                                     </div>
                                 </form>
                                 <div class="text-right">
-                                    <button class="btn btn-primary" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
+                                    <button class="btn btn-default" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button" autocomplete="off">Add Diagnosis</button>
+                                    <button type="button" class="btn btn-primary" id="acceptBtnDGS" role="button" autocomplete="off">Add Diagnosis</button>
                                 </div>
                                 <br>
 
@@ -123,7 +123,7 @@
             <div class="modal-footer" id="SOAPChiefComplaintAcceptDiagnosis">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg" id="SOAPChiefComplaintAcceptDiagnosisBtn" >Accept Diagnosis</a>
+                        <a class="btn btn-primary btn-block btn-lg" id="SOAPChiefComplaintAcceptDiagnosisBtn" >Accept Diagnosis</a>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
@@ -216,7 +216,7 @@
                                     </div>
                                 </form>
                                 <div class="text-right">
-                                    <button type="button" class="btn btn-success" id="updateBtnDGS" role="button" autocomplete="off">Update Diagnosis</button>
+                                    <button type="button" class="btn btn-primary" id="updateBtnDGS" role="button" autocomplete="off">Update Diagnosis</button>
                                 </div>
                                 <br>
 

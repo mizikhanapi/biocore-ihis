@@ -62,7 +62,7 @@
             <div class="modal-footer" id="updatePGSC">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg gcsUpdate " id="pgcsUpdate" >Update</a>
+                        <a class="btn btn-primary btn-block btn-lg gcsUpdate " id="pgcsUpdate" >Update</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -77,7 +77,7 @@
             <div class="modal-footer" id="actionPGSC">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg gcsAccept " id="pgcsAccept" >Accept</a>
+                        <a class="btn btn-primary btn-block btn-lg gcsAccept " id="pgcsAccept" >Accept</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -91,7 +91,7 @@
             <div class="modal-footer" id="ortho_actionPGSC">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg gcsAccept " id="ortho_pgcsAccept" >Accept</a>
+                        <a class="btn btn-primary btn-block btn-lg gcsAccept " id="ortho_pgcsAccept" >Accept</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="ortho_delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -207,7 +207,7 @@
             <div class="modal-footer"id="subModalActionPgcs" >
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg  " id="pgcsDone" >Done</a>
+                        <a class="btn btn-primary btn-block btn-lg  " id="pgcsDone" >Done</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg"   role="button">Clear</button>

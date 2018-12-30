@@ -130,7 +130,7 @@
                 <div class="modal-footer" id="updateOther">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" id="updateOtherBtn" role="button">Update</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg" id="updateOtherBtn" role="button">Update</button>
                         </div>
                         <div class="btn-group btn-delete hidden" role="group">
                             <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -145,7 +145,7 @@
                 <div class="modal-footer" id="actionOther">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-success btn-block btn-lg"id="acceptOtherBtn" role="button">Accept</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg"id="acceptOtherBtn" role="button">Accept</button>
                         </div>
                         <div class="btn-group btn-delete hidden" role="group">
                             <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

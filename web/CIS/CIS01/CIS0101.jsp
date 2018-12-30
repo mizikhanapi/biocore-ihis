@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="text-right"><button class="btn btn-primary" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to Favourite term</button>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" id="acceptBtn" role="button" autocomplete="off">Add Symptoms</button></div><br>
+                                <div class="text-right"><button class="btn btn-default" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to Favourite term</button>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="acceptBtn" role="button" autocomplete="off">Add Symptoms</button></div><br>
 
                                 <hr>
 
@@ -129,7 +129,7 @@
             <div class="modal-footer" id="SOAPChiefComplaintAcceptComplains">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg" id="SOAPChiefComplaintAcceptComplainsBtn" >Accept Complains</a>
+                        <a class="btn btn-primary btn-block btn-lg" id="SOAPChiefComplaintAcceptComplainsBtn" >Accept Symptoms</a>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
@@ -236,7 +236,7 @@
                                     </div>
                                 </form>
                                 <div class="text-right">
-                                    <button type="button" class="btn btn-success" id="updateBtnCCN" role="button" autocomplete="off">Update Symptoms</button>
+                                    <button type="button" class="btn btn-primary" id="updateBtnCCN" role="button" autocomplete="off">Update Symptoms</button>
                                 </div>
                 <br>
           
@@ -267,7 +267,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnHPI" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnHPI" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -302,7 +302,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnHPI" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnHPI" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -365,7 +365,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnPMH" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnPMH" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -429,7 +429,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnPMH" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnPMH" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -510,7 +510,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnFMH" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnFMH" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -588,7 +588,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnFMH" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnFMH" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -649,7 +649,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnSOH" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnSOH" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -708,7 +708,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn4" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtn4" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -770,7 +770,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnBLD" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnBLD" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -832,7 +832,7 @@
                 <div class="modal-footer">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnBLD" role="button">Update</button>
+                            <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnBLD" role="button">Update</button>
                         </div>
                         <div class="btn-group btn-delete hidden" role="group">
                             <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -891,7 +891,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnALG" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnALG" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -950,7 +950,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnALG" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnALG" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -1008,7 +1008,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnIMU" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnIMU" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -1067,7 +1067,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnIMU" role="button">Update</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnIMU" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -1128,7 +1128,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnDAB" role="button">Accept</button>
+                        <button type="button" class="btn btn-primary btn-block btn-lg" id="acceptBtnDAB" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -1185,7 +1185,7 @@
                 <div class="modal-footer">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnDAB" role="button">Update</button>
+                            <button type="button" class="btn btn-primary btn-block btn-lg" id="updateBtnDAB" role="button">Update</button>
                         </div>
                         <div class="btn-group btn-delete hidden" role="group">
                             <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

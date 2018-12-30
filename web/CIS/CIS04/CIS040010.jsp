@@ -89,7 +89,7 @@
             <div class="modal-footer" id="actionGSC">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg gcsAccept " id="btnCIS_Discharge_Summary" >Submit</a>
+                        <a class="btn btn-primary btn-block btn-lg gcsAccept " id="btnCIS_Discharge_Summary" >Submit</a>
                     </div>
 
                     <div class="btn-group" role="group">
@@ -186,7 +186,7 @@
                 <div class="modal-footer" id="actionGSC">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">
-                            <a class="btn btn-success btn-block btn-lg gcsAccept " id="btnCIS_Update_Summary" >Update</a>
+                            <a class="btn btn-primary btn-block btn-lg gcsAccept " id="btnCIS_Update_Summary" >Update</a>
                         </div>
 
                         <div class="btn-group" role="group">
