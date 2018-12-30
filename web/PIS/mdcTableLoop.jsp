@@ -18,15 +18,15 @@
 
 <table  id="mdcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Drug CODE</th>
-    <th style="text-align: center;">CATEGORY CODE</th>
-    <th style="text-align: center;">TRADE NAME</th>
-    <th style="text-align: center;">GNR NAME</th>
+    <th style="text-align: left;">Drug CODE</th>
+    <th style="text-align: left;">CATEGORY CODE</th>
+    <th style="text-align: left;">TRADE NAME</th>
+    <th style="text-align: left;">GNR NAME</th>
     <th style="display: none">ROUTE CODE</th>
     <th style="display: none">FORM CODE</th>
-    <th style="text-align: center;">STRENGTH</th>
+    <th style="text-align: left;">STRENGTH</th>
     <th style="display: none">ADVISORY CODE</th>
-    <th style="text-align: center;">STOCK QTY</th>
+    <th style="text-align: left;">STOCK QTY</th>
     <th style="display: none">MINIMUM QTY</th>
     <th style="display: none">MAXIMUM QTY</th>
     <th style="display: none">REORDER QTY</th>
@@ -36,11 +36,11 @@
     <th style="display: none">DURATION TYPE</th>
     <th style="display: none">FREQUENCY</th>
     <th style="display: none">CAUTION</th>
-    <th style="text-align: center;">EXP DATE</th>
+    <th style="text-align: left;">EXP DATE</th>
     <th style="display: none">CLASSIFICATION</th>
     <th style="display: none">STATUS</th>
     <th style="display: none">LOCATION CODE</th>
-    <th style="text-align: center;">SELL PRICE</th>
+    <th style="text-align: left;">SELL PRICE</th>
     <th style="display: none">COST PRICE</th>
     <th style="display: none">PACKAGING</th>
     <th style="display: none">PACKAGING TYPE</th>
@@ -50,8 +50,7 @@
     <th style="display: none">SUB-DISCIPLINE</th>
     <th style="display: none">SUPPLIER</th>
 
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: left;">ACTION</th>
 </thead>
 <tbody>
 
@@ -75,7 +74,7 @@
 
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 
 <input id="dataMDChidden" type="hidden" value="<%=String.join("|", dataMTC.get(s))%>">
 
@@ -113,17 +112,16 @@
 
 
 <!-- Button Part Start -->
-<td>
+<td align="center">
     <!-- Update Button Start -->
     <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal">
-        <i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
+        <i class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Update Item" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
     </a>
     <!-- Update Button End -->
-</td>
-<td>
+    &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
     <a id="mdcDeleteTButton" class="testing">
-        <i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
+        <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Delete Item" style="display: inline-block;color: #d9534f;" ></i>
     </a>
     <!-- Delete Button End -->
 </td>
@@ -137,6 +135,14 @@
 
 </tbody>
 </table>
+
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 
 <!-- Modal Update MTC End -->

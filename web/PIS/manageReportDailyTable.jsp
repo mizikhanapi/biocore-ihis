@@ -28,9 +28,9 @@
 
 <table  id="reportDailyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">DATE</th>
-    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
-    <th style="text-align: center;">TOTAL PRICE (RM)</th>
+    <th style="text-align: left;">DATE</th>
+    <th style="text-align: left;">TOTAL DRUG QUANTITY DISPENSED</th>
+    <th style="text-align: left;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
 
@@ -57,7 +57,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToDailySalesDetailsTButton" class="clickable_tr">
+    <tr style="text-align: left;" id="moveToDailySalesDetailsTButton" class="clickable_tr">
 <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
 <td><%= dataReportDaily.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>

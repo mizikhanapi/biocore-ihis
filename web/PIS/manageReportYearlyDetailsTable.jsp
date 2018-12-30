@@ -55,7 +55,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="">
+    <tr style="text-align: left;" id="">
         <td><%= dataReportDaily.get(i).get(0)%></td>
         <td><%= dataReportDaily.get(i).get(1)%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>

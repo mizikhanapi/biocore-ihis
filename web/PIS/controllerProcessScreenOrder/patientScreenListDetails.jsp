@@ -54,17 +54,17 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientScreenDetailsListTable">
     <thead>
-    <th style="display: none;text-align: center;">Order No</th>
+    <th style="display: none;text-align: left;">Order No</th>
     <th style="text-align: left;">Drug Cd</th>
     <th style="text-align: left;">Drug Name</th>
     <th style="text-align: left;">Strength</th>
     <th style="text-align: left;">Frequency</th>
     <th style="text-align: left;">Duration</th>
     <th style="text-align: left;">Dose</th>
-    <th style="text-align: left;" title="Stock Qty">S.Qty</th>
-    <th style="text-align: left;" title="Order Qty">O.Qty</th>
-    <th style="text-align: left;" title="Qty To Dis">Qty To Dis</th>
-    <th style="text-align: left;" title="Price Per Unit">P/U</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Stock Qty" aria-hidden="true">S.Qty</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Order Qty" aria-hidden="true">O.Qty</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Quantity to Dispense" aria-hidden="true">Qty To Dis</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Price Per Unit" aria-hidden="true">P/U</th>
     <th style="text-align: left;" >Total</th>
     <th style="text-align: left;">Comment</th>
 </thead>
@@ -106,19 +106,19 @@
     <tr style="text-align: left;" class="clickable_tr">
         <%   }%>
         <input id="dataPatientScreenDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(2)%></td> <!-- Description -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(6)%></td> <!-- Strength -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(3)%></td> <!-- Frequency -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(9)%> <%= dataOrderList.get(i).get(17)%></td> <!-- Duration/Duration T -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(7)%></td> <!-- Dose -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= stock%></td> <!-- Stock -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= ordered%></td> <!-- Ordered -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= quantityToDispense%></td> <!-- Qty To Dispense -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= price%></td> <!-- Price -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= totalPrice%></td> <!--  Total -->
-        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" align="center"><%= dataOrderList.get(i).get(38)%></td> <!-- Comment -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(2)%></td> <!-- Description -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(6)%></td> <!-- Strength -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(3)%></td> <!-- Frequency -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(9)%> <%= dataOrderList.get(i).get(17)%></td> <!-- Duration/Duration T -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(7)%></td> <!-- Dose -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= stock%></td> <!-- Stock -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= ordered%></td> <!-- Ordered -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= quantityToDispense%></td> <!-- Qty To Dispense -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= price%></td> <!-- Price -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= totalPrice%></td> <!--  Total -->
+        <td id="deleteScreenDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#deleteScreenItem" ><%= dataOrderList.get(i).get(38)%></td> <!-- Comment -->
     </tr>
 
 <%  } else {
@@ -129,5 +129,3 @@
 
 </tbody>
 </table>
-
-

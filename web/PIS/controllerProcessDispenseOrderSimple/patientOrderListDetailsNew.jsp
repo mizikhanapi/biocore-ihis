@@ -57,35 +57,35 @@
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientOrderDetailsListTable">
     <thead>
     <th style="text-align: left;"><!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
-    <th style="display: none;text-align: center;">Order No</th>
+    <th style="display: none;text-align: left;">Order No</th>
     <th style="text-align: left;">Drug Cd</th>
     <th style="text-align: left;">Drug Name</th>
     <th style="text-align: left;">Strength</th>
     <th style="text-align: left;">Frequency</th>
     <th style="text-align: left;">Duration</th>
     <th style="text-align: left;">Dose</th>
-    <th style="text-align: left;" title="Stock Qty">S.Qty</th>
-    <th style="text-align: left;" title="Order Qty">O.Qty</th>
-    <th style="text-align: left;" title="Dispensed Qty">D.Qty</th>
-    <th style="text-align: left;" title="Qty To Dispense">Qty.To.Disp</th>
-    <th style="text-align: left;" title="Qty To Dispense">P/U</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Stock Qty" aria-hidden="true">S.Qty</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Order Qty" aria-hidden="true">O.Qty</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Dispensed Quantity" aria-hidden="true">D.Qty</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Quantity to Dispense" aria-hidden="true">Qty.To.Disp</th>
+    <th style="text-align: left;" data-toggle="tooltip" data-placement="left" title="Price Per Unit" aria-hidden="true">P/U</th>
     <th style="text-align: left;" >Total</th>
     <th style="text-align: left;">Status</th>
-    <th style="display: none;text-align: center;">ATC Code</th>
-    <th style="display: none;text-align: center;">ATC Desc</th>
-    <th style="display: none;text-align: center;">MDC Desc</th>
-    <th style="display: none;text-align: center;">MDC Strength</th>
-    <th style="display: none;text-align: center;">MDC Form MCode</th>
-    <th style="display: none;text-align: center;">MDC Form RCode</th>
-    <th style="display: none;text-align: center;">MDC Form Desc</th>
-    <th style="display: none;text-align: center;">MDC Route MCode</th>
-    <th style="display: none;text-align: center;">MDC Route RCode</th>
-    <th style="display: none;text-align: center;">MDC Route Desc</th>
-    <th style="display: none;text-align: center;">MDC Frequency MCode</th>
-    <th style="display: none;text-align: center;">MDC Frequency RCode</th>
-    <th style="display: none;text-align: center;">MDC Frequency Desc</th>
-    <th style="display: none;text-align: center;">MDC Dosage</th>
-    <th style="display: none;text-align: center;">MDC Duration</th>
+    <th style="display: none;text-align: left;">ATC Code</th>
+    <th style="display: none;text-align: left;">ATC Desc</th>
+    <th style="display: none;text-align: left;">MDC Desc</th>
+    <th style="display: none;text-align: left;">MDC Strength</th>
+    <th style="display: none;text-align: left;">MDC Form MCode</th>
+    <th style="display: none;text-align: left;">MDC Form RCode</th>
+    <th style="display: none;text-align: left;">MDC Form Desc</th>
+    <th style="display: none;text-align: left;">MDC Route MCode</th>
+    <th style="display: none;text-align: left;">MDC Route RCode</th>
+    <th style="display: none;text-align: left;">MDC Route Desc</th>
+    <th style="display: none;text-align: left;">MDC Frequency MCode</th>
+    <th style="display: none;text-align: left;">MDC Frequency RCode</th>
+    <th style="display: none;text-align: left;">MDC Frequency Desc</th>
+    <th style="display: none;text-align: left;">MDC Dosage</th>
+    <th style="display: none;text-align: left;">MDC Duration</th>
     <th style="text-align: left;">Comment</th>
 </thead>
 <tbody>
@@ -137,28 +137,28 @@
     %>
 
     <%            if (((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0)) {    %>
-    <tr style="font-weight:bolder; color: #FFD700;text-align: center;" class="clickable_tr">
+    <tr style="font-weight:bolder; color: #FFD700;text-align: left;" class="clickable_tr">
         <% } else if (Integer.parseInt(stock) == 0) {   %>
-    <tr style="font-weight:bolder; color: red;text-align: center;" class="clickable_tr">
+    <tr style="font-weight:bolder; color: red;text-align: left;" class="clickable_tr">
         <% } else {   %>
     <tr style="text-align: left;" class="clickable_tr">
         <%   }%>
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Checked -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(2)%></td> <!-- Description -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(6)%></td> <!-- Strength -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(3)%></td> <!-- Frequency -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(9)%> <%= dataOrderList.get(i).get(17)%></td> <!-- Duration/Duration T -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(7)%></td> <!-- Dose -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= stock%></td> <!-- Stock -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= ordered%></td> <!-- Ordered -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= supplied%></td> <!-- Supplied -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= checkDispensed%></td> <!-- Dispensed -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= price%></td> <!-- Price -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= totalPrice%></td> <!--  Total -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(20)%></td> <!-- Status -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(2)%></td> <!-- Description -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(6)%></td> <!-- Strength -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(3)%></td> <!-- Frequency -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(9)%> <%= dataOrderList.get(i).get(17)%></td> <!-- Duration/Duration T -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(7)%></td> <!-- Dose -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= stock%></td> <!-- Stock -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= ordered%></td> <!-- Ordered -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= supplied%></td> <!-- Supplied -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= checkDispensed%></td> <!-- Dispensed -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= price%></td> <!-- Price -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= totalPrice%></td> <!--  Total -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(20)%></td> <!-- Status -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(21)%></td> <!-- ATC Code -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(22)%></td> <!-- ATC Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(23)%></td> <!-- MDC Desc -->
@@ -174,7 +174,7 @@
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(33)%></td> <!-- MDC Frequency Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(34)%><%= dataOrderList.get(i).get(35)%></td> <!-- MDC Dosage -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(36)%><%= dataOrderList.get(i).get(37)%></td> <!-- MDC Duration -->
-<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(38)%></td> <!-- Comment -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" ><%= dataOrderList.get(i).get(38)%></td> <!-- Comment -->
 </tr>
 
 

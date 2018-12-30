@@ -9,8 +9,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
 
     <span class="pull-right">
-        <button id="addNewMiscButton" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#miscModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD MISCELLANEOUS</button>
-        <button id="MISCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#miscCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE MISCELLANEOUS</button>
+        <button id="MISCClone_btnClone" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#miscCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a ><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;"></i></a>CLONE MISCELLANEOUS</button>
+        <button id="addNewMiscButton" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#miscModal" style=" padding-right: 10px;padding-left: 10px;"><a ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i></a>ADD MISCELLANEOUS</button>
     </span>
 </h4>
 
@@ -24,7 +24,7 @@
                 this.value = this.value.replace(/[^0-9\.]/g, '');
             }
         });
-        
+
 
         $('.singleNumbersOnly').keyup(function () {
             if (this.value !== this.value.replace(/[^0-9]/g, '')) {
@@ -64,7 +64,7 @@
             var miscName = $('#miscName').val();
             var miscBuyPrice = $('#miscBuyPrice').val();
             var miscSellPrice = $('#miscSellPrice').val();
-           // var miscStatus = $('#miscStatus').val();
+            // var miscStatus = $('#miscStatus').val();
             var miscEnable = $('#miscEnable').val();
 
             var newBuyPrice = parseFloat(miscBuyPrice).toFixed(2);
@@ -117,7 +117,7 @@
                     miscBuyPrice: miscBuyPrice,
                     miscSellPrice: miscSellPrice,
                     miscEnable: miscEnable
-                    //miscStatus: miscStatus
+                            //miscStatus: miscStatus
                 };
 
                 console.log(data);
@@ -220,7 +220,7 @@
             var miscBuyPrice = $('#miscBuyPrice').val();
             var miscSellPrice = $('#miscSellPrice').val();
             var miscEnable = $('#miscEnable').val();
-           // var miscStatus = $('#miscStatus').val();
+            // var miscStatus = $('#miscStatus').val();
 
             var newBuyPrice = parseFloat(miscBuyPrice).toFixed(2);
             var newSellPrice = parseFloat(miscSellPrice).toFixed(2);
@@ -252,7 +252,7 @@
                     miscBuyPrice: miscBuyPrice,
                     miscSellPrice: miscSellPrice,
                     miscEnable: miscEnable
-                  //  miscStatus: miscStatus
+                            //  miscStatus: miscStatus
                 };
 
                 console.log(data);

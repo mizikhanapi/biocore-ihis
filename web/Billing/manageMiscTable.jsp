@@ -20,13 +20,12 @@
 
 <table  id="miscTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Miscellaneous Code</th>
-    <th style="text-align: center;">Miscellaneous Name</th>
-    <th style="text-align: center;">Buy Price</th>
-    <th style="text-align: center;">Sell Price</th>
-    <th style="text-align: center;">Enable</th>
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: left;">Miscellaneous Code</th>
+    <th style="text-align: left;">Miscellaneous Name</th>
+    <th style="text-align: left;">Buy Price</th>
+    <th style="text-align: left;">Sell Price</th>
+    <th style="text-align: left;">Enable</th>
+    <th style="text-align: left;">Action</th>
 </thead>
 <tbody>
 
@@ -42,21 +41,20 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataMischidden" type="hidden" value="<%=String.join("|", dataMisc.get(i))%>">
 <td><%= dataMisc.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataMisc.get(i).get(2)%></td> <!-- Name -->
 <td><%= dataMisc.get(i).get(3)%></td> <!-- B Price -->
 <td><%= dataMisc.get(i).get(4)%></td> <!-- S Price -->
 <td><%= dataMisc.get(i).get(6)%></td> <!-- Enable -->
-<td>
+<td align="center">
     <!-- Update Part Start -->
-    <a id="miscUpdateTButton" data-toggle="modal" data-target="#miscModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="miscUpdateTButton" data-toggle="modal" data-target="#miscModal"><i class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="left" title="Update Item" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
-</td>
-<td>
+    &nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="miscDeleteTButton" ><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
+    <a id="miscDeleteTButton" ><i class="fa fa-times" data-toggle="tooltip" data-placement="right" title="Delete Item" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -66,7 +64,11 @@
 </tbody>
 </table>
 
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 
 <script type="text/javascript" charset="utf-8">

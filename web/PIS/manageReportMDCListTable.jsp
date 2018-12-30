@@ -24,36 +24,36 @@
 <br>
 <table  id="reportListMDCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Drug CODE</th>
-    <th style="text-align: center;">ATC CODE</th>
-    <th style="text-align: center;">TRADE NAME</th>
-    <th style="text-align: center;">GNR NAME</th>
-    <th style="text-align: center;">ROUTE CODE</th>
-    <th style="text-align: center;">FORM CODE</th>
-    <th style="text-align: center;">STRENGTH</th>
-    <th style="text-align: center;">ADVISE</th>
-    <th style="text-align: center;">STOCK QTY</th>
-    <th style="text-align: center;">MINIMUM QTY</th>
-    <th style="text-align: center;">MAXIMUM QTY</th>
-    <th style="text-align: center;">REORDER QTY</th>
-    <th style="text-align: center;">DOSE QTY</th>
-    <th style="text-align: center;">DOSE TYPE</th>
-    <th style="text-align: center;">DURATION</th>
-    <th style="text-align: center;">DURATION TYPE</th>
-    <th style="text-align: center;">FREQUENCY</th>
-    <th style="text-align: center;">CAUTION</th>
-    <th style="text-align: center;">EXP DATE</th>
-    <th style="text-align: center;">CLASSIFICATION</th>
-    <th style="text-align: center;">STATUS</th>
-    <th style="text-align: center;">LOCATION CODE</th>
-    <th style="text-align: center;">SELL PRICE (RM)</th>
-    <th style="text-align: center;">COST PRICE (RM)</th>
-    <th style="text-align: center;">PACKAGING</th>
-    <th style="text-align: center;">PACKAGING TYPE</th>
-    <th style="text-align: center;">PRICE/PACK (RM)</th>
-    <th style="text-align: center;">HFC</th>
-    <th style="text-align: center;">DISCIPLINE</th>
-    <th style="text-align: center;">SUB-DISCIPLINE</th>
+    <th style="text-align: left;">Drug CODE</th>
+    <th style="text-align: left;">ATC CODE</th>
+    <th style="text-align: left;">TRADE NAME</th>
+    <th style="text-align: left;">GNR NAME</th>
+    <th style="text-align: left;">ROUTE CODE</th>
+    <th style="text-align: left;">FORM CODE</th>
+    <th style="text-align: left;">STRENGTH</th>
+    <th style="text-align: left;">ADVISE</th>
+    <th style="text-align: left;">STOCK QTY</th>
+    <th style="text-align: left;">MINIMUM QTY</th>
+    <th style="text-align: left;">MAXIMUM QTY</th>
+    <th style="text-align: left;">REORDER QTY</th>
+    <th style="text-align: left;">DOSE QTY</th>
+    <th style="text-align: left;">DOSE TYPE</th>
+    <th style="text-align: left;">DURATION</th>
+    <th style="text-align: left;">DURATION TYPE</th>
+    <th style="text-align: left;">FREQUENCY</th>
+    <th style="text-align: left;">CAUTION</th>
+    <th style="text-align: left;">EXP DATE</th>
+    <th style="text-align: left;">CLASSIFICATION</th>
+    <th style="text-align: left;">STATUS</th>
+    <th style="text-align: left;">LOCATION CODE</th>
+    <th style="text-align: left;">SELL PRICE (RM)</th>
+    <th style="text-align: left;">COST PRICE (RM)</th>
+    <th style="text-align: left;">PACKAGING</th>
+    <th style="text-align: left;">PACKAGING TYPE</th>
+    <th style="text-align: left;">PRICE/PACK (RM)</th>
+    <th style="text-align: left;">HFC</th>
+    <th style="text-align: left;">DISCIPLINE</th>
+    <th style="text-align: left;">SUB-DISCIPLINE</th>
 </thead>
 <tbody>
 
@@ -73,7 +73,7 @@
         for (int s = 0; s < sizeMain; s++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
         <td ><%= dataMTC.get(s).get(0)%></td>
         <td ><%= dataMTC.get(s).get(1)%></td>
         <td ><%= dataMTC.get(s).get(2)%></td>

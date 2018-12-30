@@ -9,8 +9,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
 
     <span class="pull-right">
-        <button id="addNewTestCateButton" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#testCateModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD TEST CATEGORY</button>
-        <button id="TESTCATEClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#testCateCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE TEST CATEGORY</button>
+        <button id="TESTCATEClone_btnClone" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#testCateCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a ><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;"></i></a>CLONE TEST CATEGORY &nbsp;</button>
+        <button id="addNewTestCateButton" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#testCateModal" style=" padding-right: 10px;padding-left: 10px;"><a ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i></a>ADD TEST CATEGORY &nbsp;</button>
     </span>
 </h4>
 

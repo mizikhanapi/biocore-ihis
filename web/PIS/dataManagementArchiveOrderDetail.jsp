@@ -12,7 +12,7 @@
 </div>
 
 <div class="text-right" id="dataManagementArchiveOrderButtonRightDiv" > 
-    <button class="btn btn-danger " type="button" id="btnArchiveOrderArchiveSelected" name="btnArchiveOrderArchiveSelected" > <i class="fa fa-trash-o fa-lg" ></i>&nbsp; Archive Selected Order &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnArchiveOrderArchiveSelected" name="btnArchiveOrderArchiveSelected" > <i class="fa fa-trash-o fa-lg" ></i>&nbsp; Archive Selected Order &nbsp;</button>
 </div>
 
 

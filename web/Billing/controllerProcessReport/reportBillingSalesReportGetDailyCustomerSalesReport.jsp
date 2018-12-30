@@ -68,8 +68,8 @@
                 <th width="10%">No.</th>
                 <th width="20%">PMI No</th>
                 <th width="46%">Name</th>
-                <th style="text-align: center;" width="17%">Total Unit Purchased</th>
-                <th style="text-align: center;" width="17%">Total Money Spend (RM)</th>
+                <th style="text-align: left;" width="17%">Total Unit Purchased</th>
+                <th style="text-align: left;" width="17%">Total Money Spend (RM)</th>
             </tr>
         </thead>
         <tbody> 
@@ -88,8 +88,8 @@
                 <td><%=num%></td>
                 <td><%=pmi_no%></td>
                 <td><%=name%></td>
-                <td style="text-align: center;"><%=totalQty%></td>
-                <td style="text-align: center;"><%=formatter.format(totalSales)%></td>
+                <td style="text-align: left;"><%=totalQty%></td>
+                <td style="text-align: left;"><%=formatter.format(totalSales)%></td>
             </tr> 
 
             <%  num++;

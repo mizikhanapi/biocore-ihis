@@ -62,7 +62,7 @@
 <td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(4)%></td>
 <td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(6)%></td>
 <td><%=df.format(Double.parseDouble(dataManageBillMasterOrderList.get(i).get(8)))%></td>
-<td><button id="manageBillViewBillDetailBtn" class="btn btn-default pull-right"><i class="fa fa-file-o fa-lg" aria-hidden="true"></i>&nbsp; View Detail</button></td>
+<td align="center"><button id="manageBillViewBillDetailBtn" class="btn btn-default"><i class="fa fa-file-o fa-lg" aria-hidden="true"></i>&nbsp; View Detail</button></td>
 </tr>
 <% }
 %>

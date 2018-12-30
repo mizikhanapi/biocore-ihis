@@ -94,19 +94,19 @@ String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'
 
     %>
 
-    <tr style="text-align: center;" >
+    <tr style="text-align: left;" >
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <!--<td align="center"><input type="checkbox" id="labSpecimenChecked" checked></td>  Checked -->
-<td data-status="pagado" data-toggle="modal" data-id="1"  align="center" ><%= dataOrderList.get(i).get(2)%></td> <!-- Code -->
-<td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(8)%></td> <!-- Name -->
-<td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(9)%></td> <!--  S Source -->
-<td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(10)%></td> <!--  S Container -->
-<td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(11)%></td> <!--  Volume -->
-<td  data-status="pagado" data-toggle="modal" data-id="1"  align="center"><%= dataOrderList.get(i).get(5)%></td> <!--  Comment -->
+<td data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(2)%></td> <!-- Code -->
+<td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(8)%></td> <!-- Name -->
+<td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(9)%></td> <!--  S Source -->
+<td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(10)%></td> <!--  S Container -->
+<td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(11)%></td> <!--  Volume -->
+<td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(5)%></td> <!--  Comment -->
 <td  align="center">
-    <button id="MOD_btnPrepare" class="btn btn-primary" title="Prepare Item" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" ></i></button>
-    <button class="btn btn-default " type="button" title="Enter Result" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-id="1" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i></button>
-    <button class="btn btn-default " type="button" title="Verify Result"  id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-id="1" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i></button>
+    <button class="btn btn-primary" type="button" title="Prepare Item" id="MOD_btnPrepare" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" ></i></button>
+    <button class="btn btn-default" type="button" title="Enter Result" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i></button>
+    <button class="btn btn-default" type="button" title="Verify Result"  id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i></button>
 </td> <!--  Action -->
 
 </tr>

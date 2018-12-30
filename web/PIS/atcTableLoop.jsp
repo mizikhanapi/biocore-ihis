@@ -18,15 +18,14 @@
 
 <table  id="atcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">CATEGORY CODE</th>
-    <th style="text-align: center;">CATEGORY DESCRIPTION</th>
-    <th style="text-align: center;">CATEGORY CLASSIFICATION</th>
-    <th style="text-align: center; display: none">HFC CODE</th>
-    <th style="text-align: center; display: none">DISCIPLINE CODE</th>
-    <th style="text-align: center; display: none">SUBDISCIPLINE CODE</th>
-    <th style="text-align: center;">STATUS</th>
-    <th style="text-align: center;">UPDATE</th>
-    <th style="text-align: center;">DELETE</th>
+    <th style="text-align: left;">CATEGORY CODE</th>
+    <th style="text-align: left;">CATEGORY DESCRIPTION</th>
+    <th style="text-align: left;">CATEGORY CLASSIFICATION</th>
+    <th style="text-align: left; display: none">HFC CODE</th>
+    <th style="text-align: left; display: none">DISCIPLINE CODE</th>
+    <th style="text-align: left; display: none">SUBDISCIPLINE CODE</th>
+    <th style="text-align: left;">STATUS</th>
+    <th style="text-align: left;">ACTION</th>
 </thead>
 <tbody>
 
@@ -42,7 +41,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataATChidden" type="hidden" value="<%=String.join("|", dataATC.get(i))%>">
 <td><%= dataATC.get(i).get(0)%></td>
 <td><%= dataATC.get(i).get(1)%></td>
@@ -55,14 +54,13 @@
     } else {
         out.print("Inactive");
     } %></td> <!--status 3 --> 
-<td>
+<td align="center">
     <!-- Update Part Start -->
-    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i data-toggle="tooltip" data-placement="left" title="Update Item"  class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
-</td>
-<td>
+        &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="deleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="deleteTButton" class="testing"><i data-toggle="tooltip" data-placement="right" title="Delete Item"  class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>

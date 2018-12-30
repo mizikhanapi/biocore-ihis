@@ -21,9 +21,9 @@
 
 <table  id="reportTestCateTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Category Code</th>
-    <th style="text-align: center;">Category Name</th>
-    <th style="text-align: center;">Status</th>
+    <th style="text-align: left;">Category Code</th>
+    <th style="text-align: left;">Category Name</th>
+    <th style="text-align: left;">Status</th>
 </thead>
 <tbody>
 
@@ -39,7 +39,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataTestCatehidden" type="hidden" value="<%=String.join("|", dataTestCate.get(i))%>">
 <td><%= dataTestCate.get(i).get(0)%></td> <!-- Code -->
 <td><%= dataTestCate.get(i).get(2)%></td> <!-- Desc -->

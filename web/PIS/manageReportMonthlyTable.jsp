@@ -29,9 +29,9 @@
 
 <table  id="reportMonthlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead >
-    <th style="text-align: center;">MONTH/YEAR</th>
-    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
-    <th style="text-align: center;">TOTAL PRICE (RM)</th>
+    <th style="text-align: left;">MONTH/YEAR</th>
+    <th style="text-align: left;">TOTAL DRUG QUANTITY DISPENSED</th>
+    <th style="text-align: left;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
 
@@ -58,7 +58,7 @@
 
     %>
 
-    <tr style="text-align: center;" id="moveToMonthlySalesDetailsTButton" class="clickable_tr">
+    <tr style="text-align: left;" id="moveToMonthlySalesDetailsTButton" class="clickable_tr">
 <input id="dataMonthlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportMonthly.get(i))%>">
 <td><%= dataReportMonthly.get(i).get(0)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportMonthly.get(i).get(2)))%></td>

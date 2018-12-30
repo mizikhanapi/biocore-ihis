@@ -9,8 +9,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
   
     <span class="pull-right">
-        <button id="FREQClone_btnClone" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE DRUG FREQUENCY CODE</button>
-        <button id="addNewFreqButton" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG FREQUENCY</button>
+        <button id="FREQClone_btnClone" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a ><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;"></i></a>CLONE DRUG FREQUENCY CODE &nbsp;</button>
+        <button id="addNewFreqButton" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#freqModal" style=" padding-right: 10px;padding-left: 10px;"><a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i></a>ADD DRUG FREQUENCY &nbsp;</button>
     </span>
 </h4>
 
