@@ -58,7 +58,7 @@
                         </td>
                         <td><%=searchInpatient.get(i).get(2)%></td>
                         <td><%=searchInpatient.get(i).get(3)%></td>
-                        <td><a href="#inpatientProblem" id="inBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                        <td align="center"><a href="#inpatientProblem" id="inBtn" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye"></i> &nbsp; View Details</a></td>
                     </tr>
                     <%}
                         }%>
@@ -97,8 +97,8 @@
                         </td>
                         <td><%=searchOutpatient.get(i).get(2)%></td>
                         <td><%=searchOutpatient.get(i).get(3)%></td>       
-                        <td>
-                            <a href="#outpatientProblem" id="outBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a>
+                        <td align="center">
+                            <a href="#outpatientProblem" id="outBtn" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye"></i> &nbsp; View Details</a>
                         </td>
                     </tr>
                     <%

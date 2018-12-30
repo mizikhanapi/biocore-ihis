@@ -85,7 +85,7 @@
             <td><%out.print(dataRIS.get(i).get(7));%></td>
             <td hidden id="id_result"><%out.print(dataRIS.get(i).get(0));%></td>
             <td><%out.print(dataRIS.get(i).get(5));%></td>
-            <td><%out.print(dataRIS.get(i).get(4));%><br><button id="btnCIS_O_LIO_VIEW_RESULT" class="btn btn-default"><i class="fa fa-eye"></i> Result </button></td>
+            <td align="center"><%out.print(dataRIS.get(i).get(4));%><br><button id="btnCIS_O_LIO_VIEW_RESULT" class="btn btn-default"><i class="fa fa-eye"></i> &nbsp; View Result </button></td>
         </tr>
         <%
             }

@@ -51,7 +51,7 @@
     <td ><%= mc.get(i).get(0)%></td>
     <td ><%= mc.get(i).get(8)%></td>
     <td id="pmino"><%= mc.get(i).get(2)%></td>
-    <td>
+    <td align="center">
         <button id="MC_btnPrint" class="btn btn-default" data-toggle="modal" ><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Print</button>
     </td>
 </tr>

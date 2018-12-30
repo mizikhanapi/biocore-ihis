@@ -1416,11 +1416,11 @@
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataRad.get(i).get(2))%></td>
                                 <td><strong><%=dataRad.get(i).get(3)%></strong></td>
                                 <td><%=dataRad.get(i).get(4)%></td>
-                                <td>
+                                <td align="center">
                                     <input type="hidden" id="ANL_hidden_res" value="<%=String.join("|", dataRad.get(i))%>" />
                                     <input type="hidden" id="ANL_resType" value="RIS"/>
                                     <button class="btn btn-default" id="ANL_btnViewImage">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>View Result
+                                        <i class="fa fa-eye" aria-hidden="true"></i>	&nbsp;View Result
                                     </button>
                                 </td>
                             </tr>
@@ -1518,11 +1518,11 @@
                                 <td><%=dataTest.get(i).get(3)%></td>
                                 <td><%=dataTest.get(i).get(4)%></td>
                                 <td><%=dataTest.get(i).get(5)%></td>
-                                <td>
+                                <td align="center">
                                     <input type="hidden" id="ANL_hidden_res" value="<%=dataTest.get(i).get(0)%>" />
                                     <input type="hidden" id="ANL_resType" value="LIS"/>
                                     <button class="btn btn-default" id="ANL_btnViewImage">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>View Result
+                                        <i class="fa fa-eye" aria-hidden="true"></i>	&nbsp;View Result
                                     </button>
                                 </td>
                             </tr>
@@ -1570,11 +1570,11 @@
                                 <td style="width: 10%;"><%=lookH.getHFCName(dataOpt.get(i).get(2))%></td>
                                 <td><strong><%=dataOpt.get(i).get(4)%></strong></td>
                                 <td><%=dataOpt.get(i).get(5)%></td>
-                                <td>
+                                <td align="center">
                                     <input type="hidden" id="ANL_hidden_res" value="<%=String.join("|", dataOpt.get(i))%>" />
                                     <input type="hidden" id="ANL_resType" value="OPT"/>
                                     <button class="btn btn-default" id="ANL_btnViewImage">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>View Result
+                                        <i class="fa fa-eye" aria-hidden="true"></i>	&nbsp;View Result
                                     </button>
                                 </td>
                             </tr>

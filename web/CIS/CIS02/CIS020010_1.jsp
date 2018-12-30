@@ -89,8 +89,8 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
                 <td hidden id="tP_SEARCH_CODE"><%out.print(result.get(i).get(1));%></td>
                 <td hidden id="orderId"><%out.print(result.get(i).get(0));%></td>
                 <td hidden id="providerId"><%out.print(result.get(i).get(6));%></td>
-                <td>
-                    <button id="btnCIS_O_ROS_VIEW_RESULT" class="btn btn-default">Show X-Ray Image</button>
+                <td align="center">
+                    <button id="btnCIS_O_ROS_VIEW_RESULT" class="btn btn-default"><i class="fa fa-eye fa-lg" ></i>&nbsp;Show X-Ray Image</button>
                 </td>
             </tr>
             <%
