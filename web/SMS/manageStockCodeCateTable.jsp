@@ -85,7 +85,13 @@
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
             "language": {
                 "emptyTable": "No Category Available To Display"
-            }
+            },
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
         });
         // Supplier DataTables End
 

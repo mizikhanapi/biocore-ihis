@@ -132,7 +132,12 @@
                     text: 'Filter Table Column',
                     className: 'btn btn-default'
                 }
-            ]
+            ],columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
         });
 
     });

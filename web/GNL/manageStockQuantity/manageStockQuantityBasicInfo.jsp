@@ -187,7 +187,13 @@
                         "pageLength": 5,
                         "language": {
                             "emptyTable": "No Details Available Available To Display"
-                        }
+                        },
+                                    columnDefs: [
+                                        {
+                                            className: 'dt-body-left',
+                                            targets: '_all'
+
+                                        }]
                     });
 
                     $('#invoiceViewOrderNo').val(invoiceNo);
