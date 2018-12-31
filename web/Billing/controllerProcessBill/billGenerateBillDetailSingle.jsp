@@ -30,6 +30,7 @@
     String icNo = request.getParameter("icNo");
     String pName = request.getParameter("pName");
     String txtDate = request.getParameter("txtDate");
+    String txtDateShow = request.getParameter("txtDateShow");
     String address = request.getParameter("address");
     String phoneNo = request.getParameter("phoneNo");
     String otherID = request.getParameter("otherID");
@@ -84,7 +85,8 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="textinput">Transaction Date</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" name="txnDate" id="txnDate" value="<%=txtDate%>" readonly="true">
+                        <input type="hidden" class="form-control" name="txnDate" id="txnDate" value="<%=txtDate%>" readonly="true">
+                        <input type="text" class="form-control" name="txnDate" id="txnDateShow" value="<%=txtDateShow%>" readonly="true">
                     </div>
                 </div>
                 <!-- Text input-->

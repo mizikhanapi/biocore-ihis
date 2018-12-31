@@ -109,7 +109,7 @@
 
         //==================================================================================================================================================================//
         //                        0                 1               2           3           4               5           6               7           8
-        String sql = " SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,fm.order_no,fm.hfc_cd "
+        String sql = " SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,fm.order_no,fm.hfc_cd, DATE_FORMAT(fm.txn_date, '%d/%m/%Y %T') "
                 + " FROM far_order_master fm  "
                 + " LEFT JOIN pms_patient_biodata pb ON (fm.customer_id = pb.PMI_NO)  "
                 + "  " + whereClause + "  "
@@ -126,7 +126,7 @@
     <tr style="text-align: left;">
 <input id="dataBillDetailsOrderListhidden" type="hidden" value="<%=String.join("|", dataBillDetailsOrderList.get(i))%>">
 <td align="center"><input type="checkbox" id="generateBillChecked"></td>                                            <!-- Checked -->
-<td><%=dataBillDetailsOrderList.get(i).get(6)%></td>                                                                <!-- Episode Date -->
+<td><%=dataBillDetailsOrderList.get(i).get(9)%></td>                                                                <!-- Episode Date -->
 <td><%=dataBillDetailsOrderList.get(i).get(7)%></td>                                                                <!-- Order No -->
 <td style="display: none"><%=dataBillDetailsOrderList.get(i).get(0)%></td>                                          <!-- PMI No. -->
 <td><%=dataBillDetailsOrderList.get(i).get(2)%> / <%=dataBillDetailsOrderList.get(i).get(3)%></td>                  <!-- IC No. -->  <!-- Other ID -->

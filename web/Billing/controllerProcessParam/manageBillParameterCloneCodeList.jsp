@@ -30,5 +30,5 @@
 
 } else {
 %>
-<option disabled>No Billing Parameter Found!</option>
+<option disabled>No Billing Parameter Found</option>
 <%}%>

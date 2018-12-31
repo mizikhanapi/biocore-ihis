@@ -104,8 +104,8 @@
         //
 
         //==================================================================================================================================================================//
-        //                     0                 1               2            3            4            5               6           7               8
-        String sql = "SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,COUNT(fm.order_no),fm.hfc_cd "
+        //                     0                 1               2            3            4            5               6           7               8                                   9
+        String sql = "SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,COUNT(fm.order_no),fm.hfc_cd,DATE_FORMAT(fm.txn_date, '%d/%m/%Y %T') "
                 + " FROM far_order_master fm  "
                 + " LEFT JOIN pms_patient_biodata pb ON (fm.customer_id = pb.PMI_NO)    "
                 + whereClause + " ;";

@@ -91,23 +91,23 @@
 
             } else if (miscCode.toLowerCase() === "rg00001" || miscName.toLowerCase() === "consultation fee (student)") {
 
-                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code.. Please Choose Different Miscellaneous Code !!!");
+                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code. Please Choose Different Miscellaneous Code");
 
             } else if (miscCode.toLowerCase() === "rg00002" || miscName.toLowerCase() === "consultation fee (staff)") {
 
-                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code.. Please Choose Different Miscellaneous Code !!!");
+                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code. Please Choose Different Miscellaneous Code");
 
             } else if (miscCode.toLowerCase() === "rg00003" || miscName.toLowerCase() === "consultation fee (other)") {
 
-                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code.. Please Choose Different Miscellaneous Code !!!");
+                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code. Please Choose Different Miscellaneous Code");
 
             } else if (miscCode.toLowerCase() === "rg00004" || miscName.toLowerCase() === "special theraphy") {
 
-                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code.. Please Choose Different Miscellaneous Code !!!");
+                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code. Please Choose Different Miscellaneous Code");
 
             } else if (miscCode.toLowerCase() === "rg00005" || miscName.toLowerCase() === "paed consultation") {
 
-                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code.. Please Choose Different Miscellaneous Code !!!");
+                bootbox.alert("The Miscellaneous Code Choose In alredey used as standard billing code. Please Choose Different Miscellaneous Code");
 
             } else {
 
@@ -138,7 +138,7 @@
 
                             bootbox.alert({
                                 message: "Miscellaneous Item is Added Successful",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -148,7 +148,7 @@
 
                             bootbox.alert({
                                 message: "Miscellaneous Item Code Duplication Detected. Please use diffrerentMiscellaneous Item Code",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -156,7 +156,7 @@
 
                             bootbox.alert({
                                 message: "Miscellaneous Item Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -273,7 +273,7 @@
 
                             bootbox.alert({
                                 message: "Miscellaneous Item is Updated Successful",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -283,7 +283,7 @@
 
                             bootbox.alert({
                                 message: "Miscellaneous Item Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -296,7 +296,7 @@
 
                     },
                     error: function (err) {
-                        alert("Error Ajax Update!");
+                        alert("Error Ajax Update");
                     }
 
                 });
@@ -354,7 +354,7 @@
 
                                     bootbox.alert({
                                         message: "Miscellaneous Item is Deleted Successful",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -362,7 +362,7 @@
 
                                     bootbox.alert({
                                         message: "Miscellaneous Item Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -370,7 +370,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error: Deletion Ajax failed");
                             }
 
                         });
@@ -424,7 +424,7 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Opps! " + errorThrown);
+                    bootbox.alert("Opps: " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     $('.loading').hide();
@@ -477,7 +477,7 @@
 
                             bootbox.alert({
                                 message: "Miscellaneous is successfully cloned",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -485,7 +485,7 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            bootbox.alert("Insertion failed!");
+                            bootbox.alert("Insertion failed");
 
                             MISCCloneReset();
 

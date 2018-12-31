@@ -47,7 +47,7 @@
     } else {
 
         String infoMessage = "Invalid Operation Access.\n"
-                + "You are not authorised to run year end processing !!!";
+                + "You are not authorised to run year end processing";
 
         out.print("-|-2|" + infoMessage + "|0");
 

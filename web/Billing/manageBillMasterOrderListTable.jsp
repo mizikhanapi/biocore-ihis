@@ -23,7 +23,7 @@
     //                        0               1                  2                  3           4             5
     String query = "SELECT ch.bill_no, ch.customer_id, UPPER(pb.patient_name), pb.new_ic_no, pb.id_no, pb.home_address, "
             //          6             7                     8                  9           10           11
-            + " pb.mobile_phone, ch.quantity, (ch.item_amt-ch.amt_paid), ch.txn_date, ch.item_amt, ch.amt_paid "
+            + " pb.mobile_phone, ch.quantity, (ch.item_amt-ch.amt_paid), ch.txn_date, ch.item_amt, ch.amt_paid,DATE_FORMAT(ch.txn_date, '%d/%m/%Y %T') "
             // FROM CONDITION
             + " FROM far_customer_hdr ch "
             // JOIN CONDITION
@@ -54,7 +54,7 @@
     %>
     <tr style="text-align: left;"> 
 <input id="dataManageBillMasterOrderListhidden" type="hidden" value="<%=String.join("|", dataManageBillMasterOrderList.get(i))%>">
-<td><%=dataManageBillMasterOrderList.get(i).get(9)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(12)%></td>
 <td><%=dataManageBillMasterOrderList.get(i).get(0)%></td>
 <td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(1)%></td>
 <td style="display: none;"><%=dataManageBillMasterOrderList.get(i).get(2)%></td>

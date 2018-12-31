@@ -31,13 +31,13 @@
             <div class="col-md-5">
                 <label class="col-md-3 control-label" for="textinput">Start : </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control input-md" id="MANAGEBILL_MasterOrderSelectAssessmentStart" placeholder="14/06/2017" readonly>
+                    <input type="text" class="form-control input-md" id="MANAGEBILL_MasterOrderSelectAssessmentStart" placeholder="DD/MM/YYYY" readonly>
                 </div>
             </div>
             <div class="col-md-5">
                 <label class="col-md-3 control-label" for="textinput">End : </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control input-md" id="MANAGEBILL_MasterOrderSelectAssessmentEnd" placeholder="14/06/2017" readonly>
+                    <input type="text" class="form-control input-md" id="MANAGEBILL_MasterOrderSelectAssessmentEnd" placeholder="DD/MM/YYYY" readonly>
                 </div>
             </div>
         </div>
@@ -74,7 +74,12 @@
         changeYear: true,
         dateFormat: 'dd/mm/yy',
         yearRange: '1990:+0',
-        maxDate: '+0d'
+        maxDate: '+0d',
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     // Date Picker For Initial End
 
@@ -94,7 +99,12 @@
             dateFormat: 'dd/mm/yy',
             yearRange: '1990:+0',
             minDate: fromDate,
-            maxDate: '+0d'
+            maxDate: '+0d',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
     });
@@ -231,7 +241,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
-                bootbox.alert('Opps! ' + errorThrown);
+                bootbox.alert('Opps. ' + errorThrown);
 
             },
             complete: function (jqXHR, textStatus) {
@@ -328,7 +338,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
-                bootbox.alert('Opps! ' + errorThrown);
+                bootbox.alert('Opps. ' + errorThrown);
 
             },
             complete: function (jqXHR, textStatus) {
@@ -395,7 +405,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
-                bootbox.alert('Opps! ' + errorThrown);
+                bootbox.alert('Opps. ' + errorThrown);
 
             },
             complete: function (jqXHR, textStatus) {
@@ -452,7 +462,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
-                bootbox.alert('Opps! ' + errorThrown);
+                bootbox.alert('Opps. ' + errorThrown);
 
             },
             complete: function (jqXHR, textStatus) {
@@ -515,6 +525,7 @@
         var custID = arrayData[1];
         var billNo = arrayData[0];
         var txtDate = arrayData[9];
+        var txtDateNew = arrayData[12];
         var pName = arrayData[2];
         var address = arrayData[5];
         var icNo = arrayData[3];
@@ -527,6 +538,7 @@
         var data = {
             billNo: billNo,
             txtDate: txtDate,
+            txtDateNew: txtDateNew,
             custID: custID,
             pName: pName,
             address: address,
@@ -581,7 +593,7 @@
 
 
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-        
+
         $('#manageBillDetailOrderDetailContent').html('');
 
 
@@ -660,7 +672,7 @@
 
         bootbox.confirm({
             message: "Are you sure want to delete this item ?",
-            title: "Delete Item ?",
+            title: "Please Confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',

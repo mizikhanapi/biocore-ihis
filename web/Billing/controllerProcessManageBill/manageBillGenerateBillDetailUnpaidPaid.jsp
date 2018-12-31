@@ -30,6 +30,7 @@
     // Generate Parameter
     String billNo = request.getParameter("billNo");
     String txtDate = request.getParameter("txtDate");
+    String txtDateNew = request.getParameter("txtDateNew");
     String custID = request.getParameter("custID");
     String pName = request.getParameter("pName");
     String address = request.getParameter("address");
@@ -51,7 +52,8 @@
         </div>
         <label class="col-lg-2">Transaction Date</label>
         <div class="col-lg-10" style="margin-bottom: 10px">
-            <input type="text" class="form-control" name="txnDate" id="txnDate" value="<%=txtDate%>" readonly="true">
+            <input type="hidden" class="form-control" name="txnDate" id="txnDate" value="<%=txtDate%>" readonly="true">
+            <input type="text" class="form-control" name="txtDateNew" id="txtDateNew" value="<%=txtDateNew%>" readonly="true">
         </div>
         <label class="col-lg-2">Customer ID</label>
         <div class="col-lg-10" style="margin-bottom: 10px">
@@ -740,7 +742,7 @@
 
             } else if (amtReceivedValid === false) {
 
-                bootbox.alert("Please Insert Amount That Is Between 0.01 To 9999999.99 !!!");
+                bootbox.alert("Please Insert Amount That Is Between 0.01 To 9999999.99");
 
                 $('#amtReceived').val('');
 
@@ -780,7 +782,7 @@
 
             if (amtReceived === '0' || amtReceived === '.' || amtReceived === '') {
 
-                bootbox.alert("Please insert an amount first !!!");
+                bootbox.alert("Please insert an amount first");
 
             } else {
 
@@ -799,7 +801,7 @@
 
                 bootbox.confirm({
                     message: "Are you sure want to confirm payment this item ?",
-                    title: "Confirm Payment ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
@@ -831,7 +833,7 @@
                                     if (d[1] === "1") {
 
 
-                                        document.getElementById('messageHeader').innerHTML = "Success!";
+                                        document.getElementById('messageHeader').innerHTML = "Success";
                                         document.getElementById('messageContent').innerHTML = d[2];
 
                                         $("#alertMessage").modal();
@@ -848,7 +850,7 @@
 
                                     } else {
 
-                                        document.getElementById('messageHeader').innerHTML = "Failed!";
+                                        document.getElementById('messageHeader').innerHTML = "Failed";
                                         document.getElementById('messageContent').innerHTML = d[2];
 
                                         $("#alertMessage").modal();
@@ -860,7 +862,7 @@
                                 },
                                 error: function (err) {
 
-                                    document.getElementById('messageHeader').innerHTML = "Error!";
+                                    document.getElementById('messageHeader').innerHTML = "Error";
                                     document.getElementById('messageContent').innerHTML = "Failed to make payment.\nPlease try again.";
 
                                     $("#alertMessage").modal();
@@ -915,7 +917,7 @@
 
             if (itemName === '' || itemName === null) {
 
-                bootbox.alert("Please insert Item Name first !!!");
+                bootbox.alert("Please insert Item Name first");
 
             } else {
 
@@ -1193,7 +1195,7 @@
 
             if (selected === '') {
 
-                bootbox.alert("Please Select An Item To Be Added To The Bill Details List !!!");
+                bootbox.alert("Please Select An Item To Be Added To The Bill Details List");
 
             } else {
 
@@ -1266,7 +1268,7 @@
                             if (d[1] === '1') {
 
 
-                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageHeader').innerHTML = "Success";
                                 document.getElementById('messageContent').innerHTML = d[2];
 
 
@@ -1292,7 +1294,7 @@
 
                             } else {
 
-                                document.getElementById('messageHeader').innerHTML = "Failed!";
+                                document.getElementById('messageHeader').innerHTML = "Failed";
                                 document.getElementById('messageContent').innerHTML = d[2];
 
                                 $("#alertMessage").modal();
@@ -1303,7 +1305,7 @@
                         },
                         error: function (err) {
 
-                            document.getElementById('messageHeader').innerHTML = "Error!";
+                            document.getElementById('messageHeader').innerHTML = "Error";
                             document.getElementById('messageContent').innerHTML = "Failed to add item.\nPlease try again.";
 
                             $("#alertMessage").modal();
@@ -1410,7 +1412,7 @@
 
                         if (d[1] === '1') {
 
-                            document.getElementById('messageHeader').innerHTML = "Success!";
+                            document.getElementById('messageHeader').innerHTML = "Success";
                             document.getElementById('messageContent').innerHTML = d[2];
 
 
@@ -1438,7 +1440,7 @@
 
                         } else {
 
-                            document.getElementById('messageHeader').innerHTML = "Failed!";
+                            document.getElementById('messageHeader').innerHTML = "Failed";
                             document.getElementById('messageContent').innerHTML = d[2];
 
                             $("#alertMessage").modal();
@@ -1448,7 +1450,7 @@
                     },
                     error: function (err) {
 
-                        document.getElementById('messageHeader').innerHTML = "Error!";
+                        document.getElementById('messageHeader').innerHTML = "Error";
                         document.getElementById('messageContent').innerHTML = "Failed to add item.\nPlease try again.";
 
                         $("#alertMessage").modal();

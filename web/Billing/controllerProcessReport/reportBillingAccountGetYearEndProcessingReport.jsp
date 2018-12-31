@@ -17,7 +17,7 @@
 
     // Creating Format Date And Year
     DateTimeFormatter formatYear = DateTimeFormatter.ofPattern("yyyy");
-    DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     LocalDateTime now = LocalDateTime.now();
 
     // Creating Date And Year

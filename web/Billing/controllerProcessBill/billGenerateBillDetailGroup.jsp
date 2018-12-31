@@ -26,8 +26,10 @@
 
     // Generate Time Format
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
+    DateTimeFormatter formatShow = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     String txtTime = format.format(now);
+    String txtTimeShow = formatShow.format(now);
 
     // Generate Decimal Format
     DecimalFormat df = new DecimalFormat("0.00");
@@ -137,7 +139,8 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="textinput">Transaction Date</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" name="txnDate" id="txnDate" value="<%=txtTime%>" readonly="true">
+                        <input type="hidden" class="form-control" name="txnDate" id="txnDate" value="<%=txtTime%>" readonly="true">
+                        <input type="text" class="form-control" name="txnDate" id="txnDateShow" value="<%=txtTimeShow%>" readonly="true">
                     </div>
                 </div>
                 <!-- Text input-->

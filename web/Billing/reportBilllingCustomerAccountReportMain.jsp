@@ -117,7 +117,7 @@
 
             if (ic === "") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
+                document.getElementById('messageHeader').innerHTML = "Information";
                 document.getElementById('messageContent').innerHTML = "Please fill in patient IC No.";
                 $("#alertMessage").modal();
 
@@ -180,7 +180,7 @@
 
                         } else {
 
-                            document.getElementById('messageHeader').innerHTML = "Failed!";
+                            document.getElementById('messageHeader').innerHTML = "Failed";
                             document.getElementById('messageContent').innerHTML = d[2];
                             $("#alertMessage").modal();
 
@@ -189,7 +189,7 @@
                     },
                     error: function (err) {
 
-                        document.getElementById('messageHeader').innerHTML = "Error!";
+                        document.getElementById('messageHeader').innerHTML = "Error";
                         document.getElementById('messageContent').innerHTML = "An error occur.\nPlease try again later.";
                         $("#alertMessage").modal();
 
@@ -217,20 +217,20 @@
 
             if (ic === "") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please fill in patient IC No. !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please fill in patient IC No.";
                 $("#alertMessage").modal();
 
             } else if (month === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Month !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Month";
                 $("#alertMessage").modal();
 
             } else if (year === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year";
                 $("#alertMessage").modal();
 
             } else {
@@ -293,7 +293,7 @@
 
                         } else {
 
-                            document.getElementById('messageHeader').innerHTML = "Failed!";
+                            document.getElementById('messageHeader').innerHTML = "Failed";
                             document.getElementById('messageContent').innerHTML = d[2];
                             $("#alertMessage").modal();
 
@@ -301,7 +301,7 @@
                     },
                     error: function (err) {
 
-                        document.getElementById('messageHeader').innerHTML = "Error!";
+                        document.getElementById('messageHeader').innerHTML = "Error";
                         document.getElementById('messageContent').innerHTML = "An error occur.\nPlease try again later.";
                         $("#alertMessage").modal();
 
@@ -369,7 +369,7 @@
 
                     } else {
 
-                        document.getElementById('messageHeader').innerHTML = "Failed!";
+                        document.getElementById('messageHeader').innerHTML = "Failed";
                         document.getElementById('messageContent').innerHTML = d[2];
                         $("#alertMessage").modal();
 
@@ -377,7 +377,7 @@
                 },
                 error: function (err) {
 
-                    document.getElementById('messageHeader').innerHTML = "Error!";
+                    document.getElementById('messageHeader').innerHTML = "Error";
                     document.getElementById('messageContent').innerHTML = "An error occur.\nPlease try again later.";
                     $("#alertMessage").modal();
 

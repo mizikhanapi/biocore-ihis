@@ -37,13 +37,13 @@
             <div class="col-md-5">
                 <label class="col-md-3 control-label" for="textinput">Start : </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control input-md" id="BILL_MasterOrderSelectAssessmentStart" placeholder="14/06/2017" readonly>
+                    <input type="text" class="form-control input-md" id="BILL_MasterOrderSelectAssessmentStart" placeholder="DD/MM/YYYY" readonly>
                 </div>
             </div>
             <div class="col-md-5">
                 <label class="col-md-3 control-label" for="textinput">End : </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control input-md" id="BILL_MasterOrderSelectAssessmentEnd" placeholder="14/06/2017" readonly>
+                    <input type="text" class="form-control input-md" id="BILL_MasterOrderSelectAssessmentEnd" placeholder="DD/MM/YYYY" readonly>
                 </div>
             </div>
         </div>
@@ -69,7 +69,12 @@
         changeYear: true,
         dateFormat: 'dd/mm/yy',
         yearRange: '1990:+0',
-        maxDate: '+0d'
+        maxDate: '+0d',
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     // Date Picker For Initial End
 
@@ -89,7 +94,12 @@
             dateFormat: 'dd/mm/yy',
             yearRange: '1990:+0',
             minDate: fromDate,
-            maxDate: '+0d'
+            maxDate: '+0d',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
     });
@@ -216,7 +226,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
-                bootbox.alert('Opps! ' + errorThrown);
+                bootbox.alert('Error: ' + errorThrown);
 
             },
             complete: function (jqXHR, textStatus) {
@@ -308,7 +318,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
-                bootbox.alert('Opps! ' + errorThrown);
+                bootbox.alert('Error: ' + errorThrown);
 
             },
             complete: function (jqXHR, textStatus) {
@@ -416,6 +426,7 @@
         var address = arrayData[4];
         var phoneNo = arrayData[5];
         var otherID = arrayData[3];
+        var txtDateShow = arrayData[9];
 
 
         bootbox.confirm({
@@ -455,6 +466,7 @@
                                 otherID: otherID,
                                 pName: pName,
                                 txtDate: txtDate,
+                                txtDateShow: txtDateShow,
                                 billNo: datas.trim()
                             };
 
@@ -592,7 +604,7 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageHeader').innerHTML = "Success";
                                 document.getElementById('messageContent').innerHTML = "Your bill has been created successfully.";
 
                                 $("#alertMessage").modal();
@@ -606,7 +618,7 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Partial Success!";
+                                document.getElementById('messageHeader').innerHTML = "Partial Success";
                                 document.getElementById('messageContent').innerHTML = "Bill created with complication.";
 
                                 $("#alertMessage").modal();
@@ -617,7 +629,7 @@
 
                             } else {
 
-                                document.getElementById('messageHeader').innerHTML = "Error!";
+                                document.getElementById('messageHeader').innerHTML = "Error";
                                 document.getElementById('messageContent').innerHTML = d[2];
 
                                 $("#alertMessage").modal();
@@ -723,7 +735,7 @@
 
         if (longString === "") {
 
-            bootbox.alert("Please Select At Least A Record To Generate The Billing Details !");
+            bootbox.alert("Please select at least a record to generate the billing details");
 
         } else {
 
@@ -927,7 +939,7 @@
                                 $('#btnViewBillGenereteBillDetailsGroupCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsGroupConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageHeader').innerHTML = "Success";
                                 document.getElementById('messageContent').innerHTML = "Your bill has been created successfully.";
 
                                 $("#alertMessage").modal();
@@ -941,7 +953,7 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Partial Success!";
+                                document.getElementById('messageHeader').innerHTML = "Partial Success";
                                 document.getElementById('messageContent').innerHTML = "Bill created with complication.";
 
                                 $("#alertMessage").modal();
@@ -952,7 +964,7 @@
 
                             } else {
 
-                                document.getElementById('messageHeader').innerHTML = "Error!";
+                                document.getElementById('messageHeader').innerHTML = "Error";
                                 document.getElementById('messageContent').innerHTML = d[2];
 
                                 $("#alertMessage").modal();

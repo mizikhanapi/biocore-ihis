@@ -160,20 +160,20 @@
 
             if (day === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement day !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement day";
                 $("#alertMessage").modal();
 
             } else if (month === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Month !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Month";
                 $("#alertMessage").modal();
 
             } else if (year === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year";
                 $("#alertMessage").modal();
 
             } else {
@@ -226,14 +226,14 @@
 
             if (month === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Month !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Month";
                 $("#alertMessage").modal();
 
             } else if (year === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year";
                 $("#alertMessage").modal();
 
             } else {
@@ -286,8 +286,8 @@
 
             if (year === "-") {
 
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select statement Year !!!";
+                document.getElementById('messageHeader').innerHTML = "Information";
+                document.getElementById('messageContent').innerHTML = "Please select statement Year";
                 $("#alertMessage").modal();
 
             } else {

@@ -85,7 +85,7 @@
 
             bootbox.confirm({
                 message: "Are you sure want to backup the billing data ?",
-                title: "Backup Data ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -131,7 +131,7 @@
 
                                             clearInterval(id);
 
-                                            document.getElementById('messageHeader').innerHTML = "Success!";
+                                            document.getElementById('messageHeader').innerHTML = "Success";
                                             document.getElementById('messageContent').innerHTML = d[2];
                                             $("#alertMessage").modal();
 
@@ -155,13 +155,13 @@
 
                                 } else if (d[1] === '-2') {
 
-                                    document.getElementById('messageHeader').innerHTML = "Invalid Request!";
+                                    document.getElementById('messageHeader').innerHTML = "Invalid Request";
                                     document.getElementById('messageContent').innerHTML = d[2];
                                     $("#alertMessage").modal();
 
                                 } else {
 
-                                    document.getElementById('messageHeader').innerHTML = "Failed!";
+                                    document.getElementById('messageHeader').innerHTML = "Failed";
                                     document.getElementById('messageContent').innerHTML = d[2];
                                     $("#alertMessage").modal();
 
@@ -169,7 +169,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error: Ajax failed");
                             }
 
                         });
@@ -201,7 +201,7 @@
 
             bootbox.confirm({
                 message: "Are you sure want to start year end processing ?",
-                title: "Start Year End Processing ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -247,7 +247,7 @@
 
                                             clearInterval(id);
 
-                                            document.getElementById('messageHeader').innerHTML = "Success!";
+                                            document.getElementById('messageHeader').innerHTML = "Success";
                                             document.getElementById('messageContent').innerHTML = d[2];
                                             $("#alertMessage").modal();
 
@@ -263,13 +263,13 @@
 
                                 } else if (d[1] === '-2') {
 
-                                    document.getElementById('messageHeader').innerHTML = "Invalid Request!";
+                                    document.getElementById('messageHeader').innerHTML = "Invalid Request";
                                     document.getElementById('messageContent').innerHTML = d[2];
                                     $("#alertMessage").modal();
 
                                 } else {
 
-                                    document.getElementById('messageHeader').innerHTML = "Failed!";
+                                    document.getElementById('messageHeader').innerHTML = "Failed";
                                     document.getElementById('messageContent').innerHTML = d[2];
                                     $("#alertMessage").modal();
                                     $('#yearEndProcessRestoreBtn').prop('disabled', false);
@@ -279,7 +279,7 @@
                             },
                             error: function (err) {
 
-                                document.getElementById('messageHeader').innerHTML = "Error!";
+                                document.getElementById('messageHeader').innerHTML = "Error";
                                 document.getElementById('messageContent').innerHTML = "Processing failed.";
                                 $("#alertMessage").modal();
 
@@ -314,7 +314,7 @@
 
             bootbox.confirm({
                 message: "Are you sure want to restore customer data ?",
-                title: "Restore Customer Data ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -361,7 +361,7 @@
 
                                             clearInterval(id);
 
-                                            document.getElementById('messageHeader').innerHTML = "Success!";
+                                            document.getElementById('messageHeader').innerHTML = "Success";
                                             document.getElementById('messageContent').innerHTML = d[2];
                                             $("#alertMessage").modal();
 
@@ -380,13 +380,13 @@
 
                                 } else if (d[1] === '-2') {
 
-                                    document.getElementById('messageHeader').innerHTML = "Invalid Request!";
+                                    document.getElementById('messageHeader').innerHTML = "Invalid Request";
                                     document.getElementById('messageContent').innerHTML = d[2];
                                     $("#alertMessage").modal();
 
                                 } else {
 
-                                    document.getElementById('messageHeader').innerHTML = "Failed!";
+                                    document.getElementById('messageHeader').innerHTML = "Failed";
                                     document.getElementById('messageContent').innerHTML = d[2];
                                     $("#alertMessage").modal();
 
@@ -394,7 +394,7 @@
                             },
                             error: function (err) {
 
-                                document.getElementById('messageHeader').innerHTML = "Error!";
+                                document.getElementById('messageHeader').innerHTML = "Error";
                                 document.getElementById('messageContent').innerHTML = "Processing failed.";
                                 $("#alertMessage").modal();
 

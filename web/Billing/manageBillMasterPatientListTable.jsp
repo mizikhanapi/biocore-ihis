@@ -90,7 +90,7 @@
 
         //=============================================================================================
         //                     0                 1               2            3            4            5               6           7               8
-        String sql = "SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,COUNT(fm.order_no),fm.hfc_cd "
+        String sql = "SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,COUNT(fm.order_no),fm.hfc_cd,DATE_FORMAT(fm.txn_date, '%d/%m/%Y %T') "
                 + " FROM far_customer_hdr fm  "
                 + " LEFT JOIN pms_patient_biodata pb ON (fm.customer_id = pb.PMI_NO)    "
                 + whereClause + " ;";
@@ -109,7 +109,7 @@
 <td><%= dataManageBillMasterOrderList.get(i).get(3)%></td> <!-- Other ID. -->
 <td><%= dataManageBillMasterOrderList.get(i).get(4)%></td> <!-- Address -->
 <td ><%= dataManageBillMasterOrderList.get(i).get(5)%></td> <!-- Phone No -->
-<td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(6)%></td> <!-- Episode Date -->
+<td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(9)%></td> <!-- Episode Date -->
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(7)%></td> <!-- Total Bill -->
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(8)%></td> <!-- Health Facility Code -->
 <td style="text-align: center;">

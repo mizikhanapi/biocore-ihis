@@ -70,27 +70,27 @@
 
             if (billParameterCode === "" || billParameterCode === null) {
 
-                bootbox.alert("Please Insert The Parameter Item Code");
+                bootbox.alert("Please Insert The Parameter Item Code.");
 
             } else if (billParameterName === "" || billParameterName === null) {
 
-                bootbox.alert("Please Insert The Parameter Item Name");
+                bootbox.alert("Please Insert The Parameter Item Name/");
 
             } else if (billParameterValue === "" || billParameterValue === null) {
 
-                bootbox.alert("Please Insert The Parameter Item Value");
+                bootbox.alert("Please Insert The Parameter Item Value/");
 
             } else if (billParameterCode.toLowerCase() === "bp001" || billParameterName.toLowerCase() === "gst") {
 
-                bootbox.alert("The Parameter Code Choose In alredey used as standard billing code.. Please Choose Different Parameter Code !!!");
+                bootbox.alert("The Parameter Code Choose In alredey used as standard billing code. Please Choose Different Parameter Code.");
 
             } else if (billParameterCode.toLowerCase() === "bp002" || billParameterName.toLowerCase() === "service charge") {
 
-                bootbox.alert("The Parameter Code Choose In alredey used as standard billing code.. Please Choose Different Parameter Code !!!");
+                bootbox.alert("The Parameter Code Choose In alredey used as standard billing code. Please Choose Different Parameter Code.");
 
             } else if (billParameterCode.toLowerCase() === "bp003" || billParameterName.toLowerCase() === "discount") {
 
-                bootbox.alert("The Parameter Code Choose In alredey used as standard billing code.. Please Choose Different Parameter Code !!!");
+                bootbox.alert("The Parameter Code Choose In alredey used as standard billing code. Please Choose Different Parameter Code.");
 
             } else {
 
@@ -127,7 +127,7 @@
 
                             bootbox.alert({
                                 message: "Parameter Item is Added Successful",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -136,8 +136,8 @@
                         } else if (datas.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "Parameter Item Code Duplication Detected. Please use diffrerent Parameter Item Code",
-                                title: "Process Result",
+                                message: "Parameter Item Code Duplication Detected. Please use diffrerent Parameter Item Code.",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -145,7 +145,7 @@
 
                             bootbox.alert({
                                 message: "Parameter Item Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -253,7 +253,7 @@
 
                             bootbox.alert({
                                 message: "Parameter Item is Updated Successful",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -263,7 +263,7 @@
 
                             bootbox.alert({
                                 message: "Parameter Item Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -334,7 +334,7 @@
 
                                     bootbox.alert({
                                         message: "Bill Parameter is Deleted Successful",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -342,7 +342,7 @@
 
                                     bootbox.alert({
                                         message: "Bill Parameter Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -350,7 +350,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error: Deletion Ajax failed");
                             }
 
                         });
@@ -403,7 +403,7 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Opps! " + errorThrown);
+                    bootbox.alert("Opps: " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     $('.loading').hide();
@@ -456,7 +456,7 @@
 
                             bootbox.alert({
                                 message: "Bill Parameter is successfully cloned",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -464,7 +464,7 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            bootbox.alert("Insertion failed!");
+                            bootbox.alert("Insertion failed");
 
                             BILLPARAMCloneReset();
 

@@ -30,5 +30,5 @@
 
 } else {
 %>
-<option disabled>No Miscellaneous Item Found!</option>
+<option disabled>No Miscellaneous Item Found</option>
 <%}%>
