@@ -579,9 +579,9 @@
                 var dateTo = $('#REP_dateTo').val();
 
                 if (how === "x" && (dateFrom === "" || dateTo === "")) {
-                    bootbox.alert("Please pick date from and date to!");
+                    bootbox.alert("Please pick date from and date to.");
                 } else if (leDate === "") {
-                    bootbox.alert("Please pick the date!");
+                    bootbox.alert("Please pick the date.");
                 } else {
                     $('#REP_setModal').modal('hide');
                     MM_getInpatientStatistic();

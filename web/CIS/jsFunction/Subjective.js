@@ -260,7 +260,7 @@ $(document).ready(function () {
 
                     } else {
 
-                        bootbox.alert("You have already added the symptom into the table. Please Choose Different Symptom.");
+                        bootbox.alert("You have already added the symptom into the table. Please choose different symptom.");
 
                     }
 
@@ -279,7 +279,7 @@ $(document).ready(function () {
         var table = $("#SOAPChiefComplaintTable tbody");
 
         if (counterComplains === 0) {
-            bootbox.alert("You have no record the chief complain table. Please Insert Symptom before pressing the add button.");
+            bootbox.alert("You have no record the chief complain table. Please insert symptom before pressing the add button.");
         } else {
 
 
@@ -446,7 +446,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if(validationField(obj1.details,"Please enter the correct history present illness")){
+        if(validationField(obj1.details,"Please enter the correct history present illness.")){
             
             _data.push(obj1);
             displayHPI(obj1.details);
@@ -474,7 +474,7 @@ $(document).ready(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val(); 
         var _udetails = $('#udetails').val();
-         if(validationField(_udetails,"Please enter the correct history present illness")){
+         if(validationField(_udetails,"Please enter the correct history present illness.")){
               upObject.details = _udetails;
             var sum = _udetails;
             $('#sum' + rowId).html(sum);
@@ -508,9 +508,9 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if(validationField(obj1.codePMH,"Please enter the correct Past Medical History")){
+        if(validationField(obj1.codePMH,"Please enter the correct Past Medical History.")){
             if (checkPMH(_data, obj1)) {
-                bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
+                bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History.");
             } else {
                 _data.push(obj1);
                 displayPMH(Problem1, Status, comment1);
@@ -561,7 +561,7 @@ $(document).ready(function () {
          var tempccnObj = {
             codePMH:_Pcode
         }
-        if(validationField(_Pcode,"Please enter the correct Past Medical History")){
+        if(validationField(_Pcode,"Please enter the correct Past Medical History.")){
             if (upObject.codePMH === _Pcode) {
 
                 upObject.Problem1 = _PProblem2;
@@ -574,7 +574,7 @@ $(document).ready(function () {
 
             } else {
                 if (checkPMH(_data, tempccnObj)) {
-                    bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
+                    bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History.");
                 } else {
                     upObject.Problem1 = _PProblem2;
                     upObject.Status = _PStatus;
@@ -1278,7 +1278,7 @@ function displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Lateralit
                     <td>' + Site + '</td>\n\
                     <td>' + Laterality + '</td>\n\
                     <td>' + Comment + '</td>\n\
-                    <td><a id="SOAPChiefComplaintTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
+                    <td align="center"><a id="SOAPChiefComplaintTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
                  </tr>';
 
     $('#SOAPChiefComplaintTableDIV #SOAPChiefComplaintTable').append(_tr);

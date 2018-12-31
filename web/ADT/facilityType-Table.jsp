@@ -217,14 +217,14 @@
                             $(".modal-backdrop").hide();
                             bootbox.alert({
                                 message: "Facility Type successfully updated",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             FT_loadWardClassOption();
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         }
@@ -248,8 +248,8 @@
             //assign into seprated val
             var idtype = arrayData[1], hfc = arrayData[3];
             bootbox.confirm({
-                message: "Are you sure to delete the facility type information?",
-                title: "Delete Item?",
+                message: "Are you sure to delete the facility type information ?",
+                title: "Please confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -281,14 +281,14 @@
                                     //$('#FacilityTypeTable').load('facilityType-Table.jsp');
                                     bootbox.alert({
                                         message: "Ward class information is deleted",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
                                     FT_loadWardClassOption();
                                 } else if (datas.trim() === 'Failed') {
                                     bootbox.alert({
                                         message: "Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
 
                                     });

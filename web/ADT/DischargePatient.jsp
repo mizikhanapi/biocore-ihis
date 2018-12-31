@@ -526,7 +526,7 @@
                                             timeout: 3000,
                                             success: function (returnEHR) {
 
-                                                alert("Success transfer to Billing");
+                                                alert("Successfully transfer to Billing.");
 
                                                 $.ajax({
                                                     url: "DischargeUpdate.jsp",

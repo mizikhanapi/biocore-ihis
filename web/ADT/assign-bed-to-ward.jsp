@@ -316,7 +316,7 @@
 
                             bootbox.alert({
                                 message: "Bed information successfully added",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             reset();
@@ -324,7 +324,7 @@
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#beddetail').modal('hide');
@@ -332,8 +332,8 @@
 
                         } else if (data.trim() === 'Duplicate') {
                             bootbox.alert({
-                                message: "Sorry, the Bed ID already exist. Would you mind choosing a different Bed ID.",
-                                title: "Process Result",
+                                message: "Sorry, the Bed ID already exist. Please choose a different Bed ID.",
+                                title: "Information",
                                 backdrop: true
                             });
 

@@ -248,13 +248,13 @@
                             $(".modal-backdrop").hide();
                             bootbox.alert({
                                 message: "Successfully updated",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         }
@@ -279,8 +279,8 @@
         var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
         console.log(arrayData);
         bootbox.confirm({
-            message: "Are you sure want to delete facility ID information?",
-            title: "Delete Item?",
+            message: "Are you sure want to delete facility ID information ?",
+            title: "Please confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -314,13 +314,13 @@
 
                                 bootbox.alert({
                                     message: "Successfully deleted",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
                             } else if (result.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
 
                                 });

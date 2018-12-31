@@ -287,7 +287,7 @@
 
                             bootbox.alert({
                                 message: "Successfully added",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             reset();
@@ -295,14 +295,14 @@
 
                             bootbox.alert({
                                 message: "Facility ID Duplication Detected. Please use different Facility ID",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#detailID').modal('hide');

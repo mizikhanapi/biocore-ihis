@@ -104,11 +104,11 @@
                                     </div>
                                 </form>
                                 <div class="text-right">
-                                    <button class="btn btn-primary" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;">
+                                    <button class="btn btn-default" id="btnCISSubCCNAddPersonalised" style="padding-left: 10px;">
                                         <i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized
                                     </button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" id="acceptBtn" role="button">
+                                    <button type="button" class="btn btn-primary" id="acceptBtn" role="button">
                                         Add Symtoms
                                     </button>
                                 </div>
@@ -379,9 +379,9 @@
                                     </div>
                                 </form>
                                 <div class="text-right">
-                                    <button class="btn btn-primary" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
+                                    <button class="btn btn-default" id="btnCISSubDGSAddPersonalised" style="padding-left: 10px;"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Add to personalized</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" id="acceptBtnDGS" role="button">Add Diagnosis</button>
+                                    <button type="button" class="btn btn-primary" id="acceptBtnDGS" role="button">Add Diagnosis</button>
                                 </div>
 
                                 <hr>
@@ -536,7 +536,7 @@
                     </div>
                 </form>
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" id="updateBtnCCN" role="button" autocomplete="off">Update Symtoms</button>
+                    <button type="button" class="btn btn-primary" id="updateBtnCCN" role="button" autocomplete="off">Update Symtoms</button>
                 </div>
                 <br>
 
@@ -628,7 +628,7 @@
                     </div>
                 </form>
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" id="updateBtnDGS" role="button" autocomplete="off">Update Diagnosis</button>
+                    <button type="button" class="btn btn-primary" id="updateBtnDGS" role="button" autocomplete="off">Update Diagnosis</button>
                 </div>
                 <br>
 
@@ -696,7 +696,7 @@
                 <br>
 
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" id="updateBloodPBtn"  role="button" autocomplete="off">Update Blood Pressure</button>
+                    <button type="button" class="btn btn-primary" id="updateBloodPBtn"  role="button" autocomplete="off">Update Blood Pressure</button>
                 </div>
 
 
@@ -745,7 +745,7 @@
                 <br>
 
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" id="updateRRBtn"  role="button" autocomplete="off">Update Respiratory Rate</button>
+                    <button type="button" class="btn btn-primary" id="updateRRBtn"  role="button" autocomplete="off">Update Respiratory Rate</button>
                 </div>
 
             </div>     
@@ -780,7 +780,7 @@
                 <br>
 
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" id="updateOSBtn"  role="button" autocomplete="off">Update Oxygen Saturation</button>
+                    <button type="button" class="btn btn-primary" id="updateOSBtn"  role="button" autocomplete="off">Update Oxygen Saturation</button>
                 </div>
 
             </div>     
@@ -814,7 +814,7 @@
                 <br>
 
                 <div class="text-right">
-                    <button type="button" class="btn btn-success" id="updateBTBtn"   role="button" autocomplete="off">Update Body Temperature</button>
+                    <button type="button" class="btn btn-primary" id="updateBTBtn"   role="button" autocomplete="off">Update Body Temperature</button>
                 </div>
 
             </div>     
@@ -859,7 +859,7 @@
                 <br>
 
                 <div class="text-right">
-                    <button type="button" class="btn btn-success"  id="updateOtherBtn"  role="button" autocomplete="off">Update Height Weight</button>
+                    <button type="button" class="btn btn-primary"  id="updateOtherBtn"  role="button" autocomplete="off">Update Height Weight</button>
                 </div>
 
             </div>     

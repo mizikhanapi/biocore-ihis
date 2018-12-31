@@ -548,7 +548,7 @@
                                 $("#reportAttendanceTotalPatient").val(dataRow.length);
                                 $("#searchPatientAttendance").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
-                                alert("There is no patient in this time range !!");
+                                alert("There is no patient in this time range.");
                             }
                         },
                         error: function (err) {

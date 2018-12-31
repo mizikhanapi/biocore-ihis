@@ -208,7 +208,7 @@ $(document).ready(function () {
                 });
             },
             error: function (err) {
-                bootbox.alert("Error update!");
+                bootbox.alert("Error update");
             }
         });
     });
@@ -321,7 +321,7 @@ $(document).ready(function () {
                 });
             },
             error: function (err) {
-                bootbox.alert("Error update!");
+                bootbox.alert("Error update");
             }
         });
 

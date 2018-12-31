@@ -34,7 +34,7 @@ $(document).ready(function () {
 
             if (user_idList !== doctor_id) {
 
-                alert("Patient has been consult by another doctor. Please select another waiting patient");
+                alert("Patient has been consult by another doctor. Please select another waiting patient.");
 
             } else {
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
                 } else {
 
-                    alert('You need complete the consultation on patient before first');
+                    alert('You need complete the consultation on patient before first.');
 
                 }
 //
@@ -139,7 +139,7 @@ $(document).ready(function () {
 
             } else {
 
-                alert('You need complete the consultation on patient before first');
+                alert('You need complete the consultation on patient before first.');
 
             }
 //

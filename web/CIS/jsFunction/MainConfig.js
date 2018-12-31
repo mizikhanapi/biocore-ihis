@@ -53,7 +53,7 @@ var HCSContent = [];
 
 
 function  disableSOAP() {
-    bootbox.alert("You need to select a patient from the <b>Queue!</b>");
+    bootbox.alert("You need to select a patient from the <b>Queue</b>");
     return false;
 }
 
@@ -213,7 +213,7 @@ function loadSetting(user_id) {
         },
         success: function (result) {
             if (result.trim() === "|O|") {
-                alert("You not set up your consultation setting yet. You need set up before consult the patient");
+                alert("You not set up your consultation setting yet. You need set up before consult the patient.");
                 $("#settingModal").modal("toggle");
 
             } else {

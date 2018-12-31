@@ -309,14 +309,14 @@
                             $('#WardOccupancyTable').load("WardOccupancy-Table.jsp");
                             $(".modal-backdrop").hide();
                             bootbox.alert({
-                                message: "Successfully updated",
-                                title: "Process Result",
+                                message: "Successfully updated ward.",
+                                title: "Information",
                                 backdrop: true
                             });
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         }

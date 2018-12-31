@@ -318,13 +318,13 @@
                             $(".modal-backdrop").hide();
                             bootbox.alert({
                                 message: "Hospital charges information successfully updated",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         }
@@ -354,8 +354,8 @@
 
             console.log(arrayData);
             bootbox.confirm({
-                message: "Are you sure to delete Hospital Charges information?",
-                title: "Delete Item?",
+                message: "Are you sure to delete Hospital Charges information ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -396,13 +396,13 @@
 
                                     bootbox.alert({
                                         message: "Successfully deleted",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
                                 } else if (result.trim() === 'Failed') {
                                     bootbox.alert({
                                         message: "Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
 
                                     });

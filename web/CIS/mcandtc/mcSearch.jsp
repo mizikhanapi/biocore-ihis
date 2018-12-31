@@ -86,7 +86,7 @@
 
         if ($('#mcInput').val() === "" || $('#mcInput').val() === " ") {
             //if the id/ic input is empty
-            alert('Please key in PMI no. or IC no. or IDENTIFICATION no. to continue seaching process');
+            alert('Please key in PMI no. or IC no. or IDENTIFICATION no. to continue seaching process.');
         } else if (opt === "-") {
             //if the select box is not selected
             alert('Please select ID Type first.');

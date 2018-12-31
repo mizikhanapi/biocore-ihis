@@ -224,17 +224,17 @@
                     //var subDicipline = $('#subDicipline').val();
 
                     if (Dis === "" || Dis === null) {
-                        bootbox.alert("Complete The Fields of Discipline ");
+                        bootbox.alert("Complete The Fields of Discipline. ");
                     } else if (WardClass === "" || WardClass === null) {
-                        bootbox.alert("Complete The Fields of Ward ID");
+                        bootbox.alert("Complete The Fields of Ward ID.");
                     } else if (TransferReason === "" || TransferReason === null) {
-                        bootbox.alert("Complete The Fields of Transfer Reason");
+                        bootbox.alert("Complete The Fields of Transfer Reason.");
                     } else if (WardName === "" || WardName === null) {
-                        bootbox.alert("Complete The Fields of Ward Name");
+                        bootbox.alert("Complete The Fields of Ward Name.");
                     } else if (Deposit === "" || Deposit === null) {
-                        bootbox.alert("Complete The Fields of Citizen Rates");
+                        bootbox.alert("Complete The Fields of Citizen Rates.");
                     } else if (Bed === "" || Bed === null) {
-                        bootbox.alert("Select Bed first");
+                        bootbox.alert("Select Bed first.");
 
                     } else {
                         
@@ -278,7 +278,7 @@
                                     $('#TransferForm')[0].reset();
 
                                 } else if (databack.trim() === "fail") {
-                                    bootbox.alert("Fail to transfer the patient");
+                                    bootbox.alert("Fail to transfer the patient.");
                                 }
                                 else if(databack.trim()=== "taken"){
                                     bootbox.alert("Sorry, the bed is already taken by other. Please choose different bed.");

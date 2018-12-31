@@ -175,7 +175,7 @@ $(document).ready(function () {
         var delId = $(this).get(0).id;
         var delIdA = delId.split("|");
         var delIndex = parseInt(delIdA[1]);
-        var delConfirm = confirm('Are you want to delete this Order? ');
+        var delConfirm = confirm('Are you want to delete this Order ? ');
         if (delConfirm === true) {
             delete _dataMON[delIndex];
             $(this).closest('tr').remove();

@@ -52,7 +52,7 @@ $(document).ready(function () {
 
         }
   
-        var submitConfirm = confirm('Confirm All Order');
+        var submitConfirm = confirm('Confirm All Order ?');
         if (submitConfirm === true) {
        
             var fullmsg;

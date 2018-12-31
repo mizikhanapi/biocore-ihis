@@ -235,7 +235,7 @@
             var dateTo = $('#ANL_dateTo').val();
 
             if (dateFrom === "" || dateTo === "") {
-                bootbox.alert("Please choose the dates");
+                bootbox.alert("Please choose the dates.");
             } else {
                 ANL_loadData();
             }

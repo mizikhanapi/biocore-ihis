@@ -141,7 +141,7 @@
                 // $('#tab_a').find('a').removeAttr('data-toggle');
                 var target = $(e.target).attr("href");
                 e.preventDefault();
-                var areYouSure = confirm('If you sure you wish to leave this tab?  Any data entered will NOT be saved.  To save information,press cancel and use the Save buttons in the main page.');
+                var areYouSure = confirm('If you sure you wish to leave this tab ?  Any data entered will NOT be saved.  To save information,press cancel and use the Save buttons in the main page.');
                 if (areYouSure === true) {
                     $(this).tab('show');
                 } else {

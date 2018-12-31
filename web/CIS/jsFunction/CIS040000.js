@@ -211,19 +211,19 @@ $(document).ready(function () {
         var priority = $('#priorityROScd :selected').text().trim();
 
         if (ROS === '' && appointmentROS === '' && commentROS === '') {
-            alert("You not enter the Radiology Procedure, Comment and Appointment Date");
+            alert("You not enter the Radiology Procedure, Comment and Appointment Date.");
         } else if (ROS === '' && appointmentROS === '') {
-            alert("You not enter the Radiology Procedure and Appointment date");
+            alert("You not enter the Radiology Procedure and Appointment date.");
         } else if (ROS === '' && commentROS === '') {
-            alert("You not enter the Radiology Procedure and Comment");
+            alert("You not enter the Radiology Procedure and Comment.");
         } else if (appointmentROS === '' && commentROS === '') {
-            alert("You not enter the Appointment Date and Comment");
+            alert("You not enter the Appointment Date and Comment.");
         } else if (commentROS === '') {
-            alert("You not enter the Comment");
+            alert("You not enter the Comment.");
         } else if (ROS === '') {
-            alert("You not enter the Radiology Procedure");
+            alert("You not enter the Radiology Procedure.");
         } else if (appointmentROS === '') {
-            alert("You not enter the Appointment Date");
+            alert("You not enter the Appointment Date.");
         } else {
             if (problemCode === '') {
                 problemCode = "-";
@@ -267,7 +267,7 @@ $(document).ready(function () {
         var delId = $(this).get(0).id;
         var delIdA = delId.split("|");
         var delIndex = parseInt(delIdA[1]);
-        var delConfirm = confirm('Are you want to delete this Order? ');
+        var delConfirm = confirm('Are you want to delete this Order ? ');
         if (delConfirm === true) {
             delete _dataROS[delIndex];
             $(this).closest('tr').remove();
@@ -382,7 +382,7 @@ $(document).ready(function () {
         if (gotItem) {
             bootbox.confirm({
                 title: "Submit Order?",
-                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order ?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',

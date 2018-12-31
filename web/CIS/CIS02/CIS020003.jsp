@@ -198,7 +198,7 @@
                 $(this).blur();
             }
             else if(input.validity.stepMismatch || isNaN(this.value)){
-                bootbox.alert("Enter whole number only.");
+                bootbox.alert("Enter whole number only");
                 $(this).val(''); 
                 $(this).blur();
             }

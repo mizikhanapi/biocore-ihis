@@ -357,7 +357,7 @@ $(document).ready(function () {
         var delId = $(this).get(0).id;
         var delIdA = delId.split("|");
         var delIndex = parseInt(delIdA[1]);
-        var delConfirm = confirm('Are you want to delete this Order? ');
+        var delConfirm = confirm('Are you want to delete this Order ? ');
         if (delConfirm === true) {
             delete _dataPOS[delIndex];
             $(this).closest('tr').remove();
@@ -480,7 +480,7 @@ $(document).ready(function () {
         if (gotItem) {
             bootbox.confirm({
                 title: "Submit Order?",
-                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order ?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',

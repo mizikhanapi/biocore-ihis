@@ -176,19 +176,19 @@ $(document).ready(function () {
         var problemName = $("#tCISOELIOProblemName").val();
 
         if (searchLOS === '' && appointmentLOS === '' && commentLOS === '') {
-            alert("You not enter the Laboratory Procedure, Comment and Appointment Date");
+            alert("You not enter the Laboratory Procedure, Comment and Appointment Date.");
         } else if (searchLOS === '' && appointmentLOS === '') {
-            alert("You not enter the Laboratory Procedure and Appointment date");
+            alert("You not enter the Laboratory Procedure and Appointment date.");
         } else if (searchLOS === '' && commentLOS === '') {
-            alert("You not enter the Laboratory Procedure and Comment");
+            alert("You not enter the Laboratory Procedure and Comment.");
         } else if (appointmentLOS === '' && commentLOS === '') {
-            alert("You not enter the Appointment Date and Comment");
+            alert("You not enter the Appointment Date and Comment.");
         } else if (commentLOS === '') {
-            alert("You not enter the Comment");
+            alert("You not enter the Comment.");
         } else if (searchLOS === '') {
-            alert("You not enter the Laboratory Procedure");
+            alert("You not enter the Laboratory Procedure.");
         } else if (appointmentLOS === '') {
-            alert("You not enter the Appointment Date");
+            alert("You not enter the Appointment Date.");
         } else {
             var $items = $('#codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
             var obj1 = {
@@ -207,7 +207,7 @@ $(document).ready(function () {
             });
 
             if (checkOrderCode(_dataLIO, obj1.codeLOS)) {
-                alert("This order already been added");
+                alert("This order already been added.");
             } else {
                 _dataLIO.push(obj1);
                 indexLIO = _dataLIO.lastIndexOf(obj1);
@@ -452,7 +452,7 @@ $(document).ready(function () {
         if (gotItem) {
             bootbox.confirm({
                 title: "Submit Order?",
-                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order ?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',

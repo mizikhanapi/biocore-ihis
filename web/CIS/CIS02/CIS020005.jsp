@@ -73,7 +73,7 @@
                     $(this).val('');
                 }
                 else if(this.validity.stepMismatch){
-                    bootbox.alert("Enter number with one decimal place only.");
+                    bootbox.alert("Enter number with one decimal place only");
                     $(this).val('');
                 }
                 else if(!this.checkValidity()){

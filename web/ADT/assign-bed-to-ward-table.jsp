@@ -275,13 +275,13 @@
                             $(".modal-backdrop").hide();
                             bootbox.alert({
                                 message: "Bed information successfully updated",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         }
@@ -305,8 +305,8 @@
             //assign into seprated val
             var idbed = arrayData[3], hfc = arrayData[8];
             bootbox.confirm({
-                message: "Are you sure to delete bed information?",
-                title: "Delete Item?",
+                message: "Are you sure to delete bed information ?",
+                title: "Please confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -339,13 +339,13 @@
 
                                     bootbox.alert({
                                         message: "Successfully deleted",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
                                 } else if (datas.trim() === 'Failed') {
                                     bootbox.alert({
                                         message: "Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
 
                                     });

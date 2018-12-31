@@ -19,8 +19,8 @@
     $('#patientInfoDiv').on('click', '#d_btnDischarge', function () {
 
         bootbox.confirm({
-            message: "Are you sure to discharge the patient?",
-            title: "Discharge?",
+            message: "Are you sure to discharge the patient ?",
+            title: "Please confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',

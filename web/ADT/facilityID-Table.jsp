@@ -502,20 +502,20 @@
                             $(".modal-backdrop").hide();
                             bootbox.alert({
                                 message: "Facility ID information successfully updated",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             FI_loadWardNameOption();
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         } else if (datas.trim() === 'name') {
                             bootbox.alert({
                                 message: "Ward Name Duplication Detected. Please use different Ward Name.",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                         } else {
@@ -545,8 +545,8 @@
             var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19], wname = arrayData[1], wdis = arrayData[20];
             console.log(arrayData);
             bootbox.confirm({
-                message: "Are you sure to delete facility ID information?",
-                title: "Delete Item?",
+                message: "Are you sure to delete facility ID information ?",
+                title: "Please confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -581,7 +581,7 @@
                                     tableWard.row(row).remove.draw();
                                     bootbox.alert({
                                         message: "Successfully deleted",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
                                     FI_loadWardNameOption();
@@ -591,7 +591,7 @@
                                 } else if (result.trim() === 'Failed') {
                                     bootbox.alert({
                                         message: "Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
 
                                     });

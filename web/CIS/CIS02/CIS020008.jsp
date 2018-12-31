@@ -232,7 +232,7 @@
                     $(this).blur();
                 }
                 else if(input.validity.stepMismatch || isNaN(this.value)){
-                    bootbox.alert("Enter number with one decimal number only.");
+                    bootbox.alert("Enter number with one decimal number only");
                     $(this).val(''); 
                     $(this).blur();
                 }

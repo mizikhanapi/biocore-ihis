@@ -404,7 +404,7 @@
 
                             bootbox.alert({
                                 message: "Hospital Charges information successfully added",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             reset();
@@ -412,14 +412,14 @@
 
                             bootbox.alert({
                                 message: "Sorry, duplication data detected.",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#detailID').modal('hide');

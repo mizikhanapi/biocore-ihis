@@ -409,8 +409,8 @@ $(document).ready(function () {
 
         if (gotItem) {
             bootbox.confirm({
-                title: "Submit Order?",
-                message: "You are closing the order form with unsubmitted order. Do you want to submit the order?",
+                title: "Submit Order ?",
+                message: "You are closing the order form with unsubmitted order. Do you want to submit the order ?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',

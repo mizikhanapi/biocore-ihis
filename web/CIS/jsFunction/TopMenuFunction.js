@@ -201,7 +201,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         //var c = confirm("Are you sure you want ON HOLD this patient?");
         var pmiNo = $('#pmiNumber').text();
         bootbox.confirm({
-            message: "Are you sure you want ON HOLD this patient?",
+            message: "Are you sure you want ON HOLD this patient ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -251,10 +251,10 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
     $("#missingBtn").click(function () {
         
         var pmiNo = $('#pmiNumber').text();
-        var c = confirm("Are you sure you want declare this patient are MISSING?");
+        var c = confirm("Are you sure you want declare this patient are MISSING ?");
         
         bootbox.confirm({
-            message: "Are you sure you want declare this patient are MISSING?",
+            message: "Are you sure you want declare this patient are MISSING ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -791,7 +791,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         if (checkCCN === true && checkDGS === true && checkDCG === true) {
 
             if (dataDischarge[0] === true && dataDischarge[1] === true && dataDischarge[2] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -808,7 +808,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         } else if (checkCCN === false && checkDGS === true && checkDCG === true) {
 
             if (dataDischarge[1] === true && dataDischarge[2] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -823,7 +823,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         } else if (checkCCN === false && checkDGS === false && checkDCG === true) {
 
             if (dataDischarge[2] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -836,7 +836,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         } else if (checkCCN === false && checkDGS === true && checkDCG === false) {
 
             if (dataDischarge[1] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -849,7 +849,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         } else if (checkCCN === true && checkDGS === false && checkDCG === false) {
 
             if (dataDischarge[0] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -862,7 +862,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         } else if (checkCCN === true && checkDGS === false && checkDCG === true) {
 
             if (dataDischarge[0] === true && dataDischarge[2] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -877,7 +877,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
         } else if (checkCCN === true && checkDGS === true && checkDCG === false) {
 
             if (dataDischarge[0] === true && dataDischarge[1] === true) {
-                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                var c = confirm("Are you sure you want DISCHARGE this patient ?");
                 if (c === true) {
                     storeData(1);
                 } else {
@@ -891,7 +891,7 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
             //110
         } else if (checkCCN === false && checkDGS === false && checkDCG === false) {
 
-            var c = confirm("Are you sure you want DISCHARGE this patient?");
+            var c = confirm("Are you sure you want DISCHARGE this patient ?");
             if (c === true) {
                 storeData(1);
             } else {

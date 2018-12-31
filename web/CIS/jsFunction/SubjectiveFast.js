@@ -74,7 +74,7 @@ function displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Lateralit
                     <td>' + Site + '</td>\n\
                     <td>' + Laterality + '</td>\n\
                     <td>' + Comment + '</td>\n\
-                    <td><a id="fastTrackChiefComplaintTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
+                    <td align="center"><a id="fastTrackChiefComplaintTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
                  </tr>';
 
     $('#fastTrackChiefComplaintTableDIV #fastTrackChiefComplaintTable').append(_tr);

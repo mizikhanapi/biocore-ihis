@@ -126,7 +126,7 @@ $(document).ready(function () {
 
         });
 
-        if (validationField(Problem8, "Please search and select the correct Diagnosis.")) {
+        if (validationField(Problem8, "Please search and select the correct diagnosis.")) {
 
             if (date4 === "" || date4 === null) {
                 bootbox.alert("Please choose diagnosis date.");
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
                 if (checkDGS(_data, obj1)) {
 
-                    bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis.");
+                    bootbox.alert("This diagnosis already been inserted. Please choose at consultation note to update the record or add new diagnosis.");
 
                 } else {
 
@@ -178,7 +178,7 @@ $(document).ready(function () {
 
                     } else {
 
-                        bootbox.alert("You have already added the diagnosis into the table. Please Choose Different Diagnosis.");
+                        bootbox.alert("You have already added the diagnosis into the table. Please choose different diagnosis.");
 
                     }
 
@@ -313,7 +313,7 @@ $(document).ready(function () {
             } else {
 
                 if (checkDGS(_data, checkObj)) {
-                    bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis.");
+                    bootbox.alert("This diagnosis already been inserted. Please choose at consultation note to update the record or add new diagnosis.");
                 } else {
 
                     upObject.TypeDGS = _TType;
@@ -387,7 +387,7 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
                     <td>' + Site1 + '</td>\n\
                     <td>' + Laterality1 + '</td>\n\
                     <td>' + comment8 + '</td>\n\
-                    <td><a id="fastTrackDiagnosisTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
+                    <td align="center"><a id="fastTrackDiagnosisTableDeleteBtn" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>\n\
                  </tr>';
 
     $('#fastTrackDiagnosisTableDIV #fastTrackDiagnosisTable').append(_tr);

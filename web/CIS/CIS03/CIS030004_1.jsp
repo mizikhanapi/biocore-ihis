@@ -160,7 +160,7 @@
             timeout: 10000,
             success: function (getData) {
                 if (getData.trim() === "1") {
-                    bootbox.alert("There is no medication for this episode.");
+                    bootbox.alert("There is no medication for this episode");
                     $('#inpatientProblemDrug').html("");
                 } else {
                     $('#inpatientProblemDrug').html(getData);
@@ -181,7 +181,7 @@
         };
         
         bootbox.confirm({
-            message: "Are you sure want to delete this record?",
+            message: "Are you sure want to delete this record ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
@@ -240,7 +240,7 @@
             success: function (getData) {
                 //console.log(getData);
                 if (getData.trim() === "1") {
-                    bootbox.alert("There is no medication for this episode.");
+                    bootbox.alert("There is no medication for this episode");
                     $('#outpatientProblemDrug').html("");
                 } else {
                     $('#outpatientProblemDrug').html(getData);

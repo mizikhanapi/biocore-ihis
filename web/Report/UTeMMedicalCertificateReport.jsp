@@ -508,7 +508,7 @@
                                 $("#reportMedicalCertificateTotal").val(dataRow.length);
                                 $("#searchMedicalCertificate").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
-                                alert("There is no Medical Certificates Issued in this time range !!");
+                                alert("There is no Medical Certificates Issued in this time range");
                             }
                         },
                         error: function (err) {

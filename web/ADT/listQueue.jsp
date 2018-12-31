@@ -168,8 +168,8 @@
         var order = arrayData[4];
 
         bootbox.confirm({
-            message: "Are you sure want to delete the patient from the queue?",
-            title: "Delete Item?",
+            message: "Are you sure want to delete the patient from the queue ?",
+            title: "Please confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
