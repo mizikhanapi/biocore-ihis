@@ -342,6 +342,9 @@
                     "emptyTable": "No Specimen Available To Display"
                 }
             });
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+              }); 
 
 
         }
