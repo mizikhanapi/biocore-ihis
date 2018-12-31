@@ -278,11 +278,11 @@ $('#registerQueue').click(function () {
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {

@@ -17,7 +17,7 @@
 
 <h4>Find completed order</h4>
 <!-- tab content -->
-<div class=" form-horizontal" align="center">
+<div class=" form-horizontal">
 
 
     <!-- Select Basic -->

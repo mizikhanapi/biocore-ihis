@@ -5,7 +5,7 @@
 --%>
 
 <h4>View Past Order</h4>
-<div class=" form-horizontal" align="center">
+<div class=" form-horizontal">
 
 
     <!-- Select Basic -->

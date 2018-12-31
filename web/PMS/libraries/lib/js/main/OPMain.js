@@ -11,11 +11,11 @@ function Main(array_data) {
             buttons: {
                 confirm: {
                     label: 'Continue',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'Cancel',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -79,11 +79,11 @@ function Main(array_data) {
             buttons: {
                 confirm: {
                     label: 'Continue',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'Cancel',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -151,11 +151,11 @@ function Main(array_data) {
             buttons: {
                 confirm: {
                     label: 'Continue',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'Cancel',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -203,11 +203,11 @@ function Main(array_data) {
             buttons: {
                 confirm: {
                     label: 'Continue',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'Cancel',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -253,11 +253,11 @@ function Main(array_data) {
             buttons: {
                 confirm: {
                     label: 'Continue',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'Cancel',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {

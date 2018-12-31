@@ -55,159 +55,150 @@
     SimpleDateFormat formate = new SimpleDateFormat("a");
 
     %></p>
-<p style="text-align: right; position: absolute; top: 37px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 40px; ">
+<p style="text-align: right; position: fixed; top: 20px; right: 30px; color: #666; display: none; font-weight: 500; font-size: 40px; ">
     <span style="display: block; font-size: 26px; letter-spacing: .14em; margin-bottom: -10px; font-weight: 300;"><%out.print(tarikh.format(datenow));%></span>
     <%out.print(masa.format(datenow));%>&nbsp;<%out.print(formate.format(datenow));%>
 </p>
-<table class="table table-hover" style="text-transform: uppercase; font-weight: 500; margin-top:-30px;overflow-y: scroll;" id="callerTable">
 
-    <tbody>
-        <%            if (d.size() > 0) {
-                for (int i = 0; i < d.size(); i++) {
-                    String cs_id = d.get(i).get(0);
-                    String number = d.get(i).get(4);
-                    int cs_callingtime = Integer.parseInt(number);
-        %>
-        <tr>
-            <td style="text-align: left; font-weight: 400; width: 5%; font-size:12px;">
+<table id="callerTable">
+    <%            if (d.size() > 0) {
+            for (int i = 0; i < d.size(); i++) {
+                String cs_id = d.get(i).get(0);
+                String number = d.get(i).get(4);
+                int cs_callingtime = Integer.parseInt(number);
+    %>
 
-                <strong><span id="qno_<%=i%>" style="    
-                              background: #58C102;
-                              padding: 5px 10px;
-                              margin-right: 30px;
-                              font-weight: 500;
-                              color: #fff; font-size: 80px;"><%=d.get(i).get(2)%></span></strong></td>
-            <td style="text-align: left; font-weight: 400; padding: 30px 0; font-size: 81px;"><span id="name_<%=i%>"><strong><%=d.get(i).get(1)%></strong></span></td>
-            <td style="text-align: right;">
-                <p style="margin-bottom: 3px; font-weight: 400;">Room No</p>
-                <span style="    
-                      font-weight: 500;
-                      color: #333; font-size: 80px;" id="qname_<%=i%>"><%=d.get(i).get(5)%></span>
-                <%
-                    String myString = d.get(i).get(2);
-                %>
-                <div id="view_VS">
-
-                </div>
-                <% //String LNG = request.getParameter("LNG");
-
-                    if (cs_callingtime > 0) {
-                        if (lang.equals("1")) {
-                %>
-                <script>
-                    var initial = "<%=initial%>";
-                    var name = $("#name_<%=i%>").html();
-                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
-
-                    var qno = $("#qno_<%=i%>").html();
-                    //console.log(qno);
-                    var qname = $("#qname_<%=i%>").html();
-                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
-                    //$("#view_VS").load("libraries/header.html");
-                    //alert(qno);
-                    var qno1 = Number(qno) + Number(initial);
-                    //alert(qno);
-                    $("#view_VS").load("voice_call.jsp?idResult=" + qno1 + "&room=" + qname);
-                    //console.log(qno1);
-                    //console.log(qname);
-                </script>   
-                <%
-                } else if (lang.equals("2")) {
-                %>
-                <script>
-                    var name = $("#name_<%=i%>").html();
-                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
-
-                    var qno = $("#qno_<%=i%>").html();
-                    var qname = $("#qname_<%=i%>").html();
-                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
-                    var ayat = name;
-
-                    var msg1 = new SpeechSynthesisUtterance(ayat);
-                    window.speechSynthesis.speak(msg1);
-                </script>
-                <%
-                } else if (lang.equals("3")) {
-                %>
-                <script>
-                    var name = $("#name_<%=i%>").html();
-                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
-
-                    var qno = $("#qno_<%=i%>").html();
-                    var qname = $("#qname_<%=i%>").html();
-                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
-                    var ayat = name + ", Number " + qno + ", Room " + qname;
-                    var msg1 = new SpeechSynthesisUtterance(ayat);
-                    window.speechSynthesis.speak(msg1);
-                </script>
-                <%
-                    }
-                %>
-
-                <%
-                    RMIConnector rmic = new RMIConnector();
-                    //Query q2 = new Query();
-                    cs_callingtime -= 1;
-                    String sql2 = "UPDATE qcs_calling_system_queue SET cs_callingtime = '" + cs_callingtime + "' WHERE Id = '" + cs_id + "' ";
-                    //q2.setQuery(sql2);
-                    rmic.setQuerySQL(conn.HOST, conn.PORT, sql2);
-                } else {
-                %>
-                <script>
-                    //alert("habis");
-                </script>
-                <%
-                    }
-                %>
-
-
-            </td>
-            <td>
-                <input type="hidden" value="<%=d.get(i).get(0)%>" id="idCaller">
-                <button class="btn btn-danger" id="delCaller">X</button>
-
-            </td>
-        </tr>
+    <tr class="calling-queueNo active">
+        <td>
+            <div class="callingBox">
+                <h3 style="font-size: 20px;margin: 10px 0 0;">Queue No.</h3>
+        <h1 class="q-pantone" id="qno_<%=i%>" style="font-size: 100%;margin: 0px;"><%=d.get(i).get(2)%></h1>
+        <dt id="name_<%=i%>" style="font-size: 15px;">(<%=d.get(i).get(1)%>)</dt>
+        <h4 style="font-size: 20px;margin: 0px;">Room No: <span class="q-pantone" id="qname_<%=i%>"><%=d.get(i).get(5)%></span></h4>
         <%
-                }
+            String myString = d.get(i).get(2);
+        %>
+        <div id="view_VS"></div>
+        <% //String LNG = request.getParameter("LNG");
+
+            if (cs_callingtime > 0) {
+                if (lang.equals("1")) {
+        %>
+        <script>
+            var initial = "<%=initial%>";
+            var name = $("#name_<%=i%>").html();
+            name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+
+            var qno = $("#qno_<%=i%>").html();
+            //console.log(qno);
+            var qname = $("#qname_<%=i%>").html();
+            qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+            //$("#view_VS").load("libraries/header.html");
+            //alert(qno);
+            var qno1 = Number(qno) + Number(initial);
+            //alert(qno);
+            $("#view_VS").load("voice_call.jsp?idResult=" + qno1 + "&room=" + qname);
+            //console.log(qno1);
+            //console.log(qname);
+        </script>   
+        <%
+        } else if (lang.equals("2")) {
+        %>
+        <script>
+            var name = $("#name_<%=i%>").html();
+            name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+
+            var qno = $("#qno_<%=i%>").html();
+            var qname = $("#qname_<%=i%>").html();
+            qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+            var ayat = name;
+
+            var msg1 = new SpeechSynthesisUtterance(ayat);
+            window.speechSynthesis.speak(msg1);
+        </script>
+        <%
+        } else if (lang.equals("3")) {
+        %>
+        <script>
+            var name = $("#name_<%=i%>").html();
+            name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+
+            var qno = $("#qno_<%=i%>").html();
+            var qname = $("#qname_<%=i%>").html();
+            qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                return letter.toUpperCase();
+            });
+            var ayat = name + ", Number " + qno + ", Room " + qname;
+            var msg1 = new SpeechSynthesisUtterance(ayat);
+            window.speechSynthesis.speak(msg1);
+        </script>
+        <%
             }
         %>
-    </tbody>
+
+        <%
+            RMIConnector rmic = new RMIConnector();
+            //Query q2 = new Query();
+            cs_callingtime -= 1;
+            String sql2 = "UPDATE qcs_calling_system_queue SET cs_callingtime = '" + cs_callingtime + "' WHERE Id = '" + cs_id + "' ";
+            //q2.setQuery(sql2);
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sql2);
+        } else {
+        %>
+        <script>
+            //alert("habis");
+        </script>
+        <%
+            }
+        %>
+        <div>
+            <input type="hidden" value="<%=d.get(i).get(0)%>" id="idCaller1">
+            <button class="btn btn-link" id="delCaller1"><i class="fa fa-times"></i></button>
+        </div>
+            </div>
+        </td>
+        
+    </tr>
+    <%
+            }
+        }
+    %>
 </table>
 <script>
-    $('#callerTable #delCaller').on('click', function () {
+    $('#papar #callerTable #delCaller1').on('click', function () {
+//        var row = $(this).closest('.queue-no');
+//        var idCaller = row.find('#idCaller1').val();
         var row = $(this).closest('tr');
-        var idCaller = row.find('#idCaller').val();
+        var idCaller = row.find('#idCaller1').val();
         console.log(idCaller);
         bootbox.confirm({
-            message: "Are you sure want to DELETE PATIENT CALLING?",
+            message: "Are you sure you want to delete the patient from the queue?",
+            titile:"Confirm?",
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
                 //if true go to PMI page
                 if (result === true) {
 
-                    
+
                     $.ajax({
                         type: "post",
                         url: "delCaller.jsp",
@@ -216,6 +207,7 @@
                             console.log(databack);
                             if ($.trim(databack) === "success") {
                                 bootbox.alert("success");
+                                location.reload();
                             } else if ($.trim(databack) === "error") {
                                 bootbox.alert("fail");
                             }
