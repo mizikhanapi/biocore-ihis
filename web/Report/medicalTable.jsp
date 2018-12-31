@@ -43,8 +43,8 @@
 
     ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
     if (dataQueue.size() > 0) {
-        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + dataQueue.get(0).get(0) + "'AND w.inpatient_status = '1' group by w.episode_date;";
-        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + dataQueue.get(0).get(0) + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` ASC;";
+        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,DATE_FORMAT(w.episode_date, '%d/%m/%Y %T') from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + dataQueue.get(0).get(0) + "'AND w.inpatient_status = '1' group by w.episode_date;";
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,DATE_FORMAT(p.episode_date, '%d/%m/%Y %T') from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + dataQueue.get(0).get(0) + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` ASC;";
 
         ArrayList<ArrayList<String>> searchInpatient;
         searchInpatient = conn.getData(sql);
@@ -132,7 +132,7 @@
 
                     %>
                     <tr>
-                        <td><%=searchInpatient.get(i).get(1)%>
+                        <td><%=searchInpatient.get(i).get(4)%>
                             <input type="hidden" id="pmi" value="<%=searchInpatient.get(i).get(0)%>">
                             <input type="hidden" id="episode" value="<%=searchInpatient.get(i).get(1)%>">
                             <input type="hidden" id="discipline" value="<%=searchInpatient.get(i).get(3)%>">
@@ -171,7 +171,7 @@
 
                     %>
                     <tr>
-                        <td><%=searchOutpatient.get(i).get(1)%>
+                        <td><%=searchOutpatient.get(i).get(4)%>
                             <input type="hidden" id="pmi1" value="<%=searchOutpatient.get(i).get(0)%>">
                             <input type="hidden" id="episode1" value="<%=searchOutpatient.get(i).get(1)%>">
                             <input type="hidden" id="discipline1" value="<%=searchOutpatient.get(i).get(3)%>">

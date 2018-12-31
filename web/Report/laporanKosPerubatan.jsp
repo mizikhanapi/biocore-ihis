@@ -43,11 +43,11 @@
         <script src="../assets/js/jquery-ui.js"></script>
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <link rel="stylesheet" href="../assets/css/jquery-ui.css">
-<!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-        
+        <!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
         <!--<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
         <link href="../assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -79,31 +79,30 @@
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
                                         <option value="all">All</option>
-                                        <%
-                                            for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
+                                        <%                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
                                             }
                                         %>
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group col-md-12">
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength="" readonly=""/>
+                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="DD/MM/YYYY" maxlength="" readonly=""/>
                                 </div>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength="" readonly=""/>
+                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="DD/MM/YYYY" maxlength="" readonly=""/>
                                 </div>
                             </div>
                             <hr/>
 
                             <div class="text-right" >
-                                <button type="reset" id="PrintReset" class="btn btn-link" data-dismiss="modal" role="button" >Clear</button>
-                                <button type="submit" class="btn btn-success" role="button" id="printLaporanKosPerubatan">Generate Report</button>
+                                <button type="reset" id="PrintReset" class="btn btn-default" data-dismiss="modal" role="button" >Clear</button>
+                                <button type="submit" class="btn btn-primary" role="button" id="printLaporanKosPerubatan">Generate Report</button>
                             </div>
                         </div>
                     </div>
@@ -130,47 +129,57 @@
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
-            <script src="../assets/js/create_destroy_loading.js" type="text/javascript" language="javascript"></script>
-        
+        <script src="../assets/js/create_destroy_loading.js" type="text/javascript" language="javascript"></script>
+
         <script>
 
             $(document).ready(function () {
 
                 $("#dateFrom").datepicker({
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
+                    dateFormat: 'dd/mm/yy',
+                    yearRange: '1999:c+1',
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(1999, 10 - 1, 25),
+                    maxDate: '+30Y',
+                    beforeShow: function () {
+                        setTimeout(function () {
+                            $('.ui-datepicker').css('z-index', 999999999);
+                        }, 0);
+                    },
+                    onSelect: function (selected) {
 
-                    $("#dateTo").datepicker("option", "minDate", selected);
+                        $("#dateTo").datepicker("option", "minDate", selected);
 
-                }
-            });
+                    }
+                });
 
-            $("#dateTo").datepicker({
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
+                $("#dateTo").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    yearRange: '1999:c+1',
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(1999, 10 - 1, 25),
+                    maxDate: '+30Y',
+                    beforeShow: function () {
+                        setTimeout(function () {
+                            $('.ui-datepicker').css('z-index', 999999999);
+                        }, 0);
+                    },
+                    onSelect: function (selected) {
 
-                    $("#dateFrom").datepicker("option", "maxDate", selected);
+                        $("#dateFrom").datepicker("option", "maxDate", selected);
 
-                }
-            });
-            
+                    }
+                });
+
                 $('#printLaporanKosPerubatan').on('click', function () {
 
                     if ($('#dateFrom').val() === "" || $('#dateTo').val() === " ") {
                         //if the id/ic input is empty
                         alert('Please choose date to prooceed');
                     } else {
-                            
+
                         var startDate = document.getElementById("dateFrom").value;
                         var endDate = document.getElementById("dateTo").value;
                         var disciplilne = $('#patientType').val();
@@ -186,7 +195,7 @@
                             async: true,
                             type: "POST",
                             url: "laporanKosPerubatanReport.jsp",
-                            data: {'startDate': startDate, 'endDate': endDate,'dis':disciplilne},
+                            data: {'startDate': startDate, 'endDate': endDate, 'dis': disciplilne},
                             timeout: 10000,
                             success: function (list) {
                                 $('#cost').html(list);
@@ -198,7 +207,7 @@
                         });
                     }
                 });
-                
+
                 $('#PrintReset').on('click', function () {
 
                     $('#dateFrom').val('');

@@ -40,11 +40,11 @@
                             <div class="form-inline" style="text-align: center;">
                                 <div class="form-group">
                                     <label for="exampleInputName2">Start Date</label>
-                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="Select Start Date" readonly >
+                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="DD/MM/YYYY" readonly >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">to</label>
-                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="Select End Date" readonly >
+                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="DD/MM/YYYY" readonly >
                                 </div>
 
                             </div>
@@ -72,7 +72,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="submit" class="btn btn-success" role="button" id="printICD10" style="margin-bottom: 15px;" >Generate Report</button>
+                                            <button type="submit" class="btn btn-primary" role="button" id="printICD10" style="margin-bottom: 15px;" >Generate Report</button>
                                         </div>
                                     </div>
                                 </div>
@@ -107,12 +107,22 @@
                 $("#startDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd'
+            dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
                 });
                 $("#endDate").datepicker({
                     changeMonth: true,
                     changeYear: true,
-                    dateFormat: 'yy-mm-dd'
+            dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
                 });
                 $('#printICD10').on('click', function () {
                     if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
@@ -123,6 +133,11 @@
                         var endDate = document.getElementById("endDate").value;
                         var disp = document.getElementById("disp").value;
                         //alert(disc+" / "+startDate+" / "+startDate);
+                                    var temp = startDate.split("/");
+            startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
+            temp = endDate.split("/");
+            endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
                         createScreenLoading();
                         $.ajax({
                             type: "POST",

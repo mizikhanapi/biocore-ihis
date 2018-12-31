@@ -64,35 +64,34 @@
                             <hr class="pemisah"/>
                             <div class="form-horizontal">
                                 <div class="form-group col-md-12" id="ReportFilturediv">
-                                <lebal class="col-md-4 control-label">Discipline:</lebal>
-                                <div class="col-md-4">
-                                    <select id="patientType" class="form-control">
-                                        <option value="all">All</option>
-                                        <%
-                                            for (int x = 0; x < mysqldis_name.size(); x++) {
-                                                out.print("<option value='"+mysqldis_name.get(x).get(0)+"'>"+mysqldis_name.get(x).get(1)+"</option>");
-                                            }
-                                        %>
-                                    </select>
+                                    <lebal class="col-md-4 control-label">Discipline:</lebal>
+                                    <div class="col-md-4">
+                                        <select id="patientType" class="form-control">
+                                            <option value="all">All</option>
+                                            <%                                            for (int x = 0; x < mysqldis_name.size(); x++) {
+                                                    out.print("<option value='" + mysqldis_name.get(x).get(0) + "'>" + mysqldis_name.get(x).get(1) + "</option>");
+                                                }
+                                            %>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group col-md-12">
-                                <label class="col-md-1 control-label" for="textinput">Date:</label>
-                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength="" readonly=""/>
+
+                                <div class="form-group col-md-12">
+                                    <label class="col-md-1 control-label" for="textinput">Date:</label>
+                                    <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="DD/MM/YYYY" maxlength="" readonly=""/>
+                                    </div>
+                                    <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="DD/MM/YYYY" maxlength="" readonly=""/>
+                                    </div>
                                 </div>
-                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength="" readonly=""/>
-                                </div>
-                            </div>
                             </div>
                             <hr/>
                             <div class="text-right">
-                                <button type="reset" id="PrintReset" class="btn btn-link" data-dismiss="modal" role="button" >Clear</button>
-                                <button type="submit" class="btn btn-success" role="button" id="printDrugOrder">Generate Report</button>
+                                <button type="reset" id="PrintReset" class="btn btn-default" data-dismiss="modal" role="button" >Clear</button>
+                                <button type="submit" class="btn btn-primary" role="button" id="printDrugOrder">Generate Report</button>
                             </div>
 
 
@@ -130,32 +129,42 @@
             $(document).ready(function () {
 
                 $("#dateFrom").datepicker({
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
+                    dateFormat: 'dd/mm/yy',
+                    yearRange: '1999:c+1',
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(1999, 10 - 1, 25),
+                    maxDate: '+30Y',
+                    beforeShow: function () {
+                        setTimeout(function () {
+                            $('.ui-datepicker').css('z-index', 999999999);
+                        }, 0);
+                    },
+                    onSelect: function (selected) {
 
-                    $("#dateTo").datepicker("option", "minDate", selected);
+                        $("#dateTo").datepicker("option", "minDate", selected);
 
-                }
-            });
+                    }
+                });
 
-            $("#dateTo").datepicker({
-                dateFormat: 'dd/mm/yy',
-                yearRange: '1999:c+1',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y',
-                onSelect: function (selected) {
+                $("#dateTo").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    yearRange: '1999:c+1',
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(1999, 10 - 1, 25),
+                    maxDate: '+30Y',
+                    beforeShow: function () {
+                        setTimeout(function () {
+                            $('.ui-datepicker').css('z-index', 999999999);
+                        }, 0);
+                    },
+                    onSelect: function (selected) {
 
-                    $("#dateFrom").datepicker("option", "maxDate", selected);
+                        $("#dateFrom").datepicker("option", "maxDate", selected);
 
-                }
-            });
+                    }
+                });
 
                 $('#printDrugOrder').on('click', function () {
 
@@ -164,13 +173,13 @@
                     var startDate = $('#dateFrom').val();
                     var endDate = $('#dateTo').val();
                     var filterBy = $('#patientType').val();
-                    
-                    var temp = startDate.split("/");
-                        startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
-                        temp = endDate.split("/");
-                        endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-                        
+                    var temp = startDate.split("/");
+                    startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
+                    temp = endDate.split("/");
+                    endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
                     $.ajax({
                         type: "post",
                         url: "drugOrderListReport.jsp",

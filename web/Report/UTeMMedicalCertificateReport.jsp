@@ -156,11 +156,11 @@
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength="" readonly=""/>
+                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="DD/MM/YYYY" maxlength="" readonly=""/>
                                 </div>
                                 <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength="" readonly=""/>
+                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="DD/MM/YYYY" maxlength="" readonly=""/>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -347,6 +347,11 @@
                 changeYear: true,
                 minDate: new Date(1999, 10 - 1, 25),
                 maxDate: '+30Y',
+                beforeShow: function () {
+                    setTimeout(function () {
+                        $('.ui-datepicker').css('z-index', 999999999);
+                    }, 0);
+                },
                 onSelect: function (selected) {
 
                     $("#dateTo").datepicker("option", "minDate", selected);
@@ -361,6 +366,11 @@
                 changeYear: true,
                 minDate: new Date(1999, 10 - 1, 25),
                 maxDate: '+30Y',
+                beforeShow: function () {
+                    setTimeout(function () {
+                        $('.ui-datepicker').css('z-index', 999999999);
+                    }, 0);
+                },
                 onSelect: function (selected) {
 
                     $("#dateFrom").datepicker("option", "maxDate", selected);

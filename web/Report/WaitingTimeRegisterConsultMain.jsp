@@ -75,7 +75,7 @@
 
     </div>
 
-    <button id="waitingTimeReportBtn" type="submit" class="btn btn-success btn-block" >Generate Report</button><br>
+    <button id="waitingTimeReportBtn" type="submit" class="btn btn-primary btn-block" >Generate Report</button><br>
 
 </div>
 
@@ -109,13 +109,23 @@
         $("#waitingTimeReportStartDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
         $("#waitingTimeReportYearEndDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
         $('#waitingTimeReportMonthHolder').show();
