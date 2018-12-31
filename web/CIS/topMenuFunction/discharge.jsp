@@ -90,7 +90,7 @@
         ArrayList<ArrayList<String>> dataPMS = conn.getData(sqlPMS);
 
         try {
-            String sqlDelete = "DELETE FROM qcs_calling_system_queue WHERE cs_pmi_no = '" + pmino + "' AND cs_datetime = '" + episodedate + "'";
+            String sqlDelete = "DELETE FROM qcs_calling_system_queue WHERE cs_pmi_no = '" + pmino + "'";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDelete);
         } catch (Exception e) {
             //error handling code
@@ -166,7 +166,7 @@
         ArrayList<ArrayList<String>> dataPMS = conn.getData(sqlPMS);
 
         try {
-            String sqlDelete = "DELETE FROM qcs_calling_system_queue WHERE cs_pmi_no = '" + pmino + "' AND cs_datetime = '" + episodedate + "'";
+            String sqlDelete = "DELETE FROM qcs_calling_system_queue WHERE cs_pmi_no = '" + pmino + "'";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDelete);
         } catch (Exception e) {
             //error handling code
