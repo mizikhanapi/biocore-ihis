@@ -103,10 +103,10 @@ String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'
 <td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(10)%></td> <!--  S Container -->
 <td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(11)%></td> <!--  Volume -->
 <td  data-status="pagado" data-toggle="modal" data-id="1" ><%= dataOrderList.get(i).get(5)%></td> <!--  Comment -->
-<td  align="center">
-    <button class="btn btn-primary" type="button" title="Prepare Item" id="MOD_btnPrepare" data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" ></i></button>
-    <button class="btn btn-default" type="button" title="Enter Result" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i class="fa fa-database fa-lg"></i></button>
-    <button class="btn btn-default" type="button" title="Verify Result"  id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i class="fa fa-check-square-o fa-lg"></i></button>
+<td style="width: 150px">
+    <button class="btn btn-default" type="button" title="Prepare Item" id="MOD_btnPrepare" data-toggle="modal" data-target="#POSorderNewStockOrder"><i data-toggle="tooltip" data-placement="left" title="Prepare Item" class="fa fa-list-ol fa-lg" aria-hidden="true" ></i></button>
+    <button class="btn btn-default" type="button" title="Enter Result" id="btnVerifySpecimenEnterResult" data-toggle="modal" data-target="#addSpecimenResult" <%out.print(addDisabled);%>><i data-toggle="tooltip" data-placement="left" title="Enter Result" class="fa fa-database fa-lg"></i></button>
+    <button class="btn btn-default" type="button" title="Verify Result"  id="btnVerifySpecimenVerifyResult" data-toggle="modal" data-target="#verifySpecimenResult" <%out.print(verifyDisabled);%>><i data-toggle="tooltip" data-placement="right" title="Verify Result" class="fa fa-check-square-o fa-lg"></i></button>
 </td> <!--  Action -->
 
 </tr>
@@ -116,4 +116,5 @@ String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'
 
 </tbody>
 </table>
+
 

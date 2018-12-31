@@ -115,7 +115,7 @@
                             .css('font-size', 'inherit');
                     $(win.document.body)
                             .css('font-size', '10pt')
-                            .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                            .append('<div style="text-align: left;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
                 }
             }
 

@@ -91,12 +91,12 @@
         <td><%= dataOrderList.get(i).get(6)%></td> <!-- Instruction -->
         <td><%= dataOrderList.get(i).get(10)%></td><!-- exam date -->
         <td><%= status%></td> <!-- status -->
-        <td> 
-        <button id="MOD_btnModalDate" class="btn btn-default"  ><i class="fa fa-calendar fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Set Exam Date</button><!-- set date -->
-        <button id="MOD_btnPrepareItem" class="btn btn-primary"  data-toggle="modal" data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
-        <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Exam</button><!-- perform -->
-        <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Report</button><!-- prepare -->
-        <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button></td> <!-- cancel order -->
+        <td style="width: 150px"> 
+            <button id="MOD_btnModalDate" class="btn btn-default"  ><i data-toggle="tooltip" data-placement="left" title="Set Exam Date" class="fa fa-calendar fa-lg" aria-hidden="true" ></i></button><!-- set date -->
+        <button id="MOD_btnPrepareItem" class="btn btn-default"  data-toggle="modal" data-target="#POSorderNewStockOrder"><i data-toggle="tooltip" data-placement="left" title="Prepare Item" class="fa fa-list-ol fa-lg" aria-hidden="true"></i></button>
+        <button id="MOD_btnPerform" class="btn btn-default"  ><i data-toggle="tooltip" data-placement="left" title="Perform Exam" class="fa fa-user-md fa-lg" aria-hidden="true"></i></button><!-- perform -->
+        <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i data-toggle="tooltip" data-placement="left" title="Prepare Report" class="fa fa-file-text fa-lg" aria-hidden="true"></i></button><!-- prepare -->
+        <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i data-toggle="tooltip" data-placement="right" title="Cancel Order" class="fa fa-times fa-lg" aria-hidden="true"></i></button></td> <!-- cancel order -->
 
         <!--<td align="center"><input type="checkbox" id="risRequestChecked" checked></td>  Status -->
     </tr>
@@ -735,4 +735,8 @@
 
     }
 </script>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

@@ -94,11 +94,11 @@
         <td>(<%= dataOrderList.get(i).get(6)%>) <%= dataOrderList.get(i).get(7)%></td><!-- Consultant -->
         <td><%= dataOrderList.get(i).get(9)%></td> <!-- comment -->
         <td><%= status%></td> <!-- status -->
-        <td>
-            <button id="MOD_btnPrepareItem" class="btn btn-primary" data-toggle="modal"   data-target="#POSorderNewStockOrder"><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: white;" ></i>&nbsp;&nbsp;&nbsp;Prepare Item</button>
-            <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->
-            <button id="MOD_btnReport" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #00dd1c;" ></i>&nbsp;&nbsp;&nbsp;Write Report</button><!-- report -->
-            <button id ="MOD_btnDelete" class="btn btn-default"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button>        
+        <td style="width: 150px">
+            <button id="MOD_btnPrepareItem" class="btn btn-default" data-toggle="modal"   data-target="#POSorderNewStockOrder"><i class="fa fa-list-ol fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Prepare Item"></i></button>
+            <button id="MOD_btnPerform" class="btn btn-default"  ><i class="fa fa-user-md fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Perform Procedure"></i></button><!-- perform -->
+            <button id="MOD_btnReport" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Write Report"></i></button><!-- report -->
+            <button id ="MOD_btnDelete" class="btn btn-default"><i class="fa fa-times fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Cancel Order"></i></button>        
         </td><!-- perform -->
 
     </tr>
@@ -739,4 +739,8 @@
 
     }
 </script>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>

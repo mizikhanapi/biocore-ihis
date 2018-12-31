@@ -229,8 +229,9 @@
 </div>
 <div class="pull-right">
     <input type="hidden" id="RIS_callingID"/>
-    <button class="btn btn-primary" type="button" id="btnRISCall" name="btnVerifySpecimenCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
+    
     <button class="btn btn-default" type="button" id="btnRISCancelCall" name="btnVerifySpecimenDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
+    <button class="btn btn-primary" type="button" id="btnRISCall" name="btnVerifySpecimenCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
 </div>
 <script src="order_detail_js/order_detail_main.js?v1.2" type="text/javascript"></script>
 
