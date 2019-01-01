@@ -428,21 +428,24 @@
                                 {
                                     var datas = dataRow[i].split("|");
 
-
+                                    var startDateDuration, endDateDuration;
                                     var temp = datas[4].split("-");
-                                    startDate = temp[1] + "-" + temp[0] + "-" + temp[2];
+                                    startDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+                                    startDateDuration = temp[2] + "-" + temp[1] + "-" + temp[0];
 
                                     var temp = datas[5].split("-");
-                                    endDate = temp[1] + "-" + temp[0] + "-" + temp[2];
+                                    endDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+                                    endDateDuration = temp[2] + "-" + temp[1] + "-" + temp[0];
+                                    
 
-                                    var date1 = new Date(startDate);
-                                    var date2 = new Date(endDate);
+                                    var date1 = new Date(startDateDuration);
+                                    var date2 = new Date(endDateDuration);
 
                                     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
                                     var duration = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
 
                                     trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>' +
-                                            '<td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] +
+                                            '<td>' + datas[3] + '</td><td>' + startDate + '</td><td>' + endDate +
                                             '</td><td>' + duration + '</td><td>' + datas[6] + '</td><td>' + datas[8] +
                                             '</td><td>' + datas[9] + '</td><td>' + datas[10] + '</td><td>' + datas[11] + '</td></tr>';
                                 }
