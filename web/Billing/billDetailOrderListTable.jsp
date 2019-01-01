@@ -133,7 +133,7 @@
 <td><%=dataBillDetailsOrderList.get(i).get(1)%></td>                                                                <!-- Name -->
 <td><%=dataBillDetailsOrderList.get(i).get(4)%></td>                                                                <!-- Address -->
 <td><%=dataBillDetailsOrderList.get(i).get(5)%></td>                                                                <!-- Phone No. -->
-<td style="text-align: center;"><button id="generateBillDetailSingleRecordBtn" class="btn btn-default"><i class="fa fa-file-o fa-lg" ></i>&nbsp; Generate Bill</button></td>
+<td style="text-align: center;"><button id="generateBillDetailSingleRecordBtn" data-toggle="tooltip" data-placement="left" title="Generate Bill" class="btn btn-default"><i class="fa fa-file-o fa-lg" ></i>&nbsp; </button></td>
 </tr>
 <%
     }
@@ -152,7 +152,7 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        
+
         $('#billDetailOrderListTable').DataTable().destroy();
 
         $('#billDetailOrderListTable').DataTable({
@@ -161,6 +161,10 @@
             }, initComplete: function (settings, json) {
                 $('.loading').hide();
             }
+        });
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
     });

@@ -134,8 +134,8 @@
             <%
                 if (status.equalsIgnoreCase("unpaid")) {
             %>
-            <td>
-                <button id="manageBillViewBillDetailsDeleteBtn" class="btn btn-default pull-right" title="Delete Item" type="button"><i class="fa fa-trash fa-lg" aria-hidden="true"></i>&nbsp;</button>
+            <td align="center">
+                <button id="manageBillViewBillDetailsDeleteBtn" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Delete Item" type="button"><i class="fa fa-trash fa-lg" aria-hidden="true"></i>&nbsp;</button>
             </td>
             <%}%>
             </tr>
@@ -805,11 +805,11 @@
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {

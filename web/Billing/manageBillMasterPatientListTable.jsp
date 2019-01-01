@@ -113,8 +113,8 @@
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(7)%></td> <!-- Total Bill -->
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(8)%></td> <!-- Health Facility Code -->
 <td style="text-align: center;">
-    <button class="btn btn-default " title="Paid" id="btnManageBillMasterPatientListTablePaid"><i class="fa fa-database fa-lg"></i> PAID</button>
-    <button class="btn btn-default " title="Unpaid"  id="btnManageBillMasterPatientListTableUnpaid"><i class="fa fa-check-square-o fa-lg"></i>UNPAID</button>
+    <button class="btn btn-default " data-toggle="tooltip" data-placement="left" title="Paid Bills" id="btnManageBillMasterPatientListTablePaid"><i class="fa fa-database fa-lg"></i> &nbsp;</button>
+    <button class="btn btn-default " data-toggle="tooltip" data-placement="right" title="Unpaid Bills"  id="btnManageBillMasterPatientListTableUnpaid"><i class="fa fa-check-square-o fa-lg"></i> &nbsp;</button>
 </td> <!-- Health Facility Code -->
 </tr>
 <%
@@ -140,6 +140,10 @@
             }
         });
 
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
 // --------------------------------------------------------------- Datatable --------------------------------------------------------------- //
 

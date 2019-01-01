@@ -561,6 +561,10 @@
 
                 $('#manageBillDetailOrderDetailContent').html(data);
 
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+
                 $('.nav-tabs a[href="#tab_default_3"]').tab('show');
 
                 $('.loading').hide();
