@@ -69,7 +69,7 @@
         String sql = "SELECT pis_order_master.ORDER_NO,pis_order_master.PMI_NO,pis_order_master.HEALTH_FACILITY_CODE,pis_order_master.EPISODE_DATE,pis_order_master.ENCOUNTER_DATE, "
                 + " pis_order_master.ORDER_DATE,pis_order_master.ORDER_BY,pis_order_master.ORDER_FROM,pis_order_master.ORDER_TO,pis_order_master.HFC_FROM,pis_order_master.HFC_TO, "
                 + " pis_order_master.SPUB_NO,pis_order_master.KEYIN_BY,pis_order_master.TOTAL_ORDER,pis_order_master.STATUS,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO, "
-                + " IFNULL(pms_patient_biodata.BIRTH_DATE,'-'),IFNULL(pms_patient_biodata.SEX_CODE,'-'),IFNULL(pms_patient_biodata.BLOOD_TYPE,'-'),pis_order_master.ORDER_STATUS, "
+                + " IFNULL(DATE_FORMAT(pms_patient_biodata.BIRTH_DATE, '%d/%m/%Y'),'-'),IFNULL(pms_patient_biodata.SEX_CODE,'-'),IFNULL(pms_patient_biodata.BLOOD_TYPE,'-'),pis_order_master.ORDER_STATUS, "
                 + " IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,DATE_FORMAT(pis_order_master.ORDER_DATE, '%d/%m/%Y %T') FROM pis_order_master  "
                 + " LEFT JOIN pms_patient_biodata ON (pis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) "
                 + " LEFT JOIN adm_users aus ON (pis_order_master.ORDER_BY = aus.USER_ID) "

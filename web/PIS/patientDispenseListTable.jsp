@@ -72,7 +72,7 @@
                 //              10                      11                      12                      13                              14                      
                 + " pis_order_master.HFC_FROM, pis_order_master.HFC_TO, pis_order_master.SPUB_NO, pis_order_master.KEYIN_BY, pis_order_master.TOTAL_ORDER, "
                 //              15                          16                          17                              18
-                + " pis_order_master.STATUS, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, IFNULL(pms_patient_biodata.BIRTH_DATE,'-'), "
+                + " pis_order_master.STATUS, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, IFNULL(DATE_FORMAT(pms_patient_biodata.BIRTH_DATE, '%d/%m/%Y'),'-'), "
                 //                  19                                      20                                          21                        22
                 + " IFNULL(pms_patient_biodata.SEX_CODE,'-'), IFNULL(pms_patient_biodata.BLOOD_TYPE,'-'), pis_order_master.ORDER_STATUS, IFNULL(s.description,'-'), "
                 //              23                  24             25

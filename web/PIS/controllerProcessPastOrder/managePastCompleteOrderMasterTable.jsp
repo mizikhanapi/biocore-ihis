@@ -69,6 +69,7 @@
                 jObj.put("date", dataOm.get(i).get(1));
                 jObj.put("pmi_no", dataOm.get(i).get(2));
                 jObj.put("name", dataOm.get(i).get(3));
+                jObj.put("dateShow", dataOm.get(i).get(4));
 
 
         %>
