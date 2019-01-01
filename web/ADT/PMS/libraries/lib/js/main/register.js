@@ -141,7 +141,12 @@ $('#registerBed').click(function () {
         OrderStatus = $('#OrderStatus').val();
         Refer = $('#Refer').val();
         DocType = $('#DocType').val();
-        GL = $('#GL').val().trim()===""? "0000-00-00" : $('#GL').val().trim();
+                        GL = $('#GL').val();
+                console.log(GL);
+                var temp = GL.split("/");
+                GL = temp[2] + "-" + temp[1] + "-" + temp[0];
+                console.log(GL);
+                        GL = $('#GL').val().trim()===""? "0000-00-00" : $('#GL').val().trim();
         if ($('#EliTy').val() === null) {
             EliTy = "-";
         } else {
@@ -231,15 +236,15 @@ $('#registerBed').click(function () {
         };
         //console.log(datas);
         bootbox.confirm({
-            message: "Are you sure want to ADMIT PATIENT?",
+            message: "Are you sure want to ADMIT PATIENT ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -316,7 +321,7 @@ $('#registerBed').click(function () {
 //                                        var Dis = $('#DisWard').val();
 
                                     }, error: function () {
-                                        bootbox.alert("There is an error!");
+                                        bootbox.alert("There is an error");
                                     }
                                 });
                             } else if ($.trim(l) === "Failed") {
@@ -330,7 +335,7 @@ $('#registerBed').click(function () {
 
 
                         }, error: function () {
-                            bootbox.alert("There is an error!");
+                            bootbox.alert("There is an error");
                         },
                         complete: function (jqXHR, textStatus) {
                             destroyScreenLoading();
@@ -361,7 +366,7 @@ function IR_assignDoctor(qname, dis, sub) {
         buttons: {
             confirm: {
                 label: 'Yes',
-                className: 'btn-success'
+                className: 'btn-primary'
             },
             cancel: {
                 label: 'Skip',

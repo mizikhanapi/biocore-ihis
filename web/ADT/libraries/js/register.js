@@ -118,6 +118,10 @@
                 Refer = $('#Refer').val();
                 DocType = $('#DocType').val();
                 GL = $('#GL').val();
+                console.log(GL);
+                var temp = GL.split("/");
+                GL = temp[2] + "-" + temp[1] + "-" + temp[0];
+                console.log(GL);
                 if ($('#EliTy').val() === null) {
                     EliTy = "-";
                 } else {
@@ -185,15 +189,15 @@
                 };
                 //console.log(datas);
                 bootbox.confirm({
-                    message: "Are you sure want to REGISTER PATIENT?",
+                    message: "Are you sure want to REGISTER PATIENT ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -215,7 +219,7 @@
                                         bootbox.alert("Patient is already registered");
                                     }
                                 }, error: function () {
-                                    bootbox.alert("There is an error!");
+                                    bootbox.alert("There is an error");
                                 }
                             });
                         }

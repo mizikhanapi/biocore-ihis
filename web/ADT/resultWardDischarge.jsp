@@ -141,7 +141,7 @@
 <%
     }
 } else if (size1141 < 1) { %>
-<td colspan="7"> No patient found! </td>
+<td colspan="7"> No patient found </td>
 <% }
 %>
 <div id="resultPatientDischarge">

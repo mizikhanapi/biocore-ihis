@@ -20,7 +20,7 @@
                                 });
                             },
                             error: function () { // if error
-                                $('#disList').text('Problem!');
+                                $('#disList').text('Problem');
                             }
                         });
                     } else {

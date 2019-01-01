@@ -261,7 +261,7 @@
 
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        alert("Error update");
                     }
                 });
             }
@@ -284,11 +284,11 @@
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -328,7 +328,7 @@
 
 
                         }, error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
+                            alert("Error: Deletion Ajax failed");
                         }
 
                     });

@@ -271,15 +271,15 @@
                 docID: docID};
             //console.log(datas);
             bootbox.confirm({
-                message: "Are you sure want to REGISTER PATIENT?",
+                message: "Are you sure want to REGISTER PATIENT ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {

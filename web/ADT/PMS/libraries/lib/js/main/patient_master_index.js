@@ -1,7 +1,12 @@
 $(document).ready(function () {
     $(function () {
 
-        $('#PMIbday').datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true});
+        $('#PMIbday').datepicker({changeMonth: true, changeYear: true,  dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }});
 
 
     });
@@ -350,11 +355,11 @@ $(document).ready(function () {
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {

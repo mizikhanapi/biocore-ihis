@@ -1,6 +1,11 @@
     $(document).ready(function () {
         $(function () {
-            $('#KINdob').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#KINdob').datepicker({changeMonth: true, changeYear: true,  dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }});
         });
     });
     //function get birth date
@@ -145,11 +150,11 @@
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {

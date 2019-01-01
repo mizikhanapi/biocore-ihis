@@ -497,8 +497,13 @@
     $("#GL").datepicker({
         changeMonth: true,
         changeYear: true,
-        dateFormat: 'yy-mm-dd',
-        minDate: '0'
+        minDate: '0',
+                    dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
     });
     
 

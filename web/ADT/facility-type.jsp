@@ -130,9 +130,9 @@
             //var subDicipline = $('#subDicipline').val();
 
             if (MWClass === "") {
-                bootbox.alert("Fill in ward class name!");
+                bootbox.alert("Fill in ward class name");
             } else if (MWID === "") {
-                bootbox.alert("Fill in ward class ID!");
+                bootbox.alert("Fill in ward class ID");
             } else if (status !== "1" && status !== "0") {
                 bootbox.alert("Select Any Status");
             } else {

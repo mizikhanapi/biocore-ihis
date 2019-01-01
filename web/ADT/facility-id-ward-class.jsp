@@ -37,7 +37,7 @@
 </ul>
     
 <%}else{%>
-<span>No Record Found!</span>
+<span>No Record Found</span>
 <% 
     }
 
