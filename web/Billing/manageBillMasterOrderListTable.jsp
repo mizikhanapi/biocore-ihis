@@ -36,7 +36,7 @@
     int size = dataManageBillMasterOrderList.size();
 %>
 <input id="dataManageBillMasterOrderListhiddenStatus" type="hidden" value="<%=status%>">
-<table class="table table-bordered" id="manageBillMasterOrderListTable" style="width: 100%">
+<table class="table table-bordered table-striped" id="manageBillMasterOrderListTable" style="width: 100%">
     <thead>
     <th>Transaction Date</th>
     <th>Bill No.</th>
