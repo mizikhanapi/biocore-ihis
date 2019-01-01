@@ -72,7 +72,7 @@
                 //        8                  9                         10                              11               12
                 + " lom.order_by,lom.order_from_discipline,lom.order_from_subdiscipline,lom.order_to_discipline,lom.order_to_subdiscipline, "
                 //        3           14           15              16               17                  18                      19
-                + " lom.hfc_from,lom.hfc_to,lom.order_status,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(pms.BIRTH_DATE,'-'),IFNULL(pms.SEX_CODE,'-'), "
+                + " lom.hfc_from,lom.hfc_to,lom.order_status,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(DATE_FORMAT(pms.BIRTH_DATE, '%d/%m/%Y'),'-'),IFNULL(pms.SEX_CODE,'-'), "
                 //          20                          21                          22                  23          24
                 + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,DATE_FORMAT(lom.order_date, '%d/%m/%Y %T')  "
                 // FROM ORDER TABLE

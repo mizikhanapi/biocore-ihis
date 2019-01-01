@@ -129,7 +129,8 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" for="textinput">Order Date</label>
                 <div class="col-md-7">
-                    <input id="specimenOrderDate" name="patientOrderDate" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="specimenOrderDate" name="patientOrderDate" type="hidden" readonly placeholder="" class="form-control input-md">
+                    <input id="specimenOrderDateShow" name="specimenOrderDateShow" type="text" readonly placeholder="" class="form-control input-md">
                     <input id="specimenEpisodeDate" name="patientOrderDate" type="hidden" readonly placeholder="" class="form-control input-md">
                     <input id="specimenEncounterDate" name="patientOrderDate" type="hidden" readonly placeholder="" class="form-control input-md">
                     <input id="patientOrderLocationCodeFull" name="patientOrderLocationCodeFull" type="hidden" readonly placeholder="" class="form-control input-md" value="<%= locationcode%>">
@@ -230,6 +231,7 @@
 
             var patientOrderNo = arrayData[1];
             var patientOrderDate = arrayData[7];
+            var specimenOrderDateShow = arrayData[26];
             var patientOrderEpisodeDate = arrayData[5];
             var patientOrderEncounterDate = arrayData[6];
 
@@ -254,6 +256,7 @@
             $("#specimenSpecimenNo").val(patientSpecimenNo);
             $("#specimenOrderNo").val(patientOrderNo);
             $("#specimenOrderDate").val(patientOrderDate);
+            $("#specimenOrderDateShow").val(specimenOrderDateShow);
             $("#specimenEpisodeDate").val(patientOrderEpisodeDate);
             $("#specimenEncounterDate").val(patientOrderEncounterDate);
 

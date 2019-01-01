@@ -227,6 +227,7 @@
             $('#OD_orderDate').val(obj.date);
             $('#OD_patPMI').val(obj.pmi_no);
             $('#OD_patName').val(obj.name);
+            $('#OD_orderDateShow').val(obj.dateShow);
 
             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 

@@ -71,8 +71,8 @@
         String sql = "SELECT lsm.pmi_no,lsm.txt_date,lsm.hfc_cd,lsm.order_no,lsm.specimen_no,lsm.episode_date,lsm.encounter_date,lsm.order_date,  "
                 //        8             9          10             11                  12                13                      14
                 + " lsm.order_by,lsm.hfc_from,lsm.hfc_to,lsm.discipline_from,lsm.discipline_to,lsm.subdiscipline_from,lsm.subdiscipline_to, "
-                //        15                16           17                  18             19              20                          21
-                + " lsm.order_status,lsm.created_by,lsm.created_date,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(pms.BIRTH_DATE,'-'),IFNULL(pms.SEX_CODE,'-'), "
+                //        15                16           17                  18             19              20                                                   21
+                + " lsm.order_status,lsm.created_by,lsm.created_date,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(DATE_FORMAT(pms.BIRTH_DATE, '%d/%m/%Y'),'-'),IFNULL(pms.SEX_CODE,'-'), "
                 //            22                            23                      24                 25           26
                 + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,DATE_FORMAT(lsm.order_date, '%d/%m/%Y %T')  "
                 // FROM ORDER TABLE
