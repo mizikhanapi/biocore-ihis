@@ -157,6 +157,7 @@
             data: data,
             success: function (data) {
                 $('#detailTable_body').html(data);
+                $('[data-toggle="tooltip"]').tooltip();
 
 
             }
@@ -481,3 +482,4 @@
 
 
 </script>
+

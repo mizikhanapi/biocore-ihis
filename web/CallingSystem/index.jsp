@@ -458,7 +458,7 @@
 //
 //				document.getElementById("demo3").innerHTML= strTime ;
                                 
-                                var msg = "<span style='display: block; font-size: 34px; margin-bottom: -10px; font-weight: 300;' >"+currentDate+"/"+month+"/"+currentYear+"</span>"+strTime;
+                                var msg = "<span style='display: block; font-size: 34px; margin-bottom: -10px; font-weight: 300;' >"+currentDate+"/"+currentMonth1+"/"+currentYear+"</span>"+strTime;
                                 $('#spanTarikh').html(msg);
                                 console.log($.now());
 				flag = false;

@@ -61,11 +61,11 @@
             whereClause = " AND pos_order_master.hfc_cd = '" + hfc_cd + "' ";
         }
 //                                  0                       1                       2                           3                                   4                       5                       
-        String sql = "SELECT pos_order_master.pmi_no,pos_order_master.order_no,pos_order_master.hfc_cd,pos_order_master.episode_date,pos_order_master.encounter_date,pos_order_master.order_date,"
+        String sql = "SELECT pos_order_master.pmi_no,pos_order_master.order_no,pos_order_master.hfc_cd,pos_order_master.episode_date,pos_order_master.encounter_date,date_format(pos_order_master.order_date,'%d/%m/%Y %T'),"
                 //  6                                           7                       8                           9                   10                                  11                  12                      
                 + "pos_order_master.doctor_id,pos_order_master.hfc_from,pos_order_master.hfc_to,pos_order_master.order_status,pos_order_master.order_priority,pos_order_master.created_by,pos_order_master.created_date,"
                 //  13                                          14                              15                                  16                          17
-                + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
+                + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,date_format(pms_patient_biodata.BIRTH_DATE,'%d/%m/%Y'),pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
                 //  18                  19              20              21
                 + "sx.description, blot.description, hfc.hfc_name, au.user_name "
                 + "FROM pos_order_master "
