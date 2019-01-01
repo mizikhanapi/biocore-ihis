@@ -146,7 +146,8 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" for="textinput">Order Date</label>
                 <div class="col-md-7">
-                    <input id="patientOrderDate" name="patientOrderDate" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="patientOrderDate" name="patientOrderDate" type="hidden" readonly placeholder="" class="form-control input-md">
+                    <input id="patientOrderDateShow" name="patientOrderDateShow" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
             </div>
         </div>
@@ -296,6 +297,7 @@
         var patientBtype = arrayData[22];
         var patientOrderNo = arrayData[0];
         var patientOrderDate = arrayData[5];
+        var patientOrderDateShow = arrayData[25];
         var patientOrderLocationCode = arrayData[2];
         var patientOrderEpisodeDate = arrayData[3];
         var patientOrderEncounterDate = arrayData[4];
@@ -357,6 +359,7 @@
                                 $("#patientBtype").val(patientBtype);
                                 $("#patientOrderNo").val(patientOrderNo);
                                 $("#patientOrderDate").val(patientOrderDate);
+                                $("#patientOrderDateShow").val(patientOrderDateShow);
                                 $("#patientOrderLocationCode").val(patientOrderLocationCodeName);
                                 $("#dataMSHPDIORCBLI").val(MSHFORBLI + "\n" + PDIFORALL + "\n" + ORCFORBLI + "\n");
                                 $("#dataMSHPDIORCDDR").val(MSHFORDDR + "\n" + PDIFORALL + "\n" + ORCFORDDR + "\n");
