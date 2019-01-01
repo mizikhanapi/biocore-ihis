@@ -40,7 +40,7 @@
     }
 
     //                          1             2             3           4
-    String query = "SELECT om.order_no, om.order_date, om.pmi_no, bio.PATIENT_NAME "
+    String query = "SELECT om.order_no, om.order_date, om.pmi_no, bio.PATIENT_NAME,DATE_FORMAT(om.order_date, '%d/%m/%Y %T') "
             // FROM ORDER MASTER TABLE
             + "FROM lis_order_master om "
             // JOIN PATIENT TABLE
@@ -73,7 +73,7 @@
         %>
         <tr class="clickable_tr ">
             <td><%=dataOm.get(i).get(0)%></td>
-            <td><%=dataOm.get(i).get(1)%></td>
+            <td><%=dataOm.get(i).get(4)%></td>
             <td><%=dataOm.get(i).get(2)%></td>
             <td style="text-transform: uppercase;"><%=dataOm.get(i).get(3)%> <input type="hidden" id="OM_json" value='<%=jObj.toString()%>'></td>            
         </tr>

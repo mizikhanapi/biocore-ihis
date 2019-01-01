@@ -49,12 +49,12 @@
 
         <label class="col-md-4 control-label" for="textinput">From</label>
         <div class="col-md-2">
-            <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+            <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="DD/MM/YYYY" readonly="">
         </div>
 
         <label class="col-md-1 control-label" for="textinput">To</label>
         <div class="col-md-2">
-            <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+            <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="DD/MM/YYYY" readonly="">
         </div>
 
     </div>
@@ -88,24 +88,34 @@
 
             // Date From Datepicker Start
             $("#DateFrom").datepicker({
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'dd/mm/yy',
                 yearRange: '1999:c+1',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y'
+                maxDate: '+30Y',
+                beforeShow: function () {
+                    setTimeout(function () {
+                        $('.ui-datepicker').css('z-index', 999999999);
+                    }, 0);
+                }
             });
             // Date From Datepicker End
 
 
             // Date To Datepicker Start
             $("#DateTo").datepicker({
-                dateFormat: 'yy-mm-dd',
+                dateFormat: 'dd/mm/yy',
                 yearRange: '1999:c+1',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(1999, 10 - 1, 25),
-                maxDate: '+30Y'
+                maxDate: '+30Y',
+                beforeShow: function () {
+                    setTimeout(function () {
+                        $('.ui-datepicker').css('z-index', 999999999);
+                    }, 0);
+                }
             });
             // Date To Datepicker End
 
@@ -223,7 +233,7 @@
 
             },
             error: function (err) {
-                alert("Error update!");
+                alert("Error update");
             }
         });
 

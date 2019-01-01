@@ -75,7 +75,7 @@
                 //        3           14           15              16               17                  18                      19
                 + " lom.hfc_from,lom.hfc_to,lom.order_status,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(pms.BIRTH_DATE,'-'),IFNULL(pms.SEX_CODE,'-'), "
                 //          20                          21                          22                  23          24              25
-                + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,lissm.specimen_no  "
+                + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,lissm.specimen_no,DATE_FORMAT(lom.order_date, '%d/%m/%Y %T')  "
                 // FROM ORDER TABLE
                 + " FROM lis_order_master lom  "
                 // LEFT JOIN SPECIMEN MASTER TABLE
@@ -110,7 +110,7 @@
 <td><%= dataVerifyLabOrderMaster.get(i).get(0)%></td> <!-- PMI No -->
 <td><%= dataVerifyLabOrderMaster.get(i).get(17)%></td> <!-- IC -->
 <td style="font-weight: 500; text-transform: uppercase;"><%= dataVerifyLabOrderMaster.get(i).get(16)%></td> <!-- Order Date -->
-<td style="text-transform: uppercase;"><%= dataVerifyLabOrderMaster.get(i).get(7)%></td> <!-- Doctor -->
+<td style="text-transform: uppercase;"><%= dataVerifyLabOrderMaster.get(i).get(26)%></td> <!-- Doctor -->
 </tr>
 <%
     }

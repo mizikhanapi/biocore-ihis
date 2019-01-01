@@ -74,7 +74,7 @@
                 //        3           14           15              16               17                  18                      19
                 + " lom.hfc_from,lom.hfc_to,lom.order_status,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(pms.BIRTH_DATE,'-'),IFNULL(pms.SEX_CODE,'-'), "
                 //          20                          21                          22                  23          24
-                + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME  "
+                + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,DATE_FORMAT(lom.order_date, '%d/%m/%Y %T')  "
                 // FROM ORDER TABLE
                 + " FROM lis_order_master lom  "
                 // LEFT JOIN USER TABLE
@@ -105,7 +105,7 @@
 <td><%= dataAssignLabOrderMaster.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataAssignLabOrderMaster.get(i).get(0)%></td> <!-- PMI No -->
 <td style="font-weight: 500; text-transform: uppercase;"><%= dataAssignLabOrderMaster.get(i).get(16)%></td> <!-- Name -->
-<td><%= dataAssignLabOrderMaster.get(i).get(7)%></td> <!-- Order Date -->
+<td><%= dataAssignLabOrderMaster.get(i).get(25)%></td> <!-- Order Date -->
 <td style="text-transform: uppercase;"><%= dataAssignLabOrderMaster.get(i).get(24)%></td> <!-- Doctor -->
 </tr>
 <%

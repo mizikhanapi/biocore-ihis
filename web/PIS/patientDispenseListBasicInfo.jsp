@@ -578,7 +578,7 @@
 
             bootbox.alert({
                 message: "Drug Order Detail is Updated Successfully",
-                title: "Process Result",
+                title: "Information",
                 backdrop: true
             });
 
@@ -649,7 +649,7 @@
 
         } else if (screenedBy === '') {
 
-            bootbox.alert("Please Search Screened/Filled By Person !!!");
+            bootbox.alert("Please Search Screened/Filled By Person");
 
         } else {
 
@@ -657,15 +657,15 @@
 
                 bootbox.confirm({
                     message: "Are you sure that you want to Generate Label For this Drugs ?",
-                    title: "Generate Label ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -745,7 +745,7 @@
 
             } else {
 
-                bootbox.alert("Please check the stock quantity of drug that is going to be dispensed! Some of the drug are not available.");
+                bootbox.alert("Please check the stock quantity of drug that is going to be dispensed. Some of the drug are not available.");
 
             }
 
@@ -795,11 +795,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -833,7 +833,7 @@
 
                                     bootbox.alert({
                                         message: "You successfully call the patient",
-                                        title: "Success!",
+                                        title: "Success",
                                         backdrop: true
                                     });
 
@@ -888,11 +888,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -919,7 +919,7 @@
 
                                     bootbox.alert({
                                         message: "Decline Call Patient Successful",
-                                        title: "Success!",
+                                        title: "Success",
                                         backdrop: true
                                     });
 
@@ -1016,11 +1016,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1257,7 +1257,7 @@
 
             },
             error: function (err) {
-                console.log("Error Dispense!" + err);
+                console.log("Error Dispense: " + err);
             }
         });
 
@@ -1371,7 +1371,7 @@
 
             bootbox.alert({
                 message: "The drug is dispense successfully",
-                title: "Success!",
+                title: "Success",
                 backdrop: true
             });
 

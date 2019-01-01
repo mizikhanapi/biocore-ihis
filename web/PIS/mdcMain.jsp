@@ -23,7 +23,7 @@
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
- 
+
     <span class="pull-right">
         <button id="MDCClone_btnSummary" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;"><a><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;"></i></a>DRUG INVENTORY SUMMARY &nbsp;</button>
         <button id="MDCClone_btnClone" class="btn btn-default" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;"><a><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;"></i></a>CLONE DRUG CODE &nbsp;</button>
@@ -520,7 +520,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Expire Date *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_EXP_DATE" name="addD_EXP_DATE" type="text"class="form-control input-md" placeholder="Select Expire Date" readonly>
+                                    <input id="addD_EXP_DATE" name="addD_EXP_DATE" type="text"class="form-control input-md" placeholder="DD/MM/YYYY" readonly>
                                 </div>
                             </div>
 
@@ -594,7 +594,12 @@
             changeMonth: true,
             changeYear: true,
             dateFormat: 'dd/mm/yy',
-            minDate: '0'
+            minDate: '0',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
         $('.decimalNumbersOnly').keyup(function () {
@@ -906,8 +911,8 @@
                             $('#contentMDCTable').load('mdcTableLoop.jsp');
                             $('#mdcAddModal').modal('hide');
                             bootbox.alert({
-                                message: "Drug Code is Added Successful",
-                                title: "Process Result",
+                                message: "Drug Code is Added Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
                             reset();
@@ -916,7 +921,7 @@
 
                             bootbox.alert({
                                 message: "Drug Code Duplication Detected. Please use diffrerent Drug code",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -924,7 +929,7 @@
 
                             bootbox.alert({
                                 message: "Drug Code Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#mdcAddModal').modal('hide');
@@ -1039,7 +1044,7 @@
 
                             bootbox.alert({
                                 message: "Drug is successfully cloned",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             MDCCloneReset();

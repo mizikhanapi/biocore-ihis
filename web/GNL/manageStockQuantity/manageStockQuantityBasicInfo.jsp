@@ -41,7 +41,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Invoice Date *</label>
             <div class="col-md-6">
-                <input id="invoiceDate" name="invoiceDate" type="text"class="form-control input-md" placeholder="Select Invoice Date" readonly>
+                <input id="invoiceDate" name="invoiceDate" type="text"class="form-control input-md" placeholder="DD/MM/YYYY" readonly>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Delivery Date *</label>
             <div class="col-md-6">
-                <input id="deliveryDate" name="deliveryDate" type="text"class="form-control input-md" placeholder="Select Delivery Date" readonly>
+                <input id="deliveryDate" name="deliveryDate" type="text"class="form-control input-md" placeholder="DD/MM/YYYY" readonly>
             </div>
         </div>
 
@@ -129,14 +129,24 @@
         $("#invoiceDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
         // Date Picker For Delivery Date
         $("#deliveryDate").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'dd/mm/yy',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
 
@@ -188,12 +198,12 @@
                         "language": {
                             "emptyTable": "No Details Available Available To Display"
                         },
-                                    columnDefs: [
-                                        {
-                                            className: 'dt-body-left',
-                                            targets: '_all'
+                        columnDefs: [
+                            {
+                                className: 'dt-body-left',
+                                targets: '_all'
 
-                                        }]
+                            }]
                     });
 
                     $('#invoiceViewOrderNo').val(invoiceNo);

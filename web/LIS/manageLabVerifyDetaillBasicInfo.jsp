@@ -470,7 +470,7 @@
 
                 $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
-                bootbox.alert("Please Select A Order First !!!");
+                bootbox.alert("Please Select A Order First");
 
             } else {
 
@@ -482,16 +482,16 @@
 
 
                 bootbox.confirm({
-                    message: "Are You Sure ?",
-                    title: "Call Patient ?",
+                    message: "Are you sure want to call patient ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -525,8 +525,8 @@
                                     if (message === 'Success') {
 
                                         bootbox.alert({
-                                            message: "Patient Call Successful",
-                                            title: "Process Result",
+                                            message: "Patient Called Successfully",
+                                            title: "Information",
                                             backdrop: true
                                         });
 
@@ -567,7 +567,7 @@
 
                 $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
-                bootbox.alert("Please Select A Order First !!!");
+                bootbox.alert("Please Select A Order First");
 
             } else {
 
@@ -576,16 +576,16 @@
 
 
                 bootbox.confirm({
-                    message: "Are You Sure ?",
-                    title: "Decline Call Patient ?",
+                    message: "Are you sure want to decline patient ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -611,8 +611,8 @@
                                     if (deleteResult === 'Success') {
 
                                         bootbox.alert({
-                                            message: "Decline Call Patient Successful",
-                                            title: "Process Result",
+                                            message: "Declined Call Patient Successfully",
+                                            title: "Information",
                                             backdrop: true
                                         });
 
@@ -761,14 +761,14 @@
                     },
                     error: function () { // if error
 
-                        $('#orderNewStockOrderSearchItemInputDisplayResult').text('No Record Found !');
+                        $('#orderNewStockOrderSearchItemInputDisplayResult').text('No Record Found');
 
                     }
                 });
 
             } else {
 
-                $('#orderNewStockOrderSearchItemInputDisplayResult').text('Search For More Than One Characters !!'); // If less than 2 characters, clear the <div id="match"></div>
+                $('#orderNewStockOrderSearchItemInputDisplayResult').text('Search For More Than One Characters'); // If less than 2 characters, clear the <div id="match"></div>
 
             }
         });
@@ -875,15 +875,15 @@
 
         if (itemCode === "" || itemCode === null) {
 
-            bootbox.alert("Please Search An Item To Continue !!!");
+            bootbox.alert("Please Search An Item To Continue");
 
         } else if (itemQuantity === "" || itemQuantity === null) {
 
-            bootbox.alert("Please Insert Order Quantity !!!");
+            bootbox.alert("Please Insert Order Quantity");
 
         } else if (parseInt(itemQuantity) > parseInt(itemStock)) {
 
-            bootbox.alert("Please Insert Order Quantity Less Than Stock Quantity That Is Available !!!");
+            bootbox.alert("Please Insert Order Quantity Less Than Stock Quantity That Is Available");
 
         } else {
 
@@ -985,15 +985,15 @@
 
                                                     $('#tablepositemprepare').append(databack.trim());
                                                     bootbox.alert({
-                                                        message: "Item is Added Successful",
-                                                        title: "Process Result",
+                                                        message: "Item is Added Successfully",
+                                                        title: "Information",
                                                         backdrop: true
                                                     });
                                                     datatableTableCreate();
                                                 }else{
                                                     bootbox.alert({
-                                                        message: "Item is Added Successful",
-                                                        title: "Process Result",
+                                                        message: "Item is Added Successfully",
+                                                        title: "Information",
                                                         backdrop: true
                                                     });
                                                     datatableTableCreate();
@@ -1007,18 +1007,18 @@
                                         
                                     } else if (datas.trim() === "Failed") {
 
-                                        bootbox.alert("Item failed to add!");
+                                        bootbox.alert("Item failed to add");
 
                                     }
                                     //resetPage();
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Deletion Ajax failed!!");
+                                    alert("Error: Deletion Ajax failed");
                                 }
                             });
                         } else if (returnMessage.trim() === 'Failed') {
-                            bootbox.alert("Item failed to add!");
+                            bootbox.alert("Item failed to add");
                         }
                     }
                 });
@@ -1026,7 +1026,7 @@
 
             } else {
 
-                bootbox.alert("Item Code Duplicated!! Please Choose Different Code!!");
+                bootbox.alert("Item Code Duplicated. Please Choose Different Code.");
 
                 datatableTableCreate();
 
@@ -1051,7 +1051,7 @@
 
         $('#orderNewStockOrderModalTitle').text("Update Or Delete Item");
         $('#orderNewStockOrderItem_btnAdd_or_btnUpdate_div').html('<button type="submit" id="orderNewStockOrderItemUpdateNewItemBtn" class="btn btn-success btn-block btn-lg" role="button">Update</button>');
-        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-danger btn-block btn-lg" role="button">Delete</button>');
+        $('#orderNewStockOrderItem_btnCancel_or_btnDelete_div').html('<button type="submit" id="orderNewStockOrderItemDeleteNewItemBtn" class="btn btn-default btn-block btn-lg" role="button">Delete</button>');
 
         $('#orderNewStockOrderSearchItemInput').prop('disabled', true);
         
@@ -1158,14 +1158,14 @@
                                 $('#tablepositemprepare').append(databack.trim());
                                 bootbox.alert({
                                     message: "Item is Updated Successfully",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
                                 datatableTableCreate();
                             }else{
                                 bootbox.alert({
                                     message: "Item is Updated Successfully",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
                                 datatableTableCreate();
@@ -1176,7 +1176,7 @@
                 }else{
                     bootbox.alert({
                         message: "Item is Fail to update",
-                        title: "Process Result",
+                        title: "Information",
                         backdrop: true
                     });
                 }
@@ -1224,15 +1224,15 @@
 
             bootbox.confirm({
                 message: "Are you sure want to delete this item ?",
-                title: "Delete Item?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1260,7 +1260,7 @@
                                             $('#tablepositemprepare').append(databack.trim());
                                             bootbox.alert({
                                                 message: "Item is Deleted Successfully",
-                                                title: "Process Result",
+                                                title: "Information",
                                                 backdrop: true
                                             });
                                             datatableTableCreate();
@@ -1268,7 +1268,7 @@
                                         }else{
                                             bootbox.alert({
                                                 message: "Item is Deleted Successfully",
-                                                title: "Process Result",
+                                                title: "Information",
                                                 backdrop: true
                                             });
                                             datatableTableCreate();
@@ -1281,7 +1281,7 @@
 
                                     bootbox.alert({
                                         message: "Item Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -1290,7 +1290,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error: Deletion Ajax failed");
                             }
 
                         });

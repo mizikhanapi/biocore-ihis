@@ -100,8 +100,8 @@
                             $("#contentFREQTable").load("freqTableLoop.jsp");
                             $('#freqModal').modal('hide');
                             bootbox.alert({
-                                message: "Drug Frequency is Added Successful",
-                                title: "Process Result",
+                                message: "Drug Frequency is Added Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#freqForm')[0].reset();
@@ -110,7 +110,7 @@
 
                             bootbox.alert({
                                 message: "Frequency Code Duplication Detected. Please use diffrerent Frequency Code",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -118,7 +118,7 @@
 
                             bootbox.alert({
                                 message: "Drug Frequency Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#freqModal').modal('hide');
@@ -212,8 +212,8 @@
                             $("#contentFREQTable").load("freqTableLoop.jsp");
                             $('#freqModal').modal('hide');
                             bootbox.alert({
-                                message: "Drug Frequency is Updated Successful",
-                                title: "Process Result",
+                                message: "Drug Frequency is Updated Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#freqForm')[0].reset();
@@ -222,7 +222,7 @@
 
                             bootbox.alert({
                                 message: "Drug Frequency Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#freqModal').modal('hide');
@@ -257,15 +257,15 @@
 
             bootbox.confirm({
                 message: "Are you sure want to delete this item ?",
-                title: "Delete Item?",
+                title: "Please Confrim ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -288,8 +288,8 @@
                                     $("#contentFREQTable").load("freqTableLoop.jsp");
 
                                     bootbox.alert({
-                                        message: "Drug Frequency is Deleted Successful",
-                                        title: "Process Result",
+                                        message: "Drug Frequency is Deleted Successfully",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -297,7 +297,7 @@
 
                                     bootbox.alert({
                                         message: "Drug Frequency Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -407,7 +407,7 @@
 
                             bootbox.alert({
                                 message: "Drug frequency is successfully cloned",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 

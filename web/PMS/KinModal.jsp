@@ -101,7 +101,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Date Of Birth</label>  
                                     <div class="col-md-7">
-                                        <input id="KINdob" name="KINdob" type="text" class="form-control input-md">
+                                        <input id="KINdob" name="KINdob" type="text" class="form-control input-md" readonly="">
 
                                     </div>
                                 </div>

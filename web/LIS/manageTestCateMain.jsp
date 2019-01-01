@@ -101,8 +101,8 @@
                             $('#testCateModal').modal('hide');
 
                             bootbox.alert({
-                                message: "Test Category is Added Successful",
-                                title: "Process Result",
+                                message: "Test Category is Added Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -112,7 +112,7 @@
 
                             bootbox.alert({
                                 message: "Test Category Code Duplication Detected. Please use diffrerent Test Category Code",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -120,7 +120,7 @@
 
                             bootbox.alert({
                                 message: "Test Category Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -216,7 +216,7 @@
 
                             bootbox.alert({
                                 message: "Test Category is Updated Successful",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -226,7 +226,7 @@
 
                             bootbox.alert({
                                 message: "Test Category Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -238,7 +238,7 @@
 
                     },
                     error: function (err) {
-                        alert("Error Ajax Update!");
+                        alert("Error Ajax Update");
                     }
 
                 });
@@ -264,15 +264,15 @@
 
             bootbox.confirm({
                 message: "Are you sure want to delete this item ?",
-                title: "Delete Item?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -295,8 +295,8 @@
                                     $("#contentTestCateTable").load("manageTestCateTable.jsp");
 
                                     bootbox.alert({
-                                        message: "Test Category is Deleted Successful",
-                                        title: "Process Result",
+                                        message: "Test Category is Deleted Successfully",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -304,7 +304,7 @@
 
                                     bootbox.alert({
                                         message: "Test Category Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -312,7 +312,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed!!");
+                                alert("Error: Deletion Ajax failed");
                             }
 
                         });
@@ -365,7 +365,7 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Opps! " + errorThrown);
+                    bootbox.alert("Error: " + errorThrown);
                 },
                 complete: function (jqXHR, textStatus) {
                     $('.loading').hide();
@@ -418,7 +418,7 @@
 
                             bootbox.alert({
                                 message: "Test Category is successfully cloned",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -426,7 +426,7 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            bootbox.alert("Insertion failed!");
+                            bootbox.alert("Insertion failed");
 
                             TESTCATECloneReset();
 
@@ -504,7 +504,7 @@
 
                 },
                 error: function (err) {
-                    alert("Error! Deletion Ajax failed!!");
+                    alert("Error: Deletion Ajax failed");
                 }
 
             });

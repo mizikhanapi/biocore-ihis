@@ -54,7 +54,12 @@
             changeYear: true,
             dateFormat: 'dd/mm/yy',
             yearRange: '1990:+0',
-            maxDate: '+0d'
+            maxDate: '+0d',
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
         //--- initialise datepicker for to after changes on from ------------
@@ -71,7 +76,12 @@
                 dateFormat: 'dd/mm/yy',
                 yearRange: '1990:+0',
                 minDate: fromDate,
-                maxDate: '+0d'
+                maxDate: '+0d',
+                beforeShow: function () {
+                    setTimeout(function () {
+                        $('.ui-datepicker').css('z-index', 999999999);
+                    }, 0);
+                }
             });
 
         });
@@ -125,7 +135,7 @@
                         $('#patientOrderListContent').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert('Opps! ' + errorThrown);
+                        bootbox.alert('Opps: ' + errorThrown);
                     },
                     complete: function (jqXHR, textStatus) {
                         $('.loading').hide();
@@ -174,7 +184,7 @@
                         $('#patientOrderListContent').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert('Opps! ' + errorThrown);
+                        bootbox.alert('Opps: ' + errorThrown);
                     },
                     complete: function (jqXHR, textStatus) {
                         $('.loading').hide();

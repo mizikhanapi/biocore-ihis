@@ -271,8 +271,8 @@
                         $('#contentATCTable').load('atcTableLoop.jsp');
                         $(".modal-backdrop").hide();
                         bootbox.alert({
-                            message: "Category Code is Updated Successful",
-                            title: "Process Result",
+                            message: "Category Code is Updated Successfully",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -280,7 +280,7 @@
 
                         bootbox.alert({
                             message: "Category Code Update Failed",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -314,16 +314,16 @@
         console.log(rowData);
 
         bootbox.confirm({
-            message: "Are you sure want to delete this item?",
-            title: "Delete Item?",
+            message: "Are you sure want to delete this item ?",
+            title: "Please confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -347,8 +347,8 @@
 
                                 $('#contentATCTable').load('atcTableLoop.jsp');
                                 bootbox.alert({
-                                    message: "Category Code is Deleted Successful",
-                                    title: "Process Result",
+                                    message: "Category Code is Deleted Successfully",
+                                    title: "Information",
                                     backdrop: true
                                 });
 
@@ -356,7 +356,7 @@
 
                                 bootbox.alert({
                                     message: "Category Code Delete Failed",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
 

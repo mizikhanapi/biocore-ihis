@@ -83,12 +83,12 @@
         console.log(longString);
 
         if (longString === "") {
-            bootbox.alert("Please Select At Least A Order To Be Achived !");
+            bootbox.alert("Please Select At Least A Order To Be Achived");
         } else {
 
             bootbox.confirm({
                 message: "Are you sure that you want to achive the selected order ?",
-                title: "Archive Order ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',

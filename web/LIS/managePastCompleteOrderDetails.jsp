@@ -156,7 +156,7 @@
 
                 } else {
 
-                    console.log("Oops!Something went wrong. Try again later.");
+                    console.log("Oops: Something went wrong. Try again later.");
 
                 }
             },

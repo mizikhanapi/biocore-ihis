@@ -250,8 +250,8 @@
                             $('#contentATCTable').load('atcTableLoop.jsp');
                             $('#detail').modal('hide');
                             bootbox.alert({
-                                message: "Category Code is Added Successful",
-                                title: "Process Result",
+                                message: "Category Code is Added Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
                             reset();
@@ -260,7 +260,7 @@
 
                             bootbox.alert({
                                 message: "Category Code Duplication Detected. Please use different Category code",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -268,7 +268,7 @@
 
                             bootbox.alert({
                                 message: "Category Code Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             $('#detail').modal('hide');
@@ -400,7 +400,7 @@
 
                             bootbox.alert({
                                 message: "Category code is successfully cloned.",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
                             ATCCloneReset();

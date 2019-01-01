@@ -352,7 +352,7 @@
 
             if (stringDetail === "") {
 
-                bootbox.alert("Please Select At Least A Specimen Request To Reject !!!");
+                bootbox.alert("Please Select At Least A Specimen Request To Reject");
 
             } else {
 
@@ -362,11 +362,11 @@
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -396,13 +396,13 @@
 
                                         resetPage();
 
-                                        bootbox.alert("Reject Specimen Is Successfull !!!");
+                                        bootbox.alert("Reject Specimen Is Successfull");
 
                                     } else if (datas.trim() === "Failed") {
 
                                         resetPage();
 
-                                        bootbox.alert("Reject Specimen Failed !!!");
+                                        bootbox.alert("Reject Specimen Failed");
 
                                     }
 
@@ -410,7 +410,7 @@
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Ajax failed!!");
+                                    alert("Error: Ajax failed");
                                 }
 
                             });
@@ -481,7 +481,7 @@
 
             if (stringDetail === "") {
 
-                bootbox.alert("Please Select At Least A Specimen Request To Cancel !!!");
+                bootbox.alert("Please Select At Least A Specimen Request To Cancel");
 
             } else {
 
@@ -491,11 +491,11 @@
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -525,13 +525,13 @@
 
                                         resetPage();
 
-                                        bootbox.alert("Cancel Specimen Is Successfull !!!");
+                                        bootbox.alert("Cancel Specimen Is Successfull");
 
                                     } else if (datas.trim() === "Failed") {
 
                                         resetPage();
 
-                                        bootbox.alert("Cancel Specimen Failed !!!");
+                                        bootbox.alert("Cancel Specimen Failed");
 
                                     }
 
@@ -539,7 +539,7 @@
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Ajax failed!!");
+                                    alert("Error: Ajax failed");
                                 }
 
                             });
@@ -620,11 +620,11 @@
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -668,7 +668,7 @@
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Ajax failed!!");
+                                    alert("Error: Ajax failed");
                                 }
 
                             });

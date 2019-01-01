@@ -632,8 +632,8 @@
 
                         $('#addScreenItem').modal('hide');
                         bootbox.alert({
-                            message: "Item is Added Successful",
-                            title: "Process Result",
+                            message: "Item is Added Successfully",
+                            title: "Information",
                             backdrop: true
                         });
                         resetAddOrder();
@@ -655,7 +655,7 @@
 
                         bootbox.alert({
                             message: "Item Product Code Duplication Detected. Please Order diffrent drug as the data already there",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -663,7 +663,7 @@
 
                         bootbox.alert({
                             message: "Item Add Failed",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
                         $('#addScreenItem').modal('hide');
@@ -759,15 +759,15 @@
 
         bootbox.confirm({
             message: "Are you sure want to delete this order item ?",
-            title: "Delete Item?",
+            title: "Please Confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -793,7 +793,7 @@
                                         $('#patientScreenDetailsListTable').html(returnOrderDetailsTableHTML);
                                         bootbox.alert({
                                             message: "Drug Order is Deleted Successfully",
-                                            title: "Process Result",
+                                            title: "Information",
                                             backdrop: true
                                         });
                                         $('#patientScreenDetailsListTable').trigger('contentchanged');
@@ -805,7 +805,7 @@
 
                                 bootbox.alert({
                                     message: "Drug Item Delete Failed",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
 
@@ -813,7 +813,7 @@
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
+                            alert("Error: Deletion Ajax failed");
                         }
 
                     });
@@ -844,11 +844,11 @@
 
         if (updateDispensedQuantity === "" || updateDispensedQuantity === null || parseInt(updateDispensedQuantity) < 1) {
 
-            bootbox.alert("Please Insert The Dispense Quantity Than Is More That 0 !!!");
+            bootbox.alert("Please Insert The Dispense Quantity Than Is More That 0");
 
         } else if ((parseInt(updateDispensedQuantity) > parseInt(updateStockQty))) {
 
-            bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number !!!");
+            bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number");
             $("#updateDispensedDrugQuantity").val("");
 
         } else {
@@ -861,7 +861,7 @@
 
             bootbox.alert({
                 message: "Drug Order Detail is Updated Successfully",
-                title: "Process Result",
+                title: "Information",
                 backdrop: true
             });
 
@@ -913,22 +913,22 @@
 
         if (pmino === "" || pmino === null || orderNo === "" || orderNo === null) {
 
-            bootbox.alert("Please choose a patient record to continue !!!");
+            bootbox.alert("Please choose a patient record to continue");
             $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
         } else {
 
             bootbox.confirm({
                 message: "Please make sure all the order are correct. Are you sure that you want to complete screening for this order ?",
-                title: "Flag Screening Complete ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -957,7 +957,7 @@
 
                                     bootbox.alert({
                                         message: "Screening Order is Successfully",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
                                     resetScreenPage();
@@ -1001,7 +1001,7 @@
 
                                     bootbox.alert({
                                         message: "Drug Item Screening Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -1009,7 +1009,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Screening Ajax failed!!");
+                                alert("Error: Screening Ajax failed");
                             }
 
                         });

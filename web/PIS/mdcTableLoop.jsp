@@ -541,7 +541,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Expire Date *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_EXP_DATE" name="updateD_EXP_DATE" type="text" class="form-control input-md" readonly>
+                                    <input id="updateD_EXP_DATE" name="updateD_EXP_DATE" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly>
                                 </div>
                             </div>
 
@@ -614,7 +614,12 @@
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd/mm/yy',
-        minDate: '0'
+        minDate: '0',
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
 
     $('.decimalNumbersOnly').keyup(function () {
@@ -647,16 +652,16 @@
 
 
         bootbox.confirm({
-            message: "Are you sure want to delete this item?",
-            title: "Delete Item?",
+            message: "Are you sure want to delete this item ?",
+            title: "Please confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -676,14 +681,14 @@
                             if (datas.trim() === 'Success') {
                                 $('#contentMDCTable').load('mdcTableLoop.jsp');
                                 bootbox.alert({
-                                    message: "Drug Code is Deleted Successful",
-                                    title: "Process Result",
+                                    message: "Drug Code is Deleted Successfully",
+                                    title: "Information",
                                     backdrop: true
                                 });
                             } else if (datas.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Drug Code Delete Failed",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
                             }
@@ -990,8 +995,8 @@
                         $('#contentMDCTable').load('mdcTableLoop.jsp');
                         $(".modal-backdrop").hide();
                         bootbox.alert({
-                            message: "Drug Code is Updated Successful",
-                            title: "Process Result",
+                            message: "Drug Code is Updated Successfully",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -999,7 +1004,7 @@
 
                         bootbox.alert({
                             message: "Drug Code Update Failed",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
 

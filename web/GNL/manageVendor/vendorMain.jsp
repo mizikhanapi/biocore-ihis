@@ -712,8 +712,8 @@
                             $('#vendorModal').modal('hide');
 
                             bootbox.alert({
-                                message: "Vendor is Added Successful",
-                                title: "Process Result",
+                                message: "Vendor is Added Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -723,7 +723,7 @@
 
                             bootbox.alert({
                                 message: "Vendor ID Duplication Detected. Please use diffrerent Vendor ID",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -731,7 +731,7 @@
 
                             bootbox.alert({
                                 message: "Vendor Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -1069,8 +1069,8 @@
                             $('#vendorModalForm')[0].reset();
 
                             bootbox.alert({
-                                message: "Vendor is Updated Successful",
-                                title: "Process Result",
+                                message: "Vendor is Updated Successfully",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -1078,7 +1078,7 @@
 
                             bootbox.alert({
                                 message: "Vendor Update Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -1125,16 +1125,16 @@
 
 
             bootbox.confirm({
-                message: "Are you sure want to delete this item?",
-                title: "Delete Item?",
+                message: "Are you sure want to delete this item ?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1156,8 +1156,8 @@
                                     $("#contentVendorTable").load("../GNL/manageVendor/vendorTable.jsp");
 
                                     bootbox.alert({
-                                        message: "Vendor is Deleted Successful",
-                                        title: "Process Result",
+                                        message: "Vendor is Deleted Successfully",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -1165,7 +1165,7 @@
 
                                     bootbox.alert({
                                         message: "Vendor Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 

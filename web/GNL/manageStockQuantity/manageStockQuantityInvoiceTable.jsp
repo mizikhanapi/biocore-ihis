@@ -101,12 +101,12 @@
                 "language": {
                     "emptyTable": "No Data Available To Display"
                 },
-                                    columnDefs: [
-                                        {
-                                            className: 'dt-body-left',
-                                            targets: '_all'
+                columnDefs: [
+                    {
+                        className: 'dt-body-left',
+                        targets: '_all'
 
-                                        }]
+                    }]
             });
 
         }
@@ -174,7 +174,7 @@
 
                             bootbox.alert({
                                 message: "Invoice No Duplicated, Please Choose Diffrent Invoice No",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -392,8 +392,8 @@
                     $('#invoiceAddOrderModal').modal('hide');
 
                     bootbox.alert({
-                        message: "Item is Added Successful",
-                        title: "Process Result",
+                        message: "Item is Added Successfully",
+                        title: "Information",
                         backdrop: true
                     });
 
@@ -408,12 +408,12 @@
                         "language": {
                             "emptyTable": "No Data Available To Display"
                         },
-                                    columnDefs: [
-                                        {
-                                            className: 'dt-body-left',
-                                            targets: '_all'
+                        columnDefs: [
+                            {
+                                className: 'dt-body-left',
+                                targets: '_all'
 
-                                        }]
+                            }]
                     });
 
                 }
@@ -464,7 +464,7 @@
             $('#invoiceAddPriceStockQty').val(itemStock);
             $('#invoiceAddPriceNewQty').val(itemQuantity);
             $('#invoiceAddcostPrice').val(itemCost);
-            
+
             $('#invoiceAddItemSearchInput').prop('disabled', true);
             $('#invoiceAddCode').prop('disabled', true);
             $('#invoiceAddName').prop('disabled', true);
@@ -506,7 +506,7 @@
 
             bootbox.alert({
                 message: "Item is Updated Successfully",
-                title: "Process Result",
+                title: "Information",
                 backdrop: true
             });
 
@@ -527,7 +527,7 @@
 
             bootbox.alert({
                 message: "Item is Deleted Successfully",
-                title: "Process Result",
+                title: "Information",
                 backdrop: true
             });
 
@@ -569,7 +569,7 @@
 
                 // Setting Variable For Overall Dispense
                 var itemCode, itemName, stringDetail = "";
-                var itemPrice, itemNewQty, itemNewQtyOver, product,itemcost;
+                var itemPrice, itemNewQty, itemNewQtyOver, product, itemcost;
                 var grandTotal = 0.0;
                 var itemQtyTotal = 0;
 
@@ -607,7 +607,7 @@
 
                 bootbox.confirm({
                     message: "Are you sure want to update stock quantity for this items ?",
-                    title: "Update Item Stock Quantty ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
@@ -633,13 +633,19 @@
                             var quantity = $('#invoiceAddOrderTotalOrder').val();
                             var price = $('#invoiceAddPrice').val();
 
+                            var sDate = invoice_date.split('/');
+                            var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                            var eDate = delivery_date.split('/');
+                            var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
                             var data = {
                                 invoiceOrderFor: invoiceOrderFor,
                                 invoice_no: invoice_no,
                                 order_no: order_no,
                                 vendor_id: vendor_id,
-                                invoice_date: invoice_date + " 00:00:00",
-                                delivery_date: delivery_date + " 00:00:00",
+                                invoice_date: SnewDate + " 00:00:00",
+                                delivery_date: EnewDate + " 00:00:00",
                                 description: description,
                                 total_amt: total_amt,
                                 quantity: quantity,
@@ -674,7 +680,7 @@
 
                                                 bootbox.alert({
                                                     message: "Item Stock Is Updated Successfully",
-                                                    title: "Process Result",
+                                                    title: "Information",
                                                     backdrop: true
                                                 });
 
@@ -691,7 +697,7 @@
 
                                         bootbox.alert({
                                             message: "Item Stock Update Failed",
-                                            title: "Process Result",
+                                            title: "Information",
                                             backdrop: true
                                         });
 
@@ -792,7 +798,7 @@
                 success: function (dataBack) { // If success
 
                     $("#invoiceContentMaster").html(dataBack);
-                    
+
                     $("#invoiceContentAddMaster").load("../GNL/manageStockQuantity/manageStockQuantityBasicInfo.jsp");
                     $("#invoiceContentAddDetail").load("../GNL/manageStockQuantity/manageStockQuantityInvoiceTable.jsp");
 

@@ -40,7 +40,7 @@
                 //                  11                      12                      13                              14                          15
                 + " pis_order_master.SPUB_NO,pis_order_master.KEYIN_BY,IFNULL(pis_order_master.TOTAL_ORDER,'-'),pis_order_master.STATUS,pms_patient_biodata.PATIENT_NAME, "
                 //                  16                      17                              18                              19                          20                          21
-                + " pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,pis_order_master.ORDER_STATUS,adm_users.USER_NAME "
+                + " pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,pis_order_master.ORDER_STATUS,adm_users.USER_NAME,DATE_FORMAT(pis_order_master.ORDER_DATE, '%d/%m/%Y %T') "
                 + " FROM pis_order_master "
                 + " LEFT JOIN pms_patient_biodata ON (pis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) "
                 + " LEFT JOIN adm_users ON (pis_order_master.ORDER_BY = adm_users.USER_ID) "
@@ -59,7 +59,7 @@
         <td ><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
         <td ><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->
         <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
-        <td ><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
+        <td ><%= dataPatientOrderList.get(i).get(22)%></td> <!-- Order Date -->
         <td ><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Total Order -->
         <td ><%= dataPatientOrderList.get(i).get(21)%></td> <!-- Doctor's Name -->
     </tr>

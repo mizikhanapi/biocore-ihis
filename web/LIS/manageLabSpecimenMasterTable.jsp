@@ -74,7 +74,7 @@
                 //        15                16           17                  18             19              20                          21
                 + " lsm.order_status,lsm.created_by,lsm.created_date,pms.PATIENT_NAME,pms.NEW_IC_NO,IFNULL(pms.BIRTH_DATE,'-'),IFNULL(pms.SEX_CODE,'-'), "
                 //            22                            23                      24                 25           26
-                + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME  "
+                + " IFNULL(pms.BLOOD_TYPE,'-'),IFNULL(s.description,'-'),IFNULL(b.description,'-'),adm.hfc_name,aus.USER_NAME,DATE_FORMAT(lsm.order_date, '%d/%m/%Y %T')  "
                 // FROM ORDER TABLE
                 + " FROM lis_specimen_master lsm  "
                 // LEFT JOIN USER TABLE

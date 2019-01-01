@@ -469,13 +469,13 @@
                         },
                         error: function () { // if error
 
-                            $('#orderLabRequestDetailsSearchItemInputDisplayResult').text('No Eecord Found !');
+                            $('#orderLabRequestDetailsSearchItemInputDisplayResult').text('No Eecord Found');
 
                         }
                     });
                 } else {
 
-                    $('#orderLabRequestDetailsSearchItemInputDisplayResult').text('Search For More Than Two Characters !!'); // If less than 2 characters, clear the <div id="match"></div>
+                    $('#orderLabRequestDetailsSearchItemInputDisplayResult').text('Search For More Than Two Characters'); // If less than 2 characters, clear the <div id="match"></div>
 
                 }
             });
@@ -555,7 +555,7 @@
 
             if (item_cd === "" || item_cd === null) {
 
-                bootbox.alert("Please Search The Drug Before Continue");
+                bootbox.alert("Please Search The Item Before Continue");
 
             } else {
 
@@ -601,7 +601,7 @@
 
                                     bootbox.alert({
                                         message: "Lab Request is Added Successfully",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -618,8 +618,8 @@
                         } else if (datas.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "Lab Request Code Duplication Detected. Please Order diffrent lab item as the data already there !!!",
-                                title: "Process Result",
+                                message: "Lab Request Code Duplication Detected. Please Order diffrent lab item as the data already there.",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -628,7 +628,7 @@
 
                             bootbox.alert({
                                 message: "Lab Request Add Failed",
-                                title: "Process Result",
+                                title: "Information",
                                 backdrop: true
                             });
 
@@ -747,7 +747,7 @@
 
                                 bootbox.alert({
                                     message: "Lab Request is Updated Successfully",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
 
@@ -761,7 +761,7 @@
 
                         bootbox.alert({
                             message: "Lab Request Update Failed",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -770,7 +770,7 @@
 
                 },
                 error: function (err) {
-                    alert("Error! Update Ajax failed");
+                    alert("Error: Update Ajax failed");
                 }
 
             });
@@ -798,15 +798,15 @@
 
             bootbox.confirm({
                 message: "Are you sure want to delete this item ?",
-                title: "Delete Item?",
+                title: "Please Confirm ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -834,7 +834,7 @@
 
                                             bootbox.alert({
                                                 message: "Lab Request is Deleted Successfully",
-                                                title: "Process Result",
+                                                title: "Information",
                                                 backdrop: true
                                             });
 
@@ -848,7 +848,7 @@
 
                                     bootbox.alert({
                                         message: "Lab Request Delete Failed",
-                                        title: "Process Result",
+                                        title: "Information",
                                         backdrop: true
                                     });
 
@@ -857,7 +857,7 @@
 
                             },
                             error: function (err) {
-                                alert("Error! Deletion Ajax failed");
+                                alert("Error: Deletion Ajax failed");
                             }
 
                         });
@@ -944,11 +944,11 @@
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -999,7 +999,7 @@
 
                                         },
                                         error: function (err) {
-                                            alert("Error! Ajax failed!!");
+                                            alert("Error: Ajax failed");
                                         }
 
                                     });
@@ -1007,7 +1007,7 @@
 
                                 },
                                 error: function (err) {
-                                    alert("Error! Ajax failed!!");
+                                    alert("Error: Ajax failed");
                                 }
 
                             });

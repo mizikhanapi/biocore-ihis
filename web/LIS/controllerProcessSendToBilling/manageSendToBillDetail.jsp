@@ -55,7 +55,7 @@
                     //              12                              13                              14                          15
                     + " lis_order_master.created_date, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, pms_patient_biodata.BIRTH_DATE,"
                     //                  16                          17                                  18
-                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status "
+                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status,DATE_FORMAT(lis_order_master.order_date, '%d/%m/%Y %T') "
                     // FROM
                     + " FROM lis_order_master "
                     // JOIN PMS PATIENT
@@ -74,7 +74,7 @@
                     //              12                              13                              14                          15
                     + " lis_order_master.created_date, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, pms_patient_biodata.BIRTH_DATE,"
                     //                  16                          17                                  18
-                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status "
+                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status,DATE_FORMAT(lis_order_master.order_date, '%d/%m/%Y %T') "
                     // FROM
                     + " FROM lis_order_master "
                     // JOIN PMS PATIENT
@@ -93,7 +93,7 @@
                     //              12                              13                              14                          15
                     + " lis_order_master.created_date, pms_patient_biodata.PATIENT_NAME, pms_patient_biodata.NEW_IC_NO, pms_patient_biodata.BIRTH_DATE,"
                     //                  16                          17                                  18
-                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status "
+                    + " pms_patient_biodata.SEX_CODE, pms_patient_biodata.BLOOD_TYPE, lis_order_master.billing_status,DATE_FORMAT(lis_order_master.order_date, '%d/%m/%Y %T') "
                     // FROM
                     + " FROM lis_order_master "
                     // JOIN PMS PATIENT
@@ -128,7 +128,7 @@
         <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
         <td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
         <td><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
-        <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
+        <td><%= dataPatientOrderList.get(i).get(19)%></td> <!-- Order Date -->
         <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
         <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
         <td><%= status%></td> <!-- bill status -->
@@ -218,7 +218,7 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 
-                    bootbox.alert('Opps! ' + errorThrown);
+                    bootbox.alert('Error: ' + errorThrown);
 
                 }
             });

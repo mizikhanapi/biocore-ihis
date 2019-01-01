@@ -76,7 +76,7 @@
                 //                  19                                      20                                          21                        22
                 + " IFNULL(pms_patient_biodata.SEX_CODE,'-'), IFNULL(pms_patient_biodata.BLOOD_TYPE,'-'), pis_order_master.ORDER_STATUS, IFNULL(s.description,'-'), "
                 //              23                  24             25
-                + " IFNULL(b.description,'-'), adm.hfc_name, aus.USER_NAME "
+                + " IFNULL(b.description,'-'), adm.hfc_name, aus.USER_NAME,DATE_FORMAT(pis_order_master.ORDER_DATE, '%d/%m/%Y %T') "
                 // JOIN PIS ORDER MASTER SQL
                 + " FROM pis_order_master "
                 // LEFT JOIN PMS PATIENT BIODATA SQL
@@ -105,7 +105,7 @@
 <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->
 <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
-<td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
+<td><%= dataPatientOrderList.get(i).get(25)%></td> <!-- Order Date -->
 <td style="display: none"><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
 <td><%= dataPatientOrderList.get(i).get(24)%></td> <!-- Doctor's Name -->
 </tr>

@@ -707,8 +707,8 @@
 
                         $('#addOrderDrug').modal('hide');
                         bootbox.alert({
-                            message: "Order is Added Successful",
-                            title: "Process Result",
+                            message: "Order is Added Successfully",
+                            title: "Information",
                             backdrop: true
                         });
                         resetAddOrder();
@@ -732,7 +732,7 @@
 
                         bootbox.alert({
                             message: "Order Product Code Duplication Detected. Please Order diffrent drug as the data already there",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -742,7 +742,7 @@
 
                         bootbox.alert({
                             message: "Order Add Failed",
-                            title: "Process Result",
+                            title: "Information",
                             backdrop: true
                         });
 
@@ -852,14 +852,14 @@
 
 
         if (updateDispensedQuantity === "" || updateDispensedQuantity === null || parseInt(updateDispensedQuantity) < 1) {
-            bootbox.alert("Please Insert The Dispense Quantity Than Is More That 0 !!!");
+            bootbox.alert("Please Insert The Dispense Quantity Than Is More That 0");
         } else if (updateOrderStatusStatic === "New" || updateOrderStatusStatic === null) {
             bootbox.alert("Please Select The Order Status");
         } else if (validDispense.checkValidity() === false) {
-            bootbox.alert("The Dispense Quantity Should Not Be Decimal Number. Please Choose Valid Number !!!");
+            bootbox.alert("The Dispense Quantity Should Not Be Decimal Number. Please Choose Valid Number");
             $("#updateDispensedDrugQuantity").val("");
         } else if ((parseInt(updateDispensedQuantity) > parseInt(updateStockQty))) {
-            bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number !!!");
+            bootbox.alert("The Dispense Quantity Is More Than Stock Quantity. Please Choose Valid Number");
             $("#updateDispensedDrugQuantity").val("");
         } else {
 
@@ -873,7 +873,7 @@
 
             bootbox.alert({
                 message: "Drug Order Detail is Updated Successfully",
-                title: "Process Result",
+                title: "Information",
                 backdrop: true
             });
 
@@ -900,15 +900,15 @@
 
         bootbox.confirm({
             message: "Are you sure want to delete this order ?",
-            title: "Delete Item?",
+            title: "Please Confirm ?",
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -935,7 +935,7 @@
 
                                         bootbox.alert({
                                             message: "Drug Order is Deleted Successfully",
-                                            title: "Process Result",
+                                            title: "Information",
                                             backdrop: true
                                         });
 
@@ -950,7 +950,7 @@
 
                                 bootbox.alert({
                                     message: "Drug Order Delete Failed",
-                                    title: "Process Result",
+                                    title: "Information",
                                     backdrop: true
                                 });
 
@@ -960,7 +960,7 @@
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
+                            alert("Error: Deletion Ajax failed");
                         }
 
                     });
@@ -1043,11 +1043,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1241,7 +1241,7 @@
 
                     },
                     error: function (err) {
-                        console.log("Error Dispense!" + err);
+                        console.log("Error Dispense: " + err);
                     }
                 });
 
@@ -1430,15 +1430,15 @@
 
                 bootbox.confirm({
                     message: "Are you sure that you want to Generate Label For this Drugs ?",
-                    title: "Generate Label ?",
+                    title: "Please Confirm ?",
                     buttons: {
                         confirm: {
                             label: 'Yes',
-                            className: 'btn-success'
+                            className: 'btn-primary'
                         },
                         cancel: {
                             label: 'No',
-                            className: 'btn-danger'
+                            className: 'btn-default'
                         }
                     },
                     callback: function (result) {
@@ -1569,11 +1569,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1607,7 +1607,7 @@
 
                                     bootbox.alert({
                                         message: "You successfully call the patient",
-                                        title: "Success!",
+                                        title: "Success",
                                         backdrop: true
                                     });
 
@@ -1661,11 +1661,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     }
                 },
                 callback: function (result) {
@@ -1692,7 +1692,7 @@
 
                                     bootbox.alert({
                                         message: "Decline Call Patient Successful",
-                                        title: "Success!",
+                                        title: "Success",
                                         backdrop: true
                                     });
 
@@ -1752,7 +1752,7 @@
 
             bootbox.alert({
                 message: "The drug is dispense successfully",
-                title: "Success!",
+                title: "Success",
                 backdrop: true
             });
 
@@ -1796,7 +1796,7 @@
                             $('#patientOrderListContent').html(data);
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            bootbox.alert('Opps! ' + errorThrown);
+                            bootbox.alert('Opps: ' + errorThrown);
                         },
                         complete: function (jqXHR, textStatus) {
                             $('.loading').hide();
