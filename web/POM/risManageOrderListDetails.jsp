@@ -26,7 +26,7 @@
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
 //                                  0           1               2                           3               4               5                                                          6                        7       8 procedure_name                              
-    String orderList = "select order_no, pod.PROCEDURE_CD, 'cp1.`PROCEDURE_1_NAME`', 'cp.`PROCEDURE_NAME`', episode_date, ifnull(DATE_FORMAT(pod.`ENCOUNTER_DATE`,'%d/%m/%Y'), ''), ifnull(comment, '-'), order_status "
+    String orderList = "select order_no, pod.PROCEDURE_CD, 'cp1.`PROCEDURE_1_NAME`', 'cp.`PROCEDURE_NAME`', episode_date, ifnull(DATE_FORMAT(pod.`ENCOUNTER_DATE`,'%d/%m/%Y %T'), ''), ifnull(comment, '-'), order_status "
             + "FROM pos_order_detail pod "
             //+ "left join cis_procedure_1 cp1 on pod.`PROCEDURE_CD` = cp1.`PROCEDURE_1_CD` "
             //+ "left join cis_procedure cp on cp.`PROCEDURE_CD` = cp1.`PROCEDURE_CD` "

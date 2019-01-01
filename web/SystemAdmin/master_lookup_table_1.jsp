@@ -65,7 +65,7 @@
 <td style="width: 5% ">
 
     <!-- Update Part Start -->
-    <a id="MLT_btnUpdate" data-toggle="modal" data-target="#detail2_" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="MLT_btnUpdate" data-toggle="modal" data-target="#detail2_" style="cursor: pointer"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 
     <!-- Modal Update -->
 
@@ -74,7 +74,7 @@
 <!-- Delete Part Start -->
 <td style="width: 5% ">
     <!-- Delete Button Start -->
-    <a id="deleteButton_" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="deleteButton_" class="testing" style="cursor: pointer"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
 </td>
 <!-- Delete Button End -->
 </tr>
@@ -172,7 +172,11 @@
     </div>
 </div>
 <!-- Modal Update -->
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      }); 
+</script>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -290,7 +294,7 @@
                             bootbox.alert("A master lookup code is deleted");
 
                         } else if (datas.trim() === 'Failed') {
-                            bootbox.alert("Delete failed!");
+                            bootbox.alert("Delete failed");
 
                         } else {
                             bootbox.alert(datas.trim());
@@ -298,7 +302,7 @@
 
                     },
                     error: function (err) {
-                        alert("Error! Deletion failed!!");
+                        alert("Error, Deletion failed");
                     }
 
                 });
@@ -356,3 +360,4 @@
         $('#THE_masterTable').DataTable();
     });
 </script>
+

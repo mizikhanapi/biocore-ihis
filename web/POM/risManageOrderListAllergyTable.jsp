@@ -16,7 +16,7 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
 //                                      0                       1                   2                   3                          4                        5                   6               7
-    String allergyList = "SELECT alg.pmi_no, alg.hfc_cd, alg.episode_date, alg.encounter_cd, alg.allergy_cd, alg.icd10_description, alg.comment, adm_health_facility.hfc_name "
+    String allergyList = "SELECT alg.pmi_no, alg.hfc_cd, date_format(alg.episode_date,'%d/%m/%Y %T'), date_format(alg.encounter_cd,'%d/%m/%Y %T'), alg.allergy_cd, alg.icd10_description, alg.comment, adm_health_facility.hfc_name "
             + " FROM lhr_allergy alg"
             + " JOIN adm_health_facility ON (alg.hfc_cd = adm_health_facility.hfc_cd) "
             + " where alg.pmi_no = '" + pmino + "' ORDER BY alg.episode_date DESC ";

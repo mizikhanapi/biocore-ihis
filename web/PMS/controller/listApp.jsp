@@ -23,54 +23,54 @@
     
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String sql = "";
-    String otherSQL = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where id_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
+    String otherSQL = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where id_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
 
     switch (idType) {
         case "today":
             // todays
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where DATE(a.appointment_date) = CURDATE() and a.status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where DATE(a.appointment_date) = CURDATE() and a.status ='active' and hfc_cd='" + hfc + "'";
             break; // optional
 
         case "yesterday":
             // yesterday
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where DATE(a.appointment_date) = DATE(NOW() - INTERVAL 1 DAY) and a.status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where DATE(a.appointment_date) = DATE(NOW() - INTERVAL 1 DAY) and a.status ='active' and hfc_cd='" + hfc + "'";
             break; // optional
         
         case "7":
             // 60 days behind
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),7) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),7) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
             break; // optional
             
         case "30":
             // 30 days behind
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),30) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),30) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
 
             break; // optional
 
         case "60":
             // 60 days behind
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),60) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between SUBDATE(CURDATE(),60) and CURDATE() ) and a.status ='active' and hfc_cd='" + hfc + "'";
             break; // optional   
 
         case "custom":
             // Statements
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between STR_TO_DATE('" + fromDate + "','%d/%m/%Y') and STR_TO_DATE('" + toDate + "','%d/%m/%Y') ) and a.status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where (DATE(a.appointment_date) between STR_TO_DATE('" + fromDate + "','%d/%m/%Y') and STR_TO_DATE('" + toDate + "','%d/%m/%Y') ) and a.status ='active' and hfc_cd='" + hfc + "'";
 
             break; // optional
 
         case "001":
             // PMI
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = '" + idInput + "' and status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = '" + idInput + "' and status ='active' and hfc_cd='" + hfc + "'";
             break; // optional   
 
         case "002":
             // IC NEW
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where new_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where new_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
             break; // optional 
 
         case "003":
             // IC OLD
-            sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where old_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
+            sql = "select a.pmi_no,date_format(a.appointment_date,'%d/%m/%Y %T'),a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where old_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
             break; // optional   
 
         case "004":

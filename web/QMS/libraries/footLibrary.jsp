@@ -22,8 +22,10 @@
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/bootbox.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.dataTables.min.js"></script>
-<script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<!--<script src="libraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+<script src="../assets/datatables.js" type="text/javascript"></script>
+<!--<script src="libraries/js/dataTables.buttons.min.js" type="text/javascript"></script>-->
+<script src="../assets/Buttons-1.5.4/js/buttons.bootstrap.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
 <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
 <script src="../assets/js/jszip.min.js" type="text/javascript"></script>

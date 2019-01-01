@@ -120,7 +120,7 @@
                     extend: 'excelHtml5',
                     text: 'Export to Excel',
                     title: 'Queue: <%=reportTitle%>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -128,7 +128,7 @@
                     extend: 'csvHtml5',
                     text: 'Export to Excel CSV',
                     title: 'Queue: <%=reportTitle%>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     exportOptions: {
                         columns: ':visible'
                     }
@@ -137,7 +137,7 @@
                     text: 'Print Queue List',
                     title: $('h1').text(),
                     message: '<br><br>',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
@@ -167,7 +167,7 @@
                 }, {
                     extend: 'colvis',
                     text: 'Filter Table Column',
-                    className: 'btn btn-success'
+                    className: 'btn btn-default'
                 }
             ]
         });

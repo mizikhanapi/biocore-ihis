@@ -27,34 +27,13 @@
         <!-- header -->
         <script src="libraries/jquery-3.1.1.min.js" type="text/javascript"></script>
         <%@include file="../assets/header.html" %> 
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-        <!--        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-                <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
-        <link rel="stylesheet" href="css/table.css">
+
+<!--        <link rel="stylesheet" href="css/table.css">-->
         <link href="libraries/loader_animation.css" rel="stylesheet" type="text/css"/>
         <link href="css/multi-select.css" rel="stylesheet" type="text/css">
 
         <%@include file="libraries/headLibrary.jsp" %>
-        <!-- Bootstrap core JavaScript
-       ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 
-        <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-                <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-                <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-                <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
-
-
-
-        <!-- header -->
     </head>
 
     <body>
@@ -166,8 +145,9 @@
 
             $("#detailMain").load("detail_lookup_main_1.jsp");
             $("#detailTable").load("detail_lookup_table_1.jsp");
-
+            $('[data-toggle="tooltip"]').tooltip();
         </script>
+        
 
     </body>
 </html>
