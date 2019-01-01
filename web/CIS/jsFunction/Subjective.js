@@ -19,14 +19,24 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#ddate").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     
     $("#date1").datepicker({
@@ -34,14 +44,24 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#date2").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     
     $("#date3").datepicker({
@@ -49,28 +69,48 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#ddate3").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#ddate2").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#ddate1").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     
     $('#match50').on('click',function(){

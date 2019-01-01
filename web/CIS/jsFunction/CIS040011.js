@@ -28,7 +28,12 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
 
     $('.CIS-OE-SPO-TIME').timepicker({
@@ -414,18 +419,18 @@ $(document).ready(function () {
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     },
                     confirm: {
                         label: '<i class="fa fa-check"></i> Submit Order',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     }
                 },
                 callback: function (result) {
                     if (result) {
                         $('#btnCIS_OE_POSSurgical_SUBMIT').click();
                     } else {
-                        bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
+                        bootbox.alert("<b class='text-danger'>WARNING</b> <br>You did not submit the order. Do not forget to submit it later.");
                     }
                 }
             });

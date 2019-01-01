@@ -11,14 +11,24 @@ $(document).ready(function () {
             changeMonth: true,
             changeYear: true,
             yearRange: "-100:+0",
-            dateFormat: "dd-mm-yy"
+            dateFormat: "dd-mm-yy",
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
         $("#update_dateDGS").datepicker({
             changeMonth: true,
             changeYear: true,
             yearRange: "-100:+0",
-            dateFormat: "dd-mm-yy"
+            dateFormat: "dd-mm-yy",
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
 
     });

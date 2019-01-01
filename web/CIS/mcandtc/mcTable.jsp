@@ -17,6 +17,7 @@
     Conn conn = new Conn();
     String mcType = request.getParameter("mcType");
     String mcInput = request.getParameter("mcInput");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
 %>
 

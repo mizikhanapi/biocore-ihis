@@ -519,11 +519,11 @@ $(document).ready(function () {
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     },
                     confirm: {
                         label: '<i class="fa fa-check"></i> Submit Order',
-                        className: 'btn-success'
+                        className: 'btn-primary'
                     }
                 },
                 callback: function (result) {
@@ -531,7 +531,7 @@ $(document).ready(function () {
                         $('#btnCIS_OE_DTO_SUBMIT').click();
                     }
                     else{
-                        bootbox.alert("<b class='text-danger'>WARNING!</b> <br>You did not submit the order. Do not forget to submit it later.");
+                        bootbox.alert("<b class='text-danger'>WARNING</b> <br>You did not submit the order. Do not forget to submit it later.");
                     }
                 }
             });

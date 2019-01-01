@@ -41,7 +41,12 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
 
     $("#appREF").datepicker({
@@ -49,7 +54,12 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
 
     $("#UappREF").datepicker({
@@ -57,7 +67,12 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
 
     $("#uDateFollowUp").datepicker({
@@ -65,35 +80,60 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#appointmentROS").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $("#UappointmentROS").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $(".DateFromMEC").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
     $(".DateToMEC").datepicker({
 
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy"
+        dateFormat: "dd-mm-yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
     });
 
     $('.num1MEC').timepicker({

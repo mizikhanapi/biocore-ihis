@@ -17,6 +17,7 @@
     String tsType = request.getParameter("tsType");
     String tsInput = request.getParameter("tsInput");
 //    String episodeDate2 = request.getParameter("episodeDate2");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
 %>
 
