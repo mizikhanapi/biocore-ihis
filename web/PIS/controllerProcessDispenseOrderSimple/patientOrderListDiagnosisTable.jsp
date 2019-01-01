@@ -19,7 +19,7 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
 
-    String diagnosisList = "select lhr_diagnosis.PMI_no,lhr_diagnosis.HFC_Cd,lhr_diagnosis.Episode_Date,lhr_diagnosis.Encounter_Date,lhr_diagnosis.Diagnosis_Cd,icd10_codes.icd10_desc,lhr_diagnosis.Comment,adm_health_facility.hfc_name "
+    String diagnosisList = "select lhr_diagnosis.PMI_no, lhr_diagnosis.HFC_Cd, lhr_diagnosis.Episode_Date, lhr_diagnosis.Encounter_Date, lhr_diagnosis.Diagnosis_Cd, icd10_codes.icd10_desc, lhr_diagnosis.Comment, adm_health_facility.hfc_name, DATE_FORMAT(lhr_diagnosis.Episode_Date, '%d/%m/%Y %T'), DATE_FORMAT(lhr_diagnosis.Encounter_Date, '%d/%m/%Y %T') "
             + " FROM lhr_diagnosis JOIN icd10_codes ON (lhr_diagnosis.Diagnosis_Cd = icd10_codes.icd10_code ) JOIN adm_health_facility ON (lhr_diagnosis.HFC_Cd = adm_health_facility.hfc_cd) "
             + " where lhr_diagnosis.PMI_no = '" + pmino + "' ORDER BY lhr_diagnosis.Episode_Date DESC LIMIT 3";
 
@@ -49,8 +49,8 @@
 <td style="display: none"><%= dataDiagnosisList.get(i).get(0)%></td> <!-- PMI No -->
 <td style="display: none"><%= dataDiagnosisList.get(i).get(1)%></td> <!-- HFC Code -->
 <td  ><%= dataDiagnosisList.get(i).get(7)%></td> <!-- HFC Name -->
-<td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- EPISODE DATE -->
-<td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- ENCOUNTER DATE -->
+<td ><%= dataDiagnosisList.get(i).get(8)%></td> <!-- EPISODE DATE -->
+<td ><%= dataDiagnosisList.get(i).get(9)%></td> <!-- ENCOUNTER DATE -->
 <td style="display: none"><%= dataDiagnosisList.get(i).get(4)%></td> <!-- DIAGNOSIS CODE -->
 <td style="font-weight: 500"><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- DIAGNOSIS DESCRIPTION -->
 <td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- COMMENT -->
