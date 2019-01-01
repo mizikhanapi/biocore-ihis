@@ -210,7 +210,7 @@
         <table id="tableMasterItems" class="table table-filter table-striped table-bordered">
             <thead>
             <th>Order No</th>
-            <th>Episode Date</th>
+            <th style="display: none">Episode Date</th>
             <th>Item Description</th>
             <th style="text-align: right;">Total Quantity</th>
             <th style="text-align: right;">Total Amount (RM)</th>
@@ -222,7 +222,7 @@
                 %>
                 <tr>
                     <td><%=dataBillGenerateMasterDetailsMain.get(i).get(1)%></td>
-                    <td><%=dataBillGenerateMasterDetailsMain.get(i).get(2)%></td>
+                    <td style="display: none"><%=dataBillGenerateMasterDetailsMain.get(i).get(2)%></td>
                     <td><%=dataBillGenerateMasterDetailsMain.get(i).get(3)%></td>
                     <td style="text-align: right;"><%=dataBillGenerateMasterDetailsMain.get(i).get(5)%></td>
                     <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateMasterDetailsMain.get(i).get(4)))%></td>
@@ -245,7 +245,7 @@
         <table id="tableItems" class="table table-filter table-striped table-bordered">
             <thead>
             <th>Order No</th>
-            <th>Date</th>
+            <th style="display: none">Date</th>
             <th>Item Code</th>
             <th>Item Description</th>
             <th style="text-align: right;">Item Quantity</th>
@@ -258,7 +258,7 @@
                 %>
                 <tr>
                     <td><%=dataBillGenerateMasterDetailsItems.get(i).get(7)%></td>
-                    <td><%=dataBillGenerateMasterDetailsItems.get(i).get(8)%></td>
+                    <td style="display: none"><%=dataBillGenerateMasterDetailsItems.get(i).get(8)%></td>
                     <td><%=dataBillGenerateMasterDetailsItems.get(i).get(9)%></td>
                     <td><%=dataBillGenerateMasterDetailsItems.get(i).get(10)%></td>
                     <td style="text-align: right;"><%=dataBillGenerateMasterDetailsItems.get(i).get(12)%></td>
@@ -292,7 +292,7 @@
                 %>
                 <tr>
                     <td><%=billNo%></td>
-                    <td><%=txtTime%></td>
+                    <td style="display: none"><%=txtTime%></td>
                     <td><%=dataBillGenerateDetailsMisceItem.get(i).get(0)%></td>
                     <td><%=dataBillGenerateDetailsMisceItem.get(i).get(2)%></td>
                     <td style="text-align: right;">1</td>
@@ -354,7 +354,7 @@
                 %>
                 <tr>
                     <td><%=billNo%></td>
-                    <td><%=txtTime%></td>
+                    <td style="display: none"><%=txtTime%></td>
                     <td><%=dataBillGenerateDetailsBillingParameters.get(i).get(0)%></td>
                     <td><%=dataBillGenerateDetailsBillingParameters.get(i).get(1)%></td>
                     <td style="text-align: right;">1</td>
