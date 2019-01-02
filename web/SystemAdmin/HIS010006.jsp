@@ -144,7 +144,8 @@
 
 
         <script>
-
+            // highlighted navigation//
+            $('#aSystemSetting').addClass('active');
             $(function () {
                 preventPipeKeyPress(document);
                 preventPipeKeyUp("input");

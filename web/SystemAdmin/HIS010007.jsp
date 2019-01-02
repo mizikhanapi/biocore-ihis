@@ -121,6 +121,9 @@
         <script src="../assets/js/rd.jquery.preventKey.js" type="text/javascript"></script>
 
         <script>
+            // highlighted navigation//
+            $('#aReport').addClass('active');
+            
             $(function () {
                 preventPipeKeyPress(document);
                 preventPipeKeyUp("input");

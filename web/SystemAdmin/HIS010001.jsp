@@ -131,7 +131,9 @@
 
 
         <script>
-
+            // highlighted navigation//
+            $('#aLookupCode').addClass('active');
+            
             $(function () {
                 preventPipeKeyPress(document);
                 preventPipeKeyUp("input");

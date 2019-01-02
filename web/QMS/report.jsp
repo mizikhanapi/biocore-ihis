@@ -136,6 +136,10 @@
         <%@include file="libraries/footLibrary.jsp" %>
 
         <script>
+            
+            
+            // highlighted navigation//
+            $('#aReport').addClass('active');
             $('#RQL_main').load('report/queue_list_report_main.jsp');
             //$('#RQL_table').load('report/queue_list_table.jsp');
 

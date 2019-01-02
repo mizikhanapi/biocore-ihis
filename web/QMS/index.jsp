@@ -121,8 +121,11 @@
         
         <%@include file="libraries/footLibrary.jsp" %>
 
-        <script>
-
+        <script>    
+            // highlighted navigation//
+            $('#aManageQueue').addClass('active');
+            
+            
 //            $('#queueType').load('maintainQueueType.jsp');
             $('#queueName').load('maintain/maintainQueueName.jsp');
             $('#queueList').load('maintain/maintainQueueList.jsp');
