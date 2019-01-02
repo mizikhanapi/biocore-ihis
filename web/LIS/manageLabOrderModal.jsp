@@ -63,7 +63,8 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Order Date</label>
                                 <div class="col-md-8">
-                                    <input id="orderLabRequestDetailsDate" name="orderStockDetailsDate" type="text" placeholder="Drug Order Date"  class="form-control input-md" readonly>
+                                    <input id="orderLabRequestDetailsDate" name="orderStockDetailsDate" type="hidden" placeholder="Drug Order Date"  class="form-control input-md" readonly>
+                                    <input id="orderLabRequestDetailsDateShow" name="orderLabRequestDetailsDateShow" type="text" placeholder="Drug Order Date"  class="form-control input-md" readonly>
                                 </div>
                             </div>
                             <hr>

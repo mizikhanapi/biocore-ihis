@@ -138,7 +138,8 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Drug Order Date</label>
                                 <div class="col-md-8">
-                                    <input id="orderDrugDetailsDate" name="orderDrugDetailsDate" type="text" placeholder="Drug Order Date"  class="form-control input-md" readonly>
+                                    <input id="orderDrugDetailsDate" name="orderDrugDetailsDate" type="hidden" placeholder="Drug Order Date"  class="form-control input-md" readonly>
+                                    <input id="orderDrugDetailsDateShow" name="orderDrugDetailsDateShow" type="text" placeholder="Drug Order Date"  class="form-control input-md" readonly>
                                 </div>
                             </div>
                             <br/>

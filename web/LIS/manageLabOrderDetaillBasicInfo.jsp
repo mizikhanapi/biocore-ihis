@@ -417,6 +417,7 @@
 
             var labRequestOrderNo = $("#patientOrderNo").val();
             var labRequestOrderDate = $("#patientOrderDate").val();
+            var labRequestOrderDateShow = $("#patientOrderDateShow").val();
 
             if (labRequestOrderNo === "" || labRequestOrderNo === null) {
 
@@ -428,6 +429,7 @@
 
                 $("#orderLabRequestDetailsID").val(labRequestOrderNo);
                 $("#orderLabRequestDetailsDate").val(labRequestOrderDate);
+                $("#orderLabRequestDetailsDateShow").val(labRequestOrderDateShow);
 
                 $('#addLabRequestModal').modal('show');
 

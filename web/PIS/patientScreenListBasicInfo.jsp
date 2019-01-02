@@ -434,6 +434,7 @@
 
         var patientOrderNo = $("#patientOrderNo").val();
         var patientOrderDate = $("#patientOrderDate").val();
+        var patientOrderDateShow = $("#patientOrderDateShow").val();
 
         if (patientOrderNo === "" || patientOrderNo === null) {
 
@@ -446,6 +447,7 @@
 
             $("#orderDrugDetailsID").val(patientOrderNo);
             $("#orderDrugDetailsDate").val(patientOrderDate);
+            $("#orderDrugDetailsDateShow").val(patientOrderDateShow);
 
         }
 
