@@ -46,7 +46,7 @@
 //         + " GROUP BY od.item_cd "
 //         + "ORDER BY om.order_no ;";
     //                                  0           1           2               3           4           5           6           7
-    String resultProblem = "SELECT r.result_no, r.test_name, r.test_date, r.test_time, r.`result`, r.remark, u.`USER_NAME`, r.verification, date(r.test_date) AS tarikh "
+    String resultProblem = "SELECT r.result_no, r.test_name, r.test_date, r.test_time, r.`result`, r.remark, u.`USER_NAME`, r.verification, date(r.test_date) AS tarikh,DATE_FORMAT(date(r.test_date), '%d/%m/%Y') "
             + "FROM lis_result r "
             + "LEFT JOIN adm_users u ON u.`USER_ID`=r.`performBy` "
             + "WHERE r.pmi_no='" + pmiNo + "' "
@@ -61,9 +61,7 @@
         <tr>
             <th>Test Name</th>
             <th>Test Date</th>
-            <th>Test Time</th>
-            
-            
+            <th>Test Time</th>        
             <th>Perform By</th>
             <th>Status</th>
             <th hidden>Result ID</th>
@@ -77,15 +75,13 @@
         %>
         <tr>
             <td><%out.print(dataRIS.get(i).get(1));%></td>
-            <td><%out.print(dataRIS.get(i).get(2));%></td>
-            <td><%out.print(dataRIS.get(i).get(3));%></td>
-            
-            
+            <td><%out.print(dataRIS.get(i).get(9));%></td>
+            <td><%out.print(dataRIS.get(i).get(3));%></td>        
             <td><%out.print(dataRIS.get(i).get(6));%></td>
             <td><%out.print(dataRIS.get(i).get(7));%></td>
             <td hidden id="id_result"><%out.print(dataRIS.get(i).get(0));%></td>
             <td><%out.print(dataRIS.get(i).get(5));%></td>
-            <td align="center"><%out.print(dataRIS.get(i).get(4));%><br><button id="btnCIS_O_LIO_VIEW_RESULT" class="btn btn-default"><i class="fa fa-eye"></i> &nbsp; View Result </button></td>
+            <td align="center"><%out.print(dataRIS.get(i).get(4));%><br><button id="btnCIS_O_LIO_VIEW_RESULT" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="View Result"><i class="fa fa-eye"></i></button></td>
         </tr>
         <%
             }
@@ -101,7 +97,10 @@
         }
     });
 
-
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    
 </script>
 
 <%

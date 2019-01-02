@@ -21,7 +21,7 @@
     
    
         //                  0           1           2           3                   4               5                       6           7               8           9               10
-String sqlRIS = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,od.`COMMENT`, lp.procedure_outcome    "
+String sqlRIS = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,od.`COMMENT`, lp.procedure_outcome,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T')    "
                                                 + " FROM pos_order_master om   "
                                                 + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
                                                 + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
@@ -58,7 +58,7 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
                         }
                 %>
                 <tr>
-                    <td><%out.print(dataRIS.get(i).get(3));%></td>
+                    <td><%out.print(dataRIS.get(i).get(11));%></td>
                     <td><%out.print(dataRIS.get(i).get(5));%></td>
                     <td><%out.print(dataRIS.get(i).get(9));%></td>
                     <td><%out.print(procedure_outcome);%></td>

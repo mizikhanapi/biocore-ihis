@@ -12,7 +12,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Problem List</h3>
             </div>
             <div class="modal-body" id="CIS030003_modal">
-               
+
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -24,3 +24,9 @@
     </div>
 </div>
 
+
+<script>
+
+    $('#CIS030003').css('overflow', 'auto');
+
+</script>

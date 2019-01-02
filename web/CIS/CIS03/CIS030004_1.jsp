@@ -20,16 +20,15 @@
     Conn conn = new Conn();
     String sql = "";
     String sql2 = "";
-    sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date order by w.episode_date desc;";
-    sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` desc;";
+    sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,DATE_FORMAT(w.episode_date, '%d/%m/%Y %T') from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date order by w.episode_date desc;";
+    sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,DATE_FORMAT(p.episode_date, '%d/%m/%Y %T') from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` desc;";
     //   q                             0      1            2              3               4               5                6            7          8               9           10          11             12              13   
-  
+
     ArrayList<ArrayList<String>> searchInpatient;
     searchInpatient = conn.getData(sql);
 
     ArrayList<ArrayList<String>> searchOutpatient;
     searchOutpatient = conn.getData(sql2);
-
 
 
 %>
@@ -41,8 +40,8 @@
         </div>
     </div>
 </div>
-                </br>
-                </br>
+</br>
+</br>
 <div class="row">
     <div class="col-md-12">
         <h4>PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
@@ -64,14 +63,14 @@
 
                     %>
                     <tr>
-                        <td><%=searchInpatient.get(i).get(1)%>
+                        <td><%=searchInpatient.get(i).get(4)%>
                             <input type="hidden" id="pmidrug" value="<%=searchInpatient.get(i).get(0)%>">
                             <input type="hidden" id="episodedrug" value="<%=searchInpatient.get(i).get(1)%>">
                             <input type="hidden" id="disciplinedrug" value="<%=searchInpatient.get(i).get(3)%>">
                         </td>
                         <td><%=searchInpatient.get(i).get(2)%></td>
                         <td><%=searchInpatient.get(i).get(3)%></td>
-                        <td align="center"><a href="#inpatientProblemDrug" id="inBtndrug" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye"></i> &nbsp; View Details</a></td>
+                        <td align="center"><a href="#inpatientProblemDrug" id="inBtndrug" name="ViewDetail" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="View Details"><i class="fa fa-eye"></i></a></td>
                     </tr>
                     <%}
                         }%>
@@ -103,7 +102,7 @@
 
                     %>
                     <tr>
-                        <td><%=searchOutpatient.get(i).get(1)%>
+                        <td><%=searchOutpatient.get(i).get(4)%>
                             <input type="hidden" id="pmi1drug" value="<%=searchOutpatient.get(i).get(0)%>">
                             <input type="hidden" id="episode1drug" value="<%=searchOutpatient.get(i).get(1)%>">
                             <input type="hidden" id="discipline1drug" value="<%=searchOutpatient.get(i).get(3)%>">
@@ -111,7 +110,7 @@
                         <td><%=searchOutpatient.get(i).get(2)%></td>
                         <td><%=searchOutpatient.get(i).get(3)%></td>       
                         <td align="center">
-                            <a href="#outpatientProblemDrug" id="outBtndrug" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye"></i> &nbsp; View Details</a>
+                            <a href="#outpatientProblemDrug" id="outBtndrug" name="ViewDetail" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="View Details"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                     <%
@@ -122,14 +121,14 @@
             </table>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#inPatientDrug').DataTable({ 
-                        "order": [[ 0, "desc" ]] 
+                    $('#inPatientDrug').DataTable({
+                        "order": [[0, "desc"]]
                     });
-                    $('#outPatientDrug').DataTable({ 
-                        "order": [[ 0, "desc" ]] 
+                    $('#outPatientDrug').DataTable({
+                        "order": [[0, "desc"]]
                     });
-                    $('#tableActiveDrugList').DataTable({ 
-                        "order": [[ 2, "desc" ]] 
+                    $('#tableActiveDrugList').DataTable({
+                        "order": [[2, "desc"]]
                     });
                 });
             </script>
@@ -168,18 +167,18 @@
             }});
 
     });
-    
-    $("#table_active_drug").on('click','#tableActiveDrugList #btnDeleteActivDrug',function(){
+
+    $("#table_active_drug").on('click', '#tableActiveDrugList #btnDeleteActivDrug', function () {
         var row = $(this).closest("tr");
         var pmi_no = row.find("#pmidrug").val();
         var drug_code = row.find("#drugcodedrug").val();
         var drug_onset = row.find("#drugonsetDate").text();
         var data = {
-            pmi_no:pmi_no,
-            drug_code:drug_code,
-            drug_onset:drug_onset
+            pmi_no: pmi_no,
+            drug_code: drug_code,
+            drug_onset: drug_onset
         };
-        
+
         bootbox.confirm({
             message: "Are you sure want to delete this record ?",
             buttons: {
@@ -194,34 +193,34 @@
             },
             callback: function (result) {
                 console.log('This was logged in the callback: ' + result);
-                if(result === true){
+                if (result === true) {
                     deleteActiveDrug(data);
                 }
             }
         });
-        
+
 
     });
-    
-    function deleteActiveDrug(data){
+
+    function deleteActiveDrug(data) {
         $.ajax({
-            type:'post',
-            data:data,
-            url:'search/ResultDeleteActiveDrugOutPatient.jsp',
+            type: 'post',
+            data: data,
+            url: 'search/ResultDeleteActiveDrugOutPatient.jsp',
             timeout: 10000,
-            success:function(r){
-                if(r.trim() === "|-SUCCESS-|"){
-                    
+            success: function (r) {
+                if (r.trim() === "|-SUCCESS-|") {
+
                     $("#table_active_drug").load("CIS03/CIS030004_drugTable.jsp");
-                    
+
                     bootbox.alert("Delete Success");
-                }else{
-                   bootbox.alert("Delete Fail");
-                   
-                   
+                } else {
+                    bootbox.alert("Delete Fail");
+
+
                 }
             }
-            
+
         })
     }
 </script>
@@ -248,44 +247,49 @@
             }});
 
     });
-    
-    $("#outpatientProblemDrug").on('click','#detailDrugList #btnAddActivDrug',function(){
+
+    $("#outpatientProblemDrug").on('click', '#detailDrugList #btnAddActivDrug', function () {
         var row = $(this).closest("tr");
         var drugcode = row.find("#idDrugOutPatient").val();
-        var pmino =row.find("#idDrugOutPatientpmino").val();
-        var episodedate =row.find("#idDrugOutPatientepisodedate").val();
-        var discipline=row.find("#idDrugOutPatientdiscipline").val();
-        var subdiscipline=row.find("#idDrugOutPatientsubdiscipline").val();
-        var hfc=row.find("#idDrugOutPatienthfc").val();
-        
+        var pmino = row.find("#idDrugOutPatientpmino").val();
+        var episodedate = row.find("#idDrugOutPatientepisodedate").val();
+        var discipline = row.find("#idDrugOutPatientdiscipline").val();
+        var subdiscipline = row.find("#idDrugOutPatientsubdiscipline").val();
+        var hfc = row.find("#idDrugOutPatienthfc").val();
+
         var doctor = "<%=session.getAttribute("USER_ID")%>";
         //alert(drugcode+" "+pmino+" "+episodedate+" "+discipline+" "+subdiscipline+" "+hfc+" "+doctor);
-        var data = {pmino:pmino,
-            episodedate:episodedate,
-            discipline:discipline,
-            subdiscipline:subdiscipline,
-            hfc:hfc,
-            doctor:doctor,
-        drugcode:drugcode}; 
-        
+        var data = {pmino: pmino,
+            episodedate: episodedate,
+            discipline: discipline,
+            subdiscipline: subdiscipline,
+            hfc: hfc,
+            doctor: doctor,
+            drugcode: drugcode};
+
         $.ajax({
-           type: 'post',
-           data:data,
-           url:'search/ResultAddActiveDrugOutPatient.jsp',
-           success: function(databack){
-               console.log(databack);
-               if($.trim(databack)==="already"){
-                   bootbox.alert("This drug already Active");
-                   
-               }else if($.trim(databack)==="success"){
-                   alert("Success activating the drug");
-                   $("#table_active_drug").load("CIS03/CIS030004_drugTable.jsp");
-               }else if($.trim(databack)==="fail"){
-                   alert("Fail activating the drug");
-               }
-           }
+            type: 'post',
+            data: data,
+            url: 'search/ResultAddActiveDrugOutPatient.jsp',
+            success: function (databack) {
+                console.log(databack);
+                if ($.trim(databack) === "already") {
+                    bootbox.alert("This drug already Active");
+
+                } else if ($.trim(databack) === "success") {
+                    alert("Success activating the drug");
+                    $("#table_active_drug").load("CIS03/CIS030004_drugTable.jsp");
+                } else if ($.trim(databack) === "fail") {
+                    alert("Fail activating the drug");
+                }
+            }
         });
-        
+
+    });
+
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
 

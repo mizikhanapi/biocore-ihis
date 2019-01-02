@@ -20,7 +20,7 @@
     String pmino = request.getParameter("pmino");
 
     //                              0           1               2               3               4                   5                6   
-    String allergyList = "SELECT alg.pmi_no, alg.hfc_cd, alg.episode_date, alg.allergy_cd, alg.icd10_description, alg.comment, adm.hfc_name "
+    String allergyList = "SELECT alg.pmi_no, alg.hfc_cd, alg.episode_date, alg.allergy_cd, alg.icd10_description, alg.comment, adm.hfc_name, DATE_FORMAT(alg.episode_date, '%d/%m/%Y %T') "
             + " FROM lhr_allergy alg"
             + " JOIN adm_health_facility adm ON (alg.hfc_cd = adm.hfc_cd) "
             + " where alg.pmi_no = '6602060152612' ORDER BY alg.episode_date DESC ";
@@ -49,7 +49,7 @@
         <td style="display: none"><%= dataAllergyList.get(i).get(0)%></td> <!-- PMI No -->
         <td style="display: none"><%= dataAllergyList.get(i).get(1)%></td> <!-- HFC Code -->
         <td  ><%= dataAllergyList.get(i).get(6)%></td> <!-- HFC Name -->
-        <td ><%= dataAllergyList.get(i).get(2)%></td> <!-- EPISODE DATE -->
+        <td ><%= dataAllergyList.get(i).get(7)%></td> <!-- EPISODE DATE -->
         <td  style="display: none"><%= dataAllergyList.get(i).get(3)%></td> <!-- ALERYGY CODE -->
         <td ><%= dataAllergyList.get(i).get(4)%> </td> <!-- DIAGNOSIS DESCRIPTION -->
         <td ><%= dataAllergyList.get(i).get(5)%></td> <!-- COMMENT -->

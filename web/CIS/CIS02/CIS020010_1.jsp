@@ -40,7 +40,7 @@
                           + "AND om.pmi_no = '" + pmiNo + "' GROUP by od.procedure_cd ORDER BY om.episode_date DESC LIMIT 10";
 */
 
-String searchResult2 = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
+String searchResult2 = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
         + "FROM ris_order_detail od "
         + "JOIN ris_order_master om ON om.order_no=od.order_no "
         + "JOIN ris_procedure_master pm ON pm.ris_procedure_cd=od.procedure_cd AND pm.hfc_cd=om.hfc_to "
@@ -59,7 +59,7 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
         if(result.size() >0){%>
         <thead>
          
-                <th>Order No</th>
+                <th>Episode Date</th>
                 <th>Modality Name</th>
                 <th>Body System Name</th>
                 <th>Procedure Name</th>
@@ -79,7 +79,7 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
                 for (int i = 0; i < result.size(); i++) {
             %>
             <tr>
-                <td><%out.print(result.get(i).get(7));%></td>
+                <td><%out.print(result.get(i).get(13));%></td>
                 <td><%out.print(result.get(i).get(3));%></td>
                 <td><%out.print(result.get(i).get(4));%></td>
                 <td><%out.print(result.get(i).get(2));%></td>
@@ -90,7 +90,7 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
                 <td hidden id="orderId"><%out.print(result.get(i).get(0));%></td>
                 <td hidden id="providerId"><%out.print(result.get(i).get(6));%></td>
                 <td align="center">
-                    <button id="btnCIS_O_ROS_VIEW_RESULT" class="btn btn-default"><i class="fa fa-eye fa-lg" ></i>&nbsp;Show X-Ray Image</button>
+                    <button id="btnCIS_O_ROS_VIEW_RESULT" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="View Result"><i class="fa fa-eye fa-lg" ></i></button>
                 </td>
             </tr>
             <%
@@ -106,7 +106,10 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
                     }
                 });
        
-            
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+                
             </script>
         <%}
 else{

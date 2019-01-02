@@ -24,3 +24,11 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+
+    $('#CIS030004').css('overflow', 'auto');
+
+</script>
