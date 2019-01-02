@@ -119,8 +119,10 @@
         <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
 
         <script>
-
-                                                    $('<div class="loading">&nbsp;</div>').appendTo('body');
+            // highlighted navigation//
+            $('#aReceiveOrder').addClass('active');
+            
+$('<div class="loading">&nbsp;</div>').appendTo('body');
 
 
                                                     $("#risOrderMain").load("risManageOrderMaster_main.jsp");
@@ -155,6 +157,7 @@
 
                                                     }();
                                                     // Queue Validator End
+                                                    
 
         </script>
 

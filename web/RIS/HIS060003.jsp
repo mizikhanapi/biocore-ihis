@@ -74,6 +74,9 @@
         <script src="../assets/js/rd.jquery.preventKey.js" type="text/javascript"></script>
 
         <script>
+            // highlighted navigation//
+            $('#aVerifyResult').addClass('active');  
+            
             
             $(function(){
                 preventPipeKeyPress(document);

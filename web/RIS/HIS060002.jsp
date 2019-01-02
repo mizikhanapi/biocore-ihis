@@ -133,6 +133,9 @@
 
 
         <script>
+            // highlighted navigation//
+            $('#aManageCode').addClass('active');   
+            
             
             $(function(){
                 preventPipeKeyPress(document);

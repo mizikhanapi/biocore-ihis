@@ -108,6 +108,16 @@
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         
         <script type="text/javascript">
+             // highlighted navigation//
+             //report main head
+            $('#aReportMain').removeClass('collapsed'); 
+            $('#aReportMain').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            //specific menu
+            $('#aReportRadiology').addClass('active');
+            
             $(function(){
                 load_sale();
             });
