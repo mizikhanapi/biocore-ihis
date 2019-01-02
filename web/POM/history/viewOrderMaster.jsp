@@ -31,7 +31,7 @@
     <div class="form-group select-type" id="OM_selectIC" style="display: none;">
 
         <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <input type="text" class="form-control input-md" id="OM_inputIC" name="idIC" placeholder="ID" >
         </div>
 
@@ -40,7 +40,7 @@
     <div class="form-group select-type" id="OM_selectPMI" style="display: none;">
 
         <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <input type="text" class="form-control input-md" id="OM_inputPMI" placeholder="PMI No" >
         </div>
 
@@ -49,7 +49,7 @@
     <div class="form-group select-type" id="OM_selectOrder" style="display: none;">
 
         <label class="col-md-4 control-label" for="textinput">Order No.</label>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <input type="text" class="form-control input-md" id="OM_inputOrder" name="order_no" placeholder="Order No.">
         </div>
 
@@ -86,6 +86,7 @@
         $("#refreshbuttondiv").hide();
         $("#divDate").hide();
         $('#spansearchbutton').hide();
+        $("#ipt").removeClass('input-group');
 
         $('#OM_selectType').on('change', function () {
             $('.select-type').hide();

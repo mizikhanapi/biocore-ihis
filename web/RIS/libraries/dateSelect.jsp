@@ -24,9 +24,9 @@
         </div>
     </div>-->
     <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Show list of order: </label>
+            <label class="col-md-4 control-label" for="textinput">Show list of order </label>
             <div class="col-md-4">
-                <div class="input-group">
+                <div id="ipt" class="input-group">
                     <select class="form-control input-md"  id="bydateSel" style="margin-bottom: 0px !important;">
                         <option selected=""  disabled="" value="-"> Please select Date</option>
                         <option value="today"> Today</option>
