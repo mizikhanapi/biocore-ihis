@@ -120,9 +120,9 @@
                 if (dataBP.size() > 0) {
 
             %>
-            <tr class="bg-default summary text-center" style="text-align: left;">
+            <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Blood Pressure</span> &nbsp; <button class="btn btn-default btn-sm pull-right" id="ANL_btnGraphBP" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Blood Pressure</span> &nbsp; <button class="btn btn-default btn-sm pull-right" id="ANL_btnGraphBP" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataBP.size(); i++) {
 
                         %>
@@ -133,7 +133,7 @@
                 </td>
             </tr>
 
-            <tr data-status="pagado" style="text-align: left;">
+            <tr data-status="pagado">
                 <td>
                     <div style="overflow-x: auto;">
                         <table class="table table-bordered" style="width:100%; text-align: left;">
@@ -150,32 +150,32 @@
                                     for (int i = 0; i < dataBP.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataBP.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataBP.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataBP.get(i).get(2))%></td>
                                     <td>
                                         <div class="table-guling">
                                             <table class="table table-bordered" style="width: 50%; max-width: 400px;">
-                                                <tr style="text-align: left;">
+                                                <tr>
                                                     <td></td>
                                                     <td>Systolic(mmHg)</td>
                                                     <td>Diastolic(mmHg)</td>
                                                     <td>Pulse(bpm)</td>
                                                 </tr>
-                                                <tr style="text-align: left;">
+                                                <tr>
                                                     <td>Sitting</td>
                                                     <td><%=dataBP.get(i).get(3)%></td>
                                                     <td><%=dataBP.get(i).get(4)%></td>
                                                     <td><%=dataBP.get(i).get(5)%></td>
                                                 </tr>
-                                                <tr style="text-align: left;">
+                                                <tr>
                                                     <td>Standing</td>
                                                     <td><%=dataBP.get(i).get(6)%></td>
                                                     <td><%=dataBP.get(i).get(7)%></td>
                                                     <td><%=dataBP.get(i).get(8)%></td>
                                                 </tr>
-                                                <tr style="text-align: left;">
+                                                <tr>
                                                     <td>Supine</td>
                                                     <td><%=dataBP.get(i).get(9)%></td>
                                                     <td><%=dataBP.get(i).get(10)%></td>
@@ -201,7 +201,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Temperature (&#8451;)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Temperature (&#8451;)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataTemper.size(); i++) {
 
                         %>
@@ -229,7 +229,7 @@
                                     for (int i = 0; i < dataTemper.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataTemper.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataTemper.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataTemper.get(i).get(2))%></td>
@@ -251,7 +251,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Oxygen Saturation (%)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Oxygen Saturation (%)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataSPO.size(); i++) {
 
                         %>
@@ -279,7 +279,7 @@
                                     for (int i = 0; i < dataSPO.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataSPO.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataSPO.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataSPO.get(i).get(2))%></td>
@@ -301,7 +301,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Blood Glucose Level(mmol/L)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Blood Glucose Level(mmol/L)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataGlucose.size(); i++) {
 
                         %>
@@ -329,7 +329,7 @@
                                     for (int i = 0; i < dataGlucose.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataGlucose.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataGlucose.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataGlucose.get(i).get(2))%></td>
@@ -351,7 +351,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Weight</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphHtWt" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Weight</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphHtWt" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataHtWt.size(); i++) {
 
                         %>
@@ -379,7 +379,7 @@
                                     for (int i = 0; i < dataHtWt.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataHtWt.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataHtWt.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataHtWt.get(i).get(2))%></td>
@@ -401,7 +401,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Respiratory Rate(bpm)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Respiratory Rate(bpm)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataRespiratory.size(); i++) {
 
                         %>
@@ -429,7 +429,7 @@
                                     for (int i = 0; i < dataRespiratory.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataRespiratory.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataRespiratory.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataRespiratory.get(i).get(2))%></td>
@@ -477,7 +477,7 @@
                                 <%            for (int i = 0; i < dataCholesterol.size(); i++) {
 
                                 %>
-                                <tr style="text-align: left;">
+                                <tr>
                                     <td style="width: 7%;"><%=dataCholesterol.get(i).get(0)%></td>
                                     <td style="width: 5%;"><%=dataCholesterol.get(i).get(1)%></td>
                                     <td style="width: 10%;"><%=lookH.getHFCName(dataCholesterol.get(i).get(2))%></td>
@@ -505,6 +505,13 @@
         </tbody>
     </table>
 </div>  
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 
 <%} else {

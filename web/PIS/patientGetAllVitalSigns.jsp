@@ -122,7 +122,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Blood Pressure</span> &nbsp; <button class="btn btn-default btn-sm pull-right" id="ANL_btnGraphBP" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Blood Pressure</span> &nbsp; <button class="btn btn-default btn-sm pull-right" id="ANL_btnGraphBP" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataBP.size(); i++) {
 
                         %>
@@ -201,7 +201,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Temperature (&#8451;)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Temperature (&#8451;)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataTemper.size(); i++) {
 
                         %>
@@ -251,7 +251,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Oxygen Saturation (%)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Oxygen Saturation (%)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataSPO.size(); i++) {
 
                         %>
@@ -301,7 +301,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Blood Glucose Level(mmol/L)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Blood Glucose Level(mmol/L)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataGlucose.size(); i++) {
 
                         %>
@@ -351,7 +351,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Weight</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphHtWt" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Weight</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphHtWt" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataHtWt.size(); i++) {
 
                         %>
@@ -401,7 +401,7 @@
             %>
             <tr class="bg-default summary text-center">
                 <td>
-                    <span id="ANL_chartTitle" class="pull-left">Respiratory Rate(bpm)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
+                    <span id="ANL_chartTitle" class="pull-left">Respiratory Rate(bpm)</span> &nbsp; <button class="btn btn-default btn-sm  pull-right" id="ANL_btnGraphLine" data-toggle="tooltip" data-placement="left" title="Show Graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true"></i></button>
                         <%                    for (int i = 0; i < dataRespiratory.size(); i++) {
 
                         %>
@@ -507,7 +507,14 @@
 </div>  
 
 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
 <%} else {
-        out.print("There is no record of vital sign !!!!");
+        out.print("There is no record of vital sign");
     }%>
 
