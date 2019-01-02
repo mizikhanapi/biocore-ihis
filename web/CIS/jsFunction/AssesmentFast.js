@@ -11,7 +11,7 @@ $(document).ready(function () {
             changeMonth: true,
             changeYear: true,
             yearRange: "-100:+0",
-            dateFormat: "dd-mm-yy",
+            dateFormat: "dd/mm/yy",
             beforeShow: function () {
                 setTimeout(function () {
                     $('.ui-datepicker').css('z-index', 999999999);
@@ -23,7 +23,7 @@ $(document).ready(function () {
             changeMonth: true,
             changeYear: true,
             yearRange: "-100:+0",
-            dateFormat: "dd-mm-yy",
+            dateFormat: "dd/mm/yy",
             beforeShow: function () {
                 setTimeout(function () {
                     $('.ui-datepicker').css('z-index', 999999999);
@@ -117,8 +117,11 @@ $(document).ready(function () {
         var comment8 = $('#commentDGS').val();
         var code10 = $('#dgsCode').val();
 
+        var temp = date4.split("/");
+        date4 = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
-        var $items = $('#dgsCode, #TypeDGS:checked, #dateDGS, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
+        var $items = $('#dgsCode, #TypeDGS:checked, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
 
         if (search_by === "P") {
             Problem8 = $('#tCISSubDGSSearchPersonalised').val();
@@ -128,13 +131,15 @@ $(document).ready(function () {
 
         var obj1 = {
             Acode: 'DGS',
-            searchDiag: Problem8
+            searchDiag: Problem8,
+            dateDGS:date4
         };
+
 
         $items.each(function () {
             obj1[this.id] = $(this).val();
-
         });
+
 
         if (validationField(Problem8, "Please search and select the correct diagnosis.")) {
 
@@ -263,11 +268,15 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
 
+        var updateDate = updateObj.dateDGS;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+
         retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
         retriveDataSearchingAssessment("tCISSubDGSSearchPersonalised_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", "");
 
         $("input[name=update_TypeDGS][value=" + updateObj.TypeDGS + "]").prop('checked', true);
-        $('#update_dateDGS').val(updateObj.dateDGS);
+        $('#update_dateDGS').val(updateDate);
         $("input[name=update_SeverityDGS][value=" + updateObj.SeverityDGS + "]").prop('checked', true);
         $("input[name=update_SiteDGS][value=" + updateObj.SiteDGS + "]").prop('checked', true);
         $("input[name=update_LateralityDGS][value=" + updateObj.LateralityDGS + "]").prop('checked', true);
@@ -296,6 +305,9 @@ $(document).ready(function () {
             dgsCode: _dgsCode
         };
 
+        var temp = _ddate4.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         if (_ddate4 === "" || _ddate4 === null) {
             bootbox.alert("Please insert diagnosis date.");
         } else if (_TType === undefined) {
@@ -306,7 +318,7 @@ $(document).ready(function () {
 
             if (upObject.dgsCode === _dgsCode) {
                 upObject.TypeDGS = _TType;
-                upObject.date4 = _ddate4;
+                upObject.dateDGS = _ddate4New;
                 upObject.Problem8 = _PProblem8;
                 upObject.Severity1 = _SSeverity1;
                 upObject.Site1 = _SSite1;
@@ -327,7 +339,7 @@ $(document).ready(function () {
                 } else {
 
                     upObject.TypeDGS = _TType;
-                    upObject.date4 = _ddate4;
+                    upObject.date4 = _ddate4New;
                     upObject.Problem8 = _PProblem8;
                     upObject.Severity1 = _SSeverity1;
                     upObject.Site1 = _SSite1;
@@ -359,7 +371,12 @@ $(document).ready(function () {
 });
 
 function displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
+    var updateDate = date4;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + updateDate + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 //    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#DGSNotes').append(_tr);
     i = i + 1;
@@ -385,6 +402,10 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
         Laterality1 = "";
     }
 
+    var updateDate = date4;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
     $("#fastTrackDiagnosisTable").DataTable().destroy();
 
     var _tr = '<tr>\n\
@@ -392,7 +413,7 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
                     <td style="display:none;">' + dgsCode + '</td>\n\
                     <td>' + Problem8 + '</td>\n\
                     <td>' + Type + '</td>\n\
-                    <td>' + date4 + '</td>\n\
+                    <td>' + updateDate + '</td>\n\
                     <td>' + Severity1 + '</td>\n\
                     <td>' + Site1 + '</td>\n\
                     <td>' + Laterality1 + '</td>\n\
@@ -405,7 +426,7 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
     $('#fastTrackDiagnosisTable').DataTable({
         "paging": true,
         "lengthChange": false,
-        "pageLength": 3,
+        "pageLength": 5,
         "language": {
             "emptyTable": "No Data Available To Display"
         }

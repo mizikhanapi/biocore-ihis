@@ -3,53 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$(document).ready(function(){
-    
-  $( function() {
-      $('#Problemlist').on('click',function(){
-     //alert("Works");
-        $.get("CIS03/CIS030003_1.jsp", function (data) {
-          
-               $('#CIS030003_modal').html(data);
-               //$('#outpatient').html(data);
+$(document).ready(function () {
 
+    $(function () {
+
+        $('#Problemlist').on('click', function () {
+            //alert("Works");
+            $.get("CIS03/CIS030003_1.jsp", function (data) {
+
+                $('#CIS030003_modal').html(data);
+                //$('#outpatient').html(data);
+
+            });
         });
-    });
-    
-    $('#ActiveDrug').on('click',function(){
-     //alert("Works");
-        $.get("CIS03/CIS030004_1.jsp", function (data) {
-          
-               $('#CIS030004_modal').html(data);
-               //$('#outpatient').html(data);
 
+        $('#ActiveDrug').on('click', function () {
+            //alert("Works");
+            $.get("CIS03/CIS030004_1.jsp", function (data) {
+
+                $('#CIS030004_modal').html(data);
+                //$('#outpatient').html(data);
+
+            });
         });
-    });
-    $( "#dateDGS" ).datepicker({
 
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "-100:+0",
-      dateFormat:"dd-mm-yy",
-        beforeShow: function () {
-            setTimeout(function () {
-                $('.ui-datepicker').css('z-index', 999999999);
-            }, 0);
-        }
-    });
-        $("#update_dateDGS").datepicker({
-
+        $("#dateDGS").datepicker({
             changeMonth: true,
             changeYear: true,
             yearRange: "-100:+0",
-            dateFormat: "dd-mm-yy",
+            dateFormat: "dd/mm/yy",
             beforeShow: function () {
                 setTimeout(function () {
                     $('.ui-datepicker').css('z-index', 999999999);
                 }, 0);
             }
         });
-  } );
+
+        $("#update_dateDGS").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+0",
+            dateFormat: "dd/mm/yy",
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
+        });
+
+    });
 
     /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
 
@@ -111,7 +113,7 @@ $(document).ready(function(){
 
     /// ------------------------------------------------------------------------------- OLD -------------------------------------------------------------------------/////;
 
-    
+
     var counterDiagnosis = 0;
 
     //js ADD for Diagnosis
@@ -129,8 +131,11 @@ $(document).ready(function(){
         var comment8 = $('#commentDGS').val();
         var code10 = $('#dgsCode').val();
 
+        var temp = date4.split("/");
+        date4 = temp[0] + "-" + temp[1] + "-" + temp[2];
+
         //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
-        var $items = $('#dgsCode, #TypeDGS:checked, #dateDGS, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
+        var $items = $('#dgsCode, #TypeDGS:checked, #SeverityDGS:checked, #SiteDGS:checked, #LateralityDGS:checked, #commentDGS');
 
         if (search_by === "P") {
             Problem8 = $('#tCISSubDGSSearchPersonalised').val();
@@ -140,13 +145,14 @@ $(document).ready(function(){
 
         var obj1 = {
             Acode: 'DGS',
-            searchDiag: Problem8
+            searchDiag: Problem8,
+            dateDGS:date4
         };
 
         $items.each(function () {
             obj1[this.id] = $(this).val();
-
         });
+        
 
         if (validationField(Problem8, "Please search and select the correct diagnosis.")) {
 
@@ -266,36 +272,40 @@ $(document).ready(function(){
         });
 
     });
-    
+
 
     //js UPDATE for Diagnosis
     $('#tblCIS_Consultation_Table').on('click', '.updateBtnDGS', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-       
+        
+        var updateDate = updateObj.dateDGS;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+
         retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
-         retriveDataSearchingAssessment("tCISSubDGSSearchPersonalised_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", "");
+        retriveDataSearchingAssessment("tCISSubDGSSearchPersonalised_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", "");
         //$('#update_TypeDGS').val(updateObj.TypeDGS);
-        $("input[name=update_TypeDGS][value=" + updateObj.TypeDGS + "]").prop('checked', true);       
-        $('#update_dateDGS').val(updateObj.dateDGS);
+        $("input[name=update_TypeDGS][value=" + updateObj.TypeDGS + "]").prop('checked', true);
+        $('#update_dateDGS').val(updateDate);
         //$('#update_searchDiag').val(updateObj.searchDiag);
         //$('#update_SeverityDGS').val(updateObj.SeverityDGS);
-        $("input[name=update_SeverityDGS][value=" + updateObj.SeverityDGS + "]").prop('checked', true);               
+        $("input[name=update_SeverityDGS][value=" + updateObj.SeverityDGS + "]").prop('checked', true);
         //$('#update_SiteDGS').val(updateObj.SiteDGS);
-        $("input[name=update_SiteDGS][value=" + updateObj.SiteDGS + "]").prop('checked', true);                       
+        $("input[name=update_SiteDGS][value=" + updateObj.SiteDGS + "]").prop('checked', true);
         //$('#update_LateralityDGS').val(updateObj.LateralityDGS);
-        $("input[name=update_LateralityDGS][value=" + updateObj.LateralityDGS + "]").prop('checked', true);                      
+        $("input[name=update_LateralityDGS][value=" + updateObj.LateralityDGS + "]").prop('checked', true);
         $('#update_commentDGS').val(updateObj.commentDGS);
         $('#update_dgsCode').val(updateObj.dgsCode);
         $('#jsonIdDGS').val(id[1]);
-         $("#update_CIS030001").modal('toggle');
+        $("#update_CIS030001").modal('toggle');
 
     });
 
     $('#updateBtnDGS').on('click', function (e) {
         e.preventDefault();
-        
+
         var upObject = _data[$('#jsonIdDGS').val()];
         var rowId = $('#jsonIdDGS').val();
         var _TType = $('#update_TypeDGS:checked').val();
@@ -306,11 +316,14 @@ $(document).ready(function(){
         var _LLaterality1 = $('#update_LateralityDGS:checked').val();
         var _Pcomment8 = $('#update_commentDGS').val();
         var _dgsCode = $('#update_dgsCode').val();
-        
+
         var checkObj = {
-            dgsCode:_dgsCode
+            dgsCode: _dgsCode
         };
-                
+        
+        var temp = _ddate4.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
+
         if (_ddate4 === "" || _ddate4 === null) {
             bootbox.alert("Please insert diagnosis date.");
         } else if (_TType === undefined) {
@@ -318,43 +331,48 @@ $(document).ready(function(){
         } else if (_SSeverity1 === undefined) {
             bootbox.alert("Please select diagnosis severity.");
         } else {
-            
+
             if (upObject.dgsCode === _dgsCode) {
                 upObject.TypeDGS = _TType;
-                upObject.date4 = _ddate4;
+                upObject.dateDGS = _ddate4New;
                 upObject.Problem8 = _PProblem8;
                 upObject.Severity1 = _SSeverity1;
                 upObject.Site1 = _SSite1;
                 upObject.Laterality1 = _LLaterality1;
                 upObject.comment8 = _Pcomment8;
                 upObject.dgsCode = _dgsCode;
-                var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
+                
+                var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8;
 
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS030001").modal('toggle');
-            } else {               
+                
+            } else {
+                
                 if (checkDGS(_data, checkObj)) {
                     bootbox.alert("This diagnosis already been inserted. Please choose at consultation note to update the record or add new diagnosis.");
-                }else{
+                } else {
+                    
                     upObject.TypeDGS = _TType;
-                    upObject.date4 = _ddate4;
+                    upObject.dateDGS = _ddate4New;
                     upObject.Problem8 = _PProblem8;
                     upObject.Severity1 = _SSeverity1;
                     upObject.Site1 = _SSite1;
                     upObject.Laterality1 = _LLaterality1;
                     upObject.comment8 = _Pcomment8;
                     upObject.dgsCode = _dgsCode;
-                    var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
+                    var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8;
 
                     $('#sum' + rowId).html(sum);
                     $("#update_CIS030001").modal('toggle');
+                    
                 }
 
             }
-            
+
         }
-        
-        
+
+
     });
 
     //js DELETE for Diagnosis
@@ -365,7 +383,7 @@ $(document).ready(function(){
             var id = idName.split("|");
             delete _data[id[1]];
             $(this).closest('tr').remove();
-            
+
         } else {
             return false;
         }
@@ -383,13 +401,13 @@ $(document).ready(function(){
         var code11 = $('#codePNT').val();
         notes += "PNT|" + getDate() + "^|" + notes + "^" + pnt + "^" + getDate() + "^" + status + "^" + getDate() + "^" + hfc + "^" + doctorid + "^" + doctorname + "|<cr>\n";
         var $items = $('#codePNT,#PNT');
-        var obj1 = {Acode:"PNT"};
+        var obj1 = {Acode: "PNT"};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         displayPNT(pnt);
-        
+
 
         $("#PNT").val("");
         $("#CIS030002").modal('toggle');
@@ -401,7 +419,7 @@ $(document).ready(function(){
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-    
+
         $('#update_PNT').val(updateObj.PNT);
         $('#jsonId').val(id[1]);
         $("#update_CIS030002").modal('toggle');
@@ -418,7 +436,7 @@ $(document).ready(function(){
         $("#update_CIS030002").modal('toggle');
 
     });
-    
+
     function retriveDataSearchingAssessment(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
         $('#' + fieldId).val(retriveValue).flexdatalist({
             minLength: 1,
@@ -430,31 +448,31 @@ $(document).ready(function(){
             params: {
                 timeout: 3000,
                 success: function (result) {
-                   
+
                     if (result === undefined) {
-                        $('#'+loadingDivId).html('No Record');
+                        $('#' + loadingDivId).html('No Record');
                     }
                 }
             }
         });
         $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-           
+
             $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-          
+
             $('#' + loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
             var searchName = $("#" + fieldId).val();
-          
+
             $.ajax({
                 type: "post",
                 url: urlCode,
                 timeout: 3000,
                 data: {id: searchName},
                 success: function (response) {
-               
+
                     $("#" + codeFieldId).val(response.trim());
 
                 }
@@ -465,11 +483,16 @@ $(document).ready(function(){
 
 });
 
-function displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8){
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8) {
+    
+    var updateDate = date4;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + updateDate + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 //    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#DGSNotes').append(_tr);
-        i = i + 1;
+    $('#DGSNotes').append(_tr);
+    i = i + 1;
 }
 
 function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Laterality1, comment8, object) {
@@ -491,6 +514,10 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
     if (Laterality1 === undefined) {
         Laterality1 = "";
     }
+    
+    var updateDate = date4;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
 
     $("#SOAPDiagnosisTable").DataTable().destroy();
 
@@ -499,7 +526,7 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
                     <td style="display:none;">' + dgsCode + '</td>\n\
                     <td>' + Problem8 + '</td>\n\
                     <td>' + Type + '</td>\n\
-                    <td>' + date4 + '</td>\n\
+                    <td>' + updateDate + '</td>\n\
                     <td>' + Severity1 + '</td>\n\
                     <td>' + Site1 + '</td>\n\
                     <td>' + Laterality1 + '</td>\n\
@@ -512,7 +539,7 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
     $('#SOAPDiagnosisTable').DataTable({
         "paging": true,
         "lengthChange": false,
-        "pageLength": 3,
+        "pageLength": 5,
         "language": {
             "emptyTable": "No Data Available To Display"
         }
@@ -520,18 +547,18 @@ function displayDGSTable(dgsCode, Type, date4, Problem8, Severity1, Site1, Later
 
 }
 
-function displayPNT(pnt){
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Progress Notes :<p class="summary" id="sum' + i + '">' +  pnt + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPNT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#PNTNotes').append(_tr);
-        i = i + 1;
+function displayPNT(pnt) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Progress Notes :<p class="summary" id="sum' + i + '">' + pnt + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPNT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PNTNotes').append(_tr);
+    i = i + 1;
 }
 
-function checkDGS(datas,obj){
-      var already = false;   
-        for(var i in datas){
-            if(datas[i].dgsCode === obj.dgsCode){
-                already = true;
-            }
+function checkDGS(datas, obj) {
+    var already = false;
+    for (var i in datas) {
+        if (datas[i].dgsCode === obj.dgsCode) {
+            already = true;
         }
-        return already;
+    }
+    return already;
 }

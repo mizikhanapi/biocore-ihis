@@ -43,7 +43,7 @@
                                         <div class="col-md-4">
                                             <label>Diagnosis Date</label>
                                             <div class="form-group">
-                                                <input class="form-control input-lg" type="text" name="date4" id="dateDGS" placeholder="DD-MM-YYYY" autocomplete="off"  placeholder="Diagnosis Date" readonly>
+                                                <input class="form-control input-lg" type="text" name="date4" id="dateDGS" placeholder="DD/MM/YYYY" autocomplete="off"  placeholder="Diagnosis Date" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@
                                         <div class="col-md-4">
                                             <label>Diagnosis Date</label>
                                             <div class="form-group">
-                                                <input class="form-control input-lg" type="text" name="date4" id="update_dateDGS" placeholder="DD-MM-YYYY" autocomplete="off"  placeholder="Diagnosis Date" readonly>
+                                                <input class="form-control input-lg" type="text" name="date4" id="update_dateDGS" placeholder="DD/MM/YYYY" autocomplete="off"  placeholder="Diagnosis Date" readonly>
                                             </div>
                                         </div>
                                     </div>
