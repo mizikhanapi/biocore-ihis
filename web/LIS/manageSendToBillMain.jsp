@@ -6,7 +6,7 @@
 
 <h4>Find Completed Order</h4>
 
-<div class="form-horizontal" align="center">
+<div class="form-horizontal">
 
     <div class="form-group"> 
         <label class="col-md-4 control-label" for="textinput">ID Type</label>

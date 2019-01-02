@@ -92,11 +92,11 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -205,11 +205,11 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {
@@ -258,11 +258,11 @@ $("#btnCIS_TEST_BUTTON").click(function(e){
             buttons: {
                 confirm: {
                     label: 'Yes',
-                    className: 'btn-success'
+                    className: 'btn-primary'
                 },
                 cancel: {
                     label: 'No',
-                    className: 'btn-danger'
+                    className: 'btn-default'
                 }
             },
             callback: function (result) {

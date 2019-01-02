@@ -50,13 +50,13 @@
     %>
 </thead>
 <tr>
-    <input id="dataMCListhidden" type="hidden" value="<%=String.join("|", mc.get(i))%>">
-    <td ><%= mc.get(i).get(0)%></td>
-    <td ><%= mc.get(i).get(8)%></td>
-    <td id="pmino"><%= mc.get(i).get(2)%></td>
-    <td align="center">
-        <button id="MC_btnPrint" class="btn btn-default" data-toggle="modal" ><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Print</button>
-    </td>
+<input id="dataMCListhidden" type="hidden" value="<%=String.join("|", mc.get(i))%>">
+<td ><%= mc.get(i).get(0)%></td>
+<td ><%= mc.get(i).get(8)%></td>
+<td id="pmino"><%= mc.get(i).get(2)%></td>
+<td align="center">
+    <button id="MC_btnPrint" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Print Record" ><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button>
+</td>
 </tr>
 
 
@@ -65,6 +65,7 @@
     }
 %>
 </table>
+
 
 <%
     String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -77,10 +78,12 @@
 <script>
 
     $(document).ready(function () {
- $('#mcTableDivision').DataTable({
+
+        $('#mcTableDivision').DataTable({
             pageLength: 15,
             initComplete: function (settings, json) {
                 $('.loading').hide();
+                $('[data-toggle="tooltip"]').tooltip();
             },
             "order": [[2, "asc"]],
             dom: 'Bfrtip',
@@ -138,6 +141,8 @@
                 }
             ]
         });
+
+
     });
 
 </script>

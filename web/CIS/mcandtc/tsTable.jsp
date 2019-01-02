@@ -56,7 +56,7 @@
 <td ><%= ts.get(i).get(8)%></td>
 <td id="pmino"><%= ts.get(i).get(2)%></td>
 <td align="center">
-    <button id="TS_btnPrint" class="btn btn-default" data-toggle="modal" ><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Print</button>
+    <button id="TS_btnPrint" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Print Record"><i class="fa fa-print fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button>
 </td>
 </tr>
 
@@ -79,10 +79,13 @@
 <script>
 
     $(document).ready(function () {
+
+
         $('#tsTableDivision').DataTable({
             pageLength: 15,
             initComplete: function (settings, json) {
                 $('.loading').hide();
+                $('[data-toggle="tooltip"]').tooltip();
             },
             "order": [[2, "asc"]],
             dom: 'Bfrtip',
@@ -140,6 +143,8 @@
                 }
             ]
         });
+
+
     });
 
 </script>

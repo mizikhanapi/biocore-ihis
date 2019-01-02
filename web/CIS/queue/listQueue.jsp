@@ -44,7 +44,7 @@
             + "and q.hfc_cd='" + hfc + "' and "
             + "((queue_type='PN' and queue_name='" + doctor + "') OR queue_type!='PN')  ORDER BY q.episode_date DESC";
     
-    String sqlV4 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,q.hfc_cd,q.patient_category,x.description,b.new_ic_no "
+    String sqlV4 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,q.hfc_cd,q.patient_category,x.description,b.new_ic_no, DATE_FORMAT(q.episode_date,'%d/%m/%Y %H:%i:%s') "
             + "FROM pms_patient_queue q "
             + "JOIN pms_patient_biodata b ON b.pmi_no = q.pmi_no "
             + "JOIN adm_lookup_detail l ON l.`Master_Reference_code` ='0069' "
@@ -78,6 +78,7 @@
     <th>PMI No. <%//out.print(sqlV4);%></th>
     <th>IC Number</th>
     <th>Name </th>
+    <th style="display: none;">Episode Date/Time </th>
     <th>Episode Date/Time </th>
 
     <th class="hidden-xs">Queue Name </th>
@@ -96,7 +97,8 @@
         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
         <td><%=dataQueue.get(i).get(10)%></td>
         <td style="text-transform: uppercase;"><%=dataQueue.get(i).get(1)%></td>
-        <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
+        <td id="epiDate" style="display: none;" ><%=dataQueue.get(i).get(2)%></td>
+        <td ><%=dataQueue.get(i).get(11)%></td>
 <!--        <td id="epiTime" hidden="hidden"><% //dataQueue.get(i).get(3)%></td>-->
         <td class="hidden-xs"><%=dataQueue.get(i).get(3)%></td>
         <td ><%=dataQueue.get(i).get(4)%></td>

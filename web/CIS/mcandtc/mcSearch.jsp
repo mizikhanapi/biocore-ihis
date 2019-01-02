@@ -110,8 +110,10 @@
                 data: data,
                 timeout: 10000,
                 success: function (list) {
+
                     $('#mcTableDivisionDiv').html(list);
                     $('.loading').hide();
+
                 },
                 error: function (xhr, status, error) {
                     var err = eval("(" + xhr.responseText + ")");

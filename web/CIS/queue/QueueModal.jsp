@@ -11,7 +11,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 20000000;">
-    <div class="modal-dialog modal-lg" >
+    <div class="modal-dialog modal-lg" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
