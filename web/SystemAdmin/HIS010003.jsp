@@ -105,6 +105,9 @@
         <script src="../assets/js/rd.jquery.preventKey.js"></script>
 
         <script>
+            // highlighted navigation//
+            $('#aManageUser').addClass('active');
+            
             $(function () {
                 preventPipeKeyPress(document);
                 preventPipeKeyUp("input");

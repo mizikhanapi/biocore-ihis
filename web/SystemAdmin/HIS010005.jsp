@@ -200,7 +200,8 @@
 
         <script type="text/javascript" src="../assets/js/rd.jquery.preventKey.js"></script>
         <script>
-
+            // highlighted navigation//
+            $('#aSystemCode').addClass('active');
 
             //        $(function(){
             //            setInterval(sayHai, 10000);

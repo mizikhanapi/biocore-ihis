@@ -167,7 +167,8 @@
 
 
         <script>
-
+            // highlighted navigation//
+            $('#aManageHFC').addClass('active');
             $(function () {
                 preventPipeKeyPress(document);
                 preventPipeKeyUp("input");
