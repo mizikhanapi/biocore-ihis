@@ -90,7 +90,10 @@
         
 
         <script>
-
+            // highlighted navigation//
+            $('#aPastOrder').addClass('active');
+            
+            
             $('<div class="loading">&nbsp;</div>').appendTo('body');
 
 

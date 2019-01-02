@@ -58,7 +58,10 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/stockFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-
+        <script>
+            // highlighted navigation//
+            $('#aManageVendor').addClass('active');
+        </script>
 
     </body>
 

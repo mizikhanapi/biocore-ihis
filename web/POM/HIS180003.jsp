@@ -58,7 +58,8 @@
 <!--        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>-->
 
         <script>
-
+            // highlighted navigation//
+            $('#aBill').addClass('active');
             createScreenLoading();
 
 

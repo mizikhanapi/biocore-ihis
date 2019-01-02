@@ -111,7 +111,15 @@
         <script>
 
             $(document).ready(function () {
-
+                // highlighted navigation//
+             //report main head
+            $('#aManageCode').removeClass('collapsed'); 
+            $('#aManageCode').attr('aria-expanded', true);
+            //report submenu
+            $('#ManageCode').addClass('in');
+            $('#ManageCode').attr('aria-expanded', true);
+            //specific menu
+            $('#aManageDrugCode').addClass('active');
                 //$('<div class="loading">Loading</div>').appendTo('body');
 
                 // Load ATC Data

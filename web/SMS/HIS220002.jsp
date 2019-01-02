@@ -122,7 +122,10 @@
         <!-- Placed at the end of the document so the pages load faster -->
 
         <script>
-
+            // highlighted navigation//
+            $('#aStockDistribute').addClass('active');
+            
+            
             $('<div class="loading">Loading</div>').appendTo('body');
 
             $("#distributeStockOrderMasterMain").load("distributeStockOrderMasterMain.jsp");

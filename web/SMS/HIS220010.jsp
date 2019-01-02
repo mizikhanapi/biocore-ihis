@@ -104,7 +104,10 @@
 
 // $('<div class="loading">&nbsp;</div>').appendTo('body');
 
-
+            // highlighted navigation//
+            $('#aPastOrder').addClass('active');
+            
+            
             $("#OrderMain").load("managePastCompleteOrderMaster.jsp");
             $('#OrderDetailContent').load("managePastCompleteOrderDetails.jsp");
 

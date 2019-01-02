@@ -167,6 +167,19 @@
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
+
+
+// highlighted navigation//
+             //report main head
+            $('#aReportMain').removeClass('collapsed'); 
+            $('#aReportMain').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            //specific menu
+            $('#aStockDistReport').addClass('active');
+
+
             var sumPatientIntable = 0;
             var disciplineData = [];
             if ("<%=dis_names%>" !== "")

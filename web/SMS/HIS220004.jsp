@@ -60,7 +60,10 @@
         <%@include file = "libraries/stockFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
 
-
+        <script>
+            // highlighted navigation//
+            $('#aManageStockReceipt').addClass('active');
+        </script>
     </body>
 
 </html>

@@ -117,7 +117,10 @@
 
 
         <script>
-
+            // highlighted navigation//
+            $('#aManageCode').addClass('active');
+            
+            
             // createScreenLoading();
             $(function () {
                 preventPipeKeyPress(document);

@@ -76,7 +76,15 @@
 
 
             $(document).ready(function () {
-
+                // highlighted navigation//
+             //report main head
+            $('#aReportMain').removeClass('collapsed'); 
+            $('#aReportMain').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            //specific menu
+            $('#aListVendor').addClass('active');
                 $('<div class="loading">Loading</div>').appendTo('body');
 
                 $("#contentReportVendorTable").load("contentReportVendorTable.jsp");

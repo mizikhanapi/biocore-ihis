@@ -106,7 +106,8 @@
 
 
         <script>
-
+            // highlighted navigation//
+            $('#aReceiveOrder').addClass('active');
                                                     // createScreenLoading();
 
 

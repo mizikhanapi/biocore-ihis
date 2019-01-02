@@ -98,7 +98,9 @@
         <script src="libraries/js/jquery.datetimepicker.full.min.js"></script>
 
         <script>
-
+            // highlighted navigation//
+            $('#aManageOTRoom').addClass('active');
+            
             $('<div class="loading">&nbsp;</div>').appendTo('body');
 
 

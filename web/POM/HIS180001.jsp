@@ -110,7 +110,8 @@
 
 
         <script>
-
+            // highlighted navigation//
+            $('#aReceiveOrder').addClass('active');
                                                     // createScreenLoading();
                                                     $(function () {
                                                         preventPipeKeyPress(document);

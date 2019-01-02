@@ -81,6 +81,17 @@
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
         <script>
+            // highlighted navigation//
+             //report main head
+            $('#aReportMain').removeClass('collapsed'); 
+            $('#aReportMain').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            //specific menu
+            $('#aListProcedure').addClass('active');
+            
+            
             $(function () {
                 load_code();
             });

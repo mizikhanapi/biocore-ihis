@@ -99,7 +99,8 @@
         <script type="text/javascript" src="../assets/js/jquery.multi-select.js"></script>
         
         <script>
-
+            // highlighted navigation//
+            $('#aManageCode').addClass('active');
             $('<div class="loading">&nbsp;</div>').appendTo('body');
 
 

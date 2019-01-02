@@ -74,7 +74,8 @@
 
 
             $(document).ready(function () {
-
+                // highlighted navigation//
+                $('#aStockAdjust').addClass('active');
                 $('<div class="loading">Loading</div>').appendTo('body');
 
                 $("#contentStockAdjusment").load("contentStockAdjustment.jsp");

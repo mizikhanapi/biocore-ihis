@@ -108,6 +108,17 @@
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         
         <script type="text/javascript">
+            // highlighted navigation//
+             //report main head
+            $('#aReportMain').removeClass('collapsed'); 
+            $('#aReportMain').attr('aria-expanded', true);
+            //report submenu
+            $('#report_drop_menu').addClass('in');
+            $('#report_drop_menu').attr('aria-expanded', true);
+            //specific menu
+            $('#aSales').addClass('active');
+            
+            
             $(function(){
                 load_sale();
             });
