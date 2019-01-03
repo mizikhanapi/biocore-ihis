@@ -15,23 +15,22 @@ $(document).ready(function () {
     //js ADD Complaint 
     
     $("#date").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
             }, 0);
         }
     });
+    
     $("#ddate").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
@@ -40,23 +39,46 @@ $(document).ready(function () {
     });
     
     $("#date1").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
             }, 0);
         }
     });
-    $("#date2").datepicker({
-
+    
+    $("#ddate1").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
+    });
+    
+    $("#date2").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd/mm/yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
+    });
+    
+    $("#ddate2").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
@@ -65,53 +87,31 @@ $(document).ready(function () {
     });
     
     $("#date3").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
             }, 0);
         }
     });
+    
     $("#ddate3").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
             }, 0);
         }
     });
-    $("#ddate2").datepicker({
+    
 
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
-        beforeShow: function () {
-            setTimeout(function () {
-                $('.ui-datepicker').css('z-index', 999999999);
-            }, 0);
-        }
-    });
-    $("#ddate1").datepicker({
-
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
-        beforeShow: function () {
-            setTimeout(function () {
-                $('.ui-datepicker').css('z-index', 999999999);
-            }, 0);
-        }
-    });
+    
     
     $('#match50').on('click',function(){
         $.ajax({
@@ -750,7 +750,11 @@ $(document).ready(function () {
         var date = $('#date').val();
         var comment3 = $('#comment3').val();
         var code5 = $('#codeSOH').val();
-        var $items = $('#date, #comment3');
+        
+        var $items = $('#comment3');
+        
+        var temp = date.split("/");
+        date = temp[0] + "-" + temp[1] + "-" + temp[2];       
         
         var search_by = $('input[name=rCISSubSOHSearchType]:checked').val();
         if (search_by === "P") {
@@ -762,16 +766,21 @@ $(document).ready(function () {
         var obj1 = {
             Acode:"SOH",
             Problem4:Problem4,
-            codeSOH:code5
+            codeSOH:code5,
+            date:date
         };
+        
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
         
+        
         if(validationField(code5,"Please enter the correct Social History")){
+            
             if (checkSOH(_data, obj1)) {
                 bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
             } else {
+                
                 _data.push(obj1);
                 displaySOH(Problem4, date, comment3);
                 $("#Problem4").val("");
@@ -783,12 +792,11 @@ $(document).ready(function () {
                 searching("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "codeSOH", "search/ResultSOHSearchCode.jsp");
                 searching("tCISSubSOHSearchPersonalised", "tCISSubSOHSearchLoading", "search/ResultSOHPersonaliseSearch.jsp", "codeSOH", "search/ResultSOHPersonaliseSearchCode.jsp");
                 $("#tCISSubSOHSearchPersonalised-flexdatalist").hide();
+                
             }
+            
         }
 
-
-
- 
 
     });
 
@@ -798,8 +806,14 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
+        
+        var updateDate = updateObj.date;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
         retriveDataSearchingSubjective("tCISSubSOHSearch_update", "tCISSubSOHSearchLoading_update", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "usohCode", updateObj.Problem4);
-        $('#ddate').val(updateObj.date);
+        
+        $('#ddate').val(updateDate);
         $('#Pcomment3').val(updateObj.comment3);
         $('#usohCode').val(updateObj.codeSOH);
         $('#jsonId').val(id[1]);
@@ -808,12 +822,16 @@ $(document).ready(function () {
     });
 
     $('#updateBtn4').click(function () {
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _PProblem4 = $('#tCISSubSOHSearch_update').val();
         var _ddate = $('#ddate').val();
         var _Pcomment3 = $('#Pcomment3').val();
         var _codeSOH = $('#usohCode').val();
+        
+        var temp = _ddate.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
         
          var search_by = $('input[name=rCISSubSOHSearchType_update]:checked').val();
         if (search_by === "P") {
@@ -828,10 +846,11 @@ $(document).ready(function () {
         }
         
         if(validationField(_codeSOH,"Please enter the correct Social History")){
+            
             if (upObject.codeSOH === _codeSOH) {
 
                 upObject.Problem4 = _PProblem4;
-                upObject.date = _ddate;
+                upObject.date = _ddate4New;
                 upObject.comment3 = _Pcomment3;
                 upObject.codeSOH = _codeSOH;
                 var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
@@ -839,22 +858,22 @@ $(document).ready(function () {
                 $("#update_CIS01000005").modal('hide');
 
             } else {
+                
                 if (checkSOH(_data, tempccnObj)) {
                     bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
                 } else {
                     upObject.Problem4 = _PProblem4;
-                    upObject.date = _ddate;
+                    upObject.date = _ddate4New;
                     upObject.comment3 = _Pcomment3;
                     upObject.codeSOH = _codeSOH;
                     var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
                     $('#sum' + rowId).html(sum);
                     $("#update_CIS01000005").modal('hide');
                 }
+                
             }
-        }
-        
-
-        
+            
+        }                
 
    
     });
@@ -964,9 +983,13 @@ $(document).ready(function () {
         var date1 = $('#date1').val();
         var comment5 = $('#comment5').val();
         var code7 = $('#codeALG').val();
-        var $items = $('#codeALG, #date1, #comment5');
+        var $items = $('#codeALG, #comment5');
         
-                 var search_by = $('input[name=rCISSubALGSearchType]:checked').val();
+        var temp = date1.split("/");
+        date1 = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
+        var search_by = $('input[name=rCISSubALGSearchType]:checked').val();
+        
         if (search_by === "P") {
             Problem5 = $('#tCISSubALGSearchPersonalised').val();
         } else {
@@ -975,18 +998,25 @@ $(document).ready(function () {
         
         var obj1 = {
             Acode:"ALG",
-            Problem5:Problem5
+            Problem5:Problem5,
+            date1:date1
         };
+        
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
         
-          if(validationField(code7,"Please enter the correct Allergy")){
+        
+        if(validationField(code7,"Please enter the correct Allergy")){
+            
            if (checkALG(_data, obj1)) {
                 bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
             } else {
+                
                 _data.push(obj1);
+                
                 displayAllergy(Problem5, date1, comment5);
+                
                 $("#Problem5").val("");
                 $("#date1").val("");
                 $("#comment5").val("");
@@ -995,21 +1025,27 @@ $(document).ready(function () {
                 searching("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "codeALG", "search/ResultALGSearchCode.jsp");
                 searching("tCISSubALGSearchPersonalised", "tCISSubALGSearchLoading", "search/ResultALGPersonaliseSearch.jsp", "codeALG", "search/ResultALGPersonaliseSearchCode.jsp");
                 $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
+                
             }
-          }
+        }
 
     });
 
     //js UPDATE for Allergy
     $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnALG', function () {
+        
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
+        
+        var updateDate = updateObj.date1;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
 
         retriveDataSearchingSubjective("tCISSubALGSearch_update", "tCISSubALGSearchLoading_update", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "uALG_cd", updateObj.Problem5);
 
-        $('#ddate1').val(updateObj.date1);
-        $('#Pcomment5').val(updateObj.comment5)
+        $('#ddate1').val(updateDate);
+        $('#Pcomment5').val(updateObj.comment5);
         $('#uALG_cd').val(updateObj.codeALG);;
         $('#jsonId').val(id[1]);
         $("#update_CIS01000007").modal('show');
@@ -1017,12 +1053,16 @@ $(document).ready(function () {
     });
 
     $('#updateBtnALG').click(function () {
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _PProblem5 = $('#tCISSubALGSearch_update').val();
         var _ddate1 = $('#ddate1').val();
         var _Pcomment5 = $('#Pcomment5').val();
         var _algCode = $('#uALG_cd').val();
+        
+        var temp = _ddate1.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
         
         var search_by = $('input[name=rCISSubALGSearchType_update]:checked').val();
         if (search_by === "P") {
@@ -1033,34 +1073,36 @@ $(document).ready(function () {
         
         var tempccnObj = {
             codeALG:_algCode
-        }
+        };
         
          if(validationField(_algCode,"Please enter the correct Allergy")){
+             
             if (upObject.codeALG === _algCode) {
                 upObject.Problem5 = _PProblem5;
-                upObject.date1 = _ddate1;
+                upObject.date1 = _ddate4New;
                 upObject.comment5 = _Pcomment5;
                 upObject.codeALG = _algCode;
                 var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000007").modal('hide');
             } else {
+                
                 if (checkALG(_data, tempccnObj)) {
                     bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
                 } else {
                     upObject.Problem5 = _PProblem5;
-                    upObject.date1 = _ddate1;
+                    upObject.date1 = _ddate4New;
                     upObject.comment5 = _Pcomment5;
                     upObject.codeALG = _algCode;
                     var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
                     $('#sum' + rowId).html(sum);
                     $("#update_CIS01000007").modal('hide');
                 }
+                
             }
+            
          }
-        
-
-        
+               
 
     });
     
@@ -1069,31 +1111,45 @@ $(document).ready(function () {
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
     $('#acceptBtnIMU').click(function () {
+        
         var probcode = "";
         var Problem6 = $('#tCISSubIMUSearch').val();
         var date2 = $('#date2').val();
         var comment6 = $('#comment6').val();
         var code8 = $('#codeIMU').val();
-        notes += "IMU|" + getDate() + "^|" + probcode + "^" + Problem6 + "^" + date2 + "^" + comment6 + "|<cr>\n";
-        var $items = $('#codeIMU, #date2, #comment6');
+        var $items = $('#codeIMU, #comment6');
         
+        var temp = date2.split("/");
+        date2 = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
+        notes += "IMU|" + getDate() + "^|" + probcode + "^" + Problem6 + "^" + date2 + "^" + comment6 + "|<cr>\n";
+
         var search_by = $('input[name=rCISSubIMUSearchType]:checked').val();
+        
         if (search_by === "P") {
             Problem6 = $('#tCISSubIMUSearchPersonalised').val();
         } else {
             Problem6 = $('#tCISSubIMUSearch').val();
         }
+        
         var obj1 = {
             Acode:"IMU",
-            Problem6:Problem6
+            Problem6:Problem6,
+            date2:date2
         };
+        
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
+        
+        console.log(obj1);
+        
         if(validationField(code8,"Please enter the correct Immunization")){
+            
             if (checkIMU(_data, obj1)) {
                 bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
             } else {
+                
                 _data.push(obj1);
                 displayIMU(Problem6, date2, comment6);
                 $("#Problem6").val("");
@@ -1104,25 +1160,37 @@ $(document).ready(function () {
                 searching("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "codeIMU", "search/ResultIMUSearchCode.jsp");
                 searching("tCISSubIMUSearchPersonalised", "tCISSubIMUSearchLoading", "search/ResultIMUPersonaliseSearch.jsp", "codeIMU", "search/ResultIMUPersonaliseSearchCode.jsp");
                 $('#tCISSubIMUSearchPersonalised-flexdatalist').hide();
+                
             }
+            
         }
+        
     });
 
     //js UPDATE for Immunization
     $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnIMU', function () {
+        
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-         retriveDataSearchingSubjective("tCISSubIMUSearch_update", "tCISSubIMUSearchLoading_update", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "uIMU_cd", updateObj.Problem6);
+        
+        var updateDate = updateObj.date2;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+        retriveDataSearchingSubjective("tCISSubIMUSearch_update", "tCISSubIMUSearchLoading_update", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "uIMU_cd", updateObj.Problem6);
+        
         $('#PProblem6').val(updateObj.Problem6);
-        $('#ddate2').val(updateObj.date2);
+        $('#ddate2').val(updateDate);
         $('#Pcomment6').val(updateObj.comment6);
         $('#uIMU_cd').val(updateObj.codeIMU);
         $('#jsonId').val(id[1]);
         $("#update_CIS01000008").modal('show');
+        
     });
 
     $('#updateBtnIMU').click(function () {
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _PProblem6 = $('#tCISSubIMUSearch_update').val();
@@ -1130,7 +1198,11 @@ $(document).ready(function () {
         var _Pcomment6 = $('#Pcomment6').val();
         var _IMUCode = $('#uIMU_cd').val();
         
+        var temp = _ddate2.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         var search_by = $('input[name=rCISSubIMUSearchType_update]:checked').val();
+        
         if (search_by === "P") {
             _PProblem6 = $('#tCISSubIMUSearchPersonalised_update').val();
         } else {
@@ -1139,30 +1211,35 @@ $(document).ready(function () {
         
         var tempccnObj = {
             codeIMU:_IMUCode
-        }
-         if(validationField(_PProblem6,"Please enter the correct Immunization")){
-                     if (upObject.codeIMU === _IMUCode) {
+        };
+        
+        if(validationField(_PProblem6,"Please enter the correct Immunization")){
+            
+            if (upObject.codeIMU === _IMUCode) {
                 upObject.Problem6 = _PProblem6;
-                upObject.date2 = _ddate2;
+                upObject.date2 = _ddate4New;
                 upObject.comment6 = _Pcomment6;
                 upObject.codeIMU = _IMUCode;
-                var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
+                var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6;
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000008").modal('hide');
             } else {
+                
                 if (checkIMU(_data, tempccnObj)) {
                     bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
                 } else {
                     upObject.Problem6 = _PProblem6;
-                    upObject.date2 = _ddate2;
+                    upObject.date2 = _ddate4New;
                     upObject.comment6 = _Pcomment6;
                     upObject.codeIMU = _IMUCode;
-                    var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
+                    var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6;
                     $('#sum' + rowId).html(sum);
                     $("#update_CIS01000008").modal('hide');
                 }
+                
             }
-         }
+            
+        }
 
         
 
@@ -1183,26 +1260,34 @@ $(document).ready(function () {
         var strCom = Problem32.replace(/'/g, '\\\'');
         Problem32 = strCom;
         
+        var temp = date3.split("/");
+        date3 = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         var search_by = $('input[name=rCISSubDABSearchType]:checked').val();
+        
         if (search_by === "P") {
             Problem32 = $('#tCISSubDABSearchPersonalised').val();
         } else {
             Problem32 = $('#tCISSubDABSearch').val();
         }
-        console.log(search_by);
+        
         var obj1 = {
             Acode:"DAB",
             Problem32:Problem32,
-            codeDAB:code9
+            codeDAB:code9,
+            date3:date3
         };
-        console.log(obj1)
+
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
+
         if(validationField(code9,"Please enter the correct Disability")){
+            
             if (checkDAB(_data, obj1)) {
                 bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
             } else {
+                
                 _data.push(obj1);
                 displayDAB(Problem32, date3, comment7);
                 $("#Problem32").val("");
@@ -1214,6 +1299,7 @@ $(document).ready(function () {
                 searching("tCISSubDABSearchPersonalised", "tCISSubDABSearchLoading", "search/ResultDABPersonaliseSearch.jsp", "codeDAB", "search/ResultDABPersonaliseSearchCode.jsp");
                 $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
             }
+            
         }
 
  
@@ -1221,12 +1307,19 @@ $(document).ready(function () {
 
     //js UPDATE for Disability
     $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnDAB', function () {
+        
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
+        
+        var updateDate = updateObj.date3;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
         retriveDataSearchingSubjective("tCISSubDABSearch_update", "tCISSubDABSearchLoading_update", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "uDAB_cd", updateObj.Problem32);
+        
         $('#uDAS_cd').val(updateObj.codeDAB);
-        $('#ddate3').val(updateObj.date3);
+        $('#ddate3').val(updateDate);
         $('#Pcomment7').val(updateObj.comment7);
         $('#jsonId').val(id[1]);
         $("#update_CIS01000009").modal('show');
@@ -1235,6 +1328,7 @@ $(document).ready(function () {
 
 
     $('#updateBtnDAB').click(function () {
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _PProblem32 = $('#tCISSubDABSearch_update').val();
@@ -1243,40 +1337,50 @@ $(document).ready(function () {
         var _codeDAB = $('#uDAS_cd').val();
         _PProblem32.replace(/'/g, '\\\'');
         
-                var search_by = $('input[name=rCISSubDABSearchType_update]:checked').val();
+        var temp = _ddate3.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
+        var search_by = $('input[name=rCISSubDABSearchType_update]:checked').val();
+        
         if (search_by === "P") {
             _PProblem32 = $('#tCISSubDABSearchPersonalised_update').val();
         } else {
             _PProblem32 = $('#tCISSubDABSearch_update').val();
         }
         
-                var tempccnObj = {
+        var tempccnObj = {
             codeDAB:_codeDAB
-        }
+        };
+        
         if(validationField(_codeDAB,"Please enter the correct Disability")){
+            
             if (upObject.codeDAB === _codeDAB) {
                 upObject.Problem32 = _PProblem32;
-                upObject.date3 = _ddate3;
+                upObject.date3 = _ddate4New;
                 upObject.comment7 = _Pcomment7;
                 upObject.codeDAB = _codeDAB;
-                var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
+                var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7;
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000009").modal('hide');
             } else {
+                
                 if (checkDAB(_data, tempccnObj)) {
                     bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
                 } else {
+                    
                     upObject.Problem32 = _PProblem32;
-                    upObject.date3 = _ddate3;
+                    upObject.date3 = _ddate4New;
                     upObject.comment7 = _Pcomment7;
                     upObject.codeDAB = _codeDAB;
-                    var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
+                    var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7;
                     $('#sum' + rowId).html(sum);
                     $("#update_CIS01000009").modal('hide');
+                    
                 }
+                
             }
+            
         }
-
 
     });
     
@@ -1358,10 +1462,15 @@ function displayCCNTable(ccnCode, problem, Mild, Site, duration, sdur, Lateralit
  
 function displaySOH(Problem4,date,comment3){
     
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Social History:<p class="summary" id="sum' + i + '">'  + Problem4 + '| ' + date + '| ' + comment3 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnSOH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        var updateDate = date;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Social History:<p class="summary" id="sum' + i + '">'  + Problem4 + '| ' + updateDate + '| ' + comment3 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnSOH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#SOHNotes').append(_tr);
 
         i = i + 1;
+        
 }
 
 function displayBLD(blood,Rhesus_Type,G6PD_Status,comment4){
@@ -1374,25 +1483,44 @@ function displayBLD(blood,Rhesus_Type,G6PD_Status,comment4){
 }
 
 function displayAllergy(Problem5,date1,comment5){
-         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Allergy  :<p class="summary" id="sum' + i + '">' + Problem5 + '| ' + date1 + '| ' + comment5 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnALG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+         
+        var updateDate = date1;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Allergy  :<p class="summary" id="sum' + i + '">' + Problem5 + '| ' + updateDate + '| ' + comment5 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnALG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#ALGNotes').append(_tr);
       
         i = i + 1;
+        
 }
+
 function displayIMU(Problem6,date2,comment6){
     
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Immunization :<p class="summary" id="sum' + i + '">' + Problem6 + '| ' + date2 + '| ' + comment6 + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnIMU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        var updateDate = date2;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Immunization :<p class="summary" id="sum' + i + '">' + Problem6 + '| ' + updateDate + '| ' + comment6 + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnIMU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
         $('#IMUNotes').append(_tr);
      
         i = i + 1;
+        
 }
 
 function displayDAB(Problem32,date3,comment7){
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Disablility :<p class="summary" id="sum' + i + '">'  + Problem32 + '| ' + date3 + '| ' + comment7 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnDAB" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
+        var updateDate = date3;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Disablility :<p class="summary" id="sum' + i + '">'  + Problem32 + '| ' + updateDate + '| ' + comment7 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnDAB" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        
         $('#DABNotes').append(_tr);
        
         i = i + 1;
+        
 }
 
 function checkCCN(datas,obj){

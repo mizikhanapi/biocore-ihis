@@ -639,7 +639,7 @@
                 </div>
                  <label>Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="date" id="date" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="date" id="date" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                  <label></label>
                 <div class="form-group">
@@ -697,7 +697,7 @@
                 </div>
                 <label>Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="ddate" id="ddate" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="ddate" id="ddate" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                 <label></label>
                 <div class="form-group">
@@ -881,7 +881,7 @@
                 </div>
                 <label>Allergy Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="date1" id="date1" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="date1" id="date1" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                 <label></label>
                 <div class="form-group">
@@ -939,7 +939,7 @@
                 </div>
                 <label>Allergy Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="ddate1" id="ddate1" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="ddate1" id="ddate1" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                 <label></label>
                 <div class="form-group">
@@ -998,7 +998,7 @@
                 </div>
                 <label>Immunization Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="date2" id="date2" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="date2" id="date2" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                 <label></label>
                 <div class="form-group">
@@ -1056,7 +1056,7 @@
                 </div>
                 <label>Immunization Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="ddate2" id="ddate2" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="ddate2" id="ddate2" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                 <label></label>
                 <div class="form-group">
@@ -1118,7 +1118,7 @@
                 </div>
                 <label>Disability Date</label>
                 <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="date3" id="date3" placeholder="DD-MM-YYYY" readonly="">
+                    <input class="form-control input-lg" type="text" name="date3" id="date3" placeholder="DD/MM/YYYY" readonly="">
                 </div>
                  <label></label>
                 <div class="form-group">
@@ -1174,7 +1174,7 @@
                     </div>
                     <label>Disability Date</label>
                     <div class="form-group">
-                        <input class="form-control input-lg" type="text" name="ddate3" id="ddate3" placeholder="DD-MM-YYYY" readonly="">
+                        <input class="form-control input-lg" type="text" name="ddate3" id="ddate3" placeholder="DD/MM/YYYY" readonly="">
                     </div>
                     <label></label>
                     <div class="form-group">
