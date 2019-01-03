@@ -103,6 +103,8 @@
 
 // $('<div class="loading">&nbsp;</div>').appendTo('body');
 
+            $('#LISPageSixth').addClass('active');
+
 
             $("#OrderMain").load("managePastCompleteOrderMaster.jsp");
             $('#OrderDetailContent').load("managePastCompleteOrderDetails.jsp");

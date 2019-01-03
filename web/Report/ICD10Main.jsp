@@ -104,6 +104,8 @@
 
         <script>
             $(document).ready(function () {
+                            $('#R9').addClass('active');
+
                 $("#startDate").datepicker({
                     changeMonth: true,
                     changeYear: true,

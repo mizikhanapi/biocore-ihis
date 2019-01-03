@@ -61,6 +61,11 @@
         <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
 
+        <script>
+            
+                        $('#PISPage5').addClass('active');
+
+        </script>
 
     </body>
 

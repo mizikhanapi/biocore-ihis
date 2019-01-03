@@ -168,6 +168,8 @@
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
+            $('#R3').addClass('active');
+
             var sumPatientIntable = 0;
             var disciplineData = [];
             if ("<%=dis_names%>" !== "")

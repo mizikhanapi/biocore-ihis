@@ -233,6 +233,8 @@
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
+            $('#R2').addClass('active');
+
             var yyyyMMddHHmmss;
             var HHmmss;
             var yyyyMMdd;

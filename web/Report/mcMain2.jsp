@@ -84,6 +84,8 @@
 
         <script>
             $(document).ready(function () {
+                            $('#R4').addClass('active');
+
                 $("#SearchPatientdiv").load("mcSearch.jsp");
             });
         </script>

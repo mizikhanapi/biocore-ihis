@@ -179,7 +179,12 @@
 
 
           
-
+            $('#ADTPageSeven').removeClass('collapsed'); 
+            $('#ADTPageSeven').attr('aria-expanded', true);
+            //report submenu
+            $('#ReportDrop').addClass('in');
+            $('#ReportDrop').attr('aria-expanded', true);
+            $('#ADTPageSevenR3').addClass('active');
 
 
         </script>

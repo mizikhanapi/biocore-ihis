@@ -104,6 +104,7 @@
 
 // $('<div class="loading">&nbsp;</div>').appendTo('body');
 
+            $('#PISPage7').addClass('active');
 
             $("#OrderMain").load("managePastCompleteOrderMaster.jsp");
             $('#OrderDetailContent').load("managePastCompleteOrderDetails.jsp");

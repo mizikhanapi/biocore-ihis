@@ -76,7 +76,14 @@
 
 
             //  $('<div class="loading">Loading</div>').appendTo('body');
-
+            //report main head
+            $('#BLIPage6').removeClass('collapsed'); 
+            $('#BLIPage6').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            $('#BLIPage6R2').addClass('active');
+            
             $("#reportBilllingCustomerSalesReportMainDIV").load("reportBilllingCustomerSalesReportMain.jsp");
 
 

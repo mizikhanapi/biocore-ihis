@@ -100,6 +100,10 @@
         <script src="old/assets/js/dataTables.bootstrap.min.js"></script>
         <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+          
+        <script>
+                        $('#ADTPageFive').addClass('active');
+        </script>
         <!-- Script Goes Here -->
     </body>
 </html>

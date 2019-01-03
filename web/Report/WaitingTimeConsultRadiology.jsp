@@ -64,6 +64,14 @@
 
         <script>
 
+             //report main head
+            $('#R12').removeClass('collapsed'); 
+            $('#R12').attr('aria-expanded', true);
+            //report submenu
+            $('#WaitingReport').addClass('in');
+            $('#WaitingReport').attr('aria-expanded', true);
+            $('#R12R6').addClass('active');
+            
             $("#reportWaitingTimeMainDIV").load("WaitingTimeConsultRadiologyMain.jsp");
 
         </script>

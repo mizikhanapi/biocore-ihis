@@ -118,6 +118,8 @@
 
                 $('<div class="loading">Loading</div>').appendTo('body');
 
+            $('#PISPage4').addClass('active');
+
                 // Load ATC Data
                 $("#contentATCMain").load("atcMain.jsp");
                 $("#contentATCTable").load("atcTableLoop.jsp");

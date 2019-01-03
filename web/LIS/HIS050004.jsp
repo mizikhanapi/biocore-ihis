@@ -67,6 +67,7 @@
 
         <script>
 
+            $('#LISPageFourth').addClass('active');
 
             $("#CompleteOrderListMain").load("manageSendToBillMain.jsp");
 

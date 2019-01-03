@@ -135,6 +135,8 @@
 
             $(document).ready(function () {
 
+            $('#R10').addClass('active');
+
                 $("#dateFrom").datepicker({
                     dateFormat: 'dd/mm/yy',
                     yearRange: '1999:c+1',

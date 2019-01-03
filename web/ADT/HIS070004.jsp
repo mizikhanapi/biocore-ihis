@@ -141,6 +141,9 @@
 
             });
         </script>
+                <script>
+                        $('#ADTPageSix').addClass('active');
+        </script>
     </body>
 </html>
 

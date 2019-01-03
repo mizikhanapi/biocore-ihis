@@ -121,6 +121,8 @@
 
             $('<div class="loading">Loading</div>').appendTo('body');
 
+            $('#PISPage1').addClass('active');
+
             $("#patientScreenListMain").load("patientScreenListMain.jsp");
             //$("#patientScreenListContent").load("patientScreenListTable.jsp");
             $("#patientScreenDetailContent").load("patientScreenListBasicInfo.jsp");

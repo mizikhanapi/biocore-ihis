@@ -81,6 +81,13 @@
     $(document).ready(function () {
 
         //  $('<div class="loading">Loading</div>').appendTo('body');
+                     //report main head
+            $('#LISPageSeventh').removeClass('collapsed'); 
+            $('#LISPageSeventh').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            $('#LISPageSeventhR4').addClass('active');
 
         $("#ReportSalesListMain").load("manageReportSalesListMain.jsp");
 

@@ -67,6 +67,13 @@
 
         <script>
 
+             //report main head
+            $('#LISPageSeventh').removeClass('collapsed'); 
+            $('#LISPageSeventh').attr('aria-expanded', true);
+            //report submenu
+            $('#Report').addClass('in');
+            $('#Report').attr('aria-expanded', true);
+            $('#LISPageSeventhR2').addClass('active');
 
             $('<div class="loading">Loading</div>').appendTo('body');
 

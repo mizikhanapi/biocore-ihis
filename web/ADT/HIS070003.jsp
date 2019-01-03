@@ -125,5 +125,10 @@
                 $('#AssignBedTable').load('assign-bed-to-ward-table.jsp');
             });
         </script>
+        
+          
+        <script>
+                        $('#ADTPageFour').addClass('active');
+        </script>
     </body>
 </html>

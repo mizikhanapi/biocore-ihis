@@ -103,6 +103,9 @@
 
             $(document).ready(function () {
 
+            $('#LISPageFifth').addClass('active');
+
+
 //                $('<div class="loading">Loading</div>').appendTo('body');
 //
                 // Load Test Category

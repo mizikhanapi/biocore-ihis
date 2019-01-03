@@ -86,6 +86,8 @@
 
         <script>
             $(document).ready(function () {
+                            $('#R6').addClass('active');
+
                 $("#SearchPatientTSDiv").load("tsSearch.jsp");
             });
         </script>

@@ -128,6 +128,8 @@
 
             $(document).ready(function () {
 
+            $('#R11').addClass('active');
+
                 $("#dateFrom").datepicker({
                     dateFormat: 'dd/mm/yy',
                     yearRange: '1999:c+1',

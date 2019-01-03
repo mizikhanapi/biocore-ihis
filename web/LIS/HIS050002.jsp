@@ -115,6 +115,9 @@
 
             $(document).ready(function () {
 
+            $('#LISPageTwo').addClass('active');
+
+
 //                $('<div class="loading">Loading</div>').appendTo('body');
 
                 // Load LIST Page

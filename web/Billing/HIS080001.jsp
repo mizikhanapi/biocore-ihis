@@ -125,6 +125,8 @@
 
 
             $('<div class="loading">Loading</div>').appendTo('body');
+            
+            $('#BLIPage1').addClass('active');
 
             $("#billMasterOrderListMain").load("billMasterOrderListMain.jsp");
             //$("#billMasterOrderListContent").load("billMasterOrderListTable.jsp");

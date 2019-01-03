@@ -66,6 +66,12 @@
         <script>
 
             $(document).ready(function () {
+                $('#PISPage8').removeClass('collapsed');
+                $('#PISPage8').attr('aria-expanded', true);
+                //report submenu
+                $('#Report').addClass('in');
+                $('#Report').attr('aria-expanded', true);
+                $('#PISPage8R2').addClass('active');
                 $('<div class="loading">Loading</div>').appendTo('body');
                 $("#contentReportMDCList").load("manageReportMDCListTable.jsp");
             });

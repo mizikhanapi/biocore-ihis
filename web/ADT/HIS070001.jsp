@@ -136,6 +136,7 @@
         <!-- header -->
         <script>
 
+            $('#ADTPageOne').addClass('active');
 
             $('a[data-toggle="tab"]').click(function (e) {
                 // $('#tab_a').find('a').removeAttr('data-toggle');

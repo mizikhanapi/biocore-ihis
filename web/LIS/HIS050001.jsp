@@ -118,6 +118,9 @@
 
             $(document).ready(function () {
 
+            $('#LISPageOne').addClass('active');
+
+
 //                $('<div class="loading">Loading</div>').appendTo('body');
 
                 // Load LIST Page

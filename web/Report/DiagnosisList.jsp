@@ -165,6 +165,8 @@
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
 
+            $('#R8').addClass('active');
+
             var disciplineData = [];
             if ("<%=dis_names%>" !== "")
             {

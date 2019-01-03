@@ -75,6 +75,8 @@
 
 
         <script>
+                        $('#R5').addClass('active');
+
             function printReport2(divID1)
                 {
                     var popupWin = window.open('', '_blank', 'width=1080,height=768');

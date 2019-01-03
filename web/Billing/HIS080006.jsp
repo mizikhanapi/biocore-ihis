@@ -78,6 +78,8 @@
         <script>
 
 
+            $('#BLIPage5').addClass('active');
+
             //  $('<div class="loading">Loading</div>').appendTo('body');
 
             $("#yearEndProcessingMain").load("yearEndProcessingMain.jsp");

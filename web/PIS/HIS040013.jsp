@@ -69,6 +69,13 @@
 
             $(document).ready(function () {
 
+                $('#PISPage9').removeClass('collapsed');
+                $('#PISPage9').attr('aria-expanded', true);
+                //report submenu
+                $('#Management').addClass('in');
+                $('#Management').attr('aria-expanded', true);
+                $('#PISPage9R1').addClass('active');
+
                 $('<div class="loading">Loading</div>').appendTo('body');
                 $("#contentDataManagementAchiveOrderTable").load("dataManagementArchiveOrderTable.jsp");
                 $("#contentDataManagementAchiveOrderDetail").load("dataManagementArchiveOrderDetail.jsp");

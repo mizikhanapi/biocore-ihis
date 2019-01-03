@@ -146,5 +146,9 @@
         <!--<script src="ReportLibraries/js/papaparse.min.js"></script>-->
         <!--<script src="ReportLibraries/js/jquery.multi-select.js" type="text/javascript"></script>-->
 
+        
+        <script>
+                        $('#ADTPageTwo').addClass('active');
+        </script>
     </body>
 </html>

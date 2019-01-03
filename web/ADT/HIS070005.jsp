@@ -130,6 +130,8 @@
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
   
-
+        <script>
+                        $('#ADTPageThree').addClass('active');
+        </script>
     </body>
 </html>

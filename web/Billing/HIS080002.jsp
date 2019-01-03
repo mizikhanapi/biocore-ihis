@@ -147,6 +147,8 @@
 
         <script>
 
+            $('#BLIPage2').addClass('active');
+
             $("#manageBillMasterOrderListMain").load("manageBillMasterListMainFilter.jsp");
 
         </script>

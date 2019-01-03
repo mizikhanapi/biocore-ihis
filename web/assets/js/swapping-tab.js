@@ -25,7 +25,9 @@ $(document).ready(function () {
 //        $("#orthopedic-con").hide();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
-
+        $('#btnPrintMcPatient').removeClass('active');
+        $('#btnPrintTcPatient').removeClass('active');
+        $('#btnAnalysePatient').removeClass('active');
     });
 
     //Order-Entry
@@ -109,7 +111,9 @@ $(document).ready(function () {
         $('.swapping-tab').hide();
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-analyseTab").show(400);
-
+        $('#btnPrintMcPatient').removeClass('active');
+        $('#btnPrintTcPatient').removeClass('active');
+        $('#btnAnalysePatient').addClass('active');
         var ic_no = $('#patient-detail-dashboard #pIC_2').text().trim();
         if (ic_no !== "-") {
             var anl_pmi = $('#ANL_idInputApp').val().trim();
@@ -126,6 +130,9 @@ $(document).ready(function () {
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-PrintMCTab").show(400);
         $("#PrintMC_tab").load("mcandtc/mcSearch.jsp");
+        $('#btnPrintMcPatient').addClass('active');
+        $('#btnPrintTcPatient').removeClass('active');
+        $('#btnAnalysePatient').removeClass('active');
     });
 
     // TC
@@ -134,6 +141,9 @@ $(document).ready(function () {
         $('#div_CIS_PATIENT_DASHBOARD').hide();
         $("#CIS-PrintTCTab").show(400);
         $("#PrintTC_tab").load("mcandtc/tsSearch.jsp");
+        $('#btnPrintMcPatient').removeClass('active');
+        $('#btnPrintTcPatient').addClass('active');
+        $('#btnAnalysePatient').removeClass('active');
     });
 
     //event on click search button

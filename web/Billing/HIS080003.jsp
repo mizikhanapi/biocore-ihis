@@ -77,6 +77,8 @@
         <script>
 
 
+            $('#BLIPage3').addClass('active');
+
             $('<div class="loading">Loading</div>').appendTo('body');
 
             $("#manageMiscMainDIV").load("manageMiscMain.jsp");

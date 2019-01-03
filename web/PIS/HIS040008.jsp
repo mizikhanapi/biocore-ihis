@@ -146,6 +146,12 @@
                 $("#contentReportDailyTable").load("manageReportDailyTable.jsp");
                 $("#contentReportMonthlyTable").load("manageReportMonthlyTable.jsp");
                 $("#contentReportYearlyTable").load("manageReportYearlyTable.jsp");
+                                $('#PISPage8').removeClass('collapsed');
+                $('#PISPage8').attr('aria-expanded', true);
+                //report submenu
+                $('#Report').addClass('in');
+                $('#Report').attr('aria-expanded', true);
+                $('#PISPage8R7').addClass('active');
             });
 
 

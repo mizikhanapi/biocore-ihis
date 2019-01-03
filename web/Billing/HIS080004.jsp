@@ -76,6 +76,7 @@
 
         <script>
 
+            $('#BLIPage4').addClass('active');
 
             $('<div class="loading">Loading</div>').appendTo('body');
 

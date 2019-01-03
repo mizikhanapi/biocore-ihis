@@ -170,6 +170,15 @@
          <script>
 
             $('<div class="loading">Loading</div>').appendTo('body');
+            
+                                 //report main head
+            $('#ADTPageSeven').removeClass('collapsed'); 
+            $('#ADTPageSeven').attr('aria-expanded', true);
+            //report submenu
+            $('#ReportDrop').addClass('in');
+            $('#ReportDrop').attr('aria-expanded', true);
+            $('#ADTPageSevenR1').addClass('active');
+
 
             $(document).ready(function () {
                 $("#contentReportDailyTable").load("manageReportDailyTable_ADMISSION.jsp");
