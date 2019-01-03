@@ -165,6 +165,9 @@ $(document).ready(function () {
         var patientCondition = $("#patientConditionPOScd option:selected").text();
         var patientConditionCd = $("#patientConditionPOScd").val();
         var date = $("#appointmentPOS").val();
+        
+        var temp = date.split("/");
+        date = temp[0] + "-" + temp[1] + "-" + temp[2];
 
         if (pc2 !== "") {
             procedure = $("#tCISOEPOSSearch").val() + "[$-$]" + $("#tCISOEPOS1Search").val() + "[$-$]" + $("#tCISOEPOS2Search").val();
@@ -190,7 +193,7 @@ $(document).ready(function () {
             patientConditionCode: patientConditionCd,
             date: date,
             comment: commentArea
-        }
+        };
 
         if (procedureCode === "" && date === "" && commentArea === "") {
             alert("You not enter the procedure, date and comment");
@@ -210,6 +213,7 @@ $(document).ready(function () {
             if (checkOrderCode(_dataPOS, obj.procedureCode)) {
                 alert("This order already been added");
             } else {
+                console.log(obj);
                 _dataPOS.push(obj);
                 indexPOS = _dataPOS.lastIndexOf(obj);
                 appendOrderPOS(obj, indexPOS);
@@ -240,6 +244,9 @@ $(document).ready(function () {
         var patientCondition = $("#patientConditionPOScd option:selected").text();
         var patientConditionCd = $("#patientConditionPOScd").val();
         var date = $("#appointmentPOS").val();
+        
+        var temp = date.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];   
 
         if (pc2 === "") {
             procedure = $("#tCISOEPOSSearch").val() + "[$-$]" + $("#tCISOEPOS1Search").val()
@@ -260,7 +267,7 @@ $(document).ready(function () {
         updatePOSObj.priorityCode = priorityCode;
         updatePOSObj.patientCondition = patientCondition;
         updatePOSObj.patientConditionCode = patientConditionCd;
-        updatePOSObj.date = date;
+        updatePOSObj.date = _ddate4New;
         updatePOSObj.comment = commentArea;
 
         if (procedureCode === "" && date === "" && commentArea === "") {
@@ -341,11 +348,15 @@ $(document).ready(function () {
 
         searchingRetrieve("tCISOEPOSProblemName", "tCISOEPOSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodePOS", "search/ResultCCNSearchCode.jsp", updatePOSObj.problemName);
 
+        var updateDate = updatePOSObj.date;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
         $("#problemCodePOS").val(updatePOSObj.problemCode);
         $("#tCIS_POSCommentArea").val(updatePOSObj.comment);
         $("#priorityPOScd").val(updatePOSObj.priorityCode);
         $("#patientConditionPOScd").val(updatePOSObj.patientConditionCode);
-        $("#appointmentPOS").val(updatePOSObj.date);
+        $("#appointmentPOS").val(updateDate);
 
 
     });
@@ -403,7 +414,16 @@ $(document).ready(function () {
     }
 
     $(function () {
-        $('#appointmentPOS').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+        $('#appointmentPOS').datepicker({
+            changeMonth: true, 
+            changeYear: true,
+            dateFormat: "dd/mm/yy",
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
+        });
     });
 
     function clearFieldPOS() {

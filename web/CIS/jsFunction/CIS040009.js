@@ -66,6 +66,9 @@ $(document).ready(function(){
         var category = $("#tCIS_PRICategory option:selected").val();
         var reason = $("#tCIS_PRIReason option:Selected").val();
         
+        var temp = appREF.split("/");
+        appREF = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         if(hfcREFname === "" || disREFname === "" || docREFname === "" || appREF === "" || medhistoryREF === "" || reason === "" ){
             alert("Please complete all field before submit the referral");
         } else{

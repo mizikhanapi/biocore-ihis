@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
+    var rowDataTr;
 
 $(document).ready(function () {
+    
     var _dataROS = [];
     var updateIndex;
     var updateObj;
     var rowId;
     var hfcRISCode = "";
-    var rowDataTr;
+
 
     $("#CIS040000").on('show.bs.modal', function (e) {
         searchInitialize("RIS", "I");
@@ -209,6 +211,9 @@ $(document).ready(function () {
         var patientConditionROS = $('#priorityROS').val();
         var patientCondition = $('#patientConditionROSCd  :selected').text().trim();
         var priority = $('#priorityROScd :selected').text().trim();
+        
+        var temp = appointmentROS.split("/");
+        appointmentROS = temp[0] + "-" + temp[1] + "-" + temp[2];
 
         if (ROS === '' && appointmentROS === '' && commentROS === '') {
             alert("You not enter the Radiology Procedure, Comment and Appointment Date.");
@@ -225,14 +230,17 @@ $(document).ready(function () {
         } else if (appointmentROS === '') {
             alert("You not enter the Appointment Date.");
         } else {
+            
             if (problemCode === '') {
                 problemCode = "-";
             }
+            
             if (problemName === '') {
                 problemName = "-";
             }
 
-            var $items = $('#commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
+            var $items = $('#commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
+            
             var obj1 = {
                 Acode: 'ROS',
                 ROS: ROS,
@@ -241,19 +249,24 @@ $(document).ready(function () {
                 codeROS: codeROS,
                 hfcROS: hfcROS,
                 problemCode: problemCode,
-                problemName: problemName
+                problemName: problemName,
+                appointmentROS:appointmentROS
             };
 
             $items.each(function () {
                 obj1[this.id] = $(this).val();
             });
+            
+            
             if (checkOrderCode(_dataROS, obj1.codeROS)) {
                 alert("This order already been added");
             } else {
+                
                 _dataROS.push(obj1);
                 index = _dataROS.lastIndexOf(obj1);
                 appendOrderROS(obj1, index);
                 clearROSField();
+                
             }
 
         }
@@ -263,22 +276,28 @@ $(document).ready(function () {
 
     $("#tableOrderROS").on("click", ".btnDelete", function (e) {
         e.preventDefault();
+        
         rowDataTr = $(this).closest("tr");
+        
         var delId = $(this).get(0).id;
         var delIdA = delId.split("|");
         var delIndex = parseInt(delIdA[1]);
         var delConfirm = confirm('Are you want to delete this Order ? ');
+        
         if (delConfirm === true) {
+            
             delete _dataROS[delIndex];
             $(this).closest('tr').remove();
 
         } else {
             return false;
         }
-    })
+        
+    });
 
     $("#tableOrderROS").on("click", ".btnUpdate", function (e) {
         e.preventDefault();
+        
         //hide and show button 
         $("#btnCIS_OE_ROS_UPDATE").show();
         $("#btnCIS_OE_ROS_CANCEL").show();
@@ -298,6 +317,10 @@ $(document).ready(function () {
         $("#tCISOEROSProcedureSearch").prop("disabled", false);
         searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS", updateObj.ROS);
 
+        var updateDate = updateObj.appointmentROS;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
         $("#locationROS").val(updateObj.locationROS);
         $("#hfcProviderDetail").val(updateObj.hfcProviderDetail);
         $("#hfcOrderDetail").val(updateObj.hfcOrderDetail);
@@ -313,9 +336,10 @@ $(document).ready(function () {
         $('#hfcROS').val(updateObj.hfcROS);
         $('#hfcIdROS').val(updateObj.hfcIdROS);
         $('#locationROS').val(updateObj.locationROS);
-        $('#appointmentROS').val(updateObj.appointmentROS);
+        $('#appointmentROS').val(updateDate);
         $('#patientConditionROSCd').val(updateObj.patientConditionROSCd);
         $('#priorityROScd').val(updateObj.priorityROScd);
+        
     });
 
     $("#btnCIS_OE_ROS_CANCEL").click(function (e) {
@@ -329,8 +353,12 @@ $(document).ready(function () {
     $("#btnCIS_OE_ROS_UPDATE").click(function (e) {
         e.preventDefault();
         //update the object with current value
+        
+        var temp = $("#appointmentROS").val().split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         updateObj.ROS = $("#tCISOEROSProcedureSearch").val();
-        updateObj.appointmentROS = $("#appointmentROS").val();
+        updateObj.appointmentROS = _ddate4New;
         updateObj.bodySystemROS = $("#bodySystemROS").val();
         updateObj.bodySystemROSCode = $("#bodySystemROSCode").val();
         updateObj.codeROS = $("#codeROS_2").val();
@@ -349,10 +377,13 @@ $(document).ready(function () {
         updateObj.problemCode = $('#problemCode').val();
 
         updateOrderROSTable(updateObj, updateIndex);
+        
         $("#btnCIS_OE_ROS_UPDATE").hide();
         $("#btnCIS_OE_ROS_CANCEL").hide();
         $("#btnCIS_OE_ROS_ADD").show();
+        
         clearROSField();
+        
     });
 
     //clear _dataROS
@@ -386,7 +417,7 @@ $(document).ready(function () {
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Ignore',
-                        className: 'btn-danger'
+                        className: 'btn-default'
                     },
                     confirm: {
                         label: '<i class="fa fa-check"></i> Submit Order',
@@ -467,22 +498,35 @@ function searchingRISPRO(fieldId, loadingDivId, urlData, urlCode, codeFieldId, m
 
 
 function updateOrderROSTable(obj, index) {
+    
     var redcolor = '';
+    
     if (obj.priorityROScd === 'P02') {
         redcolor = 'style="background-color:#ff9999"';
     }
-    var _tr = '<td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + obj.appointmentROS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+    
+    var updateDate = obj.appointmentROS;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+    var _tr = '<td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + updateDate + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+    
     $(rowDataTr).html(_tr);
 }
 
 function appendOrderROS(obj, index) {
 
     var redcolor = '';
+    
     if (obj.priorityROScd === 'P02') {
         redcolor = 'style="color:#f5707a"';
     }
+    
+    var updateDate = obj.appointmentROS;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
 
-    var _tr = '<tr ' + redcolor + '  id="tr_row|' + index + '" ><td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + obj.appointmentROS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+    var _tr = '<tr ' + redcolor + '  id="tr_row|' + index + '" ><td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + updateDate + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
     $("#tableOrderROS").append(_tr);
 }
 

@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <label class="col-md-6" for="textinput">Appointment</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text"  id="appointmentPOS" placeholder="">
+                                                <input class="form-control input-lg" type="text"  id="appointmentPOS" placeholder="DD/MM/YYYY" readonly="">
                                             </div>
                                         </div>
                                     </div>

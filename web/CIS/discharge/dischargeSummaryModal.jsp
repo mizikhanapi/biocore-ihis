@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg" type="text" name="tCIS_DCGDate" id="tCIS_DCGDate" placeholder="DD-MM-YYYY" >
+                                <input class="form-control input-lg" type="text" name="tCIS_DCGDate" id="tCIS_DCGDate" placeholder="DD/MM/YYYY" readonly="">
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="update_tCIS_DCGDate" id="update_tCIS_DCGDate" placeholder="" >
+                            <input class="form-control input-lg" type="text" name="update_tCIS_DCGDate" id="update_tCIS_DCGDate" placeholder="DD/MM/YYYY" readonly="" >
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -209,7 +209,12 @@
             changeMonth: true,
             changeYear: true,
             yearRange: "-100:+0",
-            dateFormat: "dd-mm-yy"
+            dateFormat: "dd/mm/yy",
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
         });
         $("#tCIS_DCGDate").datepicker("setDate", new Date());
 

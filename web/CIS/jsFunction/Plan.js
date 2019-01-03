@@ -55,11 +55,10 @@ $(document).ready(function () {
     });
 
     $("#appREF").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
@@ -82,17 +81,17 @@ $(document).ready(function () {
 
 
     $("#appointmentROS").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
             }, 0);
         }
     });
+    
     $("#UappointmentROS").datepicker({
 
         changeMonth: true,

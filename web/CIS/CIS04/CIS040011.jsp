@@ -97,7 +97,7 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
 
-                                                    <input class="form-control input-lg CIS-OE-SPO-DATE" type="text" name="problem"  id="tCISOESPOStartDate" placeholder="Date" tabindex="4" >
+                                                    <input class="form-control input-lg CIS-OE-SPO-DATE" type="text" name="problem"  id="tCISOESPOStartDate" placeholder="DD/MM/YYYY" readonly="" tabindex="4" >
 
                                                 </div>
                                                 <div class="col-md-6">
@@ -119,7 +119,7 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
 
-                                                    <input class="form-control input-lg CIS-OE-SPO-DATE" type="text" name="problem"  id="tCISOESPOENDDate" placeholder="Date" tabindex="4" data-search-by-word="true">
+                                                    <input class="form-control input-lg CIS-OE-SPO-DATE" type="text" name="problem"  id="tCISOESPOENDDate" placeholder="DD/MM/YYYY" readonly="" tabindex="4" data-search-by-word="true">
 
                                                 </div>
                                                 <div class="col-md-6">

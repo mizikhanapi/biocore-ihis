@@ -155,7 +155,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Appointment :</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg" type="text" name="pro" id="appREF" >
+                                <input class="form-control input-lg" type="text" name="pro" id="appREF" placeholder="DD/MM/YYYY" readonly="">
                             </div>
                         </div>
 
@@ -233,7 +233,7 @@
 
                 <div class="form-group">
                     <h4 class="modal-title">Appointment :</h4>
-                    <input class="form-control input-lg" type="text" name="pro" id="UappREF" >
+                    <input class="form-control input-lg" type="text" name="pro" id="UappREF" placeholder="DD/MM/YYYY" readonly="">
                 </div>
 
                 <div class="form-group">

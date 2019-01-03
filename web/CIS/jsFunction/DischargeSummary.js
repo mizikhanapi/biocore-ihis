@@ -24,6 +24,9 @@ $(document).ready(function () {
         var hfcOrderDetail = $('#tCIS_DCGHFCOrderDetail').val();
         var hfcProviderDetail = $('#tCIS_DCGHFCProviderDetail').val();
 
+        var temp = dateDCG.split("/");
+        dateDCG = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         var obj1 = {
             Acode: 'DCG',
             date: dateDCG,

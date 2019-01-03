@@ -28,7 +28,7 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
@@ -181,7 +181,11 @@ $(document).ready(function () {
         var endTime = $("#tCISOESPOEndTime").val();
         var commentArea = $("#tCIS_POSSurgicalCommentArea").val();
 
-
+        var temp = startDate.split("/");
+        startDate = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
+        var temp2 = endDate.split("/");
+        endDate = temp2[0] + "-" + temp2[1] + "-" + temp2[2];
 
         var obj = {
             procedure: procedure,
@@ -269,9 +273,17 @@ $(document).ready(function () {
         $("#tCISOESPOConsultantCode").val(updatePOSSurgicalObj.consultantCode);
         $("#tCISOESPOOTRoomCode").val(updatePOSSurgicalObj.otRoomCode);
 
-        $("#tCISOESPOStartDate").val(updatePOSSurgicalObj.startDate);
+        var updateDateS = updatePOSSurgicalObj.startDate;
+        var temps = updateDateS.split("-");
+        updateDateS = temps[0] + "/" + temps[1] + "/" + temps[2];
+        
+        var updateDateE = updatePOSSurgicalObj.endDate;
+        var tempe = updateDateE.split("-");
+        updateDateE = tempe[0] + "/" + tempe[1] + "/" + tempe[2];
+        
+        $("#tCISOESPOStartDate").val(updateDateS);
         $("#tCISOESPOStartTime").val(updatePOSSurgicalObj.startTime);
-        $("#tCISOESPOENDDate").val(updatePOSSurgicalObj.endDate);
+        $("#tCISOESPOENDDate").val(updateDateE);
         $("#tCISOESPOEndTime").val(updatePOSSurgicalObj.endTime);
     });
 
@@ -295,6 +307,13 @@ $(document).ready(function () {
 
     $("#btnCIS_OE_POSSurgical_UPDATE").click(function (e) {
         e.preventDefault();
+              
+        var tempS = $("#tCISOESPOStartDate").val().split("/");
+        var _ddate4NewS = tempS[0] + "-" + tempS[1] + "-" + tempS[2];           
+        
+        var tempE = $("#tCISOESPOENDDate").val().split("/");
+        var _ddate4NewE = tempE[0] + "-" + tempE[1] + "-" + tempE[2];    
+           
         var cat_cd = $("#tCISOESPOCategoryCode").val();
         var cat_name = $("#tCISOESPOCategoryName").val();
         var procedure_cd = $("#tCISOESPOSearchCode").val();
@@ -303,9 +322,9 @@ $(document).ready(function () {
         var consultant_cd = $("#tCISOESPOConsultantCode").val();
         var otRoom_cd = $("#tCISOESPOOTRoomCode").val();
         var otRoom = $("#tCISOESPOOTRoomName").val();
-        var startDate = $("#tCISOESPOStartDate").val();
+        var startDate = _ddate4NewS;
         var startTime = $("#tCISOESPOStartTime").val();
-        var endDate = $("#tCISOESPOENDDate").val();
+        var endDate = _ddate4NewE;
         var endTime = $("#tCISOESPOEndTime").val();
         var commentArea = $("#tCIS_POSSurgicalCommentArea").val();
 
@@ -452,14 +471,31 @@ function clearFieldPOSSurgical() {
 
 
 function appendOrderPOSSurgical(obj, index) {
-    var _tr = '<tr id="trPOS_row|' + index + '" ><td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+    
+        var updateDateS = obj.startDate;
+        var tempS = updateDateS.split("-");
+        updateDateS = tempS[0] + "/" + tempS[1] + "/" + tempS[2];
+        
+        var updateDateE = obj.endDate;
+        var tempE = updateDateE.split("-");
+        updateDateE = tempE[0] + "/" + tempE[1] + "/" + tempE[2];
+        
+    var _tr = '<tr id="trPOS_row|' + index + '" ><td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + updateDateS + ' ' + obj.startTime + '</td><td class="col-md-2">' + updateDateE + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
     $("#tableOrderPOSSurgical").append(_tr);
 }
 
 
 function updateOrderPOSTableSurgical(obj, index) {
+    
+            var updateDateS = obj.startDate;
+        var tempS = updateDateS.split("-");
+        updateDateS = tempS[0] + "/" + tempS[1] + "/" + tempS[2];
+        
+        var updateDateE = obj.endDate;
+        var tempE = updateDateE.split("-");
+        updateDateE = tempE[0] + "/" + tempE[1] + "/" + tempE[2];
 
-    var _tr = '<td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+    var _tr = '<td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + updateDateS + ' ' + obj.startTime + '</td><td class="col-md-2">' + updateDateE + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
     $("#rowPOSSurgicalDataTR").html(_tr);
 }
 

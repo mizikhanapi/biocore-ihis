@@ -59,6 +59,7 @@ $(document).ready(function () {
 
     $("#divCIS_OE_LIO_OrderSearchResult").on("click", "#tblOLIO #btnCIS_OE_LIO_SEARCH_ADD", function (e) {
         e.preventDefault();
+        
         var rowOrder = $(this).closest("tr");
         var orderId = rowOrder.find("#orderId").html();
         var item_cd = rowOrder.find("#item_cd").html();
@@ -93,10 +94,13 @@ $(document).ready(function () {
 
     $("#btnCIS_OE_LIO_SEARCH_ORDER").click(function (e) {
         e.preventDefault();
+        
         var order_id = $("#tCIS_OE_LIO_SEARCH_ORDER_ID").val();
+        
         if (order_id === "") {
             order_id = "-";
         }
+        
         var todayDate = getDate();
         todayDate = todayDate.split(" ");
         todayDate = todayDate[0];
@@ -174,6 +178,9 @@ $(document).ready(function () {
         var hfcLOS = $('#tCISOELIOHFC').val();
         var problemCode = $("#problemCodeLIO").val();
         var problemName = $("#tCISOELIOProblemName").val();
+        
+        var temp = appointmentLOS.split("/");
+        appointmentLOS = temp[0] + "-" + temp[1] + "-" + temp[2];
 
         if (searchLOS === '' && appointmentLOS === '' && commentLOS === '') {
             alert("You not enter the Laboratory Procedure, Comment and Appointment Date.");
@@ -190,7 +197,9 @@ $(document).ready(function () {
         } else if (appointmentLOS === '') {
             alert("You not enter the Appointment Date.");
         } else {
-            var $items = $('#codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
+            
+            var $items = $('#codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#priorityLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
+            
             var obj1 = {
                 Acode: 'LOS',
                 searchLOS: searchLOS,
@@ -200,8 +209,10 @@ $(document).ready(function () {
                 hfcProviderDetail: hfcProviderDetail,
                 hfcLOS: hfcLOS,
                 problemCode: problemCode,
-                problemName: problemName
+                problemName: problemName,
+                appointmentLOS:appointmentLOS
             };
+            
             $items.each(function () {
                 obj1[this.id] = $(this).val();
             });
@@ -209,10 +220,12 @@ $(document).ready(function () {
             if (checkOrderCode(_dataLIO, obj1.codeLOS)) {
                 alert("This order already been added.");
             } else {
+                
                 _dataLIO.push(obj1);
                 indexLIO = _dataLIO.lastIndexOf(obj1);
                 appendOrderLIO(obj1, indexLIO)
                 clearFieldLIO();
+                
             }
 
         }
@@ -223,8 +236,11 @@ $(document).ready(function () {
 
     $("#btnCIS_OE_LIO_UPDATE").click(function (e) {
 
+        var temp = $("#appointmentLOS").val().split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];    
+        
         updateLIOObj.searchLOS = $('#searchLOS').val();
-        updateLIOObj.appointmentLOS = $('#appointmentLOS').val();
+        updateLIOObj.appointmentLOS = _ddate4New;
         updateLIOObj.catLOS = $('#catLOS').val();
         updateLIOObj.codeLOS = $('#codeLOS').val();
         updateLIOObj.commentLOS = $('#commentLOS').val();
@@ -267,8 +283,13 @@ $(document).ready(function () {
         searchLIO("tCISOELIOSearch", "search/ResultLIOSearch.jsp", "tCISOELIOSearchLoading", updateLIOObj.searchLOS);
         retrieveDataSearchingHFC("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "UhfcIdROS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO", updateLIOObj.hfcLOS, '');
         searchingRetrieve("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp", updateLIOObj.problemName);
+        
+        var updateDate = updateLIOObj.appointmentLOS;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
         $('#searchLOS').val(updateLIOObj.searchLOS);
-        $('#appointmentLOS').val(updateLIOObj.appointmentLOS);
+        $('#appointmentLOS').val(updateDate);
         $('#catLOS').val(updateLIOObj.catLOS);
         $('#codeLOS').val(updateLIOObj.codeLOS);
         $('#commentLOS').val(updateLIOObj.commentLOS);
@@ -349,25 +370,50 @@ $(document).ready(function () {
     }
 
     $(function () {
-        $('#appointmentLOS').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+        $('#appointmentLOS').datepicker({
+            changeMonth: true, 
+            changeYear: true,
+            dateFormat: "dd/mm/yy",
+            beforeShow: function () {
+                setTimeout(function () {
+                    $('.ui-datepicker').css('z-index', 999999999);
+                }, 0);
+            }
+        });
     });
 
     function appendOrderLIO(obj, index) {
 
         var redcolor = '';
+        
         if (obj.priorityLOScd === 'P02') {
             redcolor = 'style="color:#f5707a; font-weight: 500;"';
         }
-        var _tr = '<tr ' + redcolor + '  id="trLIO_row|' + index + '" ><td>' + obj.searchLOS + '</td><td>' + obj.sourceLOS + '</td><td>' + obj.containerLOS + '</td><td>' + obj.volumeLOS + '</td><td>' + obj.commentLOS + '</td><td>' + obj.appointmentLOS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+        
+        var updateDate = obj.appointmentLOS;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+        var _tr = '<tr ' + redcolor + '  id="trLIO_row|' + index + '" ><td>' + obj.searchLOS + '</td><td>' + obj.sourceLOS + '</td><td>' + obj.containerLOS + '</td><td>' + obj.volumeLOS + '</td><td>' + obj.commentLOS + '</td><td>' + updateDate + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         //var _tr = '<tr ' + redcolor + '  id="tr_row|' + index + '" ><td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + obj.appointmentROS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+        
         $("#tableOrderLIO").append(_tr);
+        
     }
+    
     function updateOrderLIOTable(obj, index) {
+        
         var redcolor = '';
+        
         if (obj.priorityROScd === 'P02') {
             redcolor = 'style="color:#f5707a; font-weight: 500;"';
         }
-        var _tr = '<td>' + obj.searchLOS + '</td><td>' + obj.sourceLOS + '</td><td>' + obj.containerLOS + '</td><td>' + obj.volumeLOS + '</td><td>' + obj.commentLOS + '</td><td>' + obj.appointmentLOS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+        
+        var updateDate = obj.appointmentLOS;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+        var _tr = '<td>' + obj.searchLOS + '</td><td>' + obj.sourceLOS + '</td><td>' + obj.containerLOS + '</td><td>' + obj.volumeLOS + '</td><td>' + obj.commentLOS + '</td><td>' + updateDate + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
         $(rowLIODataTR).html(_tr);
     }
 
