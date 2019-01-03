@@ -19,7 +19,7 @@
               
     if (orderId.equals("-")) {
         if (type.equals("today")) {
-            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME "
+            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM ris_order_detail od "
                     + " JOIN ris_order_master om "
                     + " JOIN ris_procedure_master pm "
@@ -40,7 +40,7 @@
         } else if (type.equals("previous")) {
             
 
-            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME "
+            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM ris_order_detail od "
                     + " JOIN ris_order_master om "
                     + " JOIN ris_procedure_master pm "
@@ -60,7 +60,7 @@
         }
     } else {
         if (type.equals("today")) {
-            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME "
+            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM ris_order_detail od "
                     + " JOIN ris_order_master om "
                     + " JOIN ris_procedure_master pm "
@@ -81,7 +81,7 @@
             
 
         } else if (type.equals("previous")) {
-            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME "
+            searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM ris_order_detail od "
                     + " JOIN ris_order_master om "
                     + " JOIN ris_procedure_master pm "
@@ -131,7 +131,7 @@
             for (int i = 0; i < search.size(); i++) {
         %>
         <tr>
-            <td><%out.print(search.get(i).get(7));%></td>
+            <td><%out.print(search.get(i).get(9));%></td>
             <td><%out.print(search.get(i).get(8));%></td>
             <td><%out.print(search.get(i).get(2));%></td>
             <td>No Result Yet</td>

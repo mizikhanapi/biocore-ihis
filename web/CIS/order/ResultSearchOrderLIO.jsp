@@ -18,7 +18,7 @@
     String searchProblem = "";
     if (orderId.equals("-")) {
         if (type.equals("today")) {
-            searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
+            searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, od.spe_source, od.item_cd, od.item_name, od.volume, od.spe_container, om.episode_date ,au.`USER_NAME`,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T')   "
                     + "FROM lis_order_master om JOIN lis_order_detail od "
                     + "JOIN adm_health_facility hf "
                     + " JOIN adm_users au "
@@ -31,7 +31,7 @@
 
             //out.print(searchProblem);
         } else if (type.equals("previous")) {
-            searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
+            searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T')    "
                     + "FROM lis_order_master om JOIN lis_order_detail od "
                     + "JOIN adm_health_facility hf "
                     + " JOIN adm_users au "
@@ -41,7 +41,7 @@
                     + "AND om.pmi_no = '" + pmiNo + "' "
                     + "GROUP BY od.item_cd ";
 
-            resultProblem = "SELECT om.order_no, om.hfc_to ,hf.hfc_name, od.item_cd, id.item_name, r.`result`, om.episode_date, r.id_result, au.`USER_NAME`, od.spe_source "
+            resultProblem = "SELECT om.order_no, om.hfc_to ,hf.hfc_name, od.item_cd, id.item_name, r.`result`, om.episode_date, r.id_result, au.`USER_NAME`, od.spe_source,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM lis_order_master om "
                     + " JOIN lis_order_detail od  "
                     + "JOIN lis_item_detail id  "
@@ -58,7 +58,7 @@
 
         }
     } else if (type.equals("today")) {
-        searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
+        searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T')   "
                 + "FROM lis_order_master om JOIN lis_order_detail od "
                 + "JOIN adm_health_facility hf "
                 + " JOIN adm_users au "
@@ -71,7 +71,7 @@
                 + "GROUP BY od.item_cd ;";
 
     } else if (type.equals("previous")) {
-        searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
+        searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T')   "
                 + "FROM lis_order_master om JOIN lis_order_detail od "
                 + "JOIN adm_health_facility hf "
                 + " JOIN adm_users au "
@@ -82,7 +82,7 @@
                 + " AND om.order_no = '" + orderId + "' "
                 + "GROUP BY od.item_cd ;";
 
-        resultProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`   "
+        resultProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.spe_source,od.item_cd,od.item_name,od.volume,od.spe_container,om.episode_date ,au.`USER_NAME`,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T')   "
                 + "FROM lis_order_master om "
                 + " JOIN lis_order_detail od  "
                 + "JOIN lis_item_detail id  "
@@ -123,7 +123,7 @@
         <% for (int i = 0; i < result.size(); i++) {
         %>
         <tr>
-            <td><%out.print(result.get(i).get(6));%></td>
+            <td><%out.print(result.get(i).get(10));%></td>
             <td><%out.print(result.get(i).get(8));%></td>
             <td><%out.print(result.get(i).get(4));%></td>
             <td><%out.print(result.get(i).get(9));%></td>
@@ -142,7 +142,7 @@
         <% for (int i = 0; i < search.size(); i++) {
         %>
         <tr>
-            <td><%out.print(search.get(i).get(8));%></td>
+            <td><%out.print(search.get(i).get(10));%></td>
             <td><%out.print(search.get(i).get(9));%></td>
             <td><%out.print(search.get(i).get(5));%></td>
             <td><%out.print(search.get(i).get(3));%></td>

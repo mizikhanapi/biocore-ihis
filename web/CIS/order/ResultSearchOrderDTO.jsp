@@ -34,7 +34,7 @@
 //                    + "GROUP BY od.`DRUG_ITEM_CODE` "
 //                    + "ORDER BY om.`ORDER_NO` DESC;";
 
-            searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
+            searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                     + "FROM pis_order_master om "
                     + "JOIN pis_order_detail od on om.`ORDER_NO`=od.`ORDER_NO` "
                     + "JOIN pis_mdc2 mdc on mdc.ud_mdc_code=od.`DRUG_ITEM_CODE` AND om.`HEALTH_FACILITY_CODE`=mdc.hfc_cd AND om.`DISCIPLINE_CODE`=mdc.discipline_cd "
@@ -45,7 +45,7 @@
 
             //out.print(searchProblem);
         } else if (type.equals("previous")) {
-            searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
+            searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                     + "FROM pis_order_master om "
                     + "JOIN pis_order_detail od on om.`ORDER_NO`=od.`ORDER_NO` "
                     + "JOIN pis_mdc2 mdc on mdc.ud_mdc_code=od.`DRUG_ITEM_CODE` AND om.`HEALTH_FACILITY_CODE`=mdc.hfc_cd AND om.`DISCIPLINE_CODE`=mdc.discipline_cd "
@@ -74,7 +74,7 @@
                 + "GROUP BY od.`DRUG_ITEM_CODE` "
                 + "ORDER BY om.`ORDER_NO` DESC;";
          */
-        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
+        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                 + "FROM pis_order_master om "
                 + "JOIN pis_order_detail od on om.`ORDER_NO`=od.`ORDER_NO` "
                 + "JOIN pis_mdc2 mdc on mdc.ud_mdc_code=od.`DRUG_ITEM_CODE` AND om.`HEALTH_FACILITY_CODE`=mdc.hfc_cd AND om.`DISCIPLINE_CODE`=mdc.discipline_cd "
@@ -100,7 +100,7 @@
 //                + "GROUP BY od.`DRUG_ITEM_CODE` "
 //                + "ORDER BY om.`ORDER_NO` DESC;";
 
-        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
+        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T')"
                 + "FROM pis_order_master om "
                 + "JOIN pis_order_detail od on om.`ORDER_NO`=od.`ORDER_NO` "
                 + "JOIN pis_mdc2 mdc on mdc.ud_mdc_code=od.`DRUG_ITEM_CODE` AND om.`HEALTH_FACILITY_CODE`=mdc.hfc_cd AND om.`DISCIPLINE_CODE`=mdc.discipline_cd "
@@ -137,7 +137,7 @@
         <% for (int i = 0; i < search.size(); i++) {
         %>
         <tr>
-            <td><%out.print(search.get(i).get(3));%></td>
+            <td><%out.print(search.get(i).get(12));%></td>
             <td><%out.print(search.get(i).get(11));%></td>
             <td><%out.print(search.get(i).get(5));%></td>
             <td><%out.print(search.get(i).get(7));%></td>

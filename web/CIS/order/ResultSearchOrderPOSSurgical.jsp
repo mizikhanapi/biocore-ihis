@@ -20,7 +20,7 @@
         if (type.equals("today")) {
             searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
                     //      6               7           8               9               10
-                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM opt_order_master om "
                     + "INNER JOIN opt_order_detail od ON om.order_no = od.order_no "
                     + "INNER JOIN opt_procedure_category pc ON od.category_cd = pc.category_cd  "
@@ -37,7 +37,7 @@
             //          0                1               2              3               4               5               
             searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
                     //      6               7           8               9               10
-                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM opt_order_master om "
                     + "INNER JOIN opt_order_detail od ON om.order_no = od.order_no "
                     + "INNER JOIN opt_procedure_category pc ON od.category_cd = pc.category_cd  "
@@ -53,7 +53,7 @@
         if (type.equals("today")) {
             searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
                     //      6               7           8               9               10
-                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM opt_order_master om "
                     + "INNER JOIN opt_order_detail od ON om.order_no = od.order_no "
                     + "INNER JOIN opt_procedure_category pc ON od.category_cd = pc.category_cd  "
@@ -69,7 +69,7 @@
         } else if (type.equals("previous")) {
             searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
                     //      6               7           8               9               10
-                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments,DATE_FORMAT(om.episode_date, '%d/%m/%Y %T') "
                     + "FROM opt_order_master om "
                     + "INNER JOIN opt_order_detail od ON om.order_no = od.order_no "
                     + "INNER JOIN opt_procedure_category pc ON od.category_cd = pc.category_cd  "
@@ -106,7 +106,7 @@
         <% for (int i = 0; i < search.size(); i++) {
         %>
         <tr>
-            <td><%out.print(search.get(i).get(1));%></td>
+            <td><%out.print(search.get(i).get(11));%></td>
             <td hidden id="cat_cd"><%out.print(search.get(i).get(2));%></td>
             <td id="categoryName"><%out.print(search.get(i).get(3));%></td>
             <td hidden id="procedure_cd"><%out.print(search.get(i).get(4));%></td>

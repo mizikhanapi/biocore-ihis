@@ -18,7 +18,7 @@
     String searchProblem = "";
     if (orderId.equals("-")) {
         if (type.equals("today")) {
-            searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
+            searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                     + " FROM pos_order_master om   "
                     + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
                     + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
@@ -30,7 +30,7 @@
 
             //out.print(searchProblem);
         } else if (type.equals("previous")) {
-            searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
+            searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                     + " FROM pos_order_master om   "
                     + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
                     + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
@@ -41,7 +41,7 @@
 
         }
     } else if (type.equals("today")) {
-        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
+        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                 + " FROM pos_order_master om   "
                 + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
                 + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
@@ -53,7 +53,7 @@
                 + "ORDER BY om.order_no DESC;";
 
     } else if (type.equals("previous")) {
-        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
+        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,DATE_FORMAT(om.`EPISODE_DATE`, '%d/%m/%Y %T') "
                 + " FROM pos_order_master om   "
                 + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
                 + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
@@ -92,7 +92,7 @@
         <% for (int i = 0; i < search.size(); i++) {
         %>
         <tr>
-            <td><%out.print(search.get(i).get(3));%></td>
+            <td><%out.print(search.get(i).get(9));%></td>
             <td><%out.print(search.get(i).get(6));%></td>
             <td><%out.print(search.get(i).get(5));%></td>
             <td><%out.print(search.get(i).get(8));%></td>
