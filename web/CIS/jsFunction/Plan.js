@@ -29,12 +29,24 @@ $(document).ready(function () {
      * To change this template file, choose Tools | Templates
      * and open the template in the editor.
      */
+    
     $("#DateFollowUp").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
+        beforeShow: function () {
+            setTimeout(function () {
+                $('.ui-datepicker').css('z-index', 999999999);
+            }, 0);
+        }
+    });
+    
+    $("#uDateFollowUp").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
@@ -68,18 +80,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#uDateFollowUp").datepicker({
 
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
-        beforeShow: function () {
-            setTimeout(function () {
-                $('.ui-datepicker').css('z-index', 999999999);
-            }, 0);
-        }
-    });
     $("#appointmentROS").datepicker({
 
         changeMonth: true,
@@ -104,24 +105,25 @@ $(document).ready(function () {
             }, 0);
         }
     });
+    
+    
     $(".DateFromMEC").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
             }, 0);
         }
     });
+    
     $(".DateToMEC").datepicker({
-
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "dd-mm-yy",
+        dateFormat: "dd/mm/yy",
         beforeShow: function () {
             setTimeout(function () {
                 $('.ui-datepicker').css('z-index', 999999999);
@@ -140,6 +142,7 @@ $(document).ready(function () {
         dropdown: true,
         scrollbar: true
     });
+    
     $('.num2MEC').timepicker({
         timeFormat: 'H:mm ',
         interval: 60,
@@ -528,33 +531,44 @@ $(document).ready(function () {
         var stat = checkCCNnDGS(_data);
         
         if(stat.ccnV === true && stat.dgsV === true && stat.mcV === false){
+            
             var DateFrom = $('#DateFromMEC').val();
             var DateTo = $('#DateToMEC').val();
             var num1 = $('#num1MEC').val();
             var num2 = $('#num2MEC').val();
             var typeMEC = $('#leavetypeMEC').val();
             var commentMEC = $('#commentMEC').val();
+            
+            var temp = DateFrom.split("/");
+            DateFrom = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
+            var temp1 = DateTo.split("/");
+            DateTo = temp1[0] + "-" + temp1[1] + "-" + temp1[2];
 
-
-            var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC,#commentMEC');
+            var $items = $('#num1MEC,#num2MEC,#commentMEC');
+            
             var obj1 = {
-                Acode: "MEC",typeMEC:typeMEC
+                Acode: "MEC",
+                typeMEC:typeMEC,
+                DateFromMEC:DateFrom,
+                DateToMEC:DateTo
             };
             
             $items.each(function () {
                 obj1[this.id] = $(this).val();
             });
             
+            console.log(obj1);
             _data.push(obj1);
+            
             displayMCTS(DateFrom, DateTo, num1, num2,typeMEC,commentMEC);
-            $("#DateFromMEC").val("");
-            $("#DateToMEC").val("");
-            $("#num1MEC").val("");
-            $("#num2MEC").val("");
+            
             $('#leavetypeMEC').val("");
             $('#commentMEC').val("");
+            
             $("#CIS040008").modal('toggle');
             // $(".modal-backdrop").hide();
+            
         }else {
             bootbox.alert("You need to enter at least one Chief Complain and one diagnosis before add the Medical Certification (MC) and Time Slip and make sure only one Medical Certificate(MC) or Time Slip can be inserted");
         }
@@ -565,12 +579,22 @@ $(document).ready(function () {
 
     //js update for MC & Time Slip
     $('#tblCIS_Consultation_Table').on('click', '.updateBtn14', function () {
+        
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
      
-        $('#UDateFromMEC').val(updateObj.DateFromMEC);
-        $('#UDateToMEC').val(updateObj.DateToMEC);
+        var updateDateFrom = updateObj.DateFromMEC;
+        var temp = updateDateFrom.split("-");
+        updateDateFrom = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+        var updateDateTo = updateObj.DateToMEC;
+        var temp = updateDateTo.split("-");
+        updateDateTo = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+        $('#UDateFromMEC').val(updateDateFrom);
+        $('#UDateToMEC').val(updateDateTo);
+        
         $('#Unum1MEC').val(updateObj.num1MEC);
         $('#Unum2MEC').val(updateObj.num2MEC);
         $('#UleavetypeMEC').val(updateObj.typeMEC);
@@ -583,6 +607,7 @@ $(document).ready(function () {
 
     $('#updateMCTS').click(function (e) {
         e.preventDefault();
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _DDateFrom = $('#UDateFromMEC').val();
@@ -592,8 +617,14 @@ $(document).ready(function () {
         var _typeMEC = $('#UleavetypeMEC').val();
         var _commentMEC = $('#UcommentMEC').val();
 
-        upObject.DateFromMEC = _DDateFrom;
-        upObject.DateToMEC = _DDateTo;
+        var tempFrom = _DDateFrom.split("/");
+        var _ddate4NewFrom = tempFrom[0] + "-" + tempFrom[1] + "-" + tempFrom[2];
+        
+        var tempTo = _DDateTo.split("/");
+        var _ddate4NewTo = tempTo[0] + "-" + tempTo[1] + "-" + tempTo[2];
+        
+        upObject.DateFromMEC = _ddate4NewFrom;
+        upObject.DateToMEC = _ddate4NewTo;
         upObject.num1MEC = _nnum1;
         upObject.num2MEC = _nnum2;
         upObject.typeMEC = _typeMEC;
@@ -604,6 +635,7 @@ $(document).ready(function () {
         $('#sum' + rowId).html(sum);
         $("#update_CIS040008").modal('toggle');
         //$(".modal-backdrop").hide();
+        
     });
 
 
@@ -907,23 +939,31 @@ $(document).ready(function () {
     });
 
     //------------------------------------------------------------------------------------------------------------------------------- Follow Up
+    
+    
     $('#acceptFLU').click(function (e) {
         e.preventDefault();
+        
         var searchFLU = $('#tCISPlanFLUDOCSearch').val();
         var DateFollowUp = $('#DateFollowUp').val();
         var commentFLU = $('#commentFLU').val();
-
-
-
-        var $items = $(' #DateFollowUp, #commentFLU,#docFLUCode');
-        var obj1 = {Acode: 'FLU',searchFLU:searchFLU};
+        
+        var temp = DateFollowUp.split("/");
+        DateFollowUp = temp[0] + "-" + temp[1] + "-" + temp[2];  
+        
+        var $items = $('#commentFLU,#docFLUCode');
+        
+        var obj1 = {
+            Acode: 'FLU',
+            searchFLU:searchFLU,
+            DateFollowUp:DateFollowUp
+        };
+        
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
 
         _data.push(obj1);
-
-
 
         displayFLU(searchFLU, DateFollowUp, commentFLU);
 
@@ -939,21 +979,28 @@ $(document).ready(function () {
 
     //js update for Radiology request
     $('#tblCIS_Consultation_Table').on('click', '.updateBtnFLU', function () {
+        
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
    
-      
-        $('#uDateFollowUp').val(updateObj.DateFollowUp);
+        var updateDate = updateObj.DateFollowUp;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+        $('#uDateFollowUp').val(updateDate);
         $('#ucommentFLU').val(updateObj.commentFLU);
         $('#UdocFLUCode').val(updateObj.docFLUCode);
         $('#jsonId').val(id[1]);
-        searchDOCTORValue("tCISPlanFLUDOCSearch_Update", "tCISPlanFLUDOCSearchLoading_Update", hfc_cd, updateObj.searchFLU);
+        
+        //searchDOCTORValue("tCISPlanFLUDOCSearch_Update", "tCISPlanFLUDOCSearchLoading_Update", hfc_cd, updateObj.searchFLU);
+        searchInitialize("FLU", "I");
 
     });
 
     $('#updateBtnFollowUp_FLU').click(function (e) {
         e.preventDefault();
+        
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _usearchFLU = $('#usearchFLU').val();
@@ -961,9 +1008,11 @@ $(document).ready(function () {
         var _ucommentFLU = $('#ucommentFLU').val();
         var _udocFLUCode = $('#UdocFLUCode').val();
 
+        var temp = _uDateFollowUp.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
 
         upObject.searchFLU = _usearchFLU;
-        upObject.DateFollowUp = _uDateFollowUp;
+        upObject.DateFollowUp = _ddate4New;
         upObject.commentFLU = _ucommentFLU;
         upObject.docFLUCode = _udocFLUCode;
 
@@ -971,7 +1020,9 @@ $(document).ready(function () {
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040004").modal('toggle');
+        
         //$(".modal-backdrop").hide();
+        
     });
 
     //js DELETE for Radiology request
@@ -1277,12 +1328,12 @@ $(document).ready(function () {
     });
 
     $('#btnCIS_Discharge_Summary').click(function () {
+        
         var index = "";
+        
         $('input[name="CIS_consult_notes"]:checked').each(function () {
             index = this.id.split("|");
             dcgIndex.push(index[1]);
-
-          
         });
 
         var dateDCG = $('#tCIS_DCGDate_P').val();
@@ -1293,6 +1344,9 @@ $(document).ready(function () {
         var hfcOrderDetail = $('#tCIS_DCGHFCOrderDetail_P').val();
         var hfcProviderDetail = $('#tCIS_DCGHFCProviderDetail_P').val();
 
+        var temp = dateDCG.split("/");
+        dateDCG = temp[0] + "-" + temp[1] + "-" + temp[2];
+        
         var obj1 = {
             Acode: 'DCG',
             date: dateDCG,
@@ -1302,10 +1356,14 @@ $(document).ready(function () {
             hfcOrderDetail: hfcOrderDetail,
             hfcProviderDetail: hfcProviderDetail,
             index: dcgIndex
-        }
+        };
+        
         _data.push(obj1);
+        
         console.log(_data);
+        
         $('#CIS040010').modal("hide");
+        
         displayDCG(dateDCG, timeDCG, disposition, commentDCG);
 
         dcgIndex = [];
@@ -1326,7 +1384,6 @@ $(document).ready(function () {
         $('.fa-pencil-square-o').css("display", "none");
         $('.fa-times').css("display", "none");
 
-
         var rowId = $('#jsonId').val();
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -1336,12 +1393,15 @@ $(document).ready(function () {
         var checkIndex = updateObj.index;
 
         for (var idx in checkIndex) {
-      
             var checkbox_id = 'checkbox|' + checkIndex[idx];
             $('input[id="' + checkbox_id + '"]').prop("checked", true);
         }
-        console.log(updateObj);
-        $('#update_tCIS_DCGDate').val(updateObj.date);
+        
+        var updateDate = updateObj.date;
+        var temp = updateDate.split("-");
+        updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+        $('#update_tCIS_DCGDate').val(updateDate);
         $('#update_tCIS_DCGTime').val(updateObj.time);
         $('#update_tCIS_DCGDisposition').val(updateObj.disposition);
         $('#update_tCIS_DCGComment').val(updateObj.comment);
@@ -1357,6 +1417,9 @@ $(document).ready(function () {
         var time = $('#update_tCIS_DCGTime').val();
         var disposition = $('#update_tCIS_DCGDisposition').val();
         var comment = $('#update_tCIS_DCGComment').val();
+        
+        var temp = date.split("/");
+        var _ddate4New = temp[0] + "-" + temp[1] + "-" + temp[2];
 
         var index = "";
         $('input[name="CIS_consult_notes"]:checked').each(function () {
@@ -1366,7 +1429,7 @@ $(document).ready(function () {
         });
 
         upObject.time = time;
-        upObject.date = date;
+        upObject.date = _ddate4New;
         upObject.disposition = disposition;
         upObject.comment = comment;
         upObject.index = dcgIndex;
@@ -1542,9 +1605,21 @@ function displayPOS(Problem18, proType, procedure_cd) {
 }
 
 function displayMCTS(DateFrom, DateTo, num1, num2,typeMEC,commentMEC) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + DateFrom + '</br> Date End :' + DateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</br> Leave Type :' + typeMEC+ '</br> Comments :' + commentMEC +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
+    var updateDateFrom = DateFrom;
+    var tempFrom = updateDateFrom.split("-");
+    updateDateFrom = tempFrom[0] + "/" + tempFrom[1] + "/" + tempFrom[2];
+    
+    var updateDateTo = DateTo;
+    var tempTo = updateDateTo.split("-");
+    updateDateTo = tempTo[0] + "/" + tempTo[1] + "/" + tempTo[2];
+    
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + updateDateFrom + '</br> Date End :' + updateDateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</br> Leave Type :' + typeMEC+ '</br> Comments :' + commentMEC +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
     $('#MCTSNotes').append(_tr);
+    
     i = i + 1;
+    
 }
 
 function displayROS(codeROS, ROS, commentROS, modalityROS, modalityROScode, bodysysROS, bodysysROS, bodysysROScode, hfcROS, hfcROScode, locationHFCROS, appointmentROS, patientConditionROS) {
@@ -1560,9 +1635,17 @@ function displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeL
 }
 
 function displayFLU(searchFLU, DateFollowUp, commentFLU) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Follow Up :<p class="summary" id="sum' + i + '">' + searchFLU + '|' + DateFollowUp + '|' + commentFLU + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040004" href="" class="updateBtnFLU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
+    var updateDate = DateFollowUp;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+        
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Follow Up :<p class="summary" id="sum' + i + '">' + searchFLU + '|' + updateDate + '|' + commentFLU + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040004" href="" class="updateBtnFLU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
     $('#FLUNotes').append(_tr);
+    
     i = i + 1;
+    
 }
 
 function displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, appREF, medhistoryREF) {
@@ -1583,12 +1666,19 @@ function  displayADW(_admitToDis, _patientReferFrom, _reason, _admitDate, _admit
 function displayDCGId(date, time, disposition, comment, id) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + id + '" name="CIS_consult_notes"><label for="checkbox|' + id + '"></label></div></td><td><div class="media"><div class="media-body">Discharge Summary:<p class="summary" id="sum' + id + '">Discharge Date : ' + date + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition + ' <br> Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_mCIS_Discharge_Summary" href="" class="updateBtnDCG" id="row|' + id + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + id + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#DCGNotes').append(_tr);
-    i = i + 1;
+    i = i + 1;  
 }
 function displayDCG(date, time, disposition, comment) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Discharge Summary:<p class="summary" id="sum' + i + '">Discharge Date : ' + date + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition + ' <br> Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_mCIS_Discharge_Summary" href="" class="updateBtnDCG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
+    var updateDate = date;
+    var temp = updateDate.split("-");
+    updateDate = temp[0] + "/" + temp[1] + "/" + temp[2];
+    
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Discharge Summary:<p class="summary" id="sum' + i + '">Discharge Date : ' + updateDate + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition + ' <br> Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_mCIS_Discharge_Summary" href="" class="updateBtnDCG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    
     $('#DCGNotes').append(_tr);
     i = i + 1;
+    
 }
 
 function getORCHFCDetail(OrderingHFC, ProviderHFC, index) {

@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Date</label>
                         <div class="col-md-12">
-                            <input class="form-control input-lg" type="text" name="DateFollowUp" id="DateFollowUp" placeholder="Date">
+                            <input class="form-control input-lg" type="text" name="DateFollowUp" id="DateFollowUp" placeholder="DD/MM/YYYY" readonly="">
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Date</label>
-                        <input class="form-control input-lg" type="text" name="DateFollowUp" id="uDateFollowUp" placeholder="Date">
+                        <input class="form-control input-lg" type="text" name="DateFollowUp" id="uDateFollowUp" placeholder="DD/MM/YYYY" readonly="">
                     </div>
                 </div>
 
@@ -116,10 +116,10 @@
                         <button type="submit" class="btn btn-primary btn-block btn-lg" id="updateBtnFollowUp_FLU" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
             </div>

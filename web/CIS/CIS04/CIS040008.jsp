@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Start Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD-MM-YYYY">
+                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD/MM/YYYY">
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">End Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD-MM-YYYY">
+                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD/MM/YYYY">
                             </div>
                         </div>
                     </div>
@@ -122,12 +122,12 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="UDateFromMEC"  placeholder="DD-MM-YY">
+                            <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="UDateFromMEC"  placeholder="DD/MM/YYYY">
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="UDateToMEC"  placeholder="DD-MM-YY">
+                            <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="UDateToMEC"  placeholder="DD/MM/YYYY">
                         </div>
                     </div>
                 </div>
