@@ -102,7 +102,7 @@
                                                 </div>
                                                 <div class="col-md-6">
 
-                                                    <input class="form-control input-lg CIS-OE-SPO-TIME" type="text" name="problem"  id="tCISOESPOStartTime" placeholder="Time" tabindex="4" >
+                                                    <input class="form-control input-lg CIS-OE-SPO-TIME" type="text" name="problem"  id="tCISOESPOStartTime" placeholder="Time" tabindex="4" readonly="">
 
                                                 </div>
                                             </div>
@@ -124,7 +124,7 @@
                                                 </div>
                                                 <div class="col-md-6">
 
-                                                    <input class="form-control input-lg CIS-OE-SPO-TIME" type="text" name="problem"  id="tCISOESPOEndTime" placeholder="Time" tabindex="4" data-search-by-word="true">
+                                                    <input class="form-control input-lg CIS-OE-SPO-TIME" type="text" name="problem"  id="tCISOESPOEndTime" placeholder="Time" tabindex="4" data-search-by-word="true" readonly="">
 
                                                 </div>
                                             </div>
