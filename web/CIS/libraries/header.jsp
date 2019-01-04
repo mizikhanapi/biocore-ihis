@@ -38,15 +38,15 @@
     if (parameterCISFASTV2.equalsIgnoreCase("1")) {
 
 %>
-<script src="jsFunction/Subjective.js?v=1"></script>
-<script src="jsFunction/Assesment.js?v=1"></script>
-<script src="jsFunction/Objective.js?v=1"></script>
-<script src="jsFunction/Plan.js?v=1"></script>
+<script src="jsFunction/Subjective.js?v=1.1"></script>
+<script src="jsFunction/Assesment.js?v=1.1"></script>
+<script src="jsFunction/Objective.js?v=1.1"></script>
+<script src="jsFunction/Plan.js?v=1.1"></script>
 <%  } else {    %>
-<script src="jsFunction/AssesmentFast.js?v=1"></script>
-<script src="jsFunction/SubjectiveFast.js?v=1"></script>
-<script src="jsFunction/ObjectiveFast.js?v=1"></script>
-<script src="jsFunction/PlanFast.js?v=1"></script>
+<script src="jsFunction/AssesmentFast.js?v=1.1"></script>
+<script src="jsFunction/SubjectiveFast.js?v=1.1"></script>
+<script src="jsFunction/ObjectiveFast.js?v=1.1"></script>
+<script src="jsFunction/PlanFast.js?v=1.1"></script>
 <%  }   %>
 
 

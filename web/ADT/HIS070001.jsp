@@ -44,7 +44,7 @@
 
                 <!-- main -->
                 <div class="main" style="background: #f2f4f8;" >
-                    <div><%@include file = "libraries/topMenus.html" %></div>
+                    <div><%@include file = "libraries/topMenus.jsp" %></div>
                     <div class="row" >
                         <div class="col-md-12" >
                             <div class="tabbable-line" id="navDiv">

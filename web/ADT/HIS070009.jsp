@@ -60,7 +60,7 @@
                 <!-- main -->		
                 <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
-                    <%@include file = "libraries/topMenus.html" %>
+                    <%@include file = "libraries/topMenus.jsp" %>
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12" style="height: 100%;">
