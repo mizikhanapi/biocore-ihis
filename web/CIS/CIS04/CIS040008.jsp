@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Start Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD/MM/YYYY">
+                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD/MM/YYYY" readonly="">
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">End Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD/MM/YYYY">
+                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD/MM/YYYY" readonly="">
                             </div>
                         </div>
                     </div>

@@ -104,7 +104,7 @@
                             <label class="col-md-6 control-label" for="textinput">Patient have to be admitted before :</label>
                             <div class="col-md-12 form-inline">
                                 <div class="form-group ">
-                                    <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="tCIS_ADWdate"  placeholder="DD/MM/YYYY">  
+                                    <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="tCIS_ADWdate"  placeholder="DD/MM/YYYY" readonly="">  
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control input-lg num1MEC" type="text" name="num1" id="tCIS_ADWtime" placeholder="Time Start">  
