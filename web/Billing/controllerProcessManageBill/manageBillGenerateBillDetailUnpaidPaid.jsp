@@ -1772,6 +1772,9 @@
                 </table>');
 
             $('#MANAGEBILL_MasterOrderRefreshSelect').prop('selectedIndex', 0);
+            $('#MANAGEBILL_MasterOrderSelectAssessmentStartEnd').hide();
+            $('#MANAGEBILL_MasterOrderSelectAssessmentStart').val('');
+            $('#MANAGEBILL_MasterOrderSelectAssessmentEnd').val('');
 
         }
         // Reset Function for Table End
