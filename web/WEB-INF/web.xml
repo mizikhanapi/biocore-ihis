@@ -64,6 +64,15 @@
     
     <!--mapping for system admin start-->
     <servlet>
+        <servlet-name>Calling_system_content_management</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010008.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Calling_system_content_management</servlet-name>
+        <url-pattern>/SystemAdmin/Calling_system_content_management</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>adm_lookup</servlet-name>
         <jsp-file>/SystemAdmin/HIS010001.jsp</jsp-file>
     </servlet>

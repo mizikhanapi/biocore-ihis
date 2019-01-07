@@ -1,7 +1,7 @@
 <%-- 
-    Document   : master_lookup_table
-    Created on : Jan 25, 2017, 4:43:13 PM
-    Author     : user
+    Document   : QCS_table
+    Created on : 07-Jan-2019, 18:32:36
+    Author     : Shay
 --%>
 
 <%@page import="ADM_helper.MySession"%>
@@ -13,159 +13,56 @@
     Conn conn = new Conn();
     String LT_user = session.getAttribute("USER_ID").toString();
     String LT_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
+    String sub_dis = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+    
     MySession LT_mys = new MySession(LT_user, LT_hfc);
    
 %>
 <table  id="THE_masterTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th>Master Code</th>
-    <th>Master Name</th>
-    <th>Source</th>
-    <th>Status</th>
-    <th>View Detail</th>
-    <%
-    if(LT_mys.isSuperUser()){
-    %>
+    <th>Content Id</th>
+    <th>Content Title</th>
+    <th>Content Text</th>
+    <th>Date</th>
+    <th>Image</th>
+    <th>Modified by</th>
     <th>Action</th>
-    <%
-    }
-    %>
+    
 </thead>
 <tbody>
 
     <%
-        String sql = " SELECT Master_Reference_code, description, IFNULL(status, '0'), source_indicator FROM adm_lookup_master ";
+        //                     0     1              2               3            4           5        6       7            8
+        String sql = " SELECT id,cs_hfc_cd,cs_sub_discipline,cs_episode_date,cs_title,cs_content,date_format(cs_date,'%d/%m/%Y'),cs_modified_by,cs_img FROM qcs_calling_system_content WHERE cs_hfc_cd = '"+LT_hfc+"' and cs_discipline = '"+dis_cd+"'";
         ArrayList<ArrayList<String>> dataMaster = conn.getData(sql);
 
         int size = dataMaster.size();
         
-        if(LT_mys.isSuperUser()){
-            for (int i = 0; i < size; i++) {
+        
+    for (int i = 0; i < size; i++) {
     %>
 
     <tr>
 <input id="MLT_hidden" type="hidden" value="<%=String.join("|", dataMaster.get(i))%>">
 <td><%= dataMaster.get(i).get(0)%></td>
-<td><%= dataMaster.get(i).get(1)%></td>
-<td><%= dataMaster.get(i).get(3)%></td>
-<td><%if (dataMaster.get(i).get(2).equals("1")) {
-                out.print("Inactive");
-            } else {
-                out.print("Active");
-            } %></td>
-
+<td><%= dataMaster.get(i).get(4)%></td>
+<td><%= dataMaster.get(i).get(5)%></td>
+<td><%= dataMaster.get(i).get(6)%></td>
+<td><img src="<%= dataMaster.get(i).get(8)%>" style="width: 70px;height: 70px"></td>
+<td><%= dataMaster.get(i).get(7)%></td>
 <td style="width: 5% ">
-
-    <a id="MLT_btnViewDetail" style="cursor: pointer"><i class="fa fa-arrow-right" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-
-</td>
-
-
-<td style="width: 5% ">
-
-    <!-- Update Part Start -->
     <a id="MLT_btnUpdate" data-toggle="modal" data-target="#detail2_" style="cursor: pointer"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     &nbsp;&nbsp;&nbsp;
     <a id="deleteButton_" class="testing" style="cursor: pointer"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-    <!-- Modal Update -->
-
-    <!-- Update Part End -->
 </td>
-
 </tr>
 <%
-        }
-    }else{
-        for (int i = 0; i < size; i++) {
-        %>
-<tr style="text-align: left;">
-<input id="MLT_hidden" type="hidden" value="<%=String.join("|", dataMaster.get(i))%>">
-<td><%= dataMaster.get(i).get(0)%></td>
-<td><%= dataMaster.get(i).get(1)%></td>
-<td><%= dataMaster.get(i).get(3)%></td>
-<td><%if (dataMaster.get(i).get(2).equals("1")) {
-                out.print("Inactive");
-            } else {
-                out.print("Active");
-            } %></td>
-
-<td style="width: 5% ">
-
-    <a id="MLT_btnViewDetail" style="cursor: pointer"><i class="fa fa-arrow-right" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-
-</td>
-        <%
-        }
-    } 
+    }
 %>
 </tbody>
 </table>    
 
-
-<div class="modal fade" id="detail2_" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Update Master Code Details</h3>
-            </div>
-            <div class="modal-body">
-
-                <!-- content goes here -->
-                <form class="form-horizontal">
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Master Code</label>
-                        <div class="col-md-8">
-                            <input id="masterCode_" name="textinput" type="text" placeholder="Master Code" class="form-control input-md"  readonly>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Master Code Name</label>
-                        <div class="col-md-8">
-                            <input type="text" id="masterDesc_" class="form-control" maxlength="100"  >
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Source</label>
-                        <div class="col-md-8">
-                            <input id="masterSource_" name="textinput" type="text" placeholder="Source Indicator" class="form-control input-md" maxlength="30">
-                        </div>
-                    </div>
-
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
-                        <div class="col-md-8">
-                            <select class="form-control" name="tstatus" id="status_">
-                                <option value="0" >Active</option>
-                                <option value="1" >Inactive</option>
-
-                            </select>
-                        </div>
-                    </div>
-                </form>
-                <!-- content goes here -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="MLT_btn_update_">Update</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="reset" id="updateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal Update -->
 <script>
     $(function () {
@@ -355,4 +252,3 @@
         $('#THE_masterTable').DataTable();
     });
 </script>
-

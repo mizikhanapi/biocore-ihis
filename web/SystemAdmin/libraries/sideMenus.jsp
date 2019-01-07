@@ -40,6 +40,7 @@
                                 <li><a id="aManageHFC" href="HealthFacilityManagement"><i class="fa fa-hospital-o fa-lg"></i>Manage Health Facility</a></li>
                                 <li><a id="aSystemSetting" href="Setting"><i class="fa fa-cog fa-lg"></i>System Settings</a></li>
                                 <li><a id="aReport" href="Report"><i class="fa fa-bar-chart fa-lg"></i>Reports</a></li>
+                                <li><a id="aCSCM" href="Calling_system_content_management"><i class="fa fa-file-text fa-lg"></i>Calling System Content Management</a></li>
                                 <%
                                     if(adm_sideMenus_mys.isSuperUser()){
                                 %>
@@ -48,7 +49,5 @@
                                     }
                                 %>
 				<!-- // menu tanpa dropdown -->
-
-				
             </ul>
         </div>
