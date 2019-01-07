@@ -99,6 +99,12 @@
 
         int size = dataManageBillMasterOrderList.size();
         for (int i = 0; i < size; i++) {
+
+            String nullCheck = dataManageBillMasterOrderList.get(i).get(0);
+
+            if (nullCheck == null) {
+            } else {
+
     %>
 
     <tr style="text-align: left;">
@@ -113,11 +119,12 @@
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(7)%></td> <!-- Total Bill -->
 <td style="display: none"><%= dataManageBillMasterOrderList.get(i).get(8)%></td> <!-- Health Facility Code -->
 <td style="text-align: center;">
-    <button class="btn btn-default " data-toggle="tooltip" data-placement="left" title="Paid Bills" id="btnManageBillMasterPatientListTablePaid"><i class="fa fa-database fa-lg"></i> &nbsp;</button>
-    <button class="btn btn-default " data-toggle="tooltip" data-placement="right" title="Unpaid Bills"  id="btnManageBillMasterPatientListTableUnpaid"><i class="fa fa-check-square-o fa-lg"></i> &nbsp;</button>
+    <button class="btn btn-default " data-toggle="tooltip" data-placement="left" title="Paid Bills" id="btnManageBillMasterPatientListTablePaid"><i class="fa fa-database fa-lg"></i></button>
+    <button class="btn btn-default " data-toggle="tooltip" data-placement="right" title="Unpaid Bills"  id="btnManageBillMasterPatientListTableUnpaid"><i class="fa fa-check-square-o fa-lg"></i></button>
 </td> <!-- Health Facility Code -->
 </tr>
 <%
+        }
     }
 %>
 </tbody>
