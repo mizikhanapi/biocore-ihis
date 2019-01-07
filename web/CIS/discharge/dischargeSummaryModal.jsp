@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Time</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg" type="text" name="tCIS_DCGTime" id="tCIS_DCGTime" placeholder="">
+                                <input class="form-control input-lg" type="text" name="tCIS_DCGTime" id="tCIS_DCGTime" placeholder="" readonly="">
                             </div>
                         </div>
                     </div>

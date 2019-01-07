@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Start Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD/MM/YYYY">
+                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD/MM/YYYY" readonly="">
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">End Date</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD/MM/YYYY">
+                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD/MM/YYYY" readonly="">
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Start Time</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg num1MEC" type="text" name="num1" id="num1MEC" placeholder="Time Start">
+                                <input class="form-control input-lg num1MEC" type="text" name="num1" id="num1MEC" placeholder="Time Start" readonly="">
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">End Time</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg num2MEC" type="text" name="num2" id="num2MEC"  placeholder="End End">
+                                <input class="form-control input-lg num2MEC" type="text" name="num2" id="num2MEC"  placeholder="End End" readonly="">
                             </div>
                         </div>
                     </div>

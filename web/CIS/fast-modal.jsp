@@ -419,7 +419,7 @@
             <div class="modal-footer" id="fastTrackChiefComplaintAcceptComplains">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg" id="fastTrackChiefComplaintAcceptComplainsBtn" >Accept Symtoms</a>
+                        <a class="btn btn-primary btn-block btn-lg" id="fastTrackChiefComplaintAcceptComplainsBtn" >Accept Symtoms</a>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
@@ -429,7 +429,7 @@
             <div class="modal-footer" id="fastTrackChiefComplaintAcceptDiagnosis">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg" id="fastTrackChiefComplaintAcceptDiagnosisBtn" >Accept Diagnosis</a>
+                        <a class="btn btn-primary btn-block btn-lg" id="fastTrackChiefComplaintAcceptDiagnosisBtn" >Accept Diagnosis</a>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>

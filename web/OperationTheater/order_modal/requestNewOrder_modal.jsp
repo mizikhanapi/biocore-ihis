@@ -60,13 +60,13 @@
                             <div class="form-group form-horizontal col-md-6">
                                 <label class="col-md-2 control-label" for="textinput">Start*</label>
                                 <div class="col-md-10">
-                                    <input type="text" placeholder="Expected start dd/mm/yyyy hh:mm " class="form-control" maxlength="330" id="RNO_start">
+                                    <input type="text" placeholder="Expected start dd/mm/yyyy hh:mm " class="form-control" maxlength="330" id="RNO_start" >
                                 </div>
                             </div>
                             <div class="form-group form-horizontal col-md-6">
                                 <label class="col-md-2 control-label" for="textinput">End*</label>
                                 <div class="col-md-10">
-                                    <input type="text" placeholder="Expected end dd/mm/yyyy hh:mm " class="form-control" maxlength="330" id="RNO_end">
+                                    <input type="text" placeholder="Expected end dd/mm/yyyy hh:mm " class="form-control" maxlength="330" id="RNO_end" >
                                 </div>
                             </div>
                         </div>    
