@@ -21,11 +21,11 @@
                 <h3 class="modal-title" id="lineModalLabel">Add New Content</h3>
             </div>
             <div class="modal-body">
-
+                <div id="lllloading"></div>
                 <form class="form-horizontal" id="addForm">
-
+                    
                                     
-
+                    <input type="hidden" id="contentId"/>
                                     <!-- Text input-->
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="textinput"> </label>
@@ -70,6 +70,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="btnAdd">Add</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" role="button" id="btnUpdate">Update</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>

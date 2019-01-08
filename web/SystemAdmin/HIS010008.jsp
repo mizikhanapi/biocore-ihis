@@ -72,6 +72,9 @@
         <script>
             // highlighted navigation//
             $('#aCSCM').addClass('active');
+            $('#btnUpdate').hide();
+            $('#btnAdd').show();
+            
             $("#masterTable").load("QCS_table.jsp");
             var gambarURI2;
             $('#tarikh').datepicker({
@@ -85,6 +88,8 @@
             //on add new button click to auto set date////////////////////
             $('#master #masterMain #MLM_btnAddNew').on('click',function(){
                 $('#tarikh').datepicker("setDate", new Date());
+                $('#btnUpdate').hide();
+                $('#btnAdd').show();
             });
             /////////////////////////////////////////////////////////
             
@@ -110,16 +115,32 @@
                       title : title,
                       content : content,
                       date : date,
-                      img : img
+                      img : img,
+                      contentId : ""
                     };
                     
+                    $('.modal-body #lllloading').html("<div class='loading'></div>");
                     $.ajax({
                        type:"post",
                        data:datas,
                        url:"controller/addContent.jsp",
                        success:function(databack){
                            console.log(databack);
-                           alert(databack);
+                           $('.modal-body #lllloading').html("");
+                           if(databack.trim()==="success"){
+                               bootbox.alert({
+                                  title:"Information",
+                                  message:"Content successfully added"
+                               });
+                               $("#masterTable").load("QCS_table.jsp");
+                           }else{
+                               bootbox.alert({
+                                  title:"Information",
+                                  message:"Content Failed to add"
+                               });
+                           }
+                           
+                           
                        }
                     });
                 }
