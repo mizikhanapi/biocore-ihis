@@ -62,39 +62,19 @@
                     <!-- menu top -->
                     <%@ include file ="libraries/reportTopMenus-dashboard.html" %>
                     <!-- menu top -->
-
                     <div class="row">
                         <div class="col-md-12">
-
-                            <div class="thumbnail">
-                                <div id="ALGraph"></div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <div class="thumbnail" style="margin-bottom: 5px;">
-                                <div class="text-center h3" style="margin: 0;">
+                            <div style="margin: 15px 0px 30px;">
+                                <div class="h3" style="margin: 0;">
                                     Statistic of <span id="REP_statTitle"></span> 
-                                    <span class="pull-left" >
-                                        <a href="UTeMAttendanceListReport.jsp"><button class="btn btn-primary btn-block" >Produce Report (View Report)</button> </a>                                 
-                                    </span>
                                     <span class="pull-right" >
-                                        <a id="REP_btnRefresh" title="Refresh the statistic.">
-                                            <i class="fa fa-refresh"></i>  
-                                        </a>
-                                        <a id="REP_btnSetModal" title="Set statistic period.">
-                                            <i class="fa fa-cog"></i>  
-                                        </a>                                       
+                                        <a href="UTeMAttendanceListReport.jsp" title="Produce Report (View Report)"><i class="fa fa-line-chart"></i></a>&nbsp;
+                                        <a id="REP_btnRefresh" title="Refresh the statistic"><i class="fa fa-refresh"></i></a>&nbsp;
+                                        <a id="REP_btnSetModal" title="Set statistic period"><i class="fa fa-cog"></i></a>
                                     </span>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="row">
@@ -133,28 +113,32 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_icd10" >
-                                    <img src="img/ajax-loader.gif">
-                                </div>
-
+                            <div class="thumbnail">
+                                <div id="ALGraph"></div>
+                            </div>
+                        </div>
+                    </div>
+                                            
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="thumbnail" id="MM_stat_icd10" >
+                                <img src="img/ajax-loader.gif">
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_complaint" >
-                                    <img src="img/ajax-loader.gif">
-                                </div>
-                            </div>
+                        </div>
 
-                            <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_drug" >
-                                    <img src="img/ajax-loader.gif">
-                                </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail" id="MM_stat_complaint" >
+                                <img src="img/ajax-loader.gif">
                             </div>
+                        </div>
 
+                        <div class="col-md-4">
+                            <div class="thumbnail" id="MM_stat_drug" >
+                                <img src="img/ajax-loader.gif">
+                            </div>
                         </div>
                     </div>
 
@@ -597,13 +581,13 @@
                         title = "Date " + dataFormInput;
 
                     } else if (how === "m") {
-                        
+
                         title = "Month " + monthNames[tarikh.getMonth()] + " " + tarikh.getFullYear();
-                        
+
                     } else if (how === "y") {
-                        
+
                         title = "Year " + tarikh.getFullYear();
-                        
+
                     } else {
 
                         var dataFormInputFrom = $('#REP_dateFrom').val();
@@ -615,11 +599,11 @@
                         dataFormInputTo = tempTo[2] + "/" + tempTo[1] + "/" + tempTo[0];
 
                         title = dataFormInputFrom + " until " + dataFormInputTo;
-                        
+
                     }
 
                     $('#REP_statTitle').text(title);
-                    
+
                 }
             });
 
